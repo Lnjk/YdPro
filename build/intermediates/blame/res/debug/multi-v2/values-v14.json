@@ -1,0 +1,47 @@
+{
+    "logs": [
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v14\\values-v14.xml",
+            "map": [
+                {
+                    "source": "D:\\test\\YDSHOA\\src\\main\\res\\values-v14\\styles.xml",
+                    "from": {
+                        "startLines": "7",
+                        "startColumns": "4",
+                        "startOffsets": "225",
+                        "endLines": "9",
+                        "endColumns": "12",
+                        "endOffsets": "373"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "201"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-v14\\values.xml",
+                    "from": {
+                        "startLines": "3,11,19,27,35,37,39,41",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,571,1100,1627,2168,2249,2344,2437",
+                        "endLines": "9,17,25,33,35,37,39,41",
+                        "endColumns": "12,12,12,12,79,93,91,105",
+                        "endOffsets": "565,1094,1621,2162,2243,2338,2431,2538"
+                    },
+                    "to": {
+                        "startLines": "5,12,19,26,33,34,35,36",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "206,720,1248,1774,2314,2393,2486,2577",
+                        "endLines": "11,18,25,32,33,34,35,36",
+                        "endColumns": "12,12,12,12,78,92,90,104",
+                        "endOffsets": "715,1243,1769,2309,2388,2481,2572,2677"
+                    }
+                }
+            ]
+        }
+    ]
+}

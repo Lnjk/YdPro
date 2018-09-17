@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/smallbk"
+    android:orientation="vertical" >
+
+    <include layout="@layout/headall" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40.0dip"
+                android:layout_marginLeft="30dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tv_userid"
+                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10.0dip"
+                    android:gravity="center_vertical"
+                    android:text="用户编号 :"
+                    android:textSize="18.0sp" />
+
+                <EditText
+                    android:id="@+id/et_account_id"
+                    android:layout_width="150.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15.0dip"
+                    android:layout_toRightOf="@+id/tv_userid"
+                    android:background="@drawable/edit_bg"
+                    android:padding="5dp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="1dip"
+                android:background="#ff808080" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40.0dip"
+                android:layout_marginLeft="30dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tv_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10.0dip"
+                    android:gravity="center_vertical"
+                    android:text="用户名称 :"
+                    android:textSize="18.0sp" />
+
+                <EditText
+                    android:id="@+id/et_account_name"
+                    android:layout_width="150.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15.0dip"
+                    android:layout_toRightOf="@+id/tv_username"
+                    android:background="@drawable/edit_bg"
+                    android:padding="5dp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="3.0dip"
+                android:background="#ff808080" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40.0dip"
+                android:layout_marginLeft="30dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tv_apwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10.0dip"
+                    android:gravity="center_vertical"
+                    android:text="用户密码 :"
+                    android:textSize="18.0sp" />
+
+                <EditText
+                    android:id="@+id/et_account_pwd"
+                    android:layout_width="150.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15.0dip"
+                    android:layout_toRightOf="@+id/tv_apwd"
+                    android:background="@drawable/edit_bg"
+                    android:inputType="textPassword"
+                    android:padding="5dp" />
+
+                <ImageView
+                    android:id="@+id/cb_pwd"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignRight="@+id/et_account_pwd"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10.0dip" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="3.0dip"
+                android:background="#ff808080" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40.0dip"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="10.0dip"
+                    android:text="默认账套 :"
+                    android:textSize="18.0sp" />
+
+                <EditText
+                    android:id="@+id/et_default_account"
+                    android:layout_width="150.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15.0dip"
+                    android:background="@drawable/edit_bg"
+                    android:padding="5dp" />
+
+                <ImageButton
+                    android:id="@+id/default_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/xialabuttons" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="3.0dip"
+                android:background="#ff808080" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40.0dip"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="10.0dip"
+                    android:text="默认部门 :"
+                    android:textSize="18.0sp" />
+
+                <EditText
+                    android:id="@+id/et_default_dep"
+                    android:layout_width="150.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15.0dip"
+                    android:background="@drawable/edit_bg"
+                    android:padding="5dp" />
+
+                <ImageButton
+                    android:id="@+id/default_dep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/xialabuttons" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="3.0dip"
+                android:background="#ff808080" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40.0dip"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="30dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="10.0dip"
+                    android:text="默认客户 :"
+                    android:textSize="18.0sp" />
+
+                <EditText
+                    android:id="@+id/et_default_cust"
+                    android:layout_width="150.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15.0dip"
+                    android:background="@drawable/edit_bg"
+                    android:padding="5dp" />
+
+                <ImageButton
+                    android:id="@+id/default_cust"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/xialabuttons" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="3.0dip"
+                android:background="#ff808080" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40.0dip"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="10.0dip"
+                    android:text="默认用户 :"
+                    android:textSize="18.0sp" />
+
+                <EditText
+                    android:id="@+id/et_default_user"
+                    android:layout_width="150.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15.0dip"
+                    android:background="@drawable/edit_bg"
+                    android:padding="5dp" />
+
+                <ImageButton
+                    android:id="@+id/default_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/xialabuttons" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="3.0dip"
+                android:background="#ff808080" />
+
+           
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5.0dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/btn_signature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10.0dip"
+                    android:text="用户签章 :"
+                    android:textSize="18.0sp" />
+
+                <ImageButton
+                    android:id="@+id/ib_signatureadd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:background="@android:color/transparent"
+                    android:onClick="signatureAdd"
+                    android:src="@drawable/qz" />
+
+                <ImageView
+                    android:id="@+id/iv_signature"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/ic_launcher" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="3.0dip"
+                android:background="#ff808080" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40.0dip"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="10.0dip"
+                    android:text="签章密码 :"
+                    android:textSize="18.0sp" />
+
+                <EditText
+                    android:id="@+id/et_sighn_pwd"
+                    android:layout_width="150.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15.0dip"
+                    android:background="@drawable/edit_bg"
+                    android:padding="5dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="3.0dip"
+                android:background="#ff808080" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/tv_phoneNumber"
+                    android:layout_width="150.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/myFontTextView1"
+                    android:background="@drawable/edit_bg"
+                    android:ems="10"
+                    android:padding="5dp" />
+
+                <TextView
+                    android:id="@+id/myFontTextView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="设  备  码 :"
+                    android:textSize="18.0sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="3.0dip"
+                android:background="#ff808080" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/btn_account_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shangyibu"
+            android:onClick="myinfoOut"
+            android:textSize="20.0sp" />
+
+        <ImageButton
+            android:id="@+id/btn_account_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/xiayibu"
+            android:onClick="myinfoOut"
+            android:textSize="20.0sp" />
+
+        <ImageButton
+            android:id="@+id/btn_account_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/tuichuall"
+            android:onClick="myinfoOut"
+            android:textSize="20.0sp" />
+    </LinearLayout>
+
+</LinearLayout>

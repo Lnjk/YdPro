@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="dbdata">
+        <item></item>
+        <item>DB_BJ15</item>
+        <item>DB_TJ15</item>
+        <item>DB_SJZ15</item>
+        <item>DB_HF15</item>
+        <item>DB_SY15</item>
+    </string-array>
+    <string-array name="moddata">
+        <item>信息部</item>
+        <item>销售部</item>
+        <item>结算部</item>
+        <item>工程部</item>
+        <item>人事部</item>
+    </string-array>
+    <string-array name="sysdata">
+        <item>请选择...</item>
+        <item>root构建</item>
+        <item>账套管理</item>
+        <item>用户管理</item>
+    </string-array>
+    <string-array name="mod">
+        <item>F</item>
+        <item>T</item>
+    </string-array>
+</resources>

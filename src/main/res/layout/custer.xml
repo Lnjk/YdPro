@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_bg"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:padding="5.0dip" >
+
+    <CheckBox
+        android:id="@+id/cust_listDeleteCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:clickable="true"
+        android:focusable="false"
+        android:visibility="invisible" />
+
+    <View
+        android:id="@+id/first_line"
+        android:layout_width="1dp"
+        android:layout_height="25dp" 
+        android:background="@color/color_dark_grey"
+        android:layout_toRightOf="@+id/cust_listDeleteCheckBox"/>
+
+    <TextView
+        android:id="@+id/textView1_id"
+        android:layout_width="80.0dip"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5.0dip"
+        android:layout_toRightOf="@+id/first_line"
+        android:gravity="center"
+        android:text="用户编号"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textSize="16sp" />
+
+    <com.example.LeftOrRight.InterceptScrollContainer
+        android:id="@+id/scroollContainter"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/textView1_id"
+        android:focusable="false" >
+
+        <com.example.LeftOrRight.MyHScrollView
+            android:id="@+id/horizontalScrollView1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:orientation="horizontal" >
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView2_name"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="用户名称"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView3_pwd"
+                    android:layout_width="100dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="用户密码"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView4_account"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="默认账套"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView5_dep"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="默认部门"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView6_cust"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="默认客户"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView7_user"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="默认用户"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView8_er"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="二维码"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView9_deviceID"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="设备码"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView10_signature"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="签章"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView11_signaturepwd"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="签章密码"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+            </LinearLayout>
+        </com.example.LeftOrRight.MyHScrollView>
+    </com.example.LeftOrRight.InterceptScrollContainer>
+
+</RelativeLayout>

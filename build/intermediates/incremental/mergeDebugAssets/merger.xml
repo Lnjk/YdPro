@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\test\YDSHOA\src\main\assets"><file name="font/jt.ttf" path="D:\test\YDSHOA\src\main\assets\font\jt.ttf"/><file name="font/youhua.ttf" path="D:\test\YDSHOA\src\main\assets\font\youhua.ttf"/></source><source path="D:\test\YDSHOA\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="D:\test\YDSHOA\src\debug\assets"/></dataSet></merger>

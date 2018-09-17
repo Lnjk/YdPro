@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_bg"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:padding="5.0dip" >
+
+    <TextView
+        android:id="@+id/textView1_id_item"
+        android:layout_width="80.0dip"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5.0dip"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="fz合计"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textSize="12sp" />
+
+    <com.example.LeftOrRight.InterceptScrollContainer
+        android:id="@+id/scroollContainter"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/textView1_id_item"
+        android:focusable="false" >
+
+        <com.example.LeftOrRight.MyHScrollView
+            android:id="@+id/horizontalScrollView1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:orientation="horizontal" >
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/tv_1_item_hj_fz"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                     />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/tv_2_item_hj_fz"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                     />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/tv_3_item_hj_fz"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                     />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/tv_4_item_hj_fz"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                     />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/tv_5_item_hj_fz"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                     />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView9_SaAmtn_item_hj_fz"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:textSize="12sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView10_SbAmtn_item_hj_fz"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:textSize="12sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView11_SsAmtn_item_hj_fz"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:textSize="12sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView12_SdAmtn_item_hj_fz"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:textSize="12sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView13_SnAmtn_item_hj_fz"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:textSize="12sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView19_SaCst_item_hj_fz"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:textSize="12sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView14_SbCst_item_hj_fz"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:textSize="12sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView15_SnCst_item_hj_fz"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:textSize="12sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView16_SbsAmatn_item_hj_fz"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:textSize="12sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView17_GP_item_hj_fz"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:textSize="12sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView18_GPM_item_hj_fz"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:textSize="12sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+            </LinearLayout>
+        </com.example.LeftOrRight.MyHScrollView>
+    </com.example.LeftOrRight.InterceptScrollContainer>
+
+</RelativeLayout>

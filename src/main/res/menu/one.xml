@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--sigle：单选/all:多选-->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/check1_one"
+            android:title="新增"/>
+        <item
+            android:id="@+id/check2_one"
+            android:title="查询"/>
+        <item
+            android:id="@+id/check3_one"
+            android:title="修改"/>
+        <item
+            android:id="@+id/check4_one"
+            android:title="删除"/>
+        <item
+            android:id="@+id/check5_one"
+            android:title="执行"/>
+    </group>
+</menu>

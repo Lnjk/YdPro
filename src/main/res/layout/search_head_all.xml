@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" 
+    android:id="@+id/rl_search_all">
+
+    <EditText
+        android:id="@+id/et_search_id"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="5dp"
+        android:background="@drawable/search"
+        android:ems="10"
+        android:hint="id查询"
+        android:padding="5dp" />
+
+    <EditText
+        android:id="@+id/et_search_name"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_toRightOf="@+id/et_search_id"
+        android:background="@drawable/search"
+        android:ems="10"
+        android:hint="名字查询"
+        android:padding="5dp" />
+
+    <ImageButton
+        android:id="@+id/iv_search_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/et_search_name"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/et_search_name"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ssall" />
+
+</RelativeLayout>

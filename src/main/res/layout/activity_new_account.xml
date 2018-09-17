@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/smallbk"
+    android:orientation="vertical" >
+
+    <include layout="@layout/headall" />
+
+    <LinearLayout
+        android:layout_width="300.0dip"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10.0dip"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40.0dip"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10.0dip"
+                android:text="用户编号 :"
+                android:textSize="18.0sp" />
+
+            <EditText
+                android:id="@+id/et_account_id"
+                android:layout_width="150.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15.0dip"
+                android:background="@drawable/edit_bg"
+                android:padding="5dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="3.0dip"
+            android:background="#ff808080" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40.0dip"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10.0dip"
+                android:text="用户名称 :"
+                android:textSize="18.0sp" />
+
+            <EditText
+                android:id="@+id/et_account_name"
+                android:layout_width="150.0dip"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15.0dip"
+                android:background="@drawable/edit_bg"
+                android:padding="5dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="3.0dip"
+            android:background="#ff808080" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40.0dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/tv_apwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10.0dip"
+                android:gravity="center_vertical"
+                android:text="用户密码 :"
+                android:textSize="18.0sp" />
+
+            <EditText
+                android:id="@+id/et_account_pwd"
+                android:layout_width="150.0dip"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15.0dip"
+                android:layout_toRightOf="@+id/tv_apwd"
+                android:background="@drawable/edit_bg"
+                android:inputType="textPassword"
+                android:padding="5dp" />
+
+            <ImageView
+                android:id="@+id/cb_pwd"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignRight="@+id/et_account_pwd"
+                android:layout_centerVertical="true"
+                android:layout_margin="10.0dip" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="3.0dip"
+            android:background="#ff808080" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40.0dip"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10.0dip"
+                android:text="默认账套 :"
+                android:textSize="18.0sp" />
+
+            <Spinner
+                android:id="@+id/et_account_zt"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15.0dip"
+                android:entries="@array/dbdata"
+                android:prompt="@string/my_sp_title"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="3.0dip"
+            android:background="#ff808080" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40.0dip"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10.0dip"
+                android:text="默认部门 :"
+                android:textSize="18.0sp" />
+
+            <Spinner
+                android:id="@+id/et_account_dep"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15.0dip"
+                android:entries="@array/dbdata"
+                android:prompt="@string/my_sp_title"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="3.0dip"
+            android:background="#ff808080" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40.0dip"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10.0dip"
+                android:text="默认客户 :"
+                android:textSize="18.0sp" />
+
+            <Spinner
+                android:id="@+id/et_account_cust"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15.0dip"
+                android:entries="@array/dbdata"
+                android:prompt="@string/my_sp_title"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="3.0dip"
+            android:background="#ff808080" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40.0dip"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10.0dip"
+                android:text="默认用户 :"
+                android:textSize="18.0sp" />
+
+            <Spinner
+                android:id="@+id/et_account_user"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15.0dip"
+                android:entries="@array/dbdata"
+                android:prompt="@string/my_sp_title"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="3.0dip"
+            android:background="#ff808080" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5.0dip"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/btn_erwm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10.0dip"
+                android:text="二维码 :"
+                android:textSize="18.0sp" />
+
+            <ImageButton
+                android:id="@+id/ib_ewmcx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:background="@android:color/transparent"
+                android:onClick="ewmcx"
+                android:src="@drawable/erweimasc" />
+
+            <ImageView
+                android:id="@+id/iv_ewmcx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                 />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="3.0dip"
+            android:background="#ff808080" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/btn_account_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shangyibu"
+            android:onClick="myinfoOut"
+            android:textSize="20.0sp" />
+
+        <ImageButton
+            android:id="@+id/btn_account_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10.0dip"
+            android:background="@drawable/xiayibu"
+            android:onClick="myinfoOut"
+            android:textSize="20.0sp" />
+
+        <ImageButton
+            android:id="@+id/btn_account_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10.0dip"
+            android:background="@drawable/tuichuall"
+            android:onClick="myinfoOut"
+            android:textSize="20.0sp" />
+    </LinearLayout>
+
+</LinearLayout>

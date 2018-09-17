@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--sigle：单选/all:多选-->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/check1_two"
+            android:title="政策拷贝"/>
+        <item
+            android:id="@+id/check2_two"
+            android:title="货品加载"/>
+        <item
+            android:id="@+id/check3_two"
+            android:title="政策转入"/>
+        <item
+            android:id="@+id/check4_two"
+            android:title="政策转入"/>
+        <item
+            android:id="@+id/check5_two"
+            android:title="政策转出"/>
+    </group>
+</menu>

@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_pp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="品牌:" />
+
+    <TextView
+        android:id="@+id/tv_qd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="渠道:" />
+
+    <TextView
+        android:id="@+id/tv_yw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="业务:" />
+
+    <TextView
+        android:id="@+id/tv_bm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="部门:" />
+
+    <TextView
+        android:id="@+id/tv_zd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="终端:" />
+
+    <TextView
+        android:id="@+id/tv_hpzl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="货品中类:" />
+
+    <TextView
+        android:id="@+id/tv_ph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="品号:" />
+
+</LinearLayout>

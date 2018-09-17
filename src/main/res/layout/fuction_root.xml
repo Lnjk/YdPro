@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TableRow
+            android:id="@+id/fuction_root"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <com.example.ydshoa.MyFontTextView
+                android:id="@+id/fuction_id"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="2.0dip"
+                android:text="序号" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <com.example.ydshoa.MyFontTextView
+                android:id="@+id/fuction_name"
+                android:layout_width="80.0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="2.0dip"
+                android:text="名称" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+            <com.example.ydshoa.MyFontTextView
+                android:id="@+id/fuction_level"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="2.0dip"
+                android:text="级别" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <com.example.ydshoa.MyFontTextView
+                android:id="@+id/fuction_query"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.0"
+                android:padding="2.0dip"
+                android:text="查询" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <com.example.ydshoa.MyFontTextView
+                android:id="@+id/fuction_add"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.0"
+                android:padding="2.0dip"
+                android:text="增加" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <com.example.ydshoa.MyFontTextView
+                android:id="@+id/fuction_set"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.0"
+                android:padding="2.0dip"
+                android:text="更新" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <com.example.ydshoa.MyFontTextView
+                android:id="@+id/fuction_Del"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.0"
+                android:padding="2.0dip"
+                android:text="删除" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <com.example.ydshoa.MyFontTextView
+                android:id="@+id/fuction_Prt"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.0"
+                android:padding="2.0dip"
+                android:text="打印" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <com.example.ydshoa.MyFontTextView
+                android:id="@+id/fuction_Qut"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.0"
+                android:padding="2.0dip"
+                android:text="转出" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <com.example.ydshoa.MyFontTextView
+                android:id="@+id/fuction_Qty"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.0"
+                android:padding="2.0dip"
+                android:text="数量" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <com.example.ydshoa.MyFontTextView
+                android:id="@+id/fuction_Up"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.0"
+                android:padding="2.0dip"
+                android:text="单价" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <com.example.ydshoa.MyFontTextView
+                android:id="@+id/fuction_Amt"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.0"
+                android:padding="2.0dip"
+                android:text="金额" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <com.example.ydshoa.MyFontTextView
+                android:id="@+id/fuction_Cst"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.0"
+                android:padding="2.0dip"
+                android:text="成本" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <com.example.ydshoa.MyFontTextView
+                android:id="@+id/fuction_pr"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.0"
+                android:padding="2.0dip"
+                android:text="毛利" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <com.example.ydshoa.MyFontTextView
+                android:id="@+id/fuction_prg"
+                android:layout_width="0dp"
+                android:layout_weight="1.0"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="2.0dip"
+                android:text="毛利率" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

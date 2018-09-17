@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="__local_aars__:D.\test\YDSHOA\libs\json-lib-2.3-jdk15.jar:unspecified@jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/json-lib-2.3-jdk15.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

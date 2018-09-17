@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/headall" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5.0dip"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5.0dip"
+                android:orientation="horizontal" >
+
+                <com.example.ydshoa.MyFontTextView
+                    android:id="@+id/tv_querry_ztid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="2.0dip"
+                    android:layout_marginTop="5.0dip"
+                    android:text="查询账套 :"
+                    android:textSize="12.0sp" />
+
+                <TextView
+                    android:id="@+id/et_querry_zt"
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1.0"
+                    android:ellipsize="end"
+                    android:singleLine="true" />
+
+                <ImageButton
+                    android:id="@+id/ib_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/xialabuttons" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="3.0dip"
+                android:background="#ff808080" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5.0dip"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <com.example.ydshoa.MyFontTextView
+                        android:id="@+id/btn_querry_dep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2.0dip"
+                        android:background="@android:color/transparent"
+                        android:text="查询部门 :"
+                        android:textSize="12.0sp" />
+
+                    <TextView
+                        android:id="@+id/et_querry_dep"
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:ellipsize="end"
+                        android:singleLine="true" />
+
+                    <ImageButton
+                        android:id="@+id/ib_dep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/xialabuttons" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <com.example.ydshoa.MyFontTextView
+                        android:id="@+id/btn_querry_sup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2.0dip"
+                        android:background="@android:color/transparent"
+                        android:text="查询供应商:"
+                        android:textSize="12.0sp" />
+
+                    <TextView
+                        android:id="@+id/et_querry_sup"
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:ellipsize="end"
+                        android:singleLine="true" />
+
+                    <ImageButton
+                        android:id="@+id/ib_sup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/xialabuttons" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="3.0dip"
+                android:background="#ff808080" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5.0dip"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <com.example.ydshoa.MyFontTextView
+                        android:id="@+id/btn_querry_cust"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2.0dip"
+                        android:background="@android:color/transparent"
+                        android:text="查询客户:"
+                        android:textSize="12.0sp" />
+
+                    <TextView
+                        android:id="@+id/et_querry_cust"
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:ellipsize="end"
+                        android:singleLine="true" />
+
+                    <ImageButton
+                        android:id="@+id/ib_cust"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/xialabuttons" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <com.example.ydshoa.MyFontTextView
+                        android:id="@+id/btn_querry_user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2.0dip"
+                        android:background="@android:color/transparent"
+                        android:text="查询用户:"
+                        android:textSize="12.0sp" />
+
+                    <TextView
+                        android:id="@+id/et_querry_user"
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:ellipsize="end"
+                        android:singleLine="true" />
+
+                    <ImageButton
+                        android:id="@+id/ib_user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/xialabuttons" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="3.0dip"
+                android:background="#ff808080" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5.0dip"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/ibbtn_querry_add"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@android:color/transparent"
+                android:src="@drawable/tianjiabutton" />
+
+            <ImageButton
+                android:id="@+id/ibbtn_querry_reset"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@android:color/transparent"
+                android:src="@drawable/xiugaibutton" />
+
+            <ImageButton
+                android:id="@+id/ibbtn_querry_del"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@android:color/transparent"
+                android:src="@drawable/shanchubutton" />
+        </LinearLayout>
+
+        <View
+            style="@style/list_item_seperator_layout"
+            android:layout_marginTop="5.0dip" />
+
+        <include layout="@layout/querry_list_head" />
+
+        <View style="@style/list_item_seperator_layout" />
+
+        <include layout="@layout/querry_list_head_item" />
+
+        <View style="@style/list_item_seperator_layout" />
+
+        <ListView
+            android:id="@+id/lv_querry_header"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1.0"
+            android:cacheColorHint="#00000000"
+            android:divider="@color/color_dark_grey"
+            android:dividerHeight="1.0dip"
+            android:fastScrollEnabled="true"
+            android:focusable="true"
+            android:listSelector="#ffff0000"
+            android:scrollingCache="true" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="3.0dip"
+            android:background="#ff808080" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10.0dip"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/btn_querry_last"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shangyibu"
+                android:onClick="myinfoOut"
+                android:text="上一步"
+                android:textSize="20.0sp" />
+
+            <ImageButton
+                android:id="@+id/btn_querry_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10.0dip"
+                android:background="@drawable/wanchengz"
+                android:onClick="myinfoOut"
+                android:text="完成"
+                android:textSize="20.0sp" />
+
+            <ImageButton
+                android:id="@+id/btn_querry_exit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10.0dip"
+                android:background="@drawable/tuichuall"
+                android:onClick="myinfoOut"
+                android:text="退出"
+                android:textSize="20.0sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

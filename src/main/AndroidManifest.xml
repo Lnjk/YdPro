@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.ydshoa"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="14" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:name="com.example.bean.MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/lchead"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".LoginMainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".RootActivity"
+            android:label="@string/title_activity_root" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main" />
+        <activity
+            android:name=".NewAccountActivity"
+            android:label="@string/title_activity_new_account" />
+        <activity
+            android:name=".SupInfoActivity"
+            android:label="@string/title_activity_sup_info" />
+        <activity
+            android:name=".RegisterActivity"
+            android:label="@string/title_activity_register" />
+        <activity
+            android:name=".GetInfoActivity"
+            android:label="@string/title_activity_get_info" />
+        <activity
+            android:name=".ErpDepInfoActivity"
+            android:label="@string/title_activity_erp_dep_info" />
+        <activity
+            android:name=".TestActivity"
+            android:label="@string/title_activity_test" />
+        <activity
+            android:name=".PostInfoActivity"
+            android:label="@string/title_activity_post_info" />
+        <activity
+            android:name=".NewModActivity"
+            android:label="@string/title_activity_new_mod" />
+        <activity
+            android:name=".ModListActivity"
+            android:label="@string/title_activity_mod_list" />
+        <activity
+            android:name=".ShowModInfoScrowActivity"
+            android:label="@string/title_activity_show_info" />
+        <activity
+            android:name=".ShowQueryInfoActivity"
+            android:label="@string/title_activity_show_query_info" />
+        <activity
+            android:name=".CusterInfoActivity"
+            android:label="@string/title_activity_custer_info" />
+        <activity
+            android:name=".SysActivity"
+            android:label="@string/title_activity_sys" />
+        <activity
+            android:name=".GetDeviseActivity"
+            android:label="@string/title_activity_get_devise" />
+        <activity android:name="com.example.zxing.CaptureActivity" />
+        <activity
+            android:name=".SetActivity"
+            android:label="@string/title_activity_set" />
+        <activity
+            android:name=".AccountActivity"
+            android:label="@string/title_activity_account" />
+        <activity
+            android:name=".ShowModInfoActivity"
+            android:label="@string/title_activity_show_mod_info" />
+        <activity
+            android:name=".SalesQueryActivity"
+            android:label="@string/title_activity_sales_query" />
+        <activity
+            android:name=".UrlSetActivity"
+            android:label="@string/title_activity_url_set" />
+        <activity
+            android:name=".DecisionActivity"
+            android:label="@string/title_activity_decision" />
+        <activity
+            android:name=".ConditionActivity"
+            android:label="@string/title_activity_condition" />
+        <activity
+            android:name=".CondicionInfoActivity"
+            android:label="@string/title_activity_condicion_info" />
+        <activity
+            android:name=".SalesManageActivity"
+            android:label="@string/title_activity_sales_manage" />
+        <activity
+            android:name=".GetSaleNumActivity"
+            android:label="@string/title_activity_get_sale_num" />
+        <activity
+            android:name=".ShowSalSubActivity"
+            android:label="@string/title_activity_show_sal_sub" />
+        <activity
+            android:name=".SalesNumActivity"
+            android:label="@string/title_activity_sales_num" />
+        <activity
+            android:name=".SmrtActivity"
+            android:label="@string/title_activity_smrt" />
+        <activity
+            android:name=".SpActivity"
+            android:label="@string/title_activity_spm" />
+        <activity
+            android:name=".OutInfoActivity"
+            android:label="@string/title_activity_out_info" />
+        <activity
+            android:name=".SalesQueryTwoActivity"
+            android:label="@string/title_activity_sales_query_two"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".PriceActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".BrandNumActivity" />
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5b1e24d9b27b0a7e890001bc" />
+        <!-- Channel ID用来标识App的推广渠道，作为推送消息时给用户分组的一个维度。 -->
+        <meta-data
+            android:name="UMENG_MESSAGE_SECRET"
+            android:value="2c00766a8ccd2be0f1614b89ce03b89e" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Channel ID" />
+
+        <activity android:name=".WelcomeActivity" />
+        <activity android:name=".PriceOutActivity" />
+        <activity android:name=".FormActivity" />
+        <activity android:name=".AddMoreActivity"></activity>
+    </application>
+
+</manifest>

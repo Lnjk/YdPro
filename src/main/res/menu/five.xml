@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--sigle：单选/all:多选-->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/check1_five"
+            android:title="T"/>
+        <item
+            android:id="@+id/check2_five"
+            android:title="F"/>
+
+    </group>
+</menu>

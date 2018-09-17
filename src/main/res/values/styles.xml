@@ -1,0 +1,155 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="list_item_seperator_layout">
+        <item name="android:background">@color/color_dark_grey</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1.0dip</item>
+    </style>
+
+    <style name="list_item_cell_seperator_layout">
+        <item name="android:background">@color/color_dark_grey</item>
+        <item name="android:layout_width">1.0dip</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+    <style name="list_item_gd">
+        <item name="android:background">@color/color_dark_grey</item>
+        <item name="android:layout_width">1.0dip</item>
+        <item name="android:layout_height">25dp</item>
+    </style>
+
+    <style name="MyDialogStyle">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <!--//定价view-->
+    <style name="price_view">
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_margin">3.0dp</item>
+        <item name="android:background">#ff808080</item>
+    </style>
+    <!--//定价ll1-->
+    <style name="price_ll1">
+        <item name="android:layout_marginTop">5.0dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
+    </style>
+    <!--//定价ll2-->
+    <style name="price_ll2">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dip</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <!--//定价ll3-->
+    <style name="price_editext">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@null</item>
+        <item name="android:ems">10</item>
+        <item name="android:inputType">textPersonName</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:textSize">12.0sp</item>
+    </style>
+    <!--//定价name-->
+    <style name="price_name">
+        <item name="android:layout_marginLeft">2.0dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textSize">12.0sp</item>
+    </style>
+    <!--//定价info-->
+    <style name="price_info">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dip</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_marginLeft">5dp</item>
+    </style>
+    <!--//定价Imagebutton-->
+    <style name="price_button_down">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:src">@drawable/xialabuttons</item>
+    </style>
+    <!--//定价Imagebutton2-->
+    <style name="price_button_out">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+    <!--//定价button-->
+    <style name="price_button">
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <!--//滑动表头-->
+    <style name="head_scrow">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:focusable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:textColor">#ff000000</item>
+        <item name="android:textSize">12sp</item>
+
+    </style>
+    <!--//滑动表头item-->
+    <style name="price_editext_item">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@null</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:ems">10</item>
+        <item name="android:hint">editext</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <!--//速查表头-->
+    <style name="head_quick">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:textSize">10sp</item>
+
+    </style>
+</resources>

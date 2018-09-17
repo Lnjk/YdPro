@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="3" >
+
+        <TableRow android:id="@+id/querry_header" >
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/tv_quy_xz"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="2.0dip"
+                android:textSize="10sp"
+                android:text="选择" />
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/querry_dbid"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="2.0dip"
+                android:textSize="10sp"
+                android:text="账套编号" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/querry_dep"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1.0"
+                android:padding="2.0dip"
+                android:textSize="10sp"
+                android:text="部门" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/querry_sup"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                 android:layout_weight="1.0"
+                android:padding="2.0dip"
+                android:textSize="10sp"
+                android:text="供应商" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/querry_cust"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1.0"
+                android:padding="2.0dip"
+                android:textSize="10sp"
+                android:text="客户" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/querry_user"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1.0"
+                android:padding="2.0dip"
+                android:textSize="10sp"
+                android:text="用户" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+            <TextView
+                android:id="@+id/querry_hs"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1.0"
+                android:padding="2.0dip"
+                android:textSize="10sp"
+                android:text="核算单位" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

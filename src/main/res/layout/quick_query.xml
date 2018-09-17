@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/smallbk">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical">
+
+        <include layout="@layout/headall" />
+
+        <include layout="@layout/time" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_1"
+        style="@style/list_item_seperator_layout"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginTop="2.0dip" />
+
+    <EditText
+        android:id="@+id/et_search_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_1"
+        android:layout_margin="3dp"
+        android:background="@drawable/time"
+        android:hint="输入关键字"
+        android:padding="5dp" />
+
+    <View
+        style="@style/list_item_seperator_layout"
+        android:layout_below="@+id/et_search_price"
+        android:layout_marginTop="2.0dip" />
+    <LinearLayout
+        android:id="@+id/ll_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/et_search_price"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/ll_zs"
+            layout="@layout/quick_head_main" />
+
+        <View style="@style/price_view" />
+        <ListView
+            android:id="@+id/lv_main"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_alignParentLeft="true"
+            android:cacheColorHint="#00000000"
+            android:divider="@color/color_dark_grey"
+            android:dividerHeight="1.0dip"
+            android:fastScrollEnabled="true"
+            android:focusable="false"
+            android:listSelector="#ffff0000"
+            android:scrollingCache="true" />
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>

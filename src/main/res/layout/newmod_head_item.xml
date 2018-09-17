@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <TableLayout
+        android:id="@+id/stock_list_item_table_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:shrinkColumns="2" >
+
+        <TableRow android:id="@+id/querry_header_item" >
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/querry_item_dbid"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.0"
+                android:ellipsize="end"
+                android:padding="2.0dip"
+                android:singleLine="true"
+                android:textColor="#ff000000" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/querry_item_dep"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.0"
+                android:ellipsize="end"
+                android:padding="2.0dip"
+                android:singleLine="true"
+                android:textColor="#ff000000" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/querry_item_sup"
+                android:layout_width="90.0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:padding="2.0dip"
+                android:singleLine="true"
+                android:textColor="#ff000000" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/querry_item_cust"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.0"
+                android:ellipsize="end"
+                android:padding="2.0dip"
+                android:singleLine="true"
+                android:textColor="#ff000000" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/querry_item_user"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.0"
+                android:ellipsize="end"
+                android:padding="2.0dip"
+                android:singleLine="true"
+                android:textColor="#ff000000" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

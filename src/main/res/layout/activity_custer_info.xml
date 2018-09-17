@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/smallbk"
+    android:orientation="vertical"
+    android:padding="3.0dip" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50.0dip"
+        android:background="#3399ff" >
+
+        <TextView
+            android:id="@+id/tv_usrmng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="用户管理"
+            android:textSize="25.0sp" />
+
+        <ImageButton
+            android:id="@+id/ib_allback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:background="@color/transparent"
+            android:onClick="allback"
+            android:src="@drawable/hleft" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_sale_project"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_saleNum"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_new_add"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:text="新增"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_account_reset"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:text="修改"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_account_del"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:text="删除"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_account_info"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:text="展开"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <View
+        style="@style/list_item_seperator_layout"
+        android:layout_marginTop="2.0dip" />
+
+    <include
+        android:id="@+id/cust_head"
+        layout="@layout/custer" />
+
+    <View style="@style/list_item_seperator_layout" />
+
+    <ListView
+        android:id="@+id/lv_account_header"
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1.0"
+        android:cacheColorHint="#00000000"
+        android:dividerHeight="1.0dip"
+        android:drawSelectorOnTop="true"
+        android:fastScrollEnabled="true"
+        android:focusable="true"
+        android:listSelector="#00000000"
+        android:scrollingCache="true" />
+
+</LinearLayout>

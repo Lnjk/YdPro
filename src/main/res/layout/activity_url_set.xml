@@ -1,0 +1,165 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
+    <include
+        android:id="@+id/url_head"
+        layout="@layout/headall" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/relativeLayout1" >
+
+        <EditText
+            android:id="@+id/editText1_t"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/textView1_t"
+            android:hint="远东神华oa" />
+
+        <TextView
+            android:id="@+id/textView1_t"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/editText1_t"
+            android:layout_alignBottom="@+id/editText1_t"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:text="网络2:" />
+
+        <EditText
+            android:id="@+id/editText2_t"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editText1_t"
+            android:layout_below="@+id/editText1_t"
+            android:ems="10"
+            android:hint="http://oa.ydshce.com:8080" >
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/textView2_t"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/editText2_t"
+            android:layout_alignBottom="@+id/editText2_t"
+            android:layout_toLeftOf="@+id/editText1_t"
+            android:text="IP地址:" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/relativeLayout2" >
+
+        <EditText
+            android:id="@+id/editText1_t_t"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/textView1_t_t"
+            android:hint="远东神华oa" />
+
+        <TextView
+            android:id="@+id/textView1_t_t"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/editText1_t_t"
+            android:layout_alignBottom="@+id/editText1_t_t"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:text="网络3:" />
+
+        <EditText
+            android:id="@+id/editText2_t_t"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editText1_t_t"
+            android:layout_below="@+id/editText1_t_t"
+            android:ems="10"
+            android:hint="http://oa.ydshce.com:8080" >
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/textView2_t_t"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/editText2_t_t"
+            android:layout_alignBottom="@+id/editText2_t_t"
+            android:layout_toLeftOf="@+id/editText1_t_t"
+            android:text="IP地址:" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/url_head" >
+
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/textView1"
+            android:hint="远东神华oa" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/editText1"
+            android:layout_alignBottom="@+id/editText1"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:text="网络1:" />
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editText1"
+            android:layout_below="@+id/editText1"
+            android:ems="10"
+            android:hint="http://oa.ydshce.com:8080" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/editText2"
+            android:layout_alignBottom="@+id/editText2"
+            android:layout_toLeftOf="@+id/editText1"
+            android:text="IP地址:" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_http_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeLayout3"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button"
+        android:onClick="btn_http_save"
+        android:text="保存" />
+
+</RelativeLayout>

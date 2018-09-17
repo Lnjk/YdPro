@@ -1,0 +1,4 @@
+#Mon Sep 17 13:39:29 GMT+08:00 2018
+base.0=D\:\\test\\YDSHOA\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex

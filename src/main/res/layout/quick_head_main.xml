@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <TextView
+        style="@style/head_quick"
+        android:text="单号" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+    <TextView
+        android:singleLine="true"
+        style="@style/head_quick"
+        android:text="销售日期" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+    <TextView
+        style="@style/head_quick"
+        android:text="录入人" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+    <TextView
+        style="@style/head_quick"
+        android:text="审核人" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+</LinearLayout>

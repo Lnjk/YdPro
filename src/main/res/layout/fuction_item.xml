@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="afterDescendants"
+    android:orientation="horizontal" >
+
+    <TableLayout
+        android:id="@+id/stock_list_item_table_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:shrinkColumns="2" >
+
+        <TableRow
+            android:id="@+id/fuction_root_item"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <CheckBox
+                android:id="@+id/mod_showChecx"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="false"
+                android:visibility="visible" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/fuction_root_itemZT"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:text="db_bj15"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/fuction_root_itemID"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:text="0"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/fuction_root_itemname"
+                android:layout_width="60dip"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
+                android:gravity="center"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:padding="2.0dip"
+                android:scrollHorizontally="true"
+                android:text="客户管理"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/fuction_root_itemquery"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:text="F"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/fuction_root_itemadd"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:text="F"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/fuction_root_itemset"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:text="F"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/fuction_root_itemdel"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:text="F"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/fuction_root_itemprt"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:text="F"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/fuction_root_itemqut"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:text="F"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/fuction_root_itemqty"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:text="F"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/fuction_root_itemup"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:text="F"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/fuction_root_itemamt"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:text="F"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/fuction_root_itemcst"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:text="F"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/fuction_root_itempr"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:text="F"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/fuction_root_itemprg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:text="F"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

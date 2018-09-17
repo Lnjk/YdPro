@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/smallbk"
+    android:orientation="vertical" >
+
+    <include layout="@layout/headall" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dip"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/ll_show_half"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="2.0dip"
+                    android:background="@android:color/transparent"
+                    android:text="选择账套 :"
+                    android:textSize="12.0sp" />
+
+                <Spinner
+                    android:id="@+id/newmod_sp_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/mod" />
+            </LinearLayout>
+
+            <include layout="@layout/newmod_head" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="3.0dip"
+                android:background="#ff808080" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dip"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2.0dip"
+                        android:background="@android:color/transparent"
+                        android:text="查询 :"
+                        android:textSize="12.0sp" />
+
+                    <Spinner
+                        android:id="@+id/newmod_sp_query"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/mod" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2.0dip"
+                        android:background="@android:color/transparent"
+                        android:text="添加 :"
+                        android:textSize="12.0sp" />
+
+                    <Spinner
+                        android:id="@+id/newmod_sp_add"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/mod" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2.0dip"
+                        android:background="@android:color/transparent"
+                        android:text="修改"
+                        android:textSize="12.0sp" />
+
+                    <Spinner
+                        android:id="@+id/newmod_sp_set"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/mod" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="3.0dip"
+                android:background="#ff808080" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dip"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2.0dip"
+                        android:background="@android:color/transparent"
+                        android:text="删除 :"
+                        android:textSize="12.0sp" />
+
+                    <Spinner
+                        android:id="@+id/newmod_sp_del"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/mod" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2.0dip"
+                        android:background="@android:color/transparent"
+                        android:text="打印 :"
+                        android:textSize="12.0sp" />
+
+                    <Spinner
+                        android:id="@+id/newmod_sp_prt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/mod" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2.0dip"
+                        android:background="@android:color/transparent"
+                        android:text="转出"
+                        android:textSize="12.0sp" />
+
+                    <Spinner
+                        android:id="@+id/newmod_sp_out"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/mod" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="3.0dip"
+                android:background="#ff808080" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dip"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/btn_querry_dep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2.0dip"
+                        android:background="@android:color/transparent"
+                        android:text="数量 :"
+                        android:textSize="12.0sp" />
+
+                    <Spinner
+                        android:id="@+id/newmod_sp_cst"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/mod" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2.0dip"
+                        android:background="@android:color/transparent"
+                        android:text="毛利 :"
+                        android:textSize="12.0sp" />
+
+                    <Spinner
+                        android:id="@+id/newmod_sp_gp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/mod" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2.0dip"
+                        android:background="@android:color/transparent"
+                        android:text="毛利率"
+                        android:textSize="12.0sp" />
+
+                    <Spinner
+                        android:id="@+id/newmod_sp_gpr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/mod" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dip"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="3.0dip"
+                android:background="#ff808080" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dip"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2.0dip"
+                        android:background="@android:color/transparent"
+                        android:text="成本"
+                        android:textSize="12.0sp" />
+
+                    <Spinner
+                        android:id="@+id/newmod_sp_qty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/mod" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2.0dip"
+                        android:background="@android:color/transparent"
+                        android:text="单价"
+                        android:textSize="12.0sp" />
+
+                    <Spinner
+                        android:id="@+id/newmod_sp_up"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/mod" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.0"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="2.0dip"
+                        android:background="@android:color/transparent"
+                        android:text="金额"
+                        android:textSize="12.0sp" />
+
+                    <Spinner
+                        android:id="@+id/newmod_sp_amt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/mod" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/btn_modadd_new"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="确认添加" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="3.0dip"
+            android:background="#ff808080" />
+
+        <LinearLayout
+            android:id="@+id/ll_zsg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dip"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/ibbtn_mod_add"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@android:color/transparent"
+                android:src="@drawable/tianjiabutton" />
+            <!-- <ImageButton
+                android:id="@+id/ibbtn_mod_reset"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@android:color/transparent"
+                android:src="@drawable/xiugaibutton" /> -->
+
+            <ImageButton
+                android:id="@+id/ibbtn_mod_del"
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@android:color/transparent"
+                android:src="@drawable/shanchubutton" />
+        </LinearLayout>
+
+        <View
+            style="@style/list_item_seperator_layout"
+            android:layout_marginTop="3dip" />
+
+        <include 
+            android:id="@+id/head_scrow"
+            layout="@layout/newmod_scrow" />
+<!--         <include layout="@layout/newmod_root" /> -->
+
+        <View style="@style/list_item_seperator_layout" />
+
+        <!-- <include layout="@layout/newmod_item" /> -->
+
+        <View style="@style/list_item_seperator_layout" />
+
+        <ListView
+            android:id="@+id/lv_showmod_header"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1.0"
+            android:cacheColorHint="#00000000"
+            android:divider="@color/color_dark_grey"
+            android:dividerHeight="1.0dip"
+            android:fastScrollEnabled="true"
+            android:focusable="true"
+            android:listSelector="#00000000"
+            android:scrollingCache="true" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dip"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="3.0dip"
+            android:background="#ff808080" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10.0dip"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btn_showmod_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10.0dip"
+                android:onClick="modInfo"
+                android:text="完成"
+                android:background="@drawable/button"
+                android:textSize="20.0sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

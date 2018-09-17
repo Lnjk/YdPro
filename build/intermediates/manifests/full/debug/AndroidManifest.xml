@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.ydshoa"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="21" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:name="com.example.bean.MyApplication"
+        android:allowBackup="true"
+        android:debuggable="true"
+        android:icon="@drawable/lchead"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.example.ydshoa.LoginMainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.ydshoa.RootActivity"
+            android:label="@string/title_activity_root" />
+        <activity
+            android:name="com.example.ydshoa.MainActivity"
+            android:label="@string/title_activity_main" />
+        <activity
+            android:name="com.example.ydshoa.NewAccountActivity"
+            android:label="@string/title_activity_new_account" />
+        <activity
+            android:name="com.example.ydshoa.SupInfoActivity"
+            android:label="@string/title_activity_sup_info" />
+        <activity
+            android:name="com.example.ydshoa.RegisterActivity"
+            android:label="@string/title_activity_register" />
+        <activity
+            android:name="com.example.ydshoa.GetInfoActivity"
+            android:label="@string/title_activity_get_info" />
+        <activity
+            android:name="com.example.ydshoa.ErpDepInfoActivity"
+            android:label="@string/title_activity_erp_dep_info" />
+        <activity
+            android:name="com.example.ydshoa.TestActivity"
+            android:label="@string/title_activity_test" />
+        <activity
+            android:name="com.example.ydshoa.PostInfoActivity"
+            android:label="@string/title_activity_post_info" />
+        <activity
+            android:name="com.example.ydshoa.NewModActivity"
+            android:label="@string/title_activity_new_mod" />
+        <activity
+            android:name="com.example.ydshoa.ModListActivity"
+            android:label="@string/title_activity_mod_list" />
+        <activity
+            android:name="com.example.ydshoa.ShowModInfoScrowActivity"
+            android:label="@string/title_activity_show_info" />
+        <activity
+            android:name="com.example.ydshoa.ShowQueryInfoActivity"
+            android:label="@string/title_activity_show_query_info" />
+        <activity
+            android:name="com.example.ydshoa.CusterInfoActivity"
+            android:label="@string/title_activity_custer_info" />
+        <activity
+            android:name="com.example.ydshoa.SysActivity"
+            android:label="@string/title_activity_sys" />
+        <activity
+            android:name="com.example.ydshoa.GetDeviseActivity"
+            android:label="@string/title_activity_get_devise" />
+        <activity android:name="com.example.zxing.CaptureActivity" />
+        <activity
+            android:name="com.example.ydshoa.SetActivity"
+            android:label="@string/title_activity_set" />
+        <activity
+            android:name="com.example.ydshoa.AccountActivity"
+            android:label="@string/title_activity_account" />
+        <activity
+            android:name="com.example.ydshoa.ShowModInfoActivity"
+            android:label="@string/title_activity_show_mod_info" />
+        <activity
+            android:name="com.example.ydshoa.SalesQueryActivity"
+            android:label="@string/title_activity_sales_query" />
+        <activity
+            android:name="com.example.ydshoa.UrlSetActivity"
+            android:label="@string/title_activity_url_set" />
+        <activity
+            android:name="com.example.ydshoa.DecisionActivity"
+            android:label="@string/title_activity_decision" />
+        <activity
+            android:name="com.example.ydshoa.ConditionActivity"
+            android:label="@string/title_activity_condition" />
+        <activity
+            android:name="com.example.ydshoa.CondicionInfoActivity"
+            android:label="@string/title_activity_condicion_info" />
+        <activity
+            android:name="com.example.ydshoa.SalesManageActivity"
+            android:label="@string/title_activity_sales_manage" />
+        <activity
+            android:name="com.example.ydshoa.GetSaleNumActivity"
+            android:label="@string/title_activity_get_sale_num" />
+        <activity
+            android:name="com.example.ydshoa.ShowSalSubActivity"
+            android:label="@string/title_activity_show_sal_sub" />
+        <activity
+            android:name="com.example.ydshoa.SalesNumActivity"
+            android:label="@string/title_activity_sales_num" />
+        <activity
+            android:name="com.example.ydshoa.SmrtActivity"
+            android:label="@string/title_activity_smrt" />
+        <activity
+            android:name="com.example.ydshoa.SpActivity"
+            android:label="@string/title_activity_spm" />
+        <activity
+            android:name="com.example.ydshoa.OutInfoActivity"
+            android:label="@string/title_activity_out_info" />
+        <activity
+            android:name="com.example.ydshoa.SalesQueryTwoActivity"
+            android:label="@string/title_activity_sales_query_two"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.example.ydshoa.PriceActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name="com.example.ydshoa.BrandNumActivity" />
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5b1e24d9b27b0a7e890001bc" />
+        <!-- Channel ID用来标识App的推广渠道，作为推送消息时给用户分组的一个维度。 -->
+        <meta-data
+            android:name="UMENG_MESSAGE_SECRET"
+            android:value="2c00766a8ccd2be0f1614b89ce03b89e" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Channel ID" />
+
+        <activity android:name="com.example.ydshoa.WelcomeActivity" />
+        <activity android:name="com.example.ydshoa.PriceOutActivity" />
+        <activity android:name="com.example.ydshoa.FormActivity" />
+        <activity android:name="com.example.ydshoa.AddMoreActivity" />
+    </application>
+
+</manifest>

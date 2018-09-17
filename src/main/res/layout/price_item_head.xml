@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_bg"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:padding="5.0dip">
+
+    <!--<CheckBox
+        android:id="@+id/cust_listDeleteCheckBox"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/first_line"
+        android:layout_alignParentLeft="true"
+        android:clickable="true"
+        android:focusable="false"
+        android:gravity="center"
+        android:padding="2dp"
+        android:text="序号"
+        android:textSize="14sp"
+        android:visibility="visible" />-->
+    <TextView
+        android:id="@+id/cust_listDeleteCheckBox"
+        android:gravity="center"
+        style="@style/head_scrow"
+        android:text="序号" />
+
+    <View
+        android:id="@+id/first_line"
+        android:layout_width="1dp"
+        android:layout_height="25dp"
+        android:layout_toRightOf="@+id/cust_listDeleteCheckBox"
+        android:background="@color/color_dark_grey" />
+
+
+    <com.example.LeftOrRight.InterceptScrollContainer
+        android:id="@+id/scroollContainter"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/first_line"
+        android:focusable="false">
+
+        <com.example.LeftOrRight.MyHScrollView
+            android:id="@+id/horizontalScrollView1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/textView2_name"
+                    style="@style/head_scrow"
+                    android:text="货品编号" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView3_pwd"
+                    android:singleLine="true"
+                    style="@style/head_scrow"
+                    android:text="货品名称" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView4_account"
+                    style="@style/head_scrow"
+                    android:text="单位成本" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView5_dep"
+                    style="@style/head_scrow"
+                    android:text="统一定价" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView6_cust"
+                    style="@style/head_scrow"
+                    android:text="最低售价" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView7_user"
+                    style="@style/head_scrow"
+                    android:text="政策定价" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView8_er"
+                    style="@style/head_scrow"
+                    android:text="销售折扣(%)" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView9_deviceID"
+                    style="@style/head_scrow"
+                    android:text="执行情况" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView10_signature"
+                    style="@style/head_scrow"
+                    android:text="备注信息" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+
+            </LinearLayout>
+        </com.example.LeftOrRight.MyHScrollView>
+    </com.example.LeftOrRight.InterceptScrollContainer>
+
+
+</RelativeLayout>

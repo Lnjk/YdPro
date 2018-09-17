@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_bg"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:padding="5.0dip" >
+
+    <TextView
+        android:id="@+id/textView1_id"
+        android:layout_width="80.0dip"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5.0dip"
+        android:gravity="center"
+        android:text="账套名称"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textSize="16sp" />
+
+    <View
+        android:id="@+id/first_line"
+        android:layout_width="1dp"
+        android:layout_height="25dp"
+        android:layout_toRightOf="@+id/textView1_id"
+        android:background="@color/color_dark_grey" />
+
+    <LinearLayout
+        android:id="@+id/ll_gd_head_ss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/first_line"
+        android:focusable="false"
+        android:orientation="horizontal"
+         >
+  
+
+    <LinearLayout
+        android:id="@+id/ll_gd_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/first_line"
+        android:focusable="false"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/tv_1"
+            android:layout_width="80.0dip"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="2.0dip"
+            android:text="1"
+            android:textSize="16sp" />
+
+        <View style="@style/list_item_gd" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_gd_head1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/ll_gd_head"
+        android:focusable="false"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/tv_2"
+            android:layout_width="80.0dip"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="2.0dip"
+            android:text="2"
+            android:textSize="16sp" />
+
+        <View style="@style/list_item_gd" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_gd_head2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/ll_gd_head1"
+        android:focusable="false"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/tv_3"
+            android:layout_width="80.0dip"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="2.0dip"
+            android:text="3"
+            android:textSize="16sp" />
+
+        <View style="@style/list_item_gd" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_gd_head3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/ll_gd_head2"
+        android:focusable="false"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/tv_4"
+            android:layout_width="80.0dip"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="2.0dip"
+            android:text="4"
+            android:textSize="16sp" />
+
+        <View style="@style/list_item_gd" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_gd_head4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/ll_gd_head3"
+        android:focusable="false"
+        android:orientation="horizontal"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/tv_5"
+            android:layout_width="80.0dip"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="2.0dip"
+            android:text="5"
+            android:textSize="16sp" />
+
+        <View style="@style/list_item_gd" />
+    </LinearLayout>
+  </LinearLayout>
+    <com.example.LeftOrRight.InterceptScrollContainer
+        android:id="@+id/scroollContainter"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/ll_gd_head_ss"
+        android:focusable="false" >
+
+        <com.example.LeftOrRight.MyHScrollView
+            android:id="@+id/horizontalScrollView1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:orientation="horizontal" >
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView9_SaAmtn"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="销售金额"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView16_SbsAmatn"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="退返金额"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView10_SbAmtn"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="退货金额"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView11_SsAmtn"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="销售返点"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView12_SdAmtn"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="销售折让"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView13_SnAmtn"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="净销售额"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView19_SaCst"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="销售成本"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView14_SbCst"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="退货成本"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView15_SnCst"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="净销成本"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView17_GP"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="销售毛利"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView18_GPM"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="毛利率"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+            </LinearLayout>
+        </com.example.LeftOrRight.MyHScrollView>
+    </com.example.LeftOrRight.InterceptScrollContainer>
+
+</RelativeLayout>

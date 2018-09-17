@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="3.0dip" >
+
+    <include layout="@layout/headall" />
+
+    <View
+        style="@style/list_item_seperator_layout"
+        android:layout_marginTop="2.0dip" />
+
+    <include layout="@layout/four" />
+
+    <View
+        style="@style/list_item_seperator_layout"
+        android:layout_marginTop="2.0dip" />
+
+    <include layout="@layout/fuction_root" />
+
+    <View style="@style/list_item_seperator_layout" />
+    <include layout="@layout/fuction_item" />
+
+    <View style="@style/list_item_seperator_layout" />
+
+    <ListView
+        android:id="@+id/lv_fuction_header"
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1.0"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/color_dark_grey"
+        android:dividerHeight="1.0dip"
+        android:fastScrollEnabled="true"
+        android:focusable="true"
+        android:listSelector="#00000000"
+        android:scrollingCache="true" />
+
+    <View style="@style/list_item_seperator_layout" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10.0dip"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/btn_mod_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10.0dip"
+            android:background="@drawable/shangyibu"
+            android:onClick="myinfoOut"
+            android:text="上一步"
+            android:textSize="20.0sp" />
+
+        <ImageButton
+            android:id="@+id/btn_mod_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10.0dip"
+            android:background="@drawable/xiayibu"
+            android:onClick="myinfoOut"
+            android:text="下一步"
+            android:textSize="20.0sp" />
+
+        <ImageButton
+            android:id="@+id/btn_mod_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10.0dip"
+            android:background="@drawable/tuichuall"
+            android:onClick="myinfoOut"
+            android:text="退出"
+            android:textSize="20.0sp" />
+    </LinearLayout>
+
+</LinearLayout>

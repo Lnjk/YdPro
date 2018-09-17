@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/smallbk"
+    android:orientation="vertical"
+     >
+
+    <include
+        android:id="@+id/head_my"
+        layout="@layout/headall" />
+
+    <Button
+        android:id="@+id/my_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:background="@color/transparent"
+        android:text="退出账号" />
+
+    <View
+        android:background="#ff808080"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp" />
+
+    <Button
+        android:id="@+id/my_desdroy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:background="@color/transparent"
+        android:text="切换账号" />
+
+    <View
+        android:background="#ff808080"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp" />
+
+    <Button
+        android:id="@+id/my_clean"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:background="@color/transparent"
+        android:text="清理缓存" />
+
+    <View
+        android:background="#ff808080"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp" />
+
+</LinearLayout>

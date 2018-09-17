@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--sigle：单选/all:多选-->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/check1_six"
+            android:title="1.商品"/>
+        <item
+            android:id="@+id/check2_six"
+            android:title="2.制成品"/>
+        <item
+            android:id="@+id/check3_six"
+            android:title="3.半成品"/>
+        <item
+            android:id="@+id/check4_six"
+            android:title="4.原料"/>
+        <item
+            android:id="@+id/check5_six"
+            android:title="5.物料"/>
+        <item
+            android:id="@+id/check6_six"
+            android:title="6.下脚品"/>
+        <item
+            android:id="@+id/check7_six"
+            android:title="7.包装物"/>
+
+    </group>
+</menu>

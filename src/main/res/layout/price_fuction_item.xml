@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="afterDescendants"
+    android:orientation="horizontal">
+
+    <TableLayout
+        android:id="@+id/stock_list_item_table_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:shrinkColumns="2">
+
+        <TableRow
+            android:id="@+id/fuction_root_item"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <CheckBox
+                android:id="@+id/price_showChecx"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="false"
+                android:visibility="visible" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <EditText
+                android:id="@+id/price_brand_id"
+                android:layout_width="80dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@null"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:text="hp_id"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <EditText
+                android:id="@+id/price_brand_name"
+                android:layout_width="80dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@null"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:text="hp_name"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <EditText
+                android:id="@+id/price_dw_cb"
+                android:layout_width="80dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@null"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:scrollHorizontally="true"
+                android:text="dw_cb"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+            <EditText
+                android:id="@+id/price_ty_dj"
+                android:layout_width="80dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@null"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:scrollHorizontally="true"
+                android:text="ty_dj"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+            <EditText
+                android:id="@+id/price_min"
+                android:layout_width="80dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@null"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:scrollHorizontally="true"
+                android:text="zd_sj"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+            <EditText
+                android:id="@+id/price_danj"
+                android:layout_width="80dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@null"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:scrollHorizontally="true"
+                android:text="zc_dj"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+            <EditText
+                android:id="@+id/price_zk"
+                android:layout_width="80dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@null"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:scrollHorizontally="true"
+                android:text="xs_zk"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+            <EditText
+                android:id="@+id/price_zx_qk"
+                android:layout_width="80dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@null"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:scrollHorizontally="true"
+                android:text="zx_qk"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+            <EditText
+                android:id="@+id/price_bz_xx"
+                android:layout_width="80dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:background="@null"
+                android:gravity="center"
+                android:padding="2.0dip"
+                android:scrollHorizontally="true"
+                android:text="bz_xx"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+
+
+
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_chage_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="部门选择"
+            android:textSize="20.0sp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="5.0dip"
+            android:layout_marginLeft="20dp"
+            android:background="@android:color/transparent"
+            android:onClick="back"
+            android:src="@drawable/back" />
+    </RelativeLayout>
+
+    <include layout="@layout/search_head_all" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" >
+
+        <!-- <TextView
+            android:id="@+id/tv"
+            android:layout_width="150dp"
+            android:layout_height="30.0dip"
+            android:layout_marginLeft="10.0dip"
+            android:background="@drawable/textviewside"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:text="未选择..."
+            android:textColor="#871F78"
+            android:textSize="10.0pt" /> -->
+
+        <ListView
+            android:id="@+id/lv"
+            android:layout_width="fill_parent"
+            android:layout_height="381.0dip"
+            android:cacheColorHint="#00000000" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10.0dip"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/selectall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttons"
+            android:onClick="allchek"
+            android:text="全选" />
+
+        <Button
+            android:id="@+id/inverseselect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/buttons"
+            android:text="反选" />
+
+        <Button
+            android:id="@+id/btnok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/buttons"
+            android:onClick="check"
+            android:text="确定" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/buttons"
+            android:text="取消" />
+    </LinearLayout>
+
+
+</LinearLayout>

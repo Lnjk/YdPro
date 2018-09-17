@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--sigle：单选/all:多选-->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/check1_seven"
+            android:title="1.特级"/>
+        <item
+            android:id="@+id/check2_seven"
+            android:title="2.优等"/>
+        <item
+            android:id="@+id/check3_seven"
+            android:title="3.一级"/>
+        <item
+            android:id="@+id/check4_seven"
+            android:title="4.二级"/>
+        <item
+            android:id="@+id/check5_seven"
+            android:title="5.三级"/>
+        <item
+            android:id="@+id/check6_seven"
+            android:title="6.合格"/>
+        <item
+            android:id="@+id/check7_seven"
+            android:title="7.不合格"/>
+
+    </group>
+</menu>

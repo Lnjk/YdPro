@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:padding="5.0dip" >
+
+    <com.example.ydshoa.MyFontTextView
+        android:id="@+id/textView1_saleszt"
+        android:layout_width="80.0dip"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5.0dip"
+        android:layout_marginRight="5.0dip"
+        android:gravity="center"
+        android:text="分支账套"
+        android:textColor="#FF0000"
+        android:textAppearance="?android:textAppearanceMedium" />
+
+    <com.example.LeftOrRight.InterceptScrollContainer
+        android:id="@+id/scroollContainter_sales"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/textView1_saleszt"
+        android:focusable="false" >
+
+        <com.example.LeftOrRight.MyHScrollView
+            android:id="@+id/horizontalScrollView1_sales"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:orientation="horizontal" >
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <com.example.ydshoa.MyFontTextView
+                    android:id="@+id/textView2_xse"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="销售额"
+                    android:textColor="#ff000000" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <com.example.ydshoa.MyFontTextView
+                    android:id="@+id/textView3_the"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="退货额"
+                    android:textColor="#ff000000" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <com.example.ydshoa.MyFontTextView
+                    android:id="@+id/textView4_zre"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="折让额"
+                    android:textColor="#ff000000" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <com.example.ydshoa.MyFontTextView
+                    android:id="@+id/textView5_jxs"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="净销售"
+                    android:textColor="#ff000000" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <com.example.ydshoa.MyFontTextView
+                    android:id="@+id/textView6_xscb"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="销售成本"
+                    android:textColor="#ff000000" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <com.example.ydshoa.MyFontTextView
+                    android:id="@+id/textView7_xsml"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="销售毛利"
+                    android:textColor="#ff000000" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <com.example.ydshoa.MyFontTextView
+                    android:id="@+id/textView8_mll"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="毛利率"
+                    android:textColor="#ff000000" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <com.example.ydshoa.MyFontTextView
+                    android:id="@+id/textView9_cbmll"
+                    android:layout_width="80.0dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="成本毛利率"
+                    android:textColor="#ff000000" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+            </LinearLayout>
+        </com.example.LeftOrRight.MyHScrollView>
+    </com.example.LeftOrRight.InterceptScrollContainer>
+
+</RelativeLayout>
