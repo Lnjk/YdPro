@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Sep 06 15:50:01 GMT+08:00 2018
+#Tue Sep 18 16:59:11 GMT+08:00 2018
 1.base=D\:\\test\\YDSHOA\\build\\intermediates\\assets\\debug
 2.path=font/youhua.ttf
 0.baseType=DIRECTORY

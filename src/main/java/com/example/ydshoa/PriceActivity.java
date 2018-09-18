@@ -910,9 +910,9 @@ public class PriceActivity extends Activity implements OnClickListener {
 //                    if (execute == 1) {
                     if (do_all == 2) {
 
-                        if (accepted_one_mx.equals("Y")) {
-                            Toast.makeText(context, "该单号不能被修改", Toast.LENGTH_LONG).show();
-                        } else {
+//                        if (accepted_one_mx.equals("Y")) {
+//                            Toast.makeText(context, "该单号不能被修改", Toast.LENGTH_LONG).show();
+//                        } else {
 
                             new AlertDialog.Builder(context)
                                     .setTitle("是否修改")
@@ -931,7 +931,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                                                     mListView1.setAdapter(mxPriceAdapter);
                                                 }
                                             }).setNegativeButton("否", null).show();
-                        }
+//                        }
                     }
                     if (do_all == 1) {
                         new AlertDialog.Builder(context)
@@ -976,9 +976,9 @@ public class PriceActivity extends Activity implements OnClickListener {
                 if (p_del.equals("true")) {
                     if (do_all == 2) {
 
-                        if (accepted_one_mx.equals("Y")) {
-                            Toast.makeText(context, "该单号不能被删除", Toast.LENGTH_LONG).show();
-                        } else {
+//                        if (accepted_one_mx.equals("Y")) {
+//                            Toast.makeText(context, "该单号不能被删除", Toast.LENGTH_LONG).show();
+//                        } else {
                             // 传单号和数据库
                             new AlertDialog.Builder(context)
                                     .setTitle("是否删除")
@@ -992,7 +992,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                                                     delPrice();
                                                 }
                                             }).setNegativeButton("否", null).show();
-                        }
+//                        }
                     }
                     if (do_all == 1) {
                         new AlertDialog.Builder(context)
@@ -1254,13 +1254,13 @@ public class PriceActivity extends Activity implements OnClickListener {
                         MainInfoAdd();
                         exuteInfo();
                     } else if (do_all == 2) {
-                        if (accepted_one_mx.equals("Y")) {
-                            Toast.makeText(context, "该单号不能被执行", Toast.LENGTH_LONG).show();
-                        } else {
+//                        if (accepted_one_mx.equals("Y")) {
+//                            Toast.makeText(context, "该单号不能被执行", Toast.LENGTH_LONG).show();
+//                        } else {
                             getList_no();//获取list数据，数组格式提交
                             MainInfoAdd();
                             exuteInfo();
-                        }
+//                        }
                     } else {
                         Toast.makeText(context, "操作错误", Toast.LENGTH_LONG).show();
                     }
@@ -2019,12 +2019,15 @@ public class PriceActivity extends Activity implements OnClickListener {
         start.setEnabled(true);
         stop.setEnabled(true);
         time.setEnabled(true);
+        //此处时间不变
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
         cal.set(Calendar.DAY_OF_MONTH, 1); //当前月1号和最后日期
         start.setText(new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime()));
         stop.setText(str_time);
-        time.setText(date_dd);
+        time.setText(s_trime);
+//        time.setText(date_dd);
+//        start.setText(startTime);
         num_chage.setEnabled(true);
         addone.setEnabled(true);
         priceset.setEnabled(true);
@@ -5050,7 +5053,7 @@ public class PriceActivity extends Activity implements OnClickListener {
             Log.e("LiNing", "" + Double.parseDouble(tyzk_go) / 100);
             if (user_go.equals("单位成本")) {
                 if (opr_go.equals("+")) {
-                    danj = Double.parseDouble(prdt_mx.getDis_CNT()) + Double.parseDouble(num_go);
+                    danj = Double.parseDouble(prdt_mx.getCst_Up()) + Double.parseDouble(num_go);
                     new_danj = danj * Double.parseDouble(tyzk);
 //                    holder.price_danj.setText("" + new_danj);
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
@@ -5059,7 +5062,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                     holder.price_danj.setText("" + new_danj);
                 }
                 if (opr_go.equals("-")) {
-                    danj = Double.parseDouble(prdt_mx.getDis_CNT()) - Double.parseDouble(num_go);
+                    danj = Double.parseDouble(prdt_mx.getCst_Up()) - Double.parseDouble(num_go);
                     new_danj = danj * Double.parseDouble(tyzk);
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holder.price_danj.setText(str_newdj);
@@ -5067,7 +5070,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                     holder.price_danj.setText("" + new_danj);
                 }
                 if (opr_go.equals("*")) {
-                    danj = Double.parseDouble(prdt_mx.getDis_CNT()) * Double.parseDouble(num_go);
+                    danj = Double.parseDouble(prdt_mx.getCst_Up()) * Double.parseDouble(num_go);
                     new_danj = danj * Double.parseDouble(tyzk);
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holder.price_danj.setText(str_newdj);
@@ -5075,7 +5078,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                     holder.price_danj.setText("" + new_danj);
                 }
                 if (opr_go.equals("/")) {
-                    danj = Double.parseDouble(prdt_mx.getDis_CNT()) / Double.parseDouble(num_go);
+                    danj = Double.parseDouble(prdt_mx.getCst_Up()) / Double.parseDouble(num_go);
                     new_danj = danj * Double.parseDouble(tyzk);
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holder.price_danj.setText(str_newdj);
@@ -5662,6 +5665,8 @@ public class PriceActivity extends Activity implements OnClickListener {
     //清空数据
     private void clearInfo() {
         mListView1.setAdapter(null);
+//        tv_prdKND.setText(null);
+//        tv_prdLevre.setText(null);
         db_check.setText(null);
         brand_check.setText(null);
         hs_check.setText(null);
@@ -5702,6 +5707,11 @@ public class PriceActivity extends Activity implements OnClickListener {
         idList_querySupID.clear();
         idList_compDep.clear();
         idList_compDepID.clear();
+        idList_hpdj.clear();
+        idList_hpdl.clear();
+        idList_hpdjID.clear();
+        idList_hpdlID.clear();
+        //新9.18
     }
 
 
