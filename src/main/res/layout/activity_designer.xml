@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_touch"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/smallbk"
+    android:orientation="vertical">
+
+    <include layout="@layout/headall" />
+
+    <LinearLayout
+        style="@style/price_ll1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_price_add"
+            style="@style/price_button"
+            android:text="新增" />
+
+        <Button
+            android:id="@+id/btn_price_query"
+            style="@style/price_button"
+            android:text="查询" />
+
+        <Button
+            android:id="@+id/btn_price_reset"
+            style="@style/price_button"
+            android:text="修改" />
+
+        <Button
+            android:id="@+id/btn_price_del"
+            style="@style/price_button"
+            android:text="删除" />
+
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/include1">
+
+        <LinearLayout
+            style="@style/price_ll1"
+            android:orientation="vertical">
+
+            <View style="@style/price_view" />
+
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        android:id="@+id/tv_design_ztid"
+                        style="@style/price_name"
+                        android:text="账套选择:" />
+
+                    <TextView
+                        android:id="@+id/et_design_zt"
+                        style="@style/price_info" />
+
+                    <ImageButton
+                        android:id="@+id/ib_design_account"
+                        style="@style/price_button_down" />
+
+
+                </LinearLayout>
+                <LinearLayout style="@style/price_ll2">
+
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/design_name"
+                        android:text="VIP卡号:" />
+                    <TextView
+                        style="@style/design_name"
+                        android:text="VP" />
+
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="身份证号:" />
+
+                    <EditText
+                        android:id="@+id/et_design_usercard"
+                        style="@style/price_name" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/design_name"
+                        android:text="姓名:" />
+
+                    <EditText
+                        android:id="@+id/et_design_username"
+                        style="@style/design_editext" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="曾用名:" />
+
+                    <EditText
+                        android:id="@+id/et_design_username_old"
+                        style="@style/design_editext" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/design_name"
+                        android:text="联系电话:" />
+
+                    <EditText
+                        android:id="@+id/et_design_phone"
+                        style="@style/design_editext" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="联系电话2:" />
+
+                    <EditText
+                        android:id="@+id/et_design_phone_two"
+                        style="@style/design_editext" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/design_name"
+                        android:text="VIP类别:" />
+
+                    <EditText
+                        android:id="@+id/et_design_vip"
+                        style="@style/design_editext" />
+
+                    <ImageButton
+                        android:id="@+id/ib_design_vip"
+                        style="@style/price_button_down" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="所属单位:" />
+
+                    <EditText
+                        android:id="@+id/et_design_comp"
+                        style="@style/design_editext" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/design_name"
+                        android:text="报备渠道:" />
+
+                    <EditText
+                        android:id="@+id/et_design_dep"
+                        style="@style/design_editext" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="报备业务:" />
+
+                    <EditText
+                        android:id="@+id/et_design_salno"
+                        style="@style/design_editext" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/design_name"
+                        android:text="银行卡号:" />
+
+                    <EditText
+                        android:id="@+id/et_design_bankno"
+                        style="@style/design_editext" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="开户银行:" />
+
+                    <EditText
+                        android:id="@+id/et_design_bankdeposit"
+                        style="@style/design_editext" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/design_name"
+                        android:text="担保人:" />
+
+                    <EditText
+                        android:id="@+id/et_design_guatname"
+                        style="@style/design_editext" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="制单用户:" />
+
+                    <EditText
+                        android:id="@+id/et_design_userno"
+                        style="@style/design_editext" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+                    <Button
+                        android:layout_height="20dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button"
+                        android:textSize="12sp"
+                        android:id="@+id/btn_design_userchk"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="审核用户" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="是否启用:" />
+                    <TextView
+                        android:id="@+id/tv_design_isno"
+                        style="@style/price_name"
+                        android:text="null" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        style="@style/list_item_seperator_layout"
+        android:layout_marginTop="2.0dip" />
+
+    <include
+        android:id="@+id/design_head"
+        layout="@layout/design_log" />
+
+    <View
+        style="@style/list_item_seperator_layout"
+        android:layout_marginTop="2.0dip" />
+
+
+    <include
+        android:id="@+id/design_head_item"
+        layout="@layout/design_dairy_item" />
+
+    <View style="@style/price_view" />
+
+    <ListView
+        android:id="@+id/lv_design_header"
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1.0"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/color_dark_grey"
+        android:dividerHeight="1.0dip"
+        android:fastScrollEnabled="true"
+        android:focusable="true"
+        android:listSelector="#ffff0000"
+        android:scrollingCache="true" />
+
+    <View style="@style/price_view" />
+
+
+</LinearLayout>

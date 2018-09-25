@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ydshoa.VipClassActivity"
+    android:orientation="vertical">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/headall" />
+
+    <include
+        android:id="@+id/vip_head_all"
+        layout="@layout/vip_head" />
+
+    <View
+        style="@style/list_item_seperator_layout"
+        android:layout_marginTop="2.0dip" />
+
+
+    <!--<include
+        android:id="@+id/vip_head_item"
+        layout="@layout/vip_item" />
+    <View style="@style/price_view" />-->
+
+    <ListView
+        android:id="@+id/lv_vip_header_all"
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1.0"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/color_dark_grey"
+        android:dividerHeight="1.0dip"
+        android:fastScrollEnabled="true"
+        android:focusable="true"
+        android:listSelector="#ffff0000"
+        android:scrollingCache="true" />
+    <LinearLayout
+        style="@style/price_ll1"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:id="@+id/btn_vip_add_all"
+            style="@style/price_button"
+            android:text="添加" />
+
+
+        <Button
+            android:id="@+id/btn_vip_reset_all"
+            style="@style/price_button"
+            android:text="修改" />
+
+        <Button
+            android:id="@+id/btn_vip_del_all"
+            style="@style/price_button"
+            android:text="删除" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -148,4 +148,36 @@ public class URLS {
     // 货品加载  http://localhost:8080/InfManagePlatform/PrdtgetPrdtList.action?db_Id=DB_BJ18&query_Sup=CC001,CJ001
     public static final String price_load = base_url
             + "/InfManagePlatform/PrdtgetPrdtList.action";
+    //设计师查询
+    // http://oa.ydshce.com:8080/InfManagePlatform/VipqueryDepco_Vip.action?db_Id=DB_BJ15
+    public static final String design_query = base_url
+            + "/InfManagePlatform/VipqueryDepco_Vip.action";
+    //设计师添加
+    // http://oa.ydshce.com:8080/InfManagePlatform/addDepco_Vip.action?db_Id=DB_BJ15
+    public static final String design_add = base_url
+            + "/InfManagePlatform/addDepco_Vip.action";
+    //设计师删除
+    // http://oa.ydshce.com:8080/InfManagePlatform/delDepco_Vip.action?db_Id=DB_BJ15
+    public static final String design_del = base_url
+            + "/InfManagePlatform/delDepco_Vip.action";
+    //设计师更新
+    // http://oa.ydshce.com:8080/InfManagePlatform/updateDepco_Vip.action?db_Id=DB_BJ15
+    public static final String design_updata = base_url
+            + "/InfManagePlatform/updateDepco_Vip.action";
+    //vip查询
+    // http://oa.ydshce.com:8080/InfManagePlatform/ObjqueryObjectType.action?db_Id=DB_BJ15&biln_Type=VP
+    public static final String vip_query = base_url
+            + "/InfManagePlatform/ObjqueryObjectType.action";
+    //vip添加
+    // http://oa.ydshce.com:8080/InfManagePlatform/ObjaddObjectType.action?db_Id=DB_BJ15&biln_Type=VP&Type_ID=1&Type_Name=ln
+    public static final String vip_add = base_url
+            + "/InfManagePlatform/ObjaddObjectType.action";
+    //vip删除
+    // http://oa.ydshce.com:8080/InfManagePlatform/ObjdelObjectType.action?db_Id=DB_BJ15&biln_Type=VP&Type_ID=1&Type_Name=ln
+    public static final String vip_del = base_url
+            + "/InfManagePlatform/ObjdelObjectType.action";
+    //vip更新
+    // http://oa.ydshce.com:8080/InfManagePlatform/ObjupdateObjectType.action?db_Id=DB_BJ15&biln_Type=VP&Type_ID=1&Type_Name=ln
+    public static final String vip_updata = base_url
+            + "/InfManagePlatform/ObjupdateObjectType.action";
 }

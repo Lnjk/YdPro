@@ -148,7 +148,9 @@
         <activity android:name=".WelcomeActivity" />
         <activity android:name=".PriceOutActivity" />
         <activity android:name=".FormActivity" />
-        <activity android:name=".AddMoreActivity"></activity>
+        <activity android:name=".AddMoreActivity" />
+        <activity android:name=".DesignerActivity" />
+        <activity android:name=".VipClassActivity"></activity>
     </application>
 
 </manifest>

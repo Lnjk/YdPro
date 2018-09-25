@@ -18,6 +18,7 @@ import com.example.bean.URLS;
 import com.example.bean.UserInfo;
 import com.example.bean.UserInfo.User_Query;
 import com.example.ydshoa.DecisionActivity;
+import com.example.ydshoa.DesignerActivity;
 import com.example.ydshoa.FormActivity;
 import com.example.ydshoa.R;
 import com.example.ydshoa.SalesManageActivity;
@@ -88,11 +89,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(this.context, "暂未开放，请等待...", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.ll_offer:
-                Toast.makeText(this.context, "暂未开放，请等待...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this.context, "生产管理暂未开放，请等待...", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this.context, DesignerActivity.class));
                 break;
             case R.id.ll_form:
                 Toast.makeText(this.context, "暂未开放，请等待...", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this.context, FormActivity.class));
+//                startActivity(new Intent(this.context, FormActivity.class));
                 break;
             case R.id.ll_sell:
                 startActivity(new Intent(this.context, SalesManageActivity.class));

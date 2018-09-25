@@ -259,7 +259,6 @@ public class PriceActivity extends Activity implements OnClickListener {
 
     }
 
-
     private void getNowTime() {
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd ");
@@ -339,7 +338,11 @@ public class PriceActivity extends Activity implements OnClickListener {
         stop = (Button) findViewById(R.id.btn_price_stop);
         stop.setText(str_time);
         time = (Button) findViewById(R.id.btn_price_time);
+//        if(done==1){
 //        time.setText(str_time);
+//        }else{
+//
+//        }
         time.setText(date_dd);
         db = (ImageButton) findViewById(R.id.ib_price_account);
         brand = (ImageButton) findViewById(R.id.ib_price_brand);
@@ -535,7 +538,6 @@ public class PriceActivity extends Activity implements OnClickListener {
                             for (int i = 0; i < mListView1.getCount(); i++) {
                                 if (done == 1) {
                                     PriceLoadInfo.Prdt prdt_ls = (PriceLoadInfo.Prdt) mListView1.getAdapter().getItem(i);
-                                    if (!prdt_ls.getPRD_NO().equals(bh) || !prdt_ls.getNAME().equals(mc)) {
                                         if (!prdt_ls.getPRD_NO().equals(bh) || !prdt_ls.getNAME().equals(mc)) {
 
                                             new_info = new PriceLoadInfo.Prdt("0", bh, mc, Double.parseDouble(dwcb),
@@ -544,11 +546,10 @@ public class PriceActivity extends Activity implements OnClickListener {
                                         } else {
                                             Toast.makeText(context, "此数据已存在", Toast.LENGTH_LONG).show();
                                         }
-                                    }
                                 }
                                 if (done == 3) {
                                     mx_ls = (PriceMx.PrdtUp) mListView1.getAdapter().getItem(i);
-                                    if (!mx_ls.getPrdNo().equals(bh) || !mx_ls.getPrice().equals(mc)) {
+                                    if (!mx_ls.getPrdNo().equals(bh) ) {
 
                                         mx_ls = new PriceMx.PrdtUp(0, bh, mc, dwcb, tydj, zdsj, zcdj, xszk, zxqk, bzxx);
                                         Log.e("LiNing", "添加数据==========" + new_info);
@@ -3716,7 +3717,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                                 }
                                 String zc_bzxx_hd = jsonObj.get("ZC_BZXX").toString();//备注信息
                                 if(zc_bzxx_hd.equals("")||zc_bzxx_hd.equals("null")||zc_bzxx_hd==null){
-                                    zc_zxqk_hd="null";
+                                    zc_bzxx_hd="null";
                                 }
                                 mx_ls_mor = new PriceMx.PrdtUp(Integer.parseInt(xh_hd), prd_no_hd, name_hd,
                                         up_sal_hd, upr_hd, up_min_hd, zc_dj_hd, zc_zk_hd,
