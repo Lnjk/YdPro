@@ -24,12 +24,11 @@
         android:id="@+id/ib_adddel"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_alignBottom="@+id/price_showChecx"
+        android:layout_alignBottom="@+id/scroollContainter"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="@color/transparent"
-        android:src="@drawable/adddel"
-        />
+        android:src="@drawable/adddel" />
     <TextView
         android:id="@+id/price_showChecx"
         android:gravity="center"

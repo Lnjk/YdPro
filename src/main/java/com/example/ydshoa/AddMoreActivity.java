@@ -306,13 +306,22 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
             //货品等级（单选）
             case R.id.ib_load_prdLevel:
 //                Toast.makeText(context, "货品等级", Toast.LENGTH_LONG).show();
-                checked = 6;
-                showPopupMenu(prdLevre);
+//                checked = 6;
+//                showPopupMenu(prdLevre);
+
+                Intent intent30 = new Intent(context,
+                        LocalInfosActivity.class);
+                intent30.putExtra("flag", "1");
+                startActivityForResult(intent30, 30);
                 break;
             //货品大类（单选）
             case R.id.ib_load_prdKND:
-                checked = 7;
-                showPopupMenu(prdKND);
+//                checked = 7;
+//                showPopupMenu(prdKND);
+                Intent intent31 = new Intent(context,
+                        LocalInfosActivity.class);
+                intent31.putExtra("flag", "2");
+                startActivityForResult(intent31, 31);
                 break;
             //是否停用
             case R.id.ib_load_stop:
@@ -361,14 +370,6 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
 
             popupMenu.getMenuInflater().inflate(R.menu.five, popupMenu.getMenu());
         }
-        if (checked == 6) {
-
-            popupMenu.getMenuInflater().inflate(R.menu.seven, popupMenu.getMenu());
-        }
-        if (checked == 7) {
-
-            popupMenu.getMenuInflater().inflate(R.menu.six, popupMenu.getMenu());
-        }
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
@@ -392,104 +393,105 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
                     menuItem.setChecked(!menuItem.isChecked());
                     tv_showStop.setText(menuItem.getTitle());
                     return true;
-                } else if (menuItem.getItemId() == R.id.check1_six
-                        || menuItem.getItemId() == R.id.check2_six
-                        || menuItem.getItemId() == R.id.check3_six
-                        || menuItem.getItemId() == R.id.check4_six
-                        || menuItem.getItemId() == R.id.check5_six
-                        || menuItem.getItemId() == R.id.check6_six
-                        || menuItem.getItemId() == R.id.check7_six
-                        ) {
-                    menuItem.setChecked(!menuItem.isChecked());
-                    if (!idList_hpdj.contains(menuItem.getTitle())) {
-                        idList_hpdj.add(menuItem.getTitle().toString());
-                        if (!idList_hpdjID.contains(menuItem.getTitle().charAt(0))) {
-                            idList_hpdjID.add("" + menuItem.getTitle().charAt(0));
-                        }
-                    }
-                    String hpdj_str = "";
-                    for (String zt : idList_hpdj) {
-                        hpdj_str += zt + ",";
-                    }
-                    String sub_level = hpdj_str.substring(0, hpdj_str.length() - 1);
-                    Log.e("LiNing", "------新增的数据" + sub_level);
-                    if (idList_hpdj != null && idList_hpdj.size() > 0) {
-                        tv_prdKND.setText(sub_level);
-                        tv_prdKND.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                TextView view = new TextView(context);
-                                view.setMovementMethod(ScrollingMovementMethod.getInstance());
-                                view.setText(tv_prdKND.getText().toString());
-                                alertDialog = new AlertDialog.Builder(context).create();
-//                                alertDialog.setTitle("品牌信息");
-                                alertDialog.setCancelable(true);
-                                alertDialog.setView(view);
-                                alertDialog.show();
-                            }
-                        });
-                    }
-
-                    String hpdjid_str = "";
-                    for (String zt : idList_hpdjID) {
-                        hpdjid_str += zt + ",";
-                    }
-
-                    hpdj_id = hpdjid_str.substring(0, hpdjid_str.length() - 1);
-                    Log.e("LiNing", "------新增的数据id" + hpdj_id);
-//                    tv_prdKND.setText(menuItem.getTitle());
-                    Log.e("LiNing", "提交的大类id====" + tv_prdKND.getText().charAt(0));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.check1_seven
-                        || menuItem.getItemId() == R.id.check2_seven
-                        || menuItem.getItemId() == R.id.check3_seven
-                        || menuItem.getItemId() == R.id.check4_seven
-                        || menuItem.getItemId() == R.id.check5_seven
-                        || menuItem.getItemId() == R.id.check6_seven
-                        || menuItem.getItemId() == R.id.check7_seven
-                        ) {
-                    menuItem.setChecked(!menuItem.isChecked());
-
-                    if (!idList_hpdl.contains(menuItem.getTitle())) {
-                        idList_hpdl.add(menuItem.getTitle().toString());
-                        if (!idList_hpdlID.contains(menuItem.getTitle().charAt(0))) {
-                            idList_hpdlID.add("" + menuItem.getTitle().charAt(0));
-                        }
-                    }
-                    String hpdl_str = "";
-                    for (String zt : idList_hpdl) {
-                        hpdl_str += zt + ",";
-                    }
-                    String sub_level = hpdl_str.substring(0, hpdl_str.length() - 1);
-                    Log.e("LiNing", "------新增的数据" + sub_level);
-                    if (idList_hpdl != null && idList_hpdl.size() > 0) {
-                        tv_prdLevre.setText(sub_level);
-                        tv_prdLevre.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                TextView view = new TextView(context);
-                                view.setMovementMethod(ScrollingMovementMethod.getInstance());
-                                view.setText(tv_prdLevre.getText().toString());
-                                alertDialog = new AlertDialog.Builder(context).create();
-//                                alertDialog.setTitle("品牌信息");
-                                alertDialog.setCancelable(true);
-                                alertDialog.setView(view);
-                                alertDialog.show();
-                            }
-                        });
-                    }
-
-                    String hpdlid_str = "";
-                    for (String zt : idList_hpdlID) {
-                        hpdlid_str += zt + ",";
-                    }
-
-                    hpdl_id = hpdlid_str.substring(0, hpdlid_str.length() - 1);
-                    Log.e("LiNing", "------新增的数据id" + hpdl_id);
-
-
-                    return true;
                 }
+//                else if (menuItem.getItemId() == R.id.check1_six
+//                        || menuItem.getItemId() == R.id.check2_six
+//                        || menuItem.getItemId() == R.id.check3_six
+//                        || menuItem.getItemId() == R.id.check4_six
+//                        || menuItem.getItemId() == R.id.check5_six
+//                        || menuItem.getItemId() == R.id.check6_six
+//                        || menuItem.getItemId() == R.id.check7_six
+//                        ) {
+//                    menuItem.setChecked(!menuItem.isChecked());
+//                    if (!idList_hpdj.contains(menuItem.getTitle())) {
+//                        idList_hpdj.add(menuItem.getTitle().toString());
+//                        if (!idList_hpdjID.contains(menuItem.getTitle().charAt(0))) {
+//                            idList_hpdjID.add("" + menuItem.getTitle().charAt(0));
+//                        }
+//                    }
+//                    String hpdj_str = "";
+//                    for (String zt : idList_hpdj) {
+//                        hpdj_str += zt + ",";
+//                    }
+//                    String sub_level = hpdj_str.substring(0, hpdj_str.length() - 1);
+//                    Log.e("LiNing", "------新增的数据" + sub_level);
+//                    if (idList_hpdj != null && idList_hpdj.size() > 0) {
+//                        tv_prdKND.setText(sub_level);
+//                        tv_prdKND.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                TextView view = new TextView(context);
+//                                view.setMovementMethod(ScrollingMovementMethod.getInstance());
+//                                view.setText(tv_prdKND.getText().toString());
+//                                alertDialog = new AlertDialog.Builder(context).create();
+////                                alertDialog.setTitle("品牌信息");
+//                                alertDialog.setCancelable(true);
+//                                alertDialog.setView(view);
+//                                alertDialog.show();
+//                            }
+//                        });
+//                    }
+//
+//                    String hpdjid_str = "";
+//                    for (String zt : idList_hpdjID) {
+//                        hpdjid_str += zt + ",";
+//                    }
+//
+//                    hpdj_id = hpdjid_str.substring(0, hpdjid_str.length() - 1);
+//                    Log.e("LiNing", "------新增的数据id" + hpdj_id);
+////                    tv_prdKND.setText(menuItem.getTitle());
+//                    Log.e("LiNing", "提交的大类id====" + tv_prdKND.getText().charAt(0));
+//                    return true;
+//                } else if (menuItem.getItemId() == R.id.check1_seven
+//                        || menuItem.getItemId() == R.id.check2_seven
+//                        || menuItem.getItemId() == R.id.check3_seven
+//                        || menuItem.getItemId() == R.id.check4_seven
+//                        || menuItem.getItemId() == R.id.check5_seven
+//                        || menuItem.getItemId() == R.id.check6_seven
+//                        || menuItem.getItemId() == R.id.check7_seven
+//                        ) {
+//                    menuItem.setChecked(!menuItem.isChecked());
+//
+//                    if (!idList_hpdl.contains(menuItem.getTitle())) {
+//                        idList_hpdl.add(menuItem.getTitle().toString());
+//                        if (!idList_hpdlID.contains(menuItem.getTitle().charAt(0))) {
+//                            idList_hpdlID.add("" + menuItem.getTitle().charAt(0));
+//                        }
+//                    }
+//                    String hpdl_str = "";
+//                    for (String zt : idList_hpdl) {
+//                        hpdl_str += zt + ",";
+//                    }
+//                    String sub_level = hpdl_str.substring(0, hpdl_str.length() - 1);
+//                    Log.e("LiNing", "------新增的数据" + sub_level);
+//                    if (idList_hpdl != null && idList_hpdl.size() > 0) {
+//                        tv_prdLevre.setText(sub_level);
+//                        tv_prdLevre.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                TextView view = new TextView(context);
+//                                view.setMovementMethod(ScrollingMovementMethod.getInstance());
+//                                view.setText(tv_prdLevre.getText().toString());
+//                                alertDialog = new AlertDialog.Builder(context).create();
+////                                alertDialog.setTitle("品牌信息");
+//                                alertDialog.setCancelable(true);
+//                                alertDialog.setView(view);
+//                                alertDialog.show();
+//                            }
+//                        });
+//                    }
+//
+//                    String hpdlid_str = "";
+//                    for (String zt : idList_hpdlID) {
+//                        hpdlid_str += zt + ",";
+//                    }
+//
+//                    hpdl_id = hpdlid_str.substring(0, hpdlid_str.length() - 1);
+//                    Log.e("LiNing", "------新增的数据id" + hpdl_id);
+//
+//
+//                    return true;
+//                }
 
                 return false;
             }
@@ -877,6 +879,130 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
                     Log.e("LiNing", "------新增的数据id" + id_prdWh);
                 }
                 break;
+            case 30:
+                if (resultCode == 1) {
+                    //记录选择的数据
+                    String str1 = data.getStringExtra("data_return");
+                    if (str1 != null) {
+                        String[] db_spls = str1.split(",");
+
+                        Log.e("LiNing", "=====" + str1.split(","));
+                        for (int i = 0; i < db_spls.length; i++) {
+                            String A = db_spls[i];
+                            Log.e("LiNing", "===A==" + A);
+                            if (!idList_hpdl.contains(A)) {
+                                idList_hpdl.add(A);
+                            }
+                        }
+                    }
+                    Log.e("LiNing", "新增的数据" + idList_hpdl);
+                    String prdname_str = "";
+                    for (String zt : idList_hpdl) {
+                        prdname_str += zt + ",";
+                    }
+                    String sub_level = prdname_str.substring(0, prdname_str.length() - 1);
+                    Log.e("LiNing", "------新增的数据" + sub_level);
+                    if (idList_hpdl != null && idList_hpdl.size() > 0) {
+                        tv_prdLevre.setText(sub_level);
+                        tv_prdLevre.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                TextView view = new TextView(context);
+                                view.setMovementMethod(ScrollingMovementMethod.getInstance());
+                                view.setText(tv_prdLevre.getText().toString());
+                                alertDialog = new AlertDialog.Builder(context).create();
+//                                alertDialog.setTitle("品牌信息");
+                                alertDialog.setCancelable(true);
+                                alertDialog.setView(view);
+                                alertDialog.show();
+                            }
+                        });
+                    }
+                    //记录提交的数据
+                    String id_prdNo_xs = data.getStringExtra("data_return_ids");
+//                    idList_prdnoID.add(id_prdNo_xs);
+                    if (id_prdNo_xs != null) {
+                        String[] db_spls = id_prdNo_xs.split(",");
+                        Log.e("LiNing", "=====" + id_prdNo_xs.split(","));
+                        for (int i = 0; i < db_spls.length; i++) {
+                            String A = db_spls[i];
+                            Log.e("LiNing", "===A==" + A);
+                            if (!idList_hpdlID.contains(A)) {
+                                idList_hpdlID.add(A);
+                            }
+                        }
+                    }
+                    Log.e("LiNing", "新增的数据" + idList_prdWhID);
+                    String prdid_str = "";
+                    for (String zt : idList_hpdlID) {
+                        prdid_str += zt + ",";
+                    }
+                    hpdl_id = prdid_str.substring(0, prdid_str.length() - 1);
+                    Log.e("LiNing", "------新增的数据id" + hpdl_id);
+                }
+                break;
+            case 31:
+                if (resultCode == 1) {
+                    //记录选择的数据
+                    String str1 = data.getStringExtra("data_return");
+                    if (str1 != null) {
+                        String[] db_spls = str1.split(",");
+
+                        Log.e("LiNing", "=====" + str1.split(","));
+                        for (int i = 0; i < db_spls.length; i++) {
+                            String A = db_spls[i];
+                            Log.e("LiNing", "===A==" + A);
+                            if (!idList_hpdj.contains(A)) {
+                                idList_hpdj.add(A);
+                            }
+                        }
+                    }
+                    Log.e("LiNing", "新增的数据" + idList_hpdj);
+                    String prdname_str = "";
+                    for (String zt : idList_hpdj) {
+                        prdname_str += zt + ",";
+                    }
+                    String sub_level = prdname_str.substring(0, prdname_str.length() - 1);
+                    Log.e("LiNing", "------新增的数据" + sub_level);
+                    if (idList_hpdj != null && idList_hpdj.size() > 0) {
+                        tv_prdKND.setText(sub_level);
+                        tv_prdKND.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                TextView view = new TextView(context);
+                                view.setMovementMethod(ScrollingMovementMethod.getInstance());
+                                view.setText(tv_prdKND.getText().toString());
+                                alertDialog = new AlertDialog.Builder(context).create();
+//                                alertDialog.setTitle("品牌信息");
+                                alertDialog.setCancelable(true);
+                                alertDialog.setView(view);
+                                alertDialog.show();
+                            }
+                        });
+                    }
+                    //记录提交的数据
+                    String id_prdNo_xs = data.getStringExtra("data_return_ids");
+//                    idList_prdnoID.add(id_prdNo_xs);
+                    if (id_prdNo_xs != null) {
+                        String[] db_spls = id_prdNo_xs.split(",");
+                        Log.e("LiNing", "=====" + id_prdNo_xs.split(","));
+                        for (int i = 0; i < db_spls.length; i++) {
+                            String A = db_spls[i];
+                            Log.e("LiNing", "===A==" + A);
+                            if (!idList_hpdjID.contains(A)) {
+                                idList_hpdjID.add(A);
+                            }
+                        }
+                    }
+                    Log.e("LiNing", "新增的数据" + idList_hpdjID);
+                    String prdid_str = "";
+                    for (String zt : idList_hpdjID) {
+                        prdid_str += zt + ",";
+                    }
+                    hpdj_id = prdid_str.substring(0, prdid_str.length() - 1);
+                    Log.e("LiNing", "------新增的数据id" + hpdj_id);
+                }
+                break;
 
         }
 
@@ -982,7 +1108,8 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
                             Log.e("LiNing", "prdt-----str-----" + AddMoreActivity.this.prdt);
                             moreAdapter = new AddMoreAdapter(R.layout.price_fuction_item1, prdt, context);
                             mListView1_set.setAdapter(moreAdapter);
-                            listClear();
+                            //此处做判断
+//                            listClear();
 
                         }
                     });
@@ -1122,7 +1249,7 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
                 @Override
                 public void onClick(View v) {
                     prdt.remove(position);
-                    priceAdapter.notifyDataSetChanged();
+                    moreAdapter.notifyDataSetChanged();
                 }
             });
 

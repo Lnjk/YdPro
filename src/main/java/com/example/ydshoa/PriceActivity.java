@@ -327,7 +327,7 @@ public class PriceActivity extends Activity implements OnClickListener {
         delmx = (Button) findViewById(R.id.btn_price_delmx);
         delmx = (Button) findViewById(R.id.btn_price_delmx);
         num_chage = (Button) findViewById(R.id.btn_price_make);
-        addone = (Button) findViewById(R.id.addOne);
+//        addone = (Button) findViewById(R.id.addOne);
         priceset = (Button) findViewById(R.id.priceSet);
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
@@ -343,7 +343,8 @@ public class PriceActivity extends Activity implements OnClickListener {
 //        }else{
 //
 //        }
-        time.setText(date_dd);
+//        time.setText(date_dd);
+        time.setText(str_time);
         db = (ImageButton) findViewById(R.id.ib_price_account);
         brand = (ImageButton) findViewById(R.id.ib_price_brand);
         hs = (ImageButton) findViewById(R.id.ib_price_hs);
@@ -441,7 +442,7 @@ public class PriceActivity extends Activity implements OnClickListener {
         out.setOnClickListener(this);
         delmx.setOnClickListener(this);
         num_chage.setOnClickListener(this);
-        addone.setOnClickListener(this);
+//        addone.setOnClickListener(this);
         priceset.setOnClickListener(this);
         start.setOnClickListener(this);
         stop.setOnClickListener(this);
@@ -496,106 +497,106 @@ public class PriceActivity extends Activity implements OnClickListener {
         stop.setEnabled(false);
         time.setEnabled(false);
         num_chage.setEnabled(false);
-        addone.setEnabled(false);
+//        addone.setEnabled(false);
         priceset.setEnabled(false);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.addOne:
-                one_add=1;
-                Toast.makeText(context, "新增子表一行", Toast.LENGTH_LONG).show();
-                View view_add = getLayoutInflater()
-                        .inflate(R.layout.add_one, null);
+//            case R.id.addOne:
+//                one_add=1;
+//                Toast.makeText(context, "新增子表一行", Toast.LENGTH_LONG).show();
+//                View view_add = getLayoutInflater()
+//                        .inflate(R.layout.add_one, null);
+////
+//                id_addone = (EditText) view_add.findViewById(R.id.et_addone_id);
+//                name_addone = (EditText) view_add.findViewById(R.id.et_addone_name);
+//                dwcb_addone = (EditText) view_add.findViewById(R.id.et_addone_dwcb);
+//                tydj_addone = (EditText) view_add.findViewById(R.id.et_addone_tydj);
+//                zdsj_addone = (EditText) view_add.findViewById(R.id.et_addone_zdsj);
+//                zcdj_addone = (EditText) view_add.findViewById(R.id.et_addone_zcdj);
+//                xszk_addone = (EditText) view_add.findViewById(R.id.et_addone_xszk);
+//                zxqk_addone = (EditText) view_add.findViewById(R.id.et_addone_zxqk);
+//                bzxx_addone = (EditText) view_add.findViewById(R.id.et_addone_bzxx);
 //
-                id_addone = (EditText) view_add.findViewById(R.id.et_addone_id);
-                name_addone = (EditText) view_add.findViewById(R.id.et_addone_name);
-                dwcb_addone = (EditText) view_add.findViewById(R.id.et_addone_dwcb);
-                tydj_addone = (EditText) view_add.findViewById(R.id.et_addone_tydj);
-                zdsj_addone = (EditText) view_add.findViewById(R.id.et_addone_zdsj);
-                zcdj_addone = (EditText) view_add.findViewById(R.id.et_addone_zcdj);
-                xszk_addone = (EditText) view_add.findViewById(R.id.et_addone_xszk);
-                zxqk_addone = (EditText) view_add.findViewById(R.id.et_addone_zxqk);
-                bzxx_addone = (EditText) view_add.findViewById(R.id.et_addone_bzxx);
-
-                ok = (Button) view_add.findViewById(R.id.addOne_ok);
-                qx = (Button) view_add.findViewById(R.id.addOne_qx);
-                ok.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // 判断是否存在
-                        String bh = id_addone.getText().toString();
-                        String mc = name_addone.getText().toString();
-                        String dwcb = dwcb_addone.getText().toString();
-                        String tydj = tydj_addone.getText().toString();
-                        String zdsj = zdsj_addone.getText().toString();
-                        String zcdj = zcdj_addone.getText().toString();
-                        String xszk = xszk_addone.getText().toString();
-                        String zxqk = zxqk_addone.getText().toString();
-                        String bzxx = bzxx_addone.getText().toString();
-                        if (mListView1.getCount() > 0 || mListView1 != null) {
-                            for (int i = 0; i < mListView1.getCount(); i++) {
-                                if (done == 1) {
-                                    PriceLoadInfo.Prdt prdt_ls = (PriceLoadInfo.Prdt) mListView1.getAdapter().getItem(i);
-                                        if (!prdt_ls.getPRD_NO().equals(bh) || !prdt_ls.getNAME().equals(mc)) {
-
-                                            new_info = new PriceLoadInfo.Prdt("0", bh, mc, Double.parseDouble(dwcb),
-                                                    Double.parseDouble(tydj), Double.parseDouble(zdsj), zcdj, xszk, zxqk, bzxx);
-                                            Log.e("LiNing", "添加数据==========" + new_info);
-                                        } else {
-                                            Toast.makeText(context, "此数据已存在", Toast.LENGTH_LONG).show();
-                                        }
-                                }
-                                if (done == 3) {
-                                    mx_ls = (PriceMx.PrdtUp) mListView1.getAdapter().getItem(i);
-                                    if (!mx_ls.getPrdNo().equals(bh) ) {
-
-                                        mx_ls = new PriceMx.PrdtUp(0, bh, mc, dwcb, tydj, zdsj, zcdj, xszk, zxqk, bzxx);
-                                        Log.e("LiNing", "添加数据==========" + new_info);
-                                    } else {
-                                        Toast.makeText(context, "此数据已存在", Toast.LENGTH_LONG).show();
-                                    }
-                                }
-                            }
-
-                        }
-                        if (done == 1) {
-                            prdt.add(0, new_info);
-                            Log.e("LiNing", "新数据==========" + prdt);
-                            priceAdapter = new PriceAdapter(one_add,onclik_go, R.layout.price_fuction_item1, prdt, PriceActivity.this);
-                            priceAdapter.notifyDataSetChanged();
-                            mListView1.setAdapter(priceAdapter);
-                            if (alertDialog.isShowing()) {
-                                alertDialog.dismiss();
-                            }
-                        }
-                        if (done == 3) {
-                            mx_prdtUp.add(0, mx_ls);
-                            Log.e("LiNing", "新数据==========" + prdt);
-                            mxPriceAdapter = new MxPriceAdapter(one_add,onclik_go, R.layout.price_fuction_item1, mx_prdtUp, (PriceActivity) context);
-                            mxPriceAdapter.notifyDataSetChanged();
-                            mListView1.setAdapter(mxPriceAdapter);
-                            if (alertDialog.isShowing()) {
-                                alertDialog.dismiss();
-                            }
-                        }
-
-                        Toast.makeText(context, "修改中。。。", Toast.LENGTH_LONG).show();
-                        alertDialog.dismiss();
-                    }
-                });
-                qx.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        alertDialog.dismiss();
-                    }
-                });
-                alertDialog = new AlertDialog.Builder(context).create();
-                alertDialog.setCancelable(false);
-                alertDialog.setView(view_add);
-                alertDialog.show();
-                break;
+//                ok = (Button) view_add.findViewById(R.id.addOne_ok);
+//                qx = (Button) view_add.findViewById(R.id.addOne_qx);
+//                ok.setOnClickListener(new OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        // 判断是否存在
+//                        String bh = id_addone.getText().toString();
+//                        String mc = name_addone.getText().toString();
+//                        String dwcb = dwcb_addone.getText().toString();
+//                        String tydj = tydj_addone.getText().toString();
+//                        String zdsj = zdsj_addone.getText().toString();
+//                        String zcdj = zcdj_addone.getText().toString();
+//                        String xszk = xszk_addone.getText().toString();
+//                        String zxqk = zxqk_addone.getText().toString();
+//                        String bzxx = bzxx_addone.getText().toString();
+//                        if (mListView1.getCount() > 0 || mListView1 != null) {
+//                            for (int i = 0; i < mListView1.getCount(); i++) {
+//                                if (done == 1) {
+//                                    PriceLoadInfo.Prdt prdt_ls = (PriceLoadInfo.Prdt) mListView1.getAdapter().getItem(i);
+//                                        if (!prdt_ls.getPRD_NO().equals(bh) || !prdt_ls.getNAME().equals(mc)) {
+//
+//                                            new_info = new PriceLoadInfo.Prdt("0", bh, mc, Double.parseDouble(dwcb),
+//                                                    Double.parseDouble(tydj), Double.parseDouble(zdsj), zcdj, xszk, zxqk, bzxx);
+//                                            Log.e("LiNing", "添加数据==========" + new_info);
+//                                        } else {
+//                                            Toast.makeText(context, "此数据已存在", Toast.LENGTH_LONG).show();
+//                                        }
+//                                }
+//                                if (done == 3) {
+//                                    mx_ls = (PriceMx.PrdtUp) mListView1.getAdapter().getItem(i);
+//                                    if (!mx_ls.getPrdNo().equals(bh) ) {
+//
+//                                        mx_ls = new PriceMx.PrdtUp(0, bh, mc, dwcb, tydj, zdsj, zcdj, xszk, zxqk, bzxx);
+//                                        Log.e("LiNing", "添加数据==========" + new_info);
+//                                    } else {
+//                                        Toast.makeText(context, "此数据已存在", Toast.LENGTH_LONG).show();
+//                                    }
+//                                }
+//                            }
+//
+//                        }
+//                        if (done == 1) {
+//                            prdt.add(0, new_info);
+//                            Log.e("LiNing", "新数据==========" + prdt);
+//                            priceAdapter = new PriceAdapter(one_add,onclik_go, R.layout.price_fuction_item1, prdt, PriceActivity.this);
+//                            priceAdapter.notifyDataSetChanged();
+//                            mListView1.setAdapter(priceAdapter);
+//                            if (alertDialog.isShowing()) {
+//                                alertDialog.dismiss();
+//                            }
+//                        }
+//                        if (done == 3) {
+//                            mx_prdtUp.add(0, mx_ls);
+//                            Log.e("LiNing", "新数据==========" + prdt);
+//                            mxPriceAdapter = new MxPriceAdapter(one_add,onclik_go, R.layout.price_fuction_item1, mx_prdtUp, (PriceActivity) context);
+//                            mxPriceAdapter.notifyDataSetChanged();
+//                            mListView1.setAdapter(mxPriceAdapter);
+//                            if (alertDialog.isShowing()) {
+//                                alertDialog.dismiss();
+//                            }
+//                        }
+//
+//                        Toast.makeText(context, "修改中。。。", Toast.LENGTH_LONG).show();
+//                        alertDialog.dismiss();
+//                    }
+//                });
+//                qx.setOnClickListener(new OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        alertDialog.dismiss();
+//                    }
+//                });
+//                alertDialog = new AlertDialog.Builder(context).create();
+//                alertDialog.setCancelable(false);
+//                alertDialog.setView(view_add);
+//                alertDialog.show();
+//                break;
             case R.id.priceSet:
                 more=2;
                 one_add=2;
@@ -757,8 +758,12 @@ public class PriceActivity extends Activity implements OnClickListener {
 
             //政策短时间
             case R.id.btn_price_time:
+
                 Calendar c_time = Calendar.getInstance();
                 int mYear_time = c_time.get(Calendar.YEAR); // 获取当前年份
+                int mMonth_time = c_time.get(Calendar.MONTH);// 获取当前月份
+                int mDay_time = c_time.get(Calendar.DAY_OF_MONTH);// 获取当日期cal.set(Calendar.DAY_OF_MONTH, 1);
+                Log.e("LiNing", "y" + mYear_time + "/y" + mMonth_time + "/r" + mDay_time);
                 new DatePickerDialog(context, DatePickerDialog.THEME_HOLO_LIGHT,
                         new DatePickerDialog.OnDateSetListener() {
 
@@ -770,8 +775,24 @@ public class PriceActivity extends Activity implements OnClickListener {
                                 time.setText(startTime);
 
                             }
-//					}, 2015, 0, 1).show();
-                        }, mYear_time, 0, 1).show();
+                        }, mYear_time, mMonth_time, mDay_time).show();//获取当前时间
+
+
+//                Calendar c_time = Calendar.getInstance();
+//                int mYear_time = c_time.get(Calendar.YEAR); // 获取当前年份
+//                new DatePickerDialog(context, DatePickerDialog.THEME_HOLO_LIGHT,
+//                        new DatePickerDialog.OnDateSetListener() {
+//
+//                            @Override
+//                            public void onDateSet(DatePicker view, int year,
+//                                                  int monthOfYear, int dayOfMonth) {
+//                                startTime = String.format("%d-%d-%d", year,
+//                                        monthOfYear + 1, dayOfMonth);
+//                                time.setText(startTime);
+//
+//                            }
+////					}, 2015, 0, 1).show();
+//                        }, mYear_time, 0, 1).show();
                 break;
             //开始时间
             case R.id.btn_price_start:
@@ -1439,138 +1460,29 @@ public class PriceActivity extends Activity implements OnClickListener {
                 Toast.makeText(context, "货品库区", Toast.LENGTH_LONG).show();
                 break;
             //货品等级（单选）
-            case R.id.ib_load_prdLevel:
+            case R.id.ib_load_prdKND:
 //                Toast.makeText(context, "货品等级", Toast.LENGTH_LONG).show();
-                checked = 6;
-                showPopupMenu(prdLevre);
+//                checked = 6;
+//                showPopupMenu(prdLevre);
+                Intent intent31 = new Intent(context,
+                        LocalInfosActivity.class);
+                intent31.putExtra("flag", "2");
+                startActivityForResult(intent31, 31);
                 break;
             //货品大类（单选）
-            case R.id.ib_load_prdKND:
+            case R.id.ib_load_prdLevel:
 //                Toast.makeText(context, "货品大类", Toast.LENGTH_LONG).show();
-                checked = 7;
-                showPopupMenu(prdKND);
+//                checked = 7;
+//                showPopupMenu(prdKND);
+                Intent intent30 = new Intent(context,
+                        LocalInfosActivity.class);
+                intent30.putExtra("flag", "1");
+                startActivityForResult(intent30, 30);
                 break;
         }
     }
 
 
-    //价格修订—货品加载
-//    private void load_ok_set() {
-//
-//        Toast.makeText(context, "数据加载中，请等待...", Toast.LENGTH_LONG).show();
-//        String sup_comit = tv_qurey_sup.getText().toString();
-//        String compdep_comit = tv_query_compdep.getText().toString();
-//        String employee_comit = tv_employee.getText().toString();
-//        String prdNo_comit = tv_prdNo.getText().toString();
-//        String prdIndx_comit = tv_prdIndx.getText().toString();
-//        String prdWh_comit = tv_prdWh.getText().toString();
-//        String prdLevre_comit = tv_prdLevre.getText().toString();
-//        String prdKND_comit = tv_prdKND.getText().toString();
-//        String showStop_comit = tv_showStop.getText().toString();
-//        String prdMrk_comit = prdMrk.getText().toString();
-//        String prdName_comit = prdName.getText().toString();
-//        String prdName_ENG_comit = prdName_ENG.getText().toString();
-//        Log.e("LiNing", "-----str-----" + db_check.getText().toString() + showStop_comit);
-//        if (sup_comit.equals("") || sup_comit == null) {
-//            id_querySup = "all";
-////            id_querySup = "";
-//        }
-//        if (compdep_comit.equals("") || compdep_comit == null) {
-//            id_hs = "all";
-//        }
-//        if (employee_comit.equals("") || employee_comit == null) {
-//            id_employee = "all";
-//        }
-//        if (prdNo_comit.equals("") || prdNo_comit == null) {
-//            id_prdNo = "all";
-//        }
-//        if (prdIndx_comit.equals("") || prdIndx_comit == null) {
-//            id_prdIndex = "all";
-//        }
-//        if (prdWh_comit.equals("") || prdWh_comit == null) {
-//            id_prdWh = "all";
-//        }
-//        if (prdLevre_comit.equals("") || prdLevre_comit == null || prdLevre_comit.equals("null")) {
-//            prdLevre_comit_jz = "all";
-//        } else {
-////            prdLevre_comit_jz = "" + prdLevre_comit.charAt(0);
-//            prdLevre_comit_jz = hpdl_id;
-//        }
-//        if (prdKND_comit.equals("") || prdKND_comit == null || prdKND_comit.equals("null")) {
-//            prdKND_comit_jz = "all";
-//        } else {
-////            prdKND_comit_jz = "" + prdKND_comit.charAt(0);
-//            prdKND_comit_jz = hpdj_id;
-//        }
-//        if (showStop_comit.equals("") || showStop_comit == null) {
-//            showStop_comit = "F";
-//        }
-//        if (prdMrk_comit.equals("") || prdMrk_comit == null) {
-//            prdMrk_comit = "all";
-//        }
-//        if (prdName_comit.equals("") || prdName_comit == null) {
-//            prdName_comit = "all";
-//        }
-//        if (prdName_ENG_comit.equals("") || prdName_ENG_comit == null) {
-//            prdName_ENG_comit = "all";
-//        }
-//        Log.e("LiNing", "-----str-----" + prdLevre_comit_jz + prdKND_comit_jz +
-//                showStop_comit + prdMrk_comit + prdName_comit + prdName_ENG_comit);
-//        OkHttpClient client = new OkHttpClient();
-//        FormBody localFormBody = new FormBody.Builder()
-//                .add("db_Id", db_check.getText().toString())
-//                .add("query_Sup", id_querySup)
-//                .add("query_CompDep", id_hs)
-//                .add("employee", id_employee)
-//                .add("prdNO", id_prdNo)
-//                .add("prdIndx", id_prdIndex)
-//                .add("prdWh", id_prdWh)
-//                .add("prdLevel", prdLevre_comit_jz)
-//                .add("prdKND", prdKND_comit_jz)
-//                .add("showStop", showStop_comit)
-//                .add("prdMrk", prdMrk_comit)
-//                .add("prdName", prdName_comit)
-//                .add("prdName_ENG", prdName_ENG_comit)
-//                .build();
-//        Request localRequest = new Request.Builder()
-//                .addHeader("cookie", session).url(url_load_price)
-//                .post(localFormBody)
-//                .build();
-//        Log.e("LiNing", "-----str-----" + url_load_price);
-//        Log.e("LiNing", "-----str-----" + db_check.getText().toString() + id_querySup + id_hs
-//                + id_employee + id_prdNo + id_prdIndex + id_prdWh + prdLevre_comit + prdKND_comit +
-//                showStop_comit + prdMrk_comit + prdName_comit + prdName_ENG_comit);
-//        client.newCall(localRequest).enqueue(new Callback() {
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//                String str = response.body().string();
-//                Log.e("LiNing", "-----str---sj--" + str);
-//                Gson gson = new GsonBuilder().setDateFormat(
-//                        "yyyy-MM-dd'T'HH:mm:ss").create();//特殊格式
-//                final PriceLoadInfo cInfoDB = gson.fromJson(str,
-//                        PriceLoadInfo.class);
-//                if (cInfoDB != null) {
-//                    PriceActivity.this.runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            prdt = cInfoDB.getPrdt();
-//                            Log.e("LiNing", "prdt-----str-----" + PriceActivity.this.prdt);
-//                            priceAdapter = new PriceAdapter(one_add,onclik_go, R.layout.price_fuction_item1, prdt, PriceActivity.this);
-//                            mListView1_set.setAdapter(priceAdapter);
-//                            listClear();
-//
-//                        }
-//                    });
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//
-//            }
-//        });
-//    }
 
     private void MainInfoAdd() {
         ckdx_zb = user_check.getText().toString();//参考对象
@@ -2030,7 +1942,7 @@ public class PriceActivity extends Activity implements OnClickListener {
 //        time.setText(date_dd);
 //        start.setText(startTime);
         num_chage.setEnabled(true);
-        addone.setEnabled(true);
+//        addone.setEnabled(true);
         priceset.setEnabled(true);
 
 
@@ -2829,14 +2741,14 @@ public class PriceActivity extends Activity implements OnClickListener {
 
             popupMenu.getMenuInflater().inflate(R.menu.five, popupMenu.getMenu());
         }
-        if (checked == 6) {
-
-            popupMenu.getMenuInflater().inflate(R.menu.seven, popupMenu.getMenu());
-        }
-        if (checked == 7) {
-
-            popupMenu.getMenuInflater().inflate(R.menu.six, popupMenu.getMenu());
-        }
+//        if (checked == 6) {
+//
+//            popupMenu.getMenuInflater().inflate(R.menu.seven, popupMenu.getMenu());
+//        }
+//        if (checked == 7) {
+//
+//            popupMenu.getMenuInflater().inflate(R.menu.six, popupMenu.getMenu());
+//        }
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
@@ -2860,104 +2772,105 @@ public class PriceActivity extends Activity implements OnClickListener {
                     menuItem.setChecked(!menuItem.isChecked());
                     tv_showStop.setText(menuItem.getTitle());
                     return true;
-                } else if (menuItem.getItemId() == R.id.check1_six
-                        || menuItem.getItemId() == R.id.check2_six
-                        || menuItem.getItemId() == R.id.check3_six
-                        || menuItem.getItemId() == R.id.check4_six
-                        || menuItem.getItemId() == R.id.check5_six
-                        || menuItem.getItemId() == R.id.check6_six
-                        || menuItem.getItemId() == R.id.check7_six
-                        ) {
-                    menuItem.setChecked(!menuItem.isChecked());
-                    if (!idList_hpdj.contains(menuItem.getTitle())) {
-                        idList_hpdj.add(menuItem.getTitle().toString());
-                        if (!idList_hpdjID.contains(menuItem.getTitle().charAt(0))) {
-                            idList_hpdjID.add("" + menuItem.getTitle().charAt(0));
-                        }
-                    }
-                    String hpdj_str = "";
-                    for (String zt : idList_hpdj) {
-                        hpdj_str += zt + ",";
-                    }
-                    String sub_level = hpdj_str.substring(0, hpdj_str.length() - 1);
-                    Log.e("LiNing", "------新增的数据" + sub_level);
-                    if (idList_hpdj != null && idList_hpdj.size() > 0) {
-                        tv_prdKND.setText(sub_level);
-                        tv_prdKND.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                TextView view = new TextView(context);
-                                view.setMovementMethod(ScrollingMovementMethod.getInstance());
-                                view.setText(tv_prdKND.getText().toString());
-                                alertDialog = new AlertDialog.Builder(context).create();
-//                                alertDialog.setTitle("品牌信息");
-                                alertDialog.setCancelable(true);
-                                alertDialog.setView(view);
-                                alertDialog.show();
-                            }
-                        });
-                    }
-
-                    String hpdjid_str = "";
-                    for (String zt : idList_hpdjID) {
-                        hpdjid_str += zt + ",";
-                    }
-
-                    hpdj_id = hpdjid_str.substring(0, hpdjid_str.length() - 1);
-                    Log.e("LiNing", "------新增的数据id" + hpdj_id);
-//                    tv_prdKND.setText(menuItem.getTitle());
-                    Log.e("LiNing", "提交的大类id====" + tv_prdKND.getText().charAt(0));
-                    return true;
-                } else if (menuItem.getItemId() == R.id.check1_seven
-                        || menuItem.getItemId() == R.id.check2_seven
-                        || menuItem.getItemId() == R.id.check3_seven
-                        || menuItem.getItemId() == R.id.check4_seven
-                        || menuItem.getItemId() == R.id.check5_seven
-                        || menuItem.getItemId() == R.id.check6_seven
-                        || menuItem.getItemId() == R.id.check7_seven
-                        ) {
-                    menuItem.setChecked(!menuItem.isChecked());
-
-                    if (!idList_hpdl.contains(menuItem.getTitle())) {
-                        idList_hpdl.add(menuItem.getTitle().toString());
-                        if (!idList_hpdlID.contains(menuItem.getTitle().charAt(0))) {
-                            idList_hpdlID.add("" + menuItem.getTitle().charAt(0));
-                        }
-                    }
-                    String hpdl_str = "";
-                    for (String zt : idList_hpdl) {
-                        hpdl_str += zt + ",";
-                    }
-                    String sub_level = hpdl_str.substring(0, hpdl_str.length() - 1);
-                    Log.e("LiNing", "------新增的数据" + sub_level);
-                    if (idList_hpdl != null && idList_hpdl.size() > 0) {
-                        tv_prdLevre.setText(sub_level);
-                        tv_prdLevre.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                TextView view = new TextView(context);
-                                view.setMovementMethod(ScrollingMovementMethod.getInstance());
-                                view.setText(tv_prdLevre.getText().toString());
-                                alertDialog = new AlertDialog.Builder(context).create();
-//                                alertDialog.setTitle("品牌信息");
-                                alertDialog.setCancelable(true);
-                                alertDialog.setView(view);
-                                alertDialog.show();
-                            }
-                        });
-                    }
-
-                    String hpdlid_str = "";
-                    for (String zt : idList_hpdlID) {
-                        hpdlid_str += zt + ",";
-                    }
-
-                    hpdl_id = hpdlid_str.substring(0, hpdlid_str.length() - 1);
-                    Log.e("LiNing", "------新增的数据id" + hpdl_id);
-
-
-                    return true;
                 }
+//                else if (menuItem.getItemId() == R.id.check1_six
+//                        || menuItem.getItemId() == R.id.check2_six
+//                        || menuItem.getItemId() == R.id.check3_six
+//                        || menuItem.getItemId() == R.id.check4_six
+//                        || menuItem.getItemId() == R.id.check5_six
+//                        || menuItem.getItemId() == R.id.check6_six
+//                        || menuItem.getItemId() == R.id.check7_six
+//                        ) {
+//                    menuItem.setChecked(!menuItem.isChecked());
+//                    if (!idList_hpdj.contains(menuItem.getTitle())) {
+//                        idList_hpdj.add(menuItem.getTitle().toString());
+//                        if (!idList_hpdjID.contains(menuItem.getTitle().charAt(0))) {
+//                            idList_hpdjID.add("" + menuItem.getTitle().charAt(0));
+//                        }
+//                    }
+//                    String hpdj_str = "";
+//                    for (String zt : idList_hpdj) {
+//                        hpdj_str += zt + ",";
+//                    }
+//                    String sub_level = hpdj_str.substring(0, hpdj_str.length() - 1);
+//                    Log.e("LiNing", "------新增的数据" + sub_level);
+//                    if (idList_hpdj != null && idList_hpdj.size() > 0) {
+//                        tv_prdKND.setText(sub_level);
+//                        tv_prdKND.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                TextView view = new TextView(context);
+//                                view.setMovementMethod(ScrollingMovementMethod.getInstance());
+//                                view.setText(tv_prdKND.getText().toString());
+//                                alertDialog = new AlertDialog.Builder(context).create();
+////                                alertDialog.setTitle("品牌信息");
+//                                alertDialog.setCancelable(true);
+//                                alertDialog.setView(view);
+//                                alertDialog.show();
+//                            }
+//                        });
+//                    }
+//
+//                    String hpdjid_str = "";
+//                    for (String zt : idList_hpdjID) {
+//                        hpdjid_str += zt + ",";
+//                    }
+//
+//                    hpdj_id = hpdjid_str.substring(0, hpdjid_str.length() - 1);
+//                    Log.e("LiNing", "------新增的数据id" + hpdj_id);
+////                    tv_prdKND.setText(menuItem.getTitle());
+//                    Log.e("LiNing", "提交的大类id====" + tv_prdKND.getText().charAt(0));
+//                    return true;
+//                } else if (menuItem.getItemId() == R.id.check1_seven
+//                        || menuItem.getItemId() == R.id.check2_seven
+//                        || menuItem.getItemId() == R.id.check3_seven
+//                        || menuItem.getItemId() == R.id.check4_seven
+//                        || menuItem.getItemId() == R.id.check5_seven
+//                        || menuItem.getItemId() == R.id.check6_seven
+//                        || menuItem.getItemId() == R.id.check7_seven
+//                        ) {
+//                    menuItem.setChecked(!menuItem.isChecked());
+//
+//                    if (!idList_hpdl.contains(menuItem.getTitle())) {
+//                        idList_hpdl.add(menuItem.getTitle().toString());
+//                        if (!idList_hpdlID.contains(menuItem.getTitle().charAt(0))) {
+//                            idList_hpdlID.add("" + menuItem.getTitle().charAt(0));
+//                        }
+//                    }
+//                    String hpdl_str = "";
+//                    for (String zt : idList_hpdl) {
+//                        hpdl_str += zt + ",";
+//                    }
+//                    String sub_level = hpdl_str.substring(0, hpdl_str.length() - 1);
+//                    Log.e("LiNing", "------新增的数据" + sub_level);
+//                    if (idList_hpdl != null && idList_hpdl.size() > 0) {
+//                        tv_prdLevre.setText(sub_level);
+//                        tv_prdLevre.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                TextView view = new TextView(context);
+//                                view.setMovementMethod(ScrollingMovementMethod.getInstance());
+//                                view.setText(tv_prdLevre.getText().toString());
+//                                alertDialog = new AlertDialog.Builder(context).create();
+////                                alertDialog.setTitle("品牌信息");
+//                                alertDialog.setCancelable(true);
+//                                alertDialog.setView(view);
+//                                alertDialog.show();
+//                            }
+//                        });
+//                    }
+//
+//                    String hpdlid_str = "";
+//                    for (String zt : idList_hpdlID) {
+//                        hpdlid_str += zt + ",";
+//                    }
+//
+//                    hpdl_id = hpdlid_str.substring(0, hpdlid_str.length() - 1);
+//                    Log.e("LiNing", "------新增的数据id" + hpdl_id);
+//
+//
+//                    return true;
+//                }
 
                 return false;
             }
@@ -3708,6 +3621,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                                 }
 
                                 String zc_zk_hd = jsonObj.get("ZC_ZK").toString();//80
+
                                 if(zc_zk_hd.equals("")||zc_zk_hd.equals("null")||zc_zk_hd==null){
                                     zc_zk_hd="100";
                                 }
@@ -3719,6 +3633,8 @@ public class PriceActivity extends Activity implements OnClickListener {
                                 if(zc_bzxx_hd.equals("")||zc_bzxx_hd.equals("null")||zc_bzxx_hd==null){
                                     zc_bzxx_hd="null";
                                 }
+                                Log.e("LiNing", "---提交回调数据---" +prd_no_hd+name_hd+up_sal_hd+upr_hd+up_min_hd+zc_dj_hd
+                                +zc_zk_hd+zc_zxqk_hd+zc_bzxx_hd);
                                 mx_ls_mor = new PriceMx.PrdtUp(Integer.parseInt(xh_hd), prd_no_hd, name_hd,
                                         up_sal_hd, upr_hd, up_min_hd, zc_dj_hd, zc_zk_hd,
                                         zc_zxqk_hd, zc_bzxx_hd);
@@ -3753,6 +3669,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                                         Log.e("LiNing", "包含数据==xin==pd====" + mx_ls_prdt);
                                     }
                                 }
+                                onclik_go=21;
                                 mxPriceAdapter = new MxPriceAdapter(one_add,onclik_go, R.layout.price_fuction_item1, prdt_add_mx, (PriceActivity) context);
                                 mxPriceAdapter.notifyDataSetChanged();
                                 mListView1.setAdapter(mxPriceAdapter);
@@ -3769,6 +3686,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                                     }
                                 }
                             }
+                            onclik_go=21;
                             Log.e("LiNing", "包含数据==xin==pd====" + prdt_add_mx);
                             mxPriceAdapter = new MxPriceAdapter(one_add,onclik_go, R.layout.price_fuction_item1, prdt_add_mx, (PriceActivity) context);
                             mxPriceAdapter.notifyDataSetChanged();
@@ -3777,6 +3695,130 @@ public class PriceActivity extends Activity implements OnClickListener {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                }
+                break;
+            case 30:
+                if (resultCode == 1) {
+                    //记录选择的数据
+                    String str1 = data.getStringExtra("data_return");
+                    if (str1 != null) {
+                        String[] db_spls = str1.split(",");
+
+                        Log.e("LiNing", "=====" + str1.split(","));
+                        for (int i = 0; i < db_spls.length; i++) {
+                            String A = db_spls[i];
+                            Log.e("LiNing", "===A==" + A);
+                            if (!idList_hpdl.contains(A)) {
+                                idList_hpdl.add(A);
+                            }
+                        }
+                    }
+                    Log.e("LiNing", "新增的数据" + idList_hpdl);
+                    String prdname_str = "";
+                    for (String zt : idList_hpdl) {
+                        prdname_str += zt + ",";
+                    }
+                    String sub_level = prdname_str.substring(0, prdname_str.length() - 1);
+                    Log.e("LiNing", "------新增的数据" + sub_level);
+                    if (idList_hpdl != null && idList_hpdl.size() > 0) {
+                        tv_prdLevre.setText(sub_level);
+                        tv_prdLevre.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                TextView view = new TextView(context);
+                                view.setMovementMethod(ScrollingMovementMethod.getInstance());
+                                view.setText(tv_prdLevre.getText().toString());
+                                alertDialog = new AlertDialog.Builder(context).create();
+//                                alertDialog.setTitle("品牌信息");
+                                alertDialog.setCancelable(true);
+                                alertDialog.setView(view);
+                                alertDialog.show();
+                            }
+                        });
+                    }
+                    //记录提交的数据
+                    String id_prdNo_xs = data.getStringExtra("data_return_ids");
+//                    idList_prdnoID.add(id_prdNo_xs);
+                    if (id_prdNo_xs != null) {
+                        String[] db_spls = id_prdNo_xs.split(",");
+                        Log.e("LiNing", "=====" + id_prdNo_xs.split(","));
+                        for (int i = 0; i < db_spls.length; i++) {
+                            String A = db_spls[i];
+                            Log.e("LiNing", "===A==" + A);
+                            if (!idList_hpdlID.contains(A)) {
+                                idList_hpdlID.add(A);
+                            }
+                        }
+                    }
+                    Log.e("LiNing", "新增的数据" + idList_prdWhID);
+                    String prdid_str = "";
+                    for (String zt : idList_hpdlID) {
+                        prdid_str += zt + ",";
+                    }
+                    hpdl_id = prdid_str.substring(0, prdid_str.length() - 1);
+                    Log.e("LiNing", "------新增的数据id" + hpdl_id);
+                }
+                break;
+            case 31:
+                if (resultCode == 1) {
+                    //记录选择的数据
+                    String str1 = data.getStringExtra("data_return");
+                    if (str1 != null) {
+                        String[] db_spls = str1.split(",");
+
+                        Log.e("LiNing", "=====" + str1.split(","));
+                        for (int i = 0; i < db_spls.length; i++) {
+                            String A = db_spls[i];
+                            Log.e("LiNing", "===A==" + A);
+                            if (!idList_hpdj.contains(A)) {
+                                idList_hpdj.add(A);
+                            }
+                        }
+                    }
+                    Log.e("LiNing", "新增的数据" + idList_hpdj);
+                    String prdname_str = "";
+                    for (String zt : idList_hpdj) {
+                        prdname_str += zt + ",";
+                    }
+                    String sub_level = prdname_str.substring(0, prdname_str.length() - 1);
+                    Log.e("LiNing", "------新增的数据" + sub_level);
+                    if (idList_hpdj != null && idList_hpdj.size() > 0) {
+                        tv_prdKND.setText(sub_level);
+                        tv_prdKND.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                TextView view = new TextView(context);
+                                view.setMovementMethod(ScrollingMovementMethod.getInstance());
+                                view.setText(tv_prdKND.getText().toString());
+                                alertDialog = new AlertDialog.Builder(context).create();
+//                                alertDialog.setTitle("品牌信息");
+                                alertDialog.setCancelable(true);
+                                alertDialog.setView(view);
+                                alertDialog.show();
+                            }
+                        });
+                    }
+                    //记录提交的数据
+                    String id_prdNo_xs = data.getStringExtra("data_return_ids");
+//                    idList_prdnoID.add(id_prdNo_xs);
+                    if (id_prdNo_xs != null) {
+                        String[] db_spls = id_prdNo_xs.split(",");
+                        Log.e("LiNing", "=====" + id_prdNo_xs.split(","));
+                        for (int i = 0; i < db_spls.length; i++) {
+                            String A = db_spls[i];
+                            Log.e("LiNing", "===A==" + A);
+                            if (!idList_hpdjID.contains(A)) {
+                                idList_hpdjID.add(A);
+                            }
+                        }
+                    }
+                    Log.e("LiNing", "新增的数据" + idList_hpdjID);
+                    String prdid_str = "";
+                    for (String zt : idList_hpdjID) {
+                        prdid_str += zt + ",";
+                    }
+                    hpdj_id = prdid_str.substring(0, prdid_str.length() - 1);
+                    Log.e("LiNing", "------新增的数据id" + hpdj_id);
                 }
                 break;
         }
@@ -3956,6 +3998,12 @@ public class PriceActivity extends Activity implements OnClickListener {
         String prdLevre_comit = tv_prdLevre.getText().toString();
         String prdKND_comit = tv_prdKND.getText().toString();
         String showStop_comit = tv_showStop.getText().toString();
+        if (showStop_comit.equals("否") ) {
+            showStop_comit = "F";
+        }
+        if (showStop_comit.equals("是") ) {
+            showStop_comit = "T";
+        }
         String prdMrk_comit = prdMrk.getText().toString();
         String prdName_comit = prdName.getText().toString();
         String prdName_ENG_comit = prdName_ENG.getText().toString();
@@ -3991,7 +4039,7 @@ public class PriceActivity extends Activity implements OnClickListener {
 //            prdKND_comit_jz = "" + prdKND_comit.charAt(0);
             prdKND_comit_jz = hpdj_id;
         }
-        if (showStop_comit.equals("") || showStop_comit == null) {
+        if (showStop_comit.equals("否") ||showStop_comit.equals("") || showStop_comit == null) {
             showStop_comit = "F";
         }
         if (prdMrk_comit.equals("") || prdMrk_comit == null) {

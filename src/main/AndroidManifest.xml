@@ -150,7 +150,9 @@
         <activity android:name=".FormActivity" />
         <activity android:name=".AddMoreActivity" />
         <activity android:name=".DesignerActivity" />
-        <activity android:name=".VipClassActivity"></activity>
+        <activity android:name=".VipClassActivity" />
+        <activity android:name=".VipDoAllActivity" />
+        <activity android:name=".LocalInfosActivity"></activity>
     </application>
 
 </manifest>

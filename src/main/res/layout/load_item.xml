@@ -195,7 +195,8 @@
                     <TextView
                         android:id="@+id/btn_load_prdLevel"
                         style="@style/price_name"
-                        android:text="货品等级:" />
+                        android:text="货品大类:"
+                         />
 
                     <TextView
                         android:id="@+id/et_load_prdLevel"
@@ -218,7 +219,8 @@
                     <TextView
                         android:id="@+id/btn_load_prdKND"
                         style="@style/price_name"
-                        android:text="货品大类:" />
+                        android:text="货品等级:"
+                         />
 
                     <TextView
                         android:id="@+id/et_load_prdKND"
@@ -233,7 +235,7 @@
                     <TextView
                         android:id="@+id/btn_load_stop"
                         style="@style/price_name"
-                        android:text="加载停用否:" />
+                        android:text="加载停用:" />
 
                     <TextView
                         android:id="@+id/et_load_stop"

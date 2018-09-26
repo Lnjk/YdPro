@@ -115,5 +115,17 @@
             android:text="VIP操作" />
 
     </LinearLayout>
+    <LinearLayout
+        style="@style/price_ll1"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+
+        <Button
+            android:id="@+id/btn_vip_sx"
+            style="@style/price_button"
+            android:text="刷新" />
+
+    </LinearLayout>
 
 </LinearLayout>

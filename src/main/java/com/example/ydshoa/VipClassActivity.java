@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -53,7 +54,7 @@ public class VipClassActivity extends Activity implements View.OnClickListener {
     private EditText vipno, vipname,  add_vp_bh, add_vp_mc;
     private Button vipquery, add, del, set, get,all_zsg;
     private ImageButton vipbtn;
-    private ListView lv_vip,lv_vip_all;
+    private ListView lv_vip;
     AlertDialog addVip,addVip_all,addVip_all_add,addVip_all_del,addVip_all_set;
     //接口
     String vip_get = URLS.vip_query;
@@ -84,9 +85,9 @@ public class VipClassActivity extends Activity implements View.OnClickListener {
         vipno = (EditText) findViewById(R.id.vip_no);
         vipname = (EditText) findViewById(R.id.et_vip_name);
         vipquery = (Button) findViewById(R.id.vip_query);
-        all_zsg = (Button) findViewById(R.id.btn_vip_zsg);
+//        get = (Button) findViewById(R.id.btn_vip_get);
+//        get.setOnClickListener(this);
         vipquery.setOnClickListener(this);
-        all_zsg.setOnClickListener(this);
         getObjectType();
 
 
@@ -98,205 +99,11 @@ public class VipClassActivity extends Activity implements View.OnClickListener {
             case R.id.vip_query:
                 Toast.makeText(context, "查询所有", Toast.LENGTH_LONG).show();
                 break;
-            case R.id.btn_vip_zsg:
-//                Toast.makeText(context, "查询所有", Toast.LENGTH_LONG).show();
-                itemOnclik = 1;
-                View view_load_all = getLayoutInflater()
-                        .inflate(R.layout.vip_all_do, null);
-                TextView head_load_all = (TextView) view_load_all.findViewById(R.id.all_head);
-                head_load_all.setText("VIP类别操作");
-                lv_vip_all = (ListView) view_load_all.findViewById(R.id.lv_vip_header_all);
-                getObjectType();
-                if(lv_vip_all!=null&&lv_vip_all.getCount()>0){
 
-                    id_type = new ArrayList<String>();
-                    name_type = new ArrayList<String>();
-                    for(int i=0;i<lv_vip_all.getCount();i++){
-                        VipInfos.TypeList typeList_all = (VipInfos.TypeList) lv_vip_all.getAdapter().getItem(i);
-                        String type_id = typeList_all.getType_ID();
-                        String type_name = typeList_all.getType_Name();
-                        id_type.add(type_id);
-                        name_type.add(type_name);
-                    }
-                    Log.e("LiNing", "id_type结果====" + id_type+"-----"+name_type);
-                }
-                view_load_all.findViewById(R.id.imageButton1).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        addVip_all.dismiss();
-                    }
-                });
-
-                lv_vip_all.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        Toast.makeText(VipClassActivity.this,
-                                "响应", Toast.LENGTH_SHORT).show();
-                        itemOnclik=2;
-                        vipAdapter.setSelectItem(position);//刷新
-//                        vipAdapter.notifyDataSetInvalidated();
-                        Adapter adapter = parent.getAdapter();
-                        VipInfos.TypeList typeList = (VipInfos.TypeList) adapter.getItem(position);
-
-                        biln_type_exra = typeList.getBiln_Type();
-                         db_id_exra = typeList.getDb_Id();
-                         type_id_exra = typeList.getType_ID();
-                         type_name_exra = typeList.getType_Name();
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
-
-
-                    view_load_all.findViewById(R.id.btn_vip_add_all).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Log.e("LiNing", "id_type结果====" + itemOnclik);
-                            if(itemOnclik==2) {
-                            Toast.makeText(context, "新增", Toast.LENGTH_LONG).show();
-                            View view_load_all_add = getLayoutInflater()
-                                    .inflate(R.layout.add_vip_dialog, null);
-                            TextView head_load_all = (TextView) view_load_all_add.findViewById(R.id.all_head);
-                            head_load_all.setText("VIP-新增");
-                            add_vp = (TextView) view_load_all_add.findViewById(R.id.et_vip_type);
-                            add_vp.setText(biln_type_exra);
-                            add_vp_dj = (TextView) view_load_all_add.findViewById(R.id.et_biln_type);
-                            add_vp_dj.setText(db_id_exra);
-                            add_vp_bh = (EditText) view_load_all_add.findViewById(R.id.et_type_id);
-                            add_vp_bh.setText(type_id_exra);
-                            add_vp_mc = (EditText) view_load_all_add.findViewById(R.id.et_type_name);
-                            add_vp_mc.setText(type_name_exra);
-                            view_load_all_add.findViewById(R.id.imageButton1).setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    addVip.dismiss();
-                                }
-                            });
-                            view_load_all_add.findViewById(R.id.btn_vip_ok).setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    String add_id = add_vp_bh.getText().toString();
-                                    String add_name = add_vp_mc.getText().toString();
-                                    Log.e("LiNing", "id_type结果====" + id_type);
-                                    Log.e("LiNing", "add_id结果====" + add_id);
-                                    //判断数据
-                                    if (id_type.contains(add_id)) {
-                                        Toast.makeText(VipClassActivity.this,
-                                                "数据已存在", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        OkHttpClient client = new OkHttpClient();
-                                        FormBody body = new FormBody.Builder()
-                                                .add("db_Id", DB)
-                                                .add("biln_Type", "VP")
-                                                .add("Type_ID", add_id)
-                                                .add("Type_Name", add_name)
-                                                .build();
-                                        client.newCall(
-                                                new Builder().addHeader("cookie", session).url(vip_add)
-                                                        .post(body).build()).enqueue(new Callback() {
-
-                                            @Override
-                                            public void onResponse(Call call, Response response)
-                                                    throws IOException {
-                                                String str = response.body().string();
-                                                Log.e("LiNing", "添加结果====" + str);
-                                                final JsonRootBean localJsonRootBean = (JsonRootBean) new Gson()
-                                                        .fromJson(str, JsonRootBean.class);
-                                                if (localJsonRootBean != null) {
-                                                    VipClassActivity.this.runOnUiThread(new Runnable() {
-
-                                                        @Override
-                                                        public void run() {
-                                                            boolean rlo = localJsonRootBean.getRLO();
-                                                            if (rlo == true) {
-                                                                Toast.makeText(VipClassActivity.this,
-                                                                        "vip新增成功", Toast.LENGTH_SHORT).show();
-                                                                getObjectType();
-                                                                if (addVip.isShowing()) {
-                                                                    addVip.dismiss();
-                                                                }
-                                                            } else if (rlo == false) {
-                                                                Toast.makeText(VipClassActivity.this,
-                                                                        "vip新增失败", Toast.LENGTH_SHORT).show();
-                                                            }
-                                                        }
-                                                    });
-                                                }
-                                            }
-
-                                            @Override
-                                            public void onFailure(Call arg0, IOException arg1) {
-
-                                            }
-                                        });
-                                    }
-                                }
-                            });
-                            addVip_all_add = new AlertDialog.Builder(context).create();
-                            addVip_all_add.setCancelable(true);
-                            addVip_all_add.setView(view_load_all_add);
-                            addVip_all_add.show();
-                        }else{
-                            Toast.makeText(VipClassActivity.this,
-                                    "请选择数据", Toast.LENGTH_SHORT).show();
-                        }
-                        }
-                    });
-
-//                view_load_all.findViewById(R.id.btn_vip_reset_all).setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Toast.makeText(context, "修改", Toast.LENGTH_LONG).show();
-//                    }
-//                });
-//                view_load_all.findViewById(R.id.btn_vip_del_all).setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Toast.makeText(context, "删除", Toast.LENGTH_LONG).show();
-//                    }
-//                });
-                addVip_all = new AlertDialog.Builder(context).create();
-                addVip_all.setCancelable(true);
-                addVip_all.setView(view_load_all);
-                addVip_all.show();
-                break;
-
-//            case R.id.btn_vip_del:
-//                Toast.makeText(context, "删除", Toast.LENGTH_LONG).show();
-////                if (checkedIndexList != null && checkedIndexList.size() > 0) {
-////                    new AlertDialog.Builder(context)
-////                            .setTitle("是否删除")
-////                            .setPositiveButton("是",
-////                                    new DialogInterface.OnClickListener() {
-////
-////                                        @Override
-////                                        public void onClick(
-////                                                DialogInterface dialog,
-////                                                int which) {
-////
-////                                            Log.e("LiNing", "--------删除的id==="
-////                                                    + sub_id);
-////                                            delCust();
-////                                        }
-////                                    }).setNegativeButton("否", null).show();
-////                }else{
-////                    Toast.makeText(context, "请选择数据", Toast.LENGTH_LONG).show();
-////                }
-//                break;
-//            case R.id.btn_vip_reset:
-//                Toast.makeText(context, "修改", Toast.LENGTH_LONG).show();
-//                break;
 //            case R.id.btn_vip_get:
 //                Toast.makeText(context, "选取", Toast.LENGTH_LONG).show();
 //                break;
         }
-    }
-
-    private void delCust() {
-
     }
 
     //获取vip所有信息
@@ -330,14 +137,8 @@ public class VipClassActivity extends Activity implements View.OnClickListener {
                                     "typeList.size()-------" + obj_typeList.size()+itemOnclik);
                             vipAdapter = new VipAdapter(itemOnclik,R.layout.vip_item, obj_typeList,
                                     VipClassActivity.this);
-                            if(itemOnclik==1){
-                                lv_vip_all.setAdapter(vipAdapter);
-                                vipAdapter.notifyDataSetChanged();
-                            }
-                            if(itemOnclik==0){
-                                lv_vip.setAdapter(vipAdapter);
-                                vipAdapter.notifyDataSetChanged();
-                            }
+                            lv_vip.setAdapter(vipAdapter);
+                            vipAdapter.notifyDataSetChanged();
 //                            checkedIndexList.clear();
 //                            idList_vip.clear();
                         }
@@ -405,14 +206,8 @@ public class VipClassActivity extends Activity implements View.OnClickListener {
             Log.e("LiNing",
                     "onclikItem-------" + onclikItem);
             if (position == selectItem) {
-                if(onclikItem==1){
-
-                    convertView.setBackgroundColor(Color.GREEN);
-                }
-                if(onclikItem==0){
-
-                    convertView.setBackgroundColor(Color.RED);
-                }
+                convertView.setBackgroundColor(Color.RED);
+                CheckBoxListener(position);
             } else {
                 convertView.setBackgroundColor(Color.TRANSPARENT);
             }
@@ -423,6 +218,17 @@ public class VipClassActivity extends Activity implements View.OnClickListener {
             public TextView vip_name;
         }
     }
+
+    private void CheckBoxListener(int position) {
+        VipInfos.TypeList typeList = obj_typeList.get(position);
+        biln_type_exra = typeList.getBiln_Type();
+        db_id_exra = typeList.getDb_Id();
+        type_id_exra = typeList.getType_ID();
+        type_name_exra = typeList.getType_Name();
+        Log.e("LiNing", "id_type结果====" + type_id_exra + "-----" + type_name_exra);
+        itemOnclik = 2;
+    }
+
     public void allback(View v) {
         finish();
     }

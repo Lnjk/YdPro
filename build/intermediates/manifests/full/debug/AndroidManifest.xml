@@ -152,6 +152,8 @@
         <activity android:name="com.example.ydshoa.AddMoreActivity" />
         <activity android:name="com.example.ydshoa.DesignerActivity" />
         <activity android:name="com.example.ydshoa.VipClassActivity" />
+        <activity android:name="com.example.ydshoa.VipDoAllActivity" />
+        <activity android:name="com.example.ydshoa.LocalInfosActivity" />
     </application>
 
 </manifest>

@@ -254,9 +254,13 @@
                     android:id="@+id/btn_price_make"
                     style="@style/price_button"
                     android:text="执行运算" />
+                <Button
+                    android:id="@+id/priceSet"
+                    style="@style/price_button"
+                    android:text="政策修正" />
             </LinearLayout>
 
-            <LinearLayout
+            <!--<LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dip"
@@ -271,13 +275,7 @@
                     android:background="@drawable/button"
                     android:text="增加一行" />
 
-               <!-- <Button
-                    android:id="@+id/priceSet"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/button"
-                    android:text="价格修正" />-->
+
                 <Button
                     android:id="@+id/priceSet"
                     android:layout_width="0dp"
@@ -285,9 +283,9 @@
                     android:layout_weight="1"
                     android:background="@drawable/button"
                     android:onClick="cs_anoter"
-                    android:text="价格修正" />
+                    android:text="政策修正" />
 
-            </LinearLayout>
+            </LinearLayout>-->
 
             <View style="@style/price_view" />
 
