@@ -80,7 +80,8 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
 
                     Intent intent_vip = new Intent(context, VipClassActivity.class);
                     intent_vip.putExtra("ZT_VIP", zt.getText().toString());
-                    startActivity(intent_vip);
+//                    startActivity(intent_vip);
+                    startActivityForResult(intent_vip, 10);
                 }
                 break;
             //审核用户
@@ -99,6 +100,15 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                     str_name = data.getStringExtra("condition_name");
                     zt.setText(str_id);
                     Log.e("LiNing", "提交的id====" + str_id + str_name);
+                }
+
+                break;
+            case 10:
+                if (resultCode == 1) {
+                    String vip_id_hd = data.getStringExtra("VIP_ID");
+                    String vip_name_hd = data.getStringExtra("VIP_NAME");
+                    viplb.setText(vip_name_hd);
+                    Log.e("LiNing", "提交的id====" + vip_id_hd + vip_name_hd);
                 }
 
                 break;

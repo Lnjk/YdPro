@@ -52,7 +52,7 @@ public class VipClassActivity extends Activity implements View.OnClickListener {
     private String session,DB;
     private TextView head, sfty,add_vp, add_vp_dj;
     private EditText vipno, vipname,  add_vp_bh, add_vp_mc;
-    private Button vipquery, add, del, set, get,all_zsg;
+    private Button vipquery, add, del, set, get,all_zsg,flash;
     private ImageButton vipbtn;
     private ListView lv_vip;
     AlertDialog addVip,addVip_all,addVip_all_add,addVip_all_del,addVip_all_set;
@@ -62,7 +62,7 @@ public class VipClassActivity extends Activity implements View.OnClickListener {
     List<VipInfos.TypeList> obj_typeList;
     VipAdapter vipAdapter;
     VipInfos.TypeList typeList;//item数据
-    int itemOnclik=0;
+//    int itemOnclik=0;
     String biln_type_exra,db_id_exra,type_id_exra,type_name_exra;//item数据传递
     ArrayList<String> id_type,name_type;
     @Override
@@ -85,11 +85,28 @@ public class VipClassActivity extends Activity implements View.OnClickListener {
         vipno = (EditText) findViewById(R.id.vip_no);
         vipname = (EditText) findViewById(R.id.et_vip_name);
         vipquery = (Button) findViewById(R.id.vip_query);
-//        get = (Button) findViewById(R.id.btn_vip_get);
-//        get.setOnClickListener(this);
+        all_zsg = (Button) findViewById(R.id.btn_vip_zsg);
+        flash = (Button) findViewById(R.id.btn_vip_sx);
+        flash.setOnClickListener(this);
+        all_zsg.setOnClickListener(this);
         vipquery.setOnClickListener(this);
         getObjectType();
+        lv_vip.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.e("LiNing","所选数据===="+position);
+                VipInfos.TypeList typeList = (VipInfos.TypeList) parent.getAdapter().getItem(position);
+                String type_id = typeList.getType_ID();
+                String type_name = typeList.getType_Name();
+                Log.e("LiNing","所选数据===="+type_id+type_name);
 
+                Intent localIntent = getIntent();
+                localIntent.putExtra("VIP_ID", type_id);
+                localIntent.putExtra("VIP_NAME", type_name);
+                setResult(1, localIntent);
+                finish();
+            }
+        });
 
     }
 
@@ -99,10 +116,15 @@ public class VipClassActivity extends Activity implements View.OnClickListener {
             case R.id.vip_query:
                 Toast.makeText(context, "查询所有", Toast.LENGTH_LONG).show();
                 break;
+            case R.id.btn_vip_sx:
+                getObjectType();
+                break;
 
-//            case R.id.btn_vip_get:
-//                Toast.makeText(context, "选取", Toast.LENGTH_LONG).show();
-//                break;
+            case R.id.btn_vip_zsg:
+                Intent intent_vip = new Intent(context, VipDoAllActivity.class);
+                intent_vip.putExtra("ZT_VIP", DB);
+                startActivity(intent_vip);
+                break;
         }
     }
 
@@ -133,9 +155,7 @@ public class VipClassActivity extends Activity implements View.OnClickListener {
                         @Override
                         public void run() {
                             obj_typeList = vip_data.getTypeList();
-                            Log.e("LiNing",
-                                    "typeList.size()-------" + obj_typeList.size()+itemOnclik);
-                            vipAdapter = new VipAdapter(itemOnclik,R.layout.vip_item, obj_typeList,
+                            vipAdapter = new VipAdapter(R.layout.vip_item, obj_typeList,
                                     VipClassActivity.this);
                             lv_vip.setAdapter(vipAdapter);
                             vipAdapter.notifyDataSetChanged();
@@ -159,12 +179,10 @@ public class VipClassActivity extends Activity implements View.OnClickListener {
         List<VipInfos.TypeList> obj_data;
         //item高亮显示
         private int selectItem = -1;
-        private int onclikItem;
-        public VipAdapter(int onclikItem, int vip_item, List<VipInfos.TypeList> obj_typeList, VipClassActivity vipClassActivity) {
+        public VipAdapter(int vip_item, List<VipInfos.TypeList> obj_typeList, VipClassActivity vipClassActivity) {
             this.id_row_layout = vip_item;
             this.mInflater = LayoutInflater.from(vipClassActivity);
             this.obj_data=obj_typeList;
-            this.onclikItem=onclikItem;
         }
         public void setSelectItem(int selectItem) {
             this.selectItem = selectItem;
@@ -203,11 +221,9 @@ public class VipClassActivity extends Activity implements View.OnClickListener {
             String type_name = typeList.getType_Name();
             vip_holder.vip_id.setText(type_id);
             vip_holder.vip_name.setText(type_name);
-            Log.e("LiNing",
-                    "onclikItem-------" + onclikItem);
             if (position == selectItem) {
                 convertView.setBackgroundColor(Color.RED);
-                CheckBoxListener(position);
+//                CheckBoxListener(position);
             } else {
                 convertView.setBackgroundColor(Color.TRANSPARENT);
             }
@@ -226,7 +242,7 @@ public class VipClassActivity extends Activity implements View.OnClickListener {
         type_id_exra = typeList.getType_ID();
         type_name_exra = typeList.getType_Name();
         Log.e("LiNing", "id_type结果====" + type_id_exra + "-----" + type_name_exra);
-        itemOnclik = 2;
+//        itemOnclik = 2;
     }
 
     public void allback(View v) {

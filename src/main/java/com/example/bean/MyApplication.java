@@ -31,6 +31,9 @@ public class MyApplication extends Application {
 //				e.printStackTrace();
 //			}
 //		});
+
+
+
 		//友盟推送（初始化）
 
 //		PushAgent mPushAgent = PushAgent.getInstance(this);

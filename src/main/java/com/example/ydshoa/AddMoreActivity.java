@@ -1223,6 +1223,14 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
             prdt_item.setZC_ZK("100");
             prdt_item.setZC_ZXQK("N");
             prdt_item.setZC_BZXX("null");
+//            holder.price_danj.setText("0.00");
+//            holder.price_zk.setText("100");
+//            holder.price_zxqk.setText("N");
+//            holder.price_bzxx.setText("null");
+            holder.price_danj.setText(""+prdt_item.getZC_DJ());
+            holder.price_zk.setText(""+prdt_item.getZC_ZK());
+            holder.price_zxqk.setText(""+prdt_item.getZC_ZXQK());
+            holder.price_bzxx.setText(""+prdt_item.getZC_BZXX());
 
 //            holder.price_zxqk.setText(prdt_item.getZC_ZXQK());
 //            holder.price_bzxx.setText(prdt_item.getZC_BZXX());

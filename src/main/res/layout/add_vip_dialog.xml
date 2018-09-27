@@ -114,13 +114,27 @@
 
     <View style="@style/price_view" />
 
-    <Button
-        android:id="@+id/btn_vip_ok"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/button"
-        android:text="确定" />
+    <LinearLayout
+        style="@style/price_ll1"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:id="@+id/btn_vip_add_all"
+            style="@style/price_button"
+            android:text="添加" />
+
+
+        <Button
+            android:id="@+id/btn_vip_reset_all"
+            style="@style/price_button"
+            android:text="修改" />
+
+        <Button
+            android:id="@+id/btn_vip_del_all"
+            style="@style/price_button"
+            android:text="删除" />
+
+    </LinearLayout>
 
 </LinearLayout>
