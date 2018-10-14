@@ -198,10 +198,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 UserInfo info = gson.fromJson(string, UserInfo.class);
                 String user_Id = info.getUser_Id();
                 String user_Pwd = info.getUser_Pwd();
+                String user_name = info.getUser_Name();
                 String user_db = info.getUser_DB();
                 String user_erp = info.getUser_erpUser();
+                String user_dep = info.getUser_Dep();
                 sp.edit().putString("DB_MR", user_db).commit();
                 sp.edit().putString("MR_YH", user_erp).commit();
+                sp.edit().putString("USER_NAME", user_name).commit();
+                sp.edit().putString("USER_ID", user_Id).commit();
+                sp.edit().putString("USER_DEPBM", user_dep).commit();
                 if (user_Id.equalsIgnoreCase("admin")
                         && user_Pwd.equalsIgnoreCase("admin")) {
                     pass = 1;
@@ -225,7 +230,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 //                    }
                     List<com.example.bean.UserInfo.User_Mod> user_Mod = info
                             .getUser_Mod();
-                    if (user_Mod.size() > 0 && user_Mod != null) {
+                    if ( user_Mod != null&&user_Mod.size()>0 ) {
                         for (int i = 0; i < user_Mod.size(); i++) {
 
                             String mod_ID = user_Mod.get(i).getMod_ID();

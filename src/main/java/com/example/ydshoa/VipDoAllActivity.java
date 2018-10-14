@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -58,9 +59,12 @@ public class VipDoAllActivity extends Activity  {
     String biln_type_exra,db_id_exra,type_id_exra,type_name_exra;//item数据传递
     ArrayList<String> id_type,name_type;
     AlertDialog addVip_all,addVip_all_add,addVip_all_del,addVip_all_set;
+    //更新数据
+    private ArrayList<String> VIP_DB_IDs, VIP_BILES, VIP_TYPE_IDs,VIP_TYPE_NAMEs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.vip_do_all);
         context = VipDoAllActivity.this;
         sp = getSharedPreferences("ydbg", 0);
@@ -76,6 +80,11 @@ public class VipDoAllActivity extends Activity  {
         head = (TextView) findViewById(R.id.all_head);
         head.setText("VIP类别");
         lv_vip_all = (ListView) findViewById(R.id.lv_vip_header_all);
+        //封装新数据（新+旧=更新）
+        VIP_DB_IDs = new ArrayList<String>();
+        VIP_BILES = new ArrayList<String>();
+        VIP_TYPE_IDs = new ArrayList<String>();
+        VIP_TYPE_NAMEs = new ArrayList<String>();
         findViewById(R.id.imageButton1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,16 +102,20 @@ public class VipDoAllActivity extends Activity  {
                     Log.e("LiNing","所选数据===="+position);
                     VipInfos.TypeList typeList = (VipInfos.TypeList) parent.getAdapter().getItem(position);
                     biln_type_exra = typeList.getBiln_Type();
+                    VIP_BILES.add(biln_type_exra);
                     db_id_exra = typeList.getDb_Id();
+                    VIP_DB_IDs.add(db_id_exra);
                     type_id_exra = typeList.getType_ID();
+                    VIP_TYPE_IDs.add(type_id_exra);
                     type_name_exra = typeList.getType_Name();
+                    VIP_TYPE_NAMEs.add(type_name_exra);
                     Log.e("LiNing", "id_type结果====" + type_id_exra + "-----" + type_name_exra+ biln_type_exra + "-----" + db_id_exra);
                     itemOnclik = 1;
 
                     View view_load_all_add = getLayoutInflater()
                             .inflate(R.layout.add_vip_dialog, null);
                     TextView head_load_all = (TextView) view_load_all_add.findViewById(R.id.all_head);
-                    head_load_all.setText("VIP-新增");
+                    head_load_all.setText("VIP-操作");
                     add_vp = (TextView) view_load_all_add.findViewById(R.id.et_vip_type);
                     add_vp.setText(biln_type_exra);
                     add_vp_dj = (TextView) view_load_all_add.findViewById(R.id.et_biln_type);
@@ -118,6 +131,7 @@ public class VipDoAllActivity extends Activity  {
 //                                    getObjectType();
                         }
                     });
+
                     view_load_all_add.findViewById(R.id.btn_vip_add_all).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -211,59 +225,90 @@ public class VipDoAllActivity extends Activity  {
                                             }).setNegativeButton("否", null).show();
                         }
                     });
-//                    view_load_all_add.findViewById(R.id.btn_vip_reset_all).setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            String add_id = add_vp_bh.getText().toString();
-//                            String add_name = add_vp_mc.getText().toString();
-//                            //判断数据
-//                            OkHttpClient client = new OkHttpClient();
-//                            FormBody body = new FormBody.Builder()
+                    view_load_all_add.findViewById(R.id.btn_vip_reset_all).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String add_vp_new= add_vp.getText().toString();
+                            VIP_BILES.add(add_vp_new);
+                            String add_dj_new= add_vp_dj.getText().toString();
+                            VIP_DB_IDs.add(add_dj_new);
+                            String add_id_new = add_vp_bh.getText().toString();
+                            VIP_TYPE_IDs.add(add_id_new);
+                            String add_name_new= add_vp_mc.getText().toString();
+                            VIP_TYPE_NAMEs.add(add_name_new);
+                            Log.e("LiNing", "修改结果====" + VIP_BILES+"---"+VIP_DB_IDs+"---"+VIP_TYPE_IDs+"---"+VIP_TYPE_NAMEs);
+                            String zts_str = "";
+                            for (String zt : VIP_DB_IDs) {
+                                zts_str += zt + ",";
+                            }
+                            String sub_id_vip = zts_str.substring(0, zts_str.length() - 1);
+                            String vp_str = "";
+                            for (String zt : VIP_BILES) {
+                                vp_str += zt + ",";
+                            }
+                            String sub_vp_vip = vp_str.substring(0, vp_str.length() - 1);
+                            String typeid_str = "";
+                            for (String zt : VIP_TYPE_IDs) {
+                                typeid_str += zt + ",";
+                            }
+                            String sub_typeid_vip = typeid_str.substring(0, typeid_str.length() - 1);
+                            String typename_str = "";
+                            for (String zt : VIP_TYPE_NAMEs) {
+                                typename_str += zt + ",";
+                            }
+                            String sub_typename_vip = typename_str.substring(0, typename_str.length() - 1);
+                            //判断数据
+                            OkHttpClient client = new OkHttpClient();
+                            FormBody body = new FormBody.Builder()
+                                    .add("db_Id", sub_id_vip)
+                                    .add("biln_Type", sub_vp_vip)
+                                    .add("Type_ID", sub_typeid_vip)
+                                    .add("Type_Name", sub_typename_vip)
 //                                    .add("db_Id", DB)
 //                                    .add("biln_Type", "VP")
 //                                    .add("Type_ID", add_id)
 //                                    .add("Type_Name", add_name)
-//                                    .build();
-//                            client.newCall(
-//                                    new Request.Builder().addHeader("cookie", session).url(vip_set)
-//                                            .post(body).build()).enqueue(new Callback() {
-//
-//                                @Override
-//                                public void onResponse(Call call, Response response)
-//                                        throws IOException {
-//                                    String str = response.body().string();
-//                                    Log.e("LiNing", "修改结果====" + str);
-//                                    final JsonRootBean localJsonRootBean = (JsonRootBean) new Gson()
-//                                            .fromJson(str, JsonRootBean.class);
-//                                    if (localJsonRootBean != null) {
-//                                        VipDoAllActivity.this.runOnUiThread(new Runnable() {
-//
-//                                            @Override
-//                                            public void run() {
-//                                                boolean rlo = localJsonRootBean.getRLO();
-//                                                if (rlo == true) {
-//                                                    Toast.makeText(VipDoAllActivity.this,
-//                                                            "vip修改成功", Toast.LENGTH_SHORT).show();
-//                                                    getObjectType();
-//                                                    if (addVip_all_add.isShowing()) {
-//                                                        addVip_all_add.dismiss();
-//                                                    }
-//                                                } else if (rlo == false) {
-//                                                    Toast.makeText(VipDoAllActivity.this,
-//                                                            "vip修改失败", Toast.LENGTH_SHORT).show();
-//                                                }
-//                                            }
-//                                        });
-//                                    }
-//                                }
-//
-//                                @Override
-//                                public void onFailure(Call arg0, IOException arg1) {
-//
-//                                }
-//                            });
-//                        }
-//                    });
+                                    .build();
+                            client.newCall(
+                                    new Request.Builder().addHeader("cookie", session).url(vip_set)
+                                            .post(body).build()).enqueue(new Callback() {
+
+                                @Override
+                                public void onResponse(Call call, Response response)
+                                        throws IOException {
+                                    String str = response.body().string();
+                                    Log.e("LiNing", "修改结果====" + str);
+                                    final JsonRootBean localJsonRootBean = (JsonRootBean) new Gson()
+                                            .fromJson(str, JsonRootBean.class);
+                                    if (localJsonRootBean != null) {
+                                        VipDoAllActivity.this.runOnUiThread(new Runnable() {
+
+                                            @Override
+                                            public void run() {
+                                                boolean rlo = localJsonRootBean.getRLO();
+                                                if (rlo == true) {
+                                                    Toast.makeText(VipDoAllActivity.this,
+                                                            "vip修改成功", Toast.LENGTH_SHORT).show();
+                                                    getObjectType();
+                                                    if (addVip_all_add.isShowing()) {
+                                                        addVip_all_add.dismiss();
+                                                    }
+                                                } else if (rlo == false) {
+                                                    Toast.makeText(VipDoAllActivity.this,
+                                                            "vip修改失败", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call arg0, IOException arg1) {
+
+                                }
+                            });
+                        }
+                    });
 
                     addVip_all_add = new AlertDialog.Builder(context).create();
                     addVip_all_add.setCancelable(false);

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_bg"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:padding="5.0dip">
+
+
+    <TextView
+        android:id="@+id/design_listDeleteCheckBox"
+        style="@style/head_scrow_vip"
+        android:gravity="center"
+        android:text="序号" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+    <TextView
+        android:id="@+id/textView2_name"
+        style="@style/head_scrow_vipcontent"
+        android:text="VIP卡号" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+    <TextView
+        android:id="@+id/textView3_pwd"
+        style="@style/head_scrow_vipcontent"
+        android:singleLine="true"
+        android:text="执行动作" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+    <TextView
+        android:id="@+id/textView4_account"
+        style="@style/head_scrow_vipcontent"
+        android:text="变更日期" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+    <TextView
+        android:id="@+id/textView5_dep"
+        style="@style/head_scrow"
+        android:text="变更内容" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+    <TextView
+        android:id="@+id/textView6_cust"
+        style="@style/head_scrow"
+        android:text="变更用户" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+</LinearLayout>

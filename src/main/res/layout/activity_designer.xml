@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ll_touch"
+    android:id="@+id/ll_touch_vip"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/smallbk"
@@ -14,35 +14,53 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_price_add"
+            android:id="@+id/btn_design_add"
             style="@style/price_button"
             android:text="新增" />
 
         <Button
-            android:id="@+id/btn_price_query"
+            android:id="@+id/btn_design_del"
+            style="@style/price_button"
+            android:text="删除" />
+
+        <Button
+            android:id="@+id/btn_design_reset"
+            style="@style/price_button"
+            android:text="修改" />
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        style="@style/price_ll1"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/btn_design_query"
             style="@style/price_button"
             android:text="查询" />
 
         <Button
-            android:id="@+id/btn_price_reset"
+            android:id="@+id/btn_design_sh"
             style="@style/price_button"
-            android:text="修改" />
+            android:text="审核" />
 
         <Button
-            android:id="@+id/btn_price_del"
+            android:id="@+id/btn_design_save"
             style="@style/price_button"
-            android:text="删除" />
+            android:text="保存" />
 
 
     </LinearLayout>
 
 
-    <ScrollView
+   <!-- <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
         android:layout_height="200dp"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/include1">
+        android:layout_below="@+id/include1">-->
 
         <LinearLayout
             style="@style/price_ll1"
@@ -93,8 +111,9 @@
                         style="@style/design_name"
                         android:text="VIP卡号:" />
                     <TextView
+                        android:id="@+id/tv_vipcard"
                         style="@style/design_name"
-                        android:text="VP" />
+                        android:text="自动获取" />
 
 
                 </LinearLayout>
@@ -187,7 +206,7 @@
                         style="@style/design_name"
                         android:text="VIP类别:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/et_design_vip"
                         style="@style/design_editext" />
 
@@ -234,10 +253,12 @@
                         style="@style/price_name"
                         android:text="报备业务:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/et_design_salno"
                         style="@style/design_editext" />
-
+                    <ImageButton
+                        android:id="@+id/ib_design_yw"
+                        style="@style/price_button_down" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -296,7 +317,7 @@
                         style="@style/price_name"
                         android:text="制单用户:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/et_design_userno"
                         style="@style/design_editext" />
 
@@ -310,17 +331,14 @@
 
 
                 <LinearLayout style="@style/price_ll2">
-                    <Button
-                        android:layout_height="20dp"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/button"
-                        android:textSize="12sp"
-                        android:id="@+id/btn_design_userchk"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:text="审核用户" />
 
+                    <TextView
+                        style="@style/price_name"
+                        android:text="审核用户:" />
+
+                    <EditText
+                        android:id="@+id/et_design_userchk"
+                        style="@style/design_editext" />
                 </LinearLayout>
 
                 <LinearLayout style="@style/price_ll2">
@@ -331,7 +349,7 @@
                     <TextView
                         android:id="@+id/tv_design_isno"
                         style="@style/price_name"
-                        android:text="null" />
+                        android:text="未审核" />
 
 
                 </LinearLayout>
@@ -340,7 +358,7 @@
             <View style="@style/price_view" />
 
         </LinearLayout>
-    </ScrollView>
+    <!--</ScrollView>-->
 
     <View
         style="@style/list_item_seperator_layout"
@@ -348,7 +366,7 @@
 
     <include
         android:id="@+id/design_head"
-        layout="@layout/design_log" />
+        layout="@layout/design_log_two" />
 
     <View
         style="@style/list_item_seperator_layout"
@@ -357,7 +375,7 @@
 
     <include
         android:id="@+id/design_head_item"
-        layout="@layout/design_dairy_item" />
+        layout="@layout/design_dairy_item_two" />
 
     <View style="@style/price_view" />
 

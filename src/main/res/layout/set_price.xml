@@ -282,12 +282,12 @@
             android:listSelector="#ffff0000"
             android:scrollingCache="true" />
 
-        <View
+        <!--<View
             android:layout_width="fill_parent"
             android:layout_height="0.5dip"
             android:layout_alignParentLeft="true"
             android:layout_margin="3.0dip"
-            android:background="#ff808080" />
+            android:background="#ff808080" />-->
     </LinearLayout>
 
     <LinearLayout

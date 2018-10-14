@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_bg"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:padding="5.0dip">
+    <TextView
+        android:id="@+id/design_showChecx"
+        android:gravity="center"
+        style="@style/head_scrow_vip"
+        android:text="0" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+    <TextView
+
+        android:id="@+id/price_design_no"
+        android:singleLine="true"
+        style="@style/price_editext_item_two"
+        android:text="Vip_NO" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+    <TextView
+
+        android:id="@+id/price_design_action"
+        android:singleLine="true"
+        style="@style/price_editext_item_two"
+
+        android:text="add/update" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+    <TextView
+        android:id="@+id/price_design_altedd"
+        style="@style/price_editext_item_two"
+        android:text="Alte_DD" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+    <TextView
+        android:id="@+id/price_design_altecont"
+        style="@style/price_editext_item_two"
+        android:text="Alte_Cont" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+    <TextView
+        android:id="@+id/price_design_alteuser"
+        style="@style/price_editext_item_two"
+        android:text="Alte_User" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+</LinearLayout>

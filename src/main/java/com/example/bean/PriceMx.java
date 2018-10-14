@@ -16,6 +16,7 @@ public class PriceMx {
         return price;
     }
     public class Price {
+        private String ERPprice_Id;
         private String accepted;
         private String biln_user;
         private String compDep;
@@ -37,6 +38,14 @@ public class PriceMx {
         private String sup_Name;
         private String sup_No;
         private String useDate;
+
+        public String getERPprice_Id() {
+            return ERPprice_Id;
+        }
+
+        public void setERPprice_Id(String ERPprice_Id) {
+            this.ERPprice_Id = ERPprice_Id;
+        }
 
         public void setAccepted(String accepted) {
             this.accepted = accepted;

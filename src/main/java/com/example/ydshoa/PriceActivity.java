@@ -108,7 +108,7 @@ public class PriceActivity extends Activity implements OnClickListener {
     private String session, db_mr, yh_mr, date_dd;
     String url_dh_price;//临时+新增（正式）
     String url_get_price = URLS.price_getPrices;//获取（查询）主表
-    String url_getmx_price = URLS.price_getPrice;//获取（查询）主表
+    String url_getmx_price = URLS.price_getPrice;//获取（查询）明细表
     String url_load_price = URLS.price_load;//货品加载
     String url_del_price = URLS.price_delPrice;//删除
     String url_reset_price = URLS.price_setPrice;//修改
@@ -150,7 +150,7 @@ public class PriceActivity extends Activity implements OnClickListener {
     private List<GetPriceInfo.Prices> prices_main;
     private PriceGetAdapter getAdapter;
     private ListView list_main;
-    private String accepted_one, accepted_one_mx, biln_user;
+    private String accepted_one, accepted_one_mx, biln_user,erPprice_id;
     private String db_exra, pricseNo_exra;
     private String mx_db_id;
     private String mx_db_name;
@@ -198,6 +198,7 @@ public class PriceActivity extends Activity implements OnClickListener {
     private Button start_quick;
     private Button stop_quick;
     private boolean isChecked;
+    int bfor;//判断加载（修改）
     private String xh_tj11;
     private String prdLevre_jz;
     private String prdLevre_comit_jz;
@@ -358,7 +359,7 @@ public class PriceActivity extends Activity implements OnClickListener {
             @Override
             public void onClick(View v) {
 
-//                getTicket();//获取临时单号
+                getTicket();//获取临时单号
             }
         });
         touch = (LinearLayout) findViewById(R.id.ll_touch);
@@ -936,23 +937,24 @@ public class PriceActivity extends Activity implements OnClickListener {
 //                            Toast.makeText(context, "该单号不能被修改", Toast.LENGTH_LONG).show();
 //                        } else {
 
-                            new AlertDialog.Builder(context)
-                                    .setTitle("是否修改")
-                                    .setPositiveButton("是",
-                                            new DialogInterface.OnClickListener() {
+                        new AlertDialog.Builder(context)
+                                .setTitle("是否修改")
+                                .setPositiveButton("是",
+                                        new DialogInterface.OnClickListener() {
 
-                                                @Override
-                                                public void onClick(
-                                                        DialogInterface dialog,
-                                                        int which) {
-                                                    //此处判断哪个的修改（速查，新增，转入）
-                                                    onclik_go = 3;
-                                                    eAbleInfo();//可编辑
-                                                    done = 3;
-                                                    mxPriceAdapter = new MxPriceAdapter(one_add,onclik_go, R.layout.price_fuction_item1, mx_prdtUp, (PriceActivity) context);
-                                                    mListView1.setAdapter(mxPriceAdapter);
-                                                }
-                                            }).setNegativeButton("否", null).show();
+                                            @Override
+                                            public void onClick(
+                                                    DialogInterface dialog,
+                                                    int which) {
+                                                //此处判断哪个的修改（速查，新增，转入）
+                                                onclik_go = 3;
+                                                eAbleInfo();//可编辑
+                                                done = 3;
+                                                mxPriceAdapter = new MxPriceAdapter(onclik_go, R.layout.price_fuction_item1, mx_prdtUp, (PriceActivity) context);
+                                                mListView1.setAdapter(mxPriceAdapter);
+                                                mxPriceAdapter.notifyDataSetChanged();
+                                            }
+                                        }).setNegativeButton("否", null).show();
 //                        }
                     }
                     if (do_all == 1) {
@@ -985,6 +987,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                                                 onclik_go = 4;
                                                 inAdapter = new InAdapter(onclik_go, R.layout.price_fuction_item1, in_list, context);
                                                 mListView1.setAdapter(inAdapter);
+                                                inAdapter.notifyDataSetChanged();
                                             }
                                         }).setNegativeButton("否", null).show();
                     }
@@ -1001,19 +1004,19 @@ public class PriceActivity extends Activity implements OnClickListener {
 //                        if (accepted_one_mx.equals("Y")) {
 //                            Toast.makeText(context, "该单号不能被删除", Toast.LENGTH_LONG).show();
 //                        } else {
-                            // 传单号和数据库
-                            new AlertDialog.Builder(context)
-                                    .setTitle("是否删除")
-                                    .setPositiveButton("是",
-                                            new DialogInterface.OnClickListener() {
+                        // 传单号和数据库
+                        new AlertDialog.Builder(context)
+                                .setTitle("是否删除")
+                                .setPositiveButton("是",
+                                        new DialogInterface.OnClickListener() {
 
-                                                @Override
-                                                public void onClick(
-                                                        DialogInterface dialog,
-                                                        int which) {
-                                                    delPrice();
-                                                }
-                                            }).setNegativeButton("否", null).show();
+                                            @Override
+                                            public void onClick(
+                                                    DialogInterface dialog,
+                                                    int which) {
+                                                delPrice();
+                                            }
+                                        }).setNegativeButton("否", null).show();
 //                        }
                     }
                     if (do_all == 1) {
@@ -1073,7 +1076,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                             MainInfoAdd();
                             //新增
                             if(one_add==2){
-                                mxPriceAdapter = new MxPriceAdapter(one_add,onclik_go, R.layout.price_fuction_item1, prdt_add_mx, (PriceActivity) context);
+                                mxPriceAdapter = new MxPriceAdapter(onclik_go, R.layout.price_fuction_item1, prdt_add_mx, (PriceActivity) context);
                                 mListView1.setAdapter(mxPriceAdapter);
                                 mxPriceAdapter.notifyDataSetChanged();
                             }else{
@@ -1094,7 +1097,11 @@ public class PriceActivity extends Activity implements OnClickListener {
 //                        setPrice();
                         MainInfoAdd();
                         if(one_add==2){
-                            mxPriceAdapter = new MxPriceAdapter(one_add,onclik_go, R.layout.price_fuction_item1, prdt_add_mx, (PriceActivity) context);
+                            mxPriceAdapter = new MxPriceAdapter(onclik_go, R.layout.price_fuction_item1, prdt_add_mx, (PriceActivity) context);
+                            mListView1.setAdapter(mxPriceAdapter);
+                            mxPriceAdapter.notifyDataSetChanged();
+                        }else{
+                            mxPriceAdapter = new MxPriceAdapter(onclik_go, R.layout.price_fuction_item1, mx_prdtUp, (PriceActivity) context);
                             mListView1.setAdapter(mxPriceAdapter);
                             mxPriceAdapter.notifyDataSetChanged();
                         }
@@ -1144,8 +1151,9 @@ public class PriceActivity extends Activity implements OnClickListener {
 
             //货品加载
             case R.id.btn_price_load:
-                if(done==3){
+                if(done==3||done==4){
                     isChecked = true;
+                    bfor = 1;
                 }
                 View view_load = getLayoutInflater()
                         .inflate(R.layout.load_item, null);
@@ -1279,9 +1287,9 @@ public class PriceActivity extends Activity implements OnClickListener {
 //                        if (accepted_one_mx.equals("Y")) {
 //                            Toast.makeText(context, "该单号不能被执行", Toast.LENGTH_LONG).show();
 //                        } else {
-                            getList_no();//获取list数据，数组格式提交
-                            MainInfoAdd();
-                            exuteInfo();
+                        getList_no();//获取list数据，数组格式提交
+                        MainInfoAdd();
+                        exuteInfo();
 //                        }
                     } else {
                         Toast.makeText(context, "操作错误", Toast.LENGTH_LONG).show();
@@ -1307,7 +1315,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                         }
                         else if(one_add==2||more==2){
 
-                            mxPriceAdapter = new MxPriceAdapter(one_add,onclik_go, R.layout.price_fuction_item1, prdt_add_mx, (PriceActivity) context);
+                            mxPriceAdapter = new MxPriceAdapter(onclik_go, R.layout.price_fuction_item1, prdt_add_mx, (PriceActivity) context);
                             mListView1.setAdapter(mxPriceAdapter);
                             mxPriceAdapter.notifyDataSetChanged();
                         }
@@ -1326,7 +1334,7 @@ public class PriceActivity extends Activity implements OnClickListener {
 //                            }
                             if(more==2||one_add==2){
 
-                                mxPriceAdapter = new MxPriceAdapter(one_add,onclik_go, R.layout.price_fuction_item1, prdt_add_mx, (PriceActivity) context);
+                                mxPriceAdapter = new MxPriceAdapter(onclik_go, R.layout.price_fuction_item1, prdt_add_mx, (PriceActivity) context);
                                 mListView1.setAdapter(mxPriceAdapter);
                                 mxPriceAdapter.notifyDataSetChanged();
                             }
@@ -1347,13 +1355,13 @@ public class PriceActivity extends Activity implements OnClickListener {
 //                            }
                             if(more==2||one_add==2){
 
-                                mxPriceAdapter = new MxPriceAdapter(one_add,onclik_go, R.layout.price_fuction_item1, prdt_add_mx, (PriceActivity) context);
+                                mxPriceAdapter = new MxPriceAdapter(onclik_go, R.layout.price_fuction_item1, prdt_add_mx, (PriceActivity) context);
                                 mListView1.setAdapter(mxPriceAdapter);
                                 mxPriceAdapter.notifyDataSetChanged();
                             }
                             else{
 
-                                mxPriceAdapter = new MxPriceAdapter(one_add,onclik_go, R.layout.price_fuction_item1, mx_prdtUp, (PriceActivity) context);
+                                mxPriceAdapter = new MxPriceAdapter(onclik_go, R.layout.price_fuction_item1, mx_prdtUp, (PriceActivity) context);
                                 mListView1.setAdapter(mxPriceAdapter);
                                 mxPriceAdapter.notifyDataSetChanged();
                             }
@@ -1713,7 +1721,9 @@ public class PriceActivity extends Activity implements OnClickListener {
 
                         @Override
                         public void run() {
-                            //条件
+                            //条件get
+                            erPprice_id = cInfoDB.getPrice().getERPprice_Id();
+                            Log.e("LiNing","----"+erPprice_id);
                             accepted_one_mx = cInfoDB.getPrice().getAccepted();
                             biln_user = cInfoDB.getPrice().getBiln_user();
                             mx_db_id = cInfoDB.getPrice().getDb_Id();
@@ -1737,6 +1747,12 @@ public class PriceActivity extends Activity implements OnClickListener {
                             zcmc.setText(mx_priceName);
                             mx_rem = cInfoDB.getPrice().getRem();
                             zcsm.setText(mx_rem);
+                            if(accepted_one_mx.equals("N")){
+                                accepted_one_mx="未执行";
+                            }
+                            if(accepted_one_mx.equals("Y")){
+                                accepted_one_mx="已执行";
+                            }
                             zxqk.setText(accepted_one_mx);
                             String obj_type = cInfoDB.getPrice().getObj_Type();
                             if (obj_type.equals("1")) {
@@ -1757,7 +1773,8 @@ public class PriceActivity extends Activity implements OnClickListener {
                             //listview数据
                             mx_prdtUp = cInfoDB.getPrice().getPrdtUp();
 
-                            mxPriceAdapter = new MxPriceAdapter(one_add,onclik_go, R.layout.price_fuction_item1, mx_prdtUp, (PriceActivity) context);
+                            Log.e("LiNing", "返回结果===" + mx_prdtUp);
+                            mxPriceAdapter = new MxPriceAdapter(onclik_go, R.layout.price_fuction_item1, mx_prdtUp, (PriceActivity) context);
                             mListView1.setAdapter(mxPriceAdapter);
                             Log.e("LiNing", "返回结果===" + accepted_one_mx);
                             fouseAbleInfo();//禁止编辑
@@ -1786,6 +1803,12 @@ public class PriceActivity extends Activity implements OnClickListener {
         String time_add = time.getText().toString();//政策日期
         String time_start = start.getText().toString();//开始日期
         String time_stop = stop.getText().toString();//结束日期
+        if(erPprice_id!=null){
+            erPprice_id=erPprice_id;
+        }else{
+            erPprice_id="null";
+        }
+        Log.e("LiNing","--erp--"+erPprice_id);
 //        if (db_add.equals("")) {
         if (db_add.equals("") || db_add == null) {
             Toast.makeText(context, "请选择账套", Toast.LENGTH_LONG).show();
@@ -1837,12 +1860,13 @@ public class PriceActivity extends Activity implements OnClickListener {
                     post_cust = mx_salesTerminal_id;
                 }
             }
-            Log.e("LiNing", "提交的执行数据" + db_add + "/" + post_db_name + "/" + post_brand + "/" + brand_add + "/" + post_hs + "/" + hs_add + "/" + post_cust + "/" + cust_add
+            Log.e("LiNing", "提交的执行数据" +erPprice_id+ db_add + "/" + post_db_name + "/" + post_brand + "/" + brand_add + "/" + post_hs + "/" + hs_add + "/" + post_cust + "/" + cust_add
                     + "/" + ckdx_zb + "/" + ysf_zb + "/" + yssz_zb + "/" + tyzk_zb + "/" + price_no_add + "/" + namePrice_add + "/" + time_add + "/" + time_start + "/" + time_stop
                     + "/" + sm_add + "/" + accept_yn + "/" + sub_id + "/" + sub_ph + "/" + sub_dwcb + "/" + sub_tysj + "/" + sub_zdsj + "/" + sub_zcdj + "/" + sub_zczk + "/" + sub_sm);
             FormBody localFormBody = new FormBody.Builder()
                     .add("isApp", "T")
-                    //主表信息
+                    //主表信息/
+                    .add("ERPprice_Id", erPprice_id)
                     .add("db_Id", db_add)//账套
                     .add("db_Name", post_db_name)//账套名称
                     .add("sup_No", post_brand)//品牌
@@ -1984,7 +2008,11 @@ public class PriceActivity extends Activity implements OnClickListener {
         String time_add = time.getText().toString();//政策日期
         String time_start = start.getText().toString();//开始日期
         String time_stop = stop.getText().toString();//结束日期
-
+        if(erPprice_id!=null){
+            erPprice_id=erPprice_id;
+        }else{
+            erPprice_id="null";
+        }
         if (db_add.equals("") || db_add == null) {
             Toast.makeText(context, "请选择账套", Toast.LENGTH_LONG).show();
         } else if (price_no_add.equals("")) {
@@ -2017,6 +2045,7 @@ public class PriceActivity extends Activity implements OnClickListener {
 
                         .add("isApp", "T")
                         //主表信息
+                        .add("ERPprice_Id", erPprice_id)
                         .add("db_Id", db_add)//账套
                         .add("db_Name", post_db_name)//账套名称
                         .add("sup_No", post_brand)//品牌
@@ -2050,7 +2079,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                         .add("REM", sub_sm)
 
                         .build();
-                Log.e("LiNing", "提交的保存数据" + db_add + "/" + post_db_name + "/" + post_brand + "/" + brand_add + "/" + post_hs + "/" + hs_add + "/" + post_cust + "/" + cust_add
+                Log.e("LiNing", "提交的保存数据" +erPprice_id+ db_add + "/" + post_db_name + "/" + post_brand + "/" + brand_add + "/" + post_hs + "/" + hs_add + "/" + post_cust + "/" + cust_add
                         + "/" + ckdx_zb + "/" + ysf_zb + "/" + yssz_zb + "/" + tyzk_zb + "/" + price_no_add + "/" + namePrice_add + "/" + time_add + "/" + time_start + "/" + time_stop
                         + "/" + sm_add + "/" + accept_yn + "/" + sub_id + "/" + sub_ph + "/" + sub_dwcb + "/" + sub_tysj + "/" + sub_zdsj + "/" + sub_zcdj + "/" + sub_zczk + "/" + sub_sm);
             } else if (done == 3) {
@@ -2080,6 +2109,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                 localFormBody1 = new FormBody.Builder()
                         .add("isApp", "T")
                         //主表信息
+                        .add("ERPprice_Id", erPprice_id)
                         .add("db_Id", db_add)//账套
                         .add("db_Name", post_db_name)//账套名称
                         .add("sup_No", post_brand)//品牌
@@ -2114,7 +2144,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                         .build();
 
 
-                Log.e("LiNing", "提交的保存数据" + db_add + "/" + post_db_name + "/" + post_brand + "/" + brand_add + "/" + post_hs + "/" + hs_add + "/" + post_cust + "/" + cust_add
+                Log.e("LiNing", "提交的保存数据" +erPprice_id+ db_add + "/" + post_db_name + "/" + post_brand + "/" + brand_add + "/" + post_hs + "/" + hs_add + "/" + post_cust + "/" + cust_add
                         + "/" + ckdx_zb + "/" + ysf_zb + "/" + yssz_zb + "/" + tyzk_zb + "/" + price_no_add + "/" + namePrice_add + "/" + time_add + "/" + time_start + "/" + time_stop
                         + "/" + sm_add + "/" + accept_yn + "/" + sub_id + "/" + sub_ph + "/" + sub_dwcb + "/" + sub_tysj + "/" + sub_zdsj + "/" + sub_zcdj + "/" + sub_zczk + "/" + sub_sm);
             }
@@ -2249,6 +2279,12 @@ public class PriceActivity extends Activity implements OnClickListener {
 
     //获取列表数据提交
     private void getList_no() {
+        if(info_add.size()>0) {
+            info_add.clear();
+        }
+        if(info_query.size()>0) {
+            info_query.clear();
+        }
         if (mListView1.getCount() > 0) {
 
             ArrayList<String> ITM = new ArrayList<String>();
@@ -2264,7 +2300,13 @@ public class PriceActivity extends Activity implements OnClickListener {
                 if (done == 1) {
                     if(one_add==2){
                         PriceMx.PrdtUp prdt2 = (PriceMx.PrdtUp) mListView1.getAdapter().getItem(i);
-                        Log.e("LiNing", "----xh--prdt2" + prdt2);
+                        Log.e("LiNing", "--多条--xh--prdt2" + prdt2);
+//                        if(info_query.size()>0){
+//                            info_query.clear();
+//                            info_query.add(prdt2);
+//                        }else{
+//                            info_query.add(prdt2);
+//                        }
                         info_query.add(prdt2);
                         xh_tj = "" + i;
                         ph_tj = prdt2.getPrdNo();
@@ -2295,8 +2337,14 @@ public class PriceActivity extends Activity implements OnClickListener {
                     }else{
 
                         PriceLoadInfo.Prdt prdt2 = (PriceLoadInfo.Prdt) mListView1.getAdapter().getItem(i);
-                        Log.e("LiNing", "----xh--prdt2" + prdt2);
-                        info_add.add(prdt2);
+                        Log.e("LiNing", "-PriceLoadInfo---xh--prdt2" + prdt2);
+//                        if(info_add.size()>0){
+//                            info_add.clear();
+//                            info_add.add(prdt2);
+//                        }else{
+//                            info_add.add(prdt2);
+//                        }
+//                        info_add.add(prdt2);
                         xh_tj = "" + i;
                         ph_tj = prdt2.getPRD_NO();
                         dwcb_tj = "" + prdt2.getUP_SAL();
@@ -2322,12 +2370,19 @@ public class PriceActivity extends Activity implements OnClickListener {
                         if (sm_tj == null || sm_tj.equals("null")) {
                             sm_tj = null;
                         }
+                        info_add.add(prdt2);
                     }
 
                 } else if (done == 3) {
-                    if (isChecked == true) {
+                    if (isChecked == true&&bfor==1) {
                         PriceLoadInfo.Prdt prdt2 = (PriceLoadInfo.Prdt) mListView1.getAdapter().getItem(i);
                         Log.e("LiNing", "----xh--prdt2" + prdt2);
+//                        if(info_add.size()>0){
+//                            info_add.clear();
+//                            info_add.add(prdt2);
+//                        }else{
+//                            info_add.add(prdt2);
+//                        }
                         info_add.add(prdt2);
                         xh_tj = "" + i;
                         ph_tj = prdt2.getPRD_NO();
@@ -2357,7 +2412,13 @@ public class PriceActivity extends Activity implements OnClickListener {
                     } else {
 
                         PriceMx.PrdtUp prdt2 = (PriceMx.PrdtUp) mListView1.getAdapter().getItem(i);
-                        Log.e("LiNing", "----xh--prdt2" + prdt2);
+                        Log.e("LiNing", "--PriceMx--xh--prdt2" + prdt2);
+//                        if(info_query.size()>0){
+//                            info_query.clear();
+//                            info_query.add(prdt2);
+//                        }else{
+//                            info_query.add(prdt2);
+//                        }
                         info_query.add(prdt2);
                         xh_tj = "" + i;
                         ph_tj = prdt2.getPrdNo();
@@ -2365,8 +2426,8 @@ public class PriceActivity extends Activity implements OnClickListener {
                         tysj_tj = "" + prdt2.getUPR();
                         zdsj_tj = "" + prdt2.getMIN_UP();
                         zcdj_tj = "" + prdt2.getPrdUp();
-//                        zczk_tj = prdt2.getZC_ZK();
-                        zczk_tj = prdt2.getDis_CNT();
+                        zczk_tj = prdt2.getZC_ZK();
+//                        zczk_tj = prdt2.getDis_CNT();
                         zxqk_tj = prdt2.getYN();
                         sm_tj = prdt2.getREM();
                         Log.e("LiNing", "----xh2--数据" + xh_tj + "---" + ph_tj + "---" + dwcb_tj + "---" + tysj_tj
@@ -2387,9 +2448,15 @@ public class PriceActivity extends Activity implements OnClickListener {
                         }
                     }
                 } else if (done == 4) {
-                    if (isChecked == true) {
+                    if (isChecked == true&&bfor==1) {
                         PriceLoadInfo.Prdt prdt2 = (PriceLoadInfo.Prdt) mListView1.getAdapter().getItem(i);
                         Log.e("LiNing", "----xh--prdt2" + prdt2);
+//                        if(info_add.size()>0){
+//                            info_add.clear();
+//                            info_add.add(prdt2);
+//                        }else{
+//                            info_add.add(prdt2);
+//                        }
                         info_add.add(prdt2);
                         xh_tj = "" + i;
 
@@ -3038,68 +3105,68 @@ public class PriceActivity extends Activity implements OnClickListener {
                 break;
             case 13:
                 if (resultCode == 1) {
-//                    String str1 = data.getStringExtra("data_return");
-//                    id_queryCust = data.getStringExtra("data_return_ids");
-//                    cust_check.setText(str1);
+                    String str1 = data.getStringExtra("data_return");
+                    id_queryCust = data.getStringExtra("data_return_ids");
+                    cust_check.setText(str1);
 //                    Log.e("LiNing", "提交的id====" + str1);
                     // sp.edit().putString("USERIDquerry", str1).commit();
-                    //记录选择的数据
-                    String str1 = data.getStringExtra("data_return");
-                    if (str1 != null) {
-                        String[] db_spls = str1.split(",");
-
-                        Log.e("LiNing", "=====" + str1.split(","));
-                        for (int i = 0; i < db_spls.length; i++) {
-                            String A = db_spls[i];
-                            Log.e("LiNing", "===A==" + A);
-                            if (!idList_checkCust.contains(A)) {
-                                idList_checkCust.add(A);
-                            }
-                        }
-                    }
-                    Log.e("LiNing", "新增的数据" + idList_checkCust);
-                    String prdname_str = "";
-                    for (String zt : idList_checkCust) {
-                        prdname_str += zt + ",";
-                    }
-                    String sub_level_sup = prdname_str.substring(0, prdname_str.length() - 1);
-                    Log.e("LiNing", "------新增的数据" + sub_level_sup);
-                    if (idList_checkCust != null && idList_checkCust.size() > 0) {
-                        cust_check.setText(sub_level_sup);
-                        cust_check.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                TextView view = new TextView(context);
-                                view.setMovementMethod(ScrollingMovementMethod.getInstance());
-                                view.setText(cust_check.getText().toString());
-                                alertDialog = new AlertDialog.Builder(context).create();
-                                alertDialog.setCancelable(true);
-                                alertDialog.setView(view);
-                                alertDialog.show();
-                            }
-                        });
-                    }
-                    //记录提交的数据
-                    String id_querySup_jz = data.getStringExtra("data_return_ids");
-//                    idList_prdnoID.add(id_prdNo_xs);
-                    if (id_querySup_jz != null) {
-                        String[] db_spls = id_querySup_jz.split(",");
-                        Log.e("LiNing", "=====" + id_querySup_jz.split(","));
-                        for (int i = 0; i < db_spls.length; i++) {
-                            String A = db_spls[i];
-                            Log.e("LiNing", "===A==" + A);
-                            if (!idList_checkCustID.contains(A)) {
-                                idList_checkCustID.add(A);
-                            }
-                        }
-                    }
-                    Log.e("LiNing", "新增的数据" + idList_checkCustID);
-                    String prdid_str = "";
-                    for (String zt : idList_checkCustID) {
-                        prdid_str += zt + ",";
-                    }
-                    id_queryCust = prdid_str.substring(0, prdid_str.length() - 1);
-                    Log.e("LiNing", "------新增的数据id" + id_queryCust);
+//                    //记录选择的数据
+//                    String str1 = data.getStringExtra("data_return");
+//                    if (str1 != null) {
+//                        String[] db_spls = str1.split(",");
+//
+//                        Log.e("LiNing", "=====" + str1.split(","));
+//                        for (int i = 0; i < db_spls.length; i++) {
+//                            String A = db_spls[i];
+//                            Log.e("LiNing", "===A==" + A);
+//                            if (!idList_checkCust.contains(A)) {
+//                                idList_checkCust.add(A);
+//                            }
+//                        }
+//                    }
+//                    Log.e("LiNing", "新增的数据" + idList_checkCust);
+//                    String prdname_str = "";
+//                    for (String zt : idList_checkCust) {
+//                        prdname_str += zt + ",";
+//                    }
+//                    String sub_level_sup = prdname_str.substring(0, prdname_str.length() - 1);
+//                    Log.e("LiNing", "------新增的数据" + sub_level_sup);
+//                    if (idList_checkCust != null && idList_checkCust.size() > 0) {
+//                        cust_check.setText(sub_level_sup);
+//                        cust_check.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                TextView view = new TextView(context);
+//                                view.setMovementMethod(ScrollingMovementMethod.getInstance());
+//                                view.setText(cust_check.getText().toString());
+//                                alertDialog = new AlertDialog.Builder(context).create();
+//                                alertDialog.setCancelable(true);
+//                                alertDialog.setView(view);
+//                                alertDialog.show();
+//                            }
+//                        });
+//                    }
+//                    //记录提交的数据
+//                    String id_querySup_jz = data.getStringExtra("data_return_ids");
+////                    idList_prdnoID.add(id_prdNo_xs);
+//                    if (id_querySup_jz != null) {
+//                        String[] db_spls = id_querySup_jz.split(",");
+//                        Log.e("LiNing", "=====" + id_querySup_jz.split(","));
+//                        for (int i = 0; i < db_spls.length; i++) {
+//                            String A = db_spls[i];
+//                            Log.e("LiNing", "===A==" + A);
+//                            if (!idList_checkCustID.contains(A)) {
+//                                idList_checkCustID.add(A);
+//                            }
+//                        }
+//                    }
+//                    Log.e("LiNing", "新增的数据" + idList_checkCustID);
+//                    String prdid_str = "";
+//                    for (String zt : idList_checkCustID) {
+//                        prdid_str += zt + ",";
+//                    }
+//                    id_queryCust = prdid_str.substring(0, prdid_str.length() - 1);
+//                    Log.e("LiNing", "------新增的数据id" + id_queryCust);
                 }
                 break;
             case 15:
@@ -3597,104 +3664,104 @@ public class PriceActivity extends Activity implements OnClickListener {
                 if (resultCode == 1) {
 
                     String morElIST = data.getStringExtra("MORElIST");
-                        prdt_add_mx = new ArrayList<PriceMx.PrdtUp>();
+                    prdt_add_mx = new ArrayList<PriceMx.PrdtUp>();
                     ls_set = new ArrayList<>();
-                        Log.e("LiNing", "---回调数据---" +morElIST);
-                        try {
-                            JSONArray jsonArray = new JSONArray(morElIST);
-                             iSize = jsonArray.length();
-                            System.out.println("Size:" + iSize);
-                            for (int i = 0; i < iSize; i++) {
-                                JSONObject jsonObj = jsonArray.getJSONObject(i);
-                                String xh_hd = jsonObj.get("XH").toString();//2
-                                String prd_no_hd = jsonObj.get("PRD_NO").toString();//A1728SQ
-                                String name_hd = jsonObj.get("NAME").toString();//A1728SQ五件套浴缸
-                                String up_sal_hd = jsonObj.get("UP_SAL").toString();//0.00
-                                String upr_hd = jsonObj.get("UPR").toString();//438.0
-                                String up_min_hd = jsonObj.get("UP_MIN").toString();//1.0
-                                if(jsonObj.get("ZC_DJ")!=null){
+                    Log.e("LiNing", "---回调数据---" +morElIST);
+                    try {
+                        JSONArray jsonArray = new JSONArray(morElIST);
+                        iSize = jsonArray.length();
+                        System.out.println("Size:" + iSize);
+                        for (int i = 0; i < iSize; i++) {
+                            JSONObject jsonObj = jsonArray.getJSONObject(i);
+                            String xh_hd = jsonObj.get("XH").toString();//2
+                            String prd_no_hd = jsonObj.get("PRD_NO").toString();//A1728SQ
+                            String name_hd = jsonObj.get("NAME").toString();//A1728SQ五件套浴缸
+                            String up_sal_hd = jsonObj.get("UP_SAL").toString();//0.00
+                            String upr_hd = jsonObj.get("UPR").toString();//438.0
+                            String up_min_hd = jsonObj.get("UP_MIN").toString();//1.0
+                            if(jsonObj.get("ZC_DJ")!=null){
 
-                                     zc_dj_hd = jsonObj.get("ZC_DJ").toString();//999
-                                    if(zc_dj_hd.equals("")||zc_dj_hd.equals("null")||zc_dj_hd==null){
-                                        zc_dj_hd="0.00";
-                                    }
+                                zc_dj_hd = jsonObj.get("ZC_DJ").toString();//999
+                                if(zc_dj_hd.equals("")||zc_dj_hd.equals("null")||zc_dj_hd==null){
+                                    zc_dj_hd="0.00";
                                 }
-
-                                String zc_zk_hd = jsonObj.get("ZC_ZK").toString();//80
-
-                                if(zc_zk_hd.equals("")||zc_zk_hd.equals("null")||zc_zk_hd==null){
-                                    zc_zk_hd="100";
-                                }
-                                String zc_zxqk_hd = jsonObj.get("ZC_ZXQK").toString();//N
-                                if(zc_zxqk_hd.equals("")||zc_zxqk_hd.equals("null")||zc_zxqk_hd==null){
-                                    zc_zxqk_hd="N";
-                                }
-                                String zc_bzxx_hd = jsonObj.get("ZC_BZXX").toString();//备注信息
-                                if(zc_bzxx_hd.equals("")||zc_bzxx_hd.equals("null")||zc_bzxx_hd==null){
-                                    zc_bzxx_hd="null";
-                                }
-                                Log.e("LiNing", "---提交回调数据---" +prd_no_hd+name_hd+up_sal_hd+upr_hd+up_min_hd+zc_dj_hd
-                                +zc_zk_hd+zc_zxqk_hd+zc_bzxx_hd);
-                                mx_ls_mor = new PriceMx.PrdtUp(Integer.parseInt(xh_hd), prd_no_hd, name_hd,
-                                        up_sal_hd, upr_hd, up_min_hd, zc_dj_hd, zc_zk_hd,
-                                        zc_zxqk_hd, zc_bzxx_hd);
-                                prdt_add_mx.add(mx_ls_mor);
-                                ls_set.add(prd_no_hd);
                             }
-                            Log.e("LiNing", "---保存回调数据---" +prdt_add_mx);
-                            Log.e("LiNing", "---保存回调数据---" +ls_set);
-                            //必须判断数据（新增、修改）
-                            if(done==1&&mListView1.getCount()>0){
-                                for (int j = 0; j < mListView1.getCount(); j++) {
-                                    prdt2 = (PriceLoadInfo.Prdt) mListView1.getAdapter().getItem(j);
-                                    Log.e("LiNing", "添加数据====pd=xg===" + prdt2);
-                                    String xh_prdt = prdt2.getXH();
-                                    if(xh_prdt.equals("")||xh_prdt.equals("null")||xh_prdt==null){
-                                        xh_prdt="j";
-                                    }
-                                     prd_no_prdt = prdt2.getPRD_NO();
-                                    String name_prdt = prdt2.getNAME();
-                                    double up_sal_prdt = prdt2.getUP_SAL();
-                                    double upr_prdt = prdt2.getUPR();
-                                    double up_min_prdt = prdt2.getUP_MIN();
-                                    String zc_dj_prdt = prdt2.getZC_DJ();
-                                    String zc_zk_prdt = prdt2.getZC_ZK();
-                                    String zc_zxqk_prdt = prdt2.getZC_ZXQK();
-                                    String zc_bzxx_prdt = prdt2.getZC_BZXX();
-                                    if (!ls_set.contains(prd_no_prdt)) {
-                                        mx_ls_prdt = new PriceMx.PrdtUp(Integer.parseInt(xh_prdt)+iSize, prd_no_prdt, name_prdt,
-                                                "" + up_sal_prdt, "" +upr_prdt, "" + up_min_prdt, zc_dj_prdt, zc_zk_prdt,
-                                                zc_zxqk_prdt, zc_bzxx_prdt);
-                                        prdt_add_mx.add(mx_ls_prdt);
-                                        Log.e("LiNing", "包含数据==xin==pd====" + mx_ls_prdt);
-                                    }
+
+                            String zc_zk_hd = jsonObj.get("ZC_ZK").toString();//80
+
+                            if(zc_zk_hd.equals("")||zc_zk_hd.equals("null")||zc_zk_hd==null){
+                                zc_zk_hd="100";
+                            }
+                            String zc_zxqk_hd = jsonObj.get("ZC_ZXQK").toString();//N
+                            if(zc_zxqk_hd.equals("")||zc_zxqk_hd.equals("null")||zc_zxqk_hd==null){
+                                zc_zxqk_hd="N";
+                            }
+                            String zc_bzxx_hd = jsonObj.get("ZC_BZXX").toString();//备注信息
+                            if(zc_bzxx_hd.equals("")||zc_bzxx_hd.equals("null")||zc_bzxx_hd==null){
+                                zc_bzxx_hd="null";
+                            }
+                            Log.e("LiNing", "---提交回调数据---" +prd_no_hd+name_hd+up_sal_hd+upr_hd+up_min_hd+zc_dj_hd
+                                    +zc_zk_hd+zc_zxqk_hd+zc_bzxx_hd);
+                            mx_ls_mor = new PriceMx.PrdtUp(Integer.parseInt(xh_hd), prd_no_hd, name_hd,
+                                    up_sal_hd, upr_hd, up_min_hd, zc_dj_hd, zc_zk_hd,
+                                    zc_zxqk_hd, zc_bzxx_hd);
+                            prdt_add_mx.add(mx_ls_mor);
+                            ls_set.add(prd_no_hd);
+                        }
+                        Log.e("LiNing", "---保存回调数据---" +prdt_add_mx);
+                        Log.e("LiNing", "---保存回调数据---" +ls_set);
+                        //必须判断数据（新增、修改）
+                        if(done==1&&mListView1.getCount()>0){
+                            for (int j = 0; j < mListView1.getCount(); j++) {
+                                prdt2 = (PriceLoadInfo.Prdt) mListView1.getAdapter().getItem(j);
+                                Log.e("LiNing", "添加数据====pd=xg===" + prdt2);
+                                String xh_prdt = prdt2.getXH();
+                                if(xh_prdt.equals("")||xh_prdt.equals("null")||xh_prdt==null){
+                                    xh_prdt="j";
                                 }
-                                onclik_go=21;
-                                mxPriceAdapter = new MxPriceAdapter(one_add,onclik_go, R.layout.price_fuction_item1, prdt_add_mx, (PriceActivity) context);
-                                mxPriceAdapter.notifyDataSetChanged();
-                                mListView1.setAdapter(mxPriceAdapter);
-
-                            }else{
-
-                                for (int j = 0; j < mListView1.getCount(); j++) {
-                                    prdt3 = (PriceMx.PrdtUp) mListView1.getAdapter().getItem(j);
-                                    prd_no = prdt3.getPrdNo();
-                                    Log.e("LiNing", "添加数据==xin==pd====" + prd_no);
-                                    if (!ls_set.contains(prd_no)) {
-                                        prdt_add_mx.add(prdt3);
-                                        Log.e("LiNing", "包含数据==xin==pd====" + prdt3);
-                                    }
+                                prd_no_prdt = prdt2.getPRD_NO();
+                                String name_prdt = prdt2.getNAME();
+                                double up_sal_prdt = prdt2.getUP_SAL();
+                                double upr_prdt = prdt2.getUPR();
+                                double up_min_prdt = prdt2.getUP_MIN();
+                                String zc_dj_prdt = prdt2.getZC_DJ();
+                                String zc_zk_prdt = prdt2.getZC_ZK();
+                                String zc_zxqk_prdt = prdt2.getZC_ZXQK();
+                                String zc_bzxx_prdt = prdt2.getZC_BZXX();
+                                if (!ls_set.contains(prd_no_prdt)) {
+                                    mx_ls_prdt = new PriceMx.PrdtUp(Integer.parseInt(xh_prdt)+iSize, prd_no_prdt, name_prdt,
+                                            "" + up_sal_prdt, "" +upr_prdt, "" + up_min_prdt, zc_dj_prdt, zc_zk_prdt,
+                                            zc_zxqk_prdt, zc_bzxx_prdt);
+                                    prdt_add_mx.add(mx_ls_prdt);
+                                    Log.e("LiNing", "包含数据==xin==pd====" + mx_ls_prdt);
                                 }
                             }
                             onclik_go=21;
-                            Log.e("LiNing", "包含数据==xin==pd====" + prdt_add_mx);
-                            mxPriceAdapter = new MxPriceAdapter(one_add,onclik_go, R.layout.price_fuction_item1, prdt_add_mx, (PriceActivity) context);
+                            mxPriceAdapter = new MxPriceAdapter(onclik_go, R.layout.price_fuction_item1, prdt_add_mx, (PriceActivity) context);
                             mxPriceAdapter.notifyDataSetChanged();
                             mListView1.setAdapter(mxPriceAdapter);
-                            Log.e("LiNing", "修改的数据==新====" + mListView1.getCount()+"<<<<<"+prdt_add_mx);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+
+                        }else{
+
+                            for (int j = 0; j < mListView1.getCount(); j++) {
+                                prdt3 = (PriceMx.PrdtUp) mListView1.getAdapter().getItem(j);
+                                prd_no = prdt3.getPrdNo();
+                                Log.e("LiNing", "添加数据==xin==pd====" + prd_no);
+                                if (!ls_set.contains(prd_no)) {
+                                    prdt_add_mx.add(prdt3);
+                                    Log.e("LiNing", "包含数据==xin==pd====" + prdt3);
+                                }
+                            }
                         }
+                        onclik_go=21;
+                        Log.e("LiNing", "包含数据==xin==pd====" + prdt_add_mx);
+                        mxPriceAdapter = new MxPriceAdapter(onclik_go, R.layout.price_fuction_item1, prdt_add_mx, (PriceActivity) context);
+                        mxPriceAdapter.notifyDataSetChanged();
+                        mListView1.setAdapter(mxPriceAdapter);
+                        Log.e("LiNing", "修改的数据==新====" + mListView1.getCount()+"<<<<<"+prdt_add_mx);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
                 break;
             case 30:
@@ -4069,6 +4136,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                 .add("prdName", prdName_comit)
                 .add("prdName_ENG", prdName_ENG_comit)
                 .build();
+//        &query_Sup=CJ001&query_CompDep=all&employee=all&prdNO=all&prdIndx=all&prdWh=all&prdLevel=all&prdKND=all&showStop=F&prdMrk=all&prdName=CJ001&prdName_ENG=CJ001
         Request localRequest = new Request.Builder()
                 .addHeader("cookie", session).url(url_load_price)
                 .post(localFormBody)
@@ -4094,8 +4162,9 @@ public class PriceActivity extends Activity implements OnClickListener {
                         public void run() {
                             prdt = cInfoDB.getPrdt();
                             Log.e("LiNing", "prdt-----str-----" + PriceActivity.this.prdt);
-                            priceAdapter = new PriceAdapter(one_add,onclik_go, R.layout.price_fuction_item1, prdt, PriceActivity.this);
+                            priceAdapter = new PriceAdapter(one_add,onclik_go, R.layout.price_fuction_item1, prdt, context);
                             mListView1.setAdapter(priceAdapter);
+                            priceAdapter.notifyDataSetChanged();
                             if (alertDialog.isShowing()) {
                                 alertDialog.dismiss();
                             }
@@ -4124,12 +4193,13 @@ public class PriceActivity extends Activity implements OnClickListener {
         private int index;
         private int add_one;
 
-        public PriceAdapter(int one_add, int onclik_go, int price_fuction_item1, List<Prdt> prdt_add, PriceActivity priceActivity) {
+        public PriceAdapter(int one_add, int onclik_go, int price_fuction_item1, List<PriceLoadInfo.Prdt> prdt_add_xz, Context context) {
             this.id_row_layout = price_fuction_item1;
             this.mInflater = LayoutInflater.from(context);
-            this.infos = prdt_add;
+            this.infos = prdt_add_xz;
             this.clik = onclik_go;
             this.add_one = one_add;
+            Log.e("LiNing", "添加数据===infos==新===数据==" + infos);
             Log.e("LiNing", "添加数据=====新===数据==" + prdt_add);
         }
 
@@ -4180,7 +4250,6 @@ public class PriceActivity extends Activity implements OnClickListener {
                     holder = new ViewHolder();
                     MyHScrollView scrollView1 = (MyHScrollView) convertView
                             .findViewById(R.id.horizontalScrollView1);
-
                     holder.scrollView = scrollView1;
                     holder.checkbox = (TextView) convertView
                             .findViewById(R.id.price_showChecx);
@@ -4195,18 +4264,18 @@ public class PriceActivity extends Activity implements OnClickListener {
                     holder.price_zxqk = (EditText) convertView.findViewById(R.id.price_zx_qk);
                     holder.price_bzxx = (EditText) convertView.findViewById(R.id.price_bz_xx);
                     holder.price_zxqk.setText(zxqk.getText().toString());
-//                    holder.price_bzxx.setText(zcsm.getText().toString());
+                    holder.price_bzxx.setText(zcsm.getText().toString());
 //                    if(more==1){
 //                         headSrcrollView = (MyHScrollView) mHead_more
 //                                .findViewById(R.id.horizontalScrollView1);
 //                    }else{
 //
 //                    }
-                    headSrcrollView = (MyHScrollView) mHead
-                            .findViewById(R.id.horizontalScrollView1);
-                    headSrcrollView
-                            .AddOnScrollChangedListener(new OnScrollChangedListenerImp(
-                                    scrollView1));
+                headSrcrollView = (MyHScrollView) mHead
+                        .findViewById(R.id.horizontalScrollView1);
+                headSrcrollView
+                        .AddOnScrollChangedListener(new OnScrollChangedListenerImp(
+                                scrollView1));
                     convertView.setTag(holder);
                 }
 
@@ -4214,6 +4283,8 @@ public class PriceActivity extends Activity implements OnClickListener {
                 holder = (ViewHolder) convertView.getTag();
             }
             final PriceLoadInfo.Prdt prdt_item = infos.get(position);
+            //编辑EditextSet(******放于此处避免listview数据错乱)
+            EditextSet_add(holder, prdt_item);
             Log.e("LiNing", "添加数据=====新=====" + prdt_item);
             int id_add = position + 1;
             int id = position;
@@ -4231,18 +4302,6 @@ public class PriceActivity extends Activity implements OnClickListener {
             holder.up_min.setText("" + prdt_item.getUP_MIN());
 //            holder.price_zxqk.setText(prdt_item.getZC_ZXQK());
 //            holder.price_bzxx.setText(prdt_item.getZC_BZXX());
-            //编辑EditextSet
-            EditextSet_add(holder, prdt_item);
-            //获取焦点(手机测试===关于软键盘弹出，editext获取焦点的问题)
-//            if (index != -1 && index == position) {
-//                holder.up_sal.requestFocus();
-//                holder.upr.requestFocus();
-//                holder.up_min.requestFocus();
-//                holder.price_danj.requestFocus();
-//                holder.price_zk.requestFocus();
-//                holder.price_zxqk.requestFocus();
-//                holder.price_bzxx.requestFocus();
-//            }
 
             Log.e("LiNing", "---------" + clik);
             if (clik == 1) {
@@ -4264,12 +4323,99 @@ public class PriceActivity extends Activity implements OnClickListener {
                 }
                 if (num_go.equals("") || num_go == null && tyzk_go.equals("") || tyzk_go == null) {
                     Toast.makeText(PriceActivity.this, "请填写数值或折扣", Toast.LENGTH_LONG).show();
-                } else {
+                }
 
-                    //点击执行运算后更新listview的政策单价
-                    JJCC_adapter(holder, prdt_item, user_go, opr_go, num_go, tyzk_go);
+//                else {
+
+                //点击执行运算后更新listview的政策单价
+                for(int i=0;i<infos.size();i++){
+                    infos.get(i).setZC_ZK(tyzk_go);
+                    holder.price_zk.setText(infos.get(i).getZC_ZK());
+                    if (user_go.equals("单位成本")) {
+                        if (opr_go.equals("+")) {
+                            double v = infos.get(i).getUP_SAL() + Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setZC_DJ(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
+                        }
+                        if (opr_go.equals("-")) {
+                            double v = infos.get(i).getUP_SAL() - Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setZC_DJ(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
+                        }
+                        if (opr_go.equals("*")) {
+                            double v = infos.get(i).getUP_SAL() * Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setZC_DJ(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
+                        }
+                        if (opr_go.equals("/")) {
+                            double v = infos.get(i).getUP_SAL() / Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setZC_DJ(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
+                        }
+                    }
+                    if (user_go.equals("统一定价")) {
+                        if (opr_go.equals("+")) {
+                            double v = infos.get(i).getUPR() + Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setZC_DJ(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
+                        }
+                        if (opr_go.equals("-")) {
+                            double v = infos.get(i).getUPR() - Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setZC_DJ(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
+                        }
+                        if (opr_go.equals("*")) {
+                            double v = infos.get(i).getUPR() * Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setZC_DJ(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
+                        }
+                        if (opr_go.equals("/")) {
+                            double v = infos.get(i).getUPR() / Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setZC_DJ(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
+                        }
+                    }
+                    if (user_go.equals("最低售价")) {
+                        if (opr_go.equals("+")) {
+                            double v = infos.get(i).getUP_MIN() + Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setZC_DJ(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
+                        }
+                        if (opr_go.equals("-")) {
+                            double v = infos.get(i).getUP_MIN() - Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setZC_DJ(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
+                        }
+                        if (opr_go.equals("*")) {
+                            double v = infos.get(i).getUP_MIN() * Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setZC_DJ(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
+                        }
+                        if (opr_go.equals("/")) {
+                            double v = infos.get(i).getUP_MIN() / Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setZC_DJ(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
+                        }
+                    }
+
 
                 }
+                holder.price_danj.setText(infos.get(position).getZC_DJ());
+//                    JJCC_adapter(holder, prdt_item, user_go, opr_go, num_go, tyzk_go);
+
+//                }
             }
             if (clik == 2) {
 
@@ -4295,117 +4441,6 @@ public class PriceActivity extends Activity implements OnClickListener {
             return convertView;
         }
 
-        private void JJCC_adapter(ViewHolder holder, Prdt prdt_item, String user_go, String opr_go, String num_go, String tyzk_go) {
-//            String tyzk=""+Integer.parseInt(tyzk_go)/100;
-//            String tyzk = "" + Integer.parseInt(tyzk_go) * 0.01;
-            Log.e("LiNing", "添加数据=====新=====" + prdt_item);
-            String tyzk = "" + Double.parseDouble(tyzk_go) / 100;
-            if (user_go.equals("单位成本")) {
-                if (opr_go.equals("+")) {
-                    danj = prdt_item.getUP_SAL() + Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
-                }
-                if (opr_go.equals("-")) {
-                    danj = prdt_item.getUP_SAL() - Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
-                }
-                if (opr_go.equals("*")) {
-                    danj = prdt_item.getUP_SAL() * Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
-                }
-                if (opr_go.equals("/")) {
-                    danj = prdt_item.getUP_SAL() / Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
-                }
-
-            }
-            if (user_go.equals("统一定价")) {
-                if (opr_go.equals("+")) {
-                    danj = prdt_item.getUPR() + Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
-                }
-                if (opr_go.equals("-")) {
-                    danj = prdt_item.getUPR() - Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
-                }
-                if (opr_go.equals("*")) {
-                    danj = prdt_item.getUPR() * Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
-                }
-                if (opr_go.equals("/")) {
-                    danj = prdt_item.getUPR() / Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_danj.setText("" + new_danj);
-                    holder.price_zk.setText(tyzk_go);
-                }
-
-            }
-            if (user_go.equals("最低售价")) {
-                if (opr_go.equals("+")) {
-                    danj = prdt_item.getUP_MIN() + Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
-                }
-                if (opr_go.equals("-")) {
-                    danj = prdt_item.getUP_MIN() - Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
-                }
-                if (opr_go.equals("*")) {
-                    danj = prdt_item.getUP_MIN() * Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
-                }
-                if (opr_go.equals("/")) {
-                    danj = prdt_item.getUP_MIN() / Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
-                }
-
-            }
-        }
 
         private void EditextSet_add(ViewHolder holder, final PriceLoadInfo.Prdt prdt_item) {
             if (holder.up_sal.getTag() instanceof TextWatcher) {
@@ -4575,118 +4610,6 @@ public class PriceActivity extends Activity implements OnClickListener {
         }
 
 
-//        private void JJCC_adapter(ViewHolder holder, PriceLoadInfo.Prdt prdtmore, String user_go, String opr_go, String num_go, String tyzk_go) {
-////            String tyzk=""+Integer.parseInt(tyzk_go)/100;
-////            String tyzk = "" + Integer.parseInt(tyzk_go) * 0.01;
-//            Log.e("LiNing", "添加数据=====新=====" + prdtmore);
-//            String tyzk = "" + Double.parseDouble(tyzk_go) / 100;
-//            if (user_go.equals("单位成本")) {
-//                if (opr_go.equals("+")) {
-//                    danj = prdtmore.getUP_SAL() + Double.parseDouble(num_go);
-//                    new_danj = danj * Double.parseDouble(tyzk);
-////                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-////                    holder.price_danj.setText(str_newdj);
-//                    holder.price_zk.setText(tyzk_go);
-//                    holder.price_danj.setText("" + new_danj);
-//                }
-//                if (opr_go.equals("-")) {
-//                    danj = prdtmore.getUP_SAL() - Double.parseDouble(num_go);
-//                    new_danj = danj * Double.parseDouble(tyzk);
-////                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-////                    holder.price_danj.setText(str_newdj);
-//                    holder.price_zk.setText(tyzk_go);
-//                    holder.price_danj.setText("" + new_danj);
-//                }
-//                if (opr_go.equals("*")) {
-//                    danj = prdtmore.getUP_SAL() * Double.parseDouble(num_go);
-//                    new_danj = danj * Double.parseDouble(tyzk);
-////                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-////                    holder.price_danj.setText(str_newdj);
-//                    holder.price_zk.setText(tyzk_go);
-//                    holder.price_danj.setText("" + new_danj);
-//                }
-//                if (opr_go.equals("/")) {
-//                    danj = prdtmore.getUP_SAL() / Double.parseDouble(num_go);
-//                    new_danj = danj * Double.parseDouble(tyzk);
-////                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-////                    holder.price_danj.setText(str_newdj);
-//                    holder.price_zk.setText(tyzk_go);
-//                    holder.price_danj.setText("" + new_danj);
-//                }
-//
-//            }
-//            if (user_go.equals("统一定价")) {
-//                if (opr_go.equals("+")) {
-//                    danj = prdtmore.getUPR() + Double.parseDouble(num_go);
-//                    new_danj = danj * Double.parseDouble(tyzk);
-////                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-////                    holder.price_danj.setText(str_newdj);
-//                    holder.price_zk.setText(tyzk_go);
-//                    holder.price_danj.setText("" + new_danj);
-//                }
-//                if (opr_go.equals("-")) {
-//                    danj = prdtmore.getUPR() - Double.parseDouble(num_go);
-//                    new_danj = danj * Double.parseDouble(tyzk);
-////                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-////                    holder.price_danj.setText(str_newdj);
-//                    holder.price_zk.setText(tyzk_go);
-//                    holder.price_danj.setText("" + new_danj);
-//                }
-//                if (opr_go.equals("*")) {
-//                    danj = prdtmore.getUPR() * Double.parseDouble(num_go);
-//                    new_danj = danj * Double.parseDouble(tyzk);
-////                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-////                    holder.price_danj.setText(str_newdj);
-//                    holder.price_zk.setText(tyzk_go);
-//                    holder.price_danj.setText("" + new_danj);
-//                }
-//                if (opr_go.equals("/")) {
-//                    danj = prdtmore.getUPR() / Double.parseDouble(num_go);
-//                    new_danj = danj * Double.parseDouble(tyzk);
-////                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-////                    holder.price_danj.setText(str_newdj);
-//                    holder.price_danj.setText("" + new_danj);
-//                    holder.price_zk.setText(tyzk_go);
-//                }
-//
-//            }
-//            if (user_go.equals("最低售价")) {
-//                if (opr_go.equals("+")) {
-//                    danj = prdtmore.getUP_MIN() + Double.parseDouble(num_go);
-//                    new_danj = danj * Double.parseDouble(tyzk);
-////                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-////                    holder.price_danj.setText(str_newdj);
-//                    holder.price_zk.setText(tyzk_go);
-//                    holder.price_danj.setText("" + new_danj);
-//                }
-//                if (opr_go.equals("-")) {
-//                    danj = prdtmore.getUP_MIN() - Double.parseDouble(num_go);
-//                    new_danj = danj * Double.parseDouble(tyzk);
-////                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-////                    holder.price_danj.setText(str_newdj);
-//                    holder.price_zk.setText(tyzk_go);
-//                    holder.price_danj.setText("" + new_danj);
-//                }
-//                if (opr_go.equals("*")) {
-//                    danj = prdtmore.getUP_MIN() * Double.parseDouble(num_go);
-//                    new_danj = danj * Double.parseDouble(tyzk);
-////                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-////                    holder.price_danj.setText(str_newdj);
-//                    holder.price_zk.setText(tyzk_go);
-//                    holder.price_danj.setText("" + new_danj);
-//                }
-//                if (opr_go.equals("/")) {
-//                    danj = prdtmore.getUP_MIN() / Double.parseDouble(num_go);
-//                    new_danj = danj * Double.parseDouble(tyzk);
-////                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-////                    holder.price_danj.setText(str_newdj);
-//                    holder.price_zk.setText(tyzk_go);
-//                    holder.price_danj.setText("" + new_danj);
-//                }
-//
-//            }
-//        }
-
         class OnScrollChangedListenerImp implements
                 MyHScrollView.OnScrollChangedListener {
             MyHScrollView mScrollViewArg;
@@ -4702,7 +4625,7 @@ public class PriceActivity extends Activity implements OnClickListener {
             }
         }
 
-        class ViewHolder {
+        private  class ViewHolder {
             private RelativeLayout layouts;
             HorizontalScrollView scrollView;
             private EditText price_id;
@@ -4728,21 +4651,22 @@ public class PriceActivity extends Activity implements OnClickListener {
         private List<PriceMx.PrdtUp> infos;
         boolean ischeck = false;
         private OnItemClickListenerPrice priceListener;
+        PriceMx.PrdtUp prdt_item_mx;
 
-//        public MxPriceAdapter(int onclik_go, int price_fuction_item1, List<PriceMx.PrdtUp> prdt, PriceActivity priceActivity) {
-//            this.id_row_layout = price_fuction_item1;
-//            this.mInflater = LayoutInflater.from(context);
-//            this.infos = prdt;
-//            this.clik = onclik_go;
-//        }
-
-        public MxPriceAdapter(int one_add, int onclik_go, int price_fuction_item1, List<PriceMx.PrdtUp> mx_prdtUp, PriceActivity context) {
+        public MxPriceAdapter(int onclik_go, int price_fuction_item1, List<PriceMx.PrdtUp> prdt, PriceActivity priceActivity) {
             this.id_row_layout = price_fuction_item1;
             this.mInflater = LayoutInflater.from(context);
-            this.infos = mx_prdtUp;
+            this.infos = prdt;
             this.clik = onclik_go;
-            this.add_one=one_add;
         }
+
+//        public MxPriceAdapter(int one_add, int onclik_go, int price_fuction_item1, List<PriceMx.PrdtUp> mx_prdtUp, PriceActivity context) {
+//            this.id_row_layout = price_fuction_item1;
+//            this.mInflater = LayoutInflater.from(context);
+//            this.infos = mx_prdtUp;
+//            this.clik = onclik_go;
+//            this.add_one=one_add;
+//        }
 
         @Override
         public boolean isEnabled(int position) {
@@ -4803,7 +4727,13 @@ public class PriceActivity extends Activity implements OnClickListener {
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            final PriceMx.PrdtUp prdt_item_mx = infos.get(position);
+
+            prdt_item_mx = infos.get(position);
+            Log.e("LiNing","-----xh==cx----"+prdt_item_mx);
+            Log.e("LiNing","------"+prdt_item_mx.getDis_CNT());
+
+            //编辑EditextSet
+            EditextSet_set(holder, prdt_item_mx);
             final int itm = prdt_item_mx.getITM();
             Log.e("LiNing","-----xh==cx----"+itm);
             Log.e("LiNing","--p---xh==cx----"+position);
@@ -4832,10 +4762,10 @@ public class PriceActivity extends Activity implements OnClickListener {
             holder.price_bzxx.setText(prdt_item_mx.getREM());
             //不可编辑
 //            NoSet(holder);
-            //编辑EditextSet
-            EditextSet_set(holder, prdt_item_mx);
+
             Log.e("LiNing", "---------" + clik);
-            if (clik == 1) {//执行计算
+
+            if (clik == 1) {
                 String user_go = user_check.getText().toString();
                 String opr_go = operate_check.getText().toString();
                 String num_go = et_num.getText().toString();
@@ -4854,12 +4784,99 @@ public class PriceActivity extends Activity implements OnClickListener {
                 }
                 if (num_go.equals("") || num_go == null && tyzk_go.equals("") || tyzk_go == null) {
                     Toast.makeText(PriceActivity.this, "请填写数值或折扣", Toast.LENGTH_LONG).show();
-                } else {
-                    //点击执行运算后更新listview的政策单价
-                    JJCC_adapter_mx(holder, prdt_item_mx, user_go, opr_go, num_go, tyzk_go);
+                }
+
+//                JJCC_adapter_mx(holder, prdt_item_mx, user_go, opr_go, num_go, tyzk_go);
+                //点击执行运算后更新listview的政策单价
+                for(int i=0;i<infos.size();i++){
+                    infos.get(i).setZC_ZK(tyzk_go);
+                    holder.price_zk.setText(infos.get(i).getZC_ZK());
+                    if (user_go.equals("单位成本")) {
+                        if (opr_go.equals("+")) {
+                            double v = Double.parseDouble(infos.get(i).getCst_Up()) + Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setPrdUp(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
+                        }
+                        if (opr_go.equals("-")) {
+                            double v = Double.parseDouble(infos.get(i).getCst_Up()) - Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setPrdUp(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
+                        }
+                        if (opr_go.equals("*")) {
+                            double v = Double.parseDouble(infos.get(i).getCst_Up()) * Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setPrdUp(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
+                        }
+                        if (opr_go.equals("/")) {
+                            double v = Double.parseDouble(infos.get(i).getCst_Up()) / Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setPrdUp(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
+                        }
+                    }
+                    if (user_go.equals("统一定价")) {
+                        if (opr_go.equals("+")) {
+                            double v = Double.parseDouble(infos.get(i).getUPR()) + Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setPrdUp(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
+                        }
+                        if (opr_go.equals("-")) {
+                            double v = Double.parseDouble(infos.get(i).getUPR()) - Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setPrdUp(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
+                        }
+                        if (opr_go.equals("*")) {
+                            double v = Double.parseDouble(infos.get(i).getUPR()) * Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setPrdUp(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
+                        }
+                        if (opr_go.equals("/")) {
+                            double v = Double.parseDouble(infos.get(i).getUPR()) / Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setPrdUp(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
+                        }
+                    }
+                    if (user_go.equals("最低售价")) {
+                        if (opr_go.equals("+")) {
+                            double v = Double.parseDouble(infos.get(i).getMIN_UP()) + Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setPrdUp(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
+                        }
+                        if (opr_go.equals("-")) {
+                            double v = Double.parseDouble(infos.get(i).getMIN_UP()) - Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setPrdUp(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
+                        }
+                        if (opr_go.equals("*")) {
+                            double v = Double.parseDouble(infos.get(i).getMIN_UP()) * Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setPrdUp(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
+                        }
+                        if (opr_go.equals("/")) {
+                            double v = Double.parseDouble(infos.get(i).getMIN_UP()) / Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            infos.get(i).setPrdUp(""+v);
+                            Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
+                        }
+                    }
 
                 }
-            } else if (clik == 3) {//修改
+                holder.price_danj.setText(infos.get(position).getPrdUp());
+
+//                }
+            }
+
+            else if (clik == 3) {//修改
 
                 Set(holder);
             } else {
@@ -4941,9 +4958,9 @@ public class PriceActivity extends Activity implements OnClickListener {
                 @Override
                 public void afterTextChanged(Editable s) {
                     if (TextUtils.isEmpty(s)) {
-                        prdt_item_mx.setDis_CNT("0");
+                        prdt_item_mx.setCst_Up("0");
                     } else {
-                        prdt_item_mx.setDis_CNT(s.toString());
+                        prdt_item_mx.setCst_Up(s.toString());
                     }
                 }
             };
@@ -5013,9 +5030,9 @@ public class PriceActivity extends Activity implements OnClickListener {
                 @Override
                 public void afterTextChanged(Editable s) {
                     if (TextUtils.isEmpty(s)) {
-                        prdt_item_mx.setZC_ZK("0");
+                        prdt_item_mx.setDis_CNT("0");
                     } else {
-                        prdt_item_mx.setZC_ZK(s.toString());
+                        prdt_item_mx.setDis_CNT(s.toString());
                     }
                 }
             };
@@ -5108,7 +5125,7 @@ public class PriceActivity extends Activity implements OnClickListener {
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holder.price_danj.setText(str_newdj);
                     holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
+                    holder.price_danj.setText("" + danj);
                 }
                 if (opr_go.equals("-")) {
                     danj = Double.parseDouble(prdt_mx.getCst_Up()) - Double.parseDouble(num_go);
@@ -5116,7 +5133,7 @@ public class PriceActivity extends Activity implements OnClickListener {
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holder.price_danj.setText(str_newdj);
                     holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
+                    holder.price_danj.setText("" + danj);
                 }
                 if (opr_go.equals("*")) {
                     danj = Double.parseDouble(prdt_mx.getCst_Up()) * Double.parseDouble(num_go);
@@ -5124,7 +5141,7 @@ public class PriceActivity extends Activity implements OnClickListener {
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holder.price_danj.setText(str_newdj);
                     holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
+                    holder.price_danj.setText("" + danj);
                 }
                 if (opr_go.equals("/")) {
                     danj = Double.parseDouble(prdt_mx.getCst_Up()) / Double.parseDouble(num_go);
@@ -5132,7 +5149,7 @@ public class PriceActivity extends Activity implements OnClickListener {
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holder.price_danj.setText(str_newdj);
                     holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
+                    holder.price_danj.setText("" + danj);
                 }
 
             }
@@ -5143,7 +5160,7 @@ public class PriceActivity extends Activity implements OnClickListener {
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holder.price_danj.setText(str_newdj);
                     holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
+                    holder.price_danj.setText("" + danj);
                 }
                 if (opr_go.equals("-")) {
                     danj = Double.parseDouble(prdt_mx.getUPR()) - Double.parseDouble(num_go);
@@ -5151,7 +5168,7 @@ public class PriceActivity extends Activity implements OnClickListener {
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holder.price_danj.setText(str_newdj);
                     holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
+                    holder.price_danj.setText("" + danj);
                 }
                 if (opr_go.equals("*")) {
                     danj = Double.parseDouble(prdt_mx.getUPR()) * Double.parseDouble(num_go);
@@ -5159,7 +5176,7 @@ public class PriceActivity extends Activity implements OnClickListener {
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holder.price_danj.setText(str_newdj);
                     holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
+                    holder.price_danj.setText("" + danj);
                 }
                 if (opr_go.equals("/")) {
                     danj = Double.parseDouble(prdt_mx.getUPR()) / Double.parseDouble(num_go);
@@ -5167,7 +5184,7 @@ public class PriceActivity extends Activity implements OnClickListener {
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holder.price_danj.setText(str_newdj);
                     holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
+                    holder.price_danj.setText("" + danj);
                 }
 
             }
@@ -5178,7 +5195,7 @@ public class PriceActivity extends Activity implements OnClickListener {
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holder.price_danj.setText(str_newdj);
                     holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
+                    holder.price_danj.setText("" + danj);
                 }
                 if (opr_go.equals("-")) {
                     danj = Double.parseDouble(prdt_mx.getMIN_UP()) - Double.parseDouble(num_go);
@@ -5186,7 +5203,7 @@ public class PriceActivity extends Activity implements OnClickListener {
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holder.price_danj.setText(str_newdj);
                     holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
+                    holder.price_danj.setText("" + danj);
                 }
                 if (opr_go.equals("*")) {
                     danj = Double.parseDouble(prdt_mx.getMIN_UP()) * Double.parseDouble(num_go);
@@ -5194,7 +5211,7 @@ public class PriceActivity extends Activity implements OnClickListener {
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holder.price_danj.setText(str_newdj);
                     holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
+                    holder.price_danj.setText("" + danj);
                 }
                 if (opr_go.equals("/")) {
                     danj = Double.parseDouble(prdt_mx.getMIN_UP()) / Double.parseDouble(num_go);
@@ -5202,7 +5219,7 @@ public class PriceActivity extends Activity implements OnClickListener {
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holder.price_danj.setText(str_newdj);
                     holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + new_danj);
+                    holder.price_danj.setText("" + danj);
                 }
 
             }
@@ -5310,6 +5327,8 @@ public class PriceActivity extends Activity implements OnClickListener {
             }
 
             HashMap<String, Object> item_get_in = infos.get(position);
+            //编辑editext
+            EditextSet_in(holderIn, item_get_in);
             String xh_get_in = item_get_in.get("转入序号").toString();
             String bh_get_in = item_get_in.get("转入货品编号").toString();
             String mc_get_in = item_get_in.get("转入货品名称").toString();
@@ -5342,8 +5361,10 @@ public class PriceActivity extends Activity implements OnClickListener {
             holderIn.zx_qk.setText(zxqk_get_in);
             holderIn.bz_xx.setText(bzxx_get_in);
 
-            EditextSet_in(holderIn, item_get_in);
+//            JJCC_adapter_in(holderIn, item_get_in, user_go, opr_go, num_go, tyzk_go);
+
             if (clik == 1) {
+
                 String user_go = user_check.getText().toString();
                 String opr_go = operate_check.getText().toString();
                 String num_go = et_num.getText().toString();
@@ -5355,18 +5376,111 @@ public class PriceActivity extends Activity implements OnClickListener {
                     Toast.makeText(PriceActivity.this, "请选择运算符", Toast.LENGTH_LONG).show();
                 }
                 if (tyzk_go.equals("") || tyzk_go == null) {
-                    tyzk_go = "1";
+                    tyzk_go = "100";
                 }
                 if (num_go.equals("") || num_go == null) {
                     num_go = "0";
                 }
                 if (num_go.equals("") || num_go == null && tyzk_go.equals("") || tyzk_go == null) {
                     Toast.makeText(PriceActivity.this, "请填写数值或折扣", Toast.LENGTH_LONG).show();
-                } else {
-                    //点击执行运算后更新listview的政策单价
-                    JJCC_adapter_in(holderIn, item_get_in, user_go, opr_go, num_go, tyzk_go);
                 }
-            } else if (clik == 4) {
+
+                //点击执行运算后更新listview的政策单价
+                for(int i=0;i<infos.size();i++){
+//                    infos.get(i).setZC_ZK(tyzk_go);
+
+                    String zrzk = infos.get(i).get("转入销售折扣").toString();
+                    zrzk=tyzk_go;
+                    holderIn.xs_zk.setText(zrzk);
+                    String zcdj_zrcs;
+                    zcdj_zrcs = infos.get(i).get("转入政策定价").toString();
+                    if (user_go.equals("单位成本")) {
+                        if (opr_go.equals("+")) {
+                            double v = Double.parseDouble(infos.get(i).get("转入单位成本").toString()) + Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            zcdj_zrcs=""+v;
+                            Log.e("LiNing", "添加数据=====新====dj=" + zcdj_zrcs);
+                        }
+                        if (opr_go.equals("-")) {
+                            double v = Double.parseDouble(infos.get(i).get("转入单位成本").toString()) - Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            zcdj_zrcs=""+v;
+                            Log.e("LiNing", "添加数据=====新====dj=" + zcdj_zrcs);
+                        }
+                        if (opr_go.equals("*")) {
+                            double v = Double.parseDouble(infos.get(i).get("转入单位成本").toString()) * Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            zcdj_zrcs=""+v;
+                            Log.e("LiNing", "添加数据=====新====dj=" + zcdj_zrcs);
+                        }
+                        if (opr_go.equals("/")) {
+                            double v = Double.parseDouble(infos.get(i).get("转入单位成本").toString()) / Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            zcdj_zrcs=""+v;
+                            Log.e("LiNing", "添加数据=====新====dj=" + zcdj_zrcs);
+                        }
+                    }
+                    if (user_go.equals("统一定价")) {
+                        if (opr_go.equals("+")) {
+                            double v = Double.parseDouble(infos.get(i).get("转入统一定价").toString()) + Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            zcdj_zrcs=""+v;
+                            Log.e("LiNing", "添加数据=====新====dj=" + zcdj_zrcs);
+                        }
+                        if (opr_go.equals("-")) {
+                            double v = Double.parseDouble(infos.get(i).get("转入统一定价").toString()) - Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            zcdj_zrcs=""+v;
+                            Log.e("LiNing", "添加数据=====新====dj=" + zcdj_zrcs);
+                        }
+                        if (opr_go.equals("*")) {
+                            double v = Double.parseDouble(infos.get(i).get("转入统一定价").toString()) * Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            zcdj_zrcs=""+v;
+                            Log.e("LiNing", "添加数据=====新====dj=" + zcdj_zrcs);
+                        }
+                        if (opr_go.equals("/")) {
+                            double v = Double.parseDouble(infos.get(i).get("转入统一定价").toString()) / Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            zcdj_zrcs=""+v;
+                            Log.e("LiNing", "添加数据=====新====dj=" + zcdj_zrcs);
+                        }
+                    }
+                    if (user_go.equals("最低售价")) {
+                        if (opr_go.equals("+")) {
+                            double v = Double.parseDouble(infos.get(i).get("转入最低售价").toString()) + Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            zcdj_zrcs=""+v;
+                            Log.e("LiNing", "添加数据=====新====dj=" + zcdj_zrcs);
+                        }
+                        if (opr_go.equals("-")) {
+                            double v = Double.parseDouble(infos.get(i).get("转入最低售价").toString()) - Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            zcdj_zrcs=""+v;
+                            Log.e("LiNing", "添加数据=====新====dj=" + zcdj_zrcs);
+                        }
+                        if (opr_go.equals("*")) {
+                            double v = Double.parseDouble(infos.get(i).get("转入最低售价").toString()) * Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            zcdj_zrcs=""+v;
+                            Log.e("LiNing", "添加数据=====新====dj=" + zcdj_zrcs);
+                        }
+                        if (opr_go.equals("/")) {
+                            double v = Double.parseDouble(infos.get(i).get("转入最低售价").toString()) / Double.parseDouble(num_go);
+                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            zcdj_zrcs=""+v;
+                            Log.e("LiNing", "添加数据=====新====dj=" + zcdj_zrcs);
+                        }
+                    }
+
+                    holderIn.zc_dj.setText(zcdj_zrcs);
+                }
+
+//                }
+            }
+
+
+            else if (clik == 4) {
 
                 Set(holderIn);
             }
@@ -5418,7 +5532,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                 if (opr_go.equals("+")) {
                     danj = Double.parseDouble(item_get_in.get("转入单位成本").toString()) + Double.parseDouble(num_go);
                     new_danj = danj * Double.parseDouble(tyzk_go);
-                    holderIn.zc_dj.setText("" + new_danj);
+                    holderIn.zc_dj.setText("" + danj);
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holderIn.zc_dj.setText(str_newdj);
                 }
@@ -5427,21 +5541,21 @@ public class PriceActivity extends Activity implements OnClickListener {
                     new_danj = danj * Double.parseDouble(tyzk_go);
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holderIn.zc_dj.setText(str_newdj);
-                    holderIn.zc_dj.setText("" + new_danj);
+                    holderIn.zc_dj.setText("" + danj);
                 }
                 if (opr_go.equals("*")) {
                     danj = Double.parseDouble(item_get_in.get("转入单位成本").toString()) * Double.parseDouble(num_go);
                     new_danj = danj * Double.parseDouble(tyzk_go);
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holderIn.zc_dj.setText(str_newdj);
-                    holderIn.zc_dj.setText("" + new_danj);
+                    holderIn.zc_dj.setText("" + danj);
                 }
                 if (opr_go.equals("/")) {
                     danj = Double.parseDouble(item_get_in.get("转入单位成本").toString()) / Double.parseDouble(num_go);
                     new_danj = danj * Double.parseDouble(tyzk_go);
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holderIn.zc_dj.setText(str_newdj);
-                    holderIn.zc_dj.setText("" + new_danj);
+                    holderIn.zc_dj.setText("" + danj);
                 }
 
             }
@@ -5451,28 +5565,28 @@ public class PriceActivity extends Activity implements OnClickListener {
                     new_danj = danj * Double.parseDouble(tyzk_go);
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holderIn.zc_dj.setText(str_newdj);
-                    holderIn.zc_dj.setText("" + new_danj);
+                    holderIn.zc_dj.setText("" + danj);
                 }
                 if (opr_go.equals("-")) {
                     danj = Double.parseDouble(item_get_in.get("转入统一定价").toString()) - Double.parseDouble(num_go);
                     new_danj = danj * Double.parseDouble(tyzk_go);
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holderIn.zc_dj.setText(str_newdj);
-                    holderIn.zc_dj.setText("" + new_danj);
+                    holderIn.zc_dj.setText("" + danj);
                 }
                 if (opr_go.equals("*")) {
                     danj = Double.parseDouble(item_get_in.get("转入统一定价").toString()) * Double.parseDouble(num_go);
                     new_danj = danj * Double.parseDouble(tyzk_go);
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holderIn.zc_dj.setText(str_newdj);
-                    holderIn.zc_dj.setText("" + new_danj);
+                    holderIn.zc_dj.setText("" + danj);
                 }
                 if (opr_go.equals("/")) {
                     danj = Double.parseDouble(item_get_in.get("转入统一定价").toString()) / Double.parseDouble(num_go);
                     new_danj = danj * Double.parseDouble(tyzk_go);
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holderIn.zc_dj.setText(str_newdj);
-                    holderIn.zc_dj.setText("" + new_danj);
+                    holderIn.zc_dj.setText("" + danj);
                 }
 
             }
@@ -5482,28 +5596,28 @@ public class PriceActivity extends Activity implements OnClickListener {
                     new_danj = danj * Double.parseDouble(tyzk_go);
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holderIn.zc_dj.setText(str_newdj);
-                    holderIn.zc_dj.setText("" + new_danj);
+                    holderIn.zc_dj.setText("" + danj);
                 }
                 if (opr_go.equals("-")) {
                     danj = Double.parseDouble(item_get_in.get("转入最低售价").toString()) - Double.parseDouble(num_go);
                     new_danj = danj * Double.parseDouble(tyzk_go);
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holderIn.zc_dj.setText(str_newdj);
-                    holderIn.zc_dj.setText("" + new_danj);
+                    holderIn.zc_dj.setText("" + danj);
                 }
                 if (opr_go.equals("*")) {
                     danj = Double.parseDouble(item_get_in.get("转入最低售价").toString()) * Double.parseDouble(num_go);
                     new_danj = danj * Double.parseDouble(tyzk_go);
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holderIn.zc_dj.setText(str_newdj);
-                    holderIn.zc_dj.setText("" + new_danj);
+                    holderIn.zc_dj.setText("" + danj);
                 }
                 if (opr_go.equals("/")) {
                     danj = Double.parseDouble(item_get_in.get("转入最低售价").toString()) / Double.parseDouble(num_go);
                     new_danj = danj * Double.parseDouble(tyzk_go);
 //                    str_newdj = new DecimalFormat("#.00").format(new_danj);
 //                    holderIn.zc_dj.setText(str_newdj);
-                    holderIn.zc_dj.setText("" + new_danj);
+                    holderIn.zc_dj.setText("" + danj);
                 }
 
             }
@@ -5764,7 +5878,7 @@ public class PriceActivity extends Activity implements OnClickListener {
     }
 
 
-//    test9.13，
+    //    test9.13，
     public void cs_anoter(View v){
         more=2;
         one_add=2;

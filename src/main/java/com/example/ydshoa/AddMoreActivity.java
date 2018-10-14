@@ -54,10 +54,11 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
     ArrayList<String> ls_set;
     int one_add = 0;
     int more = 0;
+    PriceLoadInfo cInfoDB;
     private ImageButton query_sup, query_compdep, employee, prdNo, prdIndx, prdWh, prdLevre, prdKND, showStop;
-    private EditText dwcb_item, tydj_item, zdsj_item, zcdj_item, xszk_item, zxqk_item, bzxx_item, et_num,
+    private EditText prdMrk, prdName, prdName_ENG,dwcb_item, tydj_item, zdsj_item, zcdj_item, xszk_item, zxqk_item, bzxx_item, et_num,
             et_tyzk, zcsm, zcmc, et_seach;
-    private TextView zxqk, brand_item, brand_name_item, head, db_check, brand_check, hs_check, cust_check, user_check, operate_check, price_num_id, prdMrk, prdName, prdName_ENG,
+    private TextView zxqk, brand_item, brand_name_item, head, db_check, brand_check, hs_check, cust_check, user_check, operate_check, price_num_id,
             tv_qurey_sup, tv_query_compdep, tv_employee, tv_prdNo, tv_prdIndx, tv_prdWh, tv_prdLevre, tv_prdKND, tv_showStop;
     RelativeLayout mHead;
     ListView mListView1_set;
@@ -80,7 +81,7 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
     private SharedPreferences sp;
     private String session;
     String url_load_price = URLS.price_load;//货品加载
-    private List<PriceLoadInfo.Prdt> prdt;
+     List<PriceLoadInfo.Prdt> prdt;
     AddMoreAdapter moreAdapter;
 
     @Override
@@ -359,6 +360,20 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
         idList_querySupID.clear();
         idList_compDep.clear();
         idList_compDepID.clear();
+    }
+    private void InfoClear() {
+        prdMrk.setText("");
+        prdName.setText("");
+        prdName_ENG.setText("");
+        tv_qurey_sup.setText("");
+        tv_query_compdep.setText("");
+        tv_employee.setText("");
+        tv_prdNo.setText("");
+        tv_prdIndx.setText("");
+        tv_prdWh.setText("");
+        tv_prdLevre.setText("");
+        tv_prdKND.setText("");
+        tv_showStop.setText("");
     }
 
     private void showPopupMenu(View view) {
@@ -1098,18 +1113,21 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
                 Log.e("LiNing", "-----str---sj--" + str);
                 Gson gson = new GsonBuilder().setDateFormat(
                         "yyyy-MM-dd'T'HH:mm:ss").create();//特殊格式
-                final PriceLoadInfo cInfoDB = gson.fromJson(str,
-                        PriceLoadInfo.class);
+
+                cInfoDB = gson.fromJson(str,
+                       PriceLoadInfo.class);
                 if (cInfoDB != null) {
                     AddMoreActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             prdt = cInfoDB.getPrdt();
                             Log.e("LiNing", "prdt-----str-----" + AddMoreActivity.this.prdt);
+                            Log.e("LiNing", "prdt-----str-----" + AddMoreActivity.this.prdt.size());
+                            Log.e("LiNing", "prdt-----str-----" + AddMoreActivity.this.prdt.get(AddMoreActivity.this.prdt.size()-1).getUPR());
                             moreAdapter = new AddMoreAdapter(R.layout.price_fuction_item1, prdt, context);
                             mListView1_set.setAdapter(moreAdapter);
-                            //此处做判断
-//                            listClear();
+                            //此处数据清空
+                            InfoClear();
 
                         }
                     });
@@ -1126,32 +1144,33 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
 
     public class AddMoreAdapter extends BaseAdapter {
         int id_row_layout, clik;
+        List<PriceLoadInfo.Prdt> infos;
         LayoutInflater mInflater;
-        private List<PriceLoadInfo.Prdt> infos;
         boolean ischeck = false;
-        private OnItemClickListenerPrice priceListener;
-        private int index;
-        private int add_one;
+        PriceLoadInfo.Prdt prdt_item;
 
-        public AddMoreAdapter(int price_fuction_item1, List<PriceLoadInfo.Prdt> prdt, Context context) {
-            this.id_row_layout = price_fuction_item1;
-            this.mInflater = LayoutInflater.from(context);
+        public AddMoreAdapter(int id_row_layout, List<PriceLoadInfo.Prdt> prdt, Context context) {
+            this.id_row_layout = id_row_layout;
             this.infos = prdt;
+//            this.mInflater = LayoutInflater.from(context);
+            this.mInflater = ((LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE));
         }
 
-        @Override
-        public boolean isEnabled(int position) {
-            return ischeck;
-        }
 
-        public void check() {
-            ischeck = false;
-            notifyDataSetChanged();
-        }
+
+//        @Override
+//        public boolean isEnabled(int position) {
+//            return ischeck;
+//        }
+//
+//        public void check() {
+//            ischeck = false;
+//            notifyDataSetChanged();
+//        }
 
         @Override
         public int getCount() {
-            Log.e("LiNing", "----新数据more-----" + infos.size());
             return infos.size();
         }
 
@@ -1170,8 +1189,8 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
             ViewHolder holder;
             if (convertView == null) {
                 synchronized (AddMoreActivity.this) {
-                    convertView = mInflater.inflate(id_row_layout, null);
                     holder = new ViewHolder();
+                    convertView = mInflater.inflate(id_row_layout, null);
                     MyHScrollView scrollView1 = (MyHScrollView) convertView
                             .findViewById(R.id.horizontalScrollView1);
 
@@ -1208,8 +1227,11 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            final PriceLoadInfo.Prdt prdt_item = infos.get(position);
+            prdt_item = infos.get(position);
+            //编辑EditextSet
+            EditextSet_add(holder, prdt_item);
             Log.e("LiNing", "添加数据=====新=====" + prdt_item);
+            Log.e("LiNing", "添加数据====getUPR=====" + prdt_item.getUPR());
             int id_add = position + 1;
             int id = position;
             holder.checkbox.setText("" + id);
@@ -1234,9 +1256,8 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
 
 //            holder.price_zxqk.setText(prdt_item.getZC_ZXQK());
 //            holder.price_bzxx.setText(prdt_item.getZC_BZXX());
-            //编辑EditextSet
-            EditextSet_add(holder, prdt_item);
-            //获取焦点(手机测试===关于软键盘弹出，editext获取焦点的问题)
+
+
 
             Log.e("LiNing", "---------" + clik);
 
@@ -1260,7 +1281,7 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
                     moreAdapter.notifyDataSetChanged();
                 }
             });
-
+            Log.e("LiNing", "添加数据=====新==infos===" + infos);
             return convertView;
         }
 

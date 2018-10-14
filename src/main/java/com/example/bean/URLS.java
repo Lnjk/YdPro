@@ -155,15 +155,15 @@ public class URLS {
     //设计师添加
     // http://oa.ydshce.com:8080/InfManagePlatform/addDepco_Vip.action?db_Id=DB_BJ15
     public static final String design_add = base_url
-            + "/InfManagePlatform/addDepco_Vip.action";
+            + "/InfManagePlatform/VipaddDepco_Vip.action";
     //设计师删除
     // http://oa.ydshce.com:8080/InfManagePlatform/delDepco_Vip.action?db_Id=DB_BJ15
     public static final String design_del = base_url
-            + "/InfManagePlatform/delDepco_Vip.action";
+            + "/InfManagePlatform/VipdelDepco_Vip.action";
     //设计师更新
     // http://oa.ydshce.com:8080/InfManagePlatform/updateDepco_Vip.action?db_Id=DB_BJ15
     public static final String design_updata = base_url
-            + "/InfManagePlatform/updateDepco_Vip.action";
+            + "/InfManagePlatform/VipupdateDepco_Vip.action";
     //vip查询
     // http://oa.ydshce.com:8080/InfManagePlatform/ObjqueryObjectType.action?db_Id=DB_BJ15&biln_Type=VP
     public static final String vip_query = base_url

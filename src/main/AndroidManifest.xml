@@ -148,11 +148,14 @@
         <activity android:name=".WelcomeActivity" />
         <activity android:name=".PriceOutActivity" />
         <activity android:name=".FormActivity" />
-        <activity android:name=".AddMoreActivity" />
+        <activity
+            android:name=".AddMoreActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".DesignerActivity" />
         <activity android:name=".VipClassActivity" />
         <activity android:name=".VipDoAllActivity" />
-        <activity android:name=".LocalInfosActivity"></activity>
+        <activity android:name=".LocalInfosActivity" />
+        <activity android:name=".QueryDesigActivity"></activity>
     </application>
 
 </manifest>

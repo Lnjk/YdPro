@@ -79,7 +79,23 @@ public class PriceOutActivity extends Activity {
                 PriceOutActivity.this);
         Log.e("LiNing", "=====" + getRecordData() + fileName);
 
-        finish();
+        if(zc_id.equals("1")){
+
+            info_add.clear();
+            finish();
+        }
+        if(zc_id.equals("2")){
+
+            info_query.clear();
+            finish();
+        }
+        if(zc_id.equals("4")){
+
+            info_zr.clear();
+            finish();
+        }
+
+
     }
 
     private ArrayList<ArrayList<String>> getRecordData() {

@@ -4,27 +4,13 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/list_item_bg"
-    android:descendantFocusability="blocksDescendants"
     android:orientation="horizontal"
     android:padding="5.0dip">
 
-    <!--<CheckBox
-        android:id="@+id/cust_listDeleteCheckBox"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/first_line"
-        android:layout_alignParentLeft="true"
-        android:clickable="true"
-        android:focusable="false"
-        android:gravity="center"
-        android:padding="2dp"
-        android:text="序号"
-        android:textSize="14sp"
-        android:visibility="visible" />-->
     <TextView
         android:id="@+id/design_listDeleteCheckBox"
         android:gravity="center"
-        style="@style/head_scrow"
+        style="@style/head_scrow_vip"
         android:text="序号" />
 
     <View

@@ -1372,6 +1372,7 @@ public class SalesQueryTwoActivity extends Activity implements OnClickListener {
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
+            Log.e("LiNing", "添加数据=====新=====" + brandsList.get(position));
             // 动态表头：判断表头包含信息，隐藏或显示无关字段（开始全隐藏）
             // 区分类型
             thirty(position, holder);

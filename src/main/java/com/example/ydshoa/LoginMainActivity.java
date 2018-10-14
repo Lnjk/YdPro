@@ -504,6 +504,9 @@ public class LoginMainActivity extends Activity implements OnClickListener {
         sp.edit().putString("PRICE_OUT", "").commit();
         sp.edit().putString("PRICE_RESET", "").commit();
         sp.edit().putString("MR_YH", "").commit();
+//        sp.edit().putString("modIds", "").commit();
+        sp.edit().putString("USER_NAME", "").commit();
+        sp.edit().putString("USER_ID", "").commit();
     }
 
     public void isfirstLogin() {

@@ -427,7 +427,7 @@
                     <TextView
                         android:id="@+id/et_price_excut"
                         style="@style/price_editext"
-                        android:text="N" />
+                        />
 
                 </LinearLayout>
             </LinearLayout>
