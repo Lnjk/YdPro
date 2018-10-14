@@ -39,6 +39,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Date;
 
@@ -1233,13 +1234,23 @@ public class PriceActivity extends Activity implements OnClickListener {
                 if (p_out.equals("true")) {
                     if (mListView1 != null && mListView1.getCount() > 0) {
                         if (out_info == 1) {
-                            done = 1;
-                            getList_no();
-                            Log.e("LiNing", out_info + "----" + price_num_id.getText().toString() + info_add);
-                            Intent intent1 = new Intent(context, PriceOutActivity.class);
-                            intent1.putExtra("ZC_ID", "" + out_info);
-                            intent1.putExtra("ZC_DH", price_num_id.getText().toString());
-                            startActivity(intent1);
+                            new AlertDialog.Builder(context)
+                                    .setTitle("请先查询此订单(*直接转出数据可能变化*)")
+                                    .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            done = 1;
+                                            getList_no();
+                                            Log.e("LiNing", out_info + "----" + price_num_id.getText().toString() + info_add);
+                                            Intent intent1 = new Intent(context, PriceOutActivity.class);
+                                            intent1.putExtra("ZC_ID", "" + out_info);
+                                            intent1.putExtra("ZC_DH", price_num_id.getText().toString());
+                                            startActivity(intent1);
+                                        }
+                                    })
+                                    .setNegativeButton("否",null)
+                                    .show();
+
                         } else if (out_info == 2) {
                             done = 3;
                             getList_no();
@@ -3618,8 +3629,8 @@ public class PriceActivity extends Activity implements OnClickListener {
                                 for (int i = 0; i < iSize; i++) {
                                     HashMap<String, Object> item = new HashMap<String, Object>();
                                     JSONObject jsonObj = jsonArray.getJSONObject(i);
-                                    String zr_id = jsonObj.get("PRD_NO").toString();
-                                    String zr_name = jsonObj.get("NAME").toString();
+                                    String zr_id = jsonObj.get("NAME").toString();
+                                    String zr_name = jsonObj.get("PRD_NO").toString();
                                     String zr_dwcb = jsonObj.get("UP_SAL").toString();
                                     String zr_tydj = jsonObj.get("UPR").toString();
                                     String zr_zdsj = jsonObj.get("UP_MIN").toString();
@@ -4286,6 +4297,9 @@ public class PriceActivity extends Activity implements OnClickListener {
             //编辑EditextSet(******放于此处避免listview数据错乱)
             EditextSet_add(holder, prdt_item);
             Log.e("LiNing", "添加数据=====新=====" + prdt_item);
+            double v1 = new BigDecimal(prdt_item.getUP_MIN()).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
+            Log.e("LiNing", "4位数据====保留=====" + prdt_item.getUP_MIN());
+            Log.e("LiNing", "4位数据====保留=====" + v1);
             int id_add = position + 1;
             int id = position;
             if(one_add==1){
@@ -4297,9 +4311,13 @@ public class PriceActivity extends Activity implements OnClickListener {
             prdt_item.setXH("" + id);
             holder.price_name.setText(prdt_item.getNAME());
             holder.price_prdNo.setText(prdt_item.getPRD_NO());
-            holder.up_sal.setText("" + prdt_item.getUP_SAL());
-            holder.upr.setText("" + prdt_item.getUPR());
-            holder.up_min.setText("" + prdt_item.getUP_MIN());
+            //保留4位小数
+            holder.up_sal.setText("" + new BigDecimal(prdt_item.getUP_SAL()).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue());
+            holder.upr.setText("" + new BigDecimal(prdt_item.getUPR()).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue());
+            holder.up_min.setText("" + new BigDecimal(prdt_item.getUP_MIN()).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue());
+//            holder.up_sal.setText("" + prdt_item.getUP_SAL());
+//            holder.upr.setText("" + prdt_item.getUPR());
+//            holder.up_min.setText("" + prdt_item.getUP_MIN());
 //            holder.price_zxqk.setText(prdt_item.getZC_ZXQK());
 //            holder.price_bzxx.setText(prdt_item.getZC_BZXX());
 
@@ -4333,25 +4351,30 @@ public class PriceActivity extends Activity implements OnClickListener {
                     holder.price_zk.setText(infos.get(i).getZC_ZK());
                     if (user_go.equals("单位成本")) {
                         if (opr_go.equals("+")) {
-                            double v = infos.get(i).getUP_SAL() + Double.parseDouble(num_go);
-                            Log.e("LiNing", "添加数据=====新=====" + ""+v );
+                            double v2 = infos.get(i).getUP_SAL() + Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
+                            Log.e("LiNing", "添加数据=====新==4===" + ""+v2 );
+                            Log.e("LiNing", "添加数据=====新==4===" + ""+v );
                             infos.get(i).setZC_DJ(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
                         }
                         if (opr_go.equals("-")) {
-                            double v = infos.get(i).getUP_SAL() - Double.parseDouble(num_go);
+                            double v2 = infos.get(i).getUP_SAL() - Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setZC_DJ(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
                         }
                         if (opr_go.equals("*")) {
-                            double v = infos.get(i).getUP_SAL() * Double.parseDouble(num_go);
+                            double v2 = infos.get(i).getUP_SAL() * Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setZC_DJ(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
                         }
                         if (opr_go.equals("/")) {
-                            double v = infos.get(i).getUP_SAL() / Double.parseDouble(num_go);
+                            double v2 = infos.get(i).getUP_SAL() / Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setZC_DJ(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
@@ -4359,25 +4382,30 @@ public class PriceActivity extends Activity implements OnClickListener {
                     }
                     if (user_go.equals("统一定价")) {
                         if (opr_go.equals("+")) {
-                            double v = infos.get(i).getUPR() + Double.parseDouble(num_go);
+                            double v2 = infos.get(i).getUPR() + Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setZC_DJ(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
                         }
                         if (opr_go.equals("-")) {
-                            double v = infos.get(i).getUPR() - Double.parseDouble(num_go);
+                            double v2 = infos.get(i).getUPR() - Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setZC_DJ(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
                         }
                         if (opr_go.equals("*")) {
-                            double v = infos.get(i).getUPR() * Double.parseDouble(num_go);
+                            double v2 = infos.get(i).getUPR() * Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
+//                            double v = infos.get(i).getUPR() * Double.parseDouble(num_go);
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setZC_DJ(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
                         }
                         if (opr_go.equals("/")) {
-                            double v = infos.get(i).getUPR() / Double.parseDouble(num_go);
+                            double v2 = infos.get(i).getUPR() / Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setZC_DJ(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
@@ -4385,25 +4413,30 @@ public class PriceActivity extends Activity implements OnClickListener {
                     }
                     if (user_go.equals("最低售价")) {
                         if (opr_go.equals("+")) {
-                            double v = infos.get(i).getUP_MIN() + Double.parseDouble(num_go);
+//                            double v = infos.get(i).getUP_MIN() + Double.parseDouble(num_go);
+                            double v2 = infos.get(i).getUP_MIN() + Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setZC_DJ(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
                         }
                         if (opr_go.equals("-")) {
-                            double v = infos.get(i).getUP_MIN() - Double.parseDouble(num_go);
+                            double v2 = infos.get(i).getUP_MIN() - Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setZC_DJ(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
                         }
                         if (opr_go.equals("*")) {
-                            double v = infos.get(i).getUP_MIN() * Double.parseDouble(num_go);
+                            double v2 = infos.get(i).getUP_MIN() * Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setZC_DJ(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
                         }
                         if (opr_go.equals("/")) {
-                            double v = infos.get(i).getUP_MIN() / Double.parseDouble(num_go);
+                            double v2 = infos.get(i).getUP_MIN() / Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setZC_DJ(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getZC_DJ());
@@ -4412,6 +4445,11 @@ public class PriceActivity extends Activity implements OnClickListener {
 
 
                 }
+                //保留4位小数
+//                Log.e("LiNing", "4位=====新===数据==" + infos.get(position).getZC_DJ());
+//                Log.e("LiNing", "4位=====新===数据==" + Double.parseDouble(infos.get(position).getZC_DJ()));
+//                Log.e("LiNing", "4位=====新===数据==" + new BigDecimal(Double.parseDouble(infos.get(position).getZC_DJ())).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue());
+//                holder.price_danj.setText(""+new BigDecimal(Double.parseDouble(infos.get(position).getZC_DJ())).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue());
                 holder.price_danj.setText(infos.get(position).getZC_DJ());
 //                    JJCC_adapter(holder, prdt_item, user_go, opr_go, num_go, tyzk_go);
 
@@ -4753,10 +4791,15 @@ public class PriceActivity extends Activity implements OnClickListener {
             holder.price_name.setText(prdt_item_mx.getPrice());
 //            holder.price_prdNo.setText(prdt_item_mx.getPrice_Id());
             holder.price_prdNo.setText(prdt_item_mx.getPrdNo());
-            holder.up_sal.setText("" + prdt_item_mx.getCst_Up());
-            holder.upr.setText("" + prdt_item_mx.getUPR());
-            holder.up_min.setText("" + prdt_item_mx.getMIN_UP());
-            holder.price_danj.setText("" + prdt_item_mx.getPrdUp());
+//            保留4位小数
+            holder.up_sal.setText("" + new BigDecimal(prdt_item_mx.getCst_Up()).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue());
+            holder.upr.setText("" + new BigDecimal(prdt_item_mx.getUPR()).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue());
+            holder.up_min.setText("" + new BigDecimal(prdt_item_mx.getMIN_UP()).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue());
+            holder.price_danj.setText("" + new BigDecimal(prdt_item_mx.getPrdUp()).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue());
+//            holder.up_sal.setText("" + prdt_item_mx.getCst_Up());
+//            holder.upr.setText("" + prdt_item_mx.getUPR());
+//            holder.up_min.setText("" + prdt_item_mx.getMIN_UP());
+//            holder.price_danj.setText("" + prdt_item_mx.getPrdUp());
             holder.price_zk.setText(prdt_item_mx.getDis_CNT());
             holder.price_zxqk.setText(prdt_item_mx.getYN());
             holder.price_bzxx.setText(prdt_item_mx.getREM());
@@ -4793,25 +4836,33 @@ public class PriceActivity extends Activity implements OnClickListener {
                     holder.price_zk.setText(infos.get(i).getZC_ZK());
                     if (user_go.equals("单位成本")) {
                         if (opr_go.equals("+")) {
-                            double v = Double.parseDouble(infos.get(i).getCst_Up()) + Double.parseDouble(num_go);
+//                            double v = Double.parseDouble(infos.get(i).getCst_Up()) + Double.parseDouble(num_go);
+                            double v2 = Double.parseDouble(infos.get(i).getCst_Up()) + Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setPrdUp(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
                         }
                         if (opr_go.equals("-")) {
-                            double v = Double.parseDouble(infos.get(i).getCst_Up()) - Double.parseDouble(num_go);
+//                            double v = Double.parseDouble(infos.get(i).getCst_Up()) - Double.parseDouble(num_go);
+                            double v2 = Double.parseDouble(infos.get(i).getCst_Up()) - Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setPrdUp(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
                         }
                         if (opr_go.equals("*")) {
-                            double v = Double.parseDouble(infos.get(i).getCst_Up()) * Double.parseDouble(num_go);
+//                            double v = Double.parseDouble(infos.get(i).getCst_Up()) * Double.parseDouble(num_go);
+                            double v2 = Double.parseDouble(infos.get(i).getCst_Up()) * Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setPrdUp(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
                         }
                         if (opr_go.equals("/")) {
-                            double v = Double.parseDouble(infos.get(i).getCst_Up()) / Double.parseDouble(num_go);
+//                            double v = Double.parseDouble(infos.get(i).getCst_Up()) / Double.parseDouble(num_go);
+                            double v2 = Double.parseDouble(infos.get(i).getCst_Up()) / Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setPrdUp(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
@@ -4819,25 +4870,33 @@ public class PriceActivity extends Activity implements OnClickListener {
                     }
                     if (user_go.equals("统一定价")) {
                         if (opr_go.equals("+")) {
-                            double v = Double.parseDouble(infos.get(i).getUPR()) + Double.parseDouble(num_go);
+//                            double v = Double.parseDouble(infos.get(i).getUPR()) + Double.parseDouble(num_go);
+                            double v2 = Double.parseDouble(infos.get(i).getUPR()) + Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setPrdUp(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
                         }
                         if (opr_go.equals("-")) {
-                            double v = Double.parseDouble(infos.get(i).getUPR()) - Double.parseDouble(num_go);
+//                            double v = Double.parseDouble(infos.get(i).getUPR()) - Double.parseDouble(num_go);
+                            double v2 = Double.parseDouble(infos.get(i).getUPR()) - Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setPrdUp(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
                         }
                         if (opr_go.equals("*")) {
-                            double v = Double.parseDouble(infos.get(i).getUPR()) * Double.parseDouble(num_go);
+//                            double v = Double.parseDouble(infos.get(i).getUPR()) * Double.parseDouble(num_go);
+                            double v2 = Double.parseDouble(infos.get(i).getUPR()) * Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setPrdUp(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
                         }
                         if (opr_go.equals("/")) {
-                            double v = Double.parseDouble(infos.get(i).getUPR()) / Double.parseDouble(num_go);
+//                            double v = Double.parseDouble(infos.get(i).getUPR()) / Double.parseDouble(num_go);
+                            double v2 = Double.parseDouble(infos.get(i).getUPR()) / Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setPrdUp(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
@@ -4845,25 +4904,33 @@ public class PriceActivity extends Activity implements OnClickListener {
                     }
                     if (user_go.equals("最低售价")) {
                         if (opr_go.equals("+")) {
-                            double v = Double.parseDouble(infos.get(i).getMIN_UP()) + Double.parseDouble(num_go);
+//                            double v = Double.parseDouble(infos.get(i).getMIN_UP()) + Double.parseDouble(num_go);
+                            double v2 = Double.parseDouble(infos.get(i).getMIN_UP()) + Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setPrdUp(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
                         }
                         if (opr_go.equals("-")) {
-                            double v = Double.parseDouble(infos.get(i).getMIN_UP()) - Double.parseDouble(num_go);
+//                            double v = Double.parseDouble(infos.get(i).getMIN_UP()) - Double.parseDouble(num_go);
+                            double v2 = Double.parseDouble(infos.get(i).getMIN_UP()) - Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setPrdUp(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
                         }
                         if (opr_go.equals("*")) {
-                            double v = Double.parseDouble(infos.get(i).getMIN_UP()) * Double.parseDouble(num_go);
+//                            double v = Double.parseDouble(infos.get(i).getMIN_UP()) * Double.parseDouble(num_go);
+                            double v2 = Double.parseDouble(infos.get(i).getMIN_UP()) * Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setPrdUp(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
                         }
                         if (opr_go.equals("/")) {
-                            double v = Double.parseDouble(infos.get(i).getMIN_UP()) / Double.parseDouble(num_go);
+//                            double v = Double.parseDouble(infos.get(i).getMIN_UP()) / Double.parseDouble(num_go);
+                            double v2 = Double.parseDouble(infos.get(i).getMIN_UP()) / Double.parseDouble(num_go);
+                            double v = new BigDecimal(v2).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                             Log.e("LiNing", "添加数据=====新=====" + ""+v );
                             infos.get(i).setPrdUp(""+v);
                             Log.e("LiNing", "添加数据=====新====dj=" + infos.get(i).getPrdUp());
@@ -4871,6 +4938,9 @@ public class PriceActivity extends Activity implements OnClickListener {
                     }
 
                 }
+//                保留4位小数
+//                holder.price_danj.setText("" + new BigDecimal(infos.get(position).getPrdUp()).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue());
+//                holder.price_danj.setText("" + new BigDecimal(Double.parseDouble(infos.get(position).getPrdUp())).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue());
                 holder.price_danj.setText(infos.get(position).getPrdUp());
 
 //                }
@@ -4899,25 +4969,6 @@ public class PriceActivity extends Activity implements OnClickListener {
                     }
                 });
             }
-//            holder.checkbox.setVisibility(View.VISIBLE);
-//            holder.checkbox.setOnClickListener(new OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Log.e("LiNing", "-p---1--" + position);
-//                    Log.e("LiNing", "----1-----" + mx_prdtUp.size());
-//                    if(mx_prdtUp.size()>0&&position<=mx_prdtUp.size()){
-//                        //数据未能更新(listview数据显示有问题)
-//                        if(position==0){
-//                            mx_prdtUp.remove(0);
-//                        }else{
-//                            mx_prdtUp.remove(position-1);
-//
-//                        }
-//                    }
-//                    mxPriceAdapter.notifyDataSetChanged();
-//                    Log.e("LiNing", "----1-----" + mx_prdtUp.size());
-//                }
-//            });
             return convertView;
         }
 
@@ -5110,119 +5161,6 @@ public class PriceActivity extends Activity implements OnClickListener {
             holder.price_zk.setFocusable(true);
             holder.price_zxqk.setFocusable(true);
             holder.price_bzxx.setFocusable(true);
-        }
-
-        private void JJCC_adapter_mx(ViewHolder holder, PriceMx.PrdtUp prdt_mx, String user_go, String opr_go, String num_go, String tyzk_go) {
-//            String tyzk=""+Integer.parseInt(tyzk_go)/100;
-//            String tyzk = "" + Integer.parseInt(tyzk_go) * 0.01;
-            String tyzk = "" + Double.parseDouble(tyzk_go) / 100;
-            Log.e("LiNing", "" + Double.parseDouble(tyzk_go) / 100);
-            if (user_go.equals("单位成本")) {
-                if (opr_go.equals("+")) {
-                    danj = Double.parseDouble(prdt_mx.getCst_Up()) + Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    holder.price_danj.setText("" + new_danj);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + danj);
-                }
-                if (opr_go.equals("-")) {
-                    danj = Double.parseDouble(prdt_mx.getCst_Up()) - Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + danj);
-                }
-                if (opr_go.equals("*")) {
-                    danj = Double.parseDouble(prdt_mx.getCst_Up()) * Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + danj);
-                }
-                if (opr_go.equals("/")) {
-                    danj = Double.parseDouble(prdt_mx.getCst_Up()) / Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + danj);
-                }
-
-            }
-            if (user_go.equals("统一定价")) {
-                if (opr_go.equals("+")) {
-                    danj = Double.parseDouble(prdt_mx.getUPR()) + Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + danj);
-                }
-                if (opr_go.equals("-")) {
-                    danj = Double.parseDouble(prdt_mx.getUPR()) - Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + danj);
-                }
-                if (opr_go.equals("*")) {
-                    danj = Double.parseDouble(prdt_mx.getUPR()) * Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + danj);
-                }
-                if (opr_go.equals("/")) {
-                    danj = Double.parseDouble(prdt_mx.getUPR()) / Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + danj);
-                }
-
-            }
-            if (user_go.equals("最低售价")) {
-                if (opr_go.equals("+")) {
-                    danj = Double.parseDouble(prdt_mx.getMIN_UP()) + Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + danj);
-                }
-                if (opr_go.equals("-")) {
-                    danj = Double.parseDouble(prdt_mx.getMIN_UP()) - Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + danj);
-                }
-                if (opr_go.equals("*")) {
-                    danj = Double.parseDouble(prdt_mx.getMIN_UP()) * Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + danj);
-                }
-                if (opr_go.equals("/")) {
-                    danj = Double.parseDouble(prdt_mx.getMIN_UP()) / Double.parseDouble(num_go);
-                    new_danj = danj * Double.parseDouble(tyzk);
-//                    str_newdj = new DecimalFormat("#.00").format(new_danj);
-//                    holder.price_danj.setText(str_newdj);
-                    holder.price_zk.setText(tyzk_go);
-                    holder.price_danj.setText("" + danj);
-                }
-
-            }
         }
 
         class OnScrollChangedListenerImp implements
