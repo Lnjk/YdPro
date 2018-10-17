@@ -11,9 +11,10 @@ import java.util.Date;
 public class TimeTo {
     public static Date date;
     public static String openTime(String string){
-        SimpleDateFormat sf1 = new SimpleDateFormat("EEE MMM dd hh:mm:ss z yyyy", Locale.ENGLISH);
+        SimpleDateFormat sf1;
+        sf1 = new SimpleDateFormat("EEE MMM dd hh:mm:ss z yyyy", Locale.ENGLISH);
 
-            try {
+        try {
                 date = sf1.parse(string);
             } catch (ParseException e) {
                 e.printStackTrace();

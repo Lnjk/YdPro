@@ -11,7 +11,7 @@
         android:id="@+id/design_showChecx"
         android:gravity="center"
         style="@style/head_scrow_vip"
-        android:text="0" />
+        android:text="李宁" />
 
     <View style="@style/list_item_cell_seperator_layout" />
 
@@ -41,7 +41,7 @@
 
     <View style="@style/list_item_cell_seperator_layout" />
 
-    <TextView
+    <!--<TextView
         android:id="@+id/price_design_altecont"
         style="@style/price_editext_item_two"
         android:text="Alte_Cont" />
@@ -53,6 +53,6 @@
         style="@style/price_editext_item_two"
         android:text="Alte_User" />
 
-    <View style="@style/list_item_cell_seperator_layout" />
+    <View style="@style/list_item_cell_seperator_layout" />-->
 
 </LinearLayout>

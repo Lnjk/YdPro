@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--sigle：单选/all:多选-->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/check1"
+            android:title="01.直营"/>
+        <item
+            android:id="@+id/check2"
+            android:title="02.分销"/>
+        <item
+            android:id="@+id/check3"
+            android:title="03.家装"/>
+        <item
+            android:id="@+id/check4"
+            android:title="04.超市"/>
+        <item
+            android:id="@+id/check5"
+            android:title="05.工程"/>
+        <item
+            android:id="@+id/check6"
+            android:title="06.团购"/>
+        <item
+            android:id="@+id/check7"
+            android:title="07.其他"/>
+        <item
+            android:id="@+id/check8"
+            android:title="08.电商"/>
+    </group>
+
+</menu>

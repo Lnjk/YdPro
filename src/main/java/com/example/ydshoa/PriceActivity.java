@@ -41,6 +41,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.Date;
 
 import com.example.LeftOrRight.InterceptScrollContainer;
@@ -67,6 +68,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import jxl.Cell;
 import jxl.Sheet;
@@ -106,7 +108,7 @@ public class PriceActivity extends Activity implements OnClickListener {
     private String str_time, stopTime, startTime, reportnos, reportname;
     private AlertDialog alertDialog;
     private SharedPreferences sp;
-    private String session, db_mr, yh_mr, date_dd;
+    private String session, db_mr, yh_mr, date_dd,lrr_mr;
     String url_dh_price;//临时+新增（正式）
     String url_get_price = URLS.price_getPrices;//获取（查询）主表
     String url_getmx_price = URLS.price_getPrice;//获取（查询）明细表
@@ -161,7 +163,7 @@ public class PriceActivity extends Activity implements OnClickListener {
     private String mx_compDepName_id;
     private String mx_salesTerminal_name;
     private String mx_salesTerminal_id;
-    private String mx_price_dd;
+    private String mx_price_dd,mx_price_STAR,mx_price_STOP;
     private String mx_priceId;
     private String mx_priceName;
     private String mx_rem;
@@ -187,7 +189,7 @@ public class PriceActivity extends Activity implements OnClickListener {
     public static List<PriceMx.PrdtUp> info_query = new ArrayList<PriceMx.PrdtUp>();
     public static List<HashMap<String, Object>> info_zr = new ArrayList<HashMap<String, Object>>();
     private Intent intent;
-    private String s_trime;
+    private String s_trime,s_trime_STAR,s_trime_STOP;
     private FormBody localFormBody1;
     private int do_all, iscopy;
     private ArrayList<HashMap<String, Object>> in_list;
@@ -243,6 +245,7 @@ public class PriceActivity extends Activity implements OnClickListener {
         session = sp.getString("SESSION", "");
         db_mr = sp.getString("DB_MR", "");
         yh_mr = sp.getString("MR_YH", "");
+        lrr_mr = sp.getString("USER_ID", "");
         Log.e("LiNing", "db_mr========" + db_mr + "---" + yh_mr);//默认日期
         Calendar c = Calendar.getInstance();
         int mYear = c.get(Calendar.YEAR); // 获取当前年份
@@ -1302,7 +1305,13 @@ public class PriceActivity extends Activity implements OnClickListener {
                         MainInfoAdd();
                         exuteInfo();
 //                        }
-                    } else {
+                    } else if (do_all == 4) {
+                        getList_no();//获取list数据，数组格式提交
+                        MainInfoAdd();
+                        exuteInfo();
+//                        }
+                    }
+                    else {
                         Toast.makeText(context, "操作错误", Toast.LENGTH_LONG).show();
                     }
 
@@ -1512,7 +1521,7 @@ public class PriceActivity extends Activity implements OnClickListener {
         accept_yn = zxqk.getText().toString();//执行情况
         namePrice_add = zcmc.getText().toString();//政策名称
         if (ckdx_zb.equals("")) {
-            ckdx_zb = "";
+            ckdx_zb = "统一定价";
         } else {
             if (ckdx_zb.equals("统一定价")) {
                 ckdx_zb = "1";
@@ -1525,11 +1534,11 @@ public class PriceActivity extends Activity implements OnClickListener {
             }
         }
         if (ysf_zb.equals("")) {
-            ysf_zb = "";
+            ysf_zb = "*";
         }
 
         if (yssz_zb.equals("")) {
-            yssz_zb = "";
+            yssz_zb = "1";
         }
 
         if (tyzk_zb.equals("")) {
@@ -1752,6 +1761,23 @@ public class PriceActivity extends Activity implements OnClickListener {
                             mx_price_dd = cInfoDB.getPrice().getPrice_DD().toString();
                             s_trime = TimeTo.openTime(mx_price_dd);
                             time.setText(s_trime);
+                            SimpleDateFormat sf1= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                            try {
+                                Date  parse = sf1.parse(cInfoDB.getPrice().getUseDate().toString());
+                                String format = new SimpleDateFormat("yyyy-MM-dd").format(parse);
+                                Log.e("LiNing","时间====xin====="+format);
+                                start.setText(format);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            try {
+                                Date  parse = sf1.parse(cInfoDB.getPrice().getStopDate().toString());
+                                String format = new SimpleDateFormat("yyyy-MM-dd").format(parse);
+                                Log.e("LiNing","时间====xin====="+format);
+                                stop.setText(format);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
                             mx_priceId = cInfoDB.getPrice().getPriceId();
                             price_num_id.setText(mx_priceId);
                             mx_priceName = cInfoDB.getPrice().getPriceName();
@@ -1971,9 +1997,12 @@ public class PriceActivity extends Activity implements OnClickListener {
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
         cal.set(Calendar.DAY_OF_MONTH, 1); //当前月1号和最后日期
-        start.setText(new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime()));
-        stop.setText(str_time);
-        time.setText(s_trime);
+//        start.setText(new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime()));
+//        stop.setText(str_time);
+//        time.setText(s_trime);
+        start.setText(start.getText().toString());
+        stop.setText(stop.getText().toString());
+        time.setText(time.getText().toString());
 //        time.setText(date_dd);
 //        start.setText(startTime);
         num_chage.setEnabled(true);
@@ -2223,6 +2252,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                                         fouseAbleInfo();//禁止编辑
                                         out_info = 4;
                                         do_all = 4;
+//                                        do_all = 1;
                                         y_bc = 1;//强调已保存
                                     }
                                 }
@@ -2437,8 +2467,8 @@ public class PriceActivity extends Activity implements OnClickListener {
                         tysj_tj = "" + prdt2.getUPR();
                         zdsj_tj = "" + prdt2.getMIN_UP();
                         zcdj_tj = "" + prdt2.getPrdUp();
-                        zczk_tj = prdt2.getZC_ZK();
-//                        zczk_tj = prdt2.getDis_CNT();
+//                        zczk_tj = prdt2.getZC_ZK();
+                        zczk_tj = prdt2.getDis_CNT();
                         zxqk_tj = prdt2.getYN();
                         sm_tj = prdt2.getREM();
                         Log.e("LiNing", "----xh2--数据" + xh_tj + "---" + ph_tj + "---" + dwcb_tj + "---" + tysj_tj
@@ -2779,7 +2809,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                             public void run() {
                                 prices_main = cInfoDB.getPrices();
                                 Log.e("LiNing", "cInfoDB表===" + prices_main.size());
-                                getAdapter = new PriceGetAdapter(R.layout.quick_head_main_item, prices_main, context);
+                                getAdapter = new PriceGetAdapter(R.layout.quick_head_main_item, prices_main, context,lrr_mr);
                                 list_main.setAdapter(getAdapter);
                             }
                         });
@@ -3635,7 +3665,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                                     String zr_tydj = jsonObj.get("UPR").toString();
                                     String zr_zdsj = jsonObj.get("UP_MIN").toString();
                                     String zr_zcdj = jsonObj.get("ZC_DJ").toString();
-                                    String zr_xszk = jsonObj.get("UP_SAL").toString();
+                                    String zr_xszk = jsonObj.get("ZC_ZK").toString();
                                     String zr_zxqk = jsonObj.get("ZC_ZXQK").toString();
                                     String zr_bzxx = jsonObj.get("REM").toString();
                                     item.put("转入序号", i);

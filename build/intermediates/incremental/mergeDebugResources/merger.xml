@@ -2222,6 +2222,7 @@
         <item name="android:layout_weight">1</item>
         <item name="android:background">@null</item>
         <item name="android:padding">5dp</item>
+        <item name="android:gravity">center</item>
         <item name="android:ems">10</item>
         <item name="android:hint">editext</item>
         <item name="android:textSize">10sp</item>
@@ -2234,7 +2235,7 @@
         <item name="android:padding">2dp</item>
         <item name="android:hint">editext</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">10sp</item>
         <item name="android:singleLine">true</item>
     </style><style name="head_scrow_vipcontent">
         <item name="android:layout_width">0dp</item>
@@ -2274,7 +2275,7 @@
         
     </style></file><file path="D:\test\YDSHOA\src\main\res\values-v14\styles.xml" qualifiers="v14"><style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         
-    </style></file><file path="D:\test\YDSHOA\src\main\res\values-w820dp\dimens.xml" qualifiers="w820dp-v13"><dimen name="activity_horizontal_margin">64dp</dimen></file></source><source path="D:\test\YDSHOA\build\generated\res\rs\debug"/><source path="D:\test\YDSHOA\build\generated\res\resValues\debug"/></dataSet><dataSet config="debug$Generated" generated="true"><source path="D:\test\YDSHOA\src\debug\res"/></dataSet><dataSet config="debug" generated-set="debug$Generated"><source path="D:\test\YDSHOA\src\debug\res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="Spinner"><attr format="reference" name="prompt"/><attr format="enum" name="spinnerMode">
+    </style></file><file path="D:\test\YDSHOA\src\main\res\values-w820dp\dimens.xml" qualifiers="w820dp-v13"><dimen name="activity_horizontal_margin">64dp</dimen></file><file name="bbqd_info" path="D:\test\YDSHOA\src\main\res\menu\bbqd_info.xml" qualifiers="" type="menu"/></source><source path="D:\test\YDSHOA\build\generated\res\rs\debug"/><source path="D:\test\YDSHOA\build\generated\res\resValues\debug"/></dataSet><dataSet config="debug$Generated" generated="true"><source path="D:\test\YDSHOA\src\debug\res"/></dataSet><dataSet config="debug" generated-set="debug$Generated"><source path="D:\test\YDSHOA\src\debug\res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="Spinner"><attr format="reference" name="prompt"/><attr format="enum" name="spinnerMode">
 
             
             <enum name="dialog" value="0"/>

@@ -31,12 +31,14 @@ public class PriceGetAdapter extends BaseAdapter {
     //item高亮显示
     private int selectItem = -1;
     private Date date;
+    private String llr;
 
-    public PriceGetAdapter(int quick_head_main_item, List<GetPriceInfo.Prices> prices_main, Context context) {
+    public PriceGetAdapter(int quick_head_main_item, List<GetPriceInfo.Prices> prices_main, Context context, String lrr_mr) {
         this.id_row_layout=quick_head_main_item;
         this.infos=prices_main;
         this.context=context;
         mInflater=LayoutInflater.from(context);
+        this.llr=lrr_mr;
     }
 
     public void setSelectItem(int selectItem) {
@@ -87,7 +89,8 @@ public class PriceGetAdapter extends BaseAdapter {
         String compDepName = prices_info.getCompDepName();
         holder.priceNo.setText(priceId);
         holder.price_data.setText(format_data);
-        holder.user_login.setText(biln_user);
+//        holder.user_login.setText(biln_user);
+        holder.user_login.setText(llr);
         holder.user_comp.setText(compDepName);
 
         if (position == selectItem) {

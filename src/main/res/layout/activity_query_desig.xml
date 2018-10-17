@@ -45,7 +45,7 @@
 
                 <EditText
                     android:id="@+id/et_design_usercard_query"
-                    style="@style/price_name" />
+                    style="@style/design_editext" />
 
             </LinearLayout>
         </LinearLayout>
@@ -163,10 +163,12 @@
                     style="@style/design_name"
                     android:text="报备渠道:" />
 
-                <EditText
+                <TextView
                     android:id="@+id/et_design_dep_query"
                     style="@style/design_editext" />
-
+                <ImageButton
+                    android:id="@+id/ib_design_bbqd_query"
+                    style="@style/price_button_down" />
             </LinearLayout>
 
             <LinearLayout style="@style/price_ll2">

@@ -73,8 +73,8 @@ public class PriceOutActivity extends Activity {
     public void exportExcel_price(View v) {
         file = new File(getSDPath() + "/Record");
         makeDir(file);
-        ExcelUtilsPrice.initExcel(file.toString() + "/终端定价政策统计表.xls", zc_dh, arr_price);
-        fileName = getSDPath() + "/Record/终端定价政策统计表.xls";
+        ExcelUtilsPrice.initExcel(file.toString() + "/终端定价政策统计表.xlsx", zc_dh, arr_price);
+        fileName = getSDPath() + "/Record/终端定价政策统计表.xlsx";
         ExcelUtilsPrice.writeObjListToExcel(getRecordData(), fileName,
                 PriceOutActivity.this);
         Log.e("LiNing", "=====" + getRecordData() + fileName);
@@ -105,7 +105,13 @@ public class PriceOutActivity extends Activity {
             for (int i = 0; i < info_add.size(); i++) {
                 ArrayList<String> beanList = new ArrayList<String>();//放在此处避免数据一行显示
 //                beanList.add("i");
-                beanList.add(info_add.get(i).getXH());
+                String xh = info_add.get(i).getXH();
+                Integer integer = Integer.valueOf(xh);
+                int i1 = integer + 1;
+                String Xh_new=""+Integer.parseInt(xh)+1;
+                Log.e("LiNing","======="+xh+"======="+Xh_new+"======="+i1);
+                beanList.add(""+i1);
+//                beanList.add(info_add.get(i).getXH());
                 beanList.add(info_add.get(i).getPRD_NO());
                 beanList.add(info_add.get(i).getNAME());
                 beanList.add(""+info_add.get(i).getUP_SAL());
@@ -128,7 +134,13 @@ public class PriceOutActivity extends Activity {
                 for (int i = 0; i < info_add.size(); i++) {
                     ArrayList<String> beanList = new ArrayList<String>();
 //                    beanList.add("i");
-                beanList.add(info_add.get(i).getXH());
+                    String xh = info_add.get(i).getXH();
+                    Integer integer = Integer.valueOf(xh);
+                    int i1 = integer + 1;
+                    String Xh_new=""+Integer.parseInt(xh)+1;
+                    Log.e("LiNing","======="+xh+"======="+Xh_new+"======="+i1);
+                    beanList.add(""+i1);
+//                beanList.add(info_add.get(i).getXH());
                     beanList.add(info_add.get(i).getPRD_NO());
                     beanList.add(info_add.get(i).getNAME());
                     beanList.add(""+info_add.get(i).getUP_SAL());
@@ -151,7 +163,11 @@ public class PriceOutActivity extends Activity {
             for (int i = 0; i < info_query.size(); i++) {
                 ArrayList<String> beanList = new ArrayList<String>();
 //                beanList.add("i");
-                beanList.add(""+info_query.get(i).getITM());
+                int itm = info_query.get(i).getITM();
+               int itm_int=itm+1;
+                beanList.add(""+itm_int);
+                Log.e("LiNiing","数据是==="+itm+"/"+itm_int);
+//                beanList.add(""+info_query.get(i).getITM());
                 beanList.add(info_query.get(i).getPrice_Id());
                 beanList.add(info_query.get(i).getPrdNo());
                 beanList.add(info_query.get(i).getCst_Up());
@@ -172,7 +188,10 @@ public class PriceOutActivity extends Activity {
         if(zc_id.equals("4")){
             for (int i = 0; i < info_zr.size(); i++) {
                 ArrayList<String> beanList = new ArrayList<String>();
-                beanList.add(info_zr.get(i).get("转入序号").toString());
+                String xh = info_zr.get(i).get("转入序号").toString();
+                String Xh_new=""+Integer.parseInt(xh)+1;
+                beanList.add(Xh_new);
+//                beanList.add(info_zr.get(i).get("转入序号").toString());
                 beanList.add(info_zr.get(i).get("转入货品编号").toString());
                 beanList.add(info_zr.get(i).get("转入货品名称").toString());
 //                beanList.add("null");
