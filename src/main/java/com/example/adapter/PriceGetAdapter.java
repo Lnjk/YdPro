@@ -67,15 +67,18 @@ public class PriceGetAdapter extends BaseAdapter {
             holder=new ViewHolder();
             convertView=LayoutInflater.from(context).inflate(this.id_row_layout, null);
             holder.priceNo= (TextView) convertView.findViewById(R.id.main_dh);
+            holder.price_name= (TextView) convertView.findViewById(R.id.main_name);
             holder.price_data= (TextView) convertView.findViewById(R.id.main_time);
             holder.user_login= (TextView) convertView.findViewById(R.id.main_lrr);
             holder.user_comp= (TextView) convertView.findViewById(R.id.main_shr);
+            holder.price_zt= (TextView) convertView.findViewById(R.id.main_zt);
             convertView.setTag(holder);
         }else{
             holder = (ViewHolder) convertView.getTag();
         }
         GetPriceInfo.Prices prices_info = infos.get(position);
         String priceId = prices_info.getPriceId();
+        String pricename = prices_info.getPriceName();
         String price_dd = prices_info.getPrice_DD().toString();
         SimpleDateFormat sf1 = new SimpleDateFormat("EEE MMM dd hh:mm:ss z yyyy", Locale.ENGLISH);
         try {
@@ -85,11 +88,16 @@ public class PriceGetAdapter extends BaseAdapter {
         }
         SimpleDateFormat sf2 = new SimpleDateFormat("yyyy-MM-dd");
         String format_data = sf2.format(date);
-        String biln_user = prices_info.getBiln_user();
         String compDepName = prices_info.getCompDepName();
+        String zt = prices_info.getAccepted();
+        if(zt.equals("Y")){
+            holder.price_zt.setText("已执行");
+        }else{
+            holder.price_zt.setText("未执行");
+        }
         holder.priceNo.setText(priceId);
+        holder.price_name.setText(pricename);
         holder.price_data.setText(format_data);
-//        holder.user_login.setText(biln_user);
         holder.user_login.setText(llr);
         holder.user_comp.setText(compDepName);
 
@@ -102,9 +110,11 @@ public class PriceGetAdapter extends BaseAdapter {
     }
     public class ViewHolder {
         public TextView priceNo;
+        public TextView price_name;
         public TextView price_data;
         public TextView user_login;
         public TextView user_comp;
+        public TextView price_zt;
 
     }
 }

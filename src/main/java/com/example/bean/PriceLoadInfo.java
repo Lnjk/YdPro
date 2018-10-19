@@ -29,6 +29,7 @@ public class PriceLoadInfo {
 
     public static class Prdt {
 
+        private String NAME_ZDY;//自定义
         private String XH;//自定义
         private String ZC_DJ;//自定义
         private String ZC_ZK;//自定义
@@ -152,6 +153,14 @@ public class PriceLoadInfo {
             this.ZC_ZK = ZC_ZK;
             this.ZC_ZXQK = ZC_ZXQK;
             this.REM = REM;
+        }
+
+        public String getNAME_ZDY() {
+            return NAME_ZDY;
+        }
+
+        public void setNAME_ZDY(String NAME_ZDY) {
+            this.NAME_ZDY = NAME_ZDY;
         }
 
         public String getXH() {

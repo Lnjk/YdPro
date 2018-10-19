@@ -113,7 +113,7 @@ public class PriceOutActivity extends Activity {
                 beanList.add(""+i1);
 //                beanList.add(info_add.get(i).getXH());
                 beanList.add(info_add.get(i).getPRD_NO());
-                beanList.add(info_add.get(i).getNAME());
+                beanList.add(info_add.get(i).getNAME_ZDY());
                 beanList.add(""+info_add.get(i).getUP_SAL());
                 beanList.add(""+info_add.get(i).getUPR());
                 beanList.add(""+info_add.get(i).getUP_MIN());
@@ -142,7 +142,7 @@ public class PriceOutActivity extends Activity {
                     beanList.add(""+i1);
 //                beanList.add(info_add.get(i).getXH());
                     beanList.add(info_add.get(i).getPRD_NO());
-                    beanList.add(info_add.get(i).getNAME());
+                    beanList.add(info_add.get(i).getNAME_ZDY());
                     beanList.add(""+info_add.get(i).getUP_SAL());
                     beanList.add(""+info_add.get(i).getUPR());
                     beanList.add(""+info_add.get(i).getUP_MIN());
@@ -168,8 +168,8 @@ public class PriceOutActivity extends Activity {
                 beanList.add(""+itm_int);
                 Log.e("LiNiing","数据是==="+itm+"/"+itm_int);
 //                beanList.add(""+info_query.get(i).getITM());
-                beanList.add(info_query.get(i).getPrice_Id());
                 beanList.add(info_query.get(i).getPrdNo());
+                beanList.add(info_query.get(i).getNAME_ZDY());
                 beanList.add(info_query.get(i).getCst_Up());
                 beanList.add(info_query.get(i).getUPR());
                 beanList.add(info_query.get(i).getMIN_UP());

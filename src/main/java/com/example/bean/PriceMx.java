@@ -229,6 +229,7 @@ public class PriceMx {
         private String price;//名称
         private String price_Id;//编号
         private String ZC_ZK;//自定义
+        private String NAME_ZDY;//自定义
 
         public PrdtUp(int ITM,String prdNo,String price,String cst_Up,String UPR,String MIN_UP,String prdUp,String dis_CNT,String YN,String REM) {
             this.ITM = ITM;
@@ -241,8 +242,16 @@ public class PriceMx {
             this.prdUp = prdUp;
             this.price = price;
             this.dis_CNT = dis_CNT;
+//            this.NAME_ZDY = NAEM;
         }
 
+        public String getNAME_ZDY() {
+            return NAME_ZDY;
+        }
+
+        public void setNAME_ZDY(String NAME_ZDY) {
+            this.NAME_ZDY = NAME_ZDY;
+        }
 
         public String getZC_ZK() {
             return ZC_ZK;
@@ -344,6 +353,7 @@ public class PriceMx {
                     ", price='" + price + '\'' +
                     ", price_Id='" + price_Id + '\'' +
                     ", ZC_ZK='" + ZC_ZK + '\'' +
+                    ", NAME_ZDY='" + NAME_ZDY + '\'' +
                     '}';
         }
     }

@@ -241,7 +241,7 @@
 
                     <TextView
                         style="@style/design_name"
-                        android:text="报备渠道:" />
+                        android:text="报备终端:" />
 
                     <TextView
                         android:id="@+id/et_design_dep"
@@ -378,11 +378,11 @@
         android:layout_marginTop="2.0dip" />
 
 
-    <include
+    <!--<include
         android:id="@+id/design_head_item"
         layout="@layout/design_dairy_item" />
 
-    <View style="@style/price_view" />
+    <View style="@style/price_view" />-->
 
     <ListView
         android:id="@+id/lv_design_header"

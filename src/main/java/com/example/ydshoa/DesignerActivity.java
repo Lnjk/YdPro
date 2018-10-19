@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.zip.Inflater;
 
@@ -72,20 +74,23 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
     String vip_set = URLS.design_updata;
     String url_dh_price = URLS.price_num_ls;
     //新增数据
-    String des_db, des_vipcard, des_sfzh, des_vipname, des_zym, des_lxdh, des_lxdh2, des_viplb, des_ssdw, des_bbqd, des_bbyw, des_yhkh, des_khyh, des_dbr, des_shyh, des_zdyh, des_sfty,des_sfty_cx;
+    String des_db, des_vipcard, des_sfzh, des_vipname, des_zym, des_lxdh, des_lxdh2, des_viplb, des_ssdw, des_bbqd,des_bbqd_id, des_bbyw, des_yhkh, des_khyh, des_dbr, des_shyh, des_zdyh, des_sfty, des_sfty_cx;
     String vip_id_hd, id_bbyw;
-    int do_design,do_design_set;//(新增=1,修改=2)
-    //获取所有数据
-//    List<DesignAllInfos.VipList> data_vipList;
-//    private DesignAdapter adapter_design;
+    int do_design, do_design_set, do_design_sh;
     RelativeLayout mHead;
-    //回调信息
-    private TextView xh_hd, vipnolb_hd, action_hd, dd_hd, cont_hd, user_hd;
+
     //判断新增数据是否存在
     ArrayList<String> card_list;
-    //    数据修改
+    FormBody body;
+    //数据修改
     String xh_set, vipnolb_set, action_set, dd_set, cont_set, user_set;
-
+    List<DesignAllInfos.AlteList> alteList;
+    //回调信息
+    private ArrayList<HashMap<String, Object>> dList;
+    private SimpleAdapter sAdapter;
+    private HashMap<String, Object> item;
+    boolean ischeck_bbqd=false;//用于判断bbqd_id是否点击
+    boolean ischeck_vip=false;//用于判断type_id是否点击
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +104,25 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
         user_yh = sp.getString("MR_YH", "");
         user_Name = sp.getString("USER_NAME", "");
         user_dep = sp.getString("USER_DEPBM", "");
+        sp.edit().putString("VIP_ID_SJS","").commit();
+        sp.edit().putString("BBQD_SJS","").commit();
         initView();//初始化
+        dList = new ArrayList<>();
+        sAdapter = new SimpleAdapter(context, dList, R.layout.design_dairy_item, new String[]{"序号", "VIP卡号",
+                "执行动作", "变更日期", "变更内容", "变更用户"}, new int[]{
+                R.id.design_showChecx, R.id.price_design_no,
+                R.id.price_design_action, R.id.price_design_altedd,
+                R.id.price_design_altecont, R.id.price_design_alteuser}) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                if (convertView == null) {
+                    convertView = View.inflate(context,
+                            R.layout.design_dairy_item, null);
+                }
+                return super.getView(position, convertView, parent);
+            }
+        };
+        lv_vip.setAdapter(sAdapter);
     }
 
     private void initView() {
@@ -137,7 +160,7 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
         viplb = (TextView) findViewById(R.id.et_design_vip);
         ssdw = (EditText) findViewById(R.id.et_design_comp);
         bbqd = (TextView) findViewById(R.id.et_design_dep);
-        bbqd.setText(user_dep);//点击新增
+//        bbqd.setText(user_dep);//点击新增
         bbyw = (TextView) findViewById(R.id.et_design_salno);
         yhkh = (EditText) findViewById(R.id.et_design_bankno);
         khyh = (EditText) findViewById(R.id.et_design_bankdeposit);
@@ -157,13 +180,6 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
         query = (Button) findViewById(R.id.btn_design_query);
         sh = (Button) findViewById(R.id.btn_design_sh);
         bc = (Button) findViewById(R.id.btn_design_save);
-        //listview列表
-        xh_hd = (TextView) findViewById(R.id.design_showChecx);
-        vipnolb_hd = (TextView) findViewById(R.id.price_design_no);
-        action_hd = (TextView) findViewById(R.id.price_design_action);
-        dd_hd = (TextView) findViewById(R.id.price_design_altedd);
-        cont_hd = (TextView) findViewById(R.id.price_design_altecont);
-        user_hd = (TextView) findViewById(R.id.price_design_alteuser);
 
         add.setOnClickListener(this);
         del.setOnClickListener(this);
@@ -190,6 +206,7 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                 break;
             //VIP类别//-----10
             case R.id.ib_design_vip:
+                ischeck_vip = true;
                 if (zt.getText().toString().equals("")) {
                     Toast.makeText(context, "请选择账套", Toast.LENGTH_LONG).show();
                 } else {
@@ -200,12 +217,24 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                     startActivityForResult(intent_vip, 10);
                 }
                 break;
-            //报备渠道
+            //报备渠道（终端用户）
             case R.id.ib_design_bbqd:
-                showPopupMenu(ib_bbqd);
+//                showPopupMenu(ib_bbqd);
+                ischeck_bbqd = true;
+                if (zt.getText().toString().equals("")) {
+                    Toast.makeText(context, "请选择账套", Toast.LENGTH_LONG).show();
+                } else {
+                    Intent intent13 = new Intent(context,
+                            CondicionInfoActivity.class);
+                    intent13.putExtra("flag", "13");
+                    intent13.putExtra("queryID", zt.getText().toString());
+                    startActivityForResult(intent13, 13);
+                }
                 break;
             //报备业务//-----17
             case R.id.ib_design_yw:
+
+
                 if (zt.getText().toString().equals("")) {
                     Toast.makeText(context, "请选择账套", Toast.LENGTH_LONG).show();
                 } else {
@@ -218,10 +247,16 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                 break;
             //新增
             case R.id.btn_design_add:
+
                 //获取所有数据
                 getInfos_all();
                 //清空数据
                 clearInfo();
+                if (lv_vip.getCount() > 0) {
+                    dList.clear();
+//                    lv_vip.setAdapter(null);
+                    sAdapter.notifyDataSetChanged();
+                }
                 do_design = 1;
                 dbr.setEnabled(false);
                 shyh.setEnabled(false);
@@ -229,74 +264,86 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                 break;
             //删除
             case R.id.btn_design_del:
-                //获取删除的数据字段
-                String zt_hd = zt.getText().toString();
-                String vipno_hd = vipcard.getText().toString();
-                String card_hd = sfzh.getText().toString();
-                String userno_hd = zdyh.getText().toString();
-                if (!zt_hd.equals("null") && !userno_hd.equals("null")) {
-                    OkHttpClient client = new OkHttpClient();
-                    FormBody body = new FormBody.Builder()
-                            .add("db_Id", zt_hd)
-                            .add("user_No", userno_hd)
-                            .add("vip_NO", vipno_hd)
-                            .add("card_Num", card_hd)
-                            .build();
-                    Log.e("LiNing", "删除结果====" + zt_hd + "---" + userno_hd + "---" + vipno_hd + "---" + card_hd);
-                    client.newCall(
-                            new Request.Builder().addHeader("cookie", session).url(vip_del)
-                                    .post(body).build()).enqueue(new Callback() {
-                        @Override
-                        public void onResponse(Call call, Response response) throws IOException {
-                            String str = response.body().string();
-                            Log.e("LiNing", "删除结果====" + str);
-                            final JsonRootBean localJsonRootBean = (JsonRootBean) new Gson()
-                                    .fromJson(str, JsonRootBean.class);
-                            if (localJsonRootBean != null) {
-                                DesignerActivity.this.runOnUiThread(new Runnable() {
+                //判断listview列表，避免乱点
+                if(lv_vip.getCount()>0){
+                    //获取删除的数据字段
+                    String zt_hd = zt.getText().toString();
+                    String vipno_hd = vipcard.getText().toString();
+                    String card_hd = sfzh.getText().toString();
+                    String userno_hd = zdyh.getText().toString();
+                    if (!zt_hd.equals("null") && !userno_hd.equals("null")) {
+                        OkHttpClient client = new OkHttpClient();
+                        FormBody body = new FormBody.Builder()
+                                .add("db_Id", zt_hd)
+                                .add("user_No", userno_hd)
+                                .add("vip_NO", vipno_hd)
+                                .add("card_Num", card_hd)
+                                .build();
+                        Log.e("LiNing", "删除结果====" + zt_hd + "---" + userno_hd + "---" + vipno_hd + "---" + card_hd);
+                        client.newCall(
+                                new Request.Builder().addHeader("cookie", session).url(vip_del)
+                                        .post(body).build()).enqueue(new Callback() {
+                            @Override
+                            public void onResponse(Call call, Response response) throws IOException {
+                                String str = response.body().string();
+                                Log.e("LiNing", "删除结果====" + str);
+                                final JsonRootBean localJsonRootBean = (JsonRootBean) new Gson()
+                                        .fromJson(str, JsonRootBean.class);
+                                if (localJsonRootBean != null) {
+                                    DesignerActivity.this.runOnUiThread(new Runnable() {
 
-                                    @Override
-                                    public void run() {
-                                        boolean rlo = localJsonRootBean.getRLO();
-                                        if (rlo == true) {
-                                            Toast.makeText(DesignerActivity.this,
-                                                    "design删除成功", Toast.LENGTH_SHORT).show();
-                                        } else if (rlo == false) {
-                                            Toast.makeText(DesignerActivity.this,
-                                                    "design删除失败", Toast.LENGTH_SHORT).show();
+                                        @Override
+                                        public void run() {
+                                            boolean rlo = localJsonRootBean.getRLO();
+                                            if (rlo == true) {
+                                                Toast.makeText(DesignerActivity.this,
+                                                        "design删除成功", Toast.LENGTH_SHORT).show();
+                                                clearInfo();
+                                                dList.clear();
+                                            } else if (rlo == false) {
+                                                Toast.makeText(DesignerActivity.this,
+                                                        "design删除失败", Toast.LENGTH_SHORT).show();
+                                            }
                                         }
-                                    }
-                                });
+                                    });
+                                }
                             }
-                        }
 
-                        @Override
-                        public void onFailure(Call call, IOException e) {
+                            @Override
+                            public void onFailure(Call call, IOException e) {
 
-                        }
-                    });
+                            }
+                        });
 
-                } else {
-                    Toast.makeText(context, "账套和制单用户不能为空", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(context, "账套和制单用户不能为空", Toast.LENGTH_LONG).show();
+                    }
+                }else{
+                    Toast.makeText(context,"数据不完整",Toast.LENGTH_LONG).show();
                 }
+
+
                 break;
             //修改
             case R.id.btn_design_reset:
-                //数据库和单号保持不变
-                Log.e("LiNing", "lv_vip大小===" + lv_vip.getCount());
-//                if (lv_vip != null && lv_vip.getCount() > 0) {
+                //判断listview列表，避免乱点
+                if(lv_vip.getCount()>0){
+                    //数据库和单号保持不变
+                    Log.e("LiNing", "lv_vip大小===" + lv_vip.getCount());
                     vipcard.setEnabled(false);
                     ztbtn.setEnabled(false);
-                dbr.setEnabled(false);
-                shyh.setEnabled(false);
-                do_design_set = 1;
-                Log.e("LiNing","-----"+vipcard.getText().toString());
-//                } else {
-//                    Toast.makeText(context, "无数据修改", Toast.LENGTH_LONG).show();
-//                }
+                    dbr.setEnabled(false);
+                    shyh.setEnabled(false);
+                    do_design_set = 1;  Log.e("LiNing", "-----" + vipcard.getText().toString());
+
+                }else{
+                    Toast.makeText(context,"数据不完整",Toast.LENGTH_LONG).show();
+                }
+
                 break;
             //查询//-----11
             case R.id.btn_design_query:
+                dList.clear();
                 if (zt.getText().toString().equals("")) {
                     Toast.makeText(context, "请选择账套", Toast.LENGTH_LONG).show();
                 } else {
@@ -304,31 +351,35 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                     user_dep = sp.getString("USER_DEPBM", "");
                     Intent intent_vip = new Intent(context, QueryDesigActivity.class);
                     intent_vip.putExtra("ZT_VIP", zt.getText().toString());
-//                    startActivity(intent_vip);
                     startActivityForResult(intent_vip, 11);
                 }
                 break;
             //审核用户
             case R.id.btn_design_sh:
+                //判断listview列表，避免乱点
+                if(lv_vip.getCount()>0){
+                    //审核用户和担保人可编辑
+                    dbr.setEnabled(true);
+                    shyh.setEnabled(false);
+                    shyh.setText(user_Name);
+                    do_design_sh = 1;
+                }else{
+                    Toast.makeText(context,"数据不完整",Toast.LENGTH_LONG).show();
+                }
+
                 break;
             //保存
             case R.id.btn_design_save:
-                if(do_design_set==1){
+                if (do_design_set == 1) {
                     commitInfos();//主表信息
-                    //如果是多数据，此处要修改
-//                    xh_set = xh_hd.getText().toString();
-//                    vipnolb_set = vipnolb_hd.getText().toString();
-//                    action_set = action_hd.getText().toString();
-//                    dd_set = dd_hd.getText().toString();
-//                    cont_set = cont_hd.getText().toString();
-//                    if(cont_set.equals("")){
-//                        cont_set=null;
-//                    }
-//                    user_set = user_hd.getText().toString();
-                    //修改失败----判断上传数据
                     getinfos_queryToset();//修改
                 }
-                if(do_design==1){
+                if (do_design_sh == 1) {
+                    commitInfos();//主表信息(包含担保人和审核人)
+                    //判断上传数据
+                    getinfos_queryToset();//审核
+                }
+                if (do_design == 1) {
                     commitInfos();
                     Log.e("LiNing", "id_type结果====" + card_list);
                     if (card_list.contains(des_sfzh)) {
@@ -341,7 +392,6 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                         OkHttpClient client = new OkHttpClient();
                         FormBody body = new FormBody.Builder()
                                 .add("db_Id", des_db)
-//                        .add("biln_Type", "VP")
                                 .add("vip_NO", des_vipcard)
                                 .add("card_Num", des_sfzh)
                                 .add("vip_Name", des_vipname)
@@ -350,18 +400,16 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                                 .add("con_Tel2", des_lxdh2)
                                 .add("type_Id", vip_id_hd)
                                 .add("comp", des_ssdw)
-                                .add("SalesTerminal_No", des_bbqd)
+                                .add("SalesTerminal_No", des_bbqd_id)
                                 .add("sal_No", des_bbyw)
                                 .add("bank_No", des_yhkh)
                                 .add("bank_Deposit", des_khyh)
-//                        .add("guat_name", des_dbr)
-//                        .add("user_No", user_Id)
                                 .add("user_No", user_yh)
                                 .add("Stat", des_sfty)
 //                        .add("user_CHK", "N")
                                 .build();
                         Log.e("LiNing", "添加结果====" + des_db + "---" + des_vipcard + "---" + des_sfzh + "---" + vip_id_hd + "---" + des_lxdh + "---"
-                                + des_viplb + "---" + des_ssdw + "---" + des_bbqd + "---" + des_bbyw + "---" + des_yhkh + "---" + des_khyh + "---" + user_Id + "---" + des_sfty
+                                + des_viplb + "---" + des_ssdw + "---" + des_bbqd_id + "---" + des_bbyw + "---" + des_yhkh + "---" + des_khyh + "---" + user_Id + "---" + des_sfty
                                 + "---" + des_zym + "---" + des_lxdh2 + "---" + des_dbr);
                         client.newCall(
                                 new Request.Builder().addHeader("cookie", session).url(vip_add)
@@ -382,10 +430,10 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                                             boolean rlo = localJsonRootBean.getRLO();
                                             if (rlo == true) {
                                                 Toast.makeText(DesignerActivity.this,
-                                                        "design新增成功", Toast.LENGTH_SHORT).show();
+                                                        "新增成功", Toast.LENGTH_SHORT).show();
                                             } else if (rlo == false) {
                                                 Toast.makeText(DesignerActivity.this,
-                                                        "design新增失败", Toast.LENGTH_SHORT).show();
+                                                        "新增失败", Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                     });
@@ -409,36 +457,67 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
     //获取数据进行修改
     private void getinfos_queryToset() {
         OkHttpClient client = new OkHttpClient();
-        FormBody body = new FormBody.Builder()
-                .add("db_Id", des_db)
-//                        .add("biln_Type", "VP")
-                .add("vip_NO", des_vipcard)
-                .add("card_Num", des_sfzh)
-                .add("vip_Name", des_vipname)
-                .add("for_Name", des_zym)
-                .add("con_Tel", des_lxdh)
-                .add("con_Tel2", des_lxdh2)
-                .add("type_Id", vip_id_hd)
-                .add("comp", des_ssdw)
-                .add("SalesTerminal_No", des_bbqd)
-                .add("sal_No", des_bbyw)
-                .add("bank_No", des_yhkh)
-                .add("bank_Deposit", des_khyh)
-//                        .add("guat_name", des_dbr)
-//                        .add("user_No", user_Id)
-                .add("user_No", user_yh)
-                .add("Stat", des_sfty)
-////                列表信息
-//                .add("ITM", xh_set)
-//                .add("vip_No", vipnolb_set)
-//                .add("action", action_set)
-//                .add("alte_Cont", cont_set)
-//                .add("alte_DD", dd_set)
-//                .add("user_no", user_set)
-                .build();
-        Log.e("LiNing", "添加结果====" + des_db + "---" + des_vipcard + "---" + des_sfzh + "---" + vip_id_hd + "---" + des_lxdh + "---"
-                + des_viplb + "---" + des_ssdw + "---" + des_bbqd + "---" + des_bbyw + "---" + des_yhkh + "---" + des_khyh + "---" + user_Id + "---" + des_sfty
-                + "---" + des_zym + "---" + des_lxdh2 + "---" + des_dbr + "---" + xh_set + "---" + vipnolb_set + "---" + action_set + "---" + cont_set + "---" + dd_set + "---" + user_set);
+        Log.e("LiNing","-----"+ischeck_vip+"-----"+ischeck_bbqd);
+        if(ischeck_vip==false){
+            if(do_design==1){
+                String vipid_sjs = sp.getString("VIP_ID_SJS","");
+                vip_id_hd=vipid_sjs;
+                Log.e("LiNing","---xz--"+vip_id_hd+"-----"+des_bbqd_id);
+            }else{
+                vip_id_hd=viplb.getText().toString();
+                Log.e("LiNing","---cx--"+vip_id_hd+"-----"+des_bbqd_id);
+            }
+
+        }
+        if(ischeck_bbqd==false){
+            String bbqd_sjs = sp.getString("BBQD_SJS","");
+            des_bbqd_id=bbqd_sjs;
+        }
+        Log.e("LiNing","--z---"+vip_id_hd+"-----"+des_bbqd_id);
+        if (do_design_set == 1) {
+            body = new FormBody.Builder()
+                    .add("db_Id", des_db)
+                    .add("vip_NO", des_vipcard)
+                    .add("card_Num", des_sfzh)
+                    .add("vip_Name", des_vipname)
+                    .add("for_Name", des_zym)
+                    .add("con_Tel", des_lxdh)
+                    .add("con_Tel2", des_lxdh2)
+                    .add("type_Id", vip_id_hd)
+                    .add("comp", des_ssdw)
+                    .add("SalesTerminal_No", des_bbqd_id)
+                    .add("sal_No", des_bbyw)
+                    .add("bank_No", des_yhkh)
+                    .add("bank_Deposit", des_khyh)
+                    .add("user_No", user_yh)
+                    .add("Stat", des_sfty)
+                    .build();
+        }
+        if (do_design_sh == 1) {
+            body = new FormBody.Builder()
+                    .add("db_Id", des_db)
+                    .add("vip_NO", des_vipcard)
+                    .add("card_Num", des_sfzh)
+                    .add("vip_Name", des_vipname)
+                    .add("for_Name", des_zym)
+                    .add("con_Tel", des_lxdh)
+                    .add("con_Tel2", des_lxdh2)
+                    .add("type_Id", vip_id_hd)
+                    .add("comp", des_ssdw)
+                    .add("SalesTerminal_No", des_bbqd_id)
+                    .add("sal_No", des_bbyw)
+                    .add("bank_No", des_yhkh)
+                    .add("bank_Deposit", des_khyh)
+                    .add("guat_name", des_dbr)
+                    .add("user_No", user_Id)
+                    .add("user_CHK", user_Id)
+                    .add("Stat", des_sfty)
+                    .build();
+        }
+
+        Log.e("LiNing", "提交结果====" + des_db + "---" + des_vipcard + "---" + des_sfzh + "---" + vip_id_hd + "---" + des_lxdh + "---"
+                + des_viplb + "---" + des_ssdw + "---" + des_bbqd_id + "---" + des_bbyw + "---" + des_yhkh + "---" + des_khyh + "---" + user_Id + "---" + des_sfty
+                + "---" + des_zym + "---" + des_lxdh2 + "---" + "---" + des_dbr + "---" + des_shyh);
         client.newCall(
                 new Request.Builder().addHeader("cookie", session).url(vip_set)
                         .post(body).build()).enqueue(new Callback() {
@@ -456,12 +535,24 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                         @Override
                         public void run() {
                             boolean rlo = localJsonRootBean.getRLO();
-                            if (rlo == true) {
-                                Toast.makeText(DesignerActivity.this,
-                                        "design修改成功", Toast.LENGTH_SHORT).show();
-                            } else if (rlo == false) {
-                                Toast.makeText(DesignerActivity.this,
-                                        "design修改失败", Toast.LENGTH_SHORT).show();
+                            if (do_design_sh == 1) {
+                                if (rlo == true) {
+                                    Toast.makeText(DesignerActivity.this,
+                                            "审核成功", Toast.LENGTH_SHORT).show();
+                                } else if (rlo == false) {
+                                    Toast.makeText(DesignerActivity.this,
+                                            "审核失败", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            if (do_design_set == 1) {
+
+                                if (rlo == true) {
+                                    Toast.makeText(DesignerActivity.this,
+                                            "修改成功", Toast.LENGTH_SHORT).show();
+                                } else if (rlo == false) {
+                                    Toast.makeText(DesignerActivity.this,
+                                            "修改失败", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
                     });
@@ -495,8 +586,8 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                     bbqd.setText(menuItem.getTitle());
                     String s = menuItem.getTitle().toString();
                     String substring = s.substring(0, 1);
-                    des_bbqd = substring;
-                    Log.e("LiNing", "----" + des_bbqd + "----" + substring);
+                    des_bbqd_id = substring;
+                    Log.e("LiNing", "----" + des_bbqd_id + "----" + substring);
 
                 }
                 return true;
@@ -586,6 +677,7 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                     vip_id_hd = data.getStringExtra("VIP_ID");
                     String vip_name_hd = data.getStringExtra("VIP_NAME");
                     viplb.setText(vip_name_hd);
+                    sp.edit().putString("VIP_ID_SJS",vip_id_hd).commit();
                     Log.e("LiNing", "提交的id====" + vip_id_hd + vip_name_hd);
                 }
 
@@ -595,36 +687,28 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                     DesignAllInfos.VipList vipList_hd = (DesignAllInfos.VipList) data.getSerializableExtra("VIP_INFOS_ALL");
                     Log.e("LiNing", "提交的id====" + data.getSerializableExtra("VIP_INFOS_ALL"));
                     Log.e("LiNing", "提交的id====" + vipList_hd);
-//                    String db_hd = vipList_hd.getDb_Id().toString();
-//                    zt.setText(db_hd);
                     if (vipList_hd.getDb_Id() != null) {
                         zt.setText(vipList_hd.getDb_Id());
                     } else {
                         zt.setText("null");
                     }
-//                    String vipno_hd = vipList_hd.getVip_NO().toString();
-//                    vipcard.setText(vipno_hd);
                     if (vipList_hd.getVip_NO() != null) {
                         vipcard.setText(vipList_hd.getVip_NO());
                     } else {
                         vipcard.setText("null");
                     }
-//                    String cardnum_hd = vipList_hd.getCard_Num().toString();
-//                    sfzh.setText(cardnum_hd);
                     if (vipList_hd.getCard_Num() != null) {
-                        sfzh.setText(vipList_hd.getCard_Num());
+                        String w_null = vipList_hd.getCard_Num().replaceAll("\\s+$", "");
+                        sfzh.setText(w_null);
+//                        sfzh.setText(vipList_hd.getCard_Num());
                     } else {
                         sfzh.setText("null");
                     }
-//                    String vipname_hd = vipList_hd.getVip_Name().toString();
-//                    vipname.setText(vipname_hd);
                     if (vipList_hd.getVip_Name() != null) {
                         vipname.setText(vipList_hd.getVip_Name());
                     } else {
                         vipname.setText("null");
                     }
-//                    String forname_hd = vipList_hd.getFor_Name().toString();
-//                    zym.setText(forname_hd);
                     if (vipList_hd.getFor_Name() != null) {
                         zym.setText(vipList_hd.getFor_Name());
                     } else {
@@ -643,71 +727,52 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                     } else {
                         lxdh2.setText("null");
                     }
-//                    String typeid_hd = vipList_hd.getType_Id().toString();
-//                    viplb.setText(typeid_hd);
                     if (vipList_hd.getType_Id() != null) {
                         viplb.setText(vipList_hd.getType_Id());
                     } else {
                         viplb.setText("null");
                     }
-//                    String comp_hd = vipList_hd.getComp().toString();
-//                    ssdw.setText(comp_hd);
                     if (vipList_hd.getComp() != null) {
                         ssdw.setText(vipList_hd.getComp());
                     } else {
                         ssdw.setText("null");
                     }
-//                    String salte_hd = vipList_hd.getSalesTerminal_No().toString();//渠道
-//                    bbqd.setText(salte_hd);
                     if (vipList_hd.getSalesTerminal_No() != null) {
                         bbqd.setText(vipList_hd.getSalesTerminal_No());
                     } else {
                         bbqd.setText("null");
                     }
-//                    String salno_hd = vipList_hd.getSal_No().toString();//业务
-//                    bbyw.setText(salno_hd);
                     if (vipList_hd.getSal_No() != null) {
                         bbyw.setText(vipList_hd.getSal_No());
                     } else {
                         bbyw.setText("null");
                     }
-//                    String bankno_hd = vipList_hd.getBank_No().toString();
-//                    yhkh.setText(bankno_hd);
                     if (vipList_hd.getBank_No() != null) {
                         yhkh.setText(vipList_hd.getBank_No());
                     } else {
                         yhkh.setText("null");
                     }
-//                    String bankdp_hd = vipList_hd.getBank_Deposit().toString();
-//                    khyh.setText(bankdp_hd);
                     if (vipList_hd.getBank_Deposit() != null) {
                         khyh.setText(vipList_hd.getBank_Deposit());
                     } else {
                         khyh.setText("null");
                     }
-//                    String guatname_hd = vipList_hd.getGuat_name().toString();//担保人
-//                    dbr.setText(guatname_hd);
                     if (vipList_hd.getGuat_name() != null) {
                         dbr.setText(vipList_hd.getGuat_name());
                     } else {
                         dbr.setText("null");
                     }
-//                    String userno_hd = vipList_hd.getUser_No().toString();//制单用户
-//                    zdyh.setText(userno_hd);
                     if (vipList_hd.getUser_No() != null) {
                         zdyh.setText(vipList_hd.getUser_No());
                     } else {
                         zdyh.setText("null");
                     }
-//                    String userchk_hd = vipList_hd.getUser_CHK().toString();//审核人
                     if (vipList_hd.getUser_CHK() != null) {
 
                         shyh.setText(vipList_hd.getUser_CHK());
                     } else {
                         shyh.setText("null");
                     }
-//                    String stat_hd = vipList_hd.getStat().toString();//是否启用
-//                    sfqy.setText(stat_hd);
                     if (vipList_hd.getStat() != null) {
                         if (vipList_hd.getStat().equals("1")) {
                             des_sfty_cx = "启用";
@@ -723,63 +788,63 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                         sfqy.setText("null");
                     }
                     //列表信息
-//                    String itm_hd = vipList_hd.getAlteList().get(0).getITM().toString();
-//                    xh_hd.setText(itm_hd);
                     if (vipList_hd.getAlteList() != null && vipList_hd.getAlteList().size() > 0) {
 
-                        if (vipList_hd.getAlteList().get(0).getITM() != null) {
-
-                            xh_hd.setText(vipList_hd.getAlteList().get(0).getITM());
-                        } else {
-                            xh_hd.setText("null");
-                        }
-
-//                    String vipno_hd_lb = vipList_hd.getAlteList().get(0).getVip_No().toString();
-//                    vipnolb_hd.setText(vipno_hd_lb);
-                        if (vipList_hd.getAlteList().get(0).getVip_No() != null) {
-
-                            vipnolb_hd.setText(vipList_hd.getAlteList().get(0).getVip_No());
-                        } else {
-                            vipnolb_hd.setText("null");
-                        }
-//                    String iactionlb_hd = vipList_hd.getAlteList().get(0).getAction().toString();
-//                    action_hd.setText(iactionlb_hd);
-                        if (vipList_hd.getAlteList().get(0).getAction() != null) {
-
-                            action_hd.setText(vipList_hd.getAlteList().get(0).getAction());
-                        } else {
-                            action_hd.setText("null");
-                        }
-//                    String ddlb_hd = vipList_hd.getAlteList().get(0).getAlte_DD().toString();
-//                    dd_hd.setText(ddlb_hd);
-                        if (vipList_hd.getAlteList().get(0).getAlte_DD() != null) {
+                        alteList = vipList_hd.getAlteList();
+                        Log.e("LiNing", "----1----more--" + alteList);
+                        if (alteList.size() == 1) {
+                            item = new HashMap<String, Object>();
+                            item.put("序号", alteList.get(0).getITM());
+                            item.put("VIP卡号", alteList.get(0).getVip_No());
+                            item.put("执行动作", alteList.get(0).getAction());
                             SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
                             try {
-                                Date parse = sf1.parse(vipList_hd.getAlteList().get(0).getAlte_DD().toString());
+                                Date parse = sf1.parse(alteList.get(0).getAlte_DD().toString());
                                 String format = new SimpleDateFormat("yyyy-MM-dd").format(parse);
                                 Log.e("LiNing", "时间====xin=====" + format);
-                                dd_hd.setText(format);
+                                item.put("变更日期", format);
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
-
+                            item.put("变更内容", alteList.get(0).getAlte_Cont());
+                            item.put("变更用户", alteList.get(0).getUser_no());
+                            Log.e("LiNing", "----1------" + item);
+                            dList.add(item);
+                            sAdapter.notifyDataSetChanged();
+                            Log.e("LiNing", "----1------" + dList);
+                        } else if (alteList.size() > 1) {
+                            for (int i = 0; i < alteList.size(); i++) {
+                                item = new HashMap<String, Object>();
+                                item.put("序号", alteList.get(i).getITM());
+                                item.put("VIP卡号", alteList.get(i).getVip_No());
+                                item.put("执行动作", alteList.get(i).getAction());
+                                SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+                                try {
+                                    Date parse = sf1.parse(alteList.get(i).getAlte_DD().toString());
+                                    String format = new SimpleDateFormat("yyyy-MM-dd").format(parse);
+                                    Log.e("LiNing", "时间====xin=====" + format);
+                                    item.put("变更日期", format);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                item.put("变更内容", alteList.get(i).getAlte_Cont());
+                                item.put("变更用户", alteList.get(i).getUser_no());
+                                Log.e("LiNing", "----more------" + item);
+                                dList.add(item);
+                            }
+                            sAdapter.notifyDataSetChanged();
+                            Log.e("LiNing", "----more---list---" + dList);
                         } else {
-                            dd_hd.setText("null");
-                        }
-//                    String contlb_hd = vipList_hd.getAlteList().get(0).getAlte_Cont();
-                        if (vipList_hd.getAlteList().get(0).getAlte_Cont() != null) {
-
-                            cont_hd.setText(vipList_hd.getAlteList().get(0).getAlte_Cont());
-                        } else {
-                            cont_hd.setText("null");
-                        }
-//                    String usernolb_hd = vipList_hd.getAlteList().get(0).getUser_no().toString();
-//                    user_hd.setText(usernolb_hd);
-                        if (vipList_hd.getAlteList().get(0).getUser_no() != null) {
-
-                            user_hd.setText(vipList_hd.getAlteList().get(0).getUser_no());
-                        } else {
-                            user_hd.setText("null");
+                            item = new HashMap<String, Object>();
+                            item.put("序号", "");
+                            item.put("VIP卡号", "");
+                            item.put("执行动作", "");
+                            item.put("变更日期", "");
+                            item.put("变更内容", "");
+                            item.put("变更用户", "");
+                            Log.e("LiNing", "----无------" + item);
+                            dList.add(item);
+                            sAdapter.notifyDataSetChanged();
                         }
                     }
                 }
@@ -791,6 +856,13 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                     id_bbyw = data.getStringExtra("data_return_ids");
                     bbyw.setText(str1);
                     // sp.edit().putString("USERIDquerry", str1).commit();
+                }
+            case 13:
+                if (resultCode == 1) {
+                    String str1 = data.getStringExtra("data_return");
+                    des_bbqd_id= data.getStringExtra("data_return_ids");
+                    bbqd.setText(str1);
+                    sp.edit().putString("BBQD_SJS",des_bbqd_id).commit();
                 }
                 break;
         }
@@ -806,7 +878,7 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
             Toast.makeText(context, "请添加账套", Toast.LENGTH_LONG).show();
         }
         des_vipcard = vipcard.getText().toString();
-        Log.e("LiNing","-----"+des_vipcard);
+        Log.e("LiNing", "-----" + des_vipcard);
         if (des_vipcard.equals("")) {
             Toast.makeText(context, "请添加VIP卡号", Toast.LENGTH_LONG).show();
         }
@@ -833,6 +905,8 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
         if (des_viplb.equals("")) {
             Toast.makeText(context, "请添加vip类别", Toast.LENGTH_LONG).show();
             vip_id_hd = "0";
+        }else{
+            vip_id_hd=vip_id_hd;
         }
         des_ssdw = ssdw.getText().toString();
         if (des_ssdw.equals("")) {
@@ -915,11 +989,6 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
 
             url_dh_price = URLS.price_num_ls;
             Log.e("LiNing", "临时vip卡号===" + session + "---" + URLS.price_num_ls + "---" + DB_LS + "----" + date_dd);
-//            if (save == 1) {
-//                url_dh_price = URLS.price_num_ls;
-//            } else {
-//                url_dh_price = URLS.price_num_zs;
-//            }
             OkHttpClient client = new OkHttpClient();
             FormBody localFormBody = new FormBody.Builder()
                     .add("bn_Type", "VP")
