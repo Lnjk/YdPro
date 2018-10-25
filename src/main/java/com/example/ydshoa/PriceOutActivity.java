@@ -9,14 +9,25 @@ import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
+import com.example.bean.DepInfo;
 import com.example.bean.ExcelUtilsPrice;
 import com.example.bean.PriceLoadInfo;
 import com.example.bean.PriceMx;
+import com.example.bean.URLS;
+import com.google.gson.Gson;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class PriceOutActivity extends Activity {
     private SharedPreferences sp;
@@ -27,12 +38,15 @@ public class PriceOutActivity extends Activity {
     private List<HashMap<String, Object>> info_zr;
     private File file;
     private String fileName;
-    private String zc_dh;
+    private String zc_dh,zc_db;
     private static String[] arr_price = { "序号", "货品编号", "货品名称", "单位成本", "统一定价",
      "最低售价", "政策定价", "销售折扣", "执行情况", "备注信息" };
     private ArrayList<ArrayList<String>> recordList;
     private String zc_id,zc_chcek;
-
+    private String url_prdNo = URLS.prdNo_url;//通过id获取名称
+    String name;
+    List<DepInfo.IdNameList> depInfo;
+    ArrayList<String> idList=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +59,8 @@ public class PriceOutActivity extends Activity {
         zc_chcek = getIntent().getStringExtra("ZC_CHECK");
         zc_id = getIntent().getStringExtra("ZC_ID");
         zc_dh = getIntent().getStringExtra("ZC_DH");
-        Log.e("LiNing", "=====" + zc_id + "------"+zc_dh);
+        zc_db = getIntent().getStringExtra("ZC_DB");
+        Log.e("LiNing", "=====" + zc_id + "------"+zc_dh+zc_db);
         if(zc_id.equals("1")){//新增
             info_add = PriceActivity.info_add;
             Log.e("LiNing", "=xz==转出数据==" + info_add );
@@ -132,7 +147,7 @@ public class PriceOutActivity extends Activity {
         if(zc_id.equals("2")){
             if(zc_chcek.equals("true")){
                 for (int i = 0; i < info_add.size(); i++) {
-                    ArrayList<String> beanList = new ArrayList<String>();
+                    final ArrayList<String> beanList = new ArrayList<String>();
 //                    beanList.add("i");
                     String xh = info_add.get(i).getXH();
                     Integer integer = Integer.valueOf(xh);
@@ -141,6 +156,50 @@ public class PriceOutActivity extends Activity {
                     Log.e("LiNing","======="+xh+"======="+Xh_new+"======="+i1);
                     beanList.add(""+i1);
 //                beanList.add(info_add.get(i).getXH());
+
+                    //此处请求接口获取名称
+                    OkHttpClient client = new OkHttpClient();
+                    FormBody body = new FormBody.Builder().add("accountNo", zc_db)
+                            .add("id", info_add.get(i).getPRD_NO().toString()).build();
+                    Request request = new Request.Builder()
+                            .addHeader("cookie", session).url(url_prdNo).post(body)
+                            .build();
+                    Call call = client.newCall(request);
+                    call.enqueue(new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+
+                        }
+
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            String str = response.body().string();
+                            Log.e("LiNing", "查询数据===" + str);
+                            final DepInfo dInfo = new Gson().fromJson(str,
+                                    DepInfo.class);
+                            if (dInfo != null) {
+                                PriceOutActivity.this
+                                        .runOnUiThread(new Runnable() {
+
+                                            @Override
+                                            public void run() {
+                                                depInfo = dInfo.getIdNameList();
+                                                Log.e("LiNing", "查询数据===" + depInfo);
+                                                Log.e("LiNing", "查询数据===" + depInfo.size());
+                                                if(depInfo!=null&&depInfo.size()>0){
+                                                    for(int j=0;j<depInfo.size();j++){
+                                                        name = depInfo.get(j).getName();
+                                                        info_add.get(j).setNAME_ZDY(name);
+//                                                        beanList.add(name);
+                                                    }
+                                                }
+                                            }
+
+                                        });
+                            }
+                        }
+                    });
+                    Log.e("LiNing", "查询数据==name=" + info_add.get(i).getNAME_ZDY());
                     beanList.add(info_add.get(i).getPRD_NO());
                     beanList.add(info_add.get(i).getNAME_ZDY());
                     beanList.add(""+info_add.get(i).getUP_SAL());
@@ -161,7 +220,7 @@ public class PriceOutActivity extends Activity {
 
 
             for (int i = 0; i < info_query.size(); i++) {
-                ArrayList<String> beanList = new ArrayList<String>();
+                 final ArrayList<String> beanList = new ArrayList<String>();
 //                beanList.add("i");
                 int itm = info_query.get(i).getITM();
                int itm_int=itm+1;
@@ -178,9 +237,9 @@ public class PriceOutActivity extends Activity {
                 beanList.add(info_query.get(i).getYN());
                 beanList.add(info_query.get(i).getREM());
 //                recordList.add(beanList);
-                Log.e("LiNiing","数据是=序号=="+i+"/"+info_query.get(i).getITM());
-                Log.e("LiNiing","数据是==="+i+"/"+info_query.get(i).getPrdNo()+"----"+info_query.get(i).getUPR());
-                Log.e("LiNiing","数据是==="+beanList+"/"+recordList);
+//                Log.e("LiNiing","数据是=序号=="+i+"/"+info_query.get(i).getITM());
+//                Log.e("LiNiing","数据是==="+i+"/"+info_query.get(i).getPrdNo()+"----"+info_query.get(i).getUPR());
+//                Log.e("LiNiing","数据是==="+beanList+"/"+recordList);
                 recordList.add(beanList);
             }
             }

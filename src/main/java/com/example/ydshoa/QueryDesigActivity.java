@@ -144,10 +144,19 @@ public class QueryDesigActivity extends Activity implements View.OnClickListener
                 break;
             //报备渠道
             case R.id.ib_design_bbqd_query:
+//                if (query_db.equals("")) {
+//                    Toast.makeText(context, "请选择账套", Toast.LENGTH_LONG).show();
+//                } else {
+//                    showPopupMenu(bbqd_query);
+//                }
                 if (query_db.equals("")) {
                     Toast.makeText(context, "请选择账套", Toast.LENGTH_LONG).show();
                 } else {
-                    showPopupMenu(bbqd_query);
+                    Intent intent13 = new Intent(context,
+                            CondicionInfoActivity.class);
+                    intent13.putExtra("flag", "13");
+                    intent13.putExtra("queryID", query_db);
+                    startActivityForResult(intent13, 13);
                 }
                 break;
             //报备业务//-----17
@@ -204,11 +213,18 @@ public class QueryDesigActivity extends Activity implements View.OnClickListener
 
                     vip_id_hd = data.getStringExtra("VIP_ID");
                     String vip_name_hd = data.getStringExtra("VIP_NAME");
-                    viplb.setText(vip_name_hd);
-//                    viplb.setText(vip_id_hd);
+//                    viplb.setText(vip_name_hd);
+                    viplb.setText(vip_id_hd);
                     Log.e("LiNing", "提交的id====" + vip_id_hd + vip_name_hd);
                 }
 
+                break;
+            case 13:
+                if (resultCode == 1) {
+                    String str1 = data.getStringExtra("data_return");
+                    String des_bbqd_id= data.getStringExtra("data_return_ids");
+                    bbqd.setText(des_bbqd_id);
+                }
                 break;
             case 17:
                 if (resultCode == 1) {

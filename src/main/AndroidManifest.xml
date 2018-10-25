@@ -155,7 +155,8 @@
         <activity android:name=".VipClassActivity" />
         <activity android:name=".VipDoAllActivity" />
         <activity android:name=".LocalInfosActivity" />
-        <activity android:name=".QueryDesigActivity"></activity>
+        <activity android:name=".QueryDesigActivity" />
+        <activity android:name=".CustersAllActivity"></activity>
     </application>
 
 </manifest>

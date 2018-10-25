@@ -157,6 +157,7 @@
         <activity android:name="com.example.ydshoa.VipDoAllActivity" />
         <activity android:name="com.example.ydshoa.LocalInfosActivity" />
         <activity android:name="com.example.ydshoa.QueryDesigActivity" />
+        <activity android:name="com.example.ydshoa.CustersAllActivity" />
     </application>
 
 </manifest>

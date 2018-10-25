@@ -22,11 +22,11 @@
 
     <View style="@style/list_item_cell_seperator_layout" />
 
-    <TextView
-        style="@style/head_quick"
-        android:text="录入人" />
+    <!--<TextView-->
+        <!--style="@style/head_quick"-->
+        <!--android:text="录入人" />-->
 
-    <View style="@style/list_item_cell_seperator_layout" />
+    <!--<View style="@style/list_item_cell_seperator_layout" />-->
 
     <TextView
         style="@style/head_quick"

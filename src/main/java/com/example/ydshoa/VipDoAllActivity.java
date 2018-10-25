@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,10 +44,10 @@ public class VipDoAllActivity extends Activity  {
     private Context context;
     private SharedPreferences sp;
     private String session,DB;
-    private TextView head, sfty,add_vp, add_vp_dj;
+    private TextView head, sfty,add_vp, add_vp_dj,add_vp_nulladd;
     private ListView lv_vip_all;
     private Button vipquery, add, del, set;
-    private  EditText add_vp_bh,add_vp_mc;
+    private  EditText add_vp_bh,add_vp_mc,add_vp_bh_nulladd,add_vp_mc_nulladd,add_vp_dj_nulladd;
     //接口
     String vip_get = URLS.vip_query;
     String vip_add = URLS.vip_add;
@@ -61,6 +62,7 @@ public class VipDoAllActivity extends Activity  {
     AlertDialog addVip_all,addVip_all_add,addVip_all_del,addVip_all_set;
     //更新数据
     private ArrayList<String> VIP_DB_IDs, VIP_BILES, VIP_TYPE_IDs,VIP_TYPE_NAMEs;
+    private ImageButton null_add;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +82,7 @@ public class VipDoAllActivity extends Activity  {
         head = (TextView) findViewById(R.id.all_head);
         head.setText("VIP类别");
         lv_vip_all = (ListView) findViewById(R.id.lv_vip_header_all);
+        null_add = (ImageButton) findViewById(R.id.ib_nulladd);
         //封装新数据（新+旧=更新）
         VIP_DB_IDs = new ArrayList<String>();
         VIP_BILES = new ArrayList<String>();
@@ -91,6 +94,87 @@ public class VipDoAllActivity extends Activity  {
 //                startActivity(new Intent(context,VipClassActivity.class));
                 finish();//返回上一个界面
 
+            }
+        });
+        if(lv_vip_all.getCount()>0){
+            null_add.setVisibility(View.GONE);
+        }else{
+            null_add.setVisibility(View.VISIBLE);
+            Toast.makeText(context,"请添加新数据",Toast.LENGTH_LONG).show();
+        }
+        null_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View view_load_all_add_nulladd = getLayoutInflater()
+                        .inflate(R.layout.null_add_new, null);
+                TextView head_load_all = (TextView) view_load_all_add_nulladd.findViewById(R.id.all_head);
+                head_load_all.setText("VIP-添加");
+
+                add_vp_nulladd = (TextView) view_load_all_add_nulladd.findViewById(R.id.et_vip_type_nulladd);
+                add_vp_nulladd.setText("VP");
+                add_vp_dj_nulladd = (EditText) view_load_all_add_nulladd.findViewById(R.id.et_biln_type_nulladd);
+                add_vp_bh_nulladd = (EditText) view_load_all_add_nulladd.findViewById(R.id.et_type_id_nulladd);
+                add_vp_mc_nulladd = (EditText) view_load_all_add_nulladd.findViewById(R.id.et_type_name_nulladd);
+                view_load_all_add_nulladd.findViewById(R.id.imageButton1).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        addVip_all_add.dismiss();
+//                                    getObjectType();
+                    }
+                });
+                view_load_all_add_nulladd.findViewById(R.id.btn_vip_add_nulladd).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String add_id = add_vp_bh_nulladd.getText().toString();
+                        String add_name = add_vp_mc_nulladd.getText().toString();
+                        OkHttpClient client = new OkHttpClient();
+                        FormBody body = new FormBody.Builder()
+                                .add("db_Id", DB)
+                                .add("biln_Type", "VP")
+                                .add("Type_ID", add_id)
+                                .add("Type_Name", add_name)
+                                .build();
+                        client.newCall(new Request.Builder().addHeader("cookie", session).url(vip_add)
+                                .post(body).build()).enqueue(new Callback() {
+                            @Override
+                            public void onResponse(Call call, Response response) throws IOException {
+                                String str = response.body().string();
+                                Log.e("LiNing", "添加结果====" + str);
+                                final JsonRootBean localJsonRootBean = (JsonRootBean) new Gson()
+                                        .fromJson(str, JsonRootBean.class);
+                                if (localJsonRootBean != null) {
+                                    VipDoAllActivity.this.runOnUiThread(new Runnable() {
+
+                                        @Override
+                                        public void run() {
+                                            boolean rlo = localJsonRootBean.getRLO();
+                                            if (rlo == true) {
+                                                Toast.makeText(VipDoAllActivity.this,
+                                                        "vip新增成功", Toast.LENGTH_SHORT).show();
+                                                getObjectType();
+                                                if (addVip_all_add.isShowing()) {
+                                                    addVip_all_add.dismiss();
+                                                }
+                                            } else if (rlo == false) {
+                                                Toast.makeText(VipDoAllActivity.this,
+                                                        "vip新增失败", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call call, IOException e) {
+
+                            }
+                        });
+                    }
+                });
+                addVip_all_add = new AlertDialog.Builder(context).create();
+                addVip_all_add.setCancelable(false);
+                addVip_all_add.setView(view_load_all_add_nulladd);
+                addVip_all_add.show();
             }
         });
             lv_vip_all.setOnItemClickListener(new AdapterView.OnItemClickListener() {

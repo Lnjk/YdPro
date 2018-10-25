@@ -17,6 +17,7 @@ import com.example.bean.AccountInfo;
 import com.example.bean.URLS;
 import com.example.bean.UserInfo;
 import com.example.bean.UserInfo.User_Query;
+import com.example.ydshoa.CustersAllActivity;
 import com.example.ydshoa.DecisionActivity;
 import com.example.ydshoa.DesignerActivity;
 import com.example.ydshoa.FormActivity;
@@ -93,6 +94,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(this.context, DesignerActivity.class));
                 break;
             case R.id.ll_form:
+                startActivity(new Intent(this.context, CustersAllActivity.class));
                 Toast.makeText(this.context, "暂未开放，请等待...", Toast.LENGTH_SHORT).show();
 //                startActivity(new Intent(this.context, FormActivity.class));
                 break;

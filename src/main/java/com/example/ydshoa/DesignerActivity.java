@@ -61,7 +61,7 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
     private TextView head, zt, sfty, sfqy, zdyh, viplb, bbyw, bbqd, vipcard;
     private EditText sfzh, vipname, zym, lxdh, lxdh2, ssdw, yhkh, khyh, dbr, shyh;
     private Button add, del, set, query, sh, bc;
-    private ImageButton vipbtn, ztbtn, yw, ib_bbqd;
+    private ImageButton vipbtn, ztbtn, yw, ib_bbqd,ib_sfqy;
     private ListView lv_vip;
     //获取临时vip卡号
     String date_dd;
@@ -174,6 +174,7 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
         vipbtn = (ImageButton) findViewById(R.id.ib_design_vip);
         yw = (ImageButton) findViewById(R.id.ib_design_yw);
         ib_bbqd = (ImageButton) findViewById(R.id.ib_design_bbqd);
+        ib_sfqy = (ImageButton) findViewById(R.id.ib_design_sfqy);
         add = (Button) findViewById(R.id.btn_design_add);
         del = (Button) findViewById(R.id.btn_design_del);
         set = (Button) findViewById(R.id.btn_design_reset);
@@ -191,6 +192,7 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
         vipbtn.setOnClickListener(this);
         yw.setOnClickListener(this);
         ib_bbqd.setOnClickListener(this);
+        ib_sfqy.setOnClickListener(this);
 
     }
 
@@ -219,7 +221,7 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                 break;
             //报备渠道（终端用户）
             case R.id.ib_design_bbqd:
-//                showPopupMenu(ib_bbqd);
+
                 ischeck_bbqd = true;
                 if (zt.getText().toString().equals("")) {
                     Toast.makeText(context, "请选择账套", Toast.LENGTH_LONG).show();
@@ -231,10 +233,12 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                     startActivityForResult(intent13, 13);
                 }
                 break;
+            //是否启用
+            case R.id.ib_design_sfqy:
+                showPopupMenu(ib_sfqy);
+                break;
             //报备业务//-----17
             case R.id.ib_design_yw:
-
-
                 if (zt.getText().toString().equals("")) {
                     Toast.makeText(context, "请选择账套", Toast.LENGTH_LONG).show();
                 } else {
@@ -247,9 +251,8 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                 break;
             //新增
             case R.id.btn_design_add:
-
-                //获取所有数据
-                getInfos_all();
+//                //获取所有数据（主要是判断身份证）
+//                getInfos_all();
                 //清空数据
                 clearInfo();
                 if (lv_vip.getCount() > 0) {
@@ -261,6 +264,7 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                 dbr.setEnabled(false);
                 shyh.setEnabled(false);
                 sfqy.setText("未审核");
+                ib_sfqy.setEnabled(false);
                 break;
             //删除
             case R.id.btn_design_del:
@@ -326,6 +330,7 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                 break;
             //修改
             case R.id.btn_design_reset:
+
                 //判断listview列表，避免乱点
                 if(lv_vip.getCount()>0){
                     //数据库和单号保持不变
@@ -333,7 +338,8 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                     vipcard.setEnabled(false);
                     ztbtn.setEnabled(false);
                     dbr.setEnabled(false);
-                    shyh.setEnabled(false);
+                    ib_sfqy.setEnabled(true);
+                    sfqy.setText("未审核");
                     do_design_set = 1;  Log.e("LiNing", "-----" + vipcard.getText().toString());
 
                 }else{
@@ -363,6 +369,8 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                     shyh.setEnabled(false);
                     shyh.setText(user_Name);
                     do_design_sh = 1;
+                    sfqy.setText("启用");
+                    ib_sfqy.setEnabled(false);
                 }else{
                     Toast.makeText(context,"数据不完整",Toast.LENGTH_LONG).show();
                 }
@@ -381,76 +389,103 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                 }
                 if (do_design == 1) {
                     commitInfos();
-                    Log.e("LiNing", "id_type结果====" + card_list);
-                    if (card_list.contains(des_sfzh)) {
-                        Toast.makeText(context, "该设计师已存在", Toast.LENGTH_LONG).show();
-                    } else if (des_vipcard.equals("")) {
-                        Toast.makeText(context, "请获取vip单号", Toast.LENGTH_LONG).show();
-                    } else if (des_sfzh.length() >= 18 && des_sfzh.length() < 20) {
-                        Toast.makeText(context, "请添加正确身份证号", Toast.LENGTH_LONG).show();
-                    } else {
-                        OkHttpClient client = new OkHttpClient();
-                        FormBody body = new FormBody.Builder()
-                                .add("db_Id", des_db)
-                                .add("vip_NO", des_vipcard)
-                                .add("card_Num", des_sfzh)
-                                .add("vip_Name", des_vipname)
-                                .add("for_Name", des_zym)
-                                .add("con_Tel", des_lxdh)
-                                .add("con_Tel2", des_lxdh2)
-                                .add("type_Id", vip_id_hd)
-                                .add("comp", des_ssdw)
-                                .add("SalesTerminal_No", des_bbqd_id)
-                                .add("sal_No", des_bbyw)
-                                .add("bank_No", des_yhkh)
-                                .add("bank_Deposit", des_khyh)
-                                .add("user_No", user_yh)
-                                .add("Stat", des_sfty)
-//                        .add("user_CHK", "N")
-                                .build();
-                        Log.e("LiNing", "添加结果====" + des_db + "---" + des_vipcard + "---" + des_sfzh + "---" + vip_id_hd + "---" + des_lxdh + "---"
-                                + des_viplb + "---" + des_ssdw + "---" + des_bbqd_id + "---" + des_bbyw + "---" + des_yhkh + "---" + des_khyh + "---" + user_Id + "---" + des_sfty
-                                + "---" + des_zym + "---" + des_lxdh2 + "---" + des_dbr);
-                        client.newCall(
-                                new Request.Builder().addHeader("cookie", session).url(vip_add)
-                                        .post(body).build()).enqueue(new Callback() {
 
-                            @Override
-                            public void onResponse(Call call, Response response)
-                                    throws IOException {
-                                String str = response.body().string();
-                                Log.e("LiNing", "添加结果====" + str);
-                                final JsonRootBean localJsonRootBean = (JsonRootBean) new Gson()
-                                        .fromJson(str, JsonRootBean.class);
-                                if (localJsonRootBean != null) {
-                                    DesignerActivity.this.runOnUiThread(new Runnable() {
+                    //获取所有数据（主要是判断身份证）
+                    getInfos_all();
 
-                                        @Override
-                                        public void run() {
-                                            boolean rlo = localJsonRootBean.getRLO();
-                                            if (rlo == true) {
-                                                Toast.makeText(DesignerActivity.this,
-                                                        "新增成功", Toast.LENGTH_SHORT).show();
-                                            } else if (rlo == false) {
-                                                Toast.makeText(DesignerActivity.this,
-                                                        "新增失败", Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                    });
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call arg0, IOException arg1) {
-
-                            }
-                        });
-                    }
                 }
 
                 break;
 
 
+        }
+    }
+
+    private void save_add() {
+        Log.e("LiNing", "id_type结果====" + card_list);
+        if (card_list.contains(des_sfzh)) {
+            DesignerActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(context, "该设计师已存在", Toast.LENGTH_LONG).show();
+                }
+            });
+
+        } else if (des_vipcard.equals("")) {
+
+            DesignerActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(context, "请获取vip单号", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+        else if (des_sfzh.length() < 18||des_sfzh.length() > 20) {
+            DesignerActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(context, "请添加正确身份证号", Toast.LENGTH_LONG).show();
+                }
+            });
+
+        }
+        else {
+            OkHttpClient client = new OkHttpClient();
+            FormBody body = new FormBody.Builder()
+                    .add("db_Id", des_db)
+                    .add("vip_NO", des_vipcard)
+                    .add("card_Num", des_sfzh)
+                    .add("vip_Name", des_vipname)
+                    .add("for_Name", des_zym)
+                    .add("con_Tel", des_lxdh)
+                    .add("con_Tel2", des_lxdh2)
+                    .add("type_Id", vip_id_hd)
+                    .add("comp", des_ssdw)
+                    .add("SalesTerminal_No", des_bbqd_id)
+                    .add("sal_No", des_bbyw)
+                    .add("bank_No", des_yhkh)
+                    .add("bank_Deposit", des_khyh)
+                    .add("user_No", user_yh)
+                    .add("Stat", des_sfty)
+//                        .add("user_CHK", "N")
+                    .build();
+            Log.e("LiNing", "添加结果====" + des_db + "---" + des_vipcard + "---" + des_sfzh + "---" + vip_id_hd + "---" + des_lxdh + "---"
+                    + des_viplb + "---" + des_ssdw + "---" + des_bbqd_id + "---" + des_bbyw + "---" + des_yhkh + "---" + des_khyh + "---" + user_Id + "---" + des_sfty
+                    + "---" + des_zym + "---" + des_lxdh2 + "---" + des_dbr);
+            client.newCall(
+                    new Request.Builder().addHeader("cookie", session).url(vip_add)
+                            .post(body).build()).enqueue(new Callback() {
+
+                @Override
+                public void onResponse(Call call, Response response)
+                        throws IOException {
+                    String str = response.body().string();
+                    Log.e("LiNing", "添加结果====" + str);
+                    final JsonRootBean localJsonRootBean = (JsonRootBean) new Gson()
+                            .fromJson(str, JsonRootBean.class);
+                    if (localJsonRootBean != null) {
+                        DesignerActivity.this.runOnUiThread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                boolean rlo = localJsonRootBean.getRLO();
+                                if (rlo == true) {
+                                    Toast.makeText(DesignerActivity.this,
+                                            "新增成功", Toast.LENGTH_SHORT).show();
+                                } else if (rlo == false) {
+                                    Toast.makeText(DesignerActivity.this,
+                                            "新增失败", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onFailure(Call arg0, IOException arg1) {
+
+                }
+            });
         }
     }
 
@@ -569,25 +604,16 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
     private void showPopupMenu(View view) {
         // View当前PopupMenu显示的相对View的位置
         PopupMenu popupMenu = new PopupMenu(this, view);
-        popupMenu.getMenuInflater().inflate(R.menu.bbqd_info, popupMenu.getMenu());
+        popupMenu.getMenuInflater().inflate(R.menu.sfqy, popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.check1
                         || menuItem.getItemId() == R.id.check2
-                        || menuItem.getItemId() == R.id.check3
-                        || menuItem.getItemId() == R.id.check4
-                        || menuItem.getItemId() == R.id.check5
-                        || menuItem.getItemId() == R.id.check6
-                        || menuItem.getItemId() == R.id.check7
-                        || menuItem.getItemId() == R.id.check8
                         ) {
                     menuItem.setChecked(!menuItem.isChecked());
-                    bbqd.setText(menuItem.getTitle());
-                    String s = menuItem.getTitle().toString();
-                    String substring = s.substring(0, 1);
-                    des_bbqd_id = substring;
-                    Log.e("LiNing", "----" + des_bbqd_id + "----" + substring);
+                    sfqy.setText(menuItem.getTitle());
+                    Log.e("LiNing", "----" + sfqy );
 
                 }
                 return true;
@@ -606,7 +632,9 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
         lxdh2.setText("");
         viplb.setText("");
         ssdw.setText("");
-        bbqd.setText(user_dep);
+//        bbqd.setText(user_dep);
+        bbqd.setText("");
+        bbyw.setText("");
         yhkh.setText("");
         khyh.setText("");
         dbr.setText("");
@@ -647,9 +675,12 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                             card_list.add(w_null);
                         }
                         Log.e("LiNing", "id_type结果====" + card_list);
+                        if(response.code()==200){
+
+                            save_add();
+                        }
                     }
                 }
-
                 @Override
                 public void onFailure(Call call, IOException e) {
 
@@ -885,7 +916,7 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
         des_sfzh = sfzh.getText().toString();
         Log.e("LiNing", "长度=====" + des_sfzh.length());
         if (des_sfzh.equals("")) {
-            Toast.makeText(context, "请添加身份证号", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "请添加正确的身份证号", Toast.LENGTH_LONG).show();
         }
 //        if (des_sfzh.length() >= 18 && des_sfzh.length() < 20) {
 //            Toast.makeText(context, "请添加正确身份证号", Toast.LENGTH_LONG).show();

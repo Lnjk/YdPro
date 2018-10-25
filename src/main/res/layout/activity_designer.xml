@@ -353,9 +353,11 @@
                         android:text="是否启用:" />
                     <TextView
                         android:id="@+id/tv_design_isno"
-                        style="@style/price_name"
-                        android:text="未审核" />
-
+                        style="@style/design_editext"
+                         />
+                    <ImageButton
+                        android:id="@+id/ib_design_sfqy"
+                        style="@style/price_button_down" />
 
                 </LinearLayout>
             </LinearLayout>

@@ -25,12 +25,12 @@
 
     <View style="@style/list_item_cell_seperator_layout" />
 
-    <TextView
-        android:id="@+id/main_lrr"
-        style="@style/head_quick"
-        android:text="录入人数据" />
+    <!--<TextView-->
+        <!--android:id="@+id/main_lrr"-->
+        <!--style="@style/head_quick"-->
+        <!--android:text="录入人数据" />-->
 
-    <View style="@style/list_item_cell_seperator_layout" />
+    <!--<View style="@style/list_item_cell_seperator_layout" />-->
 
     <TextView
         android:id="@+id/main_shr"

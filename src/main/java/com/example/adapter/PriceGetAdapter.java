@@ -69,7 +69,7 @@ public class PriceGetAdapter extends BaseAdapter {
             holder.priceNo= (TextView) convertView.findViewById(R.id.main_dh);
             holder.price_name= (TextView) convertView.findViewById(R.id.main_name);
             holder.price_data= (TextView) convertView.findViewById(R.id.main_time);
-            holder.user_login= (TextView) convertView.findViewById(R.id.main_lrr);
+//            holder.user_login= (TextView) convertView.findViewById(R.id.main_lrr);
             holder.user_comp= (TextView) convertView.findViewById(R.id.main_shr);
             holder.price_zt= (TextView) convertView.findViewById(R.id.main_zt);
             convertView.setTag(holder);
@@ -88,7 +88,7 @@ public class PriceGetAdapter extends BaseAdapter {
         }
         SimpleDateFormat sf2 = new SimpleDateFormat("yyyy-MM-dd");
         String format_data = sf2.format(date);
-        String compDepName = prices_info.getCompDepName();
+        String compDepName = prices_info.getBiln_user();
         String zt = prices_info.getAccepted();
         if(zt.equals("Y")){
             holder.price_zt.setText("已执行");
@@ -98,7 +98,7 @@ public class PriceGetAdapter extends BaseAdapter {
         holder.priceNo.setText(priceId);
         holder.price_name.setText(pricename);
         holder.price_data.setText(format_data);
-        holder.user_login.setText(llr);
+//        holder.user_login.setText(llr);
         holder.user_comp.setText(compDepName);
 
         if (position == selectItem) {

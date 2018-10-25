@@ -24,4 +24,18 @@
         android:onClick="allback"
         android:src="@drawable/hleft" />
 
+    <ImageButton
+        android:id="@+id/ib_nulladd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/imageButton1"
+        android:layout_marginEnd="27dp"
+        android:layout_marginRight="27dp"
+        android:background="@color/transparent"
+        android:onClick="allback"
+        android:src="@drawable/nulladd"
+        android:visibility="gone"/>
+
 </RelativeLayout>

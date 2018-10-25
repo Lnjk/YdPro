@@ -24,13 +24,43 @@
         android:layout_marginTop="2.0dip" />
 
     <EditText
-        android:id="@+id/et_search_price"
+        android:id="@+id/et_search_priceZX"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/view_1"
         android:layout_margin="3dp"
         android:background="@drawable/time"
-        android:hint="输入关键字"
+        android:hint="输入执行状态Y/N"
+        android:padding="5dp" />
+
+    <View
+        android:id="@+id/view_zx"
+        style="@style/list_item_seperator_layout"
+        android:layout_below="@+id/et_search_priceZX"
+        android:layout_marginTop="2.0dip" />
+    <EditText
+        android:id="@+id/et_search_priceID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_zx"
+        android:layout_margin="3dp"
+        android:background="@drawable/time"
+        android:hint="输入政策单号"
+        android:padding="5dp" />
+
+    <View
+        android:id="@+id/view_Id"
+        style="@style/list_item_seperator_layout"
+        android:layout_below="@+id/et_search_priceID"
+        android:layout_marginTop="2.0dip" />
+    <EditText
+        android:id="@+id/et_search_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_Id"
+        android:layout_margin="3dp"
+        android:background="@drawable/time"
+        android:hint="输入政策名称"
         android:padding="5dp" />
 
     <View

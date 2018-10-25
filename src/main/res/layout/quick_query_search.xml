@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include layout="@layout/headall" />
+    <include layout="@layout/time" />
+    <!--<view-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_margin="2dp"-->
+        <!--android:layout_height="1dp"-->
+        <!--/>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/et_search_priceID"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:background="@drawable/time"
+            android:hint="输入政策单号"
+            android:padding="5dp" />
+        <EditText
+            android:id="@+id/et_search_price"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:background="@drawable/time"
+            android:hint="输入政策名称"
+            android:padding="5dp" />
+
+    </LinearLayout>
+    <!--<view-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_margin="2dp"-->
+        <!--android:layout_height="1dp"-->
+        <!--/>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <LinearLayout style="@style/price_ll2">
+
+            <TextView
+                style="@style/price_info"
+                android:text="执行状态:"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/et_search_priceZX"
+                style="@style/price_info"
+                android:textSize="16sp"
+                android:hint="Y/N"/>
+
+            <ImageButton
+                android:id="@+id/ib_price_zx"
+                style="@style/price_button_down" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/price_ll2"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btn_price_query_search"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:background="@drawable/button"
+                android:text="查询" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <!--<view-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_margin="2dp"-->
+        <!--android:layout_height="1dp"-->
+        <!--/>-->
+</LinearLayout>
