@@ -180,4 +180,40 @@ public class URLS {
     // http://oa.ydshce.com:8080/InfManagePlatform/ObjupdateObjectType.action?db_Id=DB_BJ15&biln_Type=VP&Type_ID=1&Type_Name=ln
     public static final String vip_updata = base_url
             + "/InfManagePlatform/ObjupdateObjectType.action";
+    //配送信息查询
+    // http://oa.ydshce.com:8080/InfManagePlatform/CustqueryconnInfList.action?db_Id=DB_BJ15&biln_Type=CT
+    public static final String psxx_query = base_url
+            + "/InfManagePlatform/CustqueryconnInfList.action";
+    //配送信息添加
+    // oa.ydshce.com:8080/InfManagePlatform/CustaddCust_Conn.action?Cust_Acc=DB_BJ15&Cust_No=KH1811040005&iTM=3&Con_Per=李宁
+    // &Con_Tel=18511403631&Con_Crt=河北省&Con_Spa=张家口市&Con_Add=河北省张家口市&User_ID=ln123&Def=true
+    public static final String psxx_add = base_url
+            + "/InfManagePlatform/CustaddCust_Conn.action";
+    //配送信息删除
+    // http://oa.ydshce.com:8080/InfManagePlatform/CustdelCust_Conn.action?db_Id=DB_BJ15
+    public static final String psxx_del = base_url
+            + "/InfManagePlatform/CustdelCust_Conn.action";
+    //配送信息更新
+    // http://oa.ydshce.com:8080/InfManagePlatform/CustupdateCust_Conn.action?db_Id=DB_BJ15
+    public static final String psxx_updata = base_url
+            + "/InfManagePlatform/CustupdateCust_Conn.action";
+    //客户信息查询
+    // http://oa.ydshce.com:8080/InfManagePlatform/CustqueryCusts.action?Cust_Acc=DB_BJ15
+    public static final String cust_z_query = base_url
+            + "/InfManagePlatform/CustqueryCusts.action";
+    //客户信息添加
+    // oa.ydshce.com:8080/InfManagePlatform/CustaddCust_Conn.action?Cust_Acc=DB_BJ15&Cust_No=CT1810310001&iTM=3&Con_Per=李宁
+    // &Con_Tel=18511403631&Con_Crt=河北省&Con_Spa=张家口市&Con_Add=河北省张家口市&User_ID=ln123&Def=是
+    public static final String cust_z_add = base_url
+            + "/InfManagePlatform/CustaddCust.action";
+    //客户信息删除
+    // http://oa.ydshce.com:8080/InfManagePlatform/CustdelCust_Conn.action?db_Id=DB_BJ15
+    public static final String cust_z_del = base_url
+            + "/InfManagePlatform/CustdelCust.action";
+    //客户信息更新
+    // http://oa.ydshce.com:8080/InfManagePlatform/CustupdateCust_Conn.action?db_Id=DB_BJ15
+    public static final String cust_z_updata = base_url
+            + "/InfManagePlatform/CustupdateCust.action";
+//    报表（客户完成以后）
+//    http://oa.ydshce.com:8080/InfManagePlatform/Report.action?reporyBusiness=ARP&reprotNo=ArpTG&beginDate=2018-1-1&endDate=2018-10-1
 }

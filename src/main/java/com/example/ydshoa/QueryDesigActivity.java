@@ -50,7 +50,7 @@ import okhttp3.Response;
 public class QueryDesigActivity extends Activity implements View.OnClickListener {
     private Context context;
     private SharedPreferences sp;
-    private String session, user_Name, user_dep, query_db;
+    private String session, user_Name, user_dep, query_db,cust_do;
     RelativeLayout mHead;
     private TextView head, viplb, bbqd, bbyw;
     private EditText sfzh, vipname, zym, lxdh, lxdh2, ssdw, yhkh, khyh, dbr, shyh, vipcard, sfqy, zdyh;
@@ -73,6 +73,7 @@ public class QueryDesigActivity extends Activity implements View.OnClickListener
         sp = getSharedPreferences("ydbg", 0);
         session = sp.getString("SESSION", "");
         query_db = getIntent().getStringExtra("ZT_VIP");
+        cust_do = getIntent().getStringExtra("CUST_DO");
         Log.e("LiNing", "所用账套====" + query_db);
         user_Name = sp.getString("USER_NAME", "");
         user_dep = sp.getString("USER_DEPBM", "");
@@ -119,10 +120,25 @@ public class QueryDesigActivity extends Activity implements View.OnClickListener
                 adapter_design.setSelectItem(position);//刷新
                 adapter_design.notifyDataSetInvalidated();
                 DesignAllInfos.VipList vipList_callback = (DesignAllInfos.VipList) parent.getAdapter().getItem(position);
-                Intent localIntent = getIntent();
-                localIntent.putExtra("VIP_INFOS_ALL", vipList_callback);
-                setResult(1, localIntent);
-                finish();
+                //此处为给新增客户判断设计师是否审核用
+                String stat = vipList_callback.getStat();
+                if(cust_do!=null&&cust_do.equals("1")){
+                    if(!stat.equals("1")){
+                        Toast.makeText(context,"该设计师未审核，选择无效",Toast.LENGTH_LONG).show();
+                    }else{
+
+                        Intent localIntent = getIntent();
+                        localIntent.putExtra("VIP_INFOS_ALL", vipList_callback);
+                        setResult(1, localIntent);
+                        finish();
+                    }
+                }else{
+                    Intent localIntent = getIntent();
+                    localIntent.putExtra("VIP_INFOS_ALL", vipList_callback);
+                    setResult(1, localIntent);
+                    finish();
+                }
+
             }
         });
     }
@@ -385,7 +401,7 @@ public class QueryDesigActivity extends Activity implements View.OnClickListener
                 holder.design_vipno = (TextView) convertView.findViewById(R.id.price_design_no);
                 holder.design_action = (TextView) convertView.findViewById(R.id.price_design_action);
                 holder.design_altedd = (TextView) convertView.findViewById(R.id.price_design_altedd);
-//                holder.design_altecont = (TextView) convertView.findViewById(R.id.price_design_altecont);
+                holder.stat = (TextView) convertView.findViewById(R.id.price_design_stat);
 //                holder.design_alteuser = (TextView) convertView.findViewById(R.id.price_design_alteuser);
 //                    MyHScrollView headSrcrollView = (MyHScrollView) mHead
 //                            .findViewById(R.id.horizontalScrollView1);
@@ -402,6 +418,16 @@ public class QueryDesigActivity extends Activity implements View.OnClickListener
             holder.design_vipno.setText(vipList.getVip_NO());
             holder.design_action.setText(vipList.getCon_Tel());
             holder.design_altedd.setText(vipList.getCard_Num());
+            String stat = vipList.getStat();
+            if(stat.equals("1")){
+                holder.stat.setText("启用");
+            }
+            if(stat.equals("2")){
+                holder.stat.setText("停用");
+            }
+            if(stat.equals("3")){
+                holder.stat.setText("未审核");
+            }
 
 //            if(vipList.getAlteList()!=null&&vipList.getAlteList().size()>0){
 //                String id_itm = vipList.getAlteList().get(0).getITM();
@@ -458,7 +484,7 @@ public class QueryDesigActivity extends Activity implements View.OnClickListener
             public TextView design_vipno;
             public TextView design_action;
             public TextView design_altedd;
-            public TextView design_altecont;
+            public TextView stat;
             public TextView design_alteuser;
         }
     }

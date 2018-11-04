@@ -87,14 +87,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View paramView) {
         switch (paramView.getId()) {
             case R.id.ll_custer:
-                Toast.makeText(this.context, "暂未开放，请等待...", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this.context, CustersAllActivity.class));
                 break;
             case R.id.ll_offer:
-//                Toast.makeText(this.context, "生产管理暂未开放，请等待...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this.context, "生产管理暂未开放，请等待...", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this.context, DesignerActivity.class));
                 break;
             case R.id.ll_form:
-                startActivity(new Intent(this.context, CustersAllActivity.class));
+
                 Toast.makeText(this.context, "暂未开放，请等待...", Toast.LENGTH_SHORT).show();
 //                startActivity(new Intent(this.context, FormActivity.class));
                 break;

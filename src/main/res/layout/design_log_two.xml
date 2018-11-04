@@ -39,14 +39,14 @@
 
     <View style="@style/list_item_cell_seperator_layout" />
 
-    <!--<TextView
+    <TextView
         android:id="@+id/textView5_dep"
         style="@style/head_scrow"
-        android:text="变更内容" />
+        android:text="是否启用" />
 
     <View style="@style/list_item_cell_seperator_layout" />
 
-    <TextView
+    <!--<TextView
         android:id="@+id/textView6_cust"
         style="@style/head_scrow"
         android:text="变更用户" />-->

@@ -156,7 +156,13 @@
         <activity android:name=".VipDoAllActivity" />
         <activity android:name=".LocalInfosActivity" />
         <activity android:name=".QueryDesigActivity" />
-        <activity android:name=".CustersAllActivity"></activity>
+        <activity android:name=".CustersAllActivity" />
+        <activity android:name=".ModeInfoActivity" />
+        <activity android:name=".MoveAllInfoActivity" />
+        <activity android:name=".QueryCustersActivity" />
+        <activity android:name=".SalesNum_ARPActivity" />
+        <activity android:name=".SalesQueryArpActivity" />
+        <activity android:name=".ArpOutActivity"></activity>
     </application>
 
 </manifest>

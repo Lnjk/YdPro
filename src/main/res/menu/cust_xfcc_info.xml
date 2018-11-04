@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--sigle：单选/all:多选-->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/check1_xfcc"
+            android:title="高"/>
+        <item
+            android:id="@+id/check2_xfcc"
+            android:title="中"/>
+        <item
+            android:id="@+id/check3_xfcc"
+            android:title="低"/>
+    </group>
+
+</menu>

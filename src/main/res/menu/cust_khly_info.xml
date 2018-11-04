@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--sigle：单选/all:多选-->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/check1_khly"
+            android:title="TV"/>
+        <item
+            android:id="@+id/check2_khly"
+            android:title="纸媒"/>
+        <item
+            android:id="@+id/check3_khly"
+            android:title="广播"/>
+        <item
+            android:id="@+id/check4_khly"
+            android:title="网络"/>
+        <item
+            android:id="@+id/check5_khly"
+            android:title="异业"/>
+        <item
+            android:id="@+id/check6_khly"
+            android:title="亲友"/>
+        <item
+            android:id="@+id/check7_khly"
+            android:title="同司"/>
+        <item
+            android:id="@+id/check8_khly"
+            android:title="活动"/>
+        <item
+            android:id="@+id/check9_khly"
+            android:title="设计师"/>
+    </group>
+
+</menu>

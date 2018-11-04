@@ -212,8 +212,6 @@ public class OutInfoActivity extends Activity {
 	private ArrayList<ArrayList<String>> getRecordData() {
 		recordList = new ArrayList<ArrayList<String>>();
 
-
-
 		for (int i = 0; i < out_data.size(); i++) {
 			ArrayList<String> beanList = new ArrayList<String>();
 			if (ln.contains("账套名称")) {

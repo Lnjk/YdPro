@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ll_touch_vip"
+    android:id="@+id/ll_touch_da_all"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/smallbk"
@@ -43,9 +43,9 @@
             style="@style/price_button"
             android:text="保存" />
         <Button
-            android:id="@+id/btn_cust_all_sh"
+            android:id="@+id/btn_cust_all_out"
             style="@style/price_button"
-            android:text="关闭" />
+            android:text="跟进" />
 
     </LinearLayout>
 
@@ -53,7 +53,7 @@
    <ScrollView
          android:id="@+id/scrollView1"
          android:layout_width="fill_parent"
-         android:layout_height="200dp"
+         android:layout_height="wrap_content"
          android:layout_alignParentLeft="true"
          android:layout_below="@+id/include1">
 
@@ -107,7 +107,7 @@
                     style="@style/design_name"
                     android:text="档案日期:" />
                 <TextView
-                    android:id="@+id/tv_vipcard"
+                    android:id="@+id/tv_time_cust"
                     style="@style/design_name"
                     android:text="2018-10-25" />
 
@@ -120,10 +120,9 @@
                     style="@style/price_name"
                     android:text="档案编号:" />
 
-                <EditText
-                    android:id="@+id/et_cust_all_usercard"
+                <TextView
+                    android:id="@+id/et_cust_all_dabh"
                     style="@style/design_editext"
-                    android:maxLength="18"
                     />
 
             </LinearLayout>
@@ -143,7 +142,7 @@
                     android:text="客户姓名:" />
 
                 <EditText
-                    android:id="@+id/et_cust_all_username"
+                    android:id="@+id/et_cust_all_khxm"
                     style="@style/design_editext" />
 
             </LinearLayout>
@@ -155,7 +154,7 @@
                     android:text="注册电话:" />
 
                 <EditText
-                    android:id="@+id/et_cust_all_username_old"
+                    android:id="@+id/et_cust_all_zcdh"
                     style="@style/design_editext" />
 
             </LinearLayout>
@@ -174,7 +173,7 @@
                     android:text="客户年龄:" />
 
                 <EditText
-                    android:id="@+id/et_cust_all_phone"
+                    android:id="@+id/et_cust_all_khnl"
                     style="@style/design_editext" />
 
             </LinearLayout>
@@ -186,7 +185,7 @@
                     android:text="客户职业:" />
 
                 <EditText
-                    android:id="@+id/et_cust_all_phone_two"
+                    android:id="@+id/et_cust_all_khzy"
                     style="@style/design_editext" />
 
             </LinearLayout>
@@ -205,11 +204,11 @@
                     android:text="客户性别:" />
 
                 <TextView
-                    android:id="@+id/et_cust_all_vip"
+                    android:id="@+id/et_cust_all_xb"
                     style="@style/design_editext" />
 
                 <ImageButton
-                    android:id="@+id/ib_cust_all_vip"
+                    android:id="@+id/ib_cust_all_xb"
                     style="@style/price_button_down" />
 
             </LinearLayout>
@@ -221,11 +220,13 @@
                     android:text="配送信息:" />
 
                 <EditText
-                    android:id="@+id/et_cust_all_comp"
-                    style="@style/design_editext" />
+                    android:id="@+id/et_cust_all_psxx"
+                    style="@style/design_editext"
+                    android:hint="1/2/3"/>
                 <ImageButton
                     android:id="@+id/ib_cust_all_psxx"
-                    style="@style/price_button_down" />
+                    style="@style/price_button_down"
+                    />
 
             </LinearLayout>
         </LinearLayout>
@@ -243,10 +244,10 @@
                     android:text="消费层次:" />
 
                 <TextView
-                    android:id="@+id/et_cust_all_dep"
+                    android:id="@+id/et_cust_all_xfcc"
                     style="@style/design_editext" />
                 <ImageButton
-                    android:id="@+id/ib_cust_all_bbqd"
+                    android:id="@+id/ib_cust_all_xfcc"
                     style="@style/price_button_down" />
 
             </LinearLayout>
@@ -258,10 +259,10 @@
                     android:text="客户来源:" />
 
                 <TextView
-                    android:id="@+id/et_cust_all_salno"
+                    android:id="@+id/et_cust_all_khly"
                     style="@style/design_editext" />
                 <ImageButton
-                    android:id="@+id/ib_cust_all_yw"
+                    android:id="@+id/ib_cust_all_khly"
                     style="@style/price_button_down" />
             </LinearLayout>
         </LinearLayout>
@@ -278,8 +279,8 @@
                     style="@style/design_name"
                     android:text="楼盘类型:" />
 
-                <EditText
-                    android:id="@+id/et_cust_all_bankno"
+                <TextView
+                    android:id="@+id/et_cust_all_lplx"
                     style="@style/design_editext" />
                 <ImageButton
                     android:id="@+id/ib_cust_all_lplx"
@@ -293,8 +294,8 @@
                     style="@style/price_name"
                     android:text="装修类别:" />
 
-                <EditText
-                    android:id="@+id/et_cust_all_bankdeposit"
+                <TextView
+                    android:id="@+id/et_cust_all_zxlb"
                     style="@style/design_editext" />
                 <ImageButton
                     android:id="@+id/ib_cust_all_zxlb"
@@ -335,10 +336,42 @@
                     style="@style/design_name"
                     android:text="材料应用:" />
 
-                <EditText
-                    android:id="@+id/et_cust_all_材料应用"
-                    style="@style/design_editext"
-                    android:text="（）卧室（）客厅（）厨房（）卫生间（）阳台（）地下室"/>
+                <CheckBox
+                    android:id="@+id/cb_ws"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="卧室"
+                    android:textSize="10sp"/>
+                <CheckBox
+                    android:id="@+id/cb_kt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="客厅"
+                    android:textSize="10sp"/>
+                <CheckBox
+                    android:id="@+id/cb_cf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="厨房"
+                    android:textSize="10sp"/>
+                <CheckBox
+                    android:id="@+id/cb_wsj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="卫生间"
+                    android:textSize="10sp"/>
+                <CheckBox
+                    android:id="@+id/cb_yt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="阳台"
+                    android:textSize="10sp"/>
+                <CheckBox
+                    android:id="@+id/cb_dxs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="地下室"
+                    android:textSize="10sp"/>
 
             </LinearLayout>
 
@@ -357,7 +390,7 @@
                     android:text="装修风格:" />
 
                 <EditText
-                    android:id="@+id/et_cust_all_guatname"
+                    android:id="@+id/et_cust_all_zxfg"
                     style="@style/design_editext" />
 
             </LinearLayout>
@@ -368,8 +401,8 @@
                     style="@style/price_name"
                     android:text="装修预算:" />
 
-                <TextView
-                    android:id="@+id/et_cust_all_userno"
+                <EditText
+                    android:id="@+id/et_cust_all_zxys"
                     style="@style/design_editext" />
 
             </LinearLayout>
@@ -389,7 +422,7 @@
                     android:text="装修公司:" />
 
                 <EditText
-                    android:id="@+id/et_cust_all_userchk"
+                    android:id="@+id/et_cust_all_zxgs"
                     style="@style/design_editext" />
             </LinearLayout>
 
@@ -399,11 +432,11 @@
                     style="@style/price_name"
                     android:text="设计师:" />
                 <TextView
-                    android:id="@+id/tv_cust_all_isno"
+                    android:id="@+id/tv_cust_all_sjs"
                     style="@style/design_editext"
                     />
                 <ImageButton
-                    android:id="@+id/ib_cust_all_sfqy"
+                    android:id="@+id/ib_cust_all_sjs"
                     style="@style/price_button_down" />
 
             </LinearLayout>
@@ -452,10 +485,12 @@
                     style="@style/design_name"
                     android:text="销售终端:" />
 
-                <EditText
+                <TextView
                     android:id="@+id/et_cust_all_xszd"
                     style="@style/design_editext" />
-
+                <ImageButton
+                    android:id="@+id/ib_cust_all_xszd"
+                    style="@style/price_button_down" />
             </LinearLayout>
 
             <LinearLayout style="@style/price_ll2">
@@ -509,71 +544,21 @@
     <View
         style="@style/list_item_seperator_layout"
         android:layout_marginTop="2.0dip" />
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:gravity="center"
+        android:layout_marginTop="10dp">
 
-<LinearLayout
-    android:id="@+id/ll_gz_list"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:visibility="gone">
-    <Button
-        android:id="@+id/btn_cust_all_gz"
-        style="@style/price_button"
-        android:text="跟踪信息" />
-    <Button
-        android:id="@+id/btn_cust_all_bj"
-        style="@style/price_button"
-        android:text="报价信息" />
-    <Button
-        android:id="@+id/btn_cust_all_xs"
-        style="@style/price_button"
-        android:text="销售信息" />
-    <Button
-        android:id="@+id/btn_cust_all_hk"
-        style="@style/price_button"
-        android:text="回款信息" />
-    <Button
-        android:id="@+id/btn_cust_all_ps"
-        style="@style/price_button"
-        android:text="配送信息" />
-    <Button
-        android:id="@+id/btn_cust_all_shouhou"
-        style="@style/price_button"
-        android:text="售后信息" />
-</LinearLayout>
-    <!--<include
-        android:id="@+id/design_head"
-        layout="@layout/design_log" />
+        <Button
+            android:id="@+id/btn_cust_gz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="跟进" />
 
-    <View
-        style="@style/list_item_seperator_layout"
-        android:layout_marginTop="2.0dip" />-->
-
-
-    <!--<include
-        android:id="@+id/design_head_item"
-        layout="@layout/design_dairy_item" />
-
-    <View style="@style/price_view" />-->
-
-    <ListView
-        android:id="@+id/lv_cust_all_header"
-        android:layout_width="fill_parent"
-        android:layout_height="0.0dip"
-        android:layout_weight="1.0"
-        android:cacheColorHint="#00000000"
-        android:divider="@color/color_dark_grey"
-        android:dividerHeight="1.0dip"
-        android:fastScrollEnabled="true"
-        android:focusable="true"
-        android:listSelector="#ffff0000"
-        android:scrollingCache="true" />
-
-    <View style="@style/price_view" />
-    </LinearLayout>
+    </LinearLayout>-->
 
 </LinearLayout>

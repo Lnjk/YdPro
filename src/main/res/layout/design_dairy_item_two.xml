@@ -41,14 +41,14 @@
 
     <View style="@style/list_item_cell_seperator_layout" />
 
-    <!--<TextView
-        android:id="@+id/price_design_altecont"
+    <TextView
+        android:id="@+id/price_design_stat"
         style="@style/price_editext_item_two"
-        android:text="Alte_Cont" />
+        android:text="stat" />
 
     <View style="@style/list_item_cell_seperator_layout" />
 
-    <TextView
+    <!--<TextView
         android:id="@+id/price_design_alteuser"
         style="@style/price_editext_item_two"
         android:text="Alte_User" />

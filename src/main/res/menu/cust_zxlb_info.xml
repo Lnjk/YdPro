@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--sigle：单选/all:多选-->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/check1_zxlb"
+            android:title="新房装修"/>
+        <item
+            android:id="@+id/check2_zxlb"
+            android:title="老房改造"/>
+        <item
+            android:id="@+id/check3_zxlb"
+            android:title="开发精装"/>
+    </group>
+
+</menu>

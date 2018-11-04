@@ -268,9 +268,21 @@ public class DecisionActivity extends Activity implements OnClickListener {
 				}
 				break;
 			case R.id.btn_dec_shrec:
-				// Intent intent2=new Intent(context, SalesQueryActivity.class);
-				// intent2.putExtra("reportB", "ARP");
-				// startActivity(intent2);
+				if (ps_id.equals("1")) {
+					sp.edit().putString("TJ", head.getText().toString()).commit();
+					Intent intent = new Intent(context, SalesNum_ARPActivity.class);
+					intent.putExtra("reportB", "ARP");
+					startActivity(intent);
+				} else {
+					if (modIds_get.contains("spmrt")) {
+						sp.edit().putString("TJ", head.getText().toString())
+								.commit();
+						Intent intent = new Intent(context, SalesNum_ARPActivity.class);
+						intent.putExtra("reportB", "ARP");
+						startActivity(intent);
+
+					}
+				}
 				break;
 
 			default:

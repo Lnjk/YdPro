@@ -158,6 +158,12 @@
         <activity android:name="com.example.ydshoa.LocalInfosActivity" />
         <activity android:name="com.example.ydshoa.QueryDesigActivity" />
         <activity android:name="com.example.ydshoa.CustersAllActivity" />
+        <activity android:name="com.example.ydshoa.ModeInfoActivity" />
+        <activity android:name="com.example.ydshoa.MoveAllInfoActivity" />
+        <activity android:name="com.example.ydshoa.QueryCustersActivity" />
+        <activity android:name="com.example.ydshoa.SalesNum_ARPActivity" />
+        <activity android:name="com.example.ydshoa.SalesQueryArpActivity" />
+        <activity android:name="com.example.ydshoa.ArpOutActivity" />
     </application>
 
 </manifest>
