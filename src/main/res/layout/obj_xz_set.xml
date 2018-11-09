@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include
+        android:id="@+id/include2"
+        layout="@layout/headall" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView27"
+        android:layout_alignStart="@+id/textView27"
+        android:layout_alignTop="@+id/radioGroup3"
+        android:layout_marginTop="20dp"
+        android:text="跟进方式" />
+    <RadioGroup
+        android:id="@+id/radioGroup3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/textView25"
+        android:layout_toRightOf="@+id/textView25"
+        android:layout_below="@+id/include2"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/cb_zjdm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="直接登门" />
+
+            <RadioButton
+                android:id="@+id/cb_yydm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="邀约登门" />
+
+            <RadioButton
+                android:id="@+id/cb_dhgj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="电话跟进" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/cb_wldh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="网络对话" />
+            <RadioButton
+                android:id="@+id/cb_sjdx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="手机短信" />
+
+            <RadioButton
+                android:id="@+id/cb_qt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="其他" />
+        </LinearLayout>
+    </RadioGroup>
+    <View
+        style="@style/list_item_seperator_layout"
+        android:layout_below="@+id/radioGroup3"
+        android:layout_margin="2.0dip"
+        android:id="@+id/view2" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/view3"
+        android:layout_alignLeft="@+id/textView17"
+        android:layout_alignStart="@+id/textView17"
+        android:layout_marginBottom="19dp"
+        android:text="阶段类别" />
+    <RadioGroup
+        android:id="@+id/rg_two"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_toEndOf="@+id/textView27"
+        android:layout_toRightOf="@+id/textView27"
+        android:layout_below="@+id/radioGroup3"
+        android:layout_marginTop="10dp" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/cb_zkh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="准客户" />
+
+            <RadioButton
+                android:id="@+id/cb_yxkh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/cb_yzqzkh"
+                android:text="意向客户" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/cb_yzqzkh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="优质潜在客户" />
+
+            <RadioButton
+                android:id="@+id/cb_ybqzkh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="一般潜在客户" />
+        </LinearLayout>
+    </RadioGroup>
+
+
+    <View
+        style="@style/list_item_seperator_layout"
+        android:layout_below="@+id/rg_two"
+        android:layout_margin="2.0dip"
+        android:id="@+id/view3" />
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rg_two"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:text="跟进主题:" />
+
+    <EditText
+        android:id="@+id/et_gjzt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView17"
+        android:layout_alignBottom="@+id/textView17"
+        android:layout_toEndOf="@+id/textView17"
+        android:layout_toRightOf="@+id/textView17"
+        android:layout_marginLeft="5dp"
+        android:background="@null"
+        android:hint="跟进主题" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_gjzt"
+        android:layout_marginTop="19dp"
+        android:layout_marginLeft="5dp"
+        android:text="跟进详情:" />
+
+    <EditText
+        android:id="@+id/et_gjxq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView18"
+        android:layout_alignBottom="@+id/textView18"
+        android:layout_toEndOf="@+id/textView18"
+        android:layout_toRightOf="@+id/textView18"
+        android:layout_marginLeft="5dp"
+        android:background="@null"
+        android:hint="跟进详情" />
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_gjxq"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:text="跟进人员:" />
+
+    <EditText
+        android:id="@+id/et_gjry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView19"
+        android:layout_alignBottom="@+id/textView19"
+        android:layout_toEndOf="@+id/textView19"
+        android:layout_toRightOf="@+id/textView19"
+        android:layout_marginLeft="5dp"
+        android:background="@null"
+        android:hint="跟进人员" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/et_gjry"
+        android:layout_alignBottom="@+id/et_gjry"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="11dp"
+        android:layout_toEndOf="@+id/et_gjry"
+        android:layout_toRightOf="@+id/et_gjry"
+        android:text="跟进日期:" />
+
+    <TextView
+        android:id="@+id/tv_gjrq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView22"
+        android:layout_alignBottom="@+id/textView22"
+        android:layout_toEndOf="@+id/textView22"
+        android:layout_toRightOf="@+id/textView22"
+        android:layout_marginLeft="5dp"
+        android:text="2018-11-8" />
+
+    <Button
+        android:id="@+id/btn_ok_obj"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/et_gjry"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button"
+        android:text="确定" />
+
+
+
+
+</RelativeLayout>

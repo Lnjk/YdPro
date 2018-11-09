@@ -33,6 +33,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -129,6 +131,10 @@ public class SalesQueryTwoActivity extends Activity implements OnClickListener {
     private ArrayList<HashMap<String, Object>> dList;
     private HashMap<String, Object> item;
 
+    private ImageButton sum;
+    private TextView tv_sum;
+    public String arp_sum;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -194,6 +200,7 @@ public class SalesQueryTwoActivity extends Activity implements OnClickListener {
 
         head = (TextView) findViewById(R.id.all_head);
         head.setTextSize(15);
+        tv_sum = (TextView) findViewById(R.id.tv_sfhz);
         String jc_bb = sp.getString("JC", "");
         String tj_bb = sp.getString("TJ", "");
         String zbHead = jc_bb + "/" + tj_bb + "/" + reportname;
@@ -240,6 +247,9 @@ public class SalesQueryTwoActivity extends Activity implements OnClickListener {
         back = (Button) findViewById(R.id.btn_back_zb);
         // salesButton = (ImageButton) findViewById(R.id.ib_sale_getsub);
         // numButton = (ImageButton) findViewById(R.id.ib_sale_getNum);
+        //后补（是否小计）
+        sum = (ImageButton) findViewById(R.id.ib_sfhz);
+        sum.setOnClickListener(this);
         start.setOnClickListener(this);
         stop.setOnClickListener(this);
         make.setOnClickListener(this);
@@ -280,7 +290,26 @@ public class SalesQueryTwoActivity extends Activity implements OnClickListener {
         // }
         getXSqx_all();
     }
-
+    private void showPopupMenu(View view) {
+        // View当前PopupMenu显示的相对View的位置
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        // menu布局
+        popupMenu.getMenuInflater().inflate(R.menu.sfhz, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.check1
+                        || menuItem.getItemId() == R.id.check2
+                        ) {
+                    menuItem.setChecked(!menuItem.isChecked());
+                    tv_sum.setText(menuItem.getTitle());
+                    return true;
+                }
+                return false;
+            }
+        });
+        popupMenu.show();
+    }
     private void getXSqx_all() {
         String qx_info = sp.getString("CBQX", "");
         // String all_info = getIntent().getStringExtra("sale_tjInfo");
@@ -426,7 +455,13 @@ public class SalesQueryTwoActivity extends Activity implements OnClickListener {
                 break;
             case R.id.btn_making:
                 // if (saleNum.getText().toString().equals("")) {
-
+                String sfhz_sum = tv_sum.getText().toString();
+                if(sfhz_sum.equals("是")){
+                    arp_sum="T";
+                }
+                if(sfhz_sum.equals("否")){
+                    arp_sum="F";
+                }
                 if (reportnos.equals("")) {
                     Toast.makeText(context, "请选择报表种类", Toast.LENGTH_LONG).show();
                 } else if (start.getText().toString().equals("")
@@ -491,7 +526,9 @@ public class SalesQueryTwoActivity extends Activity implements OnClickListener {
                 finish();
                 // saveTime();
                 break;
-
+            case R.id.ib_sfhz:
+                showPopupMenu(sum);
+                break;
             default:
                 break;
         }
@@ -666,6 +703,7 @@ public class SalesQueryTwoActivity extends Activity implements OnClickListener {
                 .add("endDate", stop.getText().toString())
                 // .add("reporyBusiness", "SA")SAL
                 .add("reporyBusiness", reportBus)
+                .add("isGroupSum", arp_sum)
                 .add("query_DB", sub_querys_db_all).add("bilNo", "")
                 .add("custNo", "").add("custName", "").add("custPhone", "")
                 .add("custAddress", "").add("inputNo", "")
@@ -1055,6 +1093,7 @@ public class SalesQueryTwoActivity extends Activity implements OnClickListener {
                 .add("endDate", stop.getText().toString())
                 // .add("reporyBusiness", "SA")
                 .add("reporyBusiness", reportBus)
+                .add("isGroupSum", arp_sum)
                 .add("query_DB", sub_querys_db).add("bilNo", sub_bils)
                 .add("custNo", sub_custNos).add("custName", sub_custNames)
                 .add("custPhone", sub_custPhones)

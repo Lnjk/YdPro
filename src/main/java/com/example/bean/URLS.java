@@ -216,4 +216,19 @@ public class URLS {
             + "/InfManagePlatform/CustupdateCust.action";
 //    报表（客户完成以后）
 //    http://oa.ydshce.com:8080/InfManagePlatform/Report.action?reporyBusiness=ARP&reprotNo=ArpTG&beginDate=2018-1-1&endDate=2018-10-1
+//跟踪信息查询
+public static final String cust_gzxx_query = base_url
+        + "/InfManagePlatform/CustqueryCust_FollList.action";
+    //跟踪信息添加
+    // oa.ydshce.com:8080/InfManagePlatform/CustaddCust_Foll.action?Cust_Acc=DB_BJ15&Cust_No=KH1810310007&Foll_DD=2018-11-6&Foll_Way=其他
+    // &Foll_Them=销售&Foll_Case=开始&Stag_Class=意向客户&Foll_Per=李宁&User_ID=ln123&Foll_No=CF1811070001
+
+    public static final String cust_gzxx_add = base_url
+            + "/InfManagePlatform/CustaddCust_Foll.action";
+    //跟踪信息删除
+    public static final String cust_gzxx_del = base_url
+            + "/InfManagePlatform/CustdelCust_Foll.action";
+    //跟踪信息更新
+    public static final String cust_gzxx_updata = base_url
+            + "/InfManagePlatform/CustupdateCust_Foll.action";
 }

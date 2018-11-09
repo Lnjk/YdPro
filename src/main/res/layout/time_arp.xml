@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="截止日期:" />
+        <Button
+            android:id="@+id/btn_start_time"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/time"
+            android:text="开始时间"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分类汇总否:" />
+        <TextView
+            android:id="@+id/tv_sfhz"
+            style="@style/design_editext"
+            android:text="否"/>
+        <ImageButton
+            android:id="@+id/ib_sfhz"
+            style="@style/price_button_down"
+            android:layout_marginRight="10dp"/>
+    </LinearLayout>
+
+</LinearLayout>

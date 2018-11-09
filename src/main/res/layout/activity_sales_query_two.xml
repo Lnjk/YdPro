@@ -15,6 +15,25 @@
         <include layout="@layout/headall" />
 
         <include layout="@layout/time" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="分类汇总否:" />
+            <TextView
+                android:id="@+id/tv_sfhz"
+                style="@style/design_editext"
+                android:text="否"/>
+            <ImageButton
+                android:id="@+id/ib_sfhz"
+                style="@style/price_button_down" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--sigle：单选/all:多选-->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/check1_lb"
+            android:title="准客户"/>
+        <item
+            android:id="@+id/check2_lb"
+            android:title="意向客户"/>
+        <item
+            android:id="@+id/check3_lb"
+            android:title="优质潜在客户"/>
+        <item
+            android:id="@+id/check4_lb"
+            android:title="一般潜在客户"/>
+    </group>
+
+</menu>

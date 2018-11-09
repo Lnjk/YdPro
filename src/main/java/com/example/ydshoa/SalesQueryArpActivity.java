@@ -11,16 +11,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -38,6 +42,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -54,12 +59,13 @@ import okhttp3.Response;
 public class SalesQueryArpActivity extends Activity implements View.OnClickListener {
     private Context context;
     private SharedPreferences sp;
-    public String session, zc_xy, dy_xy;
+    public String session, zc_xy, dy_xy,arp_sum;
     String url = URLS.sale_url;
-    private String reportBus, reportnos, reportname,ps_id,str_time,startTime, stopTime,sub_querys_db,str_all,head_all;
-    private TextView head;
+    private String reportBus, reportnos, reportname, ps_id, str_time, startTime, stopTime, sub_querys_db, str_all, head_all;
+    private TextView head, tv_sum;
+    private ImageButton sum;
     private ListView lv_get_arp;
-    private Button start, stop, make, condicion, out, printe, back;
+    private Button start, make, condicion, out, printe, back;
     private ArrayList<String> querryDBs, querryDBs_all, bilNos, custNos,
             custNames, custPhones, custAdress, inputNos, cust_os, rems,
             prdMarks, query_deps, query_sups, query_custs, query_users,
@@ -68,15 +74,17 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
             prdIndexs, prdWhs, zts, zcs, dys, cbs, mls, mlls, jes, cbs_dj,
             mls_dj, mlls_dj, jes_dj;
     List<String> arp_head_json = new ArrayList<String>();
-    TextView zt,time,money,zt_1,jg_1,time_1,money_1,zt_2,jg_2,jg_2_2,time_2,money_2,zt_3,jg_3,jg_3_3,jg_3_3_3,time_3,money_3;
+    TextView zt, time, money, zt_1, jg_1, time_1, money_1, zt_2, jg_2, jg_2_2, time_2, money_2, zt_3, jg_3, jg_3_3, jg_3_3_3, time_3, money_3;
     ArpQueryInfosAdapter adapter_arp;
-    int count,flag_index;
+    int count, flag_index;
     FrameLayout mHead;
     private PopupWindow popupWindow;
     public static List<ArpInfos.Data> out_infos_arp = new ArrayList<ArpInfos.Data>();//转出数据
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_sales_query_arp);
         context = SalesQueryArpActivity.this;
         sp = getSharedPreferences("ydbg", 0);
@@ -100,6 +108,7 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
         mHead.setOnTouchListener(new ListViewAndHeadViewTouchLinstener());
         head = (TextView) findViewById(R.id.all_head);
         head.setTextSize(15);
+        tv_sum = (TextView) findViewById(R.id.tv_sfhz);
         String jc_bb = sp.getString("JC", "");
         String tj_bb = sp.getString("TJ", "");
         String zbHead = jc_bb + "/" + tj_bb + "/" + reportname;
@@ -107,8 +116,6 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
         lv_get_arp = (ListView) findViewById(R.id.lv_saleGet_header_arp);
         lv_get_arp.setOnTouchListener(new ListViewAndHeadViewTouchLinstener());
         start = (Button) findViewById(R.id.btn_start_time);
-        stop = (Button) findViewById(R.id.btn_stop_time);
-        stop.setText(str_time);
         Calendar cal = Calendar.getInstance();
         cal.setTime(new Date());
         cal.set(Calendar.DAY_OF_MONTH, 1); //当前月1号和最后日期
@@ -119,8 +126,9 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
         out = (Button) findViewById(R.id.btn_out_arp);
         printe = (Button) findViewById(R.id.btn_print_arp);
         back = (Button) findViewById(R.id.btn_back_zb_arp);
+        sum = (ImageButton) findViewById(R.id.ib_sfhz);
+        sum.setOnClickListener(this);
         start.setOnClickListener(this);
-        stop.setOnClickListener(this);
         make.setOnClickListener(this);
         condicion.setOnClickListener(this);
         out.setOnClickListener(this);
@@ -137,7 +145,7 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btn_start_time:
                 Calendar c_star = Calendar.getInstance();
                 int mYear_s = c_star.get(Calendar.YEAR); // 获取当前年份
@@ -155,33 +163,20 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
 //					}, 2015, 0, 1).show();
                         }, mYear_s, 0, 1).show();
                 break;
-            case R.id.btn_stop_time:
-                Calendar c = Calendar.getInstance();
-                int mYear = c.get(Calendar.YEAR); // 获取当前年份
-                int mMonth = c.get(Calendar.MONTH);// 获取当前月份
-                int mDay = c.get(Calendar.DAY_OF_MONTH);// 获取当日期cal.set(Calendar.DAY_OF_MONTH, 1);
-                Log.e("LiNing", "y" + mYear + "/y" + mMonth + "/r" + mDay);
-                new DatePickerDialog(context, DatePickerDialog.THEME_HOLO_LIGHT,
-                        new DatePickerDialog.OnDateSetListener() {
-
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                stopTime = String.format("%d-%d-%d", year,
-                                        monthOfYear + 1, dayOfMonth);
-                                stop.setText(stopTime);
-
-                            }
-                        }, mYear, mMonth, mDay).show();//获取当前时间
-                break;
             case R.id.btn_making_arp:
+                String sfhz_sum = tv_sum.getText().toString();
+                if(sfhz_sum.equals("是")){
+                    arp_sum="T";
+                }
+                if(sfhz_sum.equals("否")){
+                    arp_sum="F";
+                }
                 if (reportnos.equals("")) {
                     Toast.makeText(context, "请选择报表种类", Toast.LENGTH_LONG).show();
                 } else if (start.getText().toString().equals("")
-                        || stop.getText().toString().equals("")) {
+                        ) {
                     Toast.makeText(context, "请选择时间", Toast.LENGTH_LONG).show();
-                }else{
-                    getAllQuery();// 获取查询数据（all）
+                } else {
 
                     if (flag_index == 1) {
 //                        getRootTorF();
@@ -206,8 +201,8 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
             case R.id.btn_out_arp:
                 if (zc_xy.equals("true")) {
                     Intent intent2 = new Intent(context, ArpOutActivity.class);
-                    intent2.putExtra("Stime", start.getText().toString());
-                    intent2.putExtra("Etime", stop.getText().toString());
+                    intent2.putExtra("Stime", "1900-11-1");
+                    intent2.putExtra("Etime", start.getText().toString());
                     intent2.putExtra("RTNAME", reportname);
                     intent2.putExtra("RT", reportnos);
                     intent2.putExtra("INFO", head_all);
@@ -230,8 +225,33 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
                 getSpToNull();
                 finish();
                 break;
+            case R.id.ib_sfhz:
+                showPopupMenu(sum);
+                break;
         }
     }
+
+    private void showPopupMenu(View view) {
+        // View当前PopupMenu显示的相对View的位置
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        // menu布局
+        popupMenu.getMenuInflater().inflate(R.menu.sfhz, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.check1
+                        || menuItem.getItemId() == R.id.check2
+                        ) {
+                    menuItem.setChecked(!menuItem.isChecked());
+                    tv_sum.setText(menuItem.getTitle());
+                    return true;
+                }
+                return false;
+            }
+        });
+        popupMenu.show();
+    }
+
     // 提交信息，开始制表
     private void postAllInfo() {
         String all_info = sp.getString("sale_tjInfo", "");
@@ -325,6 +345,7 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
             getAllQuery();
         }
     }
+
     private void beforPost() {
         // getFlagreportNo();// 获取编号标识
         // reportNo_get = saleNum.getText().toString();
@@ -461,9 +482,10 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
 
         FormBody body = new FormBody.Builder()
                 .add("reprotNo", reportnos)
-                .add("beginDate", start.getText().toString())
-                .add("endDate", stop.getText().toString())
+                .add("beginDate", "1900-11-1")
+                .add("endDate", start.getText().toString())
                 .add("reporyBusiness", reportBus)
+                .add("isGroupSum", arp_sum)
                 .add("query_DB", sub_querys_db).add("bilNo", sub_bils)
                 .add("custNo", sub_custNos).add("custName", sub_custNames)
                 .add("custPhone", sub_custPhones)
@@ -507,15 +529,15 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
                     Toast.makeText(SalesQueryArpActivity.this, "无数据。。。", Toast.LENGTH_LONG)
                             .show();
                 }
-                final ArpInfos aDb1 = new Gson().fromJson(str_all,ArpInfos.class);
-                if(aDb1!=null){
+                final ArpInfos aDb1 = new Gson().fromJson(str_all, ArpInfos.class);
+                if (aDb1 != null) {
                     SalesQueryArpActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             List<ArpInfos.Data> data_arp = aDb1.getData();
                             String head_arp = aDb1.getHead();
-                            Log.e("LiNing", "---数据--" + data_arp );
-                            Log.e("LiNing", "---标题--" + head_arp );
+                            Log.e("LiNing", "---数据--" + data_arp);
+                            Log.e("LiNing", "---标题--" + head_arp);
                             if (head_arp != null) {
                                 String[] head_spls = head_arp.split(",");
                                 Log.e("LiNing", "=====" + head_arp.split(","));
@@ -528,9 +550,9 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
                             }
                             findViewById(R.id.one_zt).setVisibility(View.VISIBLE);
                             getFlagreportNo();
-                            if(data_arp!=null){
+                            if (data_arp != null) {
 
-                                adapter_arp=new ArpQueryInfosAdapter(count,R.layout.arp_dthead,data_arp,context);
+                                adapter_arp = new ArpQueryInfosAdapter(count, R.layout.arp_dthead, data_arp, context);
                                 lv_get_arp.setAdapter(adapter_arp);
                                 adapter_arp.notifyDataSetChanged();
                             }
@@ -541,7 +563,7 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
                         }
                     });
                 }
-                }
+            }
 
 
             @Override
@@ -550,6 +572,7 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
             }
         });
     }
+
     // 提交信息，开始制表(all)
     private void getAllQuery() {
         String all_info = sp.getString("all_query", "");
@@ -618,6 +641,7 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
 
         }
     }
+
     private void getInfos_arp() {
         String querys_db_str = "";// 此处解决数据重复出现（不能放出去）
         for (String querys_db : querryDBs_all) {
@@ -656,11 +680,12 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
         String sub_query_users_all = query_users_str.substring(0,
                 query_users_str.length() - 1);
         OkHttpClient client = new OkHttpClient();
-        FormBody body= new FormBody.Builder()
+        FormBody body = new FormBody.Builder()
                 .add("reprotNo", reportnos)
-                .add("beginDate", start.getText().toString())
-                .add("endDate", stop.getText().toString())
+                .add("beginDate", "1900-11-1")
+                .add("endDate", start.getText().toString())
                 .add("reporyBusiness", reportBus)
+                .add("isGroupSum", arp_sum)
                 .add("query_DB", sub_querys_db_all).add("bilNo", "")
                 .add("custNo", "").add("custName", "").add("custPhone", "")
                 .add("custAddress", "").add("inputNo", "")
@@ -694,15 +719,15 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
                     Toast.makeText(SalesQueryArpActivity.this, "无数据。。。", Toast.LENGTH_LONG)
                             .show();
                 }
-                final ArpInfos aDb1 = new Gson().fromJson(str_arp,ArpInfos.class);
-                if(aDb1!=null){
+                final ArpInfos aDb1 = new Gson().fromJson(str_arp, ArpInfos.class);
+                if (aDb1 != null) {
                     SalesQueryArpActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             List<ArpInfos.Data> data_arp = aDb1.getData();
                             head_all = aDb1.getHead();
-                            Log.e("LiNing", "---数据--" + data_arp );
-                            Log.e("LiNing", "---标题--" + head_all );
+                            Log.e("LiNing", "---数据--" + data_arp);
+                            Log.e("LiNing", "---标题--" + head_all);
                             if (head_all != null) {
                                 String[] head_spls = head_all.split(",");
 
@@ -716,9 +741,9 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
                             }
                             findViewById(R.id.one_zt).setVisibility(View.VISIBLE);
                             getFlagreportNo();
-                            if(data_arp!=null){
+                            if (data_arp != null) {
 
-                                adapter_arp=new ArpQueryInfosAdapter(count,R.layout.arp_dthead,data_arp,context);
+                                adapter_arp = new ArpQueryInfosAdapter(count, R.layout.arp_dthead, data_arp, context);
                                 lv_get_arp.setAdapter(adapter_arp);
                                 adapter_arp.notifyDataSetChanged();
                             }
@@ -738,22 +763,24 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
             }
         });
     }
-    public class ArpQueryInfosAdapter extends BaseAdapter{
-        MyHScrollView scrollView1,headSrcrollView;
-        int id_layout,num;
+
+    public class ArpQueryInfosAdapter extends BaseAdapter {
+        MyHScrollView scrollView1, headSrcrollView;
+        int id_layout, num;
         List<ArpInfos.Data> infos_arp;
         LayoutInflater inflater;
         //item高亮显示
         private int selectItem = -1;
+
         public void setSelectItem(int selectItem) {
             this.selectItem = selectItem;
         }
 
         public ArpQueryInfosAdapter(int count, int arp_dthead, List<ArpInfos.Data> data_arp, Context context) {
-            this.num=count;
-            this.id_layout=arp_dthead;
-            this.infos_arp=data_arp;
-            this.inflater=LayoutInflater.from(context);
+            this.num = count;
+            this.id_layout = arp_dthead;
+            this.infos_arp = data_arp;
+            this.inflater = LayoutInflater.from(context);
         }
 
         @Override
@@ -775,7 +802,7 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder holder;
 
-            if(convertView==null){
+            if (convertView == null) {
                 synchronized (SalesQueryArpActivity.this) {
                     convertView = inflater.inflate(id_layout, null);
                     holder = new ViewHolder();
@@ -817,65 +844,70 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
                     }
                     convertView.setTag(holder);
                 }
-            }else {
-                holder= (ViewHolder) convertView.getTag();
+            } else {
+                holder = (ViewHolder) convertView.getTag();
             }
             ArpInfos.Data data = infos_arp.get(position);
-            Log.e("LiNing","数据是。。。"+num+"-----"+data.getAffiliateNo());
-            if(num==0){
-                Log.e("LiNing","数据是。。。"+num+"-----"+data.getAffiliateNo());
-                holder.db_sigle.setText(data.getAffiliateNo());
-                holder.time_sigle.setText(data.getBiln_DD());
-                holder.money_sigle.setText(data.getSAmtn_ARPJ());
-            }else if(num==1){
-                holder.db_sigle.setText(data.getAffiliateNo());
-                holder.time_sigle.setText(data.getBiln_DD());
-                holder.money_sigle.setText(data.getSAmtn_ARPJ());
-                if(reportnos.equals("ArpTGP")){
+            Log.e("LiNing", "数据是。。。" + num + "-----" + data.getAffiliateNo());
+            holder.db_sigle.setText(data.getAffiliateNo());
+            holder.time_sigle.setText(data.getBiln_DD());
+//                holder.money_sigle.setText(data.getSAmtn_ARPJ());
+            holder.money_sigle.setText(new BigDecimal(data.getSAmtn_ARPJ()).setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            if (num == 0) {
+                Log.e("LiNing", "数据是。。。" + num + "-----" + data.getAffiliateNo());
+//                holder.db_sigle.setText(data.getAffiliateNo());
+//                holder.time_sigle.setText(data.getBiln_DD());
+////                holder.money_sigle.setText(data.getSAmtn_ARPJ());
+//                holder.money_sigle.setText(new BigDecimal(data.getSAmtn_ARPJ()).setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            } else if (num == 1) {
+//                holder.db_sigle.setText(data.getAffiliateNo());
+//                holder.time_sigle.setText(data.getBiln_DD());
+//                holder.money_sigle.setText(data.getSAmtn_ARPJ());
+                if (reportnos.equals("ArpTGP")) {
                     holder.jg_one.setText(data.getCompDepName());
                 }
-                if(reportnos.equals("ArpTGGC")){
+                if (reportnos.equals("ArpTGGC")) {
                     holder.jg_one.setText(data.getSalesTerminalName());
                 }
-                if(reportnos.equals("ArpTGC")){
+                if (reportnos.equals("ArpTGC")) {
                     holder.jg_one.setText(data.getSalesChannelName());
                 }
-                if(reportnos.equals("ArpTGS")){
+                if (reportnos.equals("ArpTGS")) {
                     holder.jg_one.setText(data.getSellingOperationName());
                 }
-                if(reportnos.equals("ArpTGD")){
+                if (reportnos.equals("ArpTGD")) {
                     holder.jg_one.setText(data.getSalesDepartmentName());
                 }
-            }else if(num==2){
-                holder.db_sigle.setText(data.getAffiliateNo());
-                holder.time_sigle.setText(data.getBiln_DD());
-                holder.money_sigle.setText(data.getSAmtn_ARPJ());
+            } else if (num == 2) {
+//                holder.db_sigle.setText(data.getAffiliateNo());
+//                holder.time_sigle.setText(data.getBiln_DD());
+//                holder.money_sigle.setText(data.getSAmtn_ARPJ());
                 holder.jg_one.setText(data.getCompDepName());
-                if(reportnos.equals("ArpTGPC")){
+                if (reportnos.equals("ArpTGPC")) {
                     holder.jg_two.setText(data.getSalesChannelName());
                 }
-                if(reportnos.equals("ArpTGPGC")){
+                if (reportnos.equals("ArpTGPGC")) {
                     holder.jg_two.setText(data.getSalesTerminalName());
                 }
-                if(reportnos.equals("ArpTGPS")){
+                if (reportnos.equals("ArpTGPS")) {
                     holder.jg_two.setText(data.getSellingOperationName());
                 }
-                if(reportnos.equals("ArpTGPD")){
+                if (reportnos.equals("ArpTGPD")) {
                     holder.jg_two.setText(data.getSalesDepartmentName());
                 }
-            }else if(num==3){
-                holder.db_sigle.setText(data.getAffiliateNo());
-                holder.time_sigle.setText(data.getBiln_DD());
-                holder.money_sigle.setText(data.getSAmtn_ARPJ());
+            } else if (num == 3) {
+//                holder.db_sigle.setText(data.getAffiliateNo());
+//                holder.time_sigle.setText(data.getBiln_DD());
+//                holder.money_sigle.setText(data.getSAmtn_ARPJ());
                 holder.jg_one.setText(data.getCompDepName());
                 holder.jg_three.setText(data.getSalesTerminalName());
-                if(reportnos.equals("ArpTGPCGC")){
+                if (reportnos.equals("ArpTGPCGC")) {
                     holder.jg_two.setText(data.getSalesChannelName());
                 }
-                if(reportnos.equals("ArpTGPDGC")){
+                if (reportnos.equals("ArpTGPDGC")) {
                     holder.jg_two.setText(data.getSalesDepartmentName());
                 }
-                if(reportnos.equals("ArpTGPSGC")){
+                if (reportnos.equals("ArpTGPSGC")) {
                     holder.jg_two.setText(data.getSellingOperationName());
                 }
             }
@@ -884,31 +916,31 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
             } else {
                 convertView.setBackgroundColor(Color.TRANSPARENT);
             }
-            out_infos_arp=infos_arp;
+            out_infos_arp = infos_arp;
             return convertView;
         }
 
         private void scrow(View convertView) {
 
-            if(num==0){
+            if (num == 0) {
 
                 scrollView1 = (MyHScrollView) convertView
                         .findViewById(R.id.horizontalScrollView1);
                 headSrcrollView = (MyHScrollView) mHead
                         .findViewById(R.id.horizontalScrollView1);
-            }else  if(num==1){
+            } else if (num == 1) {
 
                 scrollView1 = (MyHScrollView) convertView
                         .findViewById(R.id.horizontalScrollView_two);
                 headSrcrollView = (MyHScrollView) mHead
                         .findViewById(R.id.horizontalScrollView_two);
-            }else  if(num==2){
+            } else if (num == 2) {
 
                 scrollView1 = (MyHScrollView) convertView
                         .findViewById(R.id.horizontalScrollView_three);
                 headSrcrollView = (MyHScrollView) mHead
                         .findViewById(R.id.horizontalScrollView_three);
-            }else  if(num==3){
+            } else if (num == 3) {
 
                 scrollView1 = (MyHScrollView) convertView
                         .findViewById(R.id.horizontalScrollView_four);
@@ -919,6 +951,7 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
                     .AddOnScrollChangedListener(new OnScrollChangedListenerImp(
                             scrollView1));
         }
+
         class OnScrollChangedListenerImp implements
                 MyHScrollView.OnScrollChangedListener {
             MyHScrollView mScrollViewArg;
@@ -933,8 +966,9 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
                 this.mScrollViewArg.smoothScrollTo(paramInt1, paramInt2);
             }
         }
-        class ViewHolder{
-            LinearLayout ll_one,ll_two,ll_three,ll_four;
+
+        class ViewHolder {
+            LinearLayout ll_one, ll_two, ll_three, ll_four;
             TextView db_sigle;
             TextView time_sigle;
             TextView money_sigle;
@@ -943,57 +977,60 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
             TextView jg_three;
         }
     }
+
     private void getFlagreportNo() {
-        zt= (TextView) findViewById(R.id.one_zt);
+        zt = (TextView) findViewById(R.id.one_zt);
         zt.setText(arp_head_json.get(0));
-        if(reportnos.equals("ArpTGGC")||reportnos.equals("ArpTGP")||reportnos.equals("ArpTGC")||
-                reportnos.equals("ArpTGS")||reportnos.equals("ArpTGD")){
+        if (reportnos.equals("ArpTGGC") || reportnos.equals("ArpTGP") || reportnos.equals("ArpTGC") ||
+                reportnos.equals("ArpTGS") || reportnos.equals("ArpTGD")) {
             findViewById(R.id.ll_two).setVisibility(View.VISIBLE);
-            jg_1= (TextView) findViewById(R.id.two_jg);
-            time_1= (TextView) findViewById(R.id.two_time);
-            money_1= (TextView) findViewById(R.id.two_money);
+            jg_1 = (TextView) findViewById(R.id.two_jg);
+            time_1 = (TextView) findViewById(R.id.two_time);
+            money_1 = (TextView) findViewById(R.id.two_money);
             jg_1.setText(arp_head_json.get(1));
             time_1.setText(arp_head_json.get(2));
             money_1.setText(arp_head_json.get(3));
-            count=1;
-        }else  if(reportnos.equals("ArpTGPGC")||reportnos.equals("ArpTGPC")||
-                reportnos.equals("ArpTGPS")||reportnos.equals("ArpTGPD")){
+            count = 1;
+        } else if (reportnos.equals("ArpTGPGC") || reportnos.equals("ArpTGPC") ||
+                reportnos.equals("ArpTGPS") || reportnos.equals("ArpTGPD")) {
             findViewById(R.id.ll_three).setVisibility(View.VISIBLE);
-            jg_2= (TextView) findViewById(R.id.three_jg);
-            jg_2_2= (TextView) findViewById(R.id.three_jg2);
-            time_2= (TextView) findViewById(R.id.three_time);
-            money_2= (TextView) findViewById(R.id.three_money);
+            jg_2 = (TextView) findViewById(R.id.three_jg);
+            jg_2_2 = (TextView) findViewById(R.id.three_jg2);
+            time_2 = (TextView) findViewById(R.id.three_time);
+            money_2 = (TextView) findViewById(R.id.three_money);
             jg_2.setText(arp_head_json.get(1));
             jg_2_2.setText(arp_head_json.get(2));
             time_2.setText(arp_head_json.get(3));
             money_2.setText(arp_head_json.get(4));
-            count=2;
-        }else  if(reportnos.equals("ArpTGPCGC")||reportnos.equals("ArpTGPDGC")||
-                reportnos.equals("ArpTGPSGC")){
+            count = 2;
+        } else if (reportnos.equals("ArpTGPCGC") || reportnos.equals("ArpTGPDGC") ||
+                reportnos.equals("ArpTGPSGC")) {
             findViewById(R.id.ll_four).setVisibility(View.VISIBLE);
-            jg_3= (TextView) findViewById(R.id.four_jg);
-            jg_3_3= (TextView) findViewById(R.id.four_jg2);
-            jg_3_3_3= (TextView) findViewById(R.id.four_jg3);
-            time_3= (TextView) findViewById(R.id.four_time);
-            money_3= (TextView) findViewById(R.id.four_money);
+            jg_3 = (TextView) findViewById(R.id.four_jg);
+            jg_3_3 = (TextView) findViewById(R.id.four_jg2);
+            jg_3_3_3 = (TextView) findViewById(R.id.four_jg3);
+            time_3 = (TextView) findViewById(R.id.four_time);
+            money_3 = (TextView) findViewById(R.id.four_money);
             jg_3.setText(arp_head_json.get(1));
             jg_3_3.setText(arp_head_json.get(2));
             jg_3_3_3.setText(arp_head_json.get(3));
             time_3.setText(arp_head_json.get(4));
             money_3.setText(arp_head_json.get(5));
-            count=3;
-        }else  if(reportnos.equals("ArpTG")){
+            count = 3;
+        } else if (reportnos.equals("ArpTG")) {
             findViewById(R.id.ll_one).setVisibility(View.VISIBLE);
-            time= (TextView) findViewById(R.id.four_time);
-            money= (TextView) findViewById(R.id.four_money);
+            time = (TextView) findViewById(R.id.four_time);
+            money = (TextView) findViewById(R.id.four_money);
             time.setText(arp_head_json.get(1));
             money.setText(arp_head_json.get(2));
-            count=0;
+            count = 0;
         }
     }
+
     public void allback(View v) {
         finish();
     }
+
     // 表头滑动事件
     class ListViewAndHeadViewTouchLinstener implements View.OnTouchListener {
         ListViewAndHeadViewTouchLinstener() {
@@ -1002,19 +1039,19 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
         @Override
         public boolean onTouch(View v, MotionEvent event) {
             //判断不同类型标题
-            if(count==0){
+            if (count == 0) {
                 ((HorizontalScrollView) SalesQueryArpActivity.this.mHead
                         .findViewById(R.id.horizontalScrollView1))
                         .onTouchEvent(event);
-            }else if(count==1){
+            } else if (count == 1) {
                 ((HorizontalScrollView) SalesQueryArpActivity.this.mHead
                         .findViewById(R.id.horizontalScrollView_two))
                         .onTouchEvent(event);
-            }else if(count==2){
+            } else if (count == 2) {
                 ((HorizontalScrollView) SalesQueryArpActivity.this.mHead
                         .findViewById(R.id.horizontalScrollView_three))
                         .onTouchEvent(event);
-            }else if(count==3){
+            } else if (count == 3) {
                 ((HorizontalScrollView) SalesQueryArpActivity.this.mHead
                         .findViewById(R.id.horizontalScrollView_four))
                         .onTouchEvent(event);
@@ -1024,6 +1061,7 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
         }
 
     }
+
     private void getpopWindow() {
         popupWindow = new PopupWindow();
         popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -1034,6 +1072,7 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
         popupWindow.showAtLocation(getWindow().getDecorView(), Gravity.CENTER,
                 0, 0);
     }
+
     private void getSpToNull() {
         sp.edit().putString("CSTOSNO_CDTA", "").commit();
         sp.edit().putString("REM_CDTA", "").commit();

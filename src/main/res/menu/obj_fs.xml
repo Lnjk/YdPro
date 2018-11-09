@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--sigle：单选/all:多选-->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/check1_fs"
+            android:title="直接登门"/>
+        <item
+            android:id="@+id/check2_fs"
+            android:title="邀约登门"/>
+        <item
+            android:id="@+id/check3_fs"
+            android:title="电话跟进"/>
+        <item
+            android:id="@+id/check4_fs"
+            android:title="网络对话"/>
+        <item
+            android:id="@+id/check5_fs"
+            android:title="手机短信"/>
+        <item
+            android:id="@+id/check6_fs"
+            android:title="其他"/>
+    </group>
+
+</menu>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_touch_da_all"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/smallbk"
+    android:orientation="vertical">
+
+    <include layout="@layout/head_cust_gz" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_jbxx"
+        style="@style/price_ll1"
+        android:orientation="vertical">
+
+        <View style="@style/price_view" />
+
+        <LinearLayout
+            style="@style/price_ll1"
+            android:orientation="horizontal">
+
+
+            <LinearLayout style="@style/price_ll2">
+
+                <TextView
+                    style="@style/design_name"
+                    android:text="跟进方式:" />
+
+                <TextView
+                    android:id="@+id/tv_gj_obj_fs"
+                    style="@style/design_editext"
+                    android:hint="直接登门"/>
+
+                <ImageButton
+                    android:id="@+id/ib_gj_obj_fs"
+                    style="@style/price_button_down" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/price_ll2">
+
+                <TextView
+                    style="@style/price_name"
+                    android:text="阶段类别:" />
+
+                <TextView
+                    android:id="@+id/tv_gj_obj_lb"
+                    style="@style/design_editext"
+                    android:hint="准客户" />
+
+                <ImageButton
+                    android:id="@+id/ib_gj_obj_lb"
+                    style="@style/price_button_down" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View style="@style/price_view" />
+
+    <LinearLayout
+        style="@style/price_ll1"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+
+        <LinearLayout style="@style/price_ll2">
+
+            <TextView
+                style="@style/design_name"
+                android:text="跟进日期:" />
+
+            <TextView
+                android:id="@+id/tv_gj_obj_time"
+                style="@style/design_name"
+                android:text="2018-11-25" />
+
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/price_ll2">
+
+            <TextView
+                style="@style/price_name"
+                android:text="跟进人员:" />
+
+            <EditText
+                android:id="@+id/et_gj_obj_ry"
+                style="@style/design_editext" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View style="@style/price_view" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/design_name"
+            android:text="跟进主题:" />
+
+        <EditText
+            android:id="@+id/et_gj_obj_zt"
+            style="@style/design_editext" />
+    </LinearLayout>
+
+    <View style="@style/price_view" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/price_name"
+            android:text="跟进详情:" />
+
+        <EditText
+            android:id="@+id/et_gj_obj_xq"
+            style="@style/design_editext" />
+    </LinearLayout>
+
+    <View style="@style/price_view" />
+
+
+    <Button
+        android:id="@+id/btn_ok_obj"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button"
+        android:text="确定" />
+
+
+</LinearLayout>

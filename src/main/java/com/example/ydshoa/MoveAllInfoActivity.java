@@ -62,8 +62,8 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
     private List<String> idList,idList_dz,tel_List;
     private AlertDialog alertDialog;
     private String session,db_zt,user_Id,date_dd,dabh_befor ,sszt_befor,sub_id,sub_dz,url_do;
-    private TextView head,zt,dacard,yhbh,sfmr;
-    private EditText dzbh,shr,lxdh,ss,qx,xxdz;
+    private TextView dzbh,head,zt,dacard,yhbh,sfmr;
+    private EditText shr,lxdh,ss,qx,xxdz;
     private ImageButton zt_xl,mr_xl;
     LinearLayout touch;
     String url_dh_price = URLS.price_num_ls;
@@ -187,7 +187,9 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
         yhbh = (TextView) view.findViewById(R.id.et_move_yhbh);
         sfmr = (TextView) view.findViewById(R.id.tv_move_ismr);
         dacard = (TextView) view.findViewById(R.id.tv_move_bh);
-        dzbh= (EditText) view.findViewById(R.id.et_move_dzbh);
+        dzbh= (TextView) view.findViewById(R.id.et_move_dzbh);
+        int i = custList.size() + 1;
+        dzbh.setText(""+i);
         shr= (EditText) view.findViewById(R.id.et_move_username);
         lxdh= (EditText) view.findViewById(R.id.et_move_phone);
         ss= (EditText) view.findViewById(R.id.et_move_ss);
@@ -227,7 +229,18 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
         view.findViewById(R.id.btn_move_save).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                postPsxx();
+                if(do_save==1){
+                    if (tel_List.contains(lxdh.getText().toString())) {
+                        Toast.makeText(context, "该电话已存在", Toast.LENGTH_LONG).show();
+                    }
+                    //此处修改。。。（只能点击一次）
+                }else{
+
+                    postPsxx();
+                }
+                if(do_save==2){
+                    postPsxx();
+                }
             }
         });
 
@@ -238,45 +251,51 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
     }
 
     private void delCust() {
-        OkHttpClient client = new OkHttpClient();
-        FormBody body = new FormBody.Builder()
-                .add("Cust_Acc", sszt_befor)
-                .add("Cust_No", dabh_befor)
-                .add("iTM", sub_id)
-                .build();
-        client.newCall(
-                new Request.Builder().addHeader("cookie", session).url(ps_del)
-                        .post(body).build()).enqueue(new Callback() {
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String str = response.body().string();
-                Log.e("LiNing", "删除结果====" + str);
-                final JsonRootBean localJsonRootBean = (JsonRootBean) new Gson()
-                        .fromJson(str, JsonRootBean.class);
-                if (localJsonRootBean != null) {
-                    MoveAllInfoActivity.this.runOnUiThread(new Runnable() {
+        if(idList!=null&&idList.size()>0){
+            for (int i=0;i<idList.size();i++) {
+                String del_id = idList.get(i);
+                OkHttpClient client = new OkHttpClient();
+                FormBody body = new FormBody.Builder()
+                        .add("Cust_Acc", sszt_befor)
+                        .add("Cust_No", dabh_befor)
+                        .add("iTM", del_id)
+                        .build();
+                client.newCall(
+                        new Request.Builder().addHeader("cookie", session).url(ps_del)
+                                .post(body).build()).enqueue(new Callback() {
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String str = response.body().string();
+                        Log.e("LiNing", "删除结果====" + str);
+                        final JsonRootBean localJsonRootBean = (JsonRootBean) new Gson()
+                                .fromJson(str, JsonRootBean.class);
+                        if (localJsonRootBean != null) {
+                            MoveAllInfoActivity.this.runOnUiThread(new Runnable() {
 
-                        @Override
-                        public void run() {
-                            boolean rlo = localJsonRootBean.getRLO();
-                            if (rlo == true) {
-                                Toast.makeText(MoveAllInfoActivity.this,
-                                        "删除结果", Toast.LENGTH_SHORT).show();
-                                getInfoCust();
-                            } else if (rlo == false) {
-                                Toast.makeText(MoveAllInfoActivity.this,
-                                        "删除结果", Toast.LENGTH_SHORT).show();
-                            }
+                                @Override
+                                public void run() {
+                                    boolean rlo = localJsonRootBean.getRLO();
+                                    if (rlo == true) {
+                                        Toast.makeText(MoveAllInfoActivity.this,
+                                                "删除结果", Toast.LENGTH_SHORT).show();
+                                        getInfoCust();
+                                    } else if (rlo == false) {
+                                        Toast.makeText(MoveAllInfoActivity.this,
+                                                "删除结果", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                         }
-                    });
-                }
-            }
+                    }
 
-            @Override
-            public void onFailure(Call call, IOException e) {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
 
+                    }
+                });
             }
-        });
+        }
+
     }
 
     private void showPopupMenu(View view) {
@@ -303,14 +322,15 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
     private void postPsxx() {
         if (do_save == 1) {
             url_do = ps_add;
+
         } else if (do_save == 2) {
             url_do = ps_set;
         }
         Log.e("LiNing", "---------" + tel_List);
         String add_lxdh = lxdh.getText().toString();
-        if (tel_List.contains(add_lxdh)) {
-            Toast.makeText(context, "该电话已存在", Toast.LENGTH_LONG).show();
-        } else {
+//        if (tel_List.contains(add_lxdh)) {
+//            Toast.makeText(context, "该电话已存在", Toast.LENGTH_LONG).show();
+//        } else {
         String add_zt = zt.getText().toString();
         String add_dacard = dacard.getText().toString();
         String add_dzbh = dzbh.getText().toString();
@@ -373,7 +393,7 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
 
             }
         });
-    }
+//    }
     }
 
 

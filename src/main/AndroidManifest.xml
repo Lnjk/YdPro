@@ -162,7 +162,8 @@
         <activity android:name=".QueryCustersActivity" />
         <activity android:name=".SalesNum_ARPActivity" />
         <activity android:name=".SalesQueryArpActivity" />
-        <activity android:name=".ArpOutActivity"></activity>
+        <activity android:name=".ArpOutActivity" />
+        <activity android:name=".TraceAllInfosActivity"></activity>
     </application>
 
 </manifest>

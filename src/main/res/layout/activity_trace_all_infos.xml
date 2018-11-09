@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_touch_da_all"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/smallbk"
+    android:orientation="vertical">
+
+    <include layout="@layout/head_cust_gz" />
+
+    <LinearLayout
+        style="@style/price_ll1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_trace_all_add"
+            style="@style/price_button"
+            android:text="新增" />
+        <Button
+            android:id="@+id/btn_trace_all_reset"
+            style="@style/price_button"
+            android:text="编辑" />
+        <Button
+            android:id="@+id/btn_trace_all_del"
+            style="@style/price_button"
+            android:text="删除" />
+        <Button
+            android:id="@+id/btn_trace_all_save"
+            style="@style/price_button"
+            android:text="保存" />
+    </LinearLayout>
+
+    <View
+        style="@style/list_item_seperator_layout"
+        android:layout_marginTop="2.0dip" />
+
+</LinearLayout>

@@ -164,6 +164,7 @@
         <activity android:name="com.example.ydshoa.SalesNum_ARPActivity" />
         <activity android:name="com.example.ydshoa.SalesQueryArpActivity" />
         <activity android:name="com.example.ydshoa.ArpOutActivity" />
+        <activity android:name="com.example.ydshoa.TraceAllInfosActivity" />
     </application>
 
 </manifest>

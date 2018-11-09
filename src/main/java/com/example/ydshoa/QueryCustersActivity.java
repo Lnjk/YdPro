@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bean.CustAllObjectInfos;
 import com.example.bean.CustesrAllInfos;
 import com.example.bean.DesignAllInfos;
 import com.example.bean.URLS;
@@ -42,7 +43,8 @@ public class QueryCustersActivity extends Activity {
     private TextView head;
     private ListView lv_cust_qry;
     String cust_get = URLS.cust_z_query;
-    List<CustesrAllInfos.CustList> custList;
+//    List<CustesrAllInfos.CustList> custList;
+    List<CustAllObjectInfos.CustList> custList;
     CustersQtyAdapter qtyAdapter;
 
     @Override
@@ -68,7 +70,8 @@ public class QueryCustersActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 qtyAdapter.setSelectItem(position);//刷新
                 qtyAdapter.notifyDataSetInvalidated();
-                CustesrAllInfos.CustList cust_callback = (CustesrAllInfos.CustList) parent.getAdapter().getItem(position);
+//                CustesrAllInfos.CustList cust_callback = (CustesrAllInfos.CustList) parent.getAdapter().getItem(position);
+                CustAllObjectInfos.CustList cust_callback = (CustAllObjectInfos.CustList) parent.getAdapter().getItem(position);
                     Intent localIntent = getIntent();
                     localIntent.putExtra("CUST_QTY",cust_callback);
                     setResult(1, localIntent);
@@ -94,7 +97,8 @@ public class QueryCustersActivity extends Activity {
                 Log.e("LiNing", "id_type结果====" + info_all);
                 Gson gson = new GsonBuilder().setDateFormat(
                         "yyyy-MM-dd HH:mm:ss").create();
-                CustesrAllInfos custesrAllInfos = gson.fromJson(info_all, CustesrAllInfos.class);
+                CustAllObjectInfos custesrAllInfos = gson.fromJson(info_all, CustAllObjectInfos.class);
+//                CustAllObjectInfos custesrAllInfos = gson.fromJson(info_all, CustAllObjectInfos.class);
                 Log.e("LiNing", "id_type结果====" + custesrAllInfos);
                 if (custesrAllInfos != null) {
                     custList = custesrAllInfos.getCustList();
@@ -120,7 +124,7 @@ public class QueryCustersActivity extends Activity {
     public class CustersQtyAdapter extends BaseAdapter {
         int id_row_layout;
         LayoutInflater mInflater;
-        List<CustesrAllInfos.CustList> custqty_infos;
+        List<CustAllObjectInfos.CustList> custqty_infos;
         //item高亮显示
         private int selectItem = -1;
 
@@ -128,7 +132,7 @@ public class QueryCustersActivity extends Activity {
             this.selectItem = selectItem;
         }
 
-        public CustersQtyAdapter(int custer_head, List<CustesrAllInfos.CustList> custList, Context context) {
+        public CustersQtyAdapter(int custer_head, List<CustAllObjectInfos.CustList> custList, Context context) {
             this.id_row_layout = custer_head;
             this.custqty_infos = custList;
             this.mInflater = LayoutInflater.from(context);
@@ -163,7 +167,7 @@ public class QueryCustersActivity extends Activity {
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            CustesrAllInfos.CustList custList_adp = custqty_infos.get(position);
+            CustAllObjectInfos.CustList custList_adp = custqty_infos.get(position);
             holder.cust_dabh_qty.setText(custList_adp.getCust_No());
             holder.cust_zt_qty.setText(custList_adp.getCust_Acc());
             holder.cust_xm_qty.setText(custList_adp.getCust_Name());

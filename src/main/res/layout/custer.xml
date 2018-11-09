@@ -20,7 +20,7 @@
     <View
         android:id="@+id/first_line"
         android:layout_width="1dp"
-        android:layout_height="25dp" 
+        android:layout_height="25dp"
         android:background="@color/color_dark_grey"
         android:layout_toRightOf="@+id/cust_listDeleteCheckBox"/>
 

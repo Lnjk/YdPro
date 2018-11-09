@@ -14,9 +14,10 @@
 
         <include layout="@layout/headall" />
 
-        <include layout="@layout/time" />
+        <include
+            layout="@layout/time_arp" />
+        <View style="@style/list_item_seperator_layout" />
     </LinearLayout>
-
     <LinearLayout
         android:id="@+id/ll_sale_project_arp"
         android:layout_width="fill_parent"
@@ -88,8 +89,6 @@
             layout="@layout/arp_dthead" />
 
         <View style="@style/list_item_seperator_layout" />
-
-
 
         <ListView
             android:id="@+id/lv_saleGet_header_arp"

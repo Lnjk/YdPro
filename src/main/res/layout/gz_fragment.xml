@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_touch_da_all"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/smallbk"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/ll_xxobj"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_id_btnName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="跟踪信息"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_gzxx_xg"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/button"
+                    android:text="修改" />
+
+                <Button
+                    android:id="@+id/btn_gzxx_sc"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/button"
+                    android:text="删除" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            style="@style/list_item_seperator_layout"
+            android:layout_marginTop="2.0dip" />
+
+        <include
+            android:id="@+id/xxObj_head"
+            layout="@layout/xxobj_head" />
+        <View style="@style/list_item_seperator_layout" />
+
+        <ListView
+            android:id="@+id/lv_xxobj_header"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1.0"
+            android:cacheColorHint="#00000000"
+            android:dividerHeight="1.0dip"
+            android:drawSelectorOnTop="true"
+            android:fastScrollEnabled="true"
+            android:focusable="true"
+            android:listSelector="#00000000"
+            android:scrollingCache="true" />
+    </LinearLayout>
+</LinearLayout>
