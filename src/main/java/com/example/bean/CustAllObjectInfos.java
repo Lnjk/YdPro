@@ -287,7 +287,7 @@ public class CustAllObjectInfos {
     }
     public class DecoVipObject implements Serializable{
 
-//        private List<AlteList> alteList;
+//        private List<AlteList> alteList;//时间包含T
         private String bank_Deposit;
         private String bank_No;
         private String card_Num;

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--sigle：单选/all:多选-->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/check1"
+            android:title="未审核"/>
+        <item
+            android:id="@+id/check2"
+            android:title="停用"/>
+        <item
+            android:id="@+id/check3"
+            android:title="启用"/>
+    </group>
+
+</menu>

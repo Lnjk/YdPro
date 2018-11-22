@@ -175,10 +175,13 @@
 
                     <TextView
                         style="@style/design_name"
+
                         android:text="联系电话:" />
 
                     <EditText
                         android:id="@+id/et_design_phone"
+                        android:maxLength="11"
+                        android:digits="1234567890"
                         style="@style/design_editext" />
 
                 </LinearLayout>
@@ -187,10 +190,13 @@
 
                     <TextView
                         style="@style/price_name"
+
                         android:text="联系电话2:" />
 
                     <EditText
                         android:id="@+id/et_design_phone_two"
+                        android:maxLength="11"
+                        android:digits="1234567890"
                         style="@style/design_editext" />
 
                 </LinearLayout>
@@ -281,6 +287,8 @@
 
                     <EditText
                         android:id="@+id/et_design_bankno"
+                        android:maxLength="19"
+                        android:digits="1234567890"
                         style="@style/design_editext" />
 
                 </LinearLayout>

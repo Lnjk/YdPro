@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/main_search_address"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+        <ListView
+            android:id="@+id/main_search_pois"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></ListView>
+
+        <RelativeLayout
+            android:id="@+id/rl_search"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/color_white"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_toRightOf="@+id/iv_left"
+                android:background="@color/color_red">
+
+                <ImageView
+                    android:id="@+id/iv_search"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="6dp"
+                    android:paddingRight="6dp" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/et_search"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_toRightOf="@+id/iv_search"
+                    android:background="@color/color_red"
+                    android:gravity="center_vertical"
+                    android:hint="请输入您的收货地址"
+                    android:paddingLeft="2dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/iv_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="6dp"
+                android:padding="14dp"
+                android:src="@drawable/left" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <com.baidu.mapapi.map.MapView
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:onClick="maptrue">
+        </com.baidu.mapapi.map.MapView>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@color/transparent"
+                android:src="@drawable/xialabutton" />
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/lv_near_address"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:cacheColorHint="#00000000"
+            android:descendantFocusability="beforeDescendants"
+            android:fastScrollEnabled="true"
+            android:scrollbars="none" />
+
+    </LinearLayout>
+
+ <!--   <RelativeLayout
+        android:id="@+id/rl_gps"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+
+        android:background="#ffffff">
+
+        <ImageView
+            android:id="@+id/img_load_animation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:src="@drawable/ic_launcher"
+            />
+
+        <TextView
+            android:id="@+id/tv_net"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="请联网或打开GPS"
+            android:textSize="20sp"
+            android:visibility="gone"
+            />
+    </RelativeLayout>-->
+</RelativeLayout>

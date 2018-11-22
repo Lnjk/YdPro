@@ -20,8 +20,7 @@ public class MyApplication extends Application {
 		context = getApplicationContext();
 		handler = new Handler();
 		mainThread = Thread.currentThread();
-		
-		
+
 //		CrashHelper.init(new CrashHandler() {
 //
 //			@Override

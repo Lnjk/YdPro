@@ -57,7 +57,7 @@
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300sp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/include1">
 
@@ -93,7 +93,17 @@
 
                 <LinearLayout style="@style/price_ll2">
 
+                    <TextView
+                        style="@style/price_name"
+                        android:text="楼盘地图:" />
 
+                    <TextView
+                        android:id="@+id/et_cust_all_dt"
+                        style="@style/price_info" />
+
+                    <ImageButton
+                        android:id="@+id/ib_cust_all_dt"
+                        style="@style/price_button_down" />
                 </LinearLayout>
 
 
@@ -160,6 +170,8 @@
 
                     <EditText
                         android:id="@+id/et_cust_all_zcdh"
+                        android:maxLength="11"
+                        android:digits="1234567890"
                         style="@style/design_editext" />
 
                 </LinearLayout>
@@ -180,6 +192,7 @@
 
                     <EditText
                         android:id="@+id/et_cust_all_khnl"
+                        android:digits="1234567890"
                         style="@style/design_editext" />
 
                 </LinearLayout>
@@ -340,7 +353,83 @@
 
             <View style="@style/price_view" />
 
-            <LinearLayout
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="2dp"
+                    android:textSize="12sp"
+                    android:text="材料应用:" />
+
+                <CheckBox
+                    android:id="@+id/cb_ws"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/textView20"
+                    android:layout_toRightOf="@+id/textView20"
+                    android:textSize="12sp"
+                    android:text="卧室" />
+
+                <CheckBox
+                    android:id="@+id/cb_kt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/cb_yt"
+                    android:layout_alignBottom="@+id/cb_yt"
+                    android:layout_alignLeft="@+id/cb_ws"
+                    android:layout_alignStart="@+id/cb_ws"
+                    android:text="客厅"
+                    android:textSize="12sp" />
+
+                <CheckBox
+                    android:id="@+id/cb_cf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/cb_ws"
+                    android:layout_toRightOf="@+id/cb_ws"
+                    android:textSize="12sp"
+                    android:text="厨房" />
+
+                <CheckBox
+                    android:id="@+id/cb_yt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@+id/cb_ws"
+                    android:layout_toRightOf="@+id/cb_ws"
+                    android:text="阳台"
+                    android:textSize="12sp" />
+
+                <CheckBox
+                    android:id="@+id/cb_wsj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/cb_cf"
+                    android:layout_toRightOf="@+id/cb_cf"
+                    android:textSize="12sp"
+                    android:text="卫生间" />
+
+                <CheckBox
+                    android:id="@+id/cb_dxs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/cb_wsj"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignStart="@+id/cb_wsj"
+                    android:textSize="12sp"
+                    android:text="地下室" />
+            </RelativeLayout>
+            <!--<LinearLayout
                 style="@style/price_ll1"
                 android:orientation="horizontal">
 
@@ -353,49 +442,67 @@
 
                     <CheckBox
                         android:id="@+id/cb_ws"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="卧室"
                         android:textSize="10sp" />
 
                     <CheckBox
                         android:id="@+id/cb_kt"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="客厅"
                         android:textSize="10sp" />
 
                     <CheckBox
                         android:id="@+id/cb_cf"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="厨房"
                         android:textSize="10sp" />
 
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <CheckBox
+                        android:id="@+id/cb_yt"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="阳台"
+                        android:textSize="10sp" />
+
                     <CheckBox
                         android:id="@+id/cb_wsj"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="卫生间"
                         android:textSize="10sp" />
 
                     <CheckBox
-                        android:id="@+id/cb_yt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="阳台"
-                        android:textSize="10sp" />
-
-                    <CheckBox
                         android:id="@+id/cb_dxs"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="地下室"
                         android:textSize="10sp" />
 
                 </LinearLayout>
 
-            </LinearLayout>
+            </LinearLayout>-->
 
             <View style="@style/price_view" />
 
@@ -424,6 +531,8 @@
 
                     <EditText
                         android:id="@+id/et_cust_all_zxys"
+                        android:maxLength="10"
+                        android:digits="1234567890"
                         style="@style/design_editext" />
 
                 </LinearLayout>
@@ -580,15 +689,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/rb_gzxx"
             style="@style/gzxx"
-            android:text="跟踪信息"
             android:checked="true"
-            android:onClick="rb_gz"/>
+            android:onClick="rb_gz"
+            android:text="跟踪信息" />
 
         <RadioButton
             android:id="@+id/rb_bjxx"
@@ -619,82 +728,84 @@
     <View
         style="@style/list_item_seperator_layout"
         android:layout_marginTop="2.0dip" />
+
     <FrameLayout
         android:id="@+id/fl_all"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <include layout="@layout/bjxx_gz_activity" />
+
         <include layout="@layout/xsxx_gz_activity" />
 
-<LinearLayout
-    android:id="@+id/ll_xxobj"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:visibility="gone"
-    >
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tv_id_btnName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="跟踪信息"
-            android:textSize="18sp" />
-
         <LinearLayout
+            android:id="@+id/ll_xxobj"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:visibility="gone">
 
-            <Button
-                android:id="@+id/btn_gzxx_xg"
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/button"
-                android:text="修改" />
 
-            <Button
-                android:id="@+id/btn_gzxx_sc"
-                android:layout_width="80dp"
-                android:layout_height="40dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/button"
-                android:text="删除" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_id_btnName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="跟踪信息"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_gzxx_xg"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/button"
+                        android:text="修改" />
+
+                    <Button
+                        android:id="@+id/btn_gzxx_sc"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/button"
+                        android:text="删除" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                style="@style/list_item_seperator_layout"
+                android:layout_marginTop="2.0dip" />
+
+            <include
+                android:id="@+id/xxObj_head"
+                layout="@layout/xxobj_head" />
+
+            <View style="@style/list_item_seperator_layout" />
+
+            <ListView
+                android:id="@+id/lv_xxobj_header"
+                android:layout_width="fill_parent"
+                android:layout_height="0.0dip"
+                android:layout_weight="1.0"
+                android:cacheColorHint="#00000000"
+                android:dividerHeight="1.0dip"
+                android:drawSelectorOnTop="true"
+                android:fastScrollEnabled="true"
+                android:focusable="true"
+                android:listSelector="#00000000"
+                android:scrollingCache="true" />
         </LinearLayout>
-    </LinearLayout>
-
-    <View
-        style="@style/list_item_seperator_layout"
-        android:layout_marginTop="2.0dip" />
-
-    <include
-        android:id="@+id/xxObj_head"
-        layout="@layout/xxobj_head" />
-    <View style="@style/list_item_seperator_layout" />
-
-    <ListView
-        android:id="@+id/lv_xxobj_header"
-        android:layout_width="fill_parent"
-        android:layout_height="0.0dip"
-        android:layout_weight="1.0"
-        android:cacheColorHint="#00000000"
-        android:dividerHeight="1.0dip"
-        android:drawSelectorOnTop="true"
-        android:fastScrollEnabled="true"
-        android:focusable="true"
-        android:listSelector="#00000000"
-        android:scrollingCache="true" />
-</LinearLayout>
     </FrameLayout>
 </LinearLayout>

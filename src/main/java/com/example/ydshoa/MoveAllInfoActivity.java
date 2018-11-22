@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -62,8 +63,8 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
     private List<String> idList,idList_dz,tel_List;
     private AlertDialog alertDialog;
     private String session,db_zt,user_Id,date_dd,dabh_befor ,sszt_befor,sub_id,sub_dz,url_do;
-    private TextView dzbh,head,zt,dacard,yhbh,sfmr;
-    private EditText shr,lxdh,ss,qx,xxdz;
+    private TextView dzbh,head,zt,dacard,yhbh,sfmr,xxdz;
+    private EditText shr,lxdh,ss,qx;
     private ImageButton zt_xl,mr_xl;
     LinearLayout touch;
     String url_dh_price = URLS.price_num_ls;
@@ -78,6 +79,7 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_move_all_info);
         context = MoveAllInfoActivity.this;
         sp = getSharedPreferences("ydbg", 0);
@@ -194,7 +196,17 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
         lxdh= (EditText) view.findViewById(R.id.et_move_phone);
         ss= (EditText) view.findViewById(R.id.et_move_ss);
         qx= (EditText) view.findViewById(R.id.et_move_qx);
-        xxdz= (EditText) view.findViewById(R.id.et_move_adress);
+        xxdz= (TextView) view.findViewById(R.id.et_move_adress);
+        xxdz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //textview点击失去焦点获取地图
+                Intent intent1 = new Intent(context, SearchMapActivity.class);
+                intent1.putExtra("SF", ss.getText().toString());
+                intent1.putExtra("QX", qx.getText().toString());
+                startActivityForResult(intent1, 2);
+            }
+        });
         zt_xl= (ImageButton) view.findViewById(R.id.ib_move_account);
         mr_xl= (ImageButton) view.findViewById(R.id.ib_move_sfmr);
         if(do_save==1){
@@ -230,13 +242,14 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
             @Override
             public void onClick(View v) {
                 if(do_save==1){
-                    if (tel_List.contains(lxdh.getText().toString())) {
-                        Toast.makeText(context, "该电话已存在", Toast.LENGTH_LONG).show();
-                    }
-                    //此处修改。。。（只能点击一次）
-                }else{
-
+//                    if (tel_List.contains(lxdh.getText().toString())) {
+//                        Toast.makeText(context, "该电话已存在", Toast.LENGTH_LONG).show();
+//                    }else{
+//
+//                        postPsxx();
+//                    }
                     postPsxx();
+                    //此处修改。。。（只能点击一次）
                 }
                 if(do_save==2){
                     postPsxx();
@@ -406,6 +419,13 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
                     String str_name = data.getStringExtra("condition_name");
                     zt.setText(str_id);
                     Log.e("LiNing", "提交的id====" + str_id + str_name);
+                }
+                break;
+            case 2:
+                if (resultCode == 1) {
+                    String str_andress = data.getStringExtra("selectAddress");
+                    xxdz.setText(str_andress);
+                    Log.e("LiNing", "提交的id====" + str_andress);
                 }
                 break;
         }

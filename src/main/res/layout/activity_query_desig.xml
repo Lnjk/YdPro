@@ -9,8 +9,6 @@
 
     <include layout="@layout/headall" />
 
-
-
     <LinearLayout
         style="@style/price_ll1"
         android:orientation="vertical">
@@ -274,12 +272,13 @@
                 <TextView
                     style="@style/price_name"
                     android:text="是否启用:" />
-
-                <EditText
+                <TextView
                     android:id="@+id/tv_design_isno_query"
-                    style="@style/price_name"
-                     />
+                    style="@style/design_editext" />
 
+                <ImageButton
+                    android:id="@+id/ib_design_sfqy_query"
+                    style="@style/price_button_down" />
 
             </LinearLayout>
         </LinearLayout>
@@ -288,9 +287,10 @@
 
     </LinearLayout>
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:background="@drawable/button"
+        android:layout_gravity="center"
         android:onClick="designQuery"
         android:text="查询" />
 

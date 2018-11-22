@@ -75,23 +75,26 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
     private String session, db_zt, user_Id, des_bbqd_id, des_xsgw_id, mr_yh, cus_no, vip_no_cust, qty_cust_zt, qty_cust_dabh, format;
     private Button cust_add, cust_set, cust_del, cust_query, cust_save, cust_out;
     private CheckBox ck_ws, ck_kt, ck_cf, ck_wsj, ck_yt, ck_dxs;
-    private ImageButton cust_zt, cust_xb, cust_psxx, cust_xfcc, cust_ly, cust_lplx, cust_zxlb, cust_sjs, cust_xszd, cust_xsgw;
-    private TextView head, cust_ed_xsgw, cust_ed_xszd, cust_ed_dabh, cust_tv_zt, cust_tv_xb, cust_tv_xfcc, cust_tv_khly, cust_tv_lplx, cust_tv_zxlb, cust_tv_sjs, cust_ed_kzsj, da_time;
+    private ImageButton cust_zt, cust_xb, cust_psxx, cust_xfcc, cust_ly, cust_lplx, cust_zxlb, cust_sjs, cust_xszd,cust_dt, cust_xsgw;
+    private TextView head,cust_tv_dt, cust_ed_xsgw, cust_ed_xszd, cust_ed_dabh, cust_tv_zt, cust_tv_xb, cust_tv_xfcc, cust_tv_khly, cust_tv_lplx, cust_tv_zxlb, cust_tv_sjs, cust_ed_kzsj, da_time;
     private EditText cust_ed_khxm, cust_ed_zcdh, cust_ed_khnl, cust_ed_khzy, cust_ed_zxfg, cust_ed_zxys, cust_ed_zxgs,
             cust_ed_zxjd, cust_ed_yxpp, cust_ed_bzxx, cust_tv_psxx, cust_tv_hxjg, cust_tv_clyy;
     //新增信息
-    String cust_db_z, cust_datime_z, cust_dabh_z, cust_xm_z, cust_zcdh_z, cust_nl_z, cust_zy_z, cust_xb_z, cust_psxx_z, cust_xfcc_z, cust_ly_z, cust_lplx_z, cust_zxlb_z, cust_zxfg_z, cust_zxys_z, cust_zxgs_z, cust_sjs_z, cust_kzsj_z, cust_zxjd_z,
+    String cust_db_z, cust_dt_z,cust_datime_z, cust_dabh_z, cust_xm_z, cust_zcdh_z, cust_nl_z, cust_zy_z, cust_xb_z, cust_psxx_z, cust_xfcc_z, cust_ly_z, cust_lplx_z, cust_zxlb_z, cust_zxfg_z, cust_zxys_z, cust_zxgs_z, cust_sjs_z, cust_kzsj_z, cust_zxjd_z,
             cust_xszd_z, cust_xsgw_z, cust_yxpp_z, cust_bzxx_z, cust_hxjg_z, cust_clyy_z, str_id_itm;
     int checked;
     String date_dd, url_do, url_do_gz;
 
     LinearLayout touch;
     private String url_prdNo = URLS.prdNo_url;//通过id获取名称
+    private String url_employee = URLS.employee_url;
+    private String url_idTocust = URLS.ERP_cust_url;
     String url_dh_price = URLS.price_num_ls;
     String cust_add_z = URLS.cust_z_add;
     String cust_del_z = URLS.cust_z_del;
     String cust_set_z = URLS.cust_z_updata;
     String cust_query_z = URLS.cust_z_query;
+    String cust_get = URLS.cust_z_query;
     //信息跟踪
     String cust_gzadd_z = URLS.cust_gzxx_add;
     String cust_gzset_z = URLS.cust_gzxx_updata;
@@ -104,9 +107,9 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
     boolean ischeck_xsgw = false;//用于判断xsgw是否点击
     private List<String> list_clyy;
     //回调信息
-    String vipid_hd, psxxid_hd, xsgw_z, idtoname, idtoname_gw;
+    String vipid_hd, psxxid_hd, xsgw_z, idtoname, idtoname_gw,xszd_z;
     RadioGroup rg_gz;
-    RadioButton gz_obj_id,bj_obj_id,xs_obj_id;
+    RadioButton gz_obj_id, bj_obj_id, xs_obj_id;
     //跟踪信息表格
     private TextView tv_bt_xxg;
     private Button bg_gzxx_set, bg_gzxx_del;
@@ -115,6 +118,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
     ImageButton btn_gz_rb, btn_bj_rb, btn_xs_rb, btn_hk_rb, btn_ps_rb, btn_sh_rb;
     // 初始化3个Fragment
     private GzFragment gz_Fragment;
+    private List<String> tel_List;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,24 +158,25 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
 //        initEvent();
 //        initViewPage(0);
         //----------------------
-        rg_gz= (RadioGroup) findViewById(R.id.rg_gzxx_obj);
-        gz_obj_id= (RadioButton) findViewById(R.id.rb_gzxx);
-        bj_obj_id= (RadioButton) findViewById(R.id.rb_bjxx);
-        xs_obj_id= (RadioButton) findViewById(R.id.rb_xsxx);
+        tel_List = new ArrayList<String>();
+        rg_gz = (RadioGroup) findViewById(R.id.rg_gzxx_obj);
+        gz_obj_id = (RadioButton) findViewById(R.id.rb_gzxx);
+        bj_obj_id = (RadioButton) findViewById(R.id.rb_bjxx);
+        xs_obj_id = (RadioButton) findViewById(R.id.rb_xsxx);
         rg_gz.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(gz_obj_id.getId()==checkedId){
+                if (gz_obj_id.getId() == checkedId) {
                     Toast.makeText(context, "显示跟踪数据", Toast.LENGTH_LONG).show();
                     findViewById(R.id.rl_bj_obj).setVisibility(View.GONE);
                     findViewById(R.id.rl_xs_obj).setVisibility(View.GONE);
                 }
-                if(bj_obj_id.getId()==checkedId){
+                if (bj_obj_id.getId() == checkedId) {
                     findViewById(R.id.rl_bj_obj).setVisibility(View.VISIBLE);
                     findViewById(R.id.ll_xxobj).setVisibility(View.GONE);
                     findViewById(R.id.rl_xs_obj).setVisibility(View.GONE);
                 }
-                if(xs_obj_id.getId()==checkedId){
+                if (xs_obj_id.getId() == checkedId) {
                     findViewById(R.id.ll_xxobj).setVisibility(View.GONE);
                     findViewById(R.id.rl_bj_obj).setVisibility(View.GONE);
                     findViewById(R.id.rl_xs_obj).setVisibility(View.VISIBLE);
@@ -239,6 +244,8 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
         cust_tv_hxjg = (EditText) findViewById(R.id.et_cust_all_hxjg);
 //        cust_tv_clyy= (EditText) findViewById(R.id.et_cust_all_psxx);
         //textview
+        cust_tv_dt = (TextView) findViewById(R.id.et_cust_all_dt);
+
         cust_tv_zt = (TextView) findViewById(R.id.et_cust_all_zt);
         cust_tv_zt.setText(db_zt);
         cust_tv_xb = (TextView) findViewById(R.id.et_cust_all_xb);
@@ -296,6 +303,8 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
         cust_sjs = (ImageButton) findViewById(R.id.ib_cust_all_sjs);
         cust_xszd = (ImageButton) findViewById(R.id.ib_cust_all_xszd);
         cust_xsgw = (ImageButton) findViewById(R.id.ib_cust_all_xsgw);
+        cust_dt = (ImageButton) findViewById(R.id.ib_cust_all_dt);
+        cust_dt.setOnClickListener(this);//地图
         cust_xsgw.setOnClickListener(this);//顾问
         cust_xszd.setOnClickListener(this);//终端
         cust_zt.setOnClickListener(this);//账套
@@ -321,8 +330,10 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
 //        switch (i) {
 //            case 0:
 //                if (gz_Fragment == null) {
+//                    sp.edit().putString("FRG_ZT",qty_cust_zt).commit();
+//                    sp.edit().putString("FRG_NO",qty_cust_dabh).commit();
 //                    gz_Fragment = new GzFragment();
-//                    transaction.add(R.id.id_content, gz_Fragment);// 将微信聊天界面的Fragment添加到Activity中
+//                    transaction.add(R.id.id_content, gz_Fragment);
 //                } else {
 //                    transaction.show(gz_Fragment);
 //                }
@@ -435,7 +446,15 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                 break;
             case R.id.btn_cust_all_save:
                 getinfos();
-                addCust();
+                if(check_do==1){
+
+                    getAllInfos();
+                }
+                if(check_do==2){
+
+                    addCust();
+                }
+//                addCust();
                 break;
             //(跟进信息)
             case R.id.btn_cust_all_out:
@@ -483,7 +502,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                     intent17.putExtra("flag", "17");
                     intent17.putExtra("queryID", cust_tv_zt.getText().toString());
                     startActivityForResult(intent17, 17);
-                    ischeck_bbqd = true;//用于判断bbqd_id是否点击
+                    ischeck_xsgw= true;//用于判断xsgw_id是否点击
                 }
                 break;
             case R.id.ib_cust_all_psxx:
@@ -525,7 +544,63 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                 checked = 5;
                 showPopupMenu(cust_tv_zxlb);
                 break;
+            case R.id.ib_cust_all_dt:
+//                Intent intent1 = new Intent(context, PoiCityActivity.class);
+                Intent intent1 = new Intent(context, SearchMapActivity.class);
+                startActivityForResult(intent1, 5);
+                break;
         }
+    }
+
+    private void getAllInfos() {
+        OkHttpClient client_all = new OkHttpClient();
+        FormBody body_all = new FormBody.Builder()
+                .add("Cust_Acc", cust_tv_zt.getText().toString())
+                .build();
+        Request request_all = new Request.Builder()
+                .addHeader("cookie", session).url(cust_get)
+                .post(body_all)
+                .build();
+        client_all.newCall(request_all).enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String info_all = response.body().string();
+                Log.e("LiNing", "id_type结果====" + info_all);
+                Gson gson = new GsonBuilder().setDateFormat(
+                        "yyyy-MM-dd HH:mm:ss").create();
+                CustAllObjectInfos custesrAllInfos = gson.fromJson(info_all, CustAllObjectInfos.class);
+                Log.e("LiNing", "id_type结果====" + custesrAllInfos);
+                if (custesrAllInfos != null) {
+                    List<CustAllObjectInfos.CustList> custList = custesrAllInfos.getCustList();
+                    if(custList!=null&&custList.size()>0){
+
+                        for(int i=0;i<custList.size();i++){
+                            String phone_num = custList.get(i).getCust_Tel().toString();
+                            tel_List.add(phone_num);
+                        }
+                    }
+                    Log.e("LiNing", "电话集合====" + tel_List);
+                    if(tel_List.contains(cust_zcdh_z)){
+                        CustersAllActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(context, "该电话已被注册", Toast.LENGTH_LONG).show();
+                            }
+                        });
+
+                    }else{
+
+                        addCust();
+                        Log.e("LiNing", "id_type结果====" + tel_List);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+        });
     }
 
     private AlertDialog alertDialog;
@@ -833,18 +908,22 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                     cust_sjs_z = vipid_hd;
                 }
                 if (ischeck_bbqd == false) {
-//                    des_bbqd_id=cust_xszd_z;
-                    des_bbqd_id = idtoname;
+                    xszd_z = idtoname;
                 } else {
-                    des_bbqd_id = des_bbqd_id;
+                    xszd_z = des_bbqd_id;
                 }
-                if (ischeck_xsgw = false) {
+                if (ischeck_xsgw == false) {
                     xsgw_z = idtoname_gw;
                 } else {
                     xsgw_z = des_xsgw_id;
                 }
                 if (ischeck_psxx == true) {
-                    cust_psxx_z = str_id_itm;
+                    if(!str_id_itm.equals("")){
+
+                        cust_psxx_z = str_id_itm;
+                    }else{
+                        cust_psxx_z = psxxid_hd;
+                    }
                 } else {
 //                    cust_psxx_z = cust_tv_psxx.getText().toString();
                     cust_psxx_z = psxxid_hd;
@@ -852,13 +931,15 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                 url_do = cust_set_z;
             }
             if (check_do == 1) {
+
                 url_do = cust_add_z;
                 cust_psxx_z = "1";
             }
-            Log.e("LiNing", "-----" + cust_sjs_z + "-----" + des_bbqd_id);
+            Log.e("LiNing", "-----" + cust_sjs_z + "-----" + xszd_z+ "-----" + xsgw_z);
             OkHttpClient client = new OkHttpClient();
             FormBody body = new FormBody.Builder()
                     .add("cust_Acc", cust_db_z)
+                    .add("Cust_No", cust_dabh_z)
                     .add("card_DD", cust_datime_z)
                     .add("cust_Name", cust_xm_z)
                     .add("cust_Tel", cust_zcdh_z)
@@ -872,7 +953,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                     .add("deco_Class", cust_zxlb_z)
                     .add("hous_Stru", cust_hxjg_z)
                     .add("mate_App", cust_clyy_z)
-//                    .add("mate_App", "卧室,客厅")
+                    .add("Hous_Map", cust_dt_z)
                     .add("deco_Style", cust_zxfg_z)
                     .add("deco_Bud", cust_zxys_z)
                     .add("deco_Com", cust_zxgs_z)
@@ -881,14 +962,14 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
 //                    .add("deco_DD", "2018-11-5")
                     .add("deco_Sch", cust_zxjd_z)
                     .add("deco_Vip_ID", cust_sjs_z)
-                    .add("cus_No_ERP", des_bbqd_id)
+                    .add("cus_No_ERP", xszd_z)
 //                    .add("sal_No_ERP", cust_xsgw_z)
                     .add("sal_No_ERP", xsgw_z)
                     .add("mak_ERP", cust_yxpp_z)
                     .add("user_ID_ERP", user_Id)
                     .build();
             Log.e("LiNing", "添加结果====" + cust_db_z + "---" + cust_datime_z + "---" + cust_dabh_z + "---" + cust_xm_z + "---" + cust_zcdh_z + "---"
-                    + cust_xb_z + "---" + des_bbqd_id + "---" + xsgw_z + "---" + cust_yxpp_z + "---" + user_Id + "---" + cust_nl_z);
+                    + cust_xb_z + "---" + xszd_z + "---" + xsgw_z + "---" + cust_yxpp_z + "---" + user_Id + "---" + cust_nl_z+"---"+cust_dt_z);
             client.newCall(
                     new Request.Builder().addHeader("cookie", session).url(url_do)
                             .post(body).build()).enqueue(new Callback() {
@@ -951,6 +1032,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
     private void getinfos() {
         //后补户型结构，材料应用
         cust_db_z = cust_tv_zt.getText().toString();
+        cust_dt_z = cust_tv_dt.getText().toString();
         cust_datime_z = da_time.getText().toString();
         cust_dabh_z = cust_ed_dabh.getText().toString();
         cust_xm_z = cust_ed_khxm.getText().toString();
@@ -1150,6 +1232,13 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
+            case 5:
+                if (resultCode == 1) {
+                    String str_andress = data.getStringExtra("ANDRESS");
+                    cust_tv_dt.setText(str_andress);
+                    Log.e("LiNing", "提交的id====" + str_andress);
+                }
+                break;
             case 1:
                 if (resultCode == 1) {
                     String str_id = data.getStringExtra("condition_db");
@@ -1186,6 +1275,8 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                     String str1 = data.getStringExtra("data_return");
                     des_bbqd_id = data.getStringExtra("data_return_ids");
                     cust_ed_xszd.setText(str1);
+                    xszd_z = des_bbqd_id;
+                    Log.e("LiNing", "-----" + str1 + "---sj--" + des_bbqd_id);
                 }
                 break;
             case 17:
@@ -1203,6 +1294,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                     Log.e("LiNing", "提交的id====" + data.getSerializableExtra("VIP_INFOS_ALL"));
                     qty_cust_zt = cust_callback.getCust_Acc().toString();
                     qty_cust_dabh = cust_callback.getCust_No().toString();
+
                     if (cust_callback.getCust_Acc() != null) {
                         cust_tv_zt.setText(cust_callback.getCust_Acc());
                     } else {
@@ -1260,6 +1352,8 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                         Log.e("LiNing", "地址编号====xin=====" + cust_callback.getCust_Con());
                     } else {
                         cust_tv_psxx.setText("1");
+//                        cust_psxx_z="1";
+                        psxxid_hd="1";
                     }
 //                    if (cust_callback.getCust_Con() != null) {
 //                        cust_tv_psxx.setText(cust_callback.getCust_Con());
@@ -1375,11 +1469,12 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                     if (cust_callback.getSal_No_ERP() != null) {
 //                        cust_ed_xsgw.setText(cust_callback.getSal_No_ERP());
                         idtoname_gw = cust_callback.getSal_No_ERP().toString();
+                        Log.e("LiNing", "查询数据===" + idtoname_gw);
                         OkHttpClient client = new OkHttpClient();
                         FormBody body = new FormBody.Builder().add("accountNo", cust_tv_zt.getText().toString())
                                 .add("id", idtoname_gw).build();
                         Request request = new Request.Builder()
-                                .addHeader("cookie", session).url(url_prdNo).post(body)
+                                .addHeader("cookie", session).url(url_employee).post(body)
                                 .build();
                         Call call = client.newCall(request);
                         call.enqueue(new Callback() {
@@ -1421,7 +1516,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                         FormBody body = new FormBody.Builder().add("accountNo", cust_tv_zt.getText().toString())
                                 .add("id", idtoname).build();
                         Request request = new Request.Builder()
-                                .addHeader("cookie", session).url(url_prdNo).post(body)
+                                .addHeader("cookie", session).url(url_idTocust).post(body)
                                 .build();
                         Call call = client.newCall(request);
                         call.enqueue(new Callback() {
@@ -1494,10 +1589,10 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
         } else {
 
             url_dh_price = URLS.price_num_ls;
-            Log.e("LiNing", "临时档案编号===" + session + "---" + URLS.price_num_ls + "---" + DB_LS + "----" + date_dd);
+//            Log.e("LiNing", "临时档案编号===" + session + "---" + URLS.price_num_ls + "---" + DB_LS + "----" + date_dd);
             OkHttpClient client = new OkHttpClient();
             FormBody localFormBody = new FormBody.Builder()
-                    .add("bn_Type", "CT")
+                    .add("bn_Type", "KH")
                     .add("db_Id", DB_LS)
                     .add("bn_Date", date_dd)
                     .build();
@@ -1505,6 +1600,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                     .addHeader("cookie", session).url(url_dh_price)
                     .post(localFormBody)
                     .build();
+            Log.e("LiNing", "临时档案编号===" + session + "---" + URLS.price_num_ls + "---" + DB_LS + "----" + date_dd);
             client.newCall(localRequest).enqueue(new Callback() {
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
@@ -1628,8 +1724,8 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
     }
 
     private void delCust_gzxx() {
-        if(idList!=null&&idList.size()>0){
-            for (int i=0;i<idList.size();i++){
+        if (idList != null && idList.size() > 0) {
+            for (int i = 0; i < idList.size(); i++) {
                 String del_id = idList.get(i);
                 OkHttpClient client = new OkHttpClient();
                 FormBody body = new FormBody.Builder()
@@ -1679,50 +1775,50 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
         if (cust_callback != null) {
 
 
-        if (!qty_cust_zt.equals("") && !qty_cust_dabh.equals("")) {
-            OkHttpClient client = new OkHttpClient();
-            FormBody localFormBody = new FormBody.Builder()
-                    .add("Cust_Acc", qty_cust_zt)
-                    .add("Cust_No", qty_cust_dabh)
-                    .build();
-            Request localRequest = new Request.Builder()
-                    .addHeader("cookie", session).url(xxgz_query)
-                    .post(localFormBody)
-                    .build();
-            client.newCall(localRequest).enqueue(new Callback() {
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    String str = response.body().string();
-                    Log.e("LiNing", "信息数据====" + str);
-                    // 解析包含date的数据必须添加此代码(InputStream型)
-                    Gson gson = new GsonBuilder().setDateFormat(
-                            "yyyy-MM-dd HH:mm:ss").create();
-                    final FollInfos cInfoDB = gson.fromJson(str,
-                            FollInfos.class);
-                    if (cInfoDB != null) {
-                        CustersAllActivity.this.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
+            if (!qty_cust_zt.equals("") && !qty_cust_dabh.equals("")) {
+                OkHttpClient client = new OkHttpClient();
+                FormBody localFormBody = new FormBody.Builder()
+                        .add("Cust_Acc", qty_cust_zt)
+                        .add("Cust_No", qty_cust_dabh)
+                        .build();
+                Request localRequest = new Request.Builder()
+                        .addHeader("cookie", session).url(xxgz_query)
+                        .post(localFormBody)
+                        .build();
+                client.newCall(localRequest).enqueue(new Callback() {
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String str = response.body().string();
+                        Log.e("LiNing", "信息数据====" + str);
+                        // 解析包含date的数据必须添加此代码(InputStream型)
+                        Gson gson = new GsonBuilder().setDateFormat(
+                                "yyyy-MM-dd HH:mm:ss").create();
+                        final FollInfos cInfoDB = gson.fromJson(str,
+                                FollInfos.class);
+                        if (cInfoDB != null) {
+                            CustersAllActivity.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
 
-                                follList_All = cInfoDB.getFollList();
-                                follAdapter = new FollAdapter(R.layout.xxobj_head, follList_All, context);
-                                lv_xxgz.setAdapter(follAdapter);
-                                follAdapter.notifyDataSetChanged();
-                                checkedIndexList.clear();
-                                idList.clear();
-                            }
-                        });
+                                    follList_All = cInfoDB.getFollList();
+                                    follAdapter = new FollAdapter(R.layout.xxobj_head, follList_All, context);
+                                    lv_xxgz.setAdapter(follAdapter);
+                                    follAdapter.notifyDataSetChanged();
+                                    checkedIndexList.clear();
+                                    idList.clear();
+                                }
+                            });
+                        }
                     }
-                }
 
-                @Override
-                public void onFailure(Call call, IOException e) {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
 
-                }
-            });
-        }
-        }else{
-            Toast.makeText(context,"无信息",Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        } else {
+            Toast.makeText(context, "无信息", Toast.LENGTH_LONG).show();
         }
     }
 

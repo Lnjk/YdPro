@@ -56,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="5.0dip"
-                    android:text="生产管理" />
+                    android:text="设计师管理" />
             </LinearLayout>
 
             <LinearLayout

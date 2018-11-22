@@ -206,7 +206,8 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
                     intent2.putExtra("RTNAME", reportname);
                     intent2.putExtra("RT", reportnos);
                     intent2.putExtra("INFO", head_all);
-                    Log.e("LiNing", "传递数据====" + reportnos + "===" + str_all);
+                    Log.e("LiNing", "传递数据====" + reportnos + "===" + str_all+ "===" + head_all);
+                    Log.e("LiNing", "传递数据====" + reportnos + "===" +  "===" + head_all);
                     startActivity(intent2);
                 } else {
                     Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
@@ -535,12 +536,12 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
                         @Override
                         public void run() {
                             List<ArpInfos.Data> data_arp = aDb1.getData();
-                            String head_arp = aDb1.getHead();
+                             head_all = aDb1.getHead();
                             Log.e("LiNing", "---数据--" + data_arp);
-                            Log.e("LiNing", "---标题--" + head_arp);
-                            if (head_arp != null) {
-                                String[] head_spls = head_arp.split(",");
-                                Log.e("LiNing", "=====" + head_arp.split(","));
+                            Log.e("LiNing", "---标题--" + head_all);
+                            if (head_all != null) {
+                                String[] head_spls = head_all.split(",");
+                                Log.e("LiNing", "=====" + head_all.split(","));
                                 for (int i = 0; i < head_spls.length; i++) {
                                     String A = head_spls[i];
                                     Log.e("LiNing", "===A==" + A);

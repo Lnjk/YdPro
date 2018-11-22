@@ -47,7 +47,10 @@ public class ArpOutActivity extends Activity {
 
         out_data = SalesQueryArpActivity.out_infos_arp;
         Log.e("LiNing", "=====string====" + out_data);
-        setHeads();
+        if(!reportnos.equals("")){
+
+            setHeads();
+        }
     }
     private void setHeads() {
         Log.e("LiNing", "======aaa====" + reportnos);
@@ -97,9 +100,8 @@ public class ArpOutActivity extends Activity {
     }
     private void GetInfoActivity() {
 
-        // info = getIntent().getStringExtra("ALLINJFO");
         info = getIntent().getStringExtra("INFO");
-        Log.e("LiNing", "======aaa====" + info);
+        Log.e("LiNing", "======表头====" + info);
         // final SaleMakeInfo aDb1 = new Gson().fromJson(info,
         // SaleMakeInfo.class);
         // String head = aDb1.getHead();

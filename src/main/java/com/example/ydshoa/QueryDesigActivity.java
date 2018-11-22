@@ -52,10 +52,10 @@ public class QueryDesigActivity extends Activity implements View.OnClickListener
     private SharedPreferences sp;
     private String session, user_Name, user_dep, query_db,cust_do;
     RelativeLayout mHead;
-    private TextView head, viplb, bbqd, bbyw;
-    private EditText sfzh, vipname, zym, lxdh, lxdh2, ssdw, yhkh, khyh, dbr, shyh, vipcard, sfqy, zdyh;
+    private TextView head, viplb, bbqd, bbyw, sfqy;
+    private EditText sfzh, vipname, zym, lxdh, lxdh2, ssdw, yhkh, khyh, dbr, shyh, vipcard, zdyh;
     private ListView lv_vip_qry;
-    private ImageButton vipbtn, ztbtn, yw,bbqd_query;
+    private ImageButton vipbtn, ztbtn, yw,bbqd_query,ztqy;
     String vip_id_hd, id_bbyw;//回调
     String vip_get = URLS.design_query;
     //查询条件
@@ -82,7 +82,12 @@ public class QueryDesigActivity extends Activity implements View.OnClickListener
 
     private void initView() {
         head = (TextView) findViewById(R.id.all_head);
-        head.setText("设计师查询");
+
+        if(cust_do!=null&&cust_do.equals("1")){
+            head.setText("客户查询");
+        }else{
+            head.setText("设计师查询");
+        }
 //        this.mHead = ((RelativeLayout) findViewById(R.id.design_head_query));
 //        this.mHead.setFocusable(true);
 //        this.mHead.setClickable(true);
@@ -90,7 +95,7 @@ public class QueryDesigActivity extends Activity implements View.OnClickListener
         lv_vip_qry = (ListView) findViewById(R.id.lv_design_header_query);
 //        lv_vip_qry.setOnTouchListener(new QueryDesigActivity.ListViewAndHeadViewTouchLinstener());
         vipcard = (EditText) findViewById(R.id.tv_vipcard_query);
-        sfqy = (EditText) findViewById(R.id.tv_design_isno_query);
+        sfqy = (TextView) findViewById(R.id.tv_design_isno_query);
         sfzh = (EditText) findViewById(R.id.et_design_usercard_query);
         vipname = (EditText) findViewById(R.id.et_design_username_query);
         zym = (EditText) findViewById(R.id.et_design_username_old_query);
@@ -111,9 +116,11 @@ public class QueryDesigActivity extends Activity implements View.OnClickListener
         vipbtn = (ImageButton) findViewById(R.id.ib_design_vip_query);
         bbqd_query = (ImageButton) findViewById(R.id.ib_design_bbqd_query);
         yw = (ImageButton) findViewById(R.id.ib_design_yw_query);
+        ztqy = (ImageButton) findViewById(R.id.ib_design_sfqy_query);
         vipbtn.setOnClickListener(this);
         bbqd_query.setOnClickListener(this);
         yw.setOnClickListener(this);
+        ztqy.setOnClickListener(this);
         lv_vip_qry.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -187,6 +194,10 @@ public class QueryDesigActivity extends Activity implements View.OnClickListener
                     startActivityForResult(intent17, 17);
                 }
                 break;
+            //是否启用
+            case R.id.ib_design_sfqy_query:
+                showPopupMenu(ztqy);
+                break;
         }
 
     }
@@ -194,25 +205,17 @@ public class QueryDesigActivity extends Activity implements View.OnClickListener
     private void showPopupMenu(View view) {
         // View当前PopupMenu显示的相对View的位置
         PopupMenu popupMenu = new PopupMenu(this, view);
-        popupMenu.getMenuInflater().inflate(R.menu.bbqd_info, popupMenu.getMenu());
+        popupMenu.getMenuInflater().inflate(R.menu.qty_qy, popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.check1
                         || menuItem.getItemId() == R.id.check2
                         || menuItem.getItemId() == R.id.check3
-                        || menuItem.getItemId() == R.id.check4
-                        || menuItem.getItemId() == R.id.check5
-                        || menuItem.getItemId() == R.id.check6
-                        || menuItem.getItemId() == R.id.check7
-                        || menuItem.getItemId() == R.id.check8
                         ) {
                     menuItem.setChecked(!menuItem.isChecked());
-                    bbqd.setText(menuItem.getTitle());
-                    String s = menuItem.getTitle().toString();
-                    String substring = s.substring(0, 1);
-                    qry_bbqd= substring;
-                    Log.e("LiNing", "----" + qry_bbqd + "----" + substring);
+                    sfqy.setText(menuItem.getTitle());
+                    Log.e("LiNing", "----" + sfqy.getText().toString() );
 
                 }
                 return true;
@@ -279,7 +282,16 @@ public class QueryDesigActivity extends Activity implements View.OnClickListener
         qry_khyh = khyh.getText().toString();
         qry_dbr = dbr.getText().toString();
         qry_shyh = shyh.getText().toString();
-        qry_sfqy = sfqy.getText().toString();
+//        qry_sfqy = sfqy.getText().toString();
+        if(sfqy.getText().toString().equals("未审核")){
+            qry_sfqy="3";
+        }
+        if(sfqy.getText().toString().equals("启用")){
+            qry_sfqy="1";
+        }
+        if(sfqy.getText().toString().equals("停用")){
+            qry_sfqy="2";
+        }
         qry_zdyh = zdyh.getText().toString();
     }
 
@@ -417,7 +429,8 @@ public class QueryDesigActivity extends Activity implements View.OnClickListener
             holder.design_checkboxid.setText(vipList.getVip_Name());
             holder.design_vipno.setText(vipList.getVip_NO());
             holder.design_action.setText(vipList.getCon_Tel());
-            holder.design_altedd.setText(vipList.getCard_Num());
+//            holder.design_altedd.setText(vipList.getCard_Num());
+            holder.design_altedd.setText(vipList.getComp());
             String stat = vipList.getStat();
             if(stat.equals("1")){
                 holder.stat.setText("启用");

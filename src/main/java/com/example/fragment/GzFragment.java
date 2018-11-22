@@ -44,14 +44,15 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * Created by Administrator on 2018/11/9 0009.
+ * Created by Administrator on 2018/11/12 0009.
  */
 
 public class GzFragment extends Fragment {
+//    fragment实现不同页面切换
     private Context context;
     private View view;
     private SharedPreferences sp;
-    private String session;
+    private String session,qty_cust_zt,qty_cust_dabh;
     //回调信息
     String vipid_hd, psxxid_hd, xsgw_z, idtoname, idtoname_gw;
     //跟踪信息表格
@@ -77,7 +78,10 @@ public class GzFragment extends Fragment {
         this.context = getActivity();
         sp = getActivity().getSharedPreferences("ydbg", 0);
         session = sp.getString("SESSION", "");
+        qty_cust_zt = sp.getString("FRG_ZT", "");
+        qty_cust_dabh = sp.getString("FRG_NO", "");
         SysApplication.getInstance().addActivity(getActivity());
+
         initData();// 初始化
         return this.view;
     }
@@ -100,8 +104,8 @@ public class GzFragment extends Fragment {
         if (!context.equals("") && !context.equals("")) {
             OkHttpClient client = new OkHttpClient();
             FormBody localFormBody = new FormBody.Builder()
-//                    .add("Cust_Acc", qty_cust_zt)
-//                    .add("Cust_No", qty_cust_dabh)
+                    .add("Cust_Acc", qty_cust_zt)
+                    .add("Cust_No", qty_cust_dabh)
                     .build();
             Request localRequest = new Request.Builder()
                     .addHeader("cookie", session).url(xxgz_query)
@@ -141,6 +145,7 @@ public class GzFragment extends Fragment {
         }
     }
     public class FollAdapter extends BaseAdapter {
+        //跟踪信息适配器
         int id_row;
         List<FollInfos.FollList> foll_infos;
         LayoutInflater mInflater;
@@ -320,4 +325,5 @@ public class GzFragment extends Fragment {
         }
 
     }
+
 }

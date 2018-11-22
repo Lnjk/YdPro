@@ -109,6 +109,7 @@
     <orderEntry type="library" name="__local_aars__:D.\test\YDSHOA\libs\zxing.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="com.android.support.constraint:constraint-layout-solver:1.1.3@jar" level="project" />
     <orderEntry type="library" name="com.android.support:appcompat-v7-21.0.3" level="project" />
+    <orderEntry type="library" name="__local_aars__:D.\test\YDSHOA\libs\BaiduLBS_Android.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="__local_aars__:D.\test\YDSHOA\libs\jxl.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="__local_aars__:D.\test\YDSHOA\libs\okio-1.9.0.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="com.android.support.constraint:constraint-layout-1.1.3" level="project" />
