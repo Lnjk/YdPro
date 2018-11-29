@@ -6,7 +6,8 @@
      >
 
     <include
-        layout="@layout/headall" />
+        layout="@layout/headall"
+        android:id="@+id/include3" />
 
     <TextView
         android:id="@+id/tv_devise"
@@ -37,5 +38,37 @@
         android:layout_marginBottom="30dp"
         android:onClick="getview"
         android:text="截屏" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/include3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:onClick="city_check"
+        android:text="三级联动"
+        android:id="@+id/button4" />
+
+    <TextView
+        android:id="@+id/tv_ss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button4"
+        android:layout_marginEnd="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_toLeftOf="@+id/tv_devise"
+        android:layout_toStartOf="@+id/tv_devise"
+        android:text="省市" />
+
+    <TextView
+        android:id="@+id/tv_qx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button4"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
+        android:layout_toEndOf="@+id/tv_devise"
+        android:layout_toRightOf="@+id/tv_devise"
+        android:text="区县" />
 
 </RelativeLayout>

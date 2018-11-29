@@ -1,6 +1,7 @@
 package com.example.ydshoa;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -11,11 +12,17 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baidu.location.BDAbstractLocationListener;
@@ -54,6 +61,7 @@ import com.baidu.mapapi.search.poi.PoiNearbySearchOption;
 import com.baidu.mapapi.search.poi.PoiResult;
 import com.baidu.mapapi.search.poi.PoiSearch;
 import com.baidu.mapapi.search.poi.PoiSortType;
+import com.baidu.mapapi.search.sug.SuggestionSearch;
 
 import org.kymjs.kjframe.utils.ImageUtils;
 
@@ -153,7 +161,7 @@ public class SearchMapActivity extends Activity implements TextWatcher {
 //
 //        // 开启定位图层
         mBaiduMap.setMyLocationEnabled(true);
-        //创建POI检索实例
+//        //创建POI检索实例
         mPoiSearch = PoiSearch.newInstance();
         //创建POI检索监听者；
         mPoiSearch.setOnGetPoiSearchResultListener(poiListener);
@@ -175,13 +183,39 @@ public class SearchMapActivity extends Activity implements TextWatcher {
 //                finish();
 //            }
 //        });
+        searchPois = (ListView) findViewById(R.id.main_search_pois);
+        searchPois.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                searchPois.setVisibility(View.GONE);
+                if (allPoi != null) {
+                    if (allPoi.get(position) != null) {
+                        LatLng location = allPoi.get(position).location;
+                        if (location != null) {
+                            mActvSearchkey.setText( allPoi.get(position).name);
+                            Log.e("LiNing","具体地址======"+allPoi.get(position).address);
+                            MapStatusUpdate msu = MapStatusUpdateFactory.newLatLngZoom(location, 18);
+                            mBaiduMap.animateMapStatus(msu);
+                        }
+                    }
+                }
+
+
+            }
+        });
     }
 
+    LatLng location_ll;
+    private ListView searchPois;
+    List<PoiInfo> allPoi;
+    GeoCoder geoCoder;
+    LatLng ll;
+    private SuggestionSearch mSuggestionSearch = null;//模糊搜索
     OnGetPoiSearchResultListener poiListener = new OnGetPoiSearchResultListener() {
 
         public void onGetPoiResult(PoiResult result) {
             // 关闭定位图层
-            mBaiduMap.clear();
+//            mBaiduMap.clear();
 //            mLocClient.stop();
             if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
                 //详情检索失败
@@ -192,7 +226,8 @@ public class SearchMapActivity extends Activity implements TextWatcher {
                 //获取POI检索结果
                 Toast.makeText(SearchMapActivity.this, "已搜索到相关数据数据", Toast.LENGTH_SHORT).show();
 //                mBaiduMap.clear();
-                List<PoiInfo> allPoi = result.getAllPoi();
+
+                allPoi = result.getAllPoi();
                 for (int i = 0; i < allPoi.size(); i++) {
                     Resources res = getResources();
                     Bitmap bitmap = BitmapFactory.decodeResource(res, R.drawable.csdw);
@@ -205,9 +240,16 @@ public class SearchMapActivity extends Activity implements TextWatcher {
                             .icon(BitmapDescriptorFactory.fromBitmap(bitmap1));
                     mBaiduMap.addOverlay(options);
                     //实现位置跟踪
-                    LatLng location = result.getAllPoi().get(i).location;
-                    MapStatusUpdate msu = MapStatusUpdateFactory.newLatLngZoom(location,18);
-                    mBaiduMap.animateMapStatus(msu);
+
+                    location_ll = result.getAllPoi().get(i).location;
+//                    MapStatusUpdate msu = MapStatusUpdateFactory.newLatLngZoom(location_ll, 18);
+//                    mBaiduMap.animateMapStatus(msu);
+                }
+                if (allPoi != null) {
+                    PoiSearchAdapter poiSearchAdapter = new PoiSearchAdapter(SearchMapActivity.this, allPoi,ll);
+                         searchPois.setVisibility(View.VISIBLE);
+                    searchPois.setAdapter(poiSearchAdapter);
+                    poiSearchAdapter.notifyDataSetChanged();
                 }
 //                if (allPoi != null) {
 //                    if (allPoi.get(position) != null) {
@@ -222,7 +264,8 @@ public class SearchMapActivity extends Activity implements TextWatcher {
                     @Override
                     public boolean onMarkerClick(Marker marker) {
                         Intent localIntent = getIntent();
-                        localIntent.putExtra("ANDRESS", marker.getTitle().toString());
+//                        localIntent.putExtra("ANDRESS", marker.getTitle().toString());
+                        localIntent.putExtra("ANDRESS", mActvSearchkey.getText().toString());
                         setResult(1, localIntent);
                         finish();
                         Toast.makeText(SearchMapActivity.this, marker.getTitle(), Toast.LENGTH_SHORT).show();
@@ -272,6 +315,14 @@ public class SearchMapActivity extends Activity implements TextWatcher {
         mPoiSearch.destroy();
         mBaiduMap.setMyLocationEnabled(false);
         mMapView.onDestroy();
+        if (geoCoder != null) {
+            geoCoder.destroy();
+        }
+        mMapView = null;
+        if (mSuggestionSearch != null) {
+            mSuggestionSearch.destroy();
+            mSuggestionSearch = null;
+        }
         super.onDestroy();
     }
 
@@ -282,7 +333,9 @@ public class SearchMapActivity extends Activity implements TextWatcher {
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+        if(mActvSearchkey_city.length()!=s.length()){
+            mActvSearchkey_city.setEnabled(false);
+        }
     }
 
     @Override
@@ -295,6 +348,7 @@ public class SearchMapActivity extends Activity implements TextWatcher {
                 .city(mActvSearchkey_city.getText().toString().trim())
                 .keyword(mActvSearchkey.getText().toString().trim())
                 .pageNum(0));
+
 //        mPoiSearch.searchNearby(new PoiNearbySearchOption()
 //                .keyword(mActvSearchkey.getText().toString().trim())
 //                .sortType(PoiSortType.distance_from_near_to_far)
@@ -334,7 +388,8 @@ public class SearchMapActivity extends Activity implements TextWatcher {
 //                mBaiduMap.animateMapStatus(msu);
 //            }
 
-            LatLng ll = new LatLng(location.getLatitude(),
+
+            ll = new LatLng(location.getLatitude(),
                     location.getLongitude());
             MapStatus.Builder builder = new MapStatus.Builder();
             builder.target(ll).zoom(18.0f);
@@ -342,7 +397,8 @@ public class SearchMapActivity extends Activity implements TextWatcher {
                     .newMapStatus(builder.build()));
 
             // 实例化一个地理编码查询对象
-            GeoCoder geoCoder = GeoCoder.newInstance();
+
+            geoCoder = GeoCoder.newInstance();
             // 设置反地理编码位置坐标
             ReverseGeoCodeOption op = new ReverseGeoCodeOption();
             op.location(point);
@@ -373,6 +429,64 @@ public class SearchMapActivity extends Activity implements TextWatcher {
                 }
             });
             geoCoder.reverseGeoCode(new ReverseGeoCodeOption().location(ll));
+        }
+
+    }
+
+    class PoiSearchAdapter extends BaseAdapter {
+
+        private Context context;
+        private List<PoiInfo> list;
+        private ViewHolder holder;
+
+        public PoiSearchAdapter(SearchMapActivity searchMapActivity, List<PoiInfo> allPoi, LatLng ll) {
+            this.context = searchMapActivity;
+            this.list = allPoi;
+        }
+
+
+        @Override
+        public int getCount() {
+            return list.size();
+        }
+
+        @Override
+        public Object getItem(int location) {
+            return list.get(location);
+        }
+
+        @Override
+        public long getItemId(int arg0) {
+            return arg0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                holder = new ViewHolder();
+                convertView = LayoutInflater.from(context).inflate(R.layout.map_item_one, null);
+                holder.mpoi_name = (TextView) convertView.findViewById(R.id.mpoiNameT);
+                holder.mpoi_address = (TextView) convertView.findViewById(R.id.mpoiAddressT);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+            holder.mpoi_name.setText(list.get(position).name);
+            holder.mpoi_address.setText(list.get(position).address);
+            // Log.i("yxx", "==1=poi===城市：" + poiInfo.city + "名字：" +
+            // poiInfo.name + "地址：" + poiInfo.address);
+            return convertView;
+        }
+
+        public void addObject(List<PoiInfo> mAppGroup) {
+            this.list = mAppGroup;
+            notifyDataSetChanged();
+        }
+
+        public class ViewHolder {
+            public TextView mpoi_name;// 名称
+            public TextView mpoi_address;// 地址
+
         }
 
     }

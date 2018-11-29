@@ -75,9 +75,11 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/blame" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/check-manifest" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/dex-cache" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javaPrecompile" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/lint-cache" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/prebuild" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
@@ -94,9 +96,9 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="__local_aars__:D.\test\YDSHOA\libs\commons-lang3-3.4.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="__local_aars__:D.\test\YDSHOA\libs\okhttp-3.4.1.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="com.android.support:support-v4-23.4.0" level="project" />
     <orderEntry type="library" name="__local_aars__:D.\test\YDSHOA\libs\ezmorph-1.0.6.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="__local_aars__:D.\test\YDSHOA\libs\commons-beanutils-1.9.2.jar:unspecified@jar" level="project" />
-    <orderEntry type="library" name="com.android.support:support-v4-21.0.3" level="project" />
     <orderEntry type="library" name="__local_aars__:D.\test\YDSHOA\libs\struts2-json-plugin-2.5.2.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="__local_aars__:D.\test\YDSHOA\libs\commons-collections-3.2.2.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="__local_aars__:D.\test\YDSHOA\libs\commons-logging-1.1.3.jar:unspecified@jar" level="project" />
@@ -104,14 +106,17 @@
     <orderEntry type="library" name="__local_aars__:D.\test\YDSHOA\libs\KJFrameForAndroid_v2.2451.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="__local_aars__:D.\test\YDSHOA\libs\json-lib-2.3-jdk15.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="com.google.code.gson:gson:2.2.4@jar" level="project" />
-    <orderEntry type="library" name="com.android.support:support-annotations:21.0.3@jar" level="project" />
     <orderEntry type="library" name="__local_aars__:D.\test\YDSHOA\libs\jtds-1.3.0 (1).jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="__local_aars__:D.\test\YDSHOA\libs\zxing.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="com.android.support.constraint:constraint-layout-solver:1.1.3@jar" level="project" />
+    <orderEntry type="library" name="com.android.support:support-annotations:23.4.0@jar" level="project" />
     <orderEntry type="library" name="com.android.support:appcompat-v7-21.0.3" level="project" />
     <orderEntry type="library" name="__local_aars__:D.\test\YDSHOA\libs\BaiduLBS_Android.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="__local_aars__:D.\test\YDSHOA\citypickerview\libs\pinyin4j-2.5.0.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="__local_aars__:D.\test\YDSHOA\libs\jxl.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="__local_aars__:D.\test\YDSHOA\libs\okio-1.9.0.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="com.android.support:recyclerview-v7-23.4.0" level="project" />
     <orderEntry type="library" name="com.android.support.constraint:constraint-layout-1.1.3" level="project" />
+    <orderEntry type="module" module-name="citypickerview" />
   </component>
 </module>

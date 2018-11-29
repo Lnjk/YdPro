@@ -4,9 +4,11 @@ ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:2:1-200:12
 INJECTED from D:\test\YDSHOA\src\main\AndroidManifest.xml:2:1-200:12
 INJECTED from D:\test\YDSHOA\src\main\AndroidManifest.xml:2:1-200:12
 INJECTED from D:\test\YDSHOA\src\main\AndroidManifest.xml:2:1-200:12
+MERGED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-37:12
 MERGED from [com.android.support:appcompat-v7:21.0.3] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\appcompat-v7-21.0.3.aar\158c5e8fb112084fbd5888b11a432696\AndroidManifest.xml:14:4-17:12
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\427bec203e1abfb04c34b239bac19e69\AndroidManifest.xml:2:1-11:12
-MERGED from [com.android.support:support-v4:21.0.3] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\support-v4-21.0.3.aar\eb9aab1dbbc46da644867e3b084e0f2c\AndroidManifest.xml:14:4-17:12
+MERGED from [com.android.support:recyclerview-v7:23.4.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-23.4.0.aar\a3387fee817e87966096a552a2cd6725\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\support-v4-23.4.0.aar\161dda3362f5e753d0a56bb2adad60cc\AndroidManifest.xml:17:1-24:12
 INJECTED from D:\test\YDSHOA\src\main\AndroidManifest.xml:2:1-200:12
 INJECTED from D:\test\YDSHOA\src\main\AndroidManifest.xml:2:1-200:12
 INJECTED from D:\test\YDSHOA\src\main\AndroidManifest.xml:2:1-200:12
@@ -28,12 +30,16 @@ uses-sdk
 ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:7:5-9:41
 INJECTED from D:\test\YDSHOA\src\main\AndroidManifest.xml:7:5-9:41
 INJECTED from D:\test\YDSHOA\src\main\AndroidManifest.xml:7:5-9:41
+MERGED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:appcompat-v7:21.0.3] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\appcompat-v7-21.0.3.aar\158c5e8fb112084fbd5888b11a432696\AndroidManifest.xml:15:5-42
 MERGED from [com.android.support:appcompat-v7:21.0.3] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\appcompat-v7-21.0.3.aar\158c5e8fb112084fbd5888b11a432696\AndroidManifest.xml:15:5-42
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\427bec203e1abfb04c34b239bac19e69\AndroidManifest.xml:5:5-7:41
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\427bec203e1abfb04c34b239bac19e69\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support:support-v4:21.0.3] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\support-v4-21.0.3.aar\eb9aab1dbbc46da644867e3b084e0f2c\AndroidManifest.xml:15:5-42
-MERGED from [com.android.support:support-v4:21.0.3] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\support-v4-21.0.3.aar\eb9aab1dbbc46da644867e3b084e0f2c\AndroidManifest.xml:15:5-42
+MERGED from [com.android.support:recyclerview-v7:23.4.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-23.4.0.aar\a3387fee817e87966096a552a2cd6725\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:23.4.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-23.4.0.aar\a3387fee817e87966096a552a2cd6725\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\support-v4-23.4.0.aar\161dda3362f5e753d0a56bb2adad60cc\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\support-v4-23.4.0.aar\161dda3362f5e753d0a56bb2adad60cc\AndroidManifest.xml:20:5-43
 INJECTED from D:\test\YDSHOA\src\main\AndroidManifest.xml:7:5-9:41
 INJECTED from D:\test\YDSHOA\src\main\AndroidManifest.xml:7:5-9:41
 	android:targetSdkVersion
@@ -93,366 +99,410 @@ ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:31:5-81
 	android:name
 		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:31:22-78
 uses-permission#android.permission.CHANGE_WIFI_STATE
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:32:5-75
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:32:5-76
 	android:name
 		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:32:22-73
 application
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:36:5-198:19
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:35:5-198:19
+MERGED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-35:19
+MERGED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-35:19
 MERGED from [com.android.support:appcompat-v7:21.0.3] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\appcompat-v7-21.0.3.aar\158c5e8fb112084fbd5888b11a432696\AndroidManifest.xml:16:5-19
 MERGED from [com.android.support:appcompat-v7:21.0.3] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\appcompat-v7-21.0.3.aar\158c5e8fb112084fbd5888b11a432696\AndroidManifest.xml:16:5-19
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\427bec203e1abfb04c34b239bac19e69\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\427bec203e1abfb04c34b239bac19e69\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support:support-v4:21.0.3] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\support-v4-21.0.3.aar\eb9aab1dbbc46da644867e3b084e0f2c\AndroidManifest.xml:16:5-19
-MERGED from [com.android.support:support-v4:21.0.3] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\support-v4-21.0.3.aar\eb9aab1dbbc46da644867e3b084e0f2c\AndroidManifest.xml:16:5-19
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\support-v4-23.4.0.aar\161dda3362f5e753d0a56bb2adad60cc\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\Administrator\.gradle\caches\transforms-1\files-1.1\support-v4-23.4.0.aar\161dda3362f5e753d0a56bb2adad60cc\AndroidManifest.xml:22:5-20
+	android:supportsRtl
+		ADDED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:13:9-35
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:40:9-41
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:39:9-41
 	android:icon
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:39:9-40
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:38:9-40
 	android:allowBackup
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:38:9-35
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:37:9-35
 	android:theme
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:41:9-40
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:40:9-40
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:37:9-54
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:36:9-54
 meta-data#com.baidu.lbsapi.API_KEY
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:42:9-45:15
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:41:9-43:64
 	android:value
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:44:13-61
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:43:13-61
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:43:13-52
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:42:13-52
 service#com.baidu.location.f
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:47:9-50:41
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:45:9-48:41
 	android:process
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:50:13-38
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:48:13-38
 	android:enabled
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:49:13-35
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:47:13-35
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:48:13-48
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:46:13-48
 activity#com.example.ydshoa.LoginMainActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:52:9-60:20
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:50:9-58:20
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:54:13-45
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:52:13-45
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:53:13-46
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:51:13-46
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:55:13-59:29
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:53:13-57:29
 action#android.intent.action.MAIN
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:56:17-69
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:54:17-69
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:56:25-66
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:54:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:58:17-77
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:56:17-77
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:58:27-74
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:56:27-74
 activity#com.example.ydshoa.RootActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:61:9-63:59
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:59:9-61:59
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:63:13-56
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:61:13-56
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:62:13-41
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:60:13-41
 activity#com.example.ydshoa.MainActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:64:9-66:59
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:62:9-64:59
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:66:13-56
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:64:13-56
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:65:13-41
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:63:13-41
 activity#com.example.ydshoa.NewAccountActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:67:9-69:66
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:65:9-67:66
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:69:13-63
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:67:13-63
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:68:13-47
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:66:13-47
 activity#com.example.ydshoa.SupInfoActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:70:9-72:63
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:68:9-70:63
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:72:13-60
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:70:13-60
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:71:13-44
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:69:13-44
 activity#com.example.ydshoa.RegisterActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:73:9-75:63
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:71:9-73:63
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:75:13-60
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:73:13-60
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:74:13-45
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:72:13-45
 activity#com.example.ydshoa.GetInfoActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:76:9-78:63
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:74:9-76:63
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:78:13-60
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:76:13-60
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:77:13-44
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:75:13-44
 activity#com.example.ydshoa.ErpDepInfoActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:79:9-81:67
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:77:9-79:67
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:81:13-64
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:79:13-64
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:80:13-47
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:78:13-47
 activity#com.example.ydshoa.TestActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:82:9-84:59
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:80:9-82:59
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:84:13-56
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:82:13-56
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:83:13-41
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:81:13-41
 activity#com.example.ydshoa.PostInfoActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:85:9-87:64
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:83:9-85:64
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:87:13-61
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:85:13-61
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:86:13-45
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:84:13-45
 activity#com.example.ydshoa.NewModActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:88:9-90:62
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:86:9-88:62
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:90:13-59
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:88:13-59
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:89:13-43
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:87:13-43
 activity#com.example.ydshoa.ModListActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:91:9-93:63
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:89:9-91:63
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:93:13-60
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:91:13-60
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:92:13-44
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:90:13-44
 activity#com.example.ydshoa.ShowModInfoScrowActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:94:9-96:64
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:92:9-94:64
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:96:13-61
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:94:13-61
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:95:13-53
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:93:13-53
 activity#com.example.ydshoa.ShowQueryInfoActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:97:9-99:70
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:95:9-97:70
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:99:13-67
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:97:13-67
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:98:13-50
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:96:13-50
 activity#com.example.ydshoa.CusterInfoActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:100:9-102:66
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:98:9-100:66
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:102:13-63
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:100:13-63
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:101:13-47
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:99:13-47
 activity#com.example.ydshoa.SysActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:103:9-105:58
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:101:9-103:58
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:105:13-55
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:103:13-55
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:104:13-40
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:102:13-40
 activity#com.example.ydshoa.GetDeviseActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:106:9-108:65
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:104:9-106:65
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:108:13-62
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:106:13-62
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:107:13-46
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:105:13-46
 activity#com.example.zxing.CaptureActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:109:9-70
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:107:9-70
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:109:19-67
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:107:19-67
 activity#com.example.ydshoa.SetActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:110:9-112:58
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:108:9-110:58
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:112:13-55
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:110:13-55
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:111:13-40
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:109:13-40
 activity#com.example.ydshoa.AccountActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:113:9-115:62
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:111:9-113:62
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:115:13-59
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:113:13-59
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:114:13-44
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:112:13-44
 activity#com.example.ydshoa.ShowModInfoActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:116:9-118:68
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:114:9-116:68
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:118:13-65
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:116:13-65
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:117:13-48
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:115:13-48
 activity#com.example.ydshoa.SalesQueryActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:119:9-121:66
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:117:9-119:66
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:121:13-63
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:119:13-63
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:120:13-47
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:118:13-47
 activity#com.example.ydshoa.UrlSetActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:122:9-124:62
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:120:9-122:62
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:124:13-59
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:122:13-59
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:123:13-43
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:121:13-43
 activity#com.example.ydshoa.DecisionActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:125:9-127:63
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:123:9-125:63
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:127:13-60
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:125:13-60
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:126:13-45
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:124:13-45
 activity#com.example.ydshoa.ConditionActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:128:9-130:64
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:126:9-128:64
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:130:13-61
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:128:13-61
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:129:13-46
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:127:13-46
 activity#com.example.ydshoa.CondicionInfoActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:131:9-133:69
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:129:9-131:69
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:133:13-66
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:131:13-66
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:132:13-50
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:130:13-50
 activity#com.example.ydshoa.SalesManageActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:134:9-136:67
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:132:9-134:67
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:136:13-64
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:134:13-64
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:135:13-48
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:133:13-48
 activity#com.example.ydshoa.GetSaleNumActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:137:9-139:67
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:135:9-137:67
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:139:13-64
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:137:13-64
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:138:13-47
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:136:13-47
 activity#com.example.ydshoa.ShowSalSubActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:140:9-142:67
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:138:9-140:67
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:142:13-64
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:140:13-64
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:141:13-47
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:139:13-47
 activity#com.example.ydshoa.SalesNumActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:143:9-145:64
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:141:9-143:64
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:145:13-61
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:143:13-61
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:144:13-45
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:142:13-45
 activity#com.example.ydshoa.SmrtActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:146:9-148:59
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:144:9-146:59
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:148:13-56
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:146:13-56
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:147:13-41
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:145:13-41
 activity#com.example.ydshoa.SpActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:149:9-151:58
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:147:9-149:58
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:151:13-55
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:149:13-55
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:150:13-39
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:148:13-39
 activity#com.example.ydshoa.OutInfoActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:152:9-154:63
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:150:9-152:63
 	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:154:13-60
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:152:13-60
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:153:13-44
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:151:13-44
 activity#com.example.ydshoa.SalesQueryTwoActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:155:9-158:53
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:153:9-156:53
 	android:screenOrientation
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:158:13-50
-	android:label
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:157:13-67
-	android:name
 		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:156:13-50
+	android:label
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:155:13-67
+	android:name
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:154:13-50
 activity#com.example.ydshoa.PriceActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:159:9-161:55
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:157:9-159:55
 	android:windowSoftInputMode
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:161:13-52
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:159:13-52
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:160:13-42
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:158:13-42
 activity#com.example.ydshoa.BrandNumActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:162:9-54
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:160:9-54
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:162:19-51
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:160:19-51
 meta-data#UMENG_APPKEY
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:164:9-166:56
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:162:9-164:56
 	android:value
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:166:13-53
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:164:13-53
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:165:13-40
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:163:13-40
 meta-data#UMENG_MESSAGE_SECRET
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:168:9-170:64
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:166:9-168:64
 	android:value
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:170:13-61
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:168:13-61
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:169:13-48
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:167:13-48
 meta-data#UMENG_CHANNEL
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:171:9-173:42
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:169:9-171:42
 	android:value
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:173:13-39
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:171:13-39
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:172:13-41
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:170:13-41
 activity#com.example.ydshoa.WelcomeActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:175:9-53
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:173:9-53
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:175:19-50
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:173:19-50
 activity#com.example.ydshoa.PriceOutActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:176:9-54
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:174:9-54
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:176:19-51
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:174:19-51
 activity#com.example.ydshoa.FormActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:177:9-50
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:175:9-50
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:177:19-47
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:175:19-47
 activity#com.example.ydshoa.AddMoreActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:178:9-180:55
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:176:9-178:55
 	android:windowSoftInputMode
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:180:13-52
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:178:13-52
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:179:13-44
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:177:13-44
 activity#com.example.ydshoa.DesignerActivity
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:179:9-54
+	android:name
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:179:19-51
+activity#com.example.ydshoa.VipClassActivity
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:180:9-54
+	android:name
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:180:19-51
+activity#com.example.ydshoa.VipDoAllActivity
 ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:181:9-54
 	android:name
 		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:181:19-51
-activity#com.example.ydshoa.VipClassActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:182:9-54
-	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:182:19-51
-activity#com.example.ydshoa.VipDoAllActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:183:9-54
-	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:183:19-51
 activity#com.example.ydshoa.LocalInfosActivity
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:182:9-56
+	android:name
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:182:19-53
+activity#com.example.ydshoa.QueryDesigActivity
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:183:9-56
+	android:name
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:183:19-53
+activity#com.example.ydshoa.CustersAllActivity
 ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:184:9-56
 	android:name
 		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:184:19-53
-activity#com.example.ydshoa.QueryDesigActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:185:9-56
-	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:185:19-53
-activity#com.example.ydshoa.CustersAllActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:186:9-56
-	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:186:19-53
 activity#com.example.ydshoa.ModeInfoActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:187:9-54
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:185:9-54
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:187:19-51
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:185:19-51
 activity#com.example.ydshoa.MoveAllInfoActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:188:9-57
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:186:9-57
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:188:19-54
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:186:19-54
 activity#com.example.ydshoa.QueryCustersActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:189:9-58
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:187:9-58
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:189:19-55
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:187:19-55
 activity#com.example.ydshoa.SalesNum_ARPActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:190:9-58
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:188:9-58
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:190:19-55
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:188:19-55
 activity#com.example.ydshoa.SalesQueryArpActivity
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:189:9-59
+	android:name
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:189:19-56
+activity#com.example.ydshoa.ArpOutActivity
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:190:9-52
+	android:name
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:190:19-49
+activity#com.example.ydshoa.TraceAllInfosActivity
 ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:191:9-59
 	android:name
 		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:191:19-56
-activity#com.example.ydshoa.ArpOutActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:192:9-52
-	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:192:19-49
-activity#com.example.ydshoa.TraceAllInfosActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:193:9-59
-	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:193:19-56
 activity#com.example.ydshoa.MapInfosActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:194:9-54
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:192:9-54
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:194:19-51
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:192:19-51
 activity#com.example.ydshoa.MoreAddressActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:195:9-57
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:193:9-57
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:195:19-54
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:193:19-54
 activity#com.example.ydshoa.SearchMapActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:196:9-55
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:194:9-55
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:196:19-52
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:194:19-52
 activity#com.example.ydshoa.PoiCityActivity
-ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:197:9-62
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:195:9-53
 	android:name
-		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:197:19-50
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:195:19-50
+activity#com.example.ydshoa.CityPickerActivity
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:196:9-56
+	android:name
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:196:19-53
+activity#com.example.ydshoa.PsHaveCityActivity
+ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:197:9-65
+	android:name
+		ADDED from D:\test\YDSHOA\src\main\AndroidManifest.xml:197:19-53
+activity#com.lljjcoder.style.citylist.CityListSelectActivity
+ADDED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:15:9-19:20
+	android:screenOrientation
+		ADDED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:17:13-49
+	android:windowSoftInputMode
+		ADDED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:18:13-71
+	android:name
+		ADDED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:16:13-79
+activity#com.lljjcoder.style.citythreelist.ProvinceActivity
+ADDED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:20:9-24:20
+	android:screenOrientation
+		ADDED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:22:13-49
+	android:windowSoftInputMode
+		ADDED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:23:13-71
+	android:name
+		ADDED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:21:13-78
+activity#com.lljjcoder.style.citythreelist.CityActivity
+ADDED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:25:9-29:20
+	android:screenOrientation
+		ADDED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:27:13-49
+	android:windowSoftInputMode
+		ADDED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:28:13-71
+	android:name
+		ADDED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:26:13-74
+activity#com.lljjcoder.style.citythreelist.AreaActivity
+ADDED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:30:9-34:20
+	android:screenOrientation
+		ADDED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:32:13-49
+	android:windowSoftInputMode
+		ADDED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:33:13-71
+	android:name
+		ADDED from [:citypickerview] D:\test\YDSHOA\citypickerview\build\intermediates\manifests\full\debug\AndroidManifest.xml:31:13-74

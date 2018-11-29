@@ -170,9 +170,9 @@
 
                     <EditText
                         android:id="@+id/et_cust_all_zcdh"
-                        android:maxLength="11"
+                        style="@style/design_editext"
                         android:digits="1234567890"
-                        style="@style/design_editext" />
+                        android:maxLength="11" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -192,8 +192,8 @@
 
                     <EditText
                         android:id="@+id/et_cust_all_khnl"
-                        android:digits="1234567890"
-                        style="@style/design_editext" />
+                        style="@style/design_editext"
+                        android:digits="1234567890" />
 
                 </LinearLayout>
 
@@ -342,10 +342,120 @@
                         style="@style/design_name"
                         android:text="户型结构:" />
 
-                    <EditText
+                    <!--<RelativeLayout
                         android:id="@+id/et_cust_all_hxjg"
-                        style="@style/design_editext"
-                        android:text="（）室（）厅（）厨（）卫（）阳台" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp">
+
+                        <EditText
+                            android:id="@+id/editText"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:background="@drawable/edit_background" />
+
+                        <TextView
+                            android:id="@+id/textView21"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/editText"
+                            android:layout_toRightOf="@+id/editText"
+                            android:gravity="center"
+                            android:text="室" />
+
+                        <EditText
+                            android:id="@+id/editText3"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/textView21"
+                            android:layout_toRightOf="@+id/textView21"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:background="@drawable/edit_background" />
+
+                        <TextView
+                            android:id="@+id/textView24"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/editText3"
+                            android:layout_toRightOf="@+id/editText3"
+                            android:gravity="center"
+                            android:text="厅" />
+                        <EditText
+                            android:id="@+id/editText4"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/textView24"
+                            android:layout_toRightOf="@+id/textView24"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:background="@drawable/edit_background" />
+
+                        <TextView
+                            android:id="@+id/textView25"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/editText4"
+                            android:layout_toRightOf="@+id/editText4"
+                            android:gravity="center"
+                            android:text="厨" />
+                        <EditText
+                            android:id="@+id/editText5"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/textView25"
+                            android:layout_toRightOf="@+id/textView25"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:background="@drawable/edit_background" />
+
+                        <TextView
+                            android:id="@+id/textView26"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/editText5"
+                            android:layout_toRightOf="@+id/editText5"
+                            android:gravity="center"
+                            android:text="卫" />
+                        <EditText
+                            android:id="@+id/editText6"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/textView26"
+                            android:layout_toRightOf="@+id/textView26"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                            android:background="@drawable/edit_background"
+                             />
+
+                        <TextView
+                            android:id="@+id/textView27"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/editText6"
+                            android:layout_toRightOf="@+id/editText6"
+                            android:gravity="center"
+                            android:text="阳台" />
+                    </RelativeLayout>-->
+                    
+                     <EditText
+                         android:id="@+id/et_cust_all_hxjg"
+                         style="@style/design_editext"
+                         android:hint="室/厅/厨/卫/阳台" />
 
                 </LinearLayout>
 
@@ -365,8 +475,8 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_margin="2dp"
-                    android:textSize="12sp"
-                    android:text="材料应用:" />
+                    android:text="材料应用:"
+                    android:textSize="12sp" />
 
                 <CheckBox
                     android:id="@+id/cb_ws"
@@ -375,8 +485,8 @@
                     android:layout_alignParentTop="true"
                     android:layout_toEndOf="@+id/textView20"
                     android:layout_toRightOf="@+id/textView20"
-                    android:textSize="12sp"
-                    android:text="卧室" />
+                    android:text="卧室"
+                    android:textSize="12sp" />
 
                 <CheckBox
                     android:id="@+id/cb_kt"
@@ -396,8 +506,8 @@
                     android:layout_alignParentTop="true"
                     android:layout_toEndOf="@+id/cb_ws"
                     android:layout_toRightOf="@+id/cb_ws"
-                    android:textSize="12sp"
-                    android:text="厨房" />
+                    android:text="厨房"
+                    android:textSize="12sp" />
 
                 <CheckBox
                     android:id="@+id/cb_yt"
@@ -416,8 +526,8 @@
                     android:layout_alignParentTop="true"
                     android:layout_toEndOf="@+id/cb_cf"
                     android:layout_toRightOf="@+id/cb_cf"
-                    android:textSize="12sp"
-                    android:text="卫生间" />
+                    android:text="卫生间"
+                    android:textSize="12sp" />
 
                 <CheckBox
                     android:id="@+id/cb_dxs"
@@ -426,8 +536,8 @@
                     android:layout_alignLeft="@+id/cb_wsj"
                     android:layout_alignParentBottom="true"
                     android:layout_alignStart="@+id/cb_wsj"
-                    android:textSize="12sp"
-                    android:text="地下室" />
+                    android:text="地下室"
+                    android:textSize="12sp" />
             </RelativeLayout>
             <!--<LinearLayout
                 style="@style/price_ll1"
@@ -531,9 +641,9 @@
 
                     <EditText
                         android:id="@+id/et_cust_all_zxys"
-                        android:maxLength="10"
+                        style="@style/design_editext"
                         android:digits="1234567890"
-                        style="@style/design_editext" />
+                        android:maxLength="10" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -656,9 +766,13 @@
                         style="@style/design_name"
                         android:text="意向品牌:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/et_cust_all_yxpp"
                         style="@style/design_editext" />
+
+                    <ImageButton
+                        android:id="@+id/ib_cust_all_yxpp"
+                        style="@style/price_button_down" />
 
                 </LinearLayout>
 

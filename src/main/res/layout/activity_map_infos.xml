@@ -33,15 +33,21 @@
             android:layout_height="wrap_content"
             android:text="地址：" />
 
-        <TextView
+        <AutoCompleteTextView
             android:id="@+id/address_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:layout_marginLeft="5dp"
+            android:layout_weight="0.88"
+            android:hint="请输入您的收货地址" />
 
 
     </LinearLayout>
 
+    <ListView
+        android:id="@+id/main_search_pois"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></ListView>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -52,7 +58,7 @@
             android:layout_height="fill_parent"
             android:clickable="true" />
 
-        <Button
+        <!--<Button
             android:id="@+id/dw_bt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,8 +66,8 @@
             android:layout_alignParentLeft="true"
             android:layout_marginBottom="10dip"
             android:layout_marginLeft="25dp"
-            android:text="定位" />
-        <Button
+            android:text="定位" />-->
+       <!-- <Button
             android:id="@+id/btn_dt_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -69,7 +75,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginBottom="10dip"
             android:layout_marginRight="25dp"
-            android:text="确定" />
+            android:text="确定" />-->
     </RelativeLayout>
 
 </LinearLayout>

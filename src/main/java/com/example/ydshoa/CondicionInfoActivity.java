@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -264,6 +265,18 @@ public class CondicionInfoActivity extends Activity implements OnClickListener {
 			head.setText("货品库区");
 			getClassinfo();
 		}
+		if (extraFlag.equals("21")) {
+			 depInfo=new ArrayList<IdNameList>();
+			IdNameList mnsj=new IdNameList("1","冠珠");
+			IdNameList mnsj1=new IdNameList("2","LD");
+			IdNameList mnsj2=new IdNameList("3","法恩莎");
+			IdNameList mnsj3=new IdNameList("4","好莱客");
+			depInfo.add(mnsj);
+			depInfo.add(mnsj1);
+			depInfo.add(mnsj2);
+			depInfo.add(mnsj3);
+			showCheckBoxListView();
+		}
 	}
 
 	
@@ -508,6 +521,7 @@ public class CondicionInfoActivity extends Activity implements OnClickListener {
 											final DepInfo dInfo = new Gson()
 													.fromJson(str,
 															DepInfo.class);
+
 											if (dInfo.isRLO() == false) {
 												CondicionInfoActivity.this
 														.runOnUiThread(new Runnable() {
@@ -530,6 +544,8 @@ public class CondicionInfoActivity extends Activity implements OnClickListener {
 																public void run() {
 																	depInfo = dInfo
 																			.getIdNameList();
+																	Log.e("LiNing", "用户信息--should--"
+																			+ depInfo);
 																	if (depInfo != null) {
 
 																		showCheckBoxListView();

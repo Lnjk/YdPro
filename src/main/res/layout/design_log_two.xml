@@ -35,7 +35,7 @@
     <TextView
         android:id="@+id/textView4_account"
         style="@style/head_scrow_vipcontent"
-        android:text="身份证" />
+        android:text="所属单位" />
 
     <View style="@style/list_item_cell_seperator_layout" />
 

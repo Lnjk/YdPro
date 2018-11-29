@@ -14,7 +14,9 @@ public class DepInfo {
 		RLO = rLO;
 	}
 
-	
+	public DepInfo(List<IdNameList> idNameList) {
+		this.idNameList = idNameList;
+	}
 
 	public List<IdNameList> getIdNameList() {
 		return idNameList;
@@ -29,6 +31,11 @@ public class DepInfo {
 	public static class IdNameList {
 		public String id;
 		public String name;
+
+		public IdNameList(String id, String name) {
+			this.id = id;
+			this.name = name;
+		}
 
 		public String getId() {
 			return id;

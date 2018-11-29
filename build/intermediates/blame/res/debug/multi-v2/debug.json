@@ -1,28 +1,6 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-te-rIN_values-te-rIN.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-te-rIN\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,170,278,401,510,621,711,816,941,1054,1162,1262,1373,1475,1592",
-                        "endColumns": "113,107,122,108,110,89,104,124,112,107,99,110,101,116,126",
-                        "endOffsets": "165,273,396,505,616,706,811,936,1049,1157,1257,1368,1470,1587,1714"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,169,277,400,509,620,710,815,940,1053,1161,1261,1372,1474,1591",
-                        "endColumns": "113,107,122,108,110,89,104,124,112,107,99,110,101,116,126",
-                        "endOffsets": "164,272,395,504,615,705,810,935,1048,1156,1256,1367,1469,1586,1713"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-xlarge-v4_values-xlarge-v4.arsc.flat",
             "map": [
                 {
@@ -40,94 +18,6 @@
                         "startOffsets": "55,132,196,263,330,396,462",
                         "endColumns": "76,63,66,66,65,65,54",
                         "endOffsets": "127,191,258,325,391,457,512"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-da_values-da.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-da\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,159,267,390,489,601,684,784,897,1006,1114,1210,1324,1426,1527",
-                        "endColumns": "102,107,122,98,111,82,99,112,108,107,95,113,101,100,115",
-                        "endOffsets": "154,262,385,484,596,679,779,892,1001,1109,1205,1319,1421,1522,1638"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,158,266,389,488,600,683,783,896,1005,1113,1209,1323,1425,1526",
-                        "endColumns": "102,107,122,98,111,82,99,112,108,107,95,113,101,100,115",
-                        "endOffsets": "153,261,384,483,595,678,778,891,1000,1108,1204,1318,1420,1521,1637"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-km-rKH_values-km-rKH.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-km-rKH\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,159,267,390,490,602,689,793,911,1015,1120,1220,1330,1437,1545",
-                        "endColumns": "102,107,122,99,111,86,103,117,103,104,99,109,106,107,122",
-                        "endOffsets": "154,262,385,485,597,684,788,906,1010,1115,1215,1325,1432,1540,1663"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,158,266,389,489,601,688,792,910,1014,1119,1219,1329,1436,1544",
-                        "endColumns": "102,107,122,99,111,86,103,117,103,104,99,109,106,107,122",
-                        "endOffsets": "153,261,384,484,596,683,787,905,1009,1114,1214,1324,1431,1539,1662"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-sr_values-sr.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-sr\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,165,273,396,499,605,691,795,913,1018,1126,1227,1331,1439,1540",
-                        "endColumns": "108,107,122,102,105,85,103,117,104,107,100,103,107,100,127",
-                        "endOffsets": "160,268,391,494,600,686,790,908,1013,1121,1222,1326,1434,1535,1663"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,164,272,395,498,604,690,794,912,1017,1125,1226,1330,1438,1539",
-                        "endColumns": "108,107,122,102,105,85,103,117,104,107,100,103,107,100,127",
-                        "endOffsets": "159,267,390,493,599,685,789,907,1012,1120,1221,1325,1433,1534,1662"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-es_values-es.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-es\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,173,281,404,517,625,710,811,939,1046,1146,1245,1353,1460,1567",
-                        "endColumns": "116,107,122,112,107,84,100,127,106,99,98,107,106,106,121",
-                        "endOffsets": "168,276,399,512,620,705,806,934,1041,1141,1240,1348,1455,1562,1684"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,172,280,403,516,624,709,810,938,1045,1145,1244,1352,1459,1566",
-                        "endColumns": "116,107,122,112,107,84,100,127,106,99,98,107,106,106,121",
-                        "endOffsets": "167,275,398,511,619,704,805,933,1040,1140,1239,1347,1454,1561,1683"
                     }
                 }
             ]
@@ -171,94 +61,6 @@
                         "endLines": "11,18,25,32,33,34,35,36",
                         "endColumns": "12,12,12,12,78,92,90,104",
                         "endOffsets": "715,1243,1769,2309,2388,2481,2572,2677"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ky-rKG_values-ky-rKG.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-ky-rKG\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,160,268,391,486,605,689,796,913,1023,1130,1228,1334,1441,1542",
-                        "endColumns": "103,107,122,94,118,83,106,116,109,106,97,105,106,100,123",
-                        "endOffsets": "155,263,386,481,600,684,791,908,1018,1125,1223,1329,1436,1537,1661"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,159,267,390,485,604,688,795,912,1022,1129,1227,1333,1440,1541",
-                        "endColumns": "103,107,122,94,118,83,106,116,109,106,97,105,106,100,123",
-                        "endOffsets": "154,262,385,480,599,683,790,907,1017,1124,1222,1328,1435,1536,1660"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ta-rIN_values-ta-rIN.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-ta-rIN\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,170,278,401,506,621,710,817,943,1045,1149,1246,1356,1458,1565",
-                        "endColumns": "113,107,122,104,114,88,106,125,101,103,96,109,101,106,118",
-                        "endOffsets": "165,273,396,501,616,705,812,938,1040,1144,1241,1351,1453,1560,1679"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,169,277,400,505,620,709,816,942,1044,1148,1245,1355,1457,1564",
-                        "endColumns": "113,107,122,104,114,88,106,125,101,103,96,109,101,106,118",
-                        "endOffsets": "164,272,395,500,615,704,811,937,1039,1143,1240,1350,1452,1559,1678"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-en-rIN_values-en-rIN.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-en-rIN\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,160,268,391,491,599,683,783,898,1001,1105,1204,1309,1412,1516",
-                        "endColumns": "103,107,122,99,107,83,99,114,102,103,98,104,102,103,118",
-                        "endOffsets": "155,263,386,486,594,678,778,893,996,1100,1199,1304,1407,1511,1630"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,159,267,390,490,598,682,782,897,1000,1104,1203,1308,1411,1515",
-                        "endColumns": "103,107,122,99,107,83,99,114,102,103,98,104,102,103,118",
-                        "endOffsets": "154,262,385,485,593,677,777,892,995,1099,1198,1303,1406,1510,1629"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-tr_values-tr.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-tr\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,161,269,392,491,603,693,799,919,1026,1131,1227,1334,1436,1544",
-                        "endColumns": "104,107,122,98,111,89,105,119,106,104,95,106,101,107,118",
-                        "endOffsets": "156,264,387,486,598,688,794,914,1021,1126,1222,1329,1431,1539,1658"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,160,268,391,490,602,692,798,918,1025,1130,1226,1333,1435,1543",
-                        "endColumns": "104,107,122,98,111,89,105,119,106,104,95,106,101,107,118",
-                        "endOffsets": "155,263,386,485,597,687,793,913,1020,1125,1221,1328,1430,1538,1657"
                     }
                 }
             ]
@@ -308,50 +110,6 @@
             ]
         },
         {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-kn-rIN_values-kn-rIN.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-kn-rIN\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,174,282,405,517,630,718,825,952,1068,1179,1278,1391,1495,1609",
-                        "endColumns": "117,107,122,111,112,87,106,126,115,110,98,112,103,113,125",
-                        "endOffsets": "169,277,400,512,625,713,820,947,1063,1174,1273,1386,1490,1604,1730"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,173,281,404,516,629,717,824,951,1067,1178,1277,1390,1494,1608",
-                        "endColumns": "117,107,122,111,112,87,106,126,115,110,98,112,103,113,125",
-                        "endOffsets": "168,276,399,511,624,712,819,946,1062,1173,1272,1385,1489,1603,1729"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ur-rPK_values-ur-rPK.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-ur-rPK\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,166,274,397,503,612,698,802,922,1030,1139,1241,1352,1452,1560",
-                        "endColumns": "109,107,122,105,108,85,103,119,107,108,101,110,99,107,128",
-                        "endOffsets": "161,269,392,498,607,693,797,917,1025,1134,1236,1347,1447,1555,1684"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,165,273,396,502,611,697,801,921,1029,1138,1240,1351,1451,1559",
-                        "endColumns": "109,107,122,105,108,85,103,119,107,108,101,110,99,107,128",
-                        "endOffsets": "160,268,391,497,606,692,796,916,1024,1133,1235,1346,1446,1554,1683"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ka-rGE_values-ka-rGE.arsc.flat",
             "map": [
                 {
@@ -369,50 +127,6 @@
                         "startOffsets": "55,164,272,395,499,610,698,803,916,1029,1136,1234,1347,1451,1555",
                         "endColumns": "108,107,122,103,110,87,104,112,112,106,97,112,103,103,121",
                         "endOffsets": "159,267,390,494,605,693,798,911,1024,1131,1229,1342,1446,1550,1672"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ml-rIN_values-ml-rIN.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-ml-rIN\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,175,283,406,524,640,733,838,970,1081,1187,1285,1399,1503,1614",
-                        "endColumns": "118,107,122,117,115,92,104,131,110,105,97,113,103,110,127",
-                        "endOffsets": "170,278,401,519,635,728,833,965,1076,1182,1280,1394,1498,1609,1737"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,174,282,405,523,639,732,837,969,1080,1186,1284,1398,1502,1613",
-                        "endColumns": "118,107,122,117,115,92,104,131,110,105,97,113,103,110,127",
-                        "endOffsets": "169,277,400,518,634,727,832,964,1075,1181,1279,1393,1497,1608,1736"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-nl_values-nl.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-nl\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,174,282,405,510,617,703,811,931,1042,1146,1245,1360,1473,1576",
-                        "endColumns": "117,107,122,104,106,85,107,119,110,103,98,114,112,102,117",
-                        "endOffsets": "169,277,400,505,612,698,806,926,1037,1141,1240,1355,1468,1571,1689"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,173,281,404,509,616,702,810,930,1041,1145,1244,1359,1472,1575",
-                        "endColumns": "117,107,122,104,106,85,107,119,110,103,98,114,112,102,117",
-                        "endOffsets": "168,276,399,504,611,697,805,925,1036,1140,1239,1354,1467,1570,1688"
                     }
                 }
             ]
@@ -462,28 +176,6 @@
             ]
         },
         {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ar_values-ar.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-ar\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,173,281,404,508,617,699,800,914,1019,1120,1216,1324,1427,1530",
-                        "endColumns": "116,107,122,103,108,81,100,113,104,100,95,107,102,102,118",
-                        "endOffsets": "168,276,399,503,612,694,795,909,1014,1115,1211,1319,1422,1525,1644"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,172,280,403,507,616,698,799,913,1018,1119,1215,1323,1426,1529",
-                        "endColumns": "116,107,122,103,108,81,100,113,104,100,95,107,102,102,118",
-                        "endOffsets": "167,275,398,502,611,693,794,908,1013,1114,1210,1318,1421,1524,1643"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-hr_values-hr.arsc.flat",
             "map": [
                 {
@@ -501,138 +193,6 @@
                         "startOffsets": "55,160,268,391,488,598,684,788,907,1011,1124,1230,1335,1448,1555",
                         "endColumns": "104,107,122,96,109,85,103,118,103,112,105,104,112,106,122",
                         "endOffsets": "155,263,386,483,593,679,783,902,1006,1119,1225,1330,1443,1550,1673"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-w480dp-v13_values-w480dp-v13.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-w480dp\\values.xml",
-                    "from": {
-                        "startLines": "3,4",
-                        "startColumns": "4,4",
-                        "startOffsets": "56,118",
-                        "endColumns": "61,71",
-                        "endOffsets": "113,185"
-                    },
-                    "to": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,117",
-                        "endColumns": "61,71",
-                        "endOffsets": "112,184"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-port_values-port.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-port\\values.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "56",
-                        "endColumns": "55",
-                        "endOffsets": "107"
-                    },
-                    "to": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "55",
-                        "endOffsets": "106"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-zh-rTW_values-zh-rTW.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-zh-rTW\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,151,258,381,474,574,656,753,861,957,1053,1148,1245,1340,1440",
-                        "endColumns": "94,106,122,92,99,81,96,107,95,95,94,96,94,99,112",
-                        "endOffsets": "146,253,376,469,569,651,748,856,952,1048,1143,1240,1335,1435,1548"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,150,257,380,473,573,655,752,860,956,1052,1147,1244,1339,1439",
-                        "endColumns": "94,106,122,92,99,81,96,107,95,95,94,96,94,99,112",
-                        "endOffsets": "145,252,375,468,568,650,747,855,951,1047,1142,1239,1334,1434,1547"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-sw_values-sw.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-sw\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,159,267,390,488,596,686,791,908,1009,1118,1217,1324,1433,1538",
-                        "endColumns": "102,107,122,97,107,89,104,116,100,108,98,106,108,104,118",
-                        "endOffsets": "154,262,385,483,591,681,786,903,1004,1113,1212,1319,1428,1533,1652"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,158,266,389,487,595,685,790,907,1008,1117,1216,1323,1432,1537",
-                        "endColumns": "102,107,122,97,107,89,104,116,100,108,98,106,108,104,118",
-                        "endOffsets": "153,261,384,482,590,680,785,902,1003,1112,1211,1318,1427,1532,1651"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-fa_values-fa.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-fa\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,166,276,402,505,616,704,807,922,1034,1137,1235,1345,1448,1557",
-                        "endColumns": "109,109,125,102,110,87,102,114,111,102,97,109,102,108,124",
-                        "endOffsets": "161,271,397,500,611,699,802,917,1029,1132,1230,1340,1443,1552,1677"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,165,275,401,504,615,703,806,921,1033,1136,1234,1344,1447,1556",
-                        "endColumns": "109,109,125,102,110,87,102,114,111,102,97,109,102,108,124",
-                        "endOffsets": "160,270,396,499,610,698,801,916,1028,1131,1229,1339,1442,1551,1676"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-es-rUS_values-es-rUS.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-es-rUS\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,176,284,407,516,624,709,810,933,1045,1157,1258,1366,1473,1580",
-                        "endColumns": "119,107,122,108,107,84,100,122,111,111,100,107,106,106,121",
-                        "endOffsets": "171,279,402,511,619,704,805,928,1040,1152,1253,1361,1468,1575,1697"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,175,283,406,515,623,708,809,932,1044,1156,1257,1365,1472,1579",
-                        "endColumns": "119,107,122,108,107,84,100,122,111,111,100,107,106,106,121",
-                        "endOffsets": "170,278,401,510,618,703,804,927,1039,1151,1252,1360,1467,1574,1696"
                     }
                 }
             ]
@@ -770,50 +330,6 @@
             ]
         },
         {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-et-rEE_values-et-rEE.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-et-rEE\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,173,281,404,511,622,708,810,927,1038,1143,1242,1352,1453,1556",
-                        "endColumns": "116,107,122,106,110,85,101,116,110,104,98,109,100,102,127",
-                        "endOffsets": "168,276,399,506,617,703,805,922,1033,1138,1237,1347,1448,1551,1679"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,172,280,403,510,621,707,809,926,1037,1142,1241,1351,1452,1555",
-                        "endColumns": "116,107,122,106,110,85,101,116,110,104,98,109,100,102,127",
-                        "endOffsets": "167,275,398,505,616,702,804,921,1032,1137,1236,1346,1447,1550,1678"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ne-rNP_values-ne-rNP.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-ne-rNP\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,161,269,392,496,604,695,802,929,1039,1155,1258,1373,1475,1590",
-                        "endColumns": "104,107,122,103,107,90,106,126,109,115,102,114,101,114,130",
-                        "endOffsets": "156,264,387,491,599,690,797,924,1034,1150,1253,1368,1470,1585,1716"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,160,268,391,495,603,694,801,928,1038,1154,1257,1372,1474,1589",
-                        "endColumns": "104,107,122,103,107,90,106,126,109,115,102,114,101,114,130",
-                        "endOffsets": "155,263,386,490,598,689,796,923,1033,1149,1252,1367,1469,1584,1715"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-sk_values-sk.arsc.flat",
             "map": [
                 {
@@ -831,28 +347,6 @@
                         "startOffsets": "55,162,270,393,493,604,690,798,916,1021,1130,1229,1335,1446,1555",
                         "endColumns": "106,107,122,99,110,85,107,117,104,108,98,105,110,108,123",
                         "endOffsets": "157,265,388,488,599,685,793,911,1016,1125,1224,1330,1441,1550,1674"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-lo-rLA_values-lo-rLA.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-lo-rLA\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,159,267,390,487,594,679,784,896,1003,1100,1198,1303,1406,1510",
-                        "endColumns": "102,107,122,96,106,84,104,111,106,96,97,104,102,103,121",
-                        "endOffsets": "154,262,385,482,589,674,779,891,998,1095,1193,1298,1401,1505,1627"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,158,266,389,486,593,678,783,895,1002,1099,1197,1302,1405,1509",
-                        "endColumns": "102,107,122,96,106,84,104,111,106,96,97,104,102,103,121",
-                        "endOffsets": "153,261,384,481,588,673,778,890,997,1094,1192,1297,1400,1504,1626"
                     }
                 }
             ]
@@ -926,45 +420,16 @@
             ]
         },
         {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-vi_values-vi.arsc.flat",
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-v18_values-v18.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-vi\\values.xml",
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\79bdffb5382246bec3faee51ed1fb502\\res\\values-v18\\values-v18.xml",
                     "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,170,278,401,509,618,702,805,924,1028,1137,1238,1343,1457,1562",
-                        "endColumns": "113,107,122,107,108,83,102,118,103,108,100,104,113,104,119",
-                        "endOffsets": "165,273,396,504,613,697,800,919,1023,1132,1233,1338,1452,1557,1677"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,169,277,400,508,617,701,804,923,1027,1136,1237,1342,1456,1561",
-                        "endColumns": "113,107,122,107,108,83,102,118,103,108,100,104,113,104,119",
-                        "endOffsets": "164,272,395,503,612,696,799,918,1022,1131,1232,1337,1451,1556,1676"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ca_values-ca.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-ca\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,174,282,405,511,618,701,809,935,1046,1155,1253,1363,1467,1575",
-                        "endColumns": "117,107,122,105,106,82,107,125,110,108,97,109,103,107,122",
-                        "endOffsets": "169,277,400,506,613,696,804,930,1041,1150,1248,1358,1462,1570,1693"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,173,281,404,510,617,700,808,934,1045,1154,1252,1362,1466,1574",
-                        "endColumns": "117,107,122,105,106,82,107,125,110,108,97,109,103,107,122",
-                        "endOffsets": "168,276,399,505,612,695,803,929,1040,1149,1247,1357,1461,1569,1692"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "48",
+                        "endOffsets": "99"
                     }
                 }
             ]
@@ -1014,28 +479,6 @@
             ]
         },
         {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-large-v4_values-large-v4.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-large\\values.xml",
-                    "from": {
-                        "startLines": "3,4,6,7,9,10,11,12,14,16,18",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,118,191,250,315,382,449,515,582,638,744",
-                        "endColumns": "61,71,58,63,66,66,65,65,54,104,116",
-                        "endOffsets": "113,185,245,309,377,444,510,576,632,738,856"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,117,189,248,312,379,446,512,578,633,737",
-                        "endColumns": "61,71,58,63,66,66,65,65,54,103,115",
-                        "endOffsets": "112,184,243,307,374,441,507,573,628,732,848"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-hi_values-hi.arsc.flat",
             "map": [
                 {
@@ -1080,88 +523,17 @@
             ]
         },
         {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-si-rLK_values-si-rLK.arsc.flat",
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-hdpi-v4_values-hdpi-v4.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-si-rLK\\values.xml",
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\79bdffb5382246bec3faee51ed1fb502\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
                     "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,166,274,397,504,611,699,804,920,1029,1134,1232,1342,1441,1547",
-                        "endColumns": "109,107,122,106,106,87,104,115,108,104,97,109,98,105,120",
-                        "endOffsets": "161,269,392,499,606,694,799,915,1024,1129,1227,1337,1436,1542,1663"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,165,273,396,503,610,698,803,919,1028,1133,1231,1341,1440,1546",
-                        "endColumns": "109,107,122,106,106,87,104,115,108,104,97,109,98,105,120",
-                        "endOffsets": "160,268,391,498,605,693,798,914,1023,1128,1226,1336,1435,1541,1662"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-v11_values-v11.arsc.flat",
-            "map": [
-                {
-                    "source": "D:\\test\\YDSHOA\\src\\main\\res\\values-v11\\styles.xml",
-                    "from": {
-                        "startLines": "6",
-                        "startColumns": "4",
-                        "startOffsets": "182",
-                        "endLines": "8",
-                        "endColumns": "12",
-                        "endOffsets": "316"
-                    },
-                    "to": {
                         "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "55",
-                        "endLines": "4",
-                        "endColumns": "12",
-                        "endOffsets": "187"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-v11\\values.xml",
-                    "from": {
-                        "startLines": "3,10,17,24,31,38,45,52,59,66,73,75,77,79,176,178,180,186,233,280,328",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,476,902,1331,1758,2188,2614,3036,3472,3906,4354,4434,4528,4620,11350,11453,11578,11943,15581,19233,23010",
-                        "endLines": "8,15,22,29,36,43,50,57,64,71,73,75,77,174,176,178,184,231,278,326,374",
-                        "endColumns": "12,12,12,12,12,12,12,12,12,12,78,92,90,12,101,123,12,12,12,12,12",
-                        "endOffsets": "470,896,1325,1752,2182,2608,3030,3466,3900,4348,4428,4522,4614,11344,11447,11572,11937,15575,19227,23004,26795"
-                    },
-                    "to": {
-                        "startLines": "5,11,17,23,29,35,41,47,53,59,65,66,67,68,164,165,166,171,217,263,310",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "192,611,1036,1464,1890,2319,2744,3165,3600,4033,4480,4558,4650,4740,11469,11564,11681,12045,15682,19333,23109",
-                        "endLines": "10,16,22,28,34,40,46,52,58,64,65,66,67,163,164,165,170,216,262,309,356",
-                        "endColumns": "12,12,12,12,12,12,12,12,12,12,77,91,89,12,94,116,12,12,12,12,12",
-                        "endOffsets": "606,1031,1459,1885,2314,2739,3160,3595,4028,4475,4553,4645,4735,11464,11559,11676,12040,15677,19328,23104,26894"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ko_values-ko.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-ko\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,151,259,382,476,578,660,758,864,962,1057,1152,1252,1348,1447",
-                        "endColumns": "94,107,122,93,101,81,97,105,97,94,94,99,95,98,114",
-                        "endOffsets": "146,254,377,471,573,655,753,859,957,1052,1147,1247,1343,1442,1557"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,150,258,381,475,577,659,757,863,961,1056,1151,1251,1347,1446",
-                        "endColumns": "94,107,122,93,101,81,97,105,97,94,94,99,95,98,114",
-                        "endOffsets": "145,253,376,470,572,654,752,858,956,1051,1146,1246,1342,1441,1556"
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
                     }
                 }
             ]
@@ -1189,50 +561,6 @@
             ]
         },
         {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-eu-rES_values-eu-rES.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-eu-rES\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,165,273,396,494,604,690,796,920,1029,1139,1238,1347,1460,1571",
-                        "endColumns": "108,107,122,97,109,85,105,123,108,109,98,108,112,110,136",
-                        "endOffsets": "160,268,391,489,599,685,791,915,1024,1134,1233,1342,1455,1566,1703"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,164,272,395,493,603,689,795,919,1028,1138,1237,1346,1459,1570",
-                        "endColumns": "108,107,122,97,109,85,105,123,108,109,98,108,112,110,136",
-                        "endOffsets": "159,267,390,488,598,684,790,914,1023,1133,1232,1341,1454,1565,1702"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-lv_values-lv.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-lv\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,176,284,407,515,624,710,814,936,1045,1157,1256,1367,1476,1581",
-                        "endColumns": "119,107,122,107,108,85,103,121,108,111,98,110,108,104,118",
-                        "endOffsets": "171,279,402,510,619,705,809,931,1040,1152,1251,1362,1471,1576,1695"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,175,283,406,514,623,709,813,935,1044,1156,1255,1366,1475,1580",
-                        "endColumns": "119,107,122,107,108,85,103,121,108,111,98,110,108,104,118",
-                        "endOffsets": "170,278,401,509,618,704,808,930,1039,1151,1250,1361,1470,1575,1694"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-nb_values-nb.arsc.flat",
             "map": [
                 {
@@ -1250,28 +578,6 @@
                         "startOffsets": "55,163,272,397,492,606,692,792,905,1008,1107,1203,1307,1405,1506",
                         "endColumns": "107,108,124,94,113,85,99,112,102,98,95,103,97,100,115",
                         "endOffsets": "158,267,392,487,601,687,787,900,1003,1102,1198,1302,1400,1501,1617"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-is-rIS_values-is-rIS.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-is-rIS\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,156,264,387,484,596,681,782,896,1006,1114,1212,1321,1420,1523",
-                        "endColumns": "99,107,122,96,111,84,100,113,109,107,97,108,98,102,117",
-                        "endOffsets": "151,259,382,479,591,676,777,891,1001,1109,1207,1316,1415,1518,1636"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,155,263,386,483,595,680,781,895,1005,1113,1211,1320,1419,1522",
-                        "endColumns": "99,107,122,96,111,84,100,113,109,107,97,108,98,102,117",
-                        "endOffsets": "150,258,381,478,590,675,776,890,1000,1108,1206,1315,1414,1517,1635"
                     }
                 }
             ]
@@ -1299,28 +605,6 @@
             ]
         },
         {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-am_values-am.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-am\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,158,266,389,488,594,680,783,896,996,1096,1192,1295,1394,1501",
-                        "endColumns": "101,107,122,98,105,85,102,112,99,99,95,102,98,106,115",
-                        "endOffsets": "153,261,384,483,589,675,778,891,991,1091,1187,1290,1389,1496,1612"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,157,265,388,487,593,679,782,895,995,1095,1191,1294,1393,1500",
-                        "endColumns": "101,107,122,98,105,85,102,112,99,99,95,102,98,106,115",
-                        "endOffsets": "152,260,383,482,588,674,777,890,990,1090,1186,1289,1388,1495,1611"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-lt_values-lt.arsc.flat",
             "map": [
                 {
@@ -1338,28 +622,6 @@
                         "startOffsets": "55,171,279,402,503,616,703,812,933,1042,1151,1251,1361,1465,1578",
                         "endColumns": "115,107,122,100,112,86,108,120,108,108,99,109,103,112,129",
                         "endOffsets": "166,274,397,498,611,698,807,928,1037,1146,1246,1356,1460,1573,1703"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-zu_values-zu.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-zu\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,164,272,395,502,616,704,807,934,1038,1144,1242,1349,1455,1561",
-                        "endColumns": "107,107,122,106,113,87,102,126,103,105,97,106,105,105,119",
-                        "endOffsets": "159,267,390,497,611,699,802,929,1033,1139,1237,1344,1450,1556,1676"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,163,271,394,501,615,703,806,933,1037,1143,1241,1348,1454,1560",
-                        "endColumns": "107,107,122,106,113,87,102,126,103,105,97,106,105,105,119",
-                        "endOffsets": "158,266,389,496,610,698,801,928,1032,1138,1236,1343,1449,1555,1675"
                     }
                 }
             ]
@@ -1497,50 +759,6 @@
             ]
         },
         {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-gl-rES_values-gl-rES.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-gl-rES\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,168,276,399,511,619,704,806,932,1039,1148,1247,1355,1458,1565",
-                        "endColumns": "111,107,122,111,107,84,101,125,106,108,98,107,102,106,121",
-                        "endOffsets": "163,271,394,506,614,699,801,927,1034,1143,1242,1350,1453,1560,1682"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,167,275,398,510,618,703,805,931,1038,1147,1246,1354,1457,1564",
-                        "endColumns": "111,107,122,111,107,84,101,125,106,108,98,107,102,106,121",
-                        "endOffsets": "162,270,393,505,613,698,800,926,1033,1142,1241,1349,1452,1559,1681"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-sv_values-sv.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-sv\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,162,270,393,496,607,692,794,907,1013,1113,1209,1314,1416,1518",
-                        "endColumns": "105,107,122,102,110,84,101,112,105,99,95,104,101,101,116",
-                        "endOffsets": "157,265,388,491,602,687,789,902,1008,1108,1204,1309,1411,1513,1630"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,161,269,392,495,606,691,793,906,1012,1112,1208,1313,1415,1517",
-                        "endColumns": "105,107,122,102,110,84,101,112,105,99,95,104,101,101,116",
-                        "endOffsets": "156,264,387,490,601,686,788,901,1007,1107,1203,1308,1410,1512,1629"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-xlarge-land-v4_values-xlarge-land-v4.arsc.flat",
             "map": [
                 {
@@ -1580,6 +798,1199 @@
                         "startOffsets": "55",
                         "endColumns": "57",
                         "endOffsets": "108"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-v22_values-v22.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\79bdffb5382246bec3faee51ed1fb502\\res\\values-v22\\values-v22.xml",
+                    "from": {
+                        "startLines": "2,3,4,9",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,130,217,553",
+                        "endLines": "2,3,8,13",
+                        "endColumns": "74,86,12,12",
+                        "endOffsets": "125,212,548,896"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-w500dp-v13_values-w500dp-v13.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-w500dp\\values.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "56",
+                        "endColumns": "54",
+                        "endOffsets": "106"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "54",
+                        "endOffsets": "105"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-tl_values-tl.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-tl\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,175,283,406,514,631,719,825,946,1055,1166,1267,1377,1494,1602",
+                        "endColumns": "118,107,122,107,116,87,105,120,108,110,100,109,116,107,122",
+                        "endOffsets": "170,278,401,509,626,714,820,941,1050,1161,1262,1372,1489,1597,1720"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,174,282,405,513,630,718,824,945,1054,1165,1266,1376,1493,1601",
+                        "endColumns": "118,107,122,107,116,87,105,120,108,110,100,109,116,107,122",
+                        "endOffsets": "169,277,400,508,625,713,819,940,1049,1160,1261,1371,1488,1596,1719"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-de_values-de.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-de\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,161,269,392,490,602,688,793,908,1019,1122,1221,1332,1434,1541",
+                        "endColumns": "104,107,122,97,111,85,104,114,110,102,98,110,101,106,121",
+                        "endOffsets": "156,264,387,485,597,683,788,903,1014,1117,1216,1327,1429,1536,1658"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,160,268,391,489,601,687,792,907,1018,1121,1220,1331,1433,1540",
+                        "endColumns": "104,107,122,97,111,85,104,114,110,102,98,110,101,106,121",
+                        "endOffsets": "155,263,386,484,596,682,787,902,1013,1116,1215,1326,1428,1535,1657"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-uz-rUZ_values-uz-rUZ.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-uz-rUZ\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,161,269,392,496,613,699,810,926,1035,1142,1241,1349,1454",
+                        "endColumns": "104,107,122,103,116,85,110,115,108,106,98,107,104,104",
+                        "endOffsets": "156,264,387,491,608,694,805,921,1030,1137,1236,1344,1449,1554"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,160,268,391,495,612,698,809,925,1034,1141,1240,1348,1453",
+                        "endColumns": "104,107,122,103,116,85,110,115,108,106,98,107,104,104",
+                        "endOffsets": "155,263,386,490,607,693,804,920,1029,1136,1235,1343,1448,1553"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ldltr-v21_values-ldltr-v21.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\79bdffb5382246bec3faee51ed1fb502\\res\\values-ldltr-v21\\values-ldltr-v21.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "112",
+                        "endOffsets": "163"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-mr-rIN_values-mr-rIN.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-mr-rIN\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,174,282,405,511,618,708,809,924,1036,1138,1234,1343,1444,1559",
+                        "endColumns": "117,107,122,105,106,89,100,114,111,101,95,108,100,114,122",
+                        "endOffsets": "169,277,400,506,613,703,804,919,1031,1133,1229,1338,1439,1554,1677"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,173,281,404,510,617,707,808,923,1035,1137,1233,1342,1443,1558",
+                        "endColumns": "117,107,122,105,106,89,100,114,111,101,95,108,100,114,122",
+                        "endOffsets": "168,276,399,505,612,702,803,918,1030,1132,1228,1337,1438,1553,1676"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-sw600dp-v13_values-sw600dp-v13.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-sw600dp\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,9",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "56,126,196,255,326,395",
+                        "endColumns": "69,69,58,70,67,54",
+                        "endOffsets": "121,191,250,321,389,445"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,125,195,254,325,393",
+                        "endColumns": "69,69,58,70,67,54",
+                        "endOffsets": "120,190,249,320,388,443"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-bn-rBD_values-bn-rBD.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-bn-rBD\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,165,273,396,508,614,708,813,943,1053,1169,1276,1386,1492,1602",
+                        "endColumns": "108,107,122,111,105,93,104,129,109,115,106,109,105,109,124",
+                        "endOffsets": "160,268,391,503,609,703,808,938,1048,1164,1271,1381,1487,1597,1722"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,164,272,395,507,613,707,812,942,1052,1168,1275,1385,1491,1601",
+                        "endColumns": "108,107,122,111,105,93,104,129,109,115,106,109,105,109,124",
+                        "endOffsets": "159,267,390,502,608,702,807,937,1047,1163,1270,1380,1486,1596,1721"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-el_values-el.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-el\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,174,282,405,516,633,718,823,949,1060,1170,1272,1383,1492,1600",
+                        "endColumns": "117,107,122,110,116,84,104,125,110,109,101,110,108,107,122",
+                        "endOffsets": "169,277,400,511,628,713,818,944,1055,1165,1267,1378,1487,1595,1718"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,173,281,404,515,632,717,822,948,1059,1169,1271,1382,1491,1599",
+                        "endColumns": "117,107,122,110,116,84,104,125,110,109,101,110,108,107,122",
+                        "endOffsets": "168,276,399,510,627,712,817,943,1054,1164,1266,1377,1486,1594,1717"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ja_values-ja.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-ja\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,153,260,381,474,579,661,759,867,969,1068,1163,1266,1361,1457",
+                        "endColumns": "96,106,120,92,104,81,97,107,101,98,94,102,94,95,110",
+                        "endOffsets": "148,255,376,469,574,656,754,862,964,1063,1158,1261,1356,1452,1563"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,152,259,380,473,578,660,758,866,968,1067,1162,1265,1360,1456",
+                        "endColumns": "96,106,120,92,104,81,97,107,101,98,94,102,94,95,110",
+                        "endOffsets": "147,254,375,468,573,655,753,861,963,1062,1157,1260,1355,1451,1562"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-en-rAU_values-en-rAU.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\79bdffb5382246bec3faee51ed1fb502\\res\\values-en-rAU\\values-en-rAU.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,159,267,390,490,598,682,782,897,974,1050,1132,1235,1339,1438,1543,1646,1750,1869,1969",
+                        "endColumns": "103,107,122,99,107,83,99,114,76,75,81,102,103,98,104,102,103,118,99,100",
+                        "endOffsets": "154,262,385,485,593,677,777,892,969,1045,1127,1230,1334,1433,1538,1641,1745,1864,1964,2065"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-pa-rIN_values-pa-rIN.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\79bdffb5382246bec3faee51ed1fb502\\res\\values-pa-rIN\\values-pa-rIN.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,161,269,392,497,602,688,788,901,978,1054,1133,1234,1335,1432,1541,1640,1750,1872,1972",
+                        "endColumns": "105,107,122,104,104,85,99,112,76,75,78,100,100,96,108,98,109,121,99,100",
+                        "endOffsets": "156,264,387,492,597,683,783,896,973,1049,1128,1229,1330,1427,1536,1635,1745,1867,1967,2068"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-te-rIN_values-te-rIN.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-te-rIN\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,170,278,401,510,621,711,816,941,1054,1162,1262,1373,1475,1592",
+                        "endColumns": "113,107,122,108,110,89,104,124,112,107,99,110,101,116,126",
+                        "endOffsets": "165,273,396,505,616,706,811,936,1049,1157,1257,1368,1470,1587,1714"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,169,277,400,509,620,710,815,940,1053,1161,1261,1372,1474,1591",
+                        "endColumns": "113,107,122,108,110,89,104,124,112,107,99,110,101,116,126",
+                        "endOffsets": "164,272,395,504,615,705,810,935,1048,1156,1256,1367,1469,1586,1713"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-da_values-da.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-da\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,159,267,390,489,601,684,784,897,1006,1114,1210,1324,1426,1527",
+                        "endColumns": "102,107,122,98,111,82,99,112,108,107,95,113,101,100,115",
+                        "endOffsets": "154,262,385,484,596,679,779,892,1001,1109,1205,1319,1421,1522,1638"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,158,266,389,488,600,683,783,896,1005,1113,1209,1323,1425,1526",
+                        "endColumns": "102,107,122,98,111,82,99,112,108,107,95,113,101,100,115",
+                        "endOffsets": "153,261,384,483,595,678,778,891,1000,1108,1204,1318,1420,1521,1637"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-km-rKH_values-km-rKH.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-km-rKH\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,159,267,390,490,602,689,793,911,1015,1120,1220,1330,1437,1545",
+                        "endColumns": "102,107,122,99,111,86,103,117,103,104,99,109,106,107,122",
+                        "endOffsets": "154,262,385,485,597,684,788,906,1010,1115,1215,1325,1432,1540,1663"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,158,266,389,489,601,688,792,910,1014,1119,1219,1329,1436,1544",
+                        "endColumns": "102,107,122,99,111,86,103,117,103,104,99,109,106,107,122",
+                        "endOffsets": "153,261,384,484,596,683,787,905,1009,1114,1214,1324,1431,1539,1662"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-sr_values-sr.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-sr\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,165,273,396,499,605,691,795,913,1018,1126,1227,1331,1439,1540",
+                        "endColumns": "108,107,122,102,105,85,103,117,104,107,100,103,107,100,127",
+                        "endOffsets": "160,268,391,494,600,686,790,908,1013,1121,1222,1326,1434,1535,1663"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,164,272,395,498,604,690,794,912,1017,1125,1226,1330,1438,1539",
+                        "endColumns": "108,107,122,102,105,85,103,117,104,107,100,103,107,100,127",
+                        "endOffsets": "159,267,390,493,599,685,789,907,1012,1120,1221,1325,1433,1534,1662"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-v12_values-v12.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\79bdffb5382246bec3faee51ed1fb502\\res\\values-v12\\values-v12.xml",
+                    "from": {
+                        "startLines": "2,5,8,9",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,279,479,598",
+                        "endLines": "4,7,8,9",
+                        "endColumns": "12,12,118,94",
+                        "endOffsets": "274,474,593,688"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-es_values-es.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-es\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,173,281,404,517,625,710,811,939,1046,1146,1245,1353,1460,1567",
+                        "endColumns": "116,107,122,112,107,84,100,127,106,99,98,107,106,106,121",
+                        "endOffsets": "168,276,399,512,620,705,806,934,1041,1141,1240,1348,1455,1562,1684"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,172,280,403,516,624,709,810,938,1045,1145,1244,1352,1459,1566",
+                        "endColumns": "116,107,122,112,107,84,100,127,106,99,98,107,106,106,121",
+                        "endOffsets": "167,275,398,511,619,704,805,933,1040,1140,1239,1347,1454,1561,1683"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ky-rKG_values-ky-rKG.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-ky-rKG\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,160,268,391,486,605,689,796,913,1023,1130,1228,1334,1441,1542",
+                        "endColumns": "103,107,122,94,118,83,106,116,109,106,97,105,106,100,123",
+                        "endOffsets": "155,263,386,481,600,684,791,908,1018,1125,1223,1329,1436,1537,1661"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,159,267,390,485,604,688,795,912,1022,1129,1227,1333,1440,1541",
+                        "endColumns": "103,107,122,94,118,83,106,116,109,106,97,105,106,100,123",
+                        "endOffsets": "154,262,385,480,599,683,790,907,1017,1124,1222,1328,1435,1536,1660"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ta-rIN_values-ta-rIN.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-ta-rIN\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,170,278,401,506,621,710,817,943,1045,1149,1246,1356,1458,1565",
+                        "endColumns": "113,107,122,104,114,88,106,125,101,103,96,109,101,106,118",
+                        "endOffsets": "165,273,396,501,616,705,812,938,1040,1144,1241,1351,1453,1560,1679"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,169,277,400,505,620,709,816,942,1044,1148,1245,1355,1457,1564",
+                        "endColumns": "113,107,122,104,114,88,106,125,101,103,96,109,101,106,118",
+                        "endOffsets": "164,272,395,500,615,704,811,937,1039,1143,1240,1350,1452,1559,1678"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-en-rIN_values-en-rIN.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-en-rIN\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,160,268,391,491,599,683,783,898,1001,1105,1204,1309,1412,1516",
+                        "endColumns": "103,107,122,99,107,83,99,114,102,103,98,104,102,103,118",
+                        "endOffsets": "155,263,386,486,594,678,778,893,996,1100,1199,1304,1407,1511,1630"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,159,267,390,490,598,682,782,897,1000,1104,1203,1308,1411,1515",
+                        "endColumns": "103,107,122,99,107,83,99,114,102,103,98,104,102,103,118",
+                        "endOffsets": "154,262,385,485,593,677,777,892,995,1099,1198,1303,1406,1510,1629"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-tr_values-tr.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-tr\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,161,269,392,491,603,693,799,919,1026,1131,1227,1334,1436,1544",
+                        "endColumns": "104,107,122,98,111,89,105,119,106,104,95,106,101,107,118",
+                        "endOffsets": "156,264,387,486,598,688,794,914,1021,1126,1222,1329,1431,1539,1658"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,160,268,391,490,602,692,798,918,1025,1130,1226,1333,1435,1543",
+                        "endColumns": "104,107,122,98,111,89,105,119,106,104,95,106,101,107,118",
+                        "endOffsets": "155,263,386,485,597,687,793,913,1020,1125,1221,1328,1430,1538,1657"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ur-rPK_values-ur-rPK.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-ur-rPK\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,166,274,397,503,612,698,802,922,1030,1139,1241,1352,1452,1560",
+                        "endColumns": "109,107,122,105,108,85,103,119,107,108,101,110,99,107,128",
+                        "endOffsets": "161,269,392,498,607,693,797,917,1025,1134,1236,1347,1447,1555,1684"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,165,273,396,502,611,697,801,921,1029,1138,1240,1351,1451,1559",
+                        "endColumns": "109,107,122,105,108,85,103,119,107,108,101,110,99,107,128",
+                        "endOffsets": "160,268,391,497,606,692,796,916,1024,1133,1235,1346,1446,1554,1683"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-kn-rIN_values-kn-rIN.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-kn-rIN\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,174,282,405,517,630,718,825,952,1068,1179,1278,1391,1495,1609",
+                        "endColumns": "117,107,122,111,112,87,106,126,115,110,98,112,103,113,125",
+                        "endOffsets": "169,277,400,512,625,713,820,947,1063,1174,1273,1386,1490,1604,1730"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,173,281,404,516,629,717,824,951,1067,1178,1277,1390,1494,1608",
+                        "endColumns": "117,107,122,111,112,87,106,126,115,110,98,112,103,113,125",
+                        "endOffsets": "168,276,399,511,624,712,819,946,1062,1173,1272,1385,1489,1603,1729"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ml-rIN_values-ml-rIN.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-ml-rIN\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,175,283,406,524,640,733,838,970,1081,1187,1285,1399,1503,1614",
+                        "endColumns": "118,107,122,117,115,92,104,131,110,105,97,113,103,110,127",
+                        "endOffsets": "170,278,401,519,635,728,833,965,1076,1182,1280,1394,1498,1609,1737"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,174,282,405,523,639,732,837,969,1080,1186,1284,1398,1502,1613",
+                        "endColumns": "118,107,122,117,115,92,104,131,110,105,97,113,103,110,127",
+                        "endOffsets": "169,277,400,518,634,727,832,964,1075,1181,1279,1393,1497,1608,1736"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-nl_values-nl.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-nl\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,174,282,405,510,617,703,811,931,1042,1146,1245,1360,1473,1576",
+                        "endColumns": "117,107,122,104,106,85,107,119,110,103,98,114,112,102,117",
+                        "endOffsets": "169,277,400,505,612,698,806,926,1037,1141,1240,1355,1468,1571,1689"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,173,281,404,509,616,702,810,930,1041,1145,1244,1359,1472,1575",
+                        "endColumns": "117,107,122,104,106,85,107,119,110,103,98,114,112,102,117",
+                        "endOffsets": "168,276,399,504,611,697,805,925,1036,1140,1239,1354,1467,1570,1688"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-h720dp-v13_values-h720dp-v13.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\79bdffb5382246bec3faee51ed1fb502\\res\\values-h720dp-v13\\values-h720dp-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "66",
+                        "endOffsets": "117"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ar_values-ar.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-ar\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,173,281,404,508,617,699,800,914,1019,1120,1216,1324,1427,1530",
+                        "endColumns": "116,107,122,103,108,81,100,113,104,100,95,107,102,102,118",
+                        "endOffsets": "168,276,399,503,612,694,795,909,1014,1115,1211,1319,1422,1525,1644"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,172,280,403,507,616,698,799,913,1018,1119,1215,1323,1426,1529",
+                        "endColumns": "116,107,122,103,108,81,100,113,104,100,95,107,102,102,118",
+                        "endOffsets": "167,275,398,502,611,693,794,908,1013,1114,1210,1318,1421,1524,1643"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-w480dp-v13_values-w480dp-v13.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-w480dp\\values.xml",
+                    "from": {
+                        "startLines": "3,4",
+                        "startColumns": "4,4",
+                        "startOffsets": "56,118",
+                        "endColumns": "61,71",
+                        "endOffsets": "113,185"
+                    },
+                    "to": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,117",
+                        "endColumns": "61,71",
+                        "endOffsets": "112,184"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-port_values-port.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-port\\values.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "56",
+                        "endColumns": "55",
+                        "endOffsets": "107"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-zh-rTW_values-zh-rTW.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-zh-rTW\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,151,258,381,474,574,656,753,861,957,1053,1148,1245,1340,1440",
+                        "endColumns": "94,106,122,92,99,81,96,107,95,95,94,96,94,99,112",
+                        "endOffsets": "146,253,376,469,569,651,748,856,952,1048,1143,1240,1335,1435,1548"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,150,257,380,473,573,655,752,860,956,1052,1147,1244,1339,1439",
+                        "endColumns": "94,106,122,92,99,81,96,107,95,95,94,96,94,99,112",
+                        "endOffsets": "145,252,375,468,568,650,747,855,951,1047,1142,1239,1334,1434,1547"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-h320dp-v13_values-h320dp-v13.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\79bdffb5382246bec3faee51ed1fb502\\res\\values-h320dp-v13\\values-h320dp-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "57",
+                        "endOffsets": "108"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-sw_values-sw.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-sw\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,159,267,390,488,596,686,791,908,1009,1118,1217,1324,1433,1538",
+                        "endColumns": "102,107,122,97,107,89,104,116,100,108,98,106,108,104,118",
+                        "endOffsets": "154,262,385,483,591,681,786,903,1004,1113,1212,1319,1428,1533,1652"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,158,266,389,487,595,685,790,907,1008,1117,1216,1323,1432,1537",
+                        "endColumns": "102,107,122,97,107,89,104,116,100,108,98,106,108,104,118",
+                        "endOffsets": "153,261,384,482,590,680,785,902,1003,1112,1211,1318,1427,1532,1651"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-fa_values-fa.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-fa\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,166,276,402,505,616,704,807,922,1034,1137,1235,1345,1448,1557",
+                        "endColumns": "109,109,125,102,110,87,102,114,111,102,97,109,102,108,124",
+                        "endOffsets": "161,271,397,500,611,699,802,917,1029,1132,1230,1340,1443,1552,1677"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,165,275,401,504,615,703,806,921,1033,1136,1234,1344,1447,1556",
+                        "endColumns": "109,109,125,102,110,87,102,114,111,102,97,109,102,108,124",
+                        "endOffsets": "160,270,396,499,610,698,801,916,1028,1131,1229,1339,1442,1551,1676"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-az-rAZ_values-az-rAZ.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\79bdffb5382246bec3faee51ed1fb502\\res\\values-az-rAZ\\values-az-rAZ.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,153,261,384,483,593,681,788,902,983,1062,1147,1254,1361,1461,1570,1674,1784,1881",
+                        "endColumns": "97,107,122,98,109,87,106,113,80,78,84,106,106,99,108,103,109,96,100",
+                        "endOffsets": "148,256,379,478,588,676,783,897,978,1057,1142,1249,1356,1456,1565,1669,1779,1876,1977"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-es-rUS_values-es-rUS.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-es-rUS\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,176,284,407,516,624,709,810,933,1045,1157,1258,1366,1473,1580",
+                        "endColumns": "119,107,122,108,107,84,100,122,111,111,100,107,106,106,121",
+                        "endOffsets": "171,279,402,511,619,704,805,928,1040,1152,1253,1361,1468,1575,1697"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,175,283,406,515,623,708,809,932,1044,1156,1257,1365,1472,1579",
+                        "endColumns": "119,107,122,108,107,84,100,122,111,111,100,107,106,106,121",
+                        "endOffsets": "170,278,401,510,618,703,804,927,1039,1151,1252,1360,1467,1574,1696"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-et-rEE_values-et-rEE.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-et-rEE\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,173,281,404,511,622,708,810,927,1038,1143,1242,1352,1453,1556",
+                        "endColumns": "116,107,122,106,110,85,101,116,110,104,98,109,100,102,127",
+                        "endOffsets": "168,276,399,506,617,703,805,922,1033,1138,1237,1347,1448,1551,1679"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,172,280,403,510,621,707,809,926,1037,1142,1241,1351,1452,1555",
+                        "endColumns": "116,107,122,106,110,85,101,116,110,104,98,109,100,102,127",
+                        "endOffsets": "167,275,398,505,616,702,804,921,1032,1137,1236,1346,1447,1550,1678"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ne-rNP_values-ne-rNP.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-ne-rNP\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,161,269,392,496,604,695,802,929,1039,1155,1258,1373,1475,1590",
+                        "endColumns": "104,107,122,103,107,90,106,126,109,115,102,114,101,114,130",
+                        "endOffsets": "156,264,387,491,599,690,797,924,1034,1150,1253,1368,1470,1585,1716"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,160,268,391,495,603,694,801,928,1038,1154,1257,1372,1474,1589",
+                        "endColumns": "104,107,122,103,107,90,106,126,109,115,102,114,101,114,130",
+                        "endOffsets": "155,263,386,490,598,689,796,923,1033,1149,1252,1367,1469,1584,1715"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-lo-rLA_values-lo-rLA.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-lo-rLA\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,159,267,390,487,594,679,784,896,1003,1100,1198,1303,1406,1510",
+                        "endColumns": "102,107,122,96,106,84,104,111,106,96,97,104,102,103,121",
+                        "endOffsets": "154,262,385,482,589,674,779,891,998,1095,1193,1298,1401,1505,1627"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,158,266,389,486,593,678,783,895,1002,1099,1197,1302,1405,1509",
+                        "endColumns": "102,107,122,96,106,84,104,111,106,96,97,104,102,103,121",
+                        "endOffsets": "153,261,384,481,588,673,778,890,997,1094,1192,1297,1400,1504,1626"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-vi_values-vi.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-vi\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,170,278,401,509,618,702,805,924,1028,1137,1238,1343,1457,1562",
+                        "endColumns": "113,107,122,107,108,83,102,118,103,108,100,104,113,104,119",
+                        "endOffsets": "165,273,396,504,613,697,800,919,1023,1132,1233,1338,1452,1557,1677"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,169,277,400,508,617,701,804,923,1027,1136,1237,1342,1456,1561",
+                        "endColumns": "113,107,122,107,108,83,102,118,103,108,100,104,113,104,119",
+                        "endOffsets": "164,272,395,503,612,696,799,918,1022,1131,1232,1337,1451,1556,1676"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ca_values-ca.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-ca\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,174,282,405,511,618,701,809,935,1046,1155,1253,1363,1467,1575",
+                        "endColumns": "117,107,122,105,106,82,107,125,110,108,97,109,103,107,122",
+                        "endOffsets": "169,277,400,506,613,696,804,930,1041,1150,1248,1358,1462,1570,1693"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,173,281,404,510,617,700,808,934,1045,1154,1252,1362,1466,1574",
+                        "endColumns": "117,107,122,105,106,82,107,125,110,108,97,109,103,107,122",
+                        "endOffsets": "168,276,399,505,612,695,803,929,1040,1149,1247,1357,1461,1569,1692"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-large-v4_values-large-v4.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-large\\values.xml",
+                    "from": {
+                        "startLines": "3,4,6,7,9,10,11,12,14,16,18",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,118,191,250,315,382,449,515,582,638,744",
+                        "endColumns": "61,71,58,63,66,66,65,65,54,104,116",
+                        "endOffsets": "113,185,245,309,377,444,510,576,632,738,856"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,117,189,248,312,379,446,512,578,633,737",
+                        "endColumns": "61,71,58,63,66,66,65,65,54,103,115",
+                        "endOffsets": "112,184,243,307,374,441,507,573,628,732,848"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-night-v8_values-night-v8.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\79bdffb5382246bec3faee51ed1fb502\\res\\values-night-v8\\values-night-v8.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,125,209,293,389,491,593",
+                        "endColumns": "69,83,83,95,101,101,93",
+                        "endOffsets": "120,204,288,384,486,588,682"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-gu-rIN_values-gu-rIN.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\79bdffb5382246bec3faee51ed1fb502\\res\\values-gu-rIN\\values-gu-rIN.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,164,272,395,499,606,693,794,917,994,1072,1152,1258,1360,1457,1566,1665,1775,1896,1999",
+                        "endColumns": "108,107,122,103,106,86,100,122,76,77,79,105,101,96,108,98,109,120,102,100",
+                        "endOffsets": "159,267,390,494,601,688,789,912,989,1067,1147,1253,1355,1452,1561,1660,1770,1891,1994,2095"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-si-rLK_values-si-rLK.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-si-rLK\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,166,274,397,504,611,699,804,920,1029,1134,1232,1342,1441,1547",
+                        "endColumns": "109,107,122,106,106,87,104,115,108,104,97,109,98,105,120",
+                        "endOffsets": "161,269,392,499,606,694,799,915,1024,1129,1227,1337,1436,1542,1663"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,165,273,396,503,610,698,803,919,1028,1133,1231,1341,1440,1546",
+                        "endColumns": "109,107,122,106,106,87,104,115,108,104,97,109,98,105,120",
+                        "endOffsets": "160,268,391,498,605,693,798,914,1023,1128,1226,1336,1435,1541,1662"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-v11_values-v11.arsc.flat",
+            "map": [
+                {
+                    "source": "D:\\test\\YDSHOA\\src\\main\\res\\values-v11\\styles.xml",
+                    "from": {
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "182",
+                        "endLines": "8",
+                        "endColumns": "12",
+                        "endOffsets": "316"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "187"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-v11\\values.xml",
+                    "from": {
+                        "startLines": "3,10,17,24,31,38,45,52,59,66,73,75,77,79,176,178,180,186,233,280,328",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,476,902,1331,1758,2188,2614,3036,3472,3906,4354,4434,4528,4620,11350,11453,11578,11943,15581,19233,23010",
+                        "endLines": "8,15,22,29,36,43,50,57,64,71,73,75,77,174,176,178,184,231,278,326,374",
+                        "endColumns": "12,12,12,12,12,12,12,12,12,12,78,92,90,12,101,123,12,12,12,12,12",
+                        "endOffsets": "470,896,1325,1752,2182,2608,3030,3466,3900,4348,4428,4522,4614,11344,11447,11572,11937,15575,19227,23004,26795"
+                    },
+                    "to": {
+                        "startLines": "5,11,17,23,29,35,41,47,53,59,65,66,67,68,164,165,166,171,217,263,310",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "192,611,1036,1464,1890,2319,2744,3165,3600,4033,4480,4558,4650,4740,11469,11564,11681,12045,15682,19333,23109",
+                        "endLines": "10,16,22,28,34,40,46,52,58,64,65,66,67,163,164,165,170,216,262,309,356",
+                        "endColumns": "12,12,12,12,12,12,12,12,12,12,77,91,89,12,94,116,12,12,12,12,12",
+                        "endOffsets": "606,1031,1459,1885,2314,2739,3160,3595,4028,4475,4553,4645,4735,11464,11559,11676,12040,15677,19328,23104,26894"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ko_values-ko.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-ko\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,151,259,382,476,578,660,758,864,962,1057,1152,1252,1348,1447",
+                        "endColumns": "94,107,122,93,101,81,97,105,97,94,94,99,95,98,114",
+                        "endOffsets": "146,254,377,471,573,655,753,859,957,1052,1147,1247,1343,1442,1557"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,150,258,381,475,577,659,757,863,961,1056,1151,1251,1347,1446",
+                        "endColumns": "94,107,122,93,101,81,97,105,97,94,94,99,95,98,114",
+                        "endOffsets": "145,253,376,470,572,654,752,858,956,1051,1146,1246,1342,1441,1556"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-pt-rBR_values-pt-rBR.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\79bdffb5382246bec3faee51ed1fb502\\res\\values-pt-rBR\\values-pt-rBR.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,175,283,406,512,619,708,809,927,1010,1090,1177,1284,1396,1498,1606,1713,1823,1948,2048",
+                        "endColumns": "119,107,122,105,106,88,100,117,82,79,86,106,111,101,107,106,109,124,99,100",
+                        "endOffsets": "170,278,401,507,614,703,804,922,1005,1085,1172,1279,1391,1493,1601,1708,1818,1943,2043,2144"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-v13_values-v13.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\79bdffb5382246bec3faee51ed1fb502\\res\\values-v13\\values-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "58",
+                        "endOffsets": "109"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-eu-rES_values-eu-rES.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-eu-rES\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,165,273,396,494,604,690,796,920,1029,1139,1238,1347,1460,1571",
+                        "endColumns": "108,107,122,97,109,85,105,123,108,109,98,108,112,110,136",
+                        "endOffsets": "160,268,391,489,599,685,791,915,1024,1134,1233,1342,1455,1566,1703"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,164,272,395,493,603,689,795,919,1028,1138,1237,1346,1459,1570",
+                        "endColumns": "108,107,122,97,109,85,105,123,108,109,98,108,112,110,136",
+                        "endOffsets": "159,267,390,488,598,684,790,914,1023,1133,1232,1341,1454,1565,1702"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-lv_values-lv.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-lv\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,176,284,407,515,624,710,814,936,1045,1157,1256,1367,1476,1581",
+                        "endColumns": "119,107,122,107,108,85,103,121,108,111,98,110,108,104,118",
+                        "endOffsets": "171,279,402,510,619,705,809,931,1040,1152,1251,1362,1471,1576,1695"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,175,283,406,514,623,709,813,935,1044,1156,1255,1366,1475,1580",
+                        "endColumns": "119,107,122,107,108,85,103,121,108,111,98,110,108,104,118",
+                        "endOffsets": "170,278,401,509,618,704,808,930,1039,1151,1250,1361,1470,1575,1694"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-is-rIS_values-is-rIS.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-is-rIS\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,156,264,387,484,596,681,782,896,1006,1114,1212,1321,1420,1523",
+                        "endColumns": "99,107,122,96,111,84,100,113,109,107,97,108,98,102,117",
+                        "endOffsets": "151,259,382,479,591,676,777,891,1001,1109,1207,1316,1415,1518,1636"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,155,263,386,483,595,680,781,895,1005,1113,1211,1320,1419,1522",
+                        "endColumns": "99,107,122,96,111,84,100,113,109,107,97,108,98,102,117",
+                        "endOffsets": "150,258,381,478,590,675,776,890,1000,1108,1206,1315,1414,1517,1635"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-am_values-am.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-am\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,158,266,389,488,594,680,783,896,996,1096,1192,1295,1394,1501",
+                        "endColumns": "101,107,122,98,105,85,102,112,99,99,95,102,98,106,115",
+                        "endOffsets": "153,261,384,483,589,675,778,891,991,1091,1187,1290,1389,1496,1612"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,157,265,388,487,593,679,782,895,995,1095,1191,1294,1393,1500",
+                        "endColumns": "101,107,122,98,105,85,102,112,99,99,95,102,98,106,115",
+                        "endOffsets": "152,260,383,482,588,674,777,890,990,1090,1186,1289,1388,1495,1611"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-zu_values-zu.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-zu\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,164,272,395,502,616,704,807,934,1038,1144,1242,1349,1455,1561",
+                        "endColumns": "107,107,122,106,113,87,102,126,103,105,97,106,105,105,119",
+                        "endOffsets": "159,267,390,497,611,699,802,929,1033,1139,1237,1344,1450,1556,1676"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,163,271,394,501,615,703,806,933,1037,1143,1241,1348,1454,1560",
+                        "endColumns": "107,107,122,106,113,87,102,126,103,105,97,106,105,105,119",
+                        "endOffsets": "158,266,389,496,610,698,801,928,1032,1138,1236,1343,1449,1555,1675"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-gl-rES_values-gl-rES.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-gl-rES\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,168,276,399,511,619,704,806,932,1039,1148,1247,1355,1458,1565",
+                        "endColumns": "111,107,122,111,107,84,101,125,106,108,98,107,102,106,121",
+                        "endOffsets": "163,271,394,506,614,699,801,927,1034,1143,1242,1350,1453,1560,1682"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,167,275,398,510,618,703,805,931,1038,1147,1246,1354,1457,1564",
+                        "endColumns": "111,107,122,111,107,84,101,125,106,108,98,107,102,106,121",
+                        "endOffsets": "162,270,393,505,613,698,800,926,1033,1142,1241,1349,1452,1559,1681"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-sv_values-sv.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-sv\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,162,270,393,496,607,692,794,907,1013,1113,1209,1314,1416,1518",
+                        "endColumns": "105,107,122,102,110,84,101,112,105,99,95,104,101,101,116",
+                        "endOffsets": "157,265,388,491,602,687,789,902,1008,1108,1204,1309,1411,1513,1630"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,161,269,392,495,606,691,793,906,1012,1112,1208,1313,1415,1517",
+                        "endColumns": "105,107,122,102,110,84,101,112,105,99,95,104,101,101,116",
+                        "endOffsets": "156,264,387,490,601,686,788,901,1007,1107,1203,1308,1410,1512,1629"
                     }
                 }
             ]
@@ -1631,67 +2042,17 @@
             ]
         },
         {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-w500dp-v13_values-w500dp-v13.arsc.flat",
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-v23_values-v23.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-w500dp\\values.xml",
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\79bdffb5382246bec3faee51ed1fb502\\res\\values-v23\\values-v23.xml",
                     "from": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "56",
-                        "endColumns": "54",
-                        "endOffsets": "106"
-                    },
-                    "to": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "54",
-                        "endOffsets": "105"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-de_values-de.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-de\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,161,269,392,490,602,688,793,908,1019,1122,1221,1332,1434,1541",
-                        "endColumns": "104,107,122,97,111,85,104,114,110,102,98,110,101,106,121",
-                        "endOffsets": "156,264,387,485,597,683,788,903,1014,1117,1216,1327,1429,1536,1658"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,160,268,391,489,601,687,792,907,1018,1121,1220,1331,1433,1540",
-                        "endColumns": "104,107,122,97,111,85,104,114,110,102,98,110,101,106,121",
-                        "endOffsets": "155,263,386,484,596,682,787,902,1013,1116,1215,1326,1428,1535,1657"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-tl_values-tl.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-tl\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,175,283,406,514,631,719,825,946,1055,1166,1267,1377,1494,1602",
-                        "endColumns": "118,107,122,107,116,87,105,120,108,110,100,109,116,107,122",
-                        "endOffsets": "170,278,401,509,626,714,820,941,1050,1161,1262,1372,1489,1597,1720"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,174,282,405,513,630,718,824,945,1054,1165,1266,1376,1493,1601",
-                        "endColumns": "118,107,122,107,116,87,105,120,108,110,100,109,116,107,122",
-                        "endOffsets": "169,277,400,508,625,713,819,940,1049,1160,1261,1371,1488,1596,1719"
+                        "startLines": "2,3,4,5,6,19,32,33,34,35",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,190,325,400,487,1277,2079,2184,2299,2406",
+                        "endLines": "2,3,4,5,18,31,32,33,34,35",
+                        "endColumns": "134,134,74,86,12,12,104,114,106,112",
+                        "endOffsets": "185,320,395,482,1272,2074,2179,2294,2401,2514"
                     }
                 }
             ]
@@ -1719,28 +2080,6 @@
             ]
         },
         {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-uz-rUZ_values-uz-rUZ.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-uz-rUZ\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,161,269,392,496,613,699,810,926,1035,1142,1241,1349,1454",
-                        "endColumns": "104,107,122,103,116,85,110,115,108,106,98,107,104,104",
-                        "endOffsets": "156,264,387,491,608,694,805,921,1030,1137,1236,1344,1449,1554"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,160,268,391,495,612,698,809,925,1034,1141,1240,1348,1453",
-                        "endColumns": "104,107,122,103,116,85,110,115,108,106,98,107,104,104",
-                        "endOffsets": "155,263,386,490,607,693,804,920,1029,1136,1235,1343,1448,1553"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values_values.arsc.flat",
             "map": [
                 {
@@ -1763,6 +2102,23 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\recyclerview-v7-23.4.0.aar\\a3387fee817e87966096a552a2cd6725\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5,6",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "327,402,478,550",
+                        "endColumns": "74,75,71,65",
+                        "endOffsets": "397,473,545,611"
+                    },
+                    "to": {
+                        "startLines": "422,423,424,438",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "38675,38750,38826,39490",
+                        "endColumns": "74,75,71,65",
+                        "endOffsets": "38745,38821,38893,39551"
+                    }
+                },
+                {
                     "source": "D:\\test\\YDSHOA\\src\\main\\res\\values\\colors.xml",
                     "from": {
                         "startLines": "2,50,31,29,30,46,45,47,48,49,3,39,4,51,28,27,5,6,33,34,32,43,42,7,36,40,8,9,10,11,12,41,13,14,16,15,17,18,19,20,22,21,37,35,38,23,24,25,26,44",
@@ -1772,11 +2128,11 @@
                         "endOffsets": "97,2553,1586,1483,1537,2365,2316,2414,2461,2510,148,2014,197,2596,1433,1389,251,298,1700,1758,1644,2220,2173,358,1865,2070,415,470,521,570,619,2124,672,725,829,776,887,941,989,1037,1135,1086,1916,1806,1964,1184,1238,1292,1345,2263"
                     },
                     "to": {
-                        "startLines": "197,198,207,208,209,210,211,212,213,214,215,220,221,222,223,224,225,226,231,232,233,241,242,243,252,253,254,255,256,257,258,261,262,263,264,265,266,267,272,273,274,275,278,279,280,281,282,283,284,285",
+                        "startLines": "201,202,211,212,213,214,215,216,217,221,222,227,228,229,230,231,232,233,238,239,240,256,257,258,267,268,270,271,272,273,274,277,278,279,280,281,282,283,288,289,293,294,299,300,301,302,303,304,305,306",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "8780,8825,9508,9556,9605,9658,9706,9758,9806,9852,9900,10230,10279,10327,10369,10412,10455,10508,10899,10954,11011,11524,11570,11618,12209,12267,12322,12378,12432,12482,12530,12693,12746,12798,12850,12902,12952,13009,13358,13405,13452,13500,13689,13739,13786,13833,13881,13934,13987,14039",
+                        "startOffsets": "8970,9015,9698,9746,9795,9848,9896,9948,9996,10192,10240,10570,10619,10667,10709,10752,10795,10848,11239,11294,11351,12291,12337,12385,12976,13034,13144,13200,13254,13304,13352,13515,13568,13620,13672,13724,13774,13831,14180,14227,14437,14485,14771,14821,14868,14915,14963,15016,15069,15121",
                         "endColumns": "44,41,47,48,52,47,51,47,45,47,49,48,47,41,42,42,52,45,54,56,56,45,47,58,57,54,55,53,49,47,47,52,51,51,51,49,56,52,46,46,47,47,49,46,46,47,52,52,51,41",
-                        "endOffsets": "8820,8862,9551,9600,9653,9701,9753,9801,9847,9895,9945,10274,10322,10364,10407,10450,10503,10549,10949,11006,11063,11565,11613,11672,12262,12317,12373,12427,12477,12525,12573,12741,12793,12845,12897,12947,13004,13057,13400,13447,13495,13543,13734,13781,13828,13876,13929,13982,14034,14076"
+                        "endOffsets": "9010,9052,9741,9790,9843,9891,9943,9991,10037,10235,10285,10614,10662,10704,10747,10790,10843,10889,11289,11346,11403,12332,12380,12439,13029,13084,13195,13249,13299,13347,13395,13563,13615,13667,13719,13769,13826,13879,14222,14269,14480,14528,14816,14863,14910,14958,15011,15064,15116,15158"
                     }
                 },
                 {
@@ -1809,12 +2165,12 @@
                         "endOffsets": "107,153,203,245,301,364,440,502,575,653,735,796,871,947,1024,1102,1172,1243,1304,1366,1443,1521,1627,1733,1812,1892,1949,2007,2081,2156,2221,2287,2354,2422,2526,2632,2712,2793,2852,2911,2970,3029,3088,3151,3215,3273,3332,3403,3475,3547,3620,3677,3735,3808,3882,3956,4031,4101,4172,45631,45701,45778,45842,45907,45976,46053,46128,46197,46265,46342,46401,46458,46517,46577,46643,46710,46768,46833,46897,46958,47019,47080,47142,47206,47270,47334,47399,47462,47522,47583,47642,47702,47764,47835,47895,47963,48031,48099,48167,48235,48321,48408,48465,48513,48562,48613,48647,48694,48743,48789,48821,48877,48952,49030,49123,49193,49271,49325,49395,49480,49553,49627,49696,49771,49845,49919,50008,50078,50556,50779,51002,51271,51499,51730,51961,52192,52423,52651,52891,53118,53364,53490,53616,53847,54096,54316,54600,54809,54941,55169,55416,55642,55892,56114,56360,56656,56879,57118,57333,57564,57788,58004,58213,58333,58453,58560,58775,58917,59053,59135,59389,59479,59882,59966,60060,60677,60770,61179,61275,61335,61484,63978,64132,66738,73482,80105,86945,87885,88142,88379,88927,89422,90096,90262,90791,91356,91731,92102,92594,93072,93426,93754,94061,94324,94445,94568,94808,95020,95238,95457,95572,95766,96222,96463,96723,96832,97020,97118,97563,97683,98489,98820,99740,100407,100693,103873,107067,110387,110476,110706,110956,111198,111351,111523,111691,111935,112106,112280,112452,112727,112927,113013,113111,113209,113309,113411,113515,113619,113723,113827,113931,114033,114131,114245,114376,114501,114651,114801,114901,115017,115113,115249,115379,115477,115591,115693,115811,115909,116023,116159,116303,116463,116601,116755,116901,117044,117184,117321,117453,117591,117729,117843,117985,118125,118259,118327,118425,118507,118613,118693,118801,118895,119013,119185,119351,119433,119535,119627,119739,119833,119929,120037,120147,120259,120371,120467,120589,120709,120807,120923,121041,121155,121331,121449,121543,121651,121771,121840,121962,122032,122156,122296,122420,122491,122588,122705,122820,122921,123049,123179,123292,123395,123502,123610,123736,123829,123954,124062,124174,124278,124374,124488,124588,124688,124810,124902,124988,125044,125168,125254,125376"
                     },
                     "to": {
-                        "startLines": "43,50,51,168,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,199,200,201,202,203,204,205,206,216,217,218,219,227,228,229,230,234,235,236,237,238,239,240,244,245,246,247,248,249,250,251,259,260,268,269,270,271,276,277,354,355,356,357,358,359,360,361,362,363,364,365,366,367,368,369,370,371,372,373,374,375,376,377,378,379,380,381,382,383,384,385,386,387,388,389,390,393,394,395,396,397,398,401,402,403,404,411,413,414,420,421,422,423,424,425,426,427,428,429,430,431,432,433,434,435,436,437,438,503,510,514,518,523,527,531,535,539,543,547,551,555,559,560,561,565,569,573,578,582,585,589,593,597,601,605,609,614,617,620,623,626,629,632,635,636,637,638,641,642,643,644,648,649,655,656,657,667,668,674,675,676,679,712,715,747,846,942,1041,1056,1061,1066,1076,1085,1096,1099,1106,1114,1121,1126,1133,1143,1149,1154,1158,1163,1164,1165,1168,1171,1174,1177,1178,1182,1189,1193,1197,1198,1202,1203,1209,1210,1221,1226,1240,1250,1265,1306,1347,1389,1390,1394,1398,1402,1405,1408,1411,1415,1418,1421,1424,1428,1431,1432,1433,1434,1435,1436,1437,1438,1439,1440,1441,1442,1443,1444,1445,1446,1447,1448,1449,1450,1451,1452,1453,1454,1455,1456,1457,1458,1459,1460,1461,1462,1463,1464,1465,1466,1467,1468,1469,1470,1471,1472,1473,1474,1475,1476,1477,1478,1479,1480,1481,1482,1483,1487,1491,1492,1493,1494,1495,1496,1497,1498,1499,1500,1501,1502,1503,1504,1505,1506,1507,1508,1511,1512,1513,1514,1515,1516,1517,1518,1519,1520,1521,1522,1523,1524,1525,1526,1527,1528,1529,1530,1531,1532,1533,1534,1535,1536,1537,1538,1539,1540,1541,1542,1543,1544,1545,1546,1547,1548",
+                        "startLines": "43,50,51,168,181,182,183,184,185,186,187,188,189,190,191,192,194,195,196,197,203,204,205,206,207,208,209,210,223,224,225,226,234,235,236,237,248,249,251,252,253,254,255,259,260,261,262,263,264,265,266,275,276,284,285,286,287,295,296,377,378,379,380,381,382,383,384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,400,401,402,403,404,405,406,407,408,409,410,411,412,413,416,417,418,419,420,421,427,428,429,430,437,440,441,447,448,449,450,451,452,453,454,455,456,457,458,459,460,461,462,463,464,465,534,541,545,549,554,558,562,566,570,574,578,582,586,590,591,592,596,600,604,609,613,616,620,624,628,632,636,640,645,648,651,654,657,660,663,666,667,668,669,672,673,674,675,679,680,686,687,688,698,699,705,706,707,710,743,746,778,877,973,1072,1087,1092,1097,1107,1116,1127,1130,1137,1145,1152,1157,1164,1174,1180,1185,1189,1194,1195,1196,1199,1202,1205,1208,1209,1213,1220,1224,1228,1229,1233,1234,1240,1241,1252,1257,1271,1281,1296,1337,1378,1420,1421,1425,1429,1433,1436,1439,1442,1446,1449,1452,1455,1459,1462,1463,1464,1465,1466,1467,1468,1469,1470,1471,1472,1473,1474,1475,1476,1477,1478,1479,1480,1481,1482,1483,1484,1485,1486,1487,1488,1489,1490,1491,1492,1493,1494,1495,1496,1497,1498,1499,1500,1501,1502,1503,1504,1505,1506,1507,1508,1509,1510,1511,1512,1513,1514,1518,1522,1523,1524,1525,1526,1527,1528,1529,1530,1531,1532,1533,1534,1535,1536,1537,1538,1539,1542,1543,1544,1545,1546,1547,1548,1549,1550,1551,1552,1553,1554,1555,1556,1557,1558,1559,1560,1561,1562,1563,1564,1565,1566,1567,1568,1569,1570,1571,1572,1573,1574,1575,1576,1577,1578,1579",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "1419,1694,1739,7188,7661,7716,7779,7855,7917,7990,8068,8149,8210,8285,8361,8438,8516,8586,8657,8718,8867,8944,9022,9128,9234,9313,9393,9450,9950,10024,10099,10164,10554,10621,10689,10793,11068,11148,11229,11288,11347,11406,11465,11677,11740,11804,11862,11921,11992,12064,12136,12578,12635,13062,13135,13209,13283,13548,13618,33830,33900,33970,34047,34111,34176,34245,34322,34397,34466,34534,34611,34670,34727,34786,34846,34912,34979,35037,35102,35166,35227,35288,35349,35411,35475,35539,35603,35668,35731,35791,35852,35911,35971,36033,36104,36164,36346,36413,36481,36549,36617,36703,36889,36946,36994,37043,37348,37432,37479,37772,37818,37850,37905,37979,38057,38150,38220,38298,38352,38422,38507,38580,38654,38723,38798,38872,38946,39035,43180,43657,43879,44101,44369,44596,44826,45056,45286,45516,45743,45982,46208,46453,46571,46689,46919,47167,47386,47669,47877,48008,48235,48481,48706,48955,49176,49421,49716,49938,50176,50390,50620,50843,51058,51266,51378,51490,51595,51809,51943,52071,52145,52398,52486,52888,52970,53056,53672,53763,54171,54265,54323,54471,56964,57117,59722,66465,73087,79926,80865,81121,81357,81904,82398,83071,83236,83764,84328,84702,85072,85563,86040,86393,86720,87026,87288,87401,87516,87755,87966,88183,88401,88508,88701,89156,89396,89655,89756,89943,90033,90477,90589,91394,91724,92643,93309,94162,97341,100534,103853,103940,104169,104418,104659,104811,104982,105149,105392,105562,105735,105906,106180,106379,106463,106559,106655,106753,106853,106955,107057,107159,107261,107363,107463,107559,107671,107800,107923,108065,108207,108305,108419,108513,108641,108763,108859,108971,109071,109187,109283,109395,109523,109659,109811,109941,110087,110225,110366,110498,110633,110757,110887,111017,111129,111263,111395,111521,111587,111677,111757,111855,111933,112039,112131,112241,112412,112577,112657,112757,112847,112957,113049,113137,113237,113339,113443,113547,113641,113761,113879,113969,114077,114187,114299,114474,114590,114676,114776,114888,114955,115069,115137,115253,115385,115501,115570,115665,115780,115893,115992,116112,116234,116345,116446,116551,116651,116769,116860,116983,117083,117187,117283,117371,117477,117569,117661,117775,117865,117949,118003,118125,118209",
-                        "endLines": "43,50,51,168,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,199,200,201,202,203,204,205,206,216,217,218,219,227,228,229,230,234,235,236,237,238,239,240,244,245,246,247,248,249,250,251,259,260,268,269,270,271,276,277,354,355,356,357,358,359,360,361,362,363,364,365,366,367,368,369,370,371,372,373,374,375,376,377,378,379,380,381,382,383,384,385,386,387,388,389,390,393,394,395,396,397,398,401,402,403,404,411,413,414,420,421,422,423,424,425,426,427,428,429,430,431,432,433,434,435,436,437,438,509,513,517,522,526,530,534,538,542,546,550,554,558,559,560,564,568,572,577,581,584,588,592,596,600,604,608,613,616,619,622,625,628,631,634,635,636,637,640,641,642,643,647,648,654,655,656,666,667,673,674,675,678,711,714,746,845,941,1040,1055,1060,1065,1075,1084,1095,1098,1105,1113,1120,1125,1132,1142,1148,1153,1157,1162,1163,1164,1167,1170,1173,1176,1177,1181,1188,1192,1196,1197,1201,1202,1208,1209,1220,1225,1239,1249,1254,1305,1346,1388,1389,1393,1397,1401,1404,1407,1410,1414,1417,1420,1423,1427,1430,1431,1432,1433,1434,1435,1436,1437,1438,1439,1440,1441,1442,1443,1444,1445,1446,1447,1448,1449,1450,1451,1452,1453,1454,1455,1456,1457,1458,1459,1460,1461,1462,1463,1464,1465,1466,1467,1468,1469,1470,1471,1472,1473,1474,1475,1476,1477,1478,1479,1480,1481,1482,1486,1490,1491,1492,1493,1494,1495,1496,1497,1498,1499,1500,1501,1502,1503,1504,1505,1506,1507,1510,1511,1512,1513,1514,1515,1516,1517,1518,1519,1520,1521,1522,1523,1524,1525,1526,1527,1528,1529,1530,1531,1532,1533,1534,1535,1536,1537,1538,1539,1540,1541,1542,1543,1544,1545,1546,1547,1548",
+                        "startOffsets": "1419,1694,1739,7188,7661,7716,7779,7855,7917,7990,8068,8149,8210,8285,8361,8438,8564,8634,8705,8766,9057,9134,9212,9318,9424,9503,9583,9640,10290,10364,10439,10504,10894,10961,11029,11133,11780,11860,11996,12055,12114,12173,12232,12444,12507,12571,12629,12688,12759,12831,12903,13400,13457,13884,13957,14031,14105,14533,14603,35715,35785,35855,35932,35996,36061,36130,36207,36282,36351,36419,36496,36555,36612,36671,36731,36797,36864,36922,36987,37051,37112,37173,37234,37296,37360,37424,37488,37553,37616,37676,37737,37796,37856,37918,37989,38049,38231,38298,38366,38434,38502,38588,38997,39054,39102,39151,39456,39606,39653,39946,39992,40024,40079,40153,40231,40324,40394,40472,40526,40596,40681,40754,40828,40897,40972,41046,41120,41209,45587,46064,46286,46508,46776,47003,47233,47463,47693,47923,48150,48389,48615,48860,48978,49096,49326,49574,49793,50076,50284,50415,50642,50888,51113,51362,51583,51828,52123,52345,52583,52797,53027,53250,53465,53673,53785,53897,54002,54216,54350,54478,54552,54805,54893,55295,55377,55463,56079,56170,56578,56672,56730,56878,59371,59524,62129,68872,75494,82333,83272,83528,83764,84311,84805,85478,85643,86171,86735,87109,87479,87970,88447,88800,89127,89433,89695,89808,89923,90162,90373,90590,90808,90915,91108,91563,91803,92062,92163,92350,92440,92884,92996,93801,94131,95050,95716,96569,99748,102941,106260,106347,106576,106825,107066,107218,107389,107556,107799,107969,108142,108313,108587,108786,108870,108966,109062,109160,109260,109362,109464,109566,109668,109770,109870,109966,110078,110207,110330,110472,110614,110712,110826,110920,111048,111170,111266,111378,111478,111594,111690,111802,111930,112066,112218,112348,112494,112632,112773,112905,113040,113164,113294,113424,113536,113670,113802,113928,113994,114084,114164,114262,114340,114446,114538,114648,114819,114984,115064,115164,115254,115364,115456,115544,115644,115746,115850,115954,116048,116168,116286,116376,116484,116594,116706,116881,116997,117083,117183,117295,117362,117476,117544,117660,117792,117908,117977,118072,118187,118300,118399,118519,118641,118752,118853,118958,119058,119176,119267,119390,119490,119594,119690,119778,119884,119976,120068,120182,120272,120356,120410,120532,120616",
+                        "endLines": "43,50,51,168,181,182,183,184,185,186,187,188,189,190,191,192,194,195,196,197,203,204,205,206,207,208,209,210,223,224,225,226,234,235,236,237,248,249,251,252,253,254,255,259,260,261,262,263,264,265,266,275,276,284,285,286,287,295,296,377,378,379,380,381,382,383,384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,400,401,402,403,404,405,406,407,408,409,410,411,412,413,416,417,418,419,420,421,427,428,429,430,437,440,441,447,448,449,450,451,452,453,454,455,456,457,458,459,460,461,462,463,464,465,540,544,548,553,557,561,565,569,573,577,581,585,589,590,591,595,599,603,608,612,615,619,623,627,631,635,639,644,647,650,653,656,659,662,665,666,667,668,671,672,673,674,678,679,685,686,687,697,698,704,705,706,709,742,745,777,876,972,1071,1086,1091,1096,1106,1115,1126,1129,1136,1144,1151,1156,1163,1173,1179,1184,1188,1193,1194,1195,1198,1201,1204,1207,1208,1212,1219,1223,1227,1228,1232,1233,1239,1240,1251,1256,1270,1280,1285,1336,1377,1419,1420,1424,1428,1432,1435,1438,1441,1445,1448,1451,1454,1458,1461,1462,1463,1464,1465,1466,1467,1468,1469,1470,1471,1472,1473,1474,1475,1476,1477,1478,1479,1480,1481,1482,1483,1484,1485,1486,1487,1488,1489,1490,1491,1492,1493,1494,1495,1496,1497,1498,1499,1500,1501,1502,1503,1504,1505,1506,1507,1508,1509,1510,1511,1512,1513,1517,1521,1522,1523,1524,1525,1526,1527,1528,1529,1530,1531,1532,1533,1534,1535,1536,1537,1538,1541,1542,1543,1544,1545,1546,1547,1548,1549,1550,1551,1552,1553,1554,1555,1556,1557,1558,1559,1560,1561,1562,1563,1564,1565,1566,1567,1568,1569,1570,1571,1572,1573,1574,1575,1576,1577,1578,1579",
                         "endColumns": "54,44,48,40,54,62,75,61,72,77,80,60,74,75,76,77,69,70,60,61,76,77,105,105,78,79,56,57,73,74,64,65,66,67,103,105,79,80,58,58,58,58,58,62,63,57,58,70,71,71,72,56,57,72,73,73,74,69,70,69,69,76,63,64,68,76,74,68,67,76,58,56,58,59,65,66,57,64,63,60,60,60,61,63,63,63,64,62,59,60,58,59,61,70,59,67,66,67,67,67,85,86,56,47,48,50,33,46,48,45,31,54,73,77,92,69,77,53,69,84,72,73,68,74,73,73,88,69,12,12,12,12,12,12,12,12,12,12,12,12,12,117,117,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,111,111,104,12,133,127,73,12,87,12,81,85,12,90,12,93,57,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,112,114,12,12,12,12,106,12,12,12,12,100,12,89,12,111,12,12,12,12,12,12,12,12,86,12,12,12,12,12,12,12,12,12,12,12,12,83,95,95,97,99,101,101,101,101,101,99,95,111,128,122,141,141,97,113,93,127,121,95,111,99,115,95,111,127,135,151,129,145,137,140,131,134,123,129,129,111,133,131,125,65,89,79,97,77,105,91,109,12,12,79,99,89,109,91,87,99,101,103,103,93,119,117,89,107,109,111,12,115,85,99,111,66,113,67,115,131,115,68,94,114,112,98,119,121,110,100,104,99,117,90,122,99,103,95,87,105,91,91,113,89,83,53,121,83,119",
-                        "endOffsets": "1469,1734,1783,7224,7711,7774,7850,7912,7985,8063,8144,8205,8280,8356,8433,8511,8581,8652,8713,8775,8939,9017,9123,9229,9308,9388,9445,9503,10019,10094,10159,10225,10616,10684,10788,10894,11143,11224,11283,11342,11401,11460,11519,11735,11799,11857,11916,11987,12059,12131,12204,12630,12688,13130,13204,13278,13353,13613,13684,33895,33965,34042,34106,34171,34240,34317,34392,34461,34529,34606,34665,34722,34781,34841,34907,34974,35032,35097,35161,35222,35283,35344,35406,35470,35534,35598,35663,35726,35786,35847,35906,35966,36028,36099,36159,36227,36408,36476,36544,36612,36698,36785,36941,36989,37038,37089,37377,37474,37523,37813,37845,37900,37974,38052,38145,38215,38293,38347,38417,38502,38575,38649,38718,38793,38867,38941,39030,39100,43652,43874,44096,44364,44591,44821,45051,45281,45511,45738,45977,46203,46448,46566,46684,46914,47162,47381,47664,47872,48003,48230,48476,48701,48950,49171,49416,49711,49933,50171,50385,50615,50838,51053,51261,51373,51485,51590,51804,51938,52066,52140,52393,52481,52883,52965,53051,53667,53758,54166,54260,54318,54466,56959,57112,59717,66460,73082,79921,80860,81116,81352,81899,82393,83066,83231,83759,84323,84697,85067,85558,86035,86388,86715,87021,87283,87396,87511,87750,87961,88178,88396,88503,88696,89151,89391,89650,89751,89938,90028,90472,90584,91389,91719,92638,93304,93589,97336,100529,103848,103935,104164,104413,104654,104806,104977,105144,105387,105557,105730,105901,106175,106374,106458,106554,106650,106748,106848,106950,107052,107154,107256,107358,107458,107554,107666,107795,107918,108060,108202,108300,108414,108508,108636,108758,108854,108966,109066,109182,109278,109390,109518,109654,109806,109936,110082,110220,110361,110493,110628,110752,110882,111012,111124,111258,111390,111516,111582,111672,111752,111850,111928,112034,112126,112236,112407,112572,112652,112752,112842,112952,113044,113132,113232,113334,113438,113542,113636,113756,113874,113964,114072,114182,114294,114469,114585,114671,114771,114883,114950,115064,115132,115248,115380,115496,115565,115660,115775,115888,115987,116107,116229,116340,116441,116546,116646,116764,116855,116978,117078,117182,117278,117366,117472,117564,117656,117770,117860,117944,117998,118120,118204,118324"
+                        "endOffsets": "1469,1734,1783,7224,7711,7774,7850,7912,7985,8063,8144,8205,8280,8356,8433,8511,8629,8700,8761,8823,9129,9207,9313,9419,9498,9578,9635,9693,10359,10434,10499,10565,10956,11024,11128,11234,11855,11936,12050,12109,12168,12227,12286,12502,12566,12624,12683,12754,12826,12898,12971,13452,13510,13952,14026,14100,14175,14598,14669,35780,35850,35927,35991,36056,36125,36202,36277,36346,36414,36491,36550,36607,36666,36726,36792,36859,36917,36982,37046,37107,37168,37229,37291,37355,37419,37483,37548,37611,37671,37732,37791,37851,37913,37984,38044,38112,38293,38361,38429,38497,38583,38670,39049,39097,39146,39197,39485,39648,39697,39987,40019,40074,40148,40226,40319,40389,40467,40521,40591,40676,40749,40823,40892,40967,41041,41115,41204,41274,46059,46281,46503,46771,46998,47228,47458,47688,47918,48145,48384,48610,48855,48973,49091,49321,49569,49788,50071,50279,50410,50637,50883,51108,51357,51578,51823,52118,52340,52578,52792,53022,53245,53460,53668,53780,53892,53997,54211,54345,54473,54547,54800,54888,55290,55372,55458,56074,56165,56573,56667,56725,56873,59366,59519,62124,68867,75489,82328,83267,83523,83759,84306,84800,85473,85638,86166,86730,87104,87474,87965,88442,88795,89122,89428,89690,89803,89918,90157,90368,90585,90803,90910,91103,91558,91798,92057,92158,92345,92435,92879,92991,93796,94126,95045,95711,95996,99743,102936,106255,106342,106571,106820,107061,107213,107384,107551,107794,107964,108137,108308,108582,108781,108865,108961,109057,109155,109255,109357,109459,109561,109663,109765,109865,109961,110073,110202,110325,110467,110609,110707,110821,110915,111043,111165,111261,111373,111473,111589,111685,111797,111925,112061,112213,112343,112489,112627,112768,112900,113035,113159,113289,113419,113531,113665,113797,113923,113989,114079,114159,114257,114335,114441,114533,114643,114814,114979,115059,115159,115249,115359,115451,115539,115639,115741,115845,115949,116043,116163,116281,116371,116479,116589,116701,116876,116992,117078,117178,117290,117357,117471,117539,117655,117787,117903,117972,118067,118182,118295,118394,118514,118636,118747,118848,118953,119053,119171,119262,119385,119485,119589,119685,119773,119879,119971,120063,120177,120267,120351,120405,120527,120611,120731"
                     }
                 },
                 {
@@ -1828,12 +2184,12 @@
                         "endOffsets": "488,686,2010,9287,8815,9741,8319,5804,6256,7926,1199,1430,940,5358,4696,4954,3442,6857,7417,4291,2626,2922,3890,2375"
                     },
                     "to": {
-                        "startLines": "492,500,1255,1549,1558,1567,1576,1585,1595,1605,1616,1621,1626,1631,1639,1646,1651,1661,1673,1684,1692,1697,1703,1711",
+                        "startLines": "523,531,1286,1580,1589,1598,1607,1616,1626,1636,1647,1652,1657,1662,1670,1677,1682,1692,1704,1715,1723,1728,1734,1742",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "42728,43020,93594,118329,118767,119232,119656,120017,120434,120855,121334,121586,121812,122059,122432,122802,123026,123516,124082,124608,124980,125206,125476,125895",
-                        "endLines": "499,502,1264,1557,1566,1575,1584,1594,1604,1615,1620,1625,1630,1638,1645,1650,1660,1672,1683,1691,1696,1702,1710,1717",
+                        "startOffsets": "45135,45427,96001,120736,121174,121639,122063,122424,122841,123262,123741,123993,124219,124466,124839,125209,125433,125923,126489,127015,127387,127613,127883,128302",
+                        "endLines": "530,533,1295,1588,1597,1606,1615,1625,1635,1646,1651,1656,1661,1669,1676,1681,1691,1703,1714,1722,1727,1733,1741,1748",
                         "endColumns": "12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12",
-                        "endOffsets": "43015,43175,94157,118762,119227,119651,120012,120429,120850,121329,121581,121807,122054,122427,122797,123021,123511,124077,124603,124975,125201,125471,125890,126227"
+                        "endOffsets": "45422,45582,96564,121169,121634,122058,122419,122836,123257,123736,123988,124214,124461,124834,125204,125428,125918,126484,127010,127382,127608,127878,128297,128634"
                     }
                 },
                 {
@@ -1846,11 +2202,11 @@
                         "endOffsets": "2083,98,152,681,2419,3021,2940,552,764,2158,2782,1038,1538,2291,1462,3174,2868,3647,3582,287,1316,214,1876,1740,627,1807,3511,1671,1172,839,978,422,1102,1243,2570,3098,3321,2645,3729,1393,2351,1947,2497,2029,3250,3383,3442,908,2218,360,486,1600,2712"
                     },
                     "to": {
-                        "startLines": "439,440,441,442,443,444,445,446,447,448,449,450,451,452,453,454,455,456,457,458,459,460,461,462,463,464,465,466,467,468,469,470,471,472,473,474,475,476,477,478,479,480,481,482,483,484,485,486,487,488,489,490,491",
+                        "startLines": "466,467,468,469,470,471,472,473,474,475,476,477,478,479,480,481,482,483,484,485,486,487,488,489,490,491,492,493,494,495,496,497,498,499,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "39105,39158,39202,39255,39308,39375,39455,39526,39591,39673,39747,39816,39875,39950,40022,40090,40165,40250,40314,40384,40456,40528,40589,40657,40725,40799,40865,40933,41003,41072,41146,41215,41276,41339,41409,41481,41557,41627,41701,41782,41858,41917,41987,42064,42145,42220,42281,42339,42407,42466,42538,42601,42662",
+                        "startOffsets": "41279,41332,41376,41429,41482,41549,41629,41700,41765,41847,41921,41990,42049,42124,42196,42264,42339,42424,42488,42558,42630,42702,42763,42831,42899,42973,43039,43107,43177,43246,43320,43389,43450,43513,43583,43655,43731,43801,43875,43956,44032,44091,44161,44238,44319,44394,44455,44513,44581,44640,44712,44775,44836",
                         "endColumns": "52,43,52,52,66,79,70,64,81,73,68,58,74,71,67,74,84,63,69,71,71,60,67,67,73,65,67,69,68,73,68,60,62,69,71,75,69,73,80,75,58,69,76,80,74,60,57,67,58,71,62,60,65",
-                        "endOffsets": "39153,39197,39250,39303,39370,39450,39521,39586,39668,39742,39811,39870,39945,40017,40085,40160,40245,40309,40379,40451,40523,40584,40652,40720,40794,40860,40928,40998,41067,41141,41210,41271,41334,41404,41476,41552,41622,41696,41777,41853,41912,41982,42059,42140,42215,42276,42334,42402,42461,42533,42596,42657,42723"
+                        "endOffsets": "41327,41371,41424,41477,41544,41624,41695,41760,41842,41916,41985,42044,42119,42191,42259,42334,42419,42483,42553,42625,42697,42758,42826,42894,42968,43034,43102,43172,43241,43315,43384,43445,43508,43578,43650,43726,43796,43870,43951,44027,44086,44156,44233,44314,44389,44450,44508,44576,44635,44707,44770,44831,44897"
                     }
                 },
                 {
@@ -1863,11 +2219,30 @@
                         "endOffsets": "691,725,766,810,851,895,943,975,1018,1064,1119,1177"
                     },
                     "to": {
-                        "startLines": "405,406,407,408,409,410,412,415,416,417,418,419",
+                        "startLines": "431,432,433,434,435,436,439,442,443,444,445,446",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "37094,37134,37170,37213,37259,37302,37382,37528,37562,37607,37655,37712",
+                        "startOffsets": "39202,39242,39278,39321,39367,39410,39556,39702,39736,39781,39829,39886",
                         "endColumns": "39,35,42,45,42,45,49,33,44,47,56,59",
-                        "endOffsets": "37129,37165,37208,37254,37297,37343,37427,37557,37602,37650,37707,37767"
+                        "endOffsets": "39237,39273,39316,39362,39405,39451,39601,39731,39776,39824,39881,39941"
+                    }
+                },
+                {
+                    "source": "D:\\test\\YDSHOA\\citypickerview\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,31,41",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,103,153,199,395,445,495,545,597,645,691,748,805,861,917,972,1027,1077,1137,1190,1237,2020,2570",
+                        "endLines": "2,3,4,5,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,34,51",
+                        "endColumns": "47,49,45,45,49,49,49,51,47,45,56,56,55,55,54,54,49,59,52,46,49,12,12",
+                        "endOffsets": "98,148,194,240,440,490,540,592,640,686,743,800,856,912,967,1022,1072,1132,1185,1232,1282,2248,3096"
+                    },
+                    "to": {
+                        "startLines": "193,198,199,200,218,219,220,241,242,243,244,245,246,247,250,269,290,291,292,297,298,519,1749",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "8516,8828,8878,8924,10042,10092,10142,11408,11460,11508,11554,11611,11668,11724,11941,13089,14274,14324,14384,14674,14721,44902,128639",
+                        "endLines": "193,198,199,200,218,219,220,241,242,243,244,245,246,247,250,269,290,291,292,297,298,522,1759",
+                        "endColumns": "47,49,45,45,49,49,49,51,47,45,56,56,55,55,54,54,49,59,52,46,49,12,12",
+                        "endOffsets": "8559,8873,8919,8965,10087,10137,10187,11455,11503,11549,11606,11663,11719,11775,11991,13139,14319,14379,14432,14716,14766,45130,129165"
                     }
                 },
                 {
@@ -1880,11 +2255,11 @@
                         "endOffsets": "213,270,100,154"
                     },
                     "to": {
-                        "startLines": "391,392,399,400",
+                        "startLines": "414,415,425,426",
                         "startColumns": "4,4,4,4",
-                        "startOffsets": "36232,36290,36790,36836",
+                        "startOffsets": "38117,38175,38898,38944",
                         "endColumns": "57,55,45,52",
-                        "endOffsets": "36285,36341,36831,36884"
+                        "endOffsets": "38170,38226,38939,38992"
                     }
                 },
                 {
@@ -1975,28 +2350,6 @@
             ]
         },
         {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-mr-rIN_values-mr-rIN.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-mr-rIN\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,174,282,405,511,618,708,809,924,1036,1138,1234,1343,1444,1559",
-                        "endColumns": "117,107,122,105,106,89,100,114,111,101,95,108,100,114,122",
-                        "endOffsets": "169,277,400,506,613,703,804,919,1031,1133,1229,1338,1439,1554,1677"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,173,281,404,510,617,707,808,923,1035,1137,1233,1342,1443,1558",
-                        "endColumns": "117,107,122,105,106,89,100,114,111,101,95,108,100,114,122",
-                        "endOffsets": "168,276,399,505,612,702,803,918,1030,1132,1228,1337,1438,1553,1676"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ms-rMY_values-ms-rMY.arsc.flat",
             "map": [
                 {
@@ -2014,50 +2367,6 @@
                         "startOffsets": "55,166,274,397,502,610,697,801,912,1024,1133,1230,1339,1442,1549",
                         "endColumns": "110,107,122,104,107,86,103,110,111,108,96,108,102,106,121",
                         "endOffsets": "161,269,392,497,605,692,796,907,1019,1128,1225,1334,1437,1544,1666"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-sw600dp-v13_values-sw600dp-v13.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-sw600dp\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,9",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "56,126,196,255,326,395",
-                        "endColumns": "69,69,58,70,67,54",
-                        "endOffsets": "121,191,250,321,389,445"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "55,125,195,254,325,393",
-                        "endColumns": "69,69,58,70,67,54",
-                        "endOffsets": "120,190,249,320,388,443"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-bn-rBD_values-bn-rBD.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-bn-rBD\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,165,273,396,508,614,708,813,943,1053,1169,1276,1386,1492,1602",
-                        "endColumns": "108,107,122,111,105,93,104,129,109,115,106,109,105,109,124",
-                        "endOffsets": "160,268,391,503,609,703,808,938,1048,1164,1271,1381,1487,1597,1722"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,164,272,395,507,613,707,812,942,1052,1168,1275,1385,1491,1601",
-                        "endColumns": "108,107,122,111,105,93,104,129,109,115,106,109,105,109,124",
-                        "endOffsets": "159,267,390,502,608,702,807,937,1047,1163,1270,1380,1486,1596,1721"
                     }
                 }
             ]
@@ -2085,23 +2394,16 @@
             ]
         },
         {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-el_values-el.arsc.flat",
+            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-sq-rAL_values-sq-rAL.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-el\\values.xml",
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\79bdffb5382246bec3faee51ed1fb502\\res\\values-sq-rAL\\values-sq-rAL.xml",
                     "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,174,282,405,516,633,718,823,949,1060,1170,1272,1383,1492,1600",
-                        "endColumns": "117,107,122,110,116,84,104,125,110,109,101,110,108,107,122",
-                        "endOffsets": "169,277,400,511,628,713,818,944,1055,1165,1267,1378,1487,1595,1718"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,173,281,404,515,632,717,822,948,1059,1169,1271,1382,1491,1599",
-                        "endColumns": "117,107,122,110,116,84,104,125,110,109,101,110,108,107,122",
-                        "endOffsets": "168,276,399,510,627,712,817,943,1054,1164,1266,1377,1486,1594,1717"
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,169,277,400,500,612,699,809,932,1013,1092,1175,1281,1386,1484,1590,1693,1809,1940,2039",
+                        "endColumns": "113,107,122,99,111,86,109,122,80,78,82,105,104,97,105,102,115,130,98,100",
+                        "endOffsets": "164,272,395,495,607,694,804,927,1008,1087,1170,1276,1381,1479,1585,1688,1804,1935,2034,2135"
                     }
                 }
             ]
@@ -2124,28 +2426,6 @@
                         "startOffsets": "55,164,272,395,495,604,688,797,922,1028,1136,1234,1338,1443,1550",
                         "endColumns": "108,107,122,99,108,83,108,124,105,107,97,103,104,106,121",
                         "endOffsets": "159,267,390,490,599,683,792,917,1023,1131,1229,1333,1438,1545,1667"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\values-ja_values-ja.arsc.flat",
-            "map": [
-                {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\values-ja\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "56,153,260,381,474,579,661,759,867,969,1068,1163,1266,1361,1457",
-                        "endColumns": "96,106,120,92,104,81,97,107,101,98,94,102,94,95,110",
-                        "endOffsets": "148,255,376,469,574,656,754,862,964,1063,1158,1261,1356,1452,1563"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,152,259,380,473,578,660,758,866,968,1067,1162,1265,1360,1456",
-                        "endColumns": "96,106,120,92,104,81,97,107,101,98,94,102,94,95,110",
-                        "endOffsets": "147,254,375,468,573,655,753,861,963,1062,1157,1260,1355,1451,1562"
                     }
                 }
             ]

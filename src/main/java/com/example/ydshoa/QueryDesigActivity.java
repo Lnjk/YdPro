@@ -292,6 +292,9 @@ public class QueryDesigActivity extends Activity implements View.OnClickListener
         if(sfqy.getText().toString().equals("停用")){
             qry_sfqy="2";
         }
+        if(sfqy.getText().toString().equals("")){
+            qry_sfqy="";
+        }
         qry_zdyh = zdyh.getText().toString();
     }
 

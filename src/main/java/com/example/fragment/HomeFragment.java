@@ -21,6 +21,8 @@ import com.example.ydshoa.CustersAllActivity;
 import com.example.ydshoa.DecisionActivity;
 import com.example.ydshoa.DesignerActivity;
 import com.example.ydshoa.FormActivity;
+import com.example.ydshoa.MapInfosActivity;
+import com.example.ydshoa.MoreAddressActivity;
 import com.example.ydshoa.R;
 import com.example.ydshoa.SalesManageActivity;
 import com.example.ydshoa.SmrtActivity;
@@ -87,22 +89,26 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View paramView) {
         switch (paramView.getId()) {
             case R.id.ll_custer:
+                //客户管理
                 startActivity(new Intent(this.context, CustersAllActivity.class));
                 break;
             case R.id.ll_offer:
-                Toast.makeText(this.context, "生产管理暂未开放，请等待...", Toast.LENGTH_SHORT).show();
+                //设计师管理
+//                Toast.makeText(this.context, "生产管理暂未开放，请等待...", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this.context, DesignerActivity.class));
                 break;
             case R.id.ll_form:
-
+//                物流管理
                 Toast.makeText(this.context, "暂未开放，请等待...", Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(this.context, FormActivity.class));
+//                startActivity(new Intent(this.context, MoreAddressActivity.class));
                 break;
             case R.id.ll_sell:
+//                销售管理
                 startActivity(new Intent(this.context, SalesManageActivity.class));
 //                Toast.makeText(this.context, "暂未开放，请等待...", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.ll_decision:
+//                决策报表
                 Log.e("LiNing", "-------" + sp.getString("PASS", ""));
                 if (sp.getString("PASS", "").equals("1")) {
                     startActivity(new Intent(context, SpActivity.class));
@@ -115,6 +121,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 }
                 break;
             case R.id.ll_system:
+//                系统管理
                 Log.e("LiNing", "---modid===FFFFFF---" + modIds_get);
                 if (sp.getString("PASS", "").equals("1")) {
 

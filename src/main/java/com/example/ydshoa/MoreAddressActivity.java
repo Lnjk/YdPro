@@ -305,7 +305,7 @@ public class MoreAddressActivity extends Activity implements TextWatcher, BaiduM
         // 地图操作的中心点
         LatLng cenpt = mapStatus.target;
 
-        geoCoder.reverseGeoCode(new ReverseGeoCodeOption().location(cenpt));
+//        geoCoder.reverseGeoCode(new ReverseGeoCodeOption().location(cenpt));
     }
 
     @Override

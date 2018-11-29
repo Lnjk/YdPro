@@ -21,15 +21,15 @@ public class MyApplication extends Application {
 		handler = new Handler();
 		mainThread = Thread.currentThread();
 
-//		CrashHelper.init(new CrashHandler() {
-//
-//			@Override
-//			public void uncaughtException(Thread t, Throwable e) {
-//				// TODO Auto-generated method stub
-//				Log.e("LiNing", "此处有bug");
-//				e.printStackTrace();
-//			}
-//		});
+		CrashHelper.init(new CrashHandler() {
+
+			@Override
+			public void uncaughtException(Thread t, Throwable e) {
+				// TODO Auto-generated method stub
+				Log.e("LiNing", "此处有bug");
+				e.printStackTrace();
+			}
+		});
 
 
 

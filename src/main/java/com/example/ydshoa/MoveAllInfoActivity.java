@@ -38,6 +38,13 @@ import com.example.bean.PriceNumID;
 import com.example.bean.URLS;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.lljjcoder.Interface.OnCityItemClickListener;
+import com.lljjcoder.bean.CityBean;
+import com.lljjcoder.bean.DistrictBean;
+import com.lljjcoder.bean.ProvinceBean;
+import com.lljjcoder.citywheel.CityConfig;
+import com.lljjcoder.style.citylist.Toast.ToastUtils;
+import com.lljjcoder.style.citypickerview.CityPickerView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -63,8 +70,8 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
     private List<String> idList,idList_dz,tel_List;
     private AlertDialog alertDialog;
     private String session,db_zt,user_Id,date_dd,dabh_befor ,sszt_befor,sub_id,sub_dz,url_do;
-    private TextView dzbh,head,zt,dacard,yhbh,sfmr,xxdz;
-    private EditText shr,lxdh,ss,qx;
+    private TextView dzbh,head,zt,dacard,yhbh,sfmr,xxdz,ss,qx;
+    private EditText shr,lxdh;
     private ImageButton zt_xl,mr_xl;
     LinearLayout touch;
     String url_dh_price = URLS.price_num_ls;
@@ -76,6 +83,7 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
     List<CustPsxxInfos.CustConInfList> custList;//回调要用
     String extra_zt,extra_dabh,extra_itm,extra_shr,extra_dh,extra_ss,extra_qx,extra_adress,extra_userid,extra_def;
     int do_save;
+    CityPickerView mCityPickerView = new CityPickerView();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +97,8 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
          sszt_befor = getIntent().getStringExtra("SSZT");
          dabh_befor = getIntent().getStringExtra("DABH");
         InitView();
+        //		 * 预先加载仿iOS滚轮实现的全部数据
+        mCityPickerView.init(this);
     }
 
     private void InitView() {
@@ -122,7 +132,14 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
         switch (v.getId()) {
             case R.id.btn_moveAll_add://判断电话是否存在
                 do_save=1;
-                updataInfos();
+//                updataInfos();
+                Intent intent_add = new Intent(context, PsHaveCityActivity.class);
+                intent_add.putExtra("DO", "1");
+                intent_add.putExtra("SSZT_ps", sszt_befor);
+                intent_add.putExtra("DABH_ps", dabh_befor);
+                intent_add.putExtra("SIZE",""+custList.size() );
+                startActivity(intent_add);
+//                finish();
                 break;
             case R.id.ib_move_account:
                 Intent intent = new Intent(context, CondicionInfoActivity.class);
@@ -137,7 +154,22 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
                 if (0 < idList.size() && idList.size() <= 1) {
                     //回调数据
                     do_save=2;
-                    updataInfos();
+//                    updataInfos();
+                    Intent intent_set = new Intent(context, PsHaveCityActivity.class);
+                    intent_set.putExtra("DO", ""+do_save);
+                    intent_set.putExtra("SIZE",""+custList.size() );
+                    intent_set.putExtra("ZT", extra_zt);
+                    intent_set.putExtra("DABH", extra_dabh);
+                    intent_set.putExtra("ITM",extra_itm);
+                    intent_set.putExtra("SHR",extra_shr);
+                    intent_set.putExtra("DH",extra_dh);
+                    intent_set.putExtra("SS",extra_ss);
+                    intent_set.putExtra("QX",extra_qx);
+                    intent_set.putExtra("ANDRESS",extra_adress);
+                    intent_set.putExtra("USERID",extra_userid);
+                    intent_set.putExtra("DEF",extra_def);
+                    startActivity(intent_set);
+//                    finish();
                 }else {
                     Toast.makeText(this.context, "请选择一条数据", Toast.LENGTH_LONG).show();
                 }
@@ -194,14 +226,54 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
         dzbh.setText(""+i);
         shr= (EditText) view.findViewById(R.id.et_move_username);
         lxdh= (EditText) view.findViewById(R.id.et_move_phone);
-        ss= (EditText) view.findViewById(R.id.et_move_ss);
-        qx= (EditText) view.findViewById(R.id.et_move_qx);
+        ss= (TextView) view.findViewById(R.id.et_move_ss);
+        qx= (TextView) view.findViewById(R.id.et_move_qx);
+        ss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CityConfig cityConfig = new CityConfig.Builder().title("选择城市")//标题
+                        .build();
+
+                mCityPickerView.setConfig(cityConfig);
+                mCityPickerView.setOnCityItemClickListener(new OnCityItemClickListener() {
+                    @Override
+                    public void onSelected(ProvinceBean province, CityBean city, DistrictBean district) {
+                        StringBuilder sb = new StringBuilder();
+                        sb.append("选择的结果：\n");
+                        if (province != null) {
+                            sb.append(province.getName() + " " + province.getId() + "\n");
+                        }
+
+                        if (city != null) {
+                            sb.append(city.getName() + " " + city.getId() + ("\n"));
+                        }
+
+                        if (district != null) {
+                            sb.append(district.getName() + " " + district.getId() + ("\n"));
+                        }
+
+                        Log.e("LiNing","+=========="+"" + sb.toString());
+                        ss.setText(province.getName());
+                        qx.setText(city.getName());
+
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        ToastUtils.showLongToast(context, "已取消");
+                    }
+                });
+                mCityPickerView.showCityPicker();
+            }
+        });
+
         xxdz= (TextView) view.findViewById(R.id.et_move_adress);
         xxdz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //textview点击失去焦点获取地图
-                Intent intent1 = new Intent(context, SearchMapActivity.class);
+//                Intent intent1 = new Intent(context, SearchMapActivity.class);
+                Intent intent1 = new Intent(context, MapInfosActivity.class);
                 intent1.putExtra("SF", ss.getText().toString());
                 intent1.putExtra("QX", qx.getText().toString());
                 startActivityForResult(intent1, 2);
@@ -258,7 +330,7 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
         });
 
         alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setCancelable(true);
+        alertDialog.setCancelable(false);
         alertDialog.setView(view);
         alertDialog.show();
     }
@@ -423,7 +495,7 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
                 break;
             case 2:
                 if (resultCode == 1) {
-                    String str_andress = data.getStringExtra("selectAddress");
+                    String str_andress = data.getStringExtra("ANDRESS");
                     xxdz.setText(str_andress);
                     Log.e("LiNing", "提交的id====" + str_andress);
                 }
@@ -693,5 +765,8 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
 }
     public void allback(View v) {
         finish();
+    }
+    public void flash(View v) {
+        getInfoCust();
     }
 }

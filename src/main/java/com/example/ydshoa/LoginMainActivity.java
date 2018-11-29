@@ -44,10 +44,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
+import com.example.bean.AccountInfo;
 import com.example.bean.MyDBHelper;
 import com.example.bean.SysApplication;
 import com.example.bean.URLS;
 import com.example.zxing.CaptureActivity;
+import com.google.gson.Gson;
 //import com.umeng.message.PushAgent;
 
 public class LoginMainActivity extends Activity implements OnClickListener {
@@ -273,7 +275,7 @@ public class LoginMainActivity extends Activity implements OnClickListener {
                 Log.e("LiNing", "session is  :" + s);
                 Editor edit = sp.edit();
                 edit.putString("SESSION", s).commit();
-
+                Log.d("info_headers", "s " + s);
             }
 
             @Override
@@ -342,7 +344,8 @@ public class LoginMainActivity extends Activity implements OnClickListener {
                 OkHttpClient client = new OkHttpClient();
                 FormBody body = new FormBody.Builder().add("userId", str1)
                         .add("passWord", str2).add("loginImage", str3).build();
-                Request request = new Request.Builder().addHeader("cookie", s)
+                final Request request = new Request.Builder()
+                        .addHeader("cookie", s)
                         .url(URLS.login_url).post(body).build();
                 Call call = client.newCall(request);
                 call.enqueue(new Callback() {
@@ -350,33 +353,39 @@ public class LoginMainActivity extends Activity implements OnClickListener {
                     @Override
                     public void onResponse(Call call, Response response)
                             throws IOException {
-
+//                        Log.e("LiNing", "spn==111111111====" + response.body().string().toString().substring(170));
                         if (response.isSuccessful()) {
-                            Log.i("info_call2success", response.body().string());
                             Log.e("LiNing", "spn======" + response.code()+str1+str2+str3+URLS.login_url);
-                            if (response.code() == 200) {
-                                Headers headers = response.headers();
-                                List<String> values = headers
-                                        .values("Content-Length");
-                                if (values.size() > 0 && values != null) {
-                                    LoginMainActivity.this
-                                            .runOnUiThread(new Runnable() {
-
-                                                @Override
-                                                public void run() {
-                                                    Toast.makeText(
-                                                            LoginMainActivity.this,
-                                                            "登录信息有误，请确认信息", Toast.LENGTH_LONG)
-                                                            .show();
-                                                }
-                                            });
-                                } else {
-                                    startActivity(new Intent(
-                                            LoginMainActivity.this,
-                                            MainActivity.class));
-                                    // finish();
+                            LoginMainActivity.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    getInfos();
                                 }
-                            }
+                            });
+//                            if (response.code() == 200) {
+//                                Headers headers = response.headers();
+//                                Log.i("info_call2success",""+ headers);
+//                                List<String> values = headers
+//                                        .values("Content-Length");
+////                                if (values.size() > 0 && values != null) {
+////                                    LoginMainActivity.this
+////                                            .runOnUiThread(new Runnable() {
+////
+////                                                @Override
+////                                                public void run() {
+////                                                    Toast.makeText(
+////                                                            LoginMainActivity.this,
+////                                                            "登录信息有误，请确认信息", Toast.LENGTH_LONG)
+////                                                            .show();
+////                                                }
+////                                            });
+////                                } else {
+//                                    startActivity(new Intent(
+//                                            LoginMainActivity.this,
+//                                            MainActivity.class));
+////                                    // finish();
+////                                }
+//                            }
                         }
 
                     }
@@ -398,16 +407,48 @@ public class LoginMainActivity extends Activity implements OnClickListener {
                 Log.e("LiNing", "spn======" + spUrl.getSelectedItem());
                 break;
             case R.id.getDevice:
-//                startActivity(new Intent(LoginMainActivity.this,
-//                        GetDeviseActivity.class));
                 startActivity(new Intent(LoginMainActivity.this,
-                        PriceActivity.class));
+                        GetDeviseActivity.class));
+//                startActivity(new Intent(LoginMainActivity.this,
+//                        PriceActivity.class));
                 break;
 
             default:
                 break;
         }
 
+    }
+//    String url_query =  URLS.ERP_db_url;
+    private void getInfos() {
+        OkHttpClient client = new OkHttpClient();
+        FormBody body = new FormBody.Builder().build();
+        client.newCall(new Request.Builder().addHeader("cookie", s).post(body)
+                .url(URLS.ERP_db_url).build()).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String str = response.body().string();
+                Log.e("LiNing", "账套数据===" + str);
+                if(str.substring(2,12).toString().equals("idNameList")){
+                    startActivity(new Intent(
+                            LoginMainActivity.this,
+                            MainActivity.class));
+                }else{
+                    LoginMainActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(LoginMainActivity.this,"错误",Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                }
+
+            }
+        });
     }
 
     // String url000 = URLS.yzm_url;
@@ -441,9 +482,9 @@ public class LoginMainActivity extends Activity implements OnClickListener {
                     Log.i("info_handler", "-------" + message);
                     handler.sendMessage(message);
                     Log.e("LiNing", "验证码表头==" + response.headers());
-                    Log.e("LiNing",
-                            "验证码cookie=="
-                                    + response.headers().values("Set-Cookie"));
+//                    Log.e("LiNing",
+//                            "验证码cookie=="
+//                                    + response.headers().values("Set-Cookie"));
                 }
 
                 @Override

@@ -1427,7 +1427,7 @@ public class NewModActivity extends Activity implements OnClickListener {
                     textParams.put("mod_ID", sub_id);// mod_ID;// 模块编号
                     textParams.put("mod_DB", sub_zt);// mod_DB;//账套编号
                     textParams.put("mod_Name", sub_name);// mod_Name;// 模块名称
-                    textParams.put("mod_Query", sub_query);// mod_Query;// 查看
+                        textParams.put("mod_Query", sub_query);// mod_Query;// 查看
                     textParams.put("mod_Add", sub_add);// mod_Add;// 新增
                     textParams.put("mod_Alter", sub_alt);// mod_Alter;// 修改
                     textParams.put("mod_Del", sub_del);// mod_Del;// 删除
