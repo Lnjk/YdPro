@@ -268,7 +268,7 @@ public class SearchMapActivity extends Activity implements TextWatcher {
                         localIntent.putExtra("ANDRESS", mActvSearchkey.getText().toString());
                         setResult(1, localIntent);
                         finish();
-                        Toast.makeText(SearchMapActivity.this, marker.getTitle(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(SearchMapActivity.this, marker.getTitle(), Toast.LENGTH_SHORT).show();
                         return true;
                     }
                 });

@@ -177,28 +177,35 @@ public class DecisionActivity extends Activity implements OnClickListener {
 							Log.e("LiNing", "===map=====" + item);
 							Log.e("LiNing", "===map=new====" + dList);
 
-							// 封装map
-							// Map<String,String[]> map = new
-							// HashMap<String,String[]>();
-							// map.put(db_ID, new
-							// String[]{""+out,""+prt,""+qty,""+gp,""+gpr});
-							// Log.e("LiNing", "===map=====" + map);
-							// 封装对象
-							// TestQx tq = new TestQx();
-							// tq.setDB_ID(db_ID);
-							// QX qx = new QX();
-							// qx.setZc("" + out);
-							// qx.setDy("" + prt);
-							// qx.setCb("" + qty);
-							// qx.setMl("" + gp);
-							// qx.setMll("" + gpr);
-							// tq.setQx(qx);
-							// Intent intent = new Intent(this,
-							// SalesNumActivity.class);
-							// intent.putExtra("TQ", new Gson().toJson(tq));
-							// startActivity(intent);
-							// sp.edit().putString("TQ", new Gson().toJson(tq))
-							// .commit();
+						}
+						if (mod_ID.equals("spmsrp")) {
+							db_ID = user_Mod.get(i).getDb_ID();
+							out = user_Mod.get(i).isMod_Out();// 转出
+							prt = user_Mod.get(i).isMod_Prt();// 打印
+							qty = user_Mod.get(i).isMod_Cst();// 成本
+							gp = user_Mod.get(i).isMod_GP();// 毛利
+							gpr = user_Mod.get(i).isMod_GPR();// 毛利率
+							amt = user_Mod.get(i).isMod_Amt();//金额
+							Log.e("LiNing", "========" + i + mod_ID + qty + gp
+									+ gpr+amt+out+prt);
+							sp.edit().putString("CB", "" + qty).commit();
+							sp.edit().putString("ML", "" + gp).commit();
+							sp.edit().putString("MLL", "" + gpr).commit();
+							sp.edit().putString("ZC", "" + out).commit();
+							sp.edit().putString("DY", "" + prt).commit();
+							sp.edit().putString("JE", "" + amt).commit();
+							item = new HashMap<String, Object>();
+							item.put("账套", db_ID);
+							item.put("转出", "" + out);
+							item.put("打印", "" + prt);
+							item.put("成本", ""+qty);
+							item.put("毛利", ""+gp);
+							item.put("毛利率", ""+gpr);
+							item.put("金额", ""+amt);
+							dList.add(item);
+							Log.e("LiNing", "===map=====" + item);
+							Log.e("LiNing", "===map=new====" + dList);
+
 						}
 
 					}
@@ -274,7 +281,7 @@ public class DecisionActivity extends Activity implements OnClickListener {
 					intent.putExtra("reportB", "ARP");
 					startActivity(intent);
 				} else {
-					if (modIds_get.contains("spmrt")) {
+					if (modIds_get.contains("spmarp")) {
 						sp.edit().putString("TJ", head.getText().toString())
 								.commit();
 						Intent intent = new Intent(context, SalesNum_ARPActivity.class);

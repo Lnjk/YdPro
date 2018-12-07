@@ -146,6 +146,7 @@ public class ModListActivity extends Activity implements OnClickListener {
 							public void run() {
 								data = cInfoDB.getModule();
 								Log.e("LiNing", "data--------" + data);
+								Log.e("LiNing", "data--------" + data.size());
 								showCheckBoxListView();
 								ArrayList<String> modIDs = new ArrayList<String>();
 								ArrayList<String> levels = new ArrayList<String>();

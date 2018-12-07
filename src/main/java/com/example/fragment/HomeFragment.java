@@ -90,12 +90,32 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         switch (paramView.getId()) {
             case R.id.ll_custer:
                 //客户管理
-                startActivity(new Intent(this.context, CustersAllActivity.class));
+//                startActivity(new Intent(this.context, CustersAllActivity.class));
+                Log.e("LiNing", "---modid===FFFFFF---" + modIds_get);
+                if (sp.getString("PASS", "").equals("1")) {
+
+                    startActivity(new Intent(context, CustersAllActivity.class));
+                } else if (modIds_get.contains("sk")) {
+
+                    startActivity(new Intent(context, CustersAllActivity.class));
+                } else {
+                    Toast.makeText(this.context, "无此权限", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.ll_offer:
                 //设计师管理
 //                Toast.makeText(this.context, "生产管理暂未开放，请等待...", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this.context, DesignerActivity.class));
+//                startActivity(new Intent(this.context, DesignerActivity.class));
+                Log.e("LiNing", "---modid===FFFFFF---" + modIds_get);
+                if (sp.getString("PASS", "").equals("1")) {
+
+                    startActivity(new Intent(context, DesignerActivity.class));
+                } else if (modIds_get.contains("skvp")) {
+
+                    startActivity(new Intent(context, DesignerActivity.class));
+                } else {
+                    Toast.makeText(this.context, "无此权限", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.ll_form:
 //                物流管理

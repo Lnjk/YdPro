@@ -1,5 +1,6 @@
 package com.example.ydshoa;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +9,7 @@ import android.R.integer;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +27,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bean.URLS;
+import com.example.bean.UserInfo;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 //import com.umeng.message.PushAgent;
 
 public class SalesNumActivity extends Activity {
@@ -34,6 +47,11 @@ public class SalesNumActivity extends Activity {
 	private List<Picture> pictures;
 	private TextView head;
 	private String reportBus;
+	ArrayList<String> modIds_get = new ArrayList<String>();
+	private int flag;
+	String url = URLS.userInfo_url;
+	private String session;
+	private SharedPreferences sp;
 	// ID
 	private String[] IDs = new String[] { "SATG", "SATGP", "SATGPC", "SATGPD",
 			"SATGPS", "SATGPGC", "SATGC", "SATGCD", "SATGCS", "SATGCGC",
@@ -71,11 +89,14 @@ public class SalesNumActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_sales_num);
 		context = SalesNumActivity.this;
+		sp = getSharedPreferences("ydbg", 0);
+		session = sp.getString("SESSION", "");
 //		PushAgent.getInstance(context).onAppStart();
 		head = (TextView) findViewById(R.id.all_head);
 		head.setText("报表种类");
 		reportBus = getIntent().getStringExtra("reportB");// 获取业务类型
 		gridView = (GridView) findViewById(R.id.gridview);
+		getRoot();
 		adapter = new PictureAdapter(IDs, titles, images, this);
 		gridView.setAdapter(adapter);
 		gridView.setOnItemClickListener(new OnItemClickListener() {
@@ -89,20 +110,61 @@ public class SalesNumActivity extends Activity {
 
 				String ID_zl = pictures.get(position).getId();
 				String name_zl = pictures.get(position).getTitle();
-				// 传递的id值
-				Log.e("LiNing", "---------" + ID_zl);
+				if(modIds_get.contains(ID_zl)){
+					// 传递的id值
+					Log.e("LiNing", "---------" + ID_zl);
 //				Intent intent = new Intent(context, SalesQueryActivity.class);
-				Intent intent = new Intent(context, SalesQueryTwoActivity.class);
-				intent.putExtra("reportB", reportBus);
-				intent.putExtra("reportNo", ID_zl);
-				intent.putExtra("reportName", name_zl);
-				startActivity(intent);
-				adapter.notifyDataSetChanged();
+					Intent intent = new Intent(context, SalesQueryTwoActivity.class);
+					intent.putExtra("reportB", reportBus);
+					intent.putExtra("reportNo", ID_zl);
+					intent.putExtra("reportName", name_zl);
+					startActivity(intent);
+					adapter.notifyDataSetChanged();
+				}else{
+					Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+				}
+
 			}
 		});
 
 	}
+	private void getRoot() {
+		OkHttpClient client = new OkHttpClient();
+		Request localRequest = new Request.Builder()
+				.addHeader("cookie", session).url(url).build();
+		client.newCall(localRequest).enqueue(new Callback() {
 
+			@Override
+			public void onResponse(Call call, Response response)
+					throws IOException {
+				String string = response.body().string();
+				Log.e("LiNing", "------" + response.code() + "------" + string);
+				Gson gson = new GsonBuilder().setDateFormat(
+						"yyyy-MM-dd HH:mm:ss").create();
+				UserInfo info = gson.fromJson(string, UserInfo.class);
+				if (info.getUser_Id().equalsIgnoreCase("admin")
+						&& info.getUser_Pwd().equalsIgnoreCase("admin")) {
+					flag = 1;
+				} else {
+					// }
+					List<com.example.bean.UserInfo.User_Mod> user_Mod = info
+							.getUser_Mod();
+					if (user_Mod.size() > 0 && user_Mod != null) {
+						for (int i = 0; i < user_Mod.size(); i++) {
+
+							String mod_ID = user_Mod.get(i).getMod_ID();
+							modIds_get.add(mod_ID);
+						}
+					}
+				}
+			}
+
+			@Override
+			public void onFailure(Call arg0, IOException arg1) {
+
+			}
+		});
+	}
 	class PictureAdapter extends BaseAdapter {
 		private int selectItem = -1;
 

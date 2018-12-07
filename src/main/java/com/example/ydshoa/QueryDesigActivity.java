@@ -86,7 +86,7 @@ public class QueryDesigActivity extends Activity implements View.OnClickListener
         if(cust_do!=null&&cust_do.equals("1")){
             head.setText("客户查询");
         }else{
-            head.setText("设计师查询");
+            head.setText("会员查询");
         }
 //        this.mHead = ((RelativeLayout) findViewById(R.id.design_head_query));
 //        this.mHead.setFocusable(true);

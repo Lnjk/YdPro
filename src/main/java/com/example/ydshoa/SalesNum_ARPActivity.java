@@ -3,6 +3,7 @@ package com.example.ydshoa;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -16,9 +17,22 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.bean.URLS;
+import com.example.bean.UserInfo;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class SalesNum_ARPActivity extends Activity {
     private Context context;
@@ -53,18 +67,25 @@ public class SalesNum_ARPActivity extends Activity {
             R.drawable.ii, R.drawable.jj, R.drawable.kk,
             R.drawable.ll, R.drawable.mm};
     private PictureAdapter adapter;
-
+    private int flag;
+    String url = URLS.userInfo_url;
+    private String session;
+    private SharedPreferences sp;
+    ArrayList<String> modIds_get = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_sales_num__arp);
         context = SalesNum_ARPActivity.this;
+        sp = getSharedPreferences("ydbg", 0);
+        session = sp.getString("SESSION", "");
 //		PushAgent.getInstance(context).onAppStart();
         head = (TextView) findViewById(R.id.all_head);
         head.setText("报表种类");
         reportBus = getIntent().getStringExtra("reportB");// 获取业务类型
         gridView = (GridView) findViewById(R.id.gridview_arp);
+        getRoot();
         adapter = new PictureAdapter(IDs, titles, images, this);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -80,16 +101,57 @@ public class SalesNum_ARPActivity extends Activity {
                 String name_zl = pictures.get(position).getTitle();
                 // 传递的id值
                 Log.e("LiNing", "---------" + ID_zl);
-                Intent intent = new Intent(context, SalesQueryArpActivity.class);
-                intent.putExtra("reportB", reportBus);
-                intent.putExtra("reportNo", ID_zl);
-                intent.putExtra("reportName", name_zl);
-                startActivity(intent);
-                adapter.notifyDataSetChanged();
+                if(modIds_get.contains(ID_zl)){
+
+                    Intent intent = new Intent(context, SalesQueryArpActivity.class);
+                    intent.putExtra("reportB", reportBus);
+                    intent.putExtra("reportNo", ID_zl);
+                    intent.putExtra("reportName", name_zl);
+                    startActivity(intent);
+                    adapter.notifyDataSetChanged();
+                }else{
+                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
+    private void getRoot() {
+        OkHttpClient client = new OkHttpClient();
+        Request localRequest = new Request.Builder()
+                .addHeader("cookie", session).url(url).build();
+        client.newCall(localRequest).enqueue(new Callback() {
 
+            @Override
+            public void onResponse(Call call, Response response)
+                    throws IOException {
+                String string = response.body().string();
+                Log.e("LiNing", "------" + response.code() + "------" + string);
+                Gson gson = new GsonBuilder().setDateFormat(
+                        "yyyy-MM-dd HH:mm:ss").create();
+                UserInfo info = gson.fromJson(string, UserInfo.class);
+                if (info.getUser_Id().equalsIgnoreCase("admin")
+                        && info.getUser_Pwd().equalsIgnoreCase("admin")) {
+                    flag = 1;
+                } else {
+                    // }
+                    List<com.example.bean.UserInfo.User_Mod> user_Mod = info
+                            .getUser_Mod();
+                    if (user_Mod.size() > 0 && user_Mod != null) {
+                        for (int i = 0; i < user_Mod.size(); i++) {
+
+                            String mod_ID = user_Mod.get(i).getMod_ID();
+                            modIds_get.add(mod_ID);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call arg0, IOException arg1) {
+
+            }
+        });
+    }
     class PictureAdapter extends BaseAdapter {
         private int selectItem = -1;
 

@@ -39,6 +39,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.LeftOrRight.MyHScrollView;
+import com.example.bean.AddAndress;
 import com.example.bean.Brand;
 import com.example.bean.CstAddInfos;
 import com.example.bean.CustAllObjectInfos;
@@ -49,11 +50,13 @@ import com.example.bean.FollInfos;
 import com.example.bean.JsonRootBean;
 import com.example.bean.PriceNumID;
 import com.example.bean.URLS;
+import com.example.bean.UserInfo;
 import com.example.fragment.GzFragment;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -76,9 +79,9 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
     private Button cust_add, cust_set, cust_del, cust_query, cust_save, cust_out;
     private CheckBox ck_ws, ck_kt, ck_cf, ck_wsj, ck_yt, ck_dxs;
     private ImageButton cust_zt, cust_xb, cust_psxx, cust_xfcc, cust_ly, cust_lplx, cust_zxlb, cust_sjs, cust_xszd,cust_dt, cust_xsgw,cust_yxpp;
-    private TextView head,cust_ed_yxpp,cust_tv_dt, cust_ed_xsgw, cust_ed_xszd, cust_ed_dabh, cust_tv_zt, cust_tv_xb, cust_tv_xfcc, cust_tv_khly, cust_tv_lplx, cust_tv_zxlb, cust_tv_sjs, cust_ed_kzsj, da_time;
+    private TextView head,cust_tv_psxx,cust_ed_yxpp,cust_tv_dt, cust_ed_xsgw, cust_ed_xszd, cust_ed_dabh, cust_tv_zt, cust_tv_xb, cust_tv_xfcc, cust_tv_khly, cust_tv_lplx, cust_tv_zxlb, cust_tv_sjs, cust_ed_kzsj, da_time;
     private EditText cust_ed_khxm, cust_ed_zcdh, cust_ed_khnl, cust_ed_khzy, cust_ed_zxfg, cust_ed_zxys, cust_ed_zxgs,
-            cust_ed_zxjd,  cust_ed_bzxx, cust_tv_psxx, cust_tv_hxjg, cust_tv_clyy;
+            cust_ed_zxjd,  cust_ed_bzxx,  cust_tv_hxjg, cust_tv_clyy;
     //新增信息
     String cust_db_z, cust_dt_z,cust_datime_z, cust_dabh_z, cust_xm_z, cust_zcdh_z, cust_nl_z, cust_zy_z, cust_xb_z, cust_psxx_z, cust_xfcc_z, cust_ly_z, cust_lplx_z, cust_zxlb_z, cust_zxfg_z, cust_zxys_z, cust_zxgs_z, cust_sjs_z, cust_kzsj_z, cust_zxjd_z,
             cust_xszd_z, cust_xsgw_z, cust_yxpp_z, cust_bzxx_z, cust_hxjg_z, cust_clyy_z, str_id_itm;
@@ -86,6 +89,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
     String date_dd, url_do, url_do_gz;
 
     LinearLayout touch;
+    String url = URLS.userInfo_url;
     private String url_prdNo = URLS.prdNo_url;//通过id获取名称
     private String url_employee = URLS.employee_url;
     private String url_idTocust = URLS.ERP_cust_url;
@@ -100,7 +104,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
     String cust_gzset_z = URLS.cust_gzxx_updata;
     //    CustesrAllInfos.CustList cust_callback;
     CustAllObjectInfos.CustList cust_callback;
-    int check_do;
+    int check_do,check;
     boolean ischeck_bbqd = false;//用于判断bbqd_id是否点击
     boolean ischeck_vip = false;//用于判断type_id是否点击
     boolean ischeck_psxx = false;//用于判断psxx是否点击
@@ -119,7 +123,9 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
     // 初始化3个Fragment
     private GzFragment gz_Fragment;
     private List<String> tel_List;
-
+    private int flag;
+    ArrayList<String> modIds_get = new ArrayList<String>();
+    boolean kh_query_qx,kh_add_qx,kh_del_qx,kh_alter_qx,khgz_query_qx,khgz_add_qx,khgz_del_qx,khgz_alter_qx;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,8 +141,60 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
         getNowTime();
         list_clyy = new ArrayList<String>();
         initView();
+        getRoot();
     }
+    private void getRoot() {
+        OkHttpClient client = new OkHttpClient();
+        Request localRequest = new Request.Builder()
+                .addHeader("cookie", session).url(url).build();
+        client.newCall(localRequest).enqueue(new Callback() {
 
+            @Override
+            public void onResponse(Call call, Response response)
+                    throws IOException {
+                String string = response.body().string();
+                Log.e("LiNing", "------" + response.code() + "------" + string);
+                Gson gson = new GsonBuilder().setDateFormat(
+                        "yyyy-MM-dd HH:mm:ss").create();
+                UserInfo info = gson.fromJson(string, UserInfo.class);
+                if (info.getUser_Id().equalsIgnoreCase("admin")
+                        && info.getUser_Pwd().equalsIgnoreCase("admin")) {
+                    flag = 1;
+                } else {
+                    // }
+                    List<com.example.bean.UserInfo.User_Mod> user_Mod = info
+                            .getUser_Mod();
+                    if (user_Mod.size() > 0 && user_Mod != null) {
+                        for (int i = 0; i < user_Mod.size(); i++) {
+
+                            String mod_ID = user_Mod.get(i).getMod_ID();
+                            modIds_get.add(mod_ID);
+                            sp.edit().putString("modIds", "" + modIds_get)
+                                    .commit();
+                            if (mod_ID.equals("skh")) {
+                                kh_query_qx = user_Mod.get(i).isMod_Query();//查询
+                                kh_add_qx = user_Mod.get(i).isMod_Add();//新增
+                                kh_del_qx = user_Mod.get(i).isMod_Del();//删除
+                                kh_alter_qx = user_Mod.get(i).isMod_Alter();//更新
+                            }
+                            if (mod_ID.equals("skf")) {
+                                khgz_query_qx = user_Mod.get(i).isMod_Query();//查询
+                                khgz_add_qx = user_Mod.get(i).isMod_Add();//新增
+                                khgz_del_qx = user_Mod.get(i).isMod_Del();//删除
+                                khgz_alter_qx = user_Mod.get(i).isMod_Alter();//更新
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call arg0, IOException arg1) {
+
+            }
+        });
+    }
     private void getNowTime() {
         Calendar c = Calendar.getInstance();
         int mYear = c.get(Calendar.YEAR); // 获取当前年份
@@ -240,7 +298,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
         cust_ed_xsgw = (TextView) findViewById(R.id.et_cust_all_xsgw);
         cust_ed_yxpp = (TextView) findViewById(R.id.et_cust_all_yxpp);
         cust_ed_bzxx = (EditText) findViewById(R.id.et_cust_all_bzxx);
-        cust_tv_psxx = (EditText) findViewById(R.id.et_cust_all_psxx);
+        cust_tv_psxx = (TextView) findViewById(R.id.et_cust_all_psxx);
         cust_tv_hxjg = (EditText) findViewById(R.id.et_cust_all_hxjg);
 //        cust_tv_clyy= (EditText) findViewById(R.id.et_cust_all_psxx);
         //textview
@@ -394,57 +452,77 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                 startActivityForResult(intent_vip, 2);
                 break;
             case R.id.btn_cust_all_add:
-                cust_psxx.setEnabled(true);
-                check_do = 1;
+                if(kh_add_qx==true){
+                    cust_psxx.setEnabled(true);
+                    check_do = 1;
 //                cust_tv_psxx.setText("1");
-                clearInfos();
-                clearChecbox();
+                    clearInfos();
+                    clearChecbox();
+                }else{
+                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                }
+
                 break;
             case R.id.btn_cust_all_reset:
-                if (cust_callback != null) {
+                if(kh_alter_qx==true){
+                    if (cust_callback != null) {
 
-                    if (!qty_cust_zt.equals("") && !qty_cust_dabh.equals("")) {
-                        cust_psxx.setEnabled(true);
-                        cust_ed_dabh.setEnabled(false);
-                        touch.setEnabled(false);
-                        check_do = 2;
+                        if (!qty_cust_zt.equals("") && !qty_cust_dabh.equals("")) {
+                            cust_psxx.setEnabled(true);
+                            cust_ed_dabh.setEnabled(false);
+                            touch.setEnabled(false);
+                            check_do = 2;
+                        } else {
+                            Toast.makeText(context, "客户不能编辑", Toast.LENGTH_LONG).show();
+                        }
                     } else {
-                        Toast.makeText(context, "客户不能编辑", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "客户数据为空", Toast.LENGTH_LONG).show();
                     }
-                } else {
-                    Toast.makeText(context, "客户数据为空", Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
                 }
+
                 break;
             case R.id.btn_cust_all_del:
-                if (cust_callback != null) {
-                    if (!qty_cust_zt.equals("") && !qty_cust_dabh.equals("")) {
+                if(kh_del_qx==true){
+                    if (cust_callback != null) {
+                        if (!qty_cust_zt.equals("") && !qty_cust_dabh.equals("")) {
 
-                        new AlertDialog.Builder(context)
-                                .setTitle("是否删除")
-                                .setPositiveButton("是",
-                                        new DialogInterface.OnClickListener() {
+                            new AlertDialog.Builder(context)
+                                    .setTitle("是否删除")
+                                    .setPositiveButton("是",
+                                            new DialogInterface.OnClickListener() {
 
-                                            @Override
-                                            public void onClick(
-                                                    DialogInterface dialog,
-                                                    int which) {
-                                                delCust_qty();
-                                            }
-                                        }).setNegativeButton("否", null).show();
+                                                @Override
+                                                public void onClick(
+                                                        DialogInterface dialog,
+                                                        int which) {
+                                                    delCust_qty();
+                                                }
+                                            }).setNegativeButton("否", null).show();
+                        } else {
+                            Toast.makeText(context, "客户不能删除", Toast.LENGTH_LONG).show();
+                        }
                     } else {
-                        Toast.makeText(context, "客户不能删除", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "客户数据为空", Toast.LENGTH_LONG).show();
                     }
-                } else {
-                    Toast.makeText(context, "客户数据为空", Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
                 }
+
 
                 break;
             case R.id.btn_cust_all_query:
-                //速查
-                clearChecbox();
-                Intent intent_cust = new Intent(context, QueryCustersActivity.class);
-                intent_cust.putExtra("ZT_VIP", cust_tv_zt.getText().toString());
-                startActivityForResult(intent_cust, 3);
+                if(kh_query_qx==true){
+
+                    //速查
+                    clearChecbox();
+                    Intent intent_cust = new Intent(context, QueryCustersActivity.class);
+                    intent_cust.putExtra("ZT_VIP", cust_tv_zt.getText().toString());
+                    startActivityForResult(intent_cust, 3);
+                }else{
+                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                }
                 break;
             case R.id.btn_cust_all_save:
                 getinfos();
@@ -460,7 +538,8 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                 break;
             //(跟进信息)
             case R.id.btn_cust_all_out:
-                if (cust_callback != null) {
+                if(khgz_add_qx==true){
+                    if (cust_callback != null) {
                    /* if (!qty_cust_zt.equals("") && !qty_cust_dabh.equals("")) {
                         Intent intent_gz = new Intent(context, TraceAllInfosActivity.class);
                         intent_gz.putExtra("SSZT", qty_cust_zt);
@@ -469,11 +548,15 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                     } else {
                         Toast.makeText(context, "客户数据不完整", Toast.LENGTH_LONG).show();
                     }*/
-                    gz_do = 1;
-                    addorSetInfos_obj();
-                } else {
-                    Toast.makeText(context, "客户数据为空", Toast.LENGTH_LONG).show();
+                        gz_do = 1;
+                        addorSetInfos_obj();
+                    } else {
+                        Toast.makeText(context, "客户数据为空", Toast.LENGTH_LONG).show();
+                    }
+                }else{
+                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
                 }
+
 
                 break;
             case R.id.ib_cust_all_account:
@@ -533,7 +616,21 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                         Toast.makeText(context, "配送信息不能编辑", Toast.LENGTH_LONG).show();
                     }
                 } else if (check_do == 1) {
-                    Toast.makeText(context, "配送信息不存在", Toast.LENGTH_LONG).show();
+//                    if(cust_tv_zt.getText().toString().equals("")||cust_ed_dabh.getText().toString().equals("")
+//                            ||cust_ed_khxm.getText().toString().equals("")||cust_ed_zcdh.getText().toString().equals("")){
+//
+//
+//                    Toast.makeText(context, "请添加正确信息", Toast.LENGTH_LONG).show();
+//                    }else{
+                        check=1;
+                        Intent intent_add = new Intent(context, PsHaveCityActivity.class);
+                        intent_add.putExtra("DO", "11");
+                        intent_add.putExtra("SSZT_new", cust_tv_zt.getText().toString());
+                        intent_add.putExtra("DABH_new",cust_ed_dabh.getText().toString());
+                        intent_add.putExtra("SHR_new",cust_ed_khxm.getText().toString());
+                        intent_add.putExtra("ZCDH_new",cust_ed_zcdh.getText().toString());
+                        startActivityForResult(intent_add, 11);
+//                    }
 
                 } else {
                     Toast.makeText(context, "请编辑信息", Toast.LENGTH_LONG).show();
@@ -895,9 +992,12 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
     }
 
     private void addCust() {
-        if (cust_psxx_z.equals("")) {
-            Toast.makeText(context, "请填写配送信息", Toast.LENGTH_LONG).show();
-        } else if (cust_db_z.equals("")) {
+//        if (cust_psxx_z.equals("")) {
+//            cust_psxx_z="1";
+////            Toast.makeText(context, "请填写配送信息", Toast.LENGTH_LONG).show();
+//
+//        } else
+            if (cust_db_z.equals("")) {
             Toast.makeText(context, "请选择账套", Toast.LENGTH_LONG).show();
         } else if (cust_dabh_z.equals("")) {
             Toast.makeText(context, "请获取档案编号", Toast.LENGTH_LONG).show();
@@ -941,7 +1041,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                     }
                 } else {
 //                    cust_psxx_z = cust_tv_psxx.getText().toString();
-                    cust_psxx_z = psxxid_hd;
+                    cust_psxx_z = "1";
                 }
                 url_do = cust_set_z;
             }
@@ -949,6 +1049,10 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
 
                 url_do = cust_add_z;
                 cust_psxx_z = "1";
+//                if(cust_psxx_z.equals("")){
+//
+//                    cust_psxx_z = "1";
+//                }
             }
             Log.e("LiNing", "-----" + cust_sjs_z + "-----" + xszd_z+ "-----" + xsgw_z);
             OkHttpClient client = new OkHttpClient();
@@ -1017,8 +1121,12 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                                                 "客户新增失败", Toast.LENGTH_SHORT).show();
                                     }
                                     //新增配送信息
-                                    if(!cus_no.equals("")){
-                                        updataInfos();
+//                                    if(!cus_no.equals("")){
+//                                        updataInfos();
+//                                    }
+                                    if(check==1){
+//                                        updataInfos();
+                                        addNewPsxx();
                                     }
                                 }
                                 if (check_do == 2) {
@@ -1046,6 +1154,59 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                 }
             });
         }
+    }
+
+    private void addNewPsxx() {
+        OkHttpClient client = new OkHttpClient();
+        FormBody body = new FormBody.Builder()
+                .add("Cust_Acc", aress_hd_zt)
+                .add("Cust_No", aress_hd_dabh)
+                .add("iTM", aress_hd_dzbh)
+                .add("Con_Per", aress_hd_shr)
+                .add("Con_Tel", aress_hd_lxdh)
+                .add("Con_Crt", aress_hd_ss)
+                .add("Con_Spa", aress_hd_qx)
+                .add("Con_Add", aress_hd_xxdz)
+                .add("User_ID", aress_hd_yhbh)
+                .add("Def", aress_hd_sfmr)
+                .build();
+        Log.e("LiNing", "添加结果====" + aress_hd_zt + "---" + aress_hd_dabh + "---" + aress_hd_dzbh + "---" + aress_hd_shr + "---" + aress_hd_lxdh + "---"
+                + aress_hd_ss + "---" + aress_hd_qx + "---" + aress_hd_xxdz + "---" + aress_hd_yhbh + "---" + aress_hd_sfmr);
+        client.newCall(
+                new Request.Builder().addHeader("cookie", session).url(ps_add)
+                        .post(body).build()).enqueue(new Callback() {
+
+            @Override
+            public void onResponse(Call call, Response response)
+                    throws IOException {
+                String str = response.body().string();
+                Log.e("LiNing", "添加结果====" + str);
+                final JsonRootBean localJsonRootBean = (JsonRootBean) new Gson()
+                        .fromJson(str, JsonRootBean.class);
+                if (localJsonRootBean != null) {
+                    CustersAllActivity.this.runOnUiThread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            boolean rlo = localJsonRootBean.getRLO();
+                            if (rlo == true) {//新增，修改合并
+                                Toast.makeText(CustersAllActivity.this,
+                                        "地址保存成功", Toast.LENGTH_SHORT).show();
+
+                            } else if (rlo == false) {
+                                Toast.makeText(CustersAllActivity.this,
+                                        "地址保存失败", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call arg0, IOException arg1) {
+
+            }
+        });
     }
 
     private void getinfos() {
@@ -1247,7 +1408,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
         });
         popupMenu.show();
     }
-
+    String aress_hd_zt,aress_hd_dabh,aress_hd_dzbh,aress_hd_shr,aress_hd_lxdh,aress_hd_ss,aress_hd_qx,aress_hd_xxdz,aress_hd_yhbh,aress_hd_sfmr;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
@@ -1279,6 +1440,23 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                     String str_andress = data.getStringExtra("ANDRESS");
                     xxdz.setText(str_andress);
                     Log.e("LiNing", "提交的id====" + str_andress);
+                }
+                break;
+            case 11:
+                if (resultCode == 1) {
+                    AddAndress andress_add_all = (AddAndress) data.getSerializableExtra("Andress_add_ALL");
+
+                     aress_hd_zt = andress_add_all.getZt_add_and().toString();
+                     aress_hd_dabh = andress_add_all.getDabh_add_and().toString();
+                     aress_hd_dzbh = andress_add_all.getDzbh_add_and().toString();
+                     aress_hd_shr = andress_add_all.getShr_add_and().toString();
+                     aress_hd_lxdh = andress_add_all.getLxdh_add_and().toString();
+                     aress_hd_ss = andress_add_all.getSs_add_and().toString();
+                     aress_hd_qx = andress_add_all.getQx_add_and().toString();
+                     aress_hd_xxdz = andress_add_all.getXxdz_add_and().toString();
+                     aress_hd_yhbh = andress_add_all.getYhbh_add_and().toString();
+                     aress_hd_sfmr = andress_add_all.getSfmr_add_and().toString();
+                    cust_tv_psxx.setText(aress_hd_xxdz);
                 }
                 break;
             case 2:
@@ -1334,7 +1512,8 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                         cust_tv_zt.setText("");
                     }
                     if (cust_callback.getCard_DD() != null) {
-                        SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//                        SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        SimpleDateFormat sf1 = new SimpleDateFormat("EEE MMM dd hh:mm:ss z yyyy", Locale.ENGLISH);
                         try {
                             Date parse = sf1.parse(cust_callback.getCard_DD().toString());
                             format = new SimpleDateFormat("yyyy-MM-dd").format(parse);
@@ -1379,6 +1558,9 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                         cust_tv_xb.setText("");
                     }
                     //配送信息
+//                    if(cust_callback.getCust_Con()!=null){
+//                        cust_tv_psxx.setText(cust_callback.getCust_Con().toString());
+//                    }
                     if (cust_callback.getCustConObject() != null && cust_callback.getCustConObject().size() > 0) {
                         cust_tv_psxx.setText(cust_callback.getCustConObject().get(0).getCon_Add());
                         psxxid_hd = cust_callback.getCust_Con().toString();
@@ -1482,7 +1664,8 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
 
                     if (cust_callback.getDeco_DD() != null) {
 //                        cust_ed_kzsj.setText(""+cust_callback.getDeco_DD());
-                        SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//                        SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        SimpleDateFormat sf1 = new SimpleDateFormat("EEE MMM dd hh:mm:ss z yyyy", Locale.ENGLISH);
                         try {
                             Date parse = sf1.parse(cust_callback.getDeco_DD().toString());
                             format = new SimpleDateFormat("yyyy-MM-dd").format(parse);
@@ -1703,6 +1886,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
     String extra_foll_time, extra_foll_way, extra_foll_them, extra_foll_case, extra_foll_jdlb, extra_foll_per, extra_foll_userno;
 
     public void rb_gz(View v) {
+
         findViewById(R.id.rl_bj_obj).setVisibility(View.GONE);
         findViewById(R.id.rl_xs_obj).setVisibility(View.GONE);
         findViewById(R.id.ll_xxobj).setVisibility(View.VISIBLE);
@@ -1720,37 +1904,47 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
         bg_gzxx_del.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //删除
-                if (checkedIndexList != null && checkedIndexList.size() > 0) {
-                    new AlertDialog.Builder(context)
-                            .setTitle("是否删除")
-                            .setPositiveButton("是",
-                                    new DialogInterface.OnClickListener() {
+                if(khgz_del_qx==true){
+//删除
+                    if (checkedIndexList != null && checkedIndexList.size() > 0) {
+                        new AlertDialog.Builder(context)
+                                .setTitle("是否删除")
+                                .setPositiveButton("是",
+                                        new DialogInterface.OnClickListener() {
 
-                                        @Override
-                                        public void onClick(
-                                                DialogInterface dialog,
-                                                int which) {
+                                            @Override
+                                            public void onClick(
+                                                    DialogInterface dialog,
+                                                    int which) {
 
-                                            delCust_gzxx();
-                                        }
-                                    }).setNegativeButton("否", null).show();
-                } else {
-                    Toast.makeText(context, "请选择数据", Toast.LENGTH_LONG).show();
+                                                delCust_gzxx();
+                                            }
+                                        }).setNegativeButton("否", null).show();
+                    } else {
+                        Toast.makeText(context, "请选择数据", Toast.LENGTH_LONG).show();
+                    }
+                }else{
+                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
                 }
+
             }
         });
         bg_gzxx_set.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //修改
-                if (0 < idList.size() && idList.size() <= 1) {
-                    //回调数据
-                    gz_do = 2;
-                    addorSetInfos_obj();
-                } else {
-                    Toast.makeText(context, "请选择一条数据", Toast.LENGTH_LONG).show();
+                if(khgz_alter_qx==true){
+                    //修改
+                    if (0 < idList.size() && idList.size() <= 1) {
+                        //回调数据
+                        gz_do = 2;
+                        addorSetInfos_obj();
+                    } else {
+                        Toast.makeText(context, "请选择一条数据", Toast.LENGTH_LONG).show();
+                    }
+                }else{
+                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
                 }
+
             }
         });
 
@@ -1805,54 +1999,57 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
     }
 
     private void getFool_xx() {
-        if (cust_callback != null) {
+        if(khgz_query_qx==true){
+            if (cust_callback != null) {
+                if (!qty_cust_zt.equals("") && !qty_cust_dabh.equals("")) {
+                    OkHttpClient client = new OkHttpClient();
+                    FormBody localFormBody = new FormBody.Builder()
+                            .add("Cust_Acc", qty_cust_zt)
+                            .add("Cust_No", qty_cust_dabh)
+                            .build();
+                    Request localRequest = new Request.Builder()
+                            .addHeader("cookie", session).url(xxgz_query)
+                            .post(localFormBody)
+                            .build();
+                    client.newCall(localRequest).enqueue(new Callback() {
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            String str = response.body().string();
+                            Log.e("LiNing", "信息数据====" + str);
+                            // 解析包含date的数据必须添加此代码(InputStream型)
+                            Gson gson = new GsonBuilder().setDateFormat(
+                                    "yyyy-MM-dd HH:mm:ss").create();
+                            final FollInfos cInfoDB = gson.fromJson(str,
+                                    FollInfos.class);
+                            if (cInfoDB != null) {
+                                CustersAllActivity.this.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
 
-
-            if (!qty_cust_zt.equals("") && !qty_cust_dabh.equals("")) {
-                OkHttpClient client = new OkHttpClient();
-                FormBody localFormBody = new FormBody.Builder()
-                        .add("Cust_Acc", qty_cust_zt)
-                        .add("Cust_No", qty_cust_dabh)
-                        .build();
-                Request localRequest = new Request.Builder()
-                        .addHeader("cookie", session).url(xxgz_query)
-                        .post(localFormBody)
-                        .build();
-                client.newCall(localRequest).enqueue(new Callback() {
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        String str = response.body().string();
-                        Log.e("LiNing", "信息数据====" + str);
-                        // 解析包含date的数据必须添加此代码(InputStream型)
-                        Gson gson = new GsonBuilder().setDateFormat(
-                                "yyyy-MM-dd HH:mm:ss").create();
-                        final FollInfos cInfoDB = gson.fromJson(str,
-                                FollInfos.class);
-                        if (cInfoDB != null) {
-                            CustersAllActivity.this.runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-
-                                    follList_All = cInfoDB.getFollList();
-                                    follAdapter = new FollAdapter(R.layout.xxobj_head, follList_All, context);
-                                    lv_xxgz.setAdapter(follAdapter);
-                                    follAdapter.notifyDataSetChanged();
-                                    checkedIndexList.clear();
-                                    idList.clear();
-                                }
-                            });
+                                        follList_All = cInfoDB.getFollList();
+                                        follAdapter = new FollAdapter(R.layout.xxobj_head, follList_All, context);
+                                        lv_xxgz.setAdapter(follAdapter);
+                                        follAdapter.notifyDataSetChanged();
+                                        checkedIndexList.clear();
+                                        idList.clear();
+                                    }
+                                });
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call call, IOException e) {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
 
-                    }
-                });
+                        }
+                    });
+                }
+            } else {
+                Toast.makeText(context, "无信息", Toast.LENGTH_LONG).show();
             }
-        } else {
-            Toast.makeText(context, "无信息", Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
         }
+
     }
 
     public class FollAdapter extends BaseAdapter {
@@ -2037,8 +2234,8 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
         }
 
     }
-    private TextView dzbh,head_ps,zt,dacard,yhbh,sfmr,xxdz;
-    private EditText shr,lxdh,ss,qx;
+    private TextView dzbh,head_ps,zt,dacard,yhbh,sfmr,xxdz,ss,qx;
+    private EditText shr,lxdh;
     private ImageButton zt_xl,mr_xl;
     private void updataInfos() {
         View view = getLayoutInflater()
@@ -2053,8 +2250,8 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
         dzbh.setText("1");
         shr= (EditText) view.findViewById(R.id.et_move_username);
         lxdh= (EditText) view.findViewById(R.id.et_move_phone);
-        ss= (EditText) view.findViewById(R.id.et_move_ss);
-        qx= (EditText) view.findViewById(R.id.et_move_qx);
+        ss= (TextView) view.findViewById(R.id.et_move_ss);
+        qx= (TextView) view.findViewById(R.id.et_move_qx);
         xxdz= (TextView) view.findViewById(R.id.et_move_adress);
         xxdz.setOnClickListener(new View.OnClickListener() {
             @Override

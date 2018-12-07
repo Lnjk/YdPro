@@ -97,7 +97,10 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
     String idtoname, idtoname_yw, idtoname_vip;
     private String url_idTocust = URLS.ERP_cust_url;
     private String url_employee = URLS.employee_url;
-
+    DesighAdapter_content adapter_content;
+    private int flag;
+    ArrayList<String> modIds_get = new ArrayList<String>();
+    boolean vip_query_qx,vip_add_qx,vip_del_qx,vip_alter_qx;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,6 +133,56 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
             }
         };
         lv_vip.setAdapter(sAdapter);
+        getRoot();
+    }
+
+    private void getRoot() {
+        OkHttpClient client = new OkHttpClient();
+        Request localRequest = new Request.Builder()
+                .addHeader("cookie", session).url(url).build();
+        client.newCall(localRequest).enqueue(new Callback() {
+
+            @Override
+            public void onResponse(Call call, Response response)
+                    throws IOException {
+                String string = response.body().string();
+                Log.e("LiNing", "------" + response.code() + "------" + string);
+                Gson gson = new GsonBuilder().setDateFormat(
+                        "yyyy-MM-dd HH:mm:ss").create();
+                UserInfo info = gson.fromJson(string, UserInfo.class);
+                if (info.getUser_Id().equalsIgnoreCase("admin")
+                        && info.getUser_Pwd().equalsIgnoreCase("admin")) {
+                    flag = 1;
+                } else {
+                    // }
+                    List<com.example.bean.UserInfo.User_Mod> user_Mod = info
+                            .getUser_Mod();
+                    if (user_Mod.size() > 0 && user_Mod != null) {
+                        for (int i = 0; i < user_Mod.size(); i++) {
+
+                            String mod_ID = user_Mod.get(i).getMod_ID();
+                            modIds_get.add(mod_ID);
+                            sp.edit().putString("modIds", "" + modIds_get)
+                                    .commit();
+                            if (mod_ID.equals("skvp")) {
+
+
+                                vip_query_qx = user_Mod.get(i).isMod_Query();//查询
+                                vip_add_qx = user_Mod.get(i).isMod_Add();//新增
+                                vip_del_qx = user_Mod.get(i).isMod_Del();//删除
+                                vip_alter_qx = user_Mod.get(i).isMod_Alter();//更新
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call arg0, IOException arg1) {
+
+            }
+        });
     }
 
     private void initView() {
@@ -264,112 +317,131 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
 //                //获取所有数据（主要是判断身份证）
 //                getInfos_all();
                 //清空数据
-                clearInfo();
-                if (lv_vip.getCount() > 0) {
-                    dList.clear();
+                if(vip_add_qx==true){
+                    clearInfo();
+                    if (lv_vip.getCount() > 0) {
+                        dList.clear();
 //                    lv_vip.setAdapter(null);
-                    sAdapter.notifyDataSetChanged();
-                }
-                do_design = 1;
-                dbr.setEnabled(false);
-                shyh.setEnabled(false);
-                sfqy.setText("未审核");
-                ib_sfqy.setEnabled(false);
+                        sAdapter.notifyDataSetChanged();
+                    }
+                    do_design = 1;
+                    dbr.setEnabled(false);
+                    shyh.setEnabled(false);
+                    sfqy.setText("未审核");
+                    ib_sfqy.setEnabled(false);
+                }else{
+                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+            }
+
                 break;
             //删除
             case R.id.btn_design_del:
-                //判断listview列表，避免乱点
-                if (lv_vip.getCount() > 0) {
-                    //获取删除的数据字段
-                    String zt_hd = zt.getText().toString();
-                    String vipno_hd = vipcard.getText().toString();
-                    String card_hd = sfzh.getText().toString();
-                    String userno_hd = zdyh.getText().toString();
-                    if (!zt_hd.equals("null") && !userno_hd.equals("null")) {
-                        OkHttpClient client = new OkHttpClient();
-                        FormBody body = new FormBody.Builder()
-                                .add("db_Id", zt_hd)
-                                .add("user_No", userno_hd)
-                                .add("vip_NO", vipno_hd)
-                                .add("card_Num", card_hd)
-                                .build();
-                        Log.e("LiNing", "删除结果====" + zt_hd + "---" + userno_hd + "---" + vipno_hd + "---" + card_hd);
-                        client.newCall(
-                                new Request.Builder().addHeader("cookie", session).url(vip_del)
-                                        .post(body).build()).enqueue(new Callback() {
-                            @Override
-                            public void onResponse(Call call, Response response) throws IOException {
-                                String str = response.body().string();
-                                Log.e("LiNing", "删除结果====" + str);
-                                final JsonRootBean localJsonRootBean = (JsonRootBean) new Gson()
-                                        .fromJson(str, JsonRootBean.class);
-                                if (localJsonRootBean != null) {
-                                    DesignerActivity.this.runOnUiThread(new Runnable() {
+                if(vip_del_qx==true){
+                    //判断listview列表，避免乱点
+                    if (lv_vip.getCount() > 0) {
+                        //获取删除的数据字段
+                        String zt_hd = zt.getText().toString();
+                        String vipno_hd = vipcard.getText().toString();
+                        String card_hd = sfzh.getText().toString();
+                        String userno_hd = zdyh.getText().toString();
+                        if (!zt_hd.equals("null") && !userno_hd.equals("null")) {
+                            OkHttpClient client = new OkHttpClient();
+                            FormBody body = new FormBody.Builder()
+                                    .add("db_Id", zt_hd)
+                                    .add("user_No", userno_hd)
+                                    .add("vip_NO", vipno_hd)
+                                    .add("card_Num", card_hd)
+                                    .build();
+                            Log.e("LiNing", "删除结果====" + zt_hd + "---" + userno_hd + "---" + vipno_hd + "---" + card_hd);
+                            client.newCall(
+                                    new Request.Builder().addHeader("cookie", session).url(vip_del)
+                                            .post(body).build()).enqueue(new Callback() {
+                                @Override
+                                public void onResponse(Call call, Response response) throws IOException {
+                                    String str = response.body().string();
+                                    Log.e("LiNing", "删除结果====" + str);
+                                    final JsonRootBean localJsonRootBean = (JsonRootBean) new Gson()
+                                            .fromJson(str, JsonRootBean.class);
+                                    if (localJsonRootBean != null) {
+                                        DesignerActivity.this.runOnUiThread(new Runnable() {
 
-                                        @Override
-                                        public void run() {
-                                            boolean rlo = localJsonRootBean.getRLO();
-                                            if (rlo == true) {
-                                                Toast.makeText(DesignerActivity.this,
-                                                        "design删除成功", Toast.LENGTH_SHORT).show();
-                                                clearInfo();
-                                                dList.clear();
-                                            } else if (rlo == false) {
-                                                Toast.makeText(DesignerActivity.this,
-                                                        "design删除失败", Toast.LENGTH_SHORT).show();
+                                            @Override
+                                            public void run() {
+                                                boolean rlo = localJsonRootBean.getRLO();
+                                                if (rlo == true) {
+                                                    Toast.makeText(DesignerActivity.this,
+                                                            "design删除成功", Toast.LENGTH_SHORT).show();
+                                                    clearInfo();
+                                                    dList.clear();
+                                                } else if (rlo == false) {
+                                                    Toast.makeText(DesignerActivity.this,
+                                                            "design删除失败", Toast.LENGTH_SHORT).show();
+                                                }
                                             }
-                                        }
-                                    });
+                                        });
+                                    }
                                 }
-                            }
 
-                            @Override
-                            public void onFailure(Call call, IOException e) {
+                                @Override
+                                public void onFailure(Call call, IOException e) {
 
-                            }
-                        });
+                                }
+                            });
 
+                        } else {
+                            Toast.makeText(context, "账套和制单用户不能为空", Toast.LENGTH_LONG).show();
+                        }
                     } else {
-                        Toast.makeText(context, "账套和制单用户不能为空", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "数据不完整", Toast.LENGTH_LONG).show();
                     }
-                } else {
-                    Toast.makeText(context, "数据不完整", Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
                 }
+
 
 
                 break;
             //修改
             case R.id.btn_design_reset:
+                if(vip_alter_qx==true){
+                    //判断listview列表，避免乱点
+                    if (lv_vip.getCount() > 0) {
+                        //数据库和单号保持不变
+                        Log.e("LiNing", "lv_vip大小===" + lv_vip.getCount());
+                        vipcard.setEnabled(false);
+                        ztbtn.setEnabled(false);
+                        dbr.setEnabled(false);
+                        ib_sfqy.setEnabled(true);
+                        sfqy.setText("未审核");
+                        do_design_set = 1;
+                        Log.e("LiNing", "-----" + vipcard.getText().toString());
 
-                //判断listview列表，避免乱点
-                if (lv_vip.getCount() > 0) {
-                    //数据库和单号保持不变
-                    Log.e("LiNing", "lv_vip大小===" + lv_vip.getCount());
-                    vipcard.setEnabled(false);
-                    ztbtn.setEnabled(false);
-                    dbr.setEnabled(false);
-                    ib_sfqy.setEnabled(true);
-                    sfqy.setText("未审核");
-                    do_design_set = 1;
-                    Log.e("LiNing", "-----" + vipcard.getText().toString());
-
-                } else {
-                    Toast.makeText(context, "数据不完整", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(context, "数据不完整", Toast.LENGTH_LONG).show();
+                    }
+                }else{
+                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
                 }
+
 
                 break;
             //查询//-----11
             case R.id.btn_design_query:
-                dList.clear();
-                if (zt.getText().toString().equals("")) {
-                    Toast.makeText(context, "请选择账套", Toast.LENGTH_LONG).show();
-                } else {
-                    user_Name = sp.getString("USER_NAME", "");
-                    user_dep = sp.getString("USER_DEPBM", "");
-                    Intent intent_vip = new Intent(context, QueryDesigActivity.class);
-                    intent_vip.putExtra("ZT_VIP", zt.getText().toString());
-                    startActivityForResult(intent_vip, 11);
+                if(vip_query_qx==true){
+                    dList.clear();
+                    if (zt.getText().toString().equals("")) {
+                        Toast.makeText(context, "请选择账套", Toast.LENGTH_LONG).show();
+                    } else {
+                        user_Name = sp.getString("USER_NAME", "");
+                        user_dep = sp.getString("USER_DEPBM", "");
+                        Intent intent_vip = new Intent(context, QueryDesigActivity.class);
+                        intent_vip.putExtra("ZT_VIP", zt.getText().toString());
+                        startActivityForResult(intent_vip, 11);
+                    }
+                }else{
+                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
                 }
+
                 break;
             //审核用户
             case R.id.btn_design_sh:
@@ -917,68 +989,72 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                     }
                     //列表信息
                     if (vipList_hd.getAlteList() != null && vipList_hd.getAlteList().size() > 0) {
-                        synchronized (DesignerActivity.this) {
-                            MyHScrollView scrollView1 = (MyHScrollView) findViewById(R.id.horizontalScrollView1);
-                            alteList = vipList_hd.getAlteList();
-                            Log.e("LiNing", "----1----more--" + alteList);
-                            if (alteList.size() == 1) {
-                                item = new HashMap<String, Object>();
-                                item.put("序号", alteList.get(0).getITM());
-                                item.put("VIP卡号", alteList.get(0).getVip_No());
-                                item.put("执行动作", alteList.get(0).getAction());
-                                SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-                                try {
-                                    Date parse = sf1.parse(alteList.get(0).getAlte_DD().toString());
-                                    String format = new SimpleDateFormat("yyyy-MM-dd").format(parse);
-                                    Log.e("LiNing", "时间====xin=====" + format);
-                                    item.put("变更日期", format);
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
-                                item.put("变更内容", alteList.get(0).getAlte_Cont());
-                                item.put("变更用户", alteList.get(0).getUser_no());
-                                Log.e("LiNing", "----1------" + item);
-                                dList.add(item);
-                                sAdapter.notifyDataSetChanged();
-                                Log.e("LiNing", "----1------" + dList);
-                            } else if (alteList.size() > 1) {
-                                for (int i = 0; i < alteList.size(); i++) {
-                                    item = new HashMap<String, Object>();
-                                    item.put("序号", alteList.get(i).getITM());
-                                    item.put("VIP卡号", alteList.get(i).getVip_No());
-                                    item.put("执行动作", alteList.get(i).getAction());
-                                    SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-                                    try {
-                                        Date parse = sf1.parse(alteList.get(i).getAlte_DD().toString());
-                                        String format = new SimpleDateFormat("yyyy-MM-dd").format(parse);
-                                        Log.e("LiNing", "时间====xin=====" + format);
-                                        item.put("变更日期", format);
-                                    } catch (ParseException e) {
-                                        e.printStackTrace();
-                                    }
-                                    item.put("变更内容", alteList.get(i).getAlte_Cont());
-                                    item.put("变更用户", alteList.get(i).getUser_no());
-                                    Log.e("LiNing", "----more------" + item);
-                                    dList.add(item);
-                                }
-                                sAdapter.notifyDataSetChanged();
-                                Log.e("LiNing", "----more---list---" + dList);
-                            } else {
-                                item = new HashMap<String, Object>();
-                                item.put("序号", "");
-                                item.put("VIP卡号", "");
-                                item.put("执行动作", "");
-                                item.put("变更日期", "");
-                                item.put("变更内容", "");
-                                item.put("变更用户", "");
-                                Log.e("LiNing", "----无------" + item);
-                                dList.add(item);
-                                sAdapter.notifyDataSetChanged();
-                            }
-                            MyHScrollView headSrcrollView = (MyHScrollView) mHead.findViewById(R.id.horizontalScrollView1);
-                            headSrcrollView.AddOnScrollChangedListener(new OnScrollChangedListenerImp(
-                                    scrollView1));
-                        }
+                        List<DesignAllInfos.AlteList> alteList = vipList_hd.getAlteList();
+
+                        adapter_content = new DesighAdapter_content(R.layout.design_log, alteList,context);
+                        lv_vip.setAdapter(adapter_content);
+//                        synchronized (DesignerActivity.this) {
+//                            MyHScrollView scrollView1 = (MyHScrollView) findViewById(R.id.horizontalScrollView1);
+//                            this.alteList = vipList_hd.getAlteList();
+//                            Log.e("LiNing", "----1----more--" + this.alteList);
+//                            if (this.alteList.size() == 1) {
+//                                item = new HashMap<String, Object>();
+//                                item.put("序号", this.alteList.get(0).getITM());
+//                                item.put("VIP卡号", this.alteList.get(0).getVip_No());
+//                                item.put("执行动作", this.alteList.get(0).getAction());
+//                                SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+//                                try {
+//                                    Date parse = sf1.parse(this.alteList.get(0).getAlte_DD().toString());
+//                                    String format = new SimpleDateFormat("yyyy-MM-dd").format(parse);
+//                                    Log.e("LiNing", "时间====xin=====" + format);
+//                                    item.put("变更日期", format);
+//                                } catch (ParseException e) {
+//                                    e.printStackTrace();
+//                                }
+//                                item.put("变更内容", this.alteList.get(0).getAlte_Cont());
+//                                item.put("变更用户", this.alteList.get(0).getUser_no());
+//                                Log.e("LiNing", "----1------" + item);
+//                                dList.add(item);
+//                                sAdapter.notifyDataSetChanged();
+//                                Log.e("LiNing", "----1------" + dList);
+//                            } else if (this.alteList.size() > 1) {
+//                                for (int i = 0; i < this.alteList.size(); i++) {
+//                                    item = new HashMap<String, Object>();
+//                                    item.put("序号", this.alteList.get(i).getITM());
+//                                    item.put("VIP卡号", this.alteList.get(i).getVip_No());
+//                                    item.put("执行动作", this.alteList.get(i).getAction());
+//                                    SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+//                                    try {
+//                                        Date parse = sf1.parse(this.alteList.get(i).getAlte_DD().toString());
+//                                        String format = new SimpleDateFormat("yyyy-MM-dd").format(parse);
+//                                        Log.e("LiNing", "时间====xin=====" + format);
+//                                        item.put("变更日期", format);
+//                                    } catch (ParseException e) {
+//                                        e.printStackTrace();
+//                                    }
+//                                    item.put("变更内容", this.alteList.get(i).getAlte_Cont());
+//                                    item.put("变更用户", this.alteList.get(i).getUser_no());
+//                                    Log.e("LiNing", "----more------" + item);
+//                                    dList.add(item);
+//                                }
+//                                sAdapter.notifyDataSetChanged();
+//                                Log.e("LiNing", "----more---list---" + dList);
+//                            } else {
+//                                item = new HashMap<String, Object>();
+//                                item.put("序号", "");
+//                                item.put("VIP卡号", "");
+//                                item.put("执行动作", "");
+//                                item.put("变更日期", "");
+//                                item.put("变更内容", "");
+//                                item.put("变更用户", "");
+//                                Log.e("LiNing", "----无------" + item);
+//                                dList.add(item);
+//                                sAdapter.notifyDataSetChanged();
+//                            }
+//                            MyHScrollView headSrcrollView = (MyHScrollView) mHead.findViewById(R.id.horizontalScrollView1);
+//                            headSrcrollView.AddOnScrollChangedListener(new OnScrollChangedListenerImp(
+//                                    scrollView1));
+//                        }
 
                     }
                 }
@@ -1181,6 +1257,86 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
         public void onScrollChanged(int paramInt1, int paramInt2,
                                     int paramInt3, int paramInt4) {
             this.mScrollViewArg.smoothScrollTo(paramInt1, paramInt2);
+        }
+    }
+    public class DesighAdapter_content extends BaseAdapter {
+        int id_row_layout;
+        LayoutInflater mInflater;
+        private  List<DesignAllInfos.AlteList> infos_content;
+
+        public DesighAdapter_content(int design_log, List<DesignAllInfos.AlteList> alteList, Context context) {
+            this.id_row_layout=design_log;
+            this.infos_content=alteList;
+            this.mInflater=LayoutInflater.from(context);
+        }
+
+        @Override
+        public int getCount() {
+            return infos_content.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return infos_content.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder=null;
+            if(convertView==null){
+                synchronized (DesignerActivity.this) {
+
+                    convertView=mInflater.inflate(id_row_layout,null);
+                    holder=new ViewHolder();
+                    MyHScrollView scrollView1 = (MyHScrollView) convertView
+                            .findViewById(R.id.horizontalScrollView1);
+                    holder.scrollView = scrollView1;
+                    holder.xh= (TextView) convertView.findViewById(R.id.design_listDeleteCheckBox);
+                    holder.vip_kh= (TextView) convertView.findViewById(R.id.textView2_name);
+                    holder.zxdz= (TextView) convertView.findViewById(R.id.textView3_pwd);
+                    holder.bgqr= (TextView) convertView.findViewById(R.id.textView4_account);
+                    holder.bgnr= (TextView) convertView.findViewById(R.id.textView5_dep);
+                    holder.bgyh= (TextView) convertView.findViewById(R.id.textView6_cust);
+                    MyHScrollView headSrcrollView = (MyHScrollView) mHead
+                            .findViewById(R.id.horizontalScrollView1);
+                    headSrcrollView
+                            .AddOnScrollChangedListener(new OnScrollChangedListenerImp(
+                                    scrollView1));
+                    convertView.setTag(holder);
+                }
+            }else{
+                holder= (ViewHolder) convertView.getTag();
+            }
+            DesignAllInfos.AlteList alteList_new = infos_content.get(position);
+            holder.xh.setText(alteList_new.getITM());
+            holder.vip_kh.setText(alteList_new.getVip_No());
+            holder.zxdz.setText(alteList_new.getAction());
+            SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            try {
+                Date parse = sf1.parse(alteList_new.getAlte_DD().toString());
+                String format = new SimpleDateFormat("yyyy-MM-dd").format(parse);
+                Log.e("LiNing", "时间====xin=====" + format);
+                holder.bgqr.setText(format);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            holder.bgnr.setText(alteList_new.getAlte_Cont());
+            holder.bgyh.setText(alteList_new.getUser_no());
+            return convertView;
+        }
+        class ViewHolder {
+            HorizontalScrollView scrollView;
+            public TextView xh;
+            public TextView vip_kh;
+            public TextView zxdz;
+            public TextView bgqr;
+            public TextView bgnr;
+            public TextView bgyh;
         }
     }
 }

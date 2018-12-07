@@ -374,10 +374,11 @@ public class AccountActivity extends Activity implements OnClickListener {
 						.add("db_User",
 								AccountActivity.this.upuser.getText()
 										.toString()).build();
+
 				Request localBuilder = new Request.Builder()
 						.addHeader("cookie", session).url(urlupdata)
 						.post(localFormBody).build();
-
+				Log.e("LiNing", "更新数据======="+extra+id.getText().toString());
 				localOkHttpClient.newCall(localBuilder).enqueue(new Callback() {
 
 					@Override

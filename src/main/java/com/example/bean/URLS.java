@@ -231,4 +231,16 @@ public static final String cust_gzxx_query = base_url
     //跟踪信息更新
     public static final String cust_gzxx_updata = base_url
             + "/InfManagePlatform/CustupdateCust_Foll.action";
+    //报价信息(查询)
+    public static final String cust_bjxx_qyery = base_url
+            + "/InfManagePlatform/QuotationqueryQuotation.action";
+    //报价信息(增加)
+    public static final String cust_bjxx_add = base_url
+            + "/InfManagePlatform/QuotationaddQuotation.action";
+    //报价信息(删除)
+    public static final String cust_bjxx_del= base_url
+            + "/InfManagePlatform/QuotationdelQuotation.action";
+    //报价信息(更新)
+    public static final String cust_bjxx_update = base_url
+            + "/InfManagePlatform/QuotationupdateQuotation.action";
 }

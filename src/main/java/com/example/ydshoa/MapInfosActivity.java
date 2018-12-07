@@ -86,6 +86,7 @@ public class MapInfosActivity extends Activity implements TextWatcher {
         sf_and =getIntent().getStringExtra("SF");
         qx_and = getIntent().getStringExtra("QX");
         xc_and = getIntent().getStringExtra("XC");
+
         intView();
     }
 

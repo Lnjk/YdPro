@@ -441,7 +441,9 @@ public class NewModActivity extends Activity implements OnClickListener {
                             while (it.hasNext()) {
                                 HashMap<String, Object> next2 = (HashMap<String, Object>) it
                                         .next();
-                                if (next2.get("账套").equals(ztInfo)) {
+                                Log.e("LiNing", "next2===list_del888" + next2);
+//                                &&next2.get("账套").equals(ztInfo)
+                                if (next2.get("账套").equals(ztInfo)&&next2.get("序号").equals(idInfo)) {
 
                                     it.remove();
                                 }
@@ -460,7 +462,7 @@ public class NewModActivity extends Activity implements OnClickListener {
                             while (it.hasNext()) {
                                 HashMap<String, Object> next2 = (HashMap<String, Object>) it
                                         .next();
-                                if (next2.get("账套").equals(ztInfo)) {
+                                if (next2.get("账套").equals(ztInfo)&&next2.get("序号").equals(idInfo)) {
 
                                     it.remove();
                                 }
@@ -479,7 +481,7 @@ public class NewModActivity extends Activity implements OnClickListener {
                             while (it.hasNext()) {
                                 HashMap<String, Object> next2 = (HashMap<String, Object>) it
                                         .next();
-                                if (next2.get("账套").equals(ztInfo)) {
+                                if (next2.get("账套").equals(ztInfo)&&next2.get("序号").equals(idInfo)) {
 
                                     it.remove();
                                 }
@@ -498,7 +500,64 @@ public class NewModActivity extends Activity implements OnClickListener {
                             while (it.hasNext()) {
                                 HashMap<String, Object> next2 = (HashMap<String, Object>) it
                                         .next();
-                                if (next2.get("账套").equals(ztInfo)) {
+                                if (next2.get("账套").equals(ztInfo)&&next2.get("序号").equals(idInfo)) {
+
+                                    it.remove();
+                                }
+
+                            }
+                        }
+                        newAddItem();
+                        id.setText(null);
+                        name.setText(null);
+                        level.setText(null);
+
+                    } else if (idInfo.equals("sk") && modZTs_get.contains(ztInfo)) {
+                        for (int i = 0; i < dList.size(); i++) {
+                            Log.e("LiNing", "dList是===list_del888" + dList);
+                            Iterator it = dList.iterator();
+                            while (it.hasNext()) {
+                                HashMap<String, Object> next2 = (HashMap<String, Object>) it
+                                        .next();
+                                if (next2.get("账套").equals(ztInfo)&&next2.get("序号").equals(idInfo)) {
+
+                                    it.remove();
+                                }
+
+                            }
+                        }
+                        newAddItem();
+                        id.setText(null);
+                        name.setText(null);
+                        level.setText(null);
+
+                    } else if (idInfo.equals("spmsa") && modZTs_get.contains(ztInfo)) {
+                        for (int i = 0; i < dList.size(); i++) {
+                            Log.e("LiNing", "dList是===list_del888" + dList);
+                            Iterator it = dList.iterator();
+                            while (it.hasNext()) {
+                                HashMap<String, Object> next2 = (HashMap<String, Object>) it
+                                        .next();
+                                if (next2.get("账套").equals(ztInfo)&&next2.get("序号").equals(idInfo)) {
+
+                                    it.remove();
+                                }
+
+                            }
+                        }
+                        newAddItem();
+                        id.setText(null);
+                        name.setText(null);
+                        level.setText(null);
+
+                    } else if (idInfo.equals("spmarp") && modZTs_get.contains(ztInfo)) {
+                        for (int i = 0; i < dList.size(); i++) {
+                            Log.e("LiNing", "dList是===list_del888" + dList);
+                            Iterator it = dList.iterator();
+                            while (it.hasNext()) {
+                                HashMap<String, Object> next2 = (HashMap<String, Object>) it
+                                        .next();
+                                if (next2.get("账套").equals(ztInfo)&&next2.get("序号").equals(idInfo)) {
 
                                     it.remove();
                                 }
@@ -517,7 +576,7 @@ public class NewModActivity extends Activity implements OnClickListener {
                             while (it.hasNext()) {
                                 HashMap<String, Object> next2 = (HashMap<String, Object>) it
                                         .next();
-                                if (next2.get("账套").equals(ztInfo)) {
+                                if (next2.get("账套").equals(ztInfo)&&next2.get("序号").equals(idInfo)) {
 
                                     it.remove();
                                 }
@@ -536,7 +595,7 @@ public class NewModActivity extends Activity implements OnClickListener {
                             while (it.hasNext()) {
                                 HashMap<String, Object> next2 = (HashMap<String, Object>) it
                                         .next();
-                                if (next2.get("账套").equals(ztInfo)) {
+                                if (next2.get("账套").equals(ztInfo)&&next2.get("序号").equals(idInfo)) {
 
                                     it.remove();
                                 }
@@ -795,20 +854,76 @@ public class NewModActivity extends Activity implements OnClickListener {
     // 全部模块
     ArrayList<String> list_sys = new ArrayList<String>() {
         {
-            add("smrtra");
-            add("smrtrc");
-            add("smrtru");
-            add("smrt");
-            add("sm");
-            add("sptrt");
-            add("sptsa");
-            add("spt");
-            add("spmrt");
-            add("spmsa");
-            add("spm");
-            add("sp");
-            add("sys");
-            add("smprice");
+            add("smrtra");//
+            add("smrtrc");//
+            add("smrtru");//
+            add("smrt");//
+            add("sm");//
+            add("sptrt");//
+            add("sptsa");//
+            add("spt");//
+            add("spmrt");//
+            add("spmsa");//
+            add("spm");//销售统计表//
+            add("sprarp");//
+            add("spr");//应收统计表
+            add("sp");//
+            add("sys");//
+            add("smprice");//
+
+            add("SATG");//
+            add("SATGP");//
+            add("SATGPC");//
+            add("SATGPD");//
+            add("SATGPCS");//
+            add("SATGPGC");//
+            add("SATGC");//
+            add("STAGCD");//
+            add("STAGCS");//
+            add("STAGCGC");//
+            add("SATGD");//
+            add("STAGDS");//
+            add("STAGDGC");//
+            add("STAGS");//
+            add("STAGSGC");//
+            add("STAGGC");//
+            add("SATGPPN");//
+            add("SATGPI");//
+            add("SATGPIPN");//
+            add("SATGPCPN");//
+            add("SATGPCI");//
+            add("SATGPCIPN");//
+            add("SATGPDPN");//
+            add("SATGPDI");//
+            add("SATGPDIPN");//
+            add("SATGPSPN");//
+            add("SATGPSI");//
+            add("SATGPSIPN");//
+            add("SATGPGCPN");//
+            add("SATGPGCI");//
+            add("SATGPGCIPN");//
+
+            add("ArpTG");//
+            add("ArpTGGC");//
+            add("ArpTGP");//
+            add("ArpTGC");//
+            add("ArpTGS");//
+            add("ArpTGD");//
+            add("ArpTGPC");//
+            add("ArpTGPD");//
+            add("ArpTGPS");//
+            add("ArpTGPGC");//
+            add("ArpTGPCGC");//
+            add("ArpTGPDGC");//
+            add("ArpTGPSGC");//
+
+            add("skvp");//
+            add("skf");//
+            add("skh");//
+            add("sk");//
+
+
+
         }
 
     };
@@ -817,11 +932,116 @@ public class NewModActivity extends Activity implements OnClickListener {
         {
             add("spmrt");
             add("spmsa");
+            add("spmarp");
             add("spm");
             add("sptrt");
             add("sptsa");
             add("spt");
             add("sp");
+            add("SATG");
+            add("SATGP");
+            add("SATGPC");
+            add("SATGPD");
+            add("SATGPCS");
+            add("SATGPGC");
+            add("SATGC");
+            add("STAGCD");
+            add("STAGCS");
+            add("STAGCGC");
+            add("SATGD");
+            add("STAGDS");
+            add("STAGDGC");
+            add("STAGS");
+            add("STAGSGC");
+            add("STAGGC");
+            add("SATGPPN");
+            add("SATGPI");
+            add("SATGPIPN");
+            add("SATGPCPN");
+            add("SATGPCI");
+            add("SATGPCIPN");
+            add("SATGPDPN");
+            add("SATGPDI");
+            add("SATGPDIPN");
+            add("SATGPSPN");
+            add("SATGPSI");
+            add("SATGPSIPN");
+            add("SATGPGCPN");
+            add("SATGPGCI");
+            add("SATGPGCIPN");
+
+            add("ARPTG");
+            add("ARPTGGC");
+            add("ArpTGP");
+            add("ArpTGC");
+            add("ArpTGS");
+            add("ArpTGD");
+            add("ArpTGPC");
+            add("ArpTGPD");
+            add("ArpTGPS");
+            add("ArpTGPGC");
+            add("ArpTGPCGC");
+            add("ArpTGPDGC");
+            add("ArpTGPSGC");
+        }
+
+    };
+    // 销售统计表报表
+    ArrayList<String> list_spmarp = new ArrayList<String>() {
+        {
+            add("spmarp");
+            add("ARPTG");
+            add("ARPTGGC");
+            add("ArpTGP");
+            add("ArpTGC");
+            add("ArpTGS");
+            add("ArpTGD");
+            add("ArpTGPC");
+            add("ArpTGPD");
+            add("ArpTGPS");
+            add("ArpTGPGC");
+            add("ArpTGPCGC");
+            add("ArpTGPDGC");
+            add("ArpTGPSGC");
+        }
+
+    };
+    // 销售统计表报表
+    ArrayList<String> list_spmsa = new ArrayList<String>() {
+        {
+            add("spmsa");
+            add("SATG");
+            add("SATGP");
+            add("SATGPC");
+            add("SATGPD");
+            add("SATGPCS");
+            add("SATGPGC");
+            add("SATGC");
+            add("STAGCD");
+            add("STAGCS");
+            add("STAGCGC");
+            add("SATGD");
+            add("STAGDS");
+            add("STAGDGC");
+            add("STAGS");
+            add("STAGSGC");
+            add("STAGGC");
+            add("SATGPPN");
+            add("SATGPI");
+            add("SATGPIPN");
+            add("SATGPCPN");
+            add("SATGPCI");
+            add("SATGPCIPN");
+            add("SATGPDPN");
+            add("SATGPDI");
+            add("SATGPDIPN");
+            add("SATGPSPN");
+            add("SATGPSI");
+            add("SATGPSIPN");
+            add("SATGPGCPN");
+            add("SATGPGCI");
+            add("SATGPGCIPN");
+
         }
 
     };
@@ -831,6 +1051,51 @@ public class NewModActivity extends Activity implements OnClickListener {
             add("spmrt");
             add("spmsa");
             add("spm");
+            add("SATG");
+            add("SATGP");
+            add("SATGPC");
+            add("SATGPD");
+            add("SATGPCS");
+            add("SATGPGC");
+            add("SATGC");
+            add("STAGCD");
+            add("STAGCS");
+            add("STAGCGC");
+            add("SATGD");
+            add("STAGDS");
+            add("STAGDGC");
+            add("STAGS");
+            add("STAGSGC");
+            add("STAGGC");
+            add("SATGPPN");
+            add("SATGPI");
+            add("SATGPIPN");
+            add("SATGPCPN");
+            add("SATGPCI");
+            add("SATGPCIPN");
+            add("SATGPDPN");
+            add("SATGPDI");
+            add("SATGPDIPN");
+            add("SATGPSPN");
+            add("SATGPSI");
+            add("SATGPSIPN");
+            add("SATGPGCPN");
+            add("SATGPGCI");
+            add("SATGPGCIPN");
+            add("spmarp");
+            add("ARPTG");
+            add("ARPTGGC");
+            add("ArpTGP");
+            add("ArpTGC");
+            add("ArpTGS");
+            add("ArpTGD");
+            add("ArpTGPC");
+            add("ArpTGPD");
+            add("ArpTGPS");
+            add("ArpTGPGC");
+            add("ArpTGPCGC");
+            add("ArpTGPDGC");
+            add("ArpTGPSGC");
         }
 
     };
@@ -862,6 +1127,15 @@ public class NewModActivity extends Activity implements OnClickListener {
             add("smrt");
             add("sm");
             add("smprice");
+        }
+    };
+    // 客户管理
+    ArrayList<String> list_sk = new ArrayList<String>() {
+        {
+            add("sk");
+            add("skh");
+            add("skf");
+            add("skvp");
         }
     };
     ArrayList<String> list_rt01_name = new ArrayList<String>();
@@ -932,8 +1206,6 @@ public class NewModActivity extends Activity implements OnClickListener {
                     nameInfo = "全部模块";
                 } else if (ids_str.equals("spmrt")) {
                     nameInfo = "收款统计表";
-                } else if (ids_str.equals("spmsa")) {
-                    nameInfo = "销售统计表";
                 } else if (ids_str.equals("spm")) {
                     nameInfo = "统计报表";
                 } else if (ids_str.equals("sptrt")) {
@@ -944,8 +1216,290 @@ public class NewModActivity extends Activity implements OnClickListener {
                     nameInfo = "明细报表";
                 } else if (ids_str.equals("sp")) {
                     nameInfo = "决策报表";
+                } else if (ids_str.equals("SATG")) {
+                    nameInfo = "分支机构销售统计表";
+                } else if (ids_str.equals("SATGP")) {
+                    nameInfo = "分支机构+品牌销售统计表";
+                } else if (ids_str.equals("SATGPC")) {
+                    nameInfo = "分支机构+品牌+渠道销售统计表";
+                } else if (ids_str.equals("SATGPD")) {
+                    nameInfo = "分支机构+品牌+部门销售统计表";
+                } else if (ids_str.equals("SATGPD")) {
+                    nameInfo = "分支机构+品牌+部门销售统计表";
+                } else if (ids_str.equals("SATGPCS")) {
+                    nameInfo = "分支机构+品牌+业务销售统计表";
+                } else if (ids_str.equals("SATGPGC")) {
+                    nameInfo = "分支机构+品牌+终端网点销售统计表";
+                } else if (ids_str.equals("SATGC")) {
+                    nameInfo = "分支机构+渠道销售统计表";
+                } else if (ids_str.equals("STAGCD")) {
+                    nameInfo = "分支机构+渠道+部门销售统计表";
+                } else if (ids_str.equals("STAGCS")) {
+                    nameInfo = "分支机构+渠道+业务销售统计表";
+                } else if (ids_str.equals("STAGCGC")) {
+                    nameInfo = "分支机构+渠道+终端网点销售统计表";
+                } else if (ids_str.equals("SATGD")) {
+                    nameInfo = "分支机构+部门销售统计表";
+                } else if (ids_str.equals("STAGDS")) {
+                    nameInfo = "分支机构+部门+业务销售统计表";
+                } else if (ids_str.equals("STAGDGC")) {
+                    nameInfo = "分支机构+部门+终端网点销售统计表";
+                } else if (ids_str.equals("STAGS")) {
+                    nameInfo = "分支机构+业务销售统计表";
+                } else if (ids_str.equals("STAGSGC")) {
+                    nameInfo = "分支机构+业务+终端网点销售统计表";
+                } else if (ids_str.equals("STAGGC")) {
+                    nameInfo = "分支机构+终端网点销售统计表";
+                } else if (ids_str.equals("SATGPPN")) {
+                    nameInfo = "分支机构+品牌+品号销售统计表";
+                } else if (ids_str.equals("SATGPI")) {
+                    nameInfo = "分支机构+品牌+货品中类销售统计表";
+                } else if (ids_str.equals("SATGPIPN")) {
+                    nameInfo = "分支机构+品牌+货品中类+品号销售统计表";
+                } else if (ids_str.equals("SATGPCPN")) {
+                    nameInfo = "分支机构+品牌+渠道+品号销售统计表";
+                } else if (ids_str.equals("SATGPCI")) {
+                    nameInfo = "分支机构+品牌+渠道+货品中类销售统计表";
+                } else if (ids_str.equals("SATGPCIPN")) {
+                    nameInfo = "分支机构+品牌+渠道+货品中类+品号销售统计表";
+                } else if (ids_str.equals("SATGPDPN")) {
+                    nameInfo = "分支机构+品牌+部门+品号销售统计表";
+                } else if (ids_str.equals("SATGPDI")) {
+                    nameInfo = "分支机构+品牌+部门+品号+货品中类销售统计表";
+                } else if (ids_str.equals("SATGPDIPN")) {
+                    nameInfo = "分支机构+品牌+部门+品号+货品中类+品号销售统计表";
+                } else if (ids_str.equals("SATGPSPN")) {
+                    nameInfo = "分支机构+品牌+业务+品号销售统计表";
+                } else if (ids_str.equals("SATGPSI")) {
+                    nameInfo = "分支机构+品牌+业务+货品中类销售统计表";
+                } else if (ids_str.equals("SATGPSIPN")) {
+                    nameInfo = "分支机构+品牌+业务+货品中类+品号销售统计表";
+                } else if (ids_str.equals("SATGPGCPN")) {
+                    nameInfo = "分支机构+品牌+终端+品号销售统计表";
+                } else if (ids_str.equals("SATGPGCI")) {
+                    nameInfo = "分支机构+品牌+终端+货品中类销售统计表";
+                } else if (ids_str.equals("SATGPGCIPN")) {
+                    nameInfo = "分支机构+品牌+终端+货品中类+品号销售统计表";
+                } else if (ids_str.equals("spmsa")) {
+                    nameInfo = "销售统计表";
+                } else if (ids_str.equals("ARPTG")) {
+                    nameInfo = "分支机构应收账龄表";
+                } else if (ids_str.equals("ARPTGGC")) {
+                    nameInfo = "机构+终端网点应收账龄表";
+                } else if (ids_str.equals("ArpTGP")) {
+                    nameInfo = "机构+核算单位应收账龄表";
+                } else if (ids_str.equals("ArpTGC")) {
+                    nameInfo = "机构+渠道应收账龄表";
+                } else if (ids_str.equals("ArpTGS")) {
+                    nameInfo = "机构+业务应收账龄表";
+                } else if (ids_str.equals("ArpTGD")) {
+                    nameInfo = "机构+部门应收账龄表";
+                } else if (ids_str.equals("ArpTGPC")) {
+                    nameInfo = "机构+核算单位+渠道应收账龄表";
+                } else if (ids_str.equals("ArpTGPD")) {
+                    nameInfo = "机构+核算单位+部门应收账龄表";
+                } else if (ids_str.equals("ArpTGPS")) {
+                    nameInfo = "机构+核算单位+业务应收账龄表";
+                } else if (ids_str.equals("ArpTGPGC")) {
+                    nameInfo = "机构+核算单位+终端网点应收账龄表";
+                } else if (ids_str.equals("ArpTGPCGC")) {
+                    nameInfo = "机构+核算单位+渠道+终端网点应收账龄表";
+                } else if (ids_str.equals("ArpTGPDGC")) {
+                    nameInfo = "机构+核算单位+部门+终端网点应收账龄表";
+                } else if (ids_str.equals("ArpTGPSGC")) {
+                    nameInfo = "机构+核算单位+业务+终端网点应收账龄表";
+                } else if (ids_str.equals("spmarp")) {
+                    nameInfo = "应收账龄表";
+                } else if (ids_str.equals("skh")) {
+                    nameInfo = "客户建档";
+                } else if (ids_str.equals("skf")) {
+                    nameInfo = "客户跟踪";
+                } else if (ids_str.equals("skvp")) {
+                    nameInfo = "会员建档";
+                } else if (ids_str.equals("sk")) {
+                    nameInfo = "客户管理";
+                }else if (ids_str.equals("spr")) {
+                    nameInfo = "应收统计表";
                 }
                 Log.e("LiNing", "ids_str数据是===" + list_sys);
+                item = new HashMap<String, Object>();
+                item.put("序号", ids_str);
+                itemRoot();
+                dList.add(item);
+                Log.e("LiNing", "==========ids_str数据是===" + dList.size());
+
+                for (int i = 0; i < dList.size(); i++) {
+                    map = new HashMap<String, String>();
+                    item_del = dList.get(i);
+                    str_dbname = item_del.get("账套").toString();
+                    modIDs_get.add(dList.get(i).get("序号").toString());
+                    modZTs_get.add(dList.get(i).get("账套").toString());
+                    Log.e("LiNing", "LiNing--------" + modIDs_get
+                            + "LiNing--------" + modZTs_get);
+                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
+                            .get("序号").toString());
+
+                }
+                list.add(map);
+            }
+        } else if (idInfo.equals("spmsa")) {
+            for (int j = 0; j < list_spmsa.size(); j++) {
+                ids_str = list_spmsa.get(j);
+                Log.e("LiNing", "ids_str数据是===" + ids_str);
+                if (ids_str.equals("SATG")) {
+                    nameInfo = "分支机构销售统计表";
+                } else if (ids_str.equals("SATGP")) {
+                    nameInfo = "分支机构+品牌销售统计表";
+                } else if (ids_str.equals("SATGPC")) {
+                    nameInfo = "分支机构+品牌+渠道销售统计表";
+                } else if (ids_str.equals("SATGPD")) {
+                    nameInfo = "分支机构+品牌+部门销售统计表";
+                } else if (ids_str.equals("SATGPD")) {
+                    nameInfo = "分支机构+品牌+部门销售统计表";
+                } else if (ids_str.equals("SATGPCS")) {
+                    nameInfo = "分支机构+品牌+业务销售统计表";
+                } else if (ids_str.equals("SATGPGC")) {
+                    nameInfo = "分支机构+品牌+终端网点销售统计表";
+                } else if (ids_str.equals("SATGC")) {
+                    nameInfo = "分支机构+渠道销售统计表";
+                } else if (ids_str.equals("STAGCD")) {
+                    nameInfo = "分支机构+渠道+部门销售统计表";
+                } else if (ids_str.equals("STAGCS")) {
+                    nameInfo = "分支机构+渠道+业务销售统计表";
+                } else if (ids_str.equals("STAGCGC")) {
+                    nameInfo = "分支机构+渠道+终端网点销售统计表";
+                } else if (ids_str.equals("SATGD")) {
+                    nameInfo = "分支机构+部门销售统计表";
+                } else if (ids_str.equals("STAGDS")) {
+                    nameInfo = "分支机构+部门+业务销售统计表";
+                } else if (ids_str.equals("STAGDGC")) {
+                    nameInfo = "分支机构+部门+终端网点销售统计表";
+                } else if (ids_str.equals("STAGS")) {
+                    nameInfo = "分支机构+业务销售统计表";
+                } else if (ids_str.equals("STAGSGC")) {
+                    nameInfo = "分支机构+业务+终端网点销售统计表";
+                } else if (ids_str.equals("STAGGC")) {
+                    nameInfo = "分支机构+终端网点销售统计表";
+                } else if (ids_str.equals("SATGPPN")) {
+                    nameInfo = "分支机构+品牌+品号销售统计表";
+                } else if (ids_str.equals("SATGPI")) {
+                    nameInfo = "分支机构+品牌+货品中类销售统计表";
+                } else if (ids_str.equals("SATGPIPN")) {
+                    nameInfo = "分支机构+品牌+货品中类+品号销售统计表";
+                } else if (ids_str.equals("SATGPCPN")) {
+                    nameInfo = "分支机构+品牌+渠道+品号销售统计表";
+                } else if (ids_str.equals("SATGPCI")) {
+                    nameInfo = "分支机构+品牌+渠道+货品中类销售统计表";
+                } else if (ids_str.equals("SATGPCIPN")) {
+                    nameInfo = "分支机构+品牌+渠道+货品中类+品号销售统计表";
+                } else if (ids_str.equals("SATGPDPN")) {
+                    nameInfo = "分支机构+品牌+部门+品号销售统计表";
+                } else if (ids_str.equals("SATGPDI")) {
+                    nameInfo = "分支机构+品牌+部门+品号+货品中类销售统计表";
+                } else if (ids_str.equals("SATGPDIPN")) {
+                    nameInfo = "分支机构+品牌+部门+品号+货品中类+品号销售统计表";
+                } else if (ids_str.equals("SATGPSPN")) {
+                    nameInfo = "分支机构+品牌+业务+品号销售统计表";
+                } else if (ids_str.equals("SATGPSI")) {
+                    nameInfo = "分支机构+品牌+业务+货品中类销售统计表";
+                } else if (ids_str.equals("SATGPSIPN")) {
+                    nameInfo = "分支机构+品牌+业务+货品中类+品号销售统计表";
+                } else if (ids_str.equals("SATGPGCPN")) {
+                    nameInfo = "分支机构+品牌+终端+品号销售统计表";
+                } else if (ids_str.equals("SATGPGCI")) {
+                    nameInfo = "分支机构+品牌+终端+货品中类销售统计表";
+                } else if (ids_str.equals("SATGPGCIPN")) {
+                    nameInfo = "分支机构+品牌+终端+货品中类+品号销售统计表";
+                } else if (ids_str.equals("spmsa")) {
+                    nameInfo = "销售统计表";
+                }
+                Log.e("LiNing", "ids_str数据是===" + list_spmsa);
+                item = new HashMap<String, Object>();
+                item.put("序号", ids_str);
+                itemRoot();
+                dList.add(item);
+
+                for (int i = 0; i < dList.size(); i++) {
+                    map = new HashMap<String, String>();
+                    item_del = dList.get(i);
+                    str_dbname = item_del.get("账套").toString();
+                    modIDs_get.add(dList.get(i).get("序号").toString());
+                    modZTs_get.add(dList.get(i).get("账套").toString());
+                    Log.e("LiNing", "LiNing--------" + modIDs_get
+                            + "LiNing--------" + modZTs_get);
+                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
+                            .get("序号").toString());
+
+                }
+                list.add(map);
+            }
+        } else if (idInfo.equals("spmarp")) {
+            for (int j = 0; j < list_spmarp.size(); j++) {
+                ids_str = list_spmarp.get(j);
+                Log.e("LiNing", "ids_str数据是===" + ids_str);
+                if (ids_str.equals("ARPTG")) {
+                    nameInfo = "分支机构应收账龄表";
+                } else if (ids_str.equals("ARPTGGC")) {
+                    nameInfo = "机构+终端网点应收账龄表";
+                } else if (ids_str.equals("ArpTGP")) {
+                    nameInfo = "机构+核算单位应收账龄表";
+                } else if (ids_str.equals("ArpTGC")) {
+                    nameInfo = "机构+渠道应收账龄表";
+                } else if (ids_str.equals("ArpTGS")) {
+                    nameInfo = "机构+业务应收账龄表";
+                } else if (ids_str.equals("ArpTGD")) {
+                    nameInfo = "机构+部门应收账龄表";
+                } else if (ids_str.equals("ArpTGPC")) {
+                    nameInfo = "机构+核算单位+渠道应收账龄表";
+                } else if (ids_str.equals("ArpTGPD")) {
+                    nameInfo = "机构+核算单位+部门应收账龄表";
+                } else if (ids_str.equals("ArpTGPS")) {
+                    nameInfo = "机构+核算单位+业务应收账龄表";
+                } else if (ids_str.equals("ArpTGPGC")) {
+                    nameInfo = "机构+核算单位+终端网点应收账龄表";
+                } else if (ids_str.equals("ArpTGPCGC")) {
+                    nameInfo = "机构+核算单位+渠道+终端网点应收账龄表";
+                } else if (ids_str.equals("ArpTGPDGC")) {
+                    nameInfo = "机构+核算单位+部门+终端网点应收账龄表";
+                } else if (ids_str.equals("ArpTGPSGC")) {
+                    nameInfo = "机构+核算单位+业务+终端网点应收账龄表";
+                } else if (ids_str.equals("spmarp")) {
+                    nameInfo = "应收账龄表";
+                }
+                Log.e("LiNing", "ids_str数据是===" + list_spmarp);
+                item = new HashMap<String, Object>();
+                item.put("序号", ids_str);
+                itemRoot();
+                dList.add(item);
+
+                for (int i = 0; i < dList.size(); i++) {
+                    map = new HashMap<String, String>();
+                    item_del = dList.get(i);
+                    str_dbname = item_del.get("账套").toString();
+                    modIDs_get.add(dList.get(i).get("序号").toString());
+                    modZTs_get.add(dList.get(i).get("账套").toString());
+                    Log.e("LiNing", "LiNing--------" + modIDs_get
+                            + "LiNing--------" + modZTs_get);
+                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
+                            .get("序号").toString());
+
+                }
+                list.add(map);
+            }
+        } else if (idInfo.equals("sk")) {
+            for (int j = 0; j < list_sk.size(); j++) {
+                ids_str = list_sk.get(j);
+                Log.e("LiNing", "ids_str数据是===" + ids_str);
+                if (ids_str.equals("skh")) {
+                    nameInfo = "客户建档";
+                } else if (ids_str.equals("skf")) {
+                    nameInfo = "客户跟踪";
+                } else if (ids_str.equals("skvp")) {
+                    nameInfo = "会员建档";
+                } else if (ids_str.equals("sk")) {
+                    nameInfo = "客户管理";
+                }
+                Log.e("LiNing", "ids_str数据是===" + list_sk);
                 item = new HashMap<String, Object>();
                 item.put("序号", ids_str);
                 itemRoot();
@@ -979,7 +1533,7 @@ public class NewModActivity extends Activity implements OnClickListener {
                     nameInfo = "Root配置";
                 } else if (ids_str.equals("sm")) {
                     nameInfo = "系统管理";
-                }else if (ids_str.equals("smprice")) {
+                } else if (ids_str.equals("smprice")) {
                     nameInfo = "定价管理";
                 }
                 Log.e("LiNing", "ids_str数据是===" + list_sm);
@@ -1008,10 +1562,102 @@ public class NewModActivity extends Activity implements OnClickListener {
                 Log.e("LiNing", "ids_str数据是===" + ids_str);
                 if (ids_str.equals("spmrt")) {
                     nameInfo = "收款统计表";
-                } else if (ids_str.equals("spmsa")) {
-                    nameInfo = "销售统计表";
                 } else if (ids_str.equals("spm")) {
                     nameInfo = "统计报表";
+                } else if (ids_str.equals("SATG")) {
+                    nameInfo = "分支机构销售统计表";
+                } else if (ids_str.equals("SATGP")) {
+                    nameInfo = "分支机构+品牌销售统计表";
+                } else if (ids_str.equals("SATGPC")) {
+                    nameInfo = "分支机构+品牌+渠道销售统计表";
+                } else if (ids_str.equals("SATGPD")) {
+                    nameInfo = "分支机构+品牌+部门销售统计表";
+                } else if (ids_str.equals("SATGPD")) {
+                    nameInfo = "分支机构+品牌+部门销售统计表";
+                } else if (ids_str.equals("SATGPCS")) {
+                    nameInfo = "分支机构+品牌+业务销售统计表";
+                } else if (ids_str.equals("SATGPGC")) {
+                    nameInfo = "分支机构+品牌+终端网点销售统计表";
+                } else if (ids_str.equals("SATGC")) {
+                    nameInfo = "分支机构+渠道销售统计表";
+                } else if (ids_str.equals("STAGCD")) {
+                    nameInfo = "分支机构+渠道+部门销售统计表";
+                } else if (ids_str.equals("STAGCS")) {
+                    nameInfo = "分支机构+渠道+业务销售统计表";
+                } else if (ids_str.equals("STAGCGC")) {
+                    nameInfo = "分支机构+渠道+终端网点销售统计表";
+                } else if (ids_str.equals("SATGD")) {
+                    nameInfo = "分支机构+部门销售统计表";
+                } else if (ids_str.equals("STAGDS")) {
+                    nameInfo = "分支机构+部门+业务销售统计表";
+                } else if (ids_str.equals("STAGDGC")) {
+                    nameInfo = "分支机构+部门+终端网点销售统计表";
+                } else if (ids_str.equals("STAGS")) {
+                    nameInfo = "分支机构+业务销售统计表";
+                } else if (ids_str.equals("STAGSGC")) {
+                    nameInfo = "分支机构+业务+终端网点销售统计表";
+                } else if (ids_str.equals("STAGGC")) {
+                    nameInfo = "分支机构+终端网点销售统计表";
+                } else if (ids_str.equals("SATGPPN")) {
+                    nameInfo = "分支机构+品牌+品号销售统计表";
+                } else if (ids_str.equals("SATGPI")) {
+                    nameInfo = "分支机构+品牌+货品中类销售统计表";
+                } else if (ids_str.equals("SATGPIPN")) {
+                    nameInfo = "分支机构+品牌+货品中类+品号销售统计表";
+                } else if (ids_str.equals("SATGPCPN")) {
+                    nameInfo = "分支机构+品牌+渠道+品号销售统计表";
+                } else if (ids_str.equals("SATGPCI")) {
+                    nameInfo = "分支机构+品牌+渠道+货品中类销售统计表";
+                } else if (ids_str.equals("SATGPCIPN")) {
+                    nameInfo = "分支机构+品牌+渠道+货品中类+品号销售统计表";
+                } else if (ids_str.equals("SATGPDPN")) {
+                    nameInfo = "分支机构+品牌+部门+品号销售统计表";
+                } else if (ids_str.equals("SATGPDI")) {
+                    nameInfo = "分支机构+品牌+部门+品号+货品中类销售统计表";
+                } else if (ids_str.equals("SATGPDIPN")) {
+                    nameInfo = "分支机构+品牌+部门+品号+货品中类+品号销售统计表";
+                } else if (ids_str.equals("SATGPSPN")) {
+                    nameInfo = "分支机构+品牌+业务+品号销售统计表";
+                } else if (ids_str.equals("SATGPSI")) {
+                    nameInfo = "分支机构+品牌+业务+货品中类销售统计表";
+                } else if (ids_str.equals("SATGPSIPN")) {
+                    nameInfo = "分支机构+品牌+业务+货品中类+品号销售统计表";
+                } else if (ids_str.equals("SATGPGCPN")) {
+                    nameInfo = "分支机构+品牌+终端+品号销售统计表";
+                } else if (ids_str.equals("SATGPGCI")) {
+                    nameInfo = "分支机构+品牌+终端+货品中类销售统计表";
+                } else if (ids_str.equals("SATGPGCIPN")) {
+                    nameInfo = "分支机构+品牌+终端+货品中类+品号销售统计表";
+                } else if (ids_str.equals("spmsa")) {
+                    nameInfo = "销售统计表";
+                } else if (ids_str.equals("ARPTG")) {
+                    nameInfo = "分支机构应收账龄表";
+                } else if (ids_str.equals("ARPTGGC")) {
+                    nameInfo = "机构+终端网点应收账龄表";
+                } else if (ids_str.equals("ArpTGP")) {
+                    nameInfo = "机构+核算单位应收账龄表";
+                } else if (ids_str.equals("ArpTGC")) {
+                    nameInfo = "机构+渠道应收账龄表";
+                } else if (ids_str.equals("ArpTGS")) {
+                    nameInfo = "机构+业务应收账龄表";
+                } else if (ids_str.equals("ArpTGD")) {
+                    nameInfo = "机构+部门应收账龄表";
+                } else if (ids_str.equals("ArpTGPC")) {
+                    nameInfo = "机构+核算单位+渠道应收账龄表";
+                } else if (ids_str.equals("ArpTGPD")) {
+                    nameInfo = "机构+核算单位+部门应收账龄表";
+                } else if (ids_str.equals("ArpTGPS")) {
+                    nameInfo = "机构+核算单位+业务应收账龄表";
+                } else if (ids_str.equals("ArpTGPGC")) {
+                    nameInfo = "机构+核算单位+终端网点应收账龄表";
+                } else if (ids_str.equals("ArpTGPCGC")) {
+                    nameInfo = "机构+核算单位+渠道+终端网点应收账龄表";
+                } else if (ids_str.equals("ArpTGPDGC")) {
+                    nameInfo = "机构+核算单位+部门+终端网点应收账龄表";
+                } else if (ids_str.equals("ArpTGPSGC")) {
+                    nameInfo = "机构+核算单位+业务+终端网点应收账龄表";
+                } else if (ids_str.equals("spmarp")) {
+                    nameInfo = "应收账龄表";
                 }
                 Log.e("LiNing", "ids_str数据是===" + list_spm);
                 item = new HashMap<String, Object>();
@@ -1039,8 +1685,6 @@ public class NewModActivity extends Activity implements OnClickListener {
                 Log.e("LiNing", "ids_str数据是===" + ids_str);
                 if (ids_str.equals("spmrt")) {
                     nameInfo = "收款统计表";
-                } else if (ids_str.equals("spmsa")) {
-                    nameInfo = "销售统计表";
                 } else if (ids_str.equals("spm")) {
                     nameInfo = "统计报表";
                 } else if (ids_str.equals("sptrt")) {
@@ -1051,7 +1695,102 @@ public class NewModActivity extends Activity implements OnClickListener {
                     nameInfo = "明细报表";
                 } else if (ids_str.equals("sp")) {
                     nameInfo = "决策报表";
+                } else if (ids_str.equals("SATG")) {
+                    nameInfo = "分支机构销售统计表";
+                } else if (ids_str.equals("SATGP")) {
+                    nameInfo = "分支机构+品牌销售统计表";
+                } else if (ids_str.equals("SATGPC")) {
+                    nameInfo = "分支机构+品牌+渠道销售统计表";
+                } else if (ids_str.equals("SATGPD")) {
+                    nameInfo = "分支机构+品牌+部门销售统计表";
+                } else if (ids_str.equals("SATGPD")) {
+                    nameInfo = "分支机构+品牌+部门销售统计表";
+                } else if (ids_str.equals("SATGPCS")) {
+                    nameInfo = "分支机构+品牌+业务销售统计表";
+                } else if (ids_str.equals("SATGPGC")) {
+                    nameInfo = "分支机构+品牌+终端网点销售统计表";
+                } else if (ids_str.equals("SATGC")) {
+                    nameInfo = "分支机构+渠道销售统计表";
+                } else if (ids_str.equals("STAGCD")) {
+                    nameInfo = "分支机构+渠道+部门销售统计表";
+                } else if (ids_str.equals("STAGCS")) {
+                    nameInfo = "分支机构+渠道+业务销售统计表";
+                } else if (ids_str.equals("STAGCGC")) {
+                    nameInfo = "分支机构+渠道+终端网点销售统计表";
+                } else if (ids_str.equals("SATGD")) {
+                    nameInfo = "分支机构+部门销售统计表";
+                } else if (ids_str.equals("STAGDS")) {
+                    nameInfo = "分支机构+部门+业务销售统计表";
+                } else if (ids_str.equals("STAGDGC")) {
+                    nameInfo = "分支机构+部门+终端网点销售统计表";
+                } else if (ids_str.equals("STAGS")) {
+                    nameInfo = "分支机构+业务销售统计表";
+                } else if (ids_str.equals("STAGSGC")) {
+                    nameInfo = "分支机构+业务+终端网点销售统计表";
+                } else if (ids_str.equals("STAGGC")) {
+                    nameInfo = "分支机构+终端网点销售统计表";
+                } else if (ids_str.equals("SATGPPN")) {
+                    nameInfo = "分支机构+品牌+品号销售统计表";
+                } else if (ids_str.equals("SATGPI")) {
+                    nameInfo = "分支机构+品牌+货品中类销售统计表";
+                } else if (ids_str.equals("SATGPIPN")) {
+                    nameInfo = "分支机构+品牌+货品中类+品号销售统计表";
+                } else if (ids_str.equals("SATGPCPN")) {
+                    nameInfo = "分支机构+品牌+渠道+品号销售统计表";
+                } else if (ids_str.equals("SATGPCI")) {
+                    nameInfo = "分支机构+品牌+渠道+货品中类销售统计表";
+                } else if (ids_str.equals("SATGPCIPN")) {
+                    nameInfo = "分支机构+品牌+渠道+货品中类+品号销售统计表";
+                } else if (ids_str.equals("SATGPDPN")) {
+                    nameInfo = "分支机构+品牌+部门+品号销售统计表";
+                } else if (ids_str.equals("SATGPDI")) {
+                    nameInfo = "分支机构+品牌+部门+品号+货品中类销售统计表";
+                } else if (ids_str.equals("SATGPDIPN")) {
+                    nameInfo = "分支机构+品牌+部门+品号+货品中类+品号销售统计表";
+                } else if (ids_str.equals("SATGPSPN")) {
+                    nameInfo = "分支机构+品牌+业务+品号销售统计表";
+                } else if (ids_str.equals("SATGPSI")) {
+                    nameInfo = "分支机构+品牌+业务+货品中类销售统计表";
+                } else if (ids_str.equals("SATGPSIPN")) {
+                    nameInfo = "分支机构+品牌+业务+货品中类+品号销售统计表";
+                } else if (ids_str.equals("SATGPGCPN")) {
+                    nameInfo = "分支机构+品牌+终端+品号销售统计表";
+                } else if (ids_str.equals("SATGPGCI")) {
+                    nameInfo = "分支机构+品牌+终端+货品中类销售统计表";
+                } else if (ids_str.equals("SATGPGCIPN")) {
+                    nameInfo = "分支机构+品牌+终端+货品中类+品号销售统计表";
+                } else if (ids_str.equals("spmsa")) {
+                    nameInfo = "销售统计表";
+                } else if (ids_str.equals("ARPTG")) {
+                    nameInfo = "分支机构应收账龄表";
+                } else if (ids_str.equals("ARPTGGC")) {
+                    nameInfo = "机构+终端网点应收账龄表";
+                } else if (ids_str.equals("ArpTGP")) {
+                    nameInfo = "机构+核算单位应收账龄表";
+                } else if (ids_str.equals("ArpTGC")) {
+                    nameInfo = "机构+渠道应收账龄表";
+                } else if (ids_str.equals("ArpTGS")) {
+                    nameInfo = "机构+业务应收账龄表";
+                } else if (ids_str.equals("ArpTGD")) {
+                    nameInfo = "机构+部门应收账龄表";
+                } else if (ids_str.equals("ArpTGPC")) {
+                    nameInfo = "机构+核算单位+渠道应收账龄表";
+                } else if (ids_str.equals("ArpTGPD")) {
+                    nameInfo = "机构+核算单位+部门应收账龄表";
+                } else if (ids_str.equals("ArpTGPS")) {
+                    nameInfo = "机构+核算单位+业务应收账龄表";
+                } else if (ids_str.equals("ArpTGPGC")) {
+                    nameInfo = "机构+核算单位+终端网点应收账龄表";
+                } else if (ids_str.equals("ArpTGPCGC")) {
+                    nameInfo = "机构+核算单位+渠道+终端网点应收账龄表";
+                } else if (ids_str.equals("ArpTGPDGC")) {
+                    nameInfo = "机构+核算单位+部门+终端网点应收账龄表";
+                } else if (ids_str.equals("ArpTGPSGC")) {
+                    nameInfo = "机构+核算单位+业务+终端网点应收账龄表";
+                } else if (ids_str.equals("spmarp")) {
+                    nameInfo = "应收账龄表";
                 }
+
                 Log.e("LiNing", "ids_str数据是===" + list_sp);
                 item = new HashMap<String, Object>();
                 item.put("序号", ids_str);
@@ -1427,7 +2166,7 @@ public class NewModActivity extends Activity implements OnClickListener {
                     textParams.put("mod_ID", sub_id);// mod_ID;// 模块编号
                     textParams.put("mod_DB", sub_zt);// mod_DB;//账套编号
                     textParams.put("mod_Name", sub_name);// mod_Name;// 模块名称
-                        textParams.put("mod_Query", sub_query);// mod_Query;// 查看
+                    textParams.put("mod_Query", sub_query);// mod_Query;// 查看
                     textParams.put("mod_Add", sub_add);// mod_Add;// 新增
                     textParams.put("mod_Alter", sub_alt);// mod_Alter;// 修改
                     textParams.put("mod_Del", sub_del);// mod_Del;// 删除

@@ -43,6 +43,7 @@ public class SmrtActivity extends Activity implements OnClickListener {
 	private List<com.example.bean.UserInfo.User_Mod> user_Mod;
 	String url = URLS.userInfo_url;
 	ArrayList<String> modIds_get = new ArrayList<String>();
+	private int flag;
 	private String ps_id;
 
 	@Override
@@ -59,7 +60,7 @@ public class SmrtActivity extends Activity implements OnClickListener {
 		getRoot();
 	}
 
-	private int flag;
+
 
 	private void getRoot() {
 		OkHttpClient client = new OkHttpClient();

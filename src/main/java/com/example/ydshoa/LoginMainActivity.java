@@ -353,6 +353,7 @@ public class LoginMainActivity extends Activity implements OnClickListener {
                     @Override
                     public void onResponse(Call call, Response response)
                             throws IOException {
+                        Log.e("LiNing", "spn==111111111====" + response.body().string().toString());
 //                        Log.e("LiNing", "spn==111111111====" + response.body().string().toString().substring(170));
                         if (response.isSuccessful()) {
                             Log.e("LiNing", "spn======" + response.code()+str1+str2+str3+URLS.login_url);

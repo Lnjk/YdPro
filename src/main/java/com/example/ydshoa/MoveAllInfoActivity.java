@@ -96,6 +96,7 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
         user_Id = sp.getString("USER_ID", "");
          sszt_befor = getIntent().getStringExtra("SSZT");
          dabh_befor = getIntent().getStringExtra("DABH");
+
         InitView();
         //		 * 预先加载仿iOS滚轮实现的全部数据
         mCityPickerView.init(this);

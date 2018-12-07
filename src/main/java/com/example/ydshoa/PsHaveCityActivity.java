@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.example.bean.AddAndress;
 import com.example.bean.JsonRootBean;
 import com.example.bean.URLS;
 import com.google.gson.Gson;
@@ -39,7 +40,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class PsHaveCityActivity extends Activity implements View.OnClickListener {
-    private String session,db_zt,user_Id,date_dd,dabh_befor ,sszt_befor,sub_id,sub_dz,url_do,do_save,sizes,xc_andress,add_xxdz;
+    private String session,db_zt,user_Id,date_dd,dabh_befor ,sszt_befor,sub_id,sub_dz,url_do,do_save,sizes,xc_andress,add_xxdz,check_add,zt_add,dabh_add,shr_add,zcdh_add;
     String extra_zt,extra_dabh,extra_itm,extra_shr,extra_dh,extra_ss,extra_qx,extra_adress,extra_userid,extra_def;
     private TextView dzbh,head,zt,dacard,yhbh,sfmr,xxdz,ss,qx;
     private EditText shr,lxdh,add_newAress;
@@ -77,6 +78,12 @@ public class PsHaveCityActivity extends Activity implements View.OnClickListener
         extra_userid = getIntent().getStringExtra("USERID");
         extra_def = getIntent().getStringExtra("DEF");
         Log.e("LiNing","+=========="+sszt_befor + dabh_befor+sizes + do_save);
+        //新增客户
+//        check_add = getIntent().getStringExtra("check_new");
+        zt_add = getIntent().getStringExtra("SSZT_new");
+        dabh_add = getIntent().getStringExtra("DABH_new");
+        shr_add = getIntent().getStringExtra("SHR_new");
+        zcdh_add = getIntent().getStringExtra("ZCDH_new");
         //		 * 预先加载仿iOS滚轮实现的全部数据
         mCityPickerView.init(this);
         intView();
@@ -90,11 +97,20 @@ public class PsHaveCityActivity extends Activity implements View.OnClickListener
         sfmr = (TextView) findViewById(R.id.tv_move_ismr);
         dacard = (TextView) findViewById(R.id.tv_move_bh);
         dzbh= (TextView) findViewById(R.id.et_move_dzbh);
-        int i = Integer.valueOf(sizes) + 1;
-        dzbh.setText(""+i);
 //        dzbh.setText("1");
         shr= (EditText) findViewById(R.id.et_move_username);
         lxdh= (EditText) findViewById(R.id.et_move_phone);
+        if(do_save.equals("11")){
+            zt.setText(zt_add);
+            dacard.setText(dabh_add);
+            dzbh.setText("1");
+            shr.setText(shr_add);
+            lxdh.setText(zcdh_add);
+            yhbh.setText(user_Id);
+        }else{
+            int i = Integer.valueOf(sizes) + 1;
+            dzbh.setText(""+i);
+        }
         ss= (TextView) findViewById(R.id.et_move_ss);
         qx= (TextView) findViewById(R.id.et_move_qx);
         ss.setOnClickListener(new View.OnClickListener() {
@@ -189,14 +205,34 @@ public class PsHaveCityActivity extends Activity implements View.OnClickListener
         findViewById(R.id.btn_move_save).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!xxdz.equals("")){
-//                    ll_xxdz.setVisibility(View.VISIBLE);
-                    String add_xxdz_tv = xxdz.getText().toString();
-                    String add_xxdz_et = add_newAress.getText().toString();
-                     add_xxdz = add_xxdz_tv+"~"+add_xxdz_et;
-                    postPsxx();
+
+                if(do_save.equals("11")){
+                    AddAndress andress=new AddAndress();
+                    andress.setZt_add_and(zt.getText().toString());
+                    andress.setDabh_add_and(dacard.getText().toString());
+                    andress.setDzbh_add_and(dzbh.getText().toString());
+                    andress.setShr_add_and(shr.getText().toString());
+                    andress.setLxdh_add_and(lxdh.getText().toString());
+                    andress.setSs_add_and(ss.getText().toString());
+                    andress.setQx_add_and(qx.getText().toString());
+
+                    andress.setXxdz_add_and(xxdz.getText().toString()+"~"+add_newAress.getText().toString());
+                    andress.setYhbh_add_and(yhbh.getText().toString());
+                    andress.setSfmr_add_and(sfmr.getText().toString());
+                    Intent localIntent = getIntent();
+                    localIntent.putExtra("Andress_add_ALL", andress);
+                    setResult(1, localIntent);
+                    finish();
                 }else{
-                    Toast.makeText(context,"请填写地址",Toast.LENGTH_LONG).show();
+                    if(!xxdz.equals("")){
+//                    ll_xxdz.setVisibility(View.VISIBLE);
+                        String add_xxdz_tv = xxdz.getText().toString();
+                        String add_xxdz_et = add_newAress.getText().toString();
+                        add_xxdz = add_xxdz_tv+"~"+add_xxdz_et;
+                        postPsxx();
+                    }else{
+                        Toast.makeText(context,"请填写地址",Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });
