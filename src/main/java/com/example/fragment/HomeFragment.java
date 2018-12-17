@@ -23,6 +23,8 @@ import com.example.ydshoa.DesignerActivity;
 import com.example.ydshoa.FormActivity;
 import com.example.ydshoa.MapInfosActivity;
 import com.example.ydshoa.MoreAddressActivity;
+import com.example.ydshoa.OfferActivity;
+import com.example.ydshoa.OrderActivity;
 import com.example.ydshoa.R;
 import com.example.ydshoa.SalesManageActivity;
 import com.example.ydshoa.SmrtActivity;
@@ -121,6 +123,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 //                物流管理
                 Toast.makeText(this.context, "暂未开放，请等待...", Toast.LENGTH_SHORT).show();
 //                startActivity(new Intent(this.context, MoreAddressActivity.class));
+//                startActivity(new Intent(this.context, OrderActivity.class));
                 break;
             case R.id.ll_sell:
 //                销售管理

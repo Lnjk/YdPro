@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_bg"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:padding="5.0dip" >
+
+    <TextView
+        android:id="@+id/textView1_id_bjzbxh"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="2dip"
+        android:layout_toRightOf="@+id/first_line"
+        android:gravity="center"
+        android:text="序号"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textSize="16sp" />
+
+    <com.example.LeftOrRight.InterceptScrollContainer
+        android:id="@+id/scroollContainter"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/textView1_id_bjzbxh"
+        android:focusable="false" >
+
+        <com.example.LeftOrRight.MyHScrollView
+            android:id="@+id/horizontalScrollView1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:orientation="horizontal" >
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView2_bjzbbjdh"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="报价单号"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView3_bjzbbjrq"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="报价日期"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView4_bjzbkhly"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="客户来源"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView5_bjzbkhxm"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="客户姓名"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjzbkhdh"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="客户电话"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+
+
+
+            </LinearLayout>
+        </com.example.LeftOrRight.MyHScrollView>
+    </com.example.LeftOrRight.InterceptScrollContainer>
+
+</RelativeLayout>

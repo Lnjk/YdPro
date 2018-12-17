@@ -243,4 +243,8 @@ public static final String cust_gzxx_query = base_url
     //报价信息(更新)
     public static final String cust_bjxx_update = base_url
             + "/InfManagePlatform/QuotationupdateQuotation.action";
+//    单据类别
+    //http://oa.ydshce.com:8080/InfManagePlatform/QueryErpInfqueryBilnType.action?accountNo=DB_BJ15&&bil_Id=SA
+public static final String djlb_url = base_url
+        + "/InfManagePlatform/QueryErpInfqueryBilnType.action";
 }

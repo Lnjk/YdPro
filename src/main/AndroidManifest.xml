@@ -194,7 +194,10 @@
         <activity android:name=".SearchMapActivity" />
         <activity android:name=".PoiCityActivity" />
         <activity android:name=".CityPickerActivity" />
-        <activity android:name=".PsHaveCityActivity"></activity>
+        <activity android:name=".PsHaveCityActivity" />
+        <activity android:name=".OfferActivity" />
+        <activity android:name=".OrderActivity" />
+        <activity android:name=".QueryBjdActivity"></activity>
     </application>
 
 </manifest>

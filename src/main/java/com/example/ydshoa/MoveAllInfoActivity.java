@@ -67,9 +67,9 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
     //     记录选中item的下标 //    保存每个item中的checkbox
     private List<Integer> checkedIndexList;
     private List<CheckBox> checkBoxList;
-    private List<String> idList,idList_dz,tel_List;
+    private List<String> idList,idList_dz,tel_List,idList_shr,idList_shdh,idList_ss,idList_qx;
     private AlertDialog alertDialog;
-    private String session,db_zt,user_Id,date_dd,dabh_befor ,sszt_befor,sub_id,sub_dz,url_do;
+    private String session,db_zt,user_Id,date_dd,dabh_befor ,sszt_befor,sub_id,sub_dz,sub_shr,sub_shdh,sub_ss,sub_qx,url_do;
     private TextView dzbh,head,zt,dacard,yhbh,sfmr,xxdz,ss,qx;
     private EditText shr,lxdh;
     private ImageButton zt_xl,mr_xl;
@@ -122,6 +122,10 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
         idList = new ArrayList<String>();
         idList_dz = new ArrayList<String>();
         tel_List = new ArrayList<String>();
+        idList_shr = new ArrayList<String>();
+        idList_shdh = new ArrayList<String>();
+        idList_ss = new ArrayList<String>();
+        idList_qx = new ArrayList<String>();
         checkBoxList = new ArrayList<CheckBox>();
         // 异步加载数据
         getInfoCust();
@@ -203,6 +207,12 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
                     Intent localIntent = getIntent();
                     localIntent.putExtra("ITM_ID", sub_id);
                     localIntent.putExtra("PSXX_DZ", sub_dz);
+                    localIntent.putExtra("PSXX_SHR", sub_shr);
+                    localIntent.putExtra("PSXX_SHDH", sub_shdh);
+                    localIntent.putExtra("PSXX_SS", sub_ss);
+                    localIntent.putExtra("PSXX_QX", sub_qx);
+//                    String stritem = new Gson().toJson(this.idList);
+//                    localIntent.putExtra("PSXX_SHR", stritem);
                     setResult(1, localIntent);
                     finish();
 
@@ -379,8 +389,7 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
 
                     }
                 });
-            }
-        }
+            }        }
 
     }
 
@@ -692,7 +701,7 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
     int checkFalg;
     public class CheckBoxListener implements CompoundButton.OnCheckedChangeListener {
         int positions;
-        private String itm,adress;
+        private String itm,adress,shr_bjd,shdh_bjd,ss_bjd,qx_bjd;
     public CheckBoxListener(int position) {
         this.positions = position;
     }
@@ -705,9 +714,19 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
             int iln = positions;
              itm = custList.get(positions).getITM();
             adress= custList.get(positions).getCon_Add();
+            //报价单应用
+            shr_bjd= custList.get(positions).getCon_Per();
+            shdh_bjd= custList.get(positions).getCon_Tel();
+            ss_bjd= custList.get(positions).getCon_Crt();
+            qx_bjd= custList.get(positions).getCon_Spa();
+            //——————
             checkedIndexList.add(positions);
             idList.add(itm);
             idList_dz.add(adress);
+            idList_shr.add(shr_bjd);
+            idList_shdh.add(shdh_bjd);
+            idList_ss.add(ss_bjd);
+            idList_qx.add(qx_bjd);
             Log.e("LiNing", "--------集合" + checkedIndexList);
             Log.e("LiNing", "--------id集合" + idList+"---"+idList_dz);
 
@@ -722,6 +741,34 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
                 dzs_str += querys_db + ",";
             }
              sub_dz = dzs_str.substring(0, dzs_str.length() - 1);
+            Log.e("LiNing", "--------sub_dz" + sub_dz);
+            // ==================================
+            String shrs_str = "";
+            for (String querys_db : idList_shr) {
+                shrs_str += querys_db + ",";
+            }
+             sub_shr = shrs_str.substring(0, shrs_str.length() - 1);
+            Log.e("LiNing", "--------sub_dz" + sub_dz);
+            // ==================================
+            String shdhs_str = "";
+            for (String querys_db : idList_shdh) {
+                shdhs_str += querys_db + ",";
+            }
+             sub_shdh = shdhs_str.substring(0, shdhs_str.length() - 1);
+            Log.e("LiNing", "--------sub_dz" + sub_dz);
+            // ==================================
+            String sss_str = "";
+            for (String querys_db : idList_ss) {
+                sss_str += querys_db + ",";
+            }
+             sub_ss = sss_str.substring(0, sss_str.length() - 1);
+            Log.e("LiNing", "--------sub_dz" + sub_dz);
+            // ==================================
+            String qx_str = "";
+            for (String querys_db : idList_qx) {
+                qx_str += querys_db + ",";
+            }
+             sub_qx = qx_str.substring(0, qx_str.length() - 1);
             Log.e("LiNing", "--------sub_dz" + sub_dz);
             // ==================================
             //修改数据
@@ -746,6 +793,10 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
             Log.e("LiNing", "--------删除集合" + checkedIndexList);
             idList.remove(itm);
             idList_dz.remove(adress);
+            idList_shr.remove(shr_bjd);
+            idList_shdh.remove(shdh_bjd);
+            idList_ss.remove(ss_bjd);
+            idList_qx.remove(qx_bjd);
             Log.e("LiNing", "--------删除id集合" + idList);
             Log.e("LiNing", "--------删除id集合" + idList_dz);
             if (idList != null && idList.size() > 0) {

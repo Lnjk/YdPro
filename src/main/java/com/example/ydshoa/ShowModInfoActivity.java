@@ -775,77 +775,72 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 	// 全部模块
 	ArrayList<String> list_sys = new ArrayList<String>() {
 		{
-			add("smrtra");
-			add("smrtrc");
-			add("smrtru");
-			add("smrt");
-			add("smprice");
-			add("sm");
-			add("sptrt");
-			add("sptsa");
-			add("spt");
-			add("spmrt");
+			add("smrtra");//43
+			add("smrtrc");//44
+			add("smrtru");//45
+			add("smrt");//42
+			add("sm");//40
+			add("sptrt");//52
+			add("sptsa");//53
+			add("spt");//51
+			add("spmrt");//49
+			add("spmsa");//50
+			add("spm");//销售统计表//47
+			add("spmarp");//48
+			add("sp");//46
+			add("sys");//62
+			add("smprice");//41
 
-			add("SATG");
-			add("SATGP");
-			add("SATGPC");
-			add("SATGPD");
-			add("SATGPCS");
-			add("SATGPGC");
-			add("SATGC");
-			add("STAGCD");
-			add("STAGCS");
-			add("STAGCGC");
-			add("SATGD");
-			add("STAGDS");
-			add("STAGDGC");
-			add("STAGS");
-			add("STAGSGC");
-			add("STAGGC");
-			add("SATGPPN");
-			add("SATGPI");
-			add("SATGPIPN");
-			add("SATGPCPN");
-			add("SATGPCI");
-			add("SATGPCIPN");
-			add("SATGPDPN");
-			add("SATGPDI");
-			add("SATGPDIPN");
-			add("SATGPSPN");
-			add("SATGPSI");
-			add("SATGPSIPN");
-			add("SATGPGCPN");
-			add("SATGPGCI");
-			add("SATGPGCIPN");
+			add("SATG");//13
+			add("SATGP");//16
+			add("SATGPC");//17
+			add("SATGPD");//22
+			add("SATGPCS");//21
+			add("SATGPGC");//26
+			add("SATGC");//14
+			add("STAGCD");//54
+			add("STAGCS");//56
+			add("STAGCGC");//55
+			add("SATGD");//15
+			add("STAGDS");//58
+			add("STAGDGC");//57
+			add("STAGS");//60
+			add("STAGSGC");//61
+			add("STAGGC");//59
+			add("SATGPPN");//32
+			add("SATGPI");//30
+			add("SATGPIPN");//31
+			add("SATGPCPN");//20
+			add("SATGPCI");//18
+			add("SATGPCIPN");//19
+			add("SATGPDPN");//25
+			add("SATGPDI");//23
+			add("SATGPDIPN");//24
+			add("SATGPSPN");//35
+			add("SATGPSI");//33
+			add("SATGPSIPN");//34
+			add("SATGPGCPN");//29
+			add("SATGPGCI");//27
+			add("SATGPGCIPN");//28
 
-			add("ARPTG");
-			add("ARPTGGC");
-			add("ArpTGP");
-			add("ArpTGC");
-			add("ArpTGS");
-			add("ArpTGD");
-			add("ArpTGPC");
-			add("ArpTGPD");
-			add("ArpTGPS");
-			add("ArpTGPGC");
-			add("ArpTGPCGC");
-			add("ArpTGPDGC");
-			add("ArpTGPSGC");
+			add("ArpTG");//0
+			add("ArpTGGC");//3
+			add("ArpTGP");//4
+			add("ArpTGC");//1
+			add("ArpTGS");//12
+			add("ArpTGD");//2
+			add("ArpTGPC");//5
+			add("ArpTGPD");//7
+			add("ArpTGPS");//10
+			add("ArpTGPGC");//9
+			add("ArpTGPCGC");//6
+			add("ArpTGPDGC");//8
+			add("ArpTGPSGC");//11
 
-			add("spmsa");
-			add("spm");//销售统计表
-
-			add("sprarp");
-			add("spr");//应收统计表
-
-			add("sp");
-
-			add("skvp");
-			add("skf");
-			add("skh");
-			add("sk");
-
-			add("sys");
+			add("skvp");//39
+			add("skf");//37
+			add("skh");//38
+			add("sk");//36
 		}
 
 	};
@@ -892,8 +887,8 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 			add("SATGPGCI");
 			add("SATGPGCIPN");
 
-			add("ARPTG");
-			add("ARPTGGC");
+			add("ArpTG");
+			add("ArpTGGC");
 			add("ArpTGP");
 			add("ArpTGC");
 			add("ArpTGS");
@@ -912,8 +907,8 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 	ArrayList<String> list_spmarp = new ArrayList<String>() {
 		{
 			add("spmarp");
-			add("ARPTG");
-			add("ARPTGGC");
+			add("ArpTG");
+			add("ArpTGGC");
 			add("ArpTGP");
 			add("ArpTGC");
 			add("ArpTGS");
@@ -1005,8 +1000,8 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 			add("SATGPGCI");
 			add("SATGPGCIPN");
 			add("spmarp");
-			add("ARPTG");
-			add("ARPTGGC");
+			add("ArpTG");
+			add("ArpTGGC");
 			add("ArpTGP");
 			add("ArpTGC");
 			add("ArpTGS");
@@ -1145,8 +1140,6 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 					nameInfo = "分支机构+品牌+渠道销售统计表";
 				} else if (ids_str.equals("SATGPD")) {
 					nameInfo = "分支机构+品牌+部门销售统计表";
-				}else if (ids_str.equals("SATGPD")) {
-					nameInfo = "分支机构+品牌+部门销售统计表";
 				}else if (ids_str.equals("SATGPCS")) {
 					nameInfo = "分支机构+品牌+业务销售统计表";
 				}else if (ids_str.equals("SATGPGC")) {
@@ -1204,9 +1197,9 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 				}else if (ids_str.equals("spmsa")) {
 					nameInfo = "销售统计表";
 				}else
-				if (ids_str.equals("ARPTG")) {
+				if (ids_str.equals("ArpTG")) {
 					nameInfo = "分支机构应收账龄表";
-				} else if (ids_str.equals("ARPTGGC")) {
+				} else if (ids_str.equals("ArpTGGC")) {
 					nameInfo = "机构+终端网点应收账龄表";
 				} else if (ids_str.equals("ArpTGP")) {
 					nameInfo = "机构+核算单位应收账龄表";
@@ -1273,9 +1266,9 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 			for (int j = 0; j < list_spmarp.size(); j++) {
 				ids_str = list_spmarp.get(j);
 				Log.e("LiNing", "ids_str数据是===" + ids_str);
-				if (ids_str.equals("ARPTG")) {
+				if (ids_str.equals("ArpTG")) {
 					nameInfo = "分支机构应收账龄表";
-				} else if (ids_str.equals("ARPTGGC")) {
+				} else if (ids_str.equals("ArpTGGC")) {
 					nameInfo = "机构+终端网点应收账龄表";
 				} else if (ids_str.equals("ArpTGP")) {
 					nameInfo = "机构+核算单位应收账龄表";
@@ -1340,8 +1333,6 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 				} else if (ids_str.equals("SATGPC")) {
 					nameInfo = "分支机构+品牌+渠道销售统计表";
 				} else if (ids_str.equals("SATGPD")) {
-					nameInfo = "分支机构+品牌+部门销售统计表";
-				}else if (ids_str.equals("SATGPD")) {
 					nameInfo = "分支机构+品牌+部门销售统计表";
 				}else if (ids_str.equals("SATGPCS")) {
 					nameInfo = "分支机构+品牌+业务销售统计表";
@@ -1528,8 +1519,6 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 					nameInfo = "分支机构+品牌+渠道销售统计表";
 				} else if (ids_str.equals("SATGPD")) {
 					nameInfo = "分支机构+品牌+部门销售统计表";
-				}else if (ids_str.equals("SATGPD")) {
-					nameInfo = "分支机构+品牌+部门销售统计表";
 				}else if (ids_str.equals("SATGPCS")) {
 					nameInfo = "分支机构+品牌+业务销售统计表";
 				}else if (ids_str.equals("SATGPGC")) {
@@ -1587,9 +1576,9 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 				}else if (ids_str.equals("spmsa")) {
 					nameInfo = "销售统计表";
 				}else
-				if (ids_str.equals("ARPTG")) {
+				if (ids_str.equals("ArpTG")) {
 					nameInfo = "分支机构应收账龄表";
-				} else if (ids_str.equals("ARPTGGC")) {
+				} else if (ids_str.equals("ArpTGGC")) {
 					nameInfo = "机构+终端网点应收账龄表";
 				} else if (ids_str.equals("ArpTGP")) {
 					nameInfo = "机构+核算单位应收账龄表";
@@ -1667,8 +1656,6 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 					nameInfo = "分支机构+品牌+渠道销售统计表";
 				} else if (ids_str.equals("SATGPD")) {
 					nameInfo = "分支机构+品牌+部门销售统计表";
-				}else if (ids_str.equals("SATGPD")) {
-					nameInfo = "分支机构+品牌+部门销售统计表";
 				}else if (ids_str.equals("SATGPCS")) {
 					nameInfo = "分支机构+品牌+业务销售统计表";
 				}else if (ids_str.equals("SATGPGC")) {
@@ -1726,9 +1713,9 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 				}else if (ids_str.equals("spmsa")) {
 					nameInfo = "销售统计表";
 				}else
-				if (ids_str.equals("ARPTG")) {
+				if (ids_str.equals("ArpTG")) {
 					nameInfo = "分支机构应收账龄表";
-				} else if (ids_str.equals("ARPTGGC")) {
+				} else if (ids_str.equals("ArpTGGC")) {
 					nameInfo = "机构+终端网点应收账龄表";
 				} else if (ids_str.equals("ArpTGP")) {
 					nameInfo = "机构+核算单位应收账龄表";

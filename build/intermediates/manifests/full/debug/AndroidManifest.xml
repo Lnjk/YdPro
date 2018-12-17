@@ -197,6 +197,9 @@
         <activity android:name="com.example.ydshoa.PoiCityActivity" />
         <activity android:name="com.example.ydshoa.CityPickerActivity" />
         <activity android:name="com.example.ydshoa.PsHaveCityActivity" />
+        <activity android:name="com.example.ydshoa.OfferActivity" />
+        <activity android:name="com.example.ydshoa.OrderActivity" />
+        <activity android:name="com.example.ydshoa.QueryBjdActivity" />
         <activity
             android:name="com.lljjcoder.style.citylist.CityListSelectActivity"
             android:screenOrientation="portrait"

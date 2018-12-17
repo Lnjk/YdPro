@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_bg"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:padding="5.0dip" >
+
+     <CheckBox
+         android:id="@+id/bjmx_listDeleteCheckBox"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentLeft="true"
+         android:clickable="true"
+         android:focusable="false"
+         android:visibility="invisible" />
+
+     <View
+         android:id="@+id/first_line"
+         android:layout_width="1dp"
+         android:layout_height="25dp"
+         android:background="@color/color_dark_grey"
+         android:layout_toRightOf="@+id/bjmx_listDeleteCheckBox"/>
+
+    <TextView
+        android:id="@+id/textView1_id_bjmxxh"
+        android:layout_width="60dip"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="2dip"
+        android:layout_toRightOf="@+id/first_line"
+        android:gravity="center"
+        android:text="序号"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textSize="16sp" />
+
+    <com.example.LeftOrRight.InterceptScrollContainer
+        android:id="@+id/scroollContainter"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/textView1_id_bjmxxh"
+        android:focusable="false" >
+
+        <com.example.LeftOrRight.MyHScrollView
+            android:id="@+id/horizontalScrollView1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:orientation="horizontal" >
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView2_bjmxpm"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="品名"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView3_bjmxph"
+                    android:layout_width="60dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="品号"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView4_bjmxsh"
+                    android:layout_width="60dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="色号"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView5_bjmxkw"
+                    android:layout_width="60dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="库位"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView6_bjmxdw"
+                    android:layout_width="60dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="单位"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView7_bjmxsl"
+                    android:layout_width="60dip"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="2.0dip"
+                    android:text="数量"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/textView8_bjmxdj"
+                    android:layout_width="60dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="单价"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxzk"
+                    android:layout_width="60dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="折扣"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxje"
+                    android:layout_width="60dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="金额"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxjgdh"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="价格代号"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxzcdj"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="政策单价"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxtybj"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="统一标价"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxzdsj"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="最低售价"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxbzcb"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="标准成本"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxygml"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="预估毛利"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxmll"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="毛利率"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxsdsl"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="受订数量"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxscsl"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="生产数量"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxspgg"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="商品规格"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxbzdw"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="包装单位"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxbzhs"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="包装换算"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxbzsl"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="包装数量"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxbzzl"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="包装重量"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxspzl"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="商品重量"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxbzdx"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="包装大小"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+            </LinearLayout>
+        </com.example.LeftOrRight.MyHScrollView>
+    </com.example.LeftOrRight.InterceptScrollContainer>
+
+</RelativeLayout>

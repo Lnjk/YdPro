@@ -50,6 +50,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import net.sf.json.JSONArray;
+
 public class ModListActivity extends Activity implements OnClickListener {
 	private RadioGroup rg_one;
 	private TextView head;
@@ -163,6 +165,7 @@ public class ModListActivity extends Activity implements OnClickListener {
 									map.put(data.get(i).getMod_ID().toString(),
 											data.get(i).getMod_Level()
 													.toString());
+
 								}
 								Map<String, ArrayList<String>> map2 = new HashMap<String, ArrayList<String>>();
 								String entryValue = null;
@@ -191,6 +194,7 @@ public class ModListActivity extends Activity implements OnClickListener {
 									}
 								}
 								Log.e("LiNing", "data--------" + map2);
+
 							}
 
 						});

@@ -97,6 +97,7 @@
             android:background="@null"
             android:hint="验证码(区分大小写)"
             android:padding="5dp"
+            android:maxLength="6"
             android:textSize="14sp" />
 
         <ImageView

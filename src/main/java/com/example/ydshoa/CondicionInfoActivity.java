@@ -79,6 +79,7 @@ public class CondicionInfoActivity extends Activity implements OnClickListener {
 	private String url_prdWh = URLS.prdWh;
 	private String url_chkUser = URLS.ERP_user_url;
 	private String url_zt = URLS.ERP_db_url;
+	private String url_djlb = URLS.djlb_url;
 	// id转name
 	// private String url_idToDB = URLS.ERP_db_url;
 	private String url_idTodep = URLS.ERP_dep_url;
@@ -86,7 +87,7 @@ public class CondicionInfoActivity extends Activity implements OnClickListener {
 	private String url_idTouser = URLS.ERP_user_url;
 	String url_idTohs = URLS.ERP_hs_url;
 	String url_Myinfo = URLS.userInfo_url;
-	private FormBody body;
+	private FormBody body,body_yw;
 	private UserInfo info;
 	private FormBody body_base;
 	private String url_base;
@@ -277,6 +278,11 @@ public class CondicionInfoActivity extends Activity implements OnClickListener {
 			depInfo.add(mnsj3);
 			showCheckBoxListView();
 		}
+		if (extraFlag.equals("22")) {
+			head.setText("单据类别");
+			getClassinfo();
+		}
+
 	}
 
 	
@@ -285,38 +291,49 @@ public class CondicionInfoActivity extends Activity implements OnClickListener {
 		extraId = getIntent().getStringExtra("queryID");
 		Log.e("LiNing", "====" + extraId + "===" + query_DB);
 		OkHttpClient client = new OkHttpClient();
-		FormBody body = new FormBody.Builder().add("accountNo", extraId)
-				.build();
+		if(extraFlag.equals("22")){
+			body_yw = new FormBody.Builder().add("accountNo", extraId)
+					.add("bil_Id","SA")
+					.build();
+		}else{
 
+			body_yw = new FormBody.Builder().add("accountNo", extraId)
+					.build();
+		}
 		if (extraFlag.equals("15")) {
 
 			localRequest = new Request.Builder().addHeader("cookie", session)
-					.post(body).url(url_chkUser).build();
+					.post(body_yw).url(url_chkUser).build();
 		}
 		if (extraFlag.equals("16")) {
 
 			localRequest = new Request.Builder().addHeader("cookie", session)
-					.post(body).url(url_area).build();
+					.post(body_yw).url(url_area).build();
 		}
 		if (extraFlag.equals("17")) {
 
 			localRequest = new Request.Builder().addHeader("cookie", session)
-					.post(body).url(url_employee).build();
+					.post(body_yw).url(url_employee).build();
 		}
 		if (extraFlag.equals("18")) {
 
 			localRequest = new Request.Builder().addHeader("cookie", session)
-					.post(body).url(url_prdNo).build();
+					.post(body_yw).url(url_prdNo).build();
 		}
 		if (extraFlag.equals("19")) {
 
 			localRequest = new Request.Builder().addHeader("cookie", session)
-					.post(body).url(url_prdIndex).build();
+					.post(body_yw).url(url_prdIndex).build();
 		}
 		if (extraFlag.equals("20")) {
 
 			localRequest = new Request.Builder().addHeader("cookie", session)
-					.post(body).url(url_prdWh).build();
+					.post(body_yw).url(url_prdWh).build();
+		}
+		if (extraFlag.equals("22")) {
+
+			localRequest = new Request.Builder().addHeader("cookie", session)
+					.post(body_yw).url(url_djlb).build();
 		}
 		client.newCall(localRequest).enqueue(new Callback() {
 

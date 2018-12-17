@@ -38,6 +38,6 @@ public class SalesManageActivity extends Activity {
 
     public void offer(View v) {
 
-//        startActivity(new Intent(context, PriceActivity.class));
+        startActivity(new Intent(context, OfferActivity.class));
     }
 }

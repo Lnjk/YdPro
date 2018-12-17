@@ -34,7 +34,6 @@
         style="@style/price_ll1"
         android:orientation="horizontal">
 
-
         <Button
             android:id="@+id/btn_cust_all_query"
             style="@style/price_button"
