@@ -213,6 +213,10 @@
                     <TextView
                         android:id="@+id/et_offer_all_tjmj"
                         style="@style/design_editext" />
+                    <ImageButton
+                        android:id="@+id/ib_offer_all_tjmj"
+                        style="@style/price_button_down"
+                        />
 
                 </LinearLayout>
             </LinearLayout>

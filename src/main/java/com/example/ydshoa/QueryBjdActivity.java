@@ -733,4 +733,7 @@ public class QueryBjdActivity extends Activity implements View.OnClickListener {
             this.mScrollViewArg.smoothScrollTo(paramInt1, paramInt2);
         }
     }
+    public void allback(View v) {
+        finish();
+    }
 }

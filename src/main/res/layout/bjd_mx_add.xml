@@ -99,7 +99,7 @@
                         style="@style/design_name"
                         android:text="库位:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_mx_add_kw"
                         style="@style/design_editext" />
 
@@ -111,7 +111,7 @@
                         style="@style/price_name"
                         android:text="单位:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_mx_add_dw"
                         style="@style/design_editext" />
 
@@ -126,7 +126,10 @@
 
 
                 <LinearLayout style="@style/price_ll2">
-
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
                     <TextView
                         style="@style/design_name"
                         android:text="数量:" />
@@ -138,7 +141,10 @@
                 </LinearLayout>
 
                 <LinearLayout style="@style/price_ll2">
-
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
                     <TextView
                         style="@style/price_name"
                         android:text="单价:" />
@@ -158,7 +164,10 @@
 
 
                 <LinearLayout style="@style/price_ll2">
-
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
                     <TextView
                         style="@style/design_name"
                         android:text="折扣:" />
@@ -176,9 +185,10 @@
                         style="@style/price_name"
                         android:text="金额:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_mx_add_je"
-                        style="@style/design_editext" />
+                        style="@style/design_editext"
+                        android:hint="点击获取"/>
 
 
                 </LinearLayout>
@@ -197,7 +207,7 @@
                         style="@style/design_name"
                         android:text="价格代号:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_mx_add_jgdh"
                         style="@style/design_editext" />
 
@@ -210,7 +220,7 @@
                         style="@style/price_name"
                         android:text="政策单价:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_mx_add_zcdj"
                         style="@style/design_editext" />
 
@@ -230,7 +240,7 @@
                         style="@style/design_name"
                         android:text="统一标价" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_mx_add_tybj"
                         style="@style/design_editext" />
 
@@ -243,7 +253,7 @@
                         style="@style/price_name"
                         android:text="最低售价:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_mx_add_zdsj"
                         style="@style/design_editext" />
 
@@ -263,7 +273,7 @@
                         style="@style/design_name"
                         android:text="标准成本:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_mx_add_bzcb"
                         style="@style/design_editext" />
 
@@ -275,9 +285,10 @@
                         style="@style/price_name"
                         android:text="预估毛利:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_mx_add_ygml"
-                        style="@style/design_editext" />
+                        style="@style/design_editext"
+                        android:hint="点击获取"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -295,9 +306,10 @@
                         style="@style/price_name"
                         android:text="毛利率:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_mx_add_mll"
-                        style="@style/design_editext" />
+                        style="@style/design_editext"
+                        android:hint="点击获取"/>
                 </LinearLayout>
 
                 <LinearLayout style="@style/price_ll2">
@@ -327,7 +339,7 @@
                         style="@style/design_name"
                         android:text="生产数量:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_mx_add_scsl"
                         style="@style/design_editext" />
 
@@ -339,7 +351,7 @@
                         style="@style/price_name"
                         android:text="商品规格:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_mx_add_spgg"
                         style="@style/design_editext" />
 
@@ -360,7 +372,7 @@
 
                         android:text="包装单位:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_mx_add_bzdw"
                         style="@style/design_editext" />
 
@@ -373,7 +385,7 @@
                         style="@style/price_name"
                         android:text="包装换算:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_mx_add_bzhs"
                         style="@style/design_editext" />
 
@@ -393,9 +405,10 @@
                         style="@style/design_name"
                         android:text="包装数量:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_mx_add_bzsl"
-                        style="@style/design_editext" />
+                        style="@style/design_editext"
+                        android:hint="点击获取"/>
 
 
                 </LinearLayout>
@@ -406,7 +419,7 @@
                         style="@style/price_name"
                         android:text="包装重量:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_mx_add_bzzl"
                         style="@style/design_editext" />
 
@@ -426,7 +439,7 @@
                         style="@style/design_name"
                         android:text="商品重量:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_mx_add_spzl"
                         style="@style/design_editext" />
 
@@ -439,7 +452,7 @@
                         style="@style/price_name"
                         android:text="包装大小:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_mx_add_bzdx"
                         style="@style/design_editext" />
 

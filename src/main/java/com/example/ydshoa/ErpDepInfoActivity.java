@@ -72,6 +72,8 @@ public class ErpDepInfoActivity extends Activity implements OnClickListener {
 	String urlCust = URLS.ERP_cust_url;
 	// 用户
 	String urlUser = URLS.ERP_user_url;
+	//品号
+	private String url_prdNo = URLS.prdNo_url;
 	//单据类别
 	private String url_djlb = URLS.djlb_url;
 	private String idString;
@@ -126,11 +128,66 @@ public class ErpDepInfoActivity extends Activity implements OnClickListener {
 
 			requestuser();
 		}
-		// 3，获取单据类别
+		// 4，获取单据类别
 		if (extraFlag.equals("22")) {
 
 			requestdjlb();
 		}
+		// 5，获取品号（单选）
+		if (extraFlag.equals("18")) {
+
+			requestph();
+		}
+	}
+
+	private void requestph() {
+		OkHttpClient client = new OkHttpClient();
+		FormBody body = new FormBody.Builder().add("accountNo", dBID).build();
+		Request request = new Request.Builder().addHeader("cookie", session)
+				.url(url_prdNo).post(body).build();
+		Call call = client.newCall(request);
+		call.enqueue(new Callback() {
+
+			@Override
+			public void onResponse(Call call, Response response)
+					throws IOException {
+				String struser = response.body().string();
+				Log.e("LiNing", "用户数据===" + struser);
+
+				final DepInfo dInfo = new Gson().fromJson(struser,
+						DepInfo.class);
+				if (dInfo.isRLO() == false) {
+					ErpDepInfoActivity.this.runOnUiThread(new Runnable() {
+
+						@Override
+						public void run() {
+							Toast.makeText(context, "数据库已断开",
+									Toast.LENGTH_SHORT).show();
+						}
+					});
+				} else {
+
+					if (dInfo != null) {
+						ErpDepInfoActivity.this.runOnUiThread(new Runnable() {
+
+							@Override
+							public void run() {
+								depInfo = dInfo.getIdNameList();
+								showCheckBoxListViewDep();
+							}
+
+						});
+					} else {
+						Toast.makeText(context, "数据为空", Toast.LENGTH_LONG).show();
+					}
+				}
+			}
+
+			@Override
+			public void onFailure(Call arg0, IOException arg1) {
+
+			}
+		});
 	}
 
 	private void requestdjlb() {
@@ -354,6 +411,7 @@ public class ErpDepInfoActivity extends Activity implements OnClickListener {
 					// Toast.makeText(context,
 					// "您选择的是：" + selectBrand.getId() + position,
 					// Toast.LENGTH_SHORT).show();
+					Log.e("LiNing","---"+selectID+"---"+name);
 				}
 			});
 		} else {

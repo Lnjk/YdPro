@@ -423,8 +423,10 @@ private List<QuotationList> QuotationList;
                     '}';
         }
     }
-    public class QuotationT implements Serializable
+    public static class QuotationT implements Serializable
     {
+
+
         private String AFFIX;
 
         private String AMTN;

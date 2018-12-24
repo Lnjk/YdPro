@@ -62,7 +62,8 @@ public class QueryCustersActivity extends Activity {
 
     private void initView() {
         head = (TextView) findViewById(R.id.all_head);
-        head.setText("设计师查询");
+//        head.setText("设计师查询");
+        head.setText("客户查询");
         lv_cust_qry = (ListView) findViewById(R.id.lv_cust_header_query);
         getAllInfos();
         lv_cust_qry.setOnItemClickListener(new AdapterView.OnItemClickListener() {
