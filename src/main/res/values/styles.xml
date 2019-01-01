@@ -211,7 +211,7 @@
         <item name="android:background">@null</item>
         <item name="android:textSize">12.0sp</item>
     </style>
-    <!--//呵护跟踪信息-->
+    <!--//客户跟踪信息-->
     <style name="gzxx">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">0dp</item>
@@ -220,5 +220,15 @@
         <item name="android:button">@null</item>
         <item name="android:background">@drawable/gz_selec</item>
         <item name="android:textSize">12sp</item>
+    </style>
+    <!--//收款单、票据金额-->
+    <style name="skd_pjje_ed">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:singleLine">true</item>
     </style>
 </resources>

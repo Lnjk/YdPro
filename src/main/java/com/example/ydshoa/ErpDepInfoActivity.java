@@ -57,15 +57,6 @@ public class ErpDepInfoActivity extends Activity implements OnClickListener {
 	// 搜索
 	private EditText infoId, infoName, infoAll;
 	private ImageButton search;
-	// // 部门
-	// String urlDep =
-	// "http://192.168.2.178:8080/InfManagePlatform/QueryErpInfqueryDepartment.action";
-	// // 客户
-	// String urlCust =
-	// "http://192.168.2.178:8080/InfManagePlatform/QueryErpInfqueryCustomer.action";
-	// // 用户
-	// String urlUser =
-	// "http://192.168.2.178:8080/InfManagePlatform/QueryErpInfqueryErpUser.action";
 	// 部门
 	String urlDep = URLS.ERP_dep_url;
 	// 客户
@@ -76,6 +67,10 @@ public class ErpDepInfoActivity extends Activity implements OnClickListener {
 	private String url_prdNo = URLS.prdNo_url;
 	//单据类别
 	private String url_djlb = URLS.djlb_url;
+	//业务
+	private String url_employee = URLS.employee_url;
+	//中类
+	private String url_prdIndex = URLS.prdIndex;
 	private String idString;
 	private String nameString;
 	private String allString;
@@ -128,6 +123,14 @@ public class ErpDepInfoActivity extends Activity implements OnClickListener {
 
 			requestuser();
 		}
+		if (extraFlag.equals("5")) {
+
+			requestYw();
+		}
+		if (extraFlag.equals("6")) {
+
+			requestZl();
+		}
 		// 4，获取单据类别
 		if (extraFlag.equals("22")) {
 
@@ -138,6 +141,106 @@ public class ErpDepInfoActivity extends Activity implements OnClickListener {
 
 			requestph();
 		}
+	}
+
+	private void requestZl() {
+		OkHttpClient client = new OkHttpClient();
+		FormBody body = new FormBody.Builder().add("accountNo", dBID).build();
+		Request request = new Request.Builder().addHeader("cookie", session)
+				.url(url_prdIndex).post(body).build();
+		Call call = client.newCall(request);
+		call.enqueue(new Callback() {
+
+			@Override
+			public void onResponse(Call call, Response response)
+					throws IOException {
+				String struser = response.body().string();
+				Log.e("LiNing", "用户数据===" + struser);
+
+				final DepInfo dInfo = new Gson().fromJson(struser,
+						DepInfo.class);
+				if (dInfo.isRLO() == false) {
+					ErpDepInfoActivity.this.runOnUiThread(new Runnable() {
+
+						@Override
+						public void run() {
+							Toast.makeText(context, "数据库已断开",
+									Toast.LENGTH_SHORT).show();
+						}
+					});
+				} else {
+
+					if (dInfo != null) {
+						ErpDepInfoActivity.this.runOnUiThread(new Runnable() {
+
+							@Override
+							public void run() {
+								depInfo = dInfo.getIdNameList();
+								showCheckBoxListViewDep();
+							}
+
+						});
+					} else {
+						Toast.makeText(context, "数据为空", Toast.LENGTH_LONG).show();
+					}
+				}
+			}
+
+			@Override
+			public void onFailure(Call arg0, IOException arg1) {
+
+			}
+		});
+	}
+
+	private void requestYw() {
+		OkHttpClient client = new OkHttpClient();
+		FormBody body = new FormBody.Builder().add("accountNo", dBID).build();
+		Request request = new Request.Builder().addHeader("cookie", session)
+				.url(url_employee).post(body).build();
+		Call call = client.newCall(request);
+		call.enqueue(new Callback() {
+
+			@Override
+			public void onResponse(Call call, Response response)
+					throws IOException {
+				String struser = response.body().string();
+				Log.e("LiNing", "用户数据===" + struser);
+
+				final DepInfo dInfo = new Gson().fromJson(struser,
+						DepInfo.class);
+				if (dInfo.isRLO() == false) {
+					ErpDepInfoActivity.this.runOnUiThread(new Runnable() {
+
+						@Override
+						public void run() {
+							Toast.makeText(context, "数据库已断开",
+									Toast.LENGTH_SHORT).show();
+						}
+					});
+				} else {
+
+					if (dInfo != null) {
+						ErpDepInfoActivity.this.runOnUiThread(new Runnable() {
+
+							@Override
+							public void run() {
+								depInfo = dInfo.getIdNameList();
+								showCheckBoxListViewDep();
+							}
+
+						});
+					} else {
+						Toast.makeText(context, "数据为空", Toast.LENGTH_LONG).show();
+					}
+				}
+			}
+
+			@Override
+			public void onFailure(Call arg0, IOException arg1) {
+
+			}
+		});
 	}
 
 	private void requestph() {

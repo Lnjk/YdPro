@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ydshoa.BillAmtActivity">
+
+    <include layout="@layout/head_cust_gz" />
+
+    <View style="@style/price_view" />
+
+    <TableRow>
+
+        <TextView
+            style="@style/skd_pjje_ed"
+            android:text="外币代号" />
+
+        <TextView
+            style="@style/skd_pjje_ed"
+            android:text="外币名称" />
+
+        <TextView
+            style="@style/skd_pjje_ed"
+            android:text="=" />
+
+        <TextView
+            style="@style/skd_pjje_ed"
+            android:text="本外币" />
+
+
+    </TableRow>
+
+    <View style="@style/price_view" />
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/et_skd_wbdh"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            android:hint="点击" />
+
+        <EditText
+            android:id="@+id/et_skd_wbmc"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg" />
+
+        <TextView
+            android:id="@+id/et_skd_dy"
+            style="@style/skd_pjje_ed"
+            android:text="=" />
+
+        <EditText
+            android:id="@+id/et_skd_bwb"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg" />
+
+    </TableRow>
+
+    <View style="@style/price_view" />
+
+    <TableRow
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btn_skd_bbok"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:textSize="14sp"
+            android:background="@drawable/button"
+            android:text="确认" />
+        <Button
+            android:id="@+id/btn_skd_bbqx"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:textSize="14sp"
+            android:background="@drawable/button"
+            android:layout_marginLeft="10dp"
+            android:text="取消" />
+    </TableRow>
+</TableLayout>

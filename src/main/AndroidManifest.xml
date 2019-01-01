@@ -197,7 +197,10 @@
         <activity android:name=".PsHaveCityActivity" />
         <activity android:name=".OfferActivity" />
         <activity android:name=".OrderActivity" />
-        <activity android:name=".QueryBjdActivity"></activity>
+        <activity android:name=".QueryBjdActivity" />
+        <activity android:name=".ReceiptActivity" />
+        <activity android:name=".BillAmtActivity"
+            />
     </application>
 
 </manifest>

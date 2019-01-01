@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--sigle：单选/all:多选-->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/check1_kpyh"
+            android:title="1,建设银行"/>
+        <item
+            android:id="@+id/check2_kpyh"
+            android:title="2,工商银行"/>
+        <item
+            android:id="@+id/check3_kpyh"
+            android:title="3,农业银行"/>
+        <item
+            android:id="@+id/check4_kpyh"
+            android:title="4,邮政储蓄"/>
+        <item
+            android:id="@+id/check5_kpyh"
+            android:title="5,招商银行"/>
+    </group>
+
+</menu>

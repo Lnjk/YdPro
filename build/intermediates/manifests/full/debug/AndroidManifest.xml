@@ -200,6 +200,8 @@
         <activity android:name="com.example.ydshoa.OfferActivity" />
         <activity android:name="com.example.ydshoa.OrderActivity" />
         <activity android:name="com.example.ydshoa.QueryBjdActivity" />
+        <activity android:name="com.example.ydshoa.ReceiptActivity" />
+        <activity android:name="com.example.ydshoa.BillAmtActivity" />
         <activity
             android:name="com.lljjcoder.style.citylist.CityListSelectActivity"
             android:screenOrientation="portrait"

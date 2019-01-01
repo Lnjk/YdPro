@@ -1483,7 +1483,9 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                         resultStr = NetUtil.readString(is);
                         Log.e("LiNing", "ddddddddddd" + resultStr);
 //                        如果为true清空数据
-
+                        if(resultStr.equals("true")){
+                            clearInfos();
+                        }
                         // startActivity(new Intent(context,
                         // CusterInfoActivity.class));
                         // finish();

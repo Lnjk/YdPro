@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ydshoa.BillAmtActivity">
+    <include layout="@layout/head_cust_gz" />
+    <View style="@style/price_view" />
+    <TableRow>
+
+        <TextView
+            style="@style/skd_pjje_ed"
+            android:text="票别" />
+        <TextView
+            style="@style/skd_pjje_ed"
+            android:text="票据号码" />
+
+        <TextView
+            style="@style/skd_pjje_ed"
+            android:text="金额" />
+
+        <TextView
+            style="@style/skd_pjje_ed"
+            android:text="开票银行" />
+
+        <TextView
+            style="@style/skd_pjje_ed"
+            android:text="兑现帐户" />
+
+        <TextView
+            style="@style/skd_pjje_ed"
+            android:text="到期日" />
+
+    </TableRow>
+
+    <View style="@style/price_view" />
+    <TableRow>
+
+        <TextView
+            android:id="@+id/tv_pjje_pb_one"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            android:hint="点击" />
+
+        <EditText
+            android:id="@+id/et_pjje_pjhm_one"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+             />
+
+        <EditText
+            android:id="@+id/et_pjje_je_one"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            />
+
+        <TextView
+            android:id="@+id/et_pjje_kpyh_one"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            android:hint="点击" />
+
+        <EditText
+            android:id="@+id/et_pjje_dxzh_one"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+             />
+
+        <TextView
+            android:id="@+id/tv_pjje_time_one"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            android:hint="点击" />
+
+    </TableRow>
+    <View style="@style/price_view" />
+    <TableRow>
+
+        <TextView
+            android:id="@+id/tv_pjje_pb_two"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            android:hint="点击" />
+
+        <EditText
+            android:id="@+id/et_pjje_pjhm_two"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+             />
+
+        <EditText
+            android:id="@+id/et_pjje_je_two"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            />
+
+        <TextView
+            android:id="@+id/et_pjje_kpyh_two"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            android:hint="点击" />
+
+        <EditText
+            android:id="@+id/et_pjje_dxzh_two"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+             />
+
+        <TextView
+            android:id="@+id/tv_pjje_time_two"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            android:hint="点击" />
+
+    </TableRow>
+    <View style="@style/price_view" />
+    <TableRow>
+
+        <TextView
+            android:id="@+id/tv_pjje_pb_three"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            android:hint="点击" />
+
+        <EditText
+            android:id="@+id/et_pjje_pjhm_three"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+             />
+
+        <EditText
+            android:id="@+id/et_pjje_je_three"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            />
+
+        <TextView
+            android:id="@+id/et_pjje_kpyh_three"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            android:hint="点击" />
+
+        <EditText
+            android:id="@+id/et_pjje_dxzh_three"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+             />
+
+        <TextView
+            android:id="@+id/tv_pjje_time_three"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            android:hint="点击" />
+
+    </TableRow>
+    <View style="@style/price_view" />
+    <TableRow>
+
+        <TextView
+            android:id="@+id/tv_pjje_pb_four"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            android:hint="点击" />
+
+        <EditText
+            android:id="@+id/et_pjje_pjhm_four"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+             />
+
+        <EditText
+            android:id="@+id/et_pjje_je_four"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            />
+
+        <TextView
+            android:id="@+id/et_pjje_kpyh_four"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            android:hint="点击" />
+
+        <EditText
+            android:id="@+id/et_pjje_dxzh_four"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+             />
+
+        <TextView
+            android:id="@+id/tv_pjje_time_four"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            android:hint="点击" />
+
+    </TableRow>
+    <View style="@style/price_view" />
+    <TableRow>
+
+        <TextView
+            android:id="@+id/tv_pjje_pb_five"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            android:hint="点击" />
+
+        <EditText
+            android:id="@+id/et_pjje_pjhm_five"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+             />
+
+        <EditText
+            android:id="@+id/et_pjje_je_five"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            />
+
+        <TextView
+            android:id="@+id/et_pjje_kpyh_five"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            android:hint="点击" />
+
+        <EditText
+            android:id="@+id/et_pjje_dxzh_five"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+             />
+
+        <TextView
+            android:id="@+id/tv_pjje_time_five"
+            style="@style/skd_pjje_ed"
+            android:background="@drawable/edit_bg"
+            android:hint="点击" />
+
+    </TableRow>
+    <View style="@style/price_view" />
+</TableLayout>
