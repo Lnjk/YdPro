@@ -96,13 +96,21 @@
         <item name="android:singleLine">true</item>
         <item name="android:layout_marginLeft">5dp</item>
     </style>
-    <!--//定价Imagebutton-->
+    <!--//定价Imagebutton下拉-->
     <style name="price_button_down">
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:src">@drawable/xialabuttons</item>
+    </style>
+    <!--//省略号Imagebutton-->
+    <style name="xl_button_sld">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:src">@drawable/slh</item>
     </style>
     <!--//定价Imagebutton2-->
     <style name="price_button_out">

@@ -46,8 +46,7 @@
     <ListView
         android:id="@+id/lv_skd_yscz_head"
         android:layout_width="fill_parent"
-        android:layout_height="0.0dip"
-        android:layout_weight="1.0"
+        android:layout_height="200dp"
         android:cacheColorHint="#00000000"
         android:dividerHeight="1.0dip"
         android:drawSelectorOnTop="true"

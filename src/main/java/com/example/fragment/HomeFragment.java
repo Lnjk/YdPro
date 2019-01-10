@@ -1,6 +1,5 @@
 package com.example.fragment;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,30 +15,21 @@ import okhttp3.Response;
 import com.example.bean.AccountInfo;
 import com.example.bean.URLS;
 import com.example.bean.UserInfo;
-import com.example.bean.UserInfo.User_Query;
 import com.example.ydshoa.CustersAllActivity;
-import com.example.ydshoa.DecisionActivity;
 import com.example.ydshoa.DesignerActivity;
-import com.example.ydshoa.FormActivity;
-import com.example.ydshoa.MapInfosActivity;
-import com.example.ydshoa.MoreAddressActivity;
-import com.example.ydshoa.OfferActivity;
-import com.example.ydshoa.OrderActivity;
 import com.example.ydshoa.R;
-import com.example.ydshoa.ReceiptActivity;
+import com.example.ydshoa.ReceiptFormActivity;
 import com.example.ydshoa.SalesManageActivity;
 import com.example.ydshoa.SmrtActivity;
 import com.example.ydshoa.SpActivity;
+import com.example.ydshoa.TestSearchActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -122,9 +112,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.ll_form:
 //                物流管理
-                startActivity(new Intent(this.context, ReceiptActivity.class));
+                startActivity(new Intent(this.context, ReceiptFormActivity.class));
                 Toast.makeText(this.context, "暂时放收款信息.", Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(this.context, OrderActivity.class));
+//                startActivity(new Intent(this.context, TestSearchActivity.class));
                 break;
             case R.id.ll_sell:
 //                销售管理
@@ -235,11 +225,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 String user_db = info.getUser_DB();
                 String user_erp = info.getUser_erpUser();
                 String user_dep = info.getUser_Dep();
+                String user_cust= info.getUser_Cust();
                 sp.edit().putString("DB_MR", user_db).commit();
                 sp.edit().putString("MR_YH", user_erp).commit();
                 sp.edit().putString("USER_NAME", user_name).commit();
                 sp.edit().putString("USER_ID", user_Id).commit();
                 sp.edit().putString("USER_DEPBM", user_dep).commit();
+                sp.edit().putString("USER_CUSTKH", user_cust).commit();
                 if (user_Id.equalsIgnoreCase("admin")
                         && user_Pwd.equalsIgnoreCase("admin")) {
                     pass = 1;

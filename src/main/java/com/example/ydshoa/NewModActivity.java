@@ -878,15 +878,15 @@ public class NewModActivity extends Activity implements OnClickListener {
             add("SATGPCS");//21
             add("SATGPGC");//26
             add("SATGC");//14
-            add("STAGCD");//54
-            add("STAGCS");//56
-            add("STAGCGC");//55
+            add("SATGCD");//54
+            add("SATGCS");//56
+            add("SATGCGC");//55
             add("SATGD");//15
-            add("STAGDS");//58
-            add("STAGDGC");//57
-            add("STAGS");//60
-            add("STAGSGC");//61
-            add("STAGGC");//59
+            add("SATGDS");//58
+            add("SATGDGC");//57
+            add("SATGS");//60
+            add("SATGSGC");//61
+            add("SATGGC");//59
             add("SATGPPN");//32
             add("SATGPI");//30
             add("SATGPIPN");//31
@@ -945,15 +945,15 @@ public class NewModActivity extends Activity implements OnClickListener {
             add("SATGPCS");
             add("SATGPGC");
             add("SATGC");
-            add("STAGCD");
-            add("STAGCS");
-            add("STAGCGC");
+            add("SATGCD");
+            add("SATGCS");
+            add("SATGCGC");
             add("SATGD");
-            add("STAGDS");
-            add("STAGDGC");
-            add("STAGS");
-            add("STAGSGC");
-            add("STAGGC");
+            add("SATGDS");
+            add("SATGDGC");
+            add("SATGS");
+            add("SATGSGC");
+            add("SATGGC");
             add("SATGPPN");
             add("SATGPI");
             add("SATGPIPN");
@@ -1017,15 +1017,15 @@ public class NewModActivity extends Activity implements OnClickListener {
             add("SATGPCS");
             add("SATGPGC");
             add("SATGC");
-            add("STAGCD");
-            add("STAGCS");
-            add("STAGCGC");
+            add("SATGCD");
+            add("SATGCS");
+            add("SATGCGC");
             add("SATGD");
-            add("STAGDS");
-            add("STAGDGC");
-            add("STAGS");
-            add("STAGSGC");
-            add("STAGGC");
+            add("SATGDS");
+            add("SATGDGC");
+            add("SATGS");
+            add("SATGSGC");
+            add("SATGGC");
             add("SATGPPN");
             add("SATGPI");
             add("SATGPIPN");
@@ -1058,15 +1058,15 @@ public class NewModActivity extends Activity implements OnClickListener {
             add("SATGPCS");
             add("SATGPGC");
             add("SATGC");
-            add("STAGCD");
-            add("STAGCS");
-            add("STAGCGC");
+            add("SATGCD");
+            add("SATGCS");
+            add("SATGCGC");
             add("SATGD");
-            add("STAGDS");
-            add("STAGDGC");
-            add("STAGS");
-            add("STAGSGC");
-            add("STAGGC");
+            add("SATGDS");
+            add("SATGDGC");
+            add("SATGS");
+            add("SATGSGC");
+            add("SATGGC");
             add("SATGPPN");
             add("SATGPI");
             add("SATGPIPN");
@@ -1230,23 +1230,23 @@ public class NewModActivity extends Activity implements OnClickListener {
                     nameInfo = "分支机构+品牌+终端网点销售统计表";
                 } else if (ids_str.equals("SATGC")) {
                     nameInfo = "分支机构+渠道销售统计表";
-                } else if (ids_str.equals("STAGCD")) {
+                } else if (ids_str.equals("SATGCD")) {
                     nameInfo = "分支机构+渠道+部门销售统计表";
-                } else if (ids_str.equals("STAGCS")) {
+                } else if (ids_str.equals("SATGCS")) {
                     nameInfo = "分支机构+渠道+业务销售统计表";
-                } else if (ids_str.equals("STAGCGC")) {
+                } else if (ids_str.equals("SATGCGC")) {
                     nameInfo = "分支机构+渠道+终端网点销售统计表";
                 } else if (ids_str.equals("SATGD")) {
                     nameInfo = "分支机构+部门销售统计表";
-                } else if (ids_str.equals("STAGDS")) {
+                } else if (ids_str.equals("SATGDS")) {
                     nameInfo = "分支机构+部门+业务销售统计表";
-                } else if (ids_str.equals("STAGDGC")) {
+                } else if (ids_str.equals("SATGDGC")) {
                     nameInfo = "分支机构+部门+终端网点销售统计表";
-                } else if (ids_str.equals("STAGS")) {
+                } else if (ids_str.equals("SATGS")) {
                     nameInfo = "分支机构+业务销售统计表";
-                } else if (ids_str.equals("STAGSGC")) {
+                } else if (ids_str.equals("SATGSGC")) {
                     nameInfo = "分支机构+业务+终端网点销售统计表";
-                } else if (ids_str.equals("STAGGC")) {
+                } else if (ids_str.equals("SATGGC")) {
                     nameInfo = "分支机构+终端网点销售统计表";
                 } else if (ids_str.equals("SATGPPN")) {
                     nameInfo = "分支机构+品牌+品号销售统计表";
@@ -1359,23 +1359,23 @@ public class NewModActivity extends Activity implements OnClickListener {
                     nameInfo = "分支机构+品牌+终端网点销售统计表";
                 } else if (ids_str.equals("SATGC")) {
                     nameInfo = "分支机构+渠道销售统计表";
-                } else if (ids_str.equals("STAGCD")) {
+                } else if (ids_str.equals("SATGCD")) {
                     nameInfo = "分支机构+渠道+部门销售统计表";
-                } else if (ids_str.equals("STAGCS")) {
+                } else if (ids_str.equals("SATGCS")) {
                     nameInfo = "分支机构+渠道+业务销售统计表";
-                } else if (ids_str.equals("STAGCGC")) {
+                } else if (ids_str.equals("SATGCGC")) {
                     nameInfo = "分支机构+渠道+终端网点销售统计表";
                 } else if (ids_str.equals("SATGD")) {
                     nameInfo = "分支机构+部门销售统计表";
-                } else if (ids_str.equals("STAGDS")) {
+                } else if (ids_str.equals("SATGDS")) {
                     nameInfo = "分支机构+部门+业务销售统计表";
-                } else if (ids_str.equals("STAGDGC")) {
+                } else if (ids_str.equals("SATGDGC")) {
                     nameInfo = "分支机构+部门+终端网点销售统计表";
-                } else if (ids_str.equals("STAGS")) {
+                } else if (ids_str.equals("SATGS")) {
                     nameInfo = "分支机构+业务销售统计表";
-                } else if (ids_str.equals("STAGSGC")) {
+                } else if (ids_str.equals("SATGSGC")) {
                     nameInfo = "分支机构+业务+终端网点销售统计表";
-                } else if (ids_str.equals("STAGGC")) {
+                } else if (ids_str.equals("SATGGC")) {
                     nameInfo = "分支机构+终端网点销售统计表";
                 } else if (ids_str.equals("SATGPPN")) {
                     nameInfo = "分支机构+品牌+品号销售统计表";
@@ -1575,23 +1575,23 @@ public class NewModActivity extends Activity implements OnClickListener {
                     nameInfo = "分支机构+品牌+终端网点销售统计表";
                 } else if (ids_str.equals("SATGC")) {
                     nameInfo = "分支机构+渠道销售统计表";
-                } else if (ids_str.equals("STAGCD")) {
+                } else if (ids_str.equals("SATGCD")) {
                     nameInfo = "分支机构+渠道+部门销售统计表";
-                } else if (ids_str.equals("STAGCS")) {
+                } else if (ids_str.equals("SATGCS")) {
                     nameInfo = "分支机构+渠道+业务销售统计表";
-                } else if (ids_str.equals("STAGCGC")) {
+                } else if (ids_str.equals("SATGCGC")) {
                     nameInfo = "分支机构+渠道+终端网点销售统计表";
                 } else if (ids_str.equals("SATGD")) {
                     nameInfo = "分支机构+部门销售统计表";
-                } else if (ids_str.equals("STAGDS")) {
+                } else if (ids_str.equals("SATGDS")) {
                     nameInfo = "分支机构+部门+业务销售统计表";
-                } else if (ids_str.equals("STAGDGC")) {
+                } else if (ids_str.equals("SATGDGC")) {
                     nameInfo = "分支机构+部门+终端网点销售统计表";
-                } else if (ids_str.equals("STAGS")) {
+                } else if (ids_str.equals("SATGS")) {
                     nameInfo = "分支机构+业务销售统计表";
-                } else if (ids_str.equals("STAGSGC")) {
+                } else if (ids_str.equals("SATGSGC")) {
                     nameInfo = "分支机构+业务+终端网点销售统计表";
-                } else if (ids_str.equals("STAGGC")) {
+                } else if (ids_str.equals("SATGGC")) {
                     nameInfo = "分支机构+终端网点销售统计表";
                 } else if (ids_str.equals("SATGPPN")) {
                     nameInfo = "分支机构+品牌+品号销售统计表";
@@ -1704,23 +1704,23 @@ public class NewModActivity extends Activity implements OnClickListener {
                     nameInfo = "分支机构+品牌+终端网点销售统计表";
                 } else if (ids_str.equals("SATGC")) {
                     nameInfo = "分支机构+渠道销售统计表";
-                } else if (ids_str.equals("STAGCD")) {
+                } else if (ids_str.equals("SATGCD")) {
                     nameInfo = "分支机构+渠道+部门销售统计表";
-                } else if (ids_str.equals("STAGCS")) {
+                } else if (ids_str.equals("SATGCS")) {
                     nameInfo = "分支机构+渠道+业务销售统计表";
-                } else if (ids_str.equals("STAGCGC")) {
+                } else if (ids_str.equals("SATGCGC")) {
                     nameInfo = "分支机构+渠道+终端网点销售统计表";
                 } else if (ids_str.equals("SATGD")) {
                     nameInfo = "分支机构+部门销售统计表";
-                } else if (ids_str.equals("STAGDS")) {
+                } else if (ids_str.equals("SATGDS")) {
                     nameInfo = "分支机构+部门+业务销售统计表";
-                } else if (ids_str.equals("STAGDGC")) {
+                } else if (ids_str.equals("SATGDGC")) {
                     nameInfo = "分支机构+部门+终端网点销售统计表";
-                } else if (ids_str.equals("STAGS")) {
+                } else if (ids_str.equals("SATGS")) {
                     nameInfo = "分支机构+业务销售统计表";
-                } else if (ids_str.equals("STAGSGC")) {
+                } else if (ids_str.equals("SATGSGC")) {
                     nameInfo = "分支机构+业务+终端网点销售统计表";
-                } else if (ids_str.equals("STAGGC")) {
+                } else if (ids_str.equals("SATGGC")) {
                     nameInfo = "分支机构+终端网点销售统计表";
                 } else if (ids_str.equals("SATGPPN")) {
                     nameInfo = "分支机构+品牌+品号销售统计表";

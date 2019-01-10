@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_bg"
+    android:orientation="horizontal"
+    android:padding="5.0dip">
+
+    <TextView
+        android:id="@+id/skdmx_yings_xh"
+        style="@style/head_scrow"
+        android:gravity="center"
+        android:text="序号" />
+
+    <View
+        android:id="@+id/first_line"
+        android:layout_width="1dp"
+        android:layout_height="25dp"
+        android:layout_toRightOf="@+id/skdmx_yings_xh"
+        android:background="@color/color_dark_grey" />
+
+    <TextView
+        android:id="@+id/skdmx_yings_khbh"
+        style="@style/head_scrow"
+        android:layout_toRightOf="@+id/first_line"
+        android:gravity="center"
+        android:text="客户编号" />
+
+    <View
+        android:id="@+id/first_two"
+        android:layout_width="1dp"
+        android:layout_height="25dp"
+        android:layout_toRightOf="@+id/skdmx_yings_khbh"
+        android:background="@color/color_dark_grey" />
+
+    <TextView
+        android:id="@+id/skdmx_yings_khmc"
+        style="@style/head_scrow"
+        android:layout_toRightOf="@+id/first_two"
+        android:gravity="center"
+        android:text="客户名称" />
+
+    <View
+        android:id="@+id/first_three"
+        android:layout_width="1dp"
+        android:layout_height="25dp"
+        android:layout_toRightOf="@+id/skdmx_yings_khmc"
+        android:background="@color/color_dark_grey" />
+
+    <com.example.LeftOrRight.InterceptScrollContainer
+        android:id="@+id/scroollContainter"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/first_three"
+        android:focusable="false">
+
+        <com.example.LeftOrRight.MyHScrollView
+            android:id="@+id/horizontalScrollView1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/tv_skdmx_yingsph"
+                    style="@style/head_scrow"
+                    android:text="应收票号" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/tv_skdmx_yingsdh"
+                    style="@style/head_scrow"
+                    android:text="应收单号" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/tv_skdmx_yingsje"
+                    style="@style/head_scrow"
+                    android:text="应收金额" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/tv_skdmx_yingsycje"
+                    style="@style/head_scrow"
+                    android:text="已冲金额" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/tv_skdmx_yingsbccx"
+                    style="@style/head_scrow"
+                    android:text="本次冲销" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+                <TextView
+                    android:id="@+id/tv_skdmx_yingswcjy"
+                    style="@style/head_scrow"
+                    android:text="未冲结余" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+
+
+            </LinearLayout>
+        </com.example.LeftOrRight.MyHScrollView>
+    </com.example.LeftOrRight.InterceptScrollContainer>
+
+
+</RelativeLayout>

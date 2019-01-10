@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_touch_skd_all"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/smallbk"
+    android:orientation="vertical">
+
+    <include layout="@layout/head_cust_gz" />
+
+    <LinearLayout
+        style="@style/price_ll1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_skd_all_quickquery"
+            style="@style/price_button"
+            android:text="速查" />
+
+        <Button
+            android:id="@+id/btn_skd_all_add"
+            style="@style/price_button"
+            android:text="新增" />
+
+        <Button
+            android:id="@+id/btn_skd_all_reset"
+            style="@style/price_button"
+            android:text="编辑" />
+
+        <Button
+            android:id="@+id/btn_skd_all_del"
+            style="@style/price_button"
+            android:text="删除" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/price_ll1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_skd_all_prite"
+            style="@style/price_button"
+            android:text="打印" />
+
+
+        <Button
+            android:id="@+id/btn_skd_all_save"
+            style="@style/price_button"
+            android:text="保存" />
+
+        <Button
+            android:id="@+id/btn_skd_all_okd"
+            style="@style/price_button"
+            android:text="属性" />
+
+        <Button
+            android:id="@+id/btn_skd_all_out"
+            style="@style/price_button"
+            android:text="关闭" />
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="300sp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/include1">
+
+        <LinearLayout
+            android:id="@+id/ll_zbxx"
+            style="@style/price_ll1"
+            android:orientation="vertical">
+
+            <View style="@style/price_view" />
+
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
+
+                    <TextView
+                        android:id="@+id/tv_skd_all_ztid"
+                        style="@style/price_name"
+                        android:text="所属账套:" />
+
+                    <TextView
+                        android:id="@+id/et_skd_all_zt"
+                        style="@style/price_info" />
+
+                    <ImageButton
+                        android:id="@+id/ib_skd_all_account"
+                        style="@style/price_button_down" />
+
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
+
+                    <TextView
+                        style="@style/design_name"
+                        android:text="单据日期:" />
+
+                    <TextView
+                        android:id="@+id/tv_time_skd"
+                        style="@style/design_name"
+                        android:text="2018-10-25" />
+
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="收款单号:" />
+
+                    <TextView
+                        android:id="@+id/et_skd_all_skdh"
+                        style="@style/design_editext" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
+
+                    <TextView
+                        style="@style/design_name"
+                        android:text="来源单号:" />
+
+                    <TextView
+                        android:id="@+id/tv_skd_lydh"
+                        style="@style/design_editext" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="单据类别:" />
+
+                    <TextView
+                        android:id="@+id/tv_skd_djlb"
+                        style="@style/design_editext" />
+
+                    <ImageButton
+                        android:id="@+id/ib_skd_djlb"
+                        style="@style/price_button_down" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/design_name"
+                        android:text="经营部门:" />
+
+                    <TextView
+                        android:id="@+id/tv_skd_jybm"
+                        style="@style/design_editext" />
+
+                    <ImageButton
+                        android:id="@+id/ib_skd_jybm"
+                        style="@style/price_button_down" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="责任业务:" />
+
+                    <TextView
+                        android:id="@+id/tv_skd_zryw"
+                        style="@style/design_editext" />
+
+                    <ImageButton
+                        android:id="@+id/ib_skd_zryw"
+                        style="@style/price_button_down" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
+
+                    <TextView
+                        style="@style/design_name"
+                        android:text="终端网点:" />
+
+                    <TextView
+                        android:id="@+id/tv_skd_zdwd"
+                        style="@style/design_editext" />
+
+                    <ImageButton
+                        android:id="@+id/ib_skd_zdwd"
+                        style="@style/price_button_down" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="终端客户:" />
+
+                    <TextView
+                        android:id="@+id/tv_skd_zdkh"
+                        style="@style/design_editext" />
+
+                    <ImageButton
+                        android:id="@+id/ib_skd_zdkh"
+                        style="@style/price_button_down" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
+
+                    <TextView
+                        style="@style/design_name"
+                        android:text="备注信息:" />
+
+                    <EditText
+                        android:id="@+id/tv_skd_bzxx"
+                        style="@style/design_editext" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+
+
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/design_name"
+                        android:text="现金帐户:" />
+
+                    <TextView
+                        android:id="@+id/tv_skd_xj"
+                        style="@style/design_editext"
+                        android:hint="具体金额" />
+
+                    <ImageButton
+                        android:id="@+id/ib_skd_xjzh"
+                        style="@style/xl_button_sld" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/design_name"
+                        android:text="银行帐户:" />
+
+
+                    <TextView
+                        android:id="@+id/tv_skd_yh"
+                        style="@style/design_editext"
+                        android:hint="具体金额" />
+
+                    <ImageButton
+                        android:id="@+id/ib_skd_yh"
+                        style="@style/xl_button_sld" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <View style="@style/price_view" />
+
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="票据/金额:" />
+
+                    <TextView
+                        android:id="@+id/et_skd_pj"
+                        style="@style/design_editext"
+                        android:hint="具体金额" />
+
+                    <ImageButton
+                        android:id="@+id/ib_skd_pj"
+                        style="@style/xl_button_sld" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
+
+                    <TextView
+
+                        style="@style/price_name"
+                        android:text="其他金额:" />
+
+                    <TextView
+                        android:id="@+id/et_skd_qtje"
+                        style="@style/design_editext" />
+
+                    <ImageButton
+                        android:id="@+id/ib_skd_qtje"
+                        style="@style/xl_button_sld" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
+
+                    <TextView
+
+                        style="@style/price_name"
+                        android:text="收款合计:" />
+
+                    <TextView
+                        android:id="@+id/et_skd_skhj"
+                        style="@style/design_editext"
+                        android:singleLine="true"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
+
+                    <TextView
+
+                        style="@style/price_name"
+                        android:text="（小写）:"
+                        />
+
+                    <TextView
+                        android:id="@+id/et_skd_jexx"
+                        style="@style/design_editext"
+                        android:maxLength="10"
+                        android:text="123456789"/>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+
+            <View style="@style/price_view" />
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        style="@style/list_item_seperator_layout"
+        android:layout_marginTop="2.0dip" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="预收提取：" />
+
+        <TextView
+            android:id="@+id/tv_bchj_yus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="本冲合计" />
+
+    </LinearLayout>
+
+    <View style="@style/list_item_seperator_layout" />
+
+    <include
+        android:id="@+id/skdmx_head_yus"
+        layout="@layout/skd_head_yus" />
+
+    <View style="@style/list_item_seperator_layout" />
+
+
+    <ListView
+        android:id="@+id/lv_skd_header_yus"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:cacheColorHint="#00000000"
+        android:dividerHeight="1.0dip"
+        android:drawSelectorOnTop="true"
+        android:fastScrollEnabled="true"
+        android:focusable="true"
+        android:listSelector="#00000000"
+        android:scrollingCache="true" />
+
+    <View
+        style="@style/list_item_seperator_layout"
+        android:layout_marginTop="2.0dip" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="应收提取：" />
+
+        <TextView
+            android:id="@+id/tv_bchj_yings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="本冲合计" />
+
+    </LinearLayout>
+
+    <View style="@style/list_item_seperator_layout" />
+
+    <include
+        android:id="@+id/skdmx_head_yings"
+        layout="@layout/skd_head_yings" />
+
+    <View style="@style/list_item_seperator_layout" />
+
+    <ListView
+        android:id="@+id/lv_skd_header_yings"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:cacheColorHint="#00000000"
+        android:dividerHeight="1.0dip"
+        android:drawSelectorOnTop="true"
+        android:fastScrollEnabled="true"
+        android:focusable="true"
+        android:listSelector="#00000000"
+        android:scrollingCache="true" />
+
+    <View style="@style/price_view" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/lv_skd_header_yings"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/ll_hjxx"
+            style="@style/price_ll1"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+                <LinearLayout style="@style/price_ll2">
+
+
+                    <TextView
+                        style="@style/design_name"
+                        android:text="冲销金额:" />
+
+                    <TextView
+                        android:id="@+id/tv_hj_cxje"
+                        style="@style/design_name"
+                        android:hint="收+预取" />
+
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="应收金额:" />
+
+                    <TextView
+                        android:id="@+id/tv_hj_ysse"
+                        style="@style/design_editext"
+                        android:hint="应收取" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+
+                    <TextView
+                        style="@style/design_name"
+                        android:text="收款金额:" />
+
+                    <TextView
+                        android:id="@+id/tv_hj_skje"
+                        style="@style/design_name"
+                        android:hint="sum" />
+
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="冲预收额:" />
+
+                    <TextView
+                        android:id="@+id/tv_hj_cyse"
+                        style="@style/design_editext"
+                        android:hint="预收取" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+
+                    <TextView
+                        style="@style/design_name"
+                        android:text="制单人:" />
+
+                    <TextView
+                        android:id="@+id/tv_hj_zdr"
+                        style="@style/design_name"
+                        android:hint="李宁" />
+
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="生效日期:" />
+
+                    <TextView
+                        android:id="@+id/tv_hj_sxrq"
+                        style="@style/design_editext"
+                        android:hint="2019-1-4" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
+
+
+                    <TextView
+                        style="@style/design_name"
+                        android:text="审核人:" />
+
+                    <TextView
+                        android:id="@+id/tv_hj_shr"
+                        style="@style/design_name"
+                        android:hint="李宁" />
+
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="终审日期:" />
+
+                    <TextView
+                        android:id="@+id/tv_hj_zsrq"
+                        style="@style/design_editext"
+                        android:hint="2019-1-4" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

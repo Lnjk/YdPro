@@ -54,7 +54,7 @@ public class SalesNumActivity extends Activity {
 	private SharedPreferences sp;
 	// ID
 	private String[] IDs = new String[] { "SATG", "SATGP", "SATGPC", "SATGPD",
-			"SATGPS", "SATGPGC", "SATGC", "SATGCD", "SATGCS", "SATGCGC",
+			"SATGPCS", "SATGPGC", "SATGC", "SATGCD", "SATGCS", "SATGCGC",
 			"SATGD", "SATGDS", "SATGDGC", "SATGS", "SATGSGC", "SATGGC",
 			"SATGPPN", "SATGPI", "SATGPIPN", "SATGPCPN", "SATGPCI",
 			"SATGPCIPN", "SATGPDPN", "SATGPDI", "SATGPDIPN", "SATGPSPN",
@@ -155,6 +155,7 @@ public class SalesNumActivity extends Activity {
 							String mod_ID = user_Mod.get(i).getMod_ID();
 							modIds_get.add(mod_ID);
 						}
+						Log.e("LiNing", "modIds_get------" + modIds_get);
 					}
 				}
 			}

@@ -44,6 +44,10 @@
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\drawable-ldrtl-xxxhdpi\\abc_spinner_mtrl_am_alpha.9.png"
     },
     {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_skd_head_yus.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\skd_head_yus.xml"
+    },
+    {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_textview_v_g.xml.flat",
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\textview_v_g.xml"
     },
@@ -120,12 +124,12 @@
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\obj_xz_set.xml"
     },
     {
-        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_nnn.png.flat",
-        "source": "D:\\test\\YDSHOA\\src\\main\\res\\drawable-hdpi\\nnn.png"
-    },
-    {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_wanchengbutton.png.flat",
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\drawable-hdpi\\wanchengbutton.png"
+    },
+    {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_nnn.png.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\drawable-hdpi\\nnn.png"
     },
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_activity_mod_list.xml.flat",
@@ -388,12 +392,12 @@
         "source": "D:\\test\\YDSHOA\\citypickerview\\build\\intermediates\\bundles\\debug\\res\\layout\\pop_jdcitypicker.xml"
     },
     {
-        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
-        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\drawable-xxhdpi\\abc_ic_menu_copy_mtrl_am_alpha.png"
-    },
-    {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_skd_qtzk.xml.flat",
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\skd_qtzk.xml"
+    },
+    {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\drawable-xxhdpi\\abc_ic_menu_copy_mtrl_am_alpha.png"
     },
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\menu_sfqy.xml.flat",
@@ -880,6 +884,10 @@
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\drawable-hdpi\\abc_ic_commit_search_api_mtrl_alpha.png"
     },
     {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_activity_test_search.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\activity_test_search.xml"
+    },
+    {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_sale_scrow_item.xml.flat",
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\sale_scrow_item.xml"
     },
@@ -1252,6 +1260,10 @@
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\anim\\abc_fade_in.xml"
     },
     {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_slh.png.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\drawable-hdpi\\slh.png"
+    },
+    {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_abc_action_bar_up_container.xml.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\layout\\abc_action_bar_up_container.xml"
     },
@@ -1576,12 +1588,12 @@
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\drawable-hdpi\\jc.png"
     },
     {
-        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable_huiyi.png.flat",
-        "source": "D:\\test\\YDSHOA\\src\\main\\res\\drawable\\huiyi.png"
-    },
-    {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_skd_yscz_head.xml.flat",
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\skd_yscz_head.xml"
+    },
+    {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable_huiyi.png.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\drawable\\huiyi.png"
     },
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
@@ -1856,6 +1868,10 @@
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\activity_city_picker.xml"
     },
     {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_activity_receipt_form.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\activity_receipt_form.xml"
+    },
+    {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable_bottom05.png.flat",
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\drawable\\bottom05.png"
     },
@@ -2074,6 +2090,10 @@
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_abc_ic_go_search_api_mtrl_alpha.png.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\drawable-xxhdpi\\abc_ic_go_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_test_search_item.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\test_search_item.xml"
     },
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_activity_provider.xml.flat",
@@ -2382,6 +2402,10 @@
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_abc_ic_menu_moreoverflow_mtrl_alpha.png.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\drawable-xxhdpi\\abc_ic_menu_moreoverflow_mtrl_alpha.png"
+    },
+    {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_skd_head_yings.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\skd_head_yings.xml"
     },
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_design_dairy_item.xml.flat",

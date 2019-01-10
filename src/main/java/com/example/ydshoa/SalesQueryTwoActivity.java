@@ -717,6 +717,11 @@ public class SalesQueryTwoActivity extends Activity implements OnClickListener {
                 .add("prdIndx", "ALL").add("prdWh", "ALL").build();
         Request request = new Request.Builder().addHeader("cookie", session)
                 .url(url).post(body).build();
+        Log.e("LiNing", "-----" + reportnos+"---"+start.getText().toString()
+                +"---"+stop.getText().toString()+"---"+reportBus+"---"+arp_sum
+                +"---"+sub_querys_db_all+"---"+sub_query_hss_all+"---"+sub_query_deps_all+"---"+sub_query_sups_all
+                +"---"+sub_query_custs_all+"---"+sub_query_users_all
+        );
         Log.e("LiNing", "-----" + sub_querys_db_all + sub_query_deps_all);
         Call call = client.newCall(request);
         call.enqueue(new Callback() {
@@ -1111,6 +1116,11 @@ public class SalesQueryTwoActivity extends Activity implements OnClickListener {
         Request request = new Request.Builder().addHeader("cookie", session)
                 .url(url).post(body).build();
         Log.e("LiNing", "-----" + body.toString());
+        Log.e("LiNing", "-----" + reportnos+"---888"+start.getText().toString()+"---888"+reportBus+"---888"+arp_sum+"---888"+sub_querys_db
+                +"---888"+sub_bils+"---888"+sub_custNos+"---888"+sub_custNames+"---888"+sub_custPhones+"---888"+sub_custAdress+"---888"+sub_inputNos
+                +"---888"+sub_cust_os+"---888"+sub_rems+"---888"+sub_prdMarks+"---888"+sub_query_deps+"---888"+sub_query_hss+"---888"+sub_query_sups
+                +"---888"+sub_query_custs+"---888"+sub_query_users+"---888"+sub_chk_users+"---888"+sub_areas+"---888"+sub_employees
+                +"---888"+sub_prdNos+"---888"+sub_prdIndexs+"---888"+sub_prdWhs);
         Call call = client.newCall(request);
         call.enqueue(new Callback() {
 

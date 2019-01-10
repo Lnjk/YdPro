@@ -199,8 +199,9 @@
         <activity android:name=".OrderActivity" />
         <activity android:name=".QueryBjdActivity" />
         <activity android:name=".ReceiptActivity" />
-        <activity android:name=".BillAmtActivity"
-            />
+        <activity android:name=".BillAmtActivity" />
+        <activity android:name=".ReceiptFormActivity" />
+        <activity android:name=".TestSearchActivity"></activity>
     </application>
 
 </manifest>
