@@ -54,7 +54,7 @@ public class SalesNumActivity extends Activity {
 	private SharedPreferences sp;
 	// ID
 	private String[] IDs = new String[] { "SATG", "SATGP", "SATGPC", "SATGPD",
-			"SATGPCS", "SATGPGC", "SATGC", "SATGCD", "SATGCS", "SATGCGC",
+			"SATGPS", "SATGPGC", "SATGC", "SATGCD", "SATGCS", "SATGCGC",
 			"SATGD", "SATGDS", "SATGDGC", "SATGS", "SATGSGC", "SATGGC",
 			"SATGPPN", "SATGPI", "SATGPIPN", "SATGPCPN", "SATGPCI",
 			"SATGPCIPN", "SATGPDPN", "SATGPDI", "SATGPDIPN", "SATGPSPN",

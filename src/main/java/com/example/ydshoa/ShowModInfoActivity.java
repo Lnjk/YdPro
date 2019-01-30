@@ -795,7 +795,7 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 			add("SATGP");//16
 			add("SATGPC");//17
 			add("SATGPD");//22
-			add("SATGPCS");//21
+			add("SATGPS");//21
 			add("SATGPGC");//26
 			add("SATGC");//14
 			add("SATGCD");//54
@@ -859,7 +859,7 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 			add("SATGP");
 			add("SATGPC");
 			add("SATGPD");
-			add("SATGPCS");
+			add("SATGPS");
 			add("SATGPGC");
 			add("SATGC");
 			add("SATGCD");
@@ -931,7 +931,7 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 			add("SATGP");
 			add("SATGPC");
 			add("SATGPD");
-			add("SATGPCS");
+			add("SATGPS");
 			add("SATGPGC");
 			add("SATGC");
 			add("SATGCD");
@@ -972,7 +972,7 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 			add("SATGP");
 			add("SATGPC");
 			add("SATGPD");
-			add("SATGPCS");
+			add("SATGPS");
 			add("SATGPGC");
 			add("SATGC");
 			add("SATGCD");
@@ -1140,7 +1140,7 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 					nameInfo = "分支机构+品牌+渠道销售统计表";
 				} else if (ids_str.equals("SATGPD")) {
 					nameInfo = "分支机构+品牌+部门销售统计表";
-				}else if (ids_str.equals("SATGPCS")) {
+				}else if (ids_str.equals("SATGPS")) {
 					nameInfo = "分支机构+品牌+业务销售统计表";
 				}else if (ids_str.equals("SATGPGC")) {
 					nameInfo = "分支机构+品牌+终端网点销售统计表";
@@ -1334,7 +1334,7 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 					nameInfo = "分支机构+品牌+渠道销售统计表";
 				} else if (ids_str.equals("SATGPD")) {
 					nameInfo = "分支机构+品牌+部门销售统计表";
-				}else if (ids_str.equals("SATGPCS")) {
+				}else if (ids_str.equals("SATGPS")) {
 					nameInfo = "分支机构+品牌+业务销售统计表";
 				}else if (ids_str.equals("SATGPGC")) {
 					nameInfo = "分支机构+品牌+终端网点销售统计表";
@@ -1519,7 +1519,7 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 					nameInfo = "分支机构+品牌+渠道销售统计表";
 				} else if (ids_str.equals("SATGPD")) {
 					nameInfo = "分支机构+品牌+部门销售统计表";
-				}else if (ids_str.equals("SATGPCS")) {
+				}else if (ids_str.equals("SATGPS")) {
 					nameInfo = "分支机构+品牌+业务销售统计表";
 				}else if (ids_str.equals("SATGPGC")) {
 					nameInfo = "分支机构+品牌+终端网点销售统计表";
@@ -1656,7 +1656,7 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 					nameInfo = "分支机构+品牌+渠道销售统计表";
 				} else if (ids_str.equals("SATGPD")) {
 					nameInfo = "分支机构+品牌+部门销售统计表";
-				}else if (ids_str.equals("SATGPCS")) {
+				}else if (ids_str.equals("SATGPS")) {
 					nameInfo = "分支机构+品牌+业务销售统计表";
 				}else if (ids_str.equals("SATGPGC")) {
 					nameInfo = "分支机构+品牌+终端网点销售统计表";
