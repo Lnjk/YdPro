@@ -54,5 +54,6 @@
     <string name="title_activity_load_more">LoadMoreActivity</string>
     <string name="title_activity_ln_set">LnSetActivity</string>
     <string name="title_activity_sales_query_two">SalesQueryTwoActivity</string>
+    <string name="activity_sales_pk">SalesPkActivity</string>
 
 </resources>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+<LinearLayout
+    android:layout_width="0dp"
+    android:layout_weight="1"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:text="当前账套 :"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/et_condition_dqDb"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:layout_margin="3dp"
+                android:singleLine="true"
+                android:textSize="10sp" />
+
+            <ImageButton
+                android:id="@+id/ib_queryDb_dqzt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/xialabuttons" />
+
+        </LinearLayout>
+        <include layout="@layout/times_line" />
+        <!--<Button
+            android:id="@+id/btn_gjsx_dq"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_margin="3dp"
+            android:layout_gravity="center"
+            android:textSize="14sp"
+            android:background="@drawable/button"
+            android:text="高级筛选" />-->
+
+    </LinearLayout>
+        <Button
+            android:id="@+id/btn_gjsx_dq"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_margin="3dp"
+            android:textSize="14sp"
+            android:background="@drawable/button"
+            android:layout_gravity="center"
+            android:text="高级筛选" />
+</LinearLayout>
+    <View
+        android:layout_width="1dp"
+        android:layout_height="70dp"
+        android:background="@color/color_dark_grey" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:text="历史账套 :"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/et_condition_bjDb"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:layout_margin="3dp"
+                android:singleLine="true"
+                android:textSize="10sp" />
+
+            <ImageButton
+                android:id="@+id/ib_queryDb_bjzt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:src="@drawable/xialabuttons" />
+
+        </LinearLayout>
+
+        <include layout="@layout/times_line_bj" />
+    </LinearLayout>
+        <Button
+            android:id="@+id/btn_gjsx_bj"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_margin="3dp"
+            android:layout_gravity="center"
+            android:textSize="14sp"
+            android:background="@drawable/button"
+            android:text="高级筛选" />
+
+    </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_dark_grey"
+        />
+</LinearLayout>

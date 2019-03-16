@@ -2,11 +2,14 @@ package com.example.ydshoa;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
 import android.R.integer;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,7 +25,10 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,13 +51,18 @@ public class SalesNumActivity extends Activity {
 	private GridView gridView;
 	private LayoutInflater inflater;
 	private List<Picture> pictures;
-	private TextView head;
-	private String reportBus;
+	private TextView head,dq_Db,db_Db,head_sale;
+	private String reportBus,sal_num;
 	ArrayList<String> modIds_get = new ArrayList<String>();
 	private int flag;
 	String url = URLS.userInfo_url;
 	private String session;
 	private SharedPreferences sp;
+	//==================同比
+	private Button start,stop,start_two,stop_two,tj_one,tj_two,tb_next,tb_jz;
+	private ImageButton btnc_dqDb,btnc_dbDb;
+	private String str_id,startTime, stopTime;
+	//=====================
 	// ID
 	private String[] IDs = new String[] { "SATG", "SATGP", "SATGPC", "SATGPD",
 			"SATGPS", "SATGPGC", "SATGC", "SATGCD", "SATGCS", "SATGCGC",
@@ -82,6 +93,7 @@ public class SalesNumActivity extends Activity {
 			R.drawable.aaa, R.drawable.bbb, R.drawable.ccc,
 			R.drawable.ddd, R.drawable.eee };
 	private PictureAdapter adapter;
+	private AlertDialog alertDialog,alertDialog_two;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +107,7 @@ public class SalesNumActivity extends Activity {
 		head = (TextView) findViewById(R.id.all_head);
 		head.setText("报表种类");
 		reportBus = getIntent().getStringExtra("reportB");// 获取业务类型
+		sal_num = getIntent().getStringExtra("sal_obj");// 获取查询类型（统计、同比）
 		gridView = (GridView) findViewById(R.id.gridview);
 		getRoot();
 		adapter = new PictureAdapter(IDs, titles, images, this);
@@ -112,14 +125,15 @@ public class SalesNumActivity extends Activity {
 				String name_zl = pictures.get(position).getTitle();
 				if(modIds_get.contains(ID_zl)){
 					// 传递的id值
-					Log.e("LiNing", "---------" + ID_zl);
+
+						Log.e("LiNing", "---------" + ID_zl);
 //				Intent intent = new Intent(context, SalesQueryActivity.class);
-					Intent intent = new Intent(context, SalesQueryTwoActivity.class);
-					intent.putExtra("reportB", reportBus);
-					intent.putExtra("reportNo", ID_zl);
-					intent.putExtra("reportName", name_zl);
-					startActivity(intent);
-					adapter.notifyDataSetChanged();
+						Intent intent = new Intent(context, SalesQueryTwoActivity.class);
+						intent.putExtra("reportB", reportBus);
+						intent.putExtra("reportNo", ID_zl);
+						intent.putExtra("reportName", name_zl);
+						startActivity(intent);
+						adapter.notifyDataSetChanged();
 				}else{
 					Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
 				}
@@ -128,6 +142,7 @@ public class SalesNumActivity extends Activity {
 		});
 
 	}
+
 	private void getRoot() {
 		OkHttpClient client = new OkHttpClient();
 		Request localRequest = new Request.Builder()
@@ -276,6 +291,8 @@ public class SalesNumActivity extends Activity {
 			this.imageId = imageId;
 		}
 	}
+
+
 
 	public void allback(View v) {
 		finish();

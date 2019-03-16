@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
@@ -44,18 +45,21 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
     private Context context;
     private SharedPreferences sp;
     private String session;
+    //表头操作（功能）
+    private Button query, add, reset, del, print, save, info, out;
     //基本数据
-    private String db_zt, date_dd, date_dd_dh,db_bm,db_kh;
+    private String db_zt, date_dd, date_dd_dh, db_bm, db_kh;
     RelativeLayout mHead_yus, mHead_yings;
     private ListView lv_skd_qry_yus, lv_skd_qry_yings;
     private TextView head, skd_tv_zt, skd_time, skd_tv_dh, skd_bm, skd_kh, skd_ywy, skd_zdwd, skd_djlb, skd_pjje, skd_yhzh, skd_qtzk, skd_xjzh, skd_yscz,
-    skd_time_sx,skd_time_zs,skd_xxje,skd_hjje;
+            skd_time_sx, skd_time_zs, skd_xxje, skd_hjje;
     private EditText et;
     private ImageButton skd_ib_zt, skd_ib_bm, skd_ib_kh, skd_ib_ywy, skd_ib_zdwd, skd_ib_djlb, skd_ib_pjje, skd_ib_yhzh, skd_ib_qtzk, skd_ib_xjzh, skd_ib_yscz;
     LinearLayout touch;
     String url_dh_skd = URLS.price_num_ls;
     AlertDialog alg_qtzk;
     CustAllObjectInfos.CustList cust_callback;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,16 +86,16 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
     private void intView() {
         head = (TextView) findViewById(R.id.all_head);
         head.setText("收款单");
-        mHead_yus = ((RelativeLayout) findViewById(R.id.skdmx_head_yus));
-        mHead_yus.setFocusable(true);
-        mHead_yus.setClickable(true);
-        mHead_yus.setOnTouchListener(new ListViewAndHeadViewTouchLinstener());
+//        mHead_yus = ((RelativeLayout) findViewById(R.id.skdmx_head_yus));
+//        mHead_yus.setFocusable(true);
+//        mHead_yus.setClickable(true);
+//        mHead_yus.setOnTouchListener(new ListViewAndHeadViewTouchLinstener());
         mHead_yings = ((RelativeLayout) findViewById(R.id.skdmx_head_yings));
         mHead_yings.setFocusable(true);
         mHead_yings.setClickable(true);
         mHead_yings.setOnTouchListener(new ListViewAndHeadViewTouchLinstener_yings());
-        lv_skd_qry_yus = (ListView) findViewById(R.id.lv_skd_header_yus);
-        lv_skd_qry_yus.setOnTouchListener(new ListViewAndHeadViewTouchLinstener());
+//        lv_skd_qry_yus = (ListView) findViewById(R.id.lv_skd_header_yus);
+//        lv_skd_qry_yus.setOnTouchListener(new ListViewAndHeadViewTouchLinstener());
         lv_skd_qry_yings = (ListView) findViewById(R.id.lv_skd_header_yings);
         lv_skd_qry_yings.setOnTouchListener(new ListViewAndHeadViewTouchLinstener_yings());
         skd_tv_zt = (TextView) findViewById(R.id.et_skd_all_zt);
@@ -224,16 +228,43 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
         skd_ib_yhzh = (ImageButton) findViewById(R.id.ib_skd_yh);
         skd_ib_yhzh.setOnClickListener(this);
         //数字金额大小写切换
-         skd_xxje = (TextView) findViewById(R.id.et_skd_jexx);
-         skd_hjje = (TextView) findViewById(R.id.et_skd_skhj);
+        skd_xxje = (TextView) findViewById(R.id.et_skd_jexx);
+        skd_hjje = (TextView) findViewById(R.id.et_skd_skhj);
         BigDecimal numberOfMoney = new BigDecimal(Double.parseDouble(skd_xxje.getText().toString()));
         String s = NumberToCN.number2CNMontrayUnit(numberOfMoney);
         skd_hjje.setText(s);
+        //表头操作（功能）
+        query = (Button) findViewById(R.id.btn_skd_all_quickquery);
+        add = (Button) findViewById(R.id.btn_skd_all_add);
+        reset = (Button) findViewById(R.id.btn_skd_all_reset);
+        del = (Button) findViewById(R.id.btn_skd_all_quickquery);
+        print = (Button) findViewById(R.id.btn_skd_all_prite);
+        save = (Button) findViewById(R.id.btn_skd_all_save);
+        info = (Button) findViewById(R.id.btn_skd_all_okd);
+        out = (Button) findViewById(R.id.btn_skd_all_out);
+        query.setOnClickListener(this);
+        add.setOnClickListener(this);
+        reset.setOnClickListener(this);
+        del.setOnClickListener(this);
+        print.setOnClickListener(this);
+        save.setOnClickListener(this);
+        info.setOnClickListener(this);
+        out.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.btn_skd_all_quickquery:
+                //    http://oa.ydshce.com:8080/InfManagePlatform/PaymentsqueryPayment.action?db_Id=DB_BJ18&&showRow=300&&clientRows=0&&rp_ID=1&&rp_NO=RT201805230051
+//    &&rp_DD=2018-05-23&&usr_NO=L022&&dep=2023&&rem=孙黎明&&bil_NO=SO201805230097&&irp_ID=T&&CLS_ID=T&&cus_NO=KH031&&bil_TYPE=06&&usr=Z002&&chk_MAN=Z002
+//    &&cus_NO_OS=123
+                //速查（是否限制条件，账套必须传）
+                //http://oa.ydshce.com:8080/InfManagePlatform/PaymentsqueryPayment.action?db_Id=DB_BJ18&&showRow=20&&clientRows=0
+//                Intent intent_query=new Intent(context,ReceiptQueryActivity.class);
+//                startActivity(intent_query);
+                break;
             case R.id.ib_skd_pj:
                 //回调票据/金额信息
                 Intent intent_pjje = new Intent(context, BillAmtActivity.class);
@@ -326,6 +357,7 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
         }
     }
 
+    //http://oa.ydshce.com:8080/InfManagePlatform/PaymentsqueryPayment.action?db_Id=DB_BJ18&&rp_DD=2019-1-1,2019-3-31
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -384,19 +416,19 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
         }
     }
 
-    class ListViewAndHeadViewTouchLinstener implements View.OnTouchListener {
-        ListViewAndHeadViewTouchLinstener() {
-        }
-
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            ((HorizontalScrollView) ReceiptFormActivity.this.mHead_yus
-                    .findViewById(R.id.horizontalScrollView1))
-                    .onTouchEvent(event);
-            return false;
-        }
-
-    }
+    //    class ListViewAndHeadViewTouchLinstener implements View.OnTouchListener {
+//        ListViewAndHeadViewTouchLinstener() {
+//        }
+//
+//        @Override
+//        public boolean onTouch(View v, MotionEvent event) {
+//            ((HorizontalScrollView) ReceiptFormActivity.this.mHead_yus
+//                    .findViewById(R.id.horizontalScrollView1))
+//                    .onTouchEvent(event);
+//            return false;
+//        }
+//
+//    }
     class ListViewAndHeadViewTouchLinstener_yings implements View.OnTouchListener {
         ListViewAndHeadViewTouchLinstener_yings() {
         }

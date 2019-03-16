@@ -85,6 +85,12 @@
                 <View style="@style/list_item_cell_seperator_layout" />
 
                 <TextView
+                    android:id="@+id/tv_skdmx_djrq"
+                    style="@style/head_scrow"
+                    android:text="单据日期" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
                     android:id="@+id/tv_skdmx_yingsje"
                     style="@style/head_scrow"
                     android:text="应收金额" />

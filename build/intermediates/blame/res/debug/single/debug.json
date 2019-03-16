@@ -76,6 +76,10 @@
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\map_item_one.xml"
     },
     {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_activity_sales_pk.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\activity_sales_pk.xml"
+    },
+    {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable_bj.jpg.flat",
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\drawable\\bj.jpg"
     },
@@ -114,6 +118,10 @@
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_activity_sales_manage.xml.flat",
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\activity_sales_manage.xml"
+    },
+    {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_tb_one_listview_team.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\tb_one_listview_team.xml"
     },
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_abc_expanded_menu_layout.xml.flat",
@@ -196,6 +204,10 @@
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\drawable-hdpi\\abc_popup_background_mtrl_mult.9.png"
     },
     {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_times_line_bj.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\times_line_bj.xml"
+    },
+    {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_newmod_head_item.xml.flat",
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\newmod_head_item.xml"
     },
@@ -208,12 +220,20 @@
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\activity_form.xml"
     },
     {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_activity_brand_fx.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\activity_brand_fx.xml"
+    },
+    {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_activity_sales.xml.flat",
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\activity_sales.xml"
     },
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_activity_sales_info.xml.flat",
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\activity_sales_info.xml"
+    },
+    {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_sale_tb.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\sale_tb.xml"
     },
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_abc_textfield_default_mtrl_alpha.9.png.flat",
@@ -380,6 +400,10 @@
         "source": "D:\\test\\YDSHOA\\citypickerview\\build\\intermediates\\bundles\\debug\\res\\drawable\\edittext_focused.xml"
     },
     {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_tb_dbzt.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\tb_dbzt.xml"
+    },
+    {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_price_one.xml.flat",
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\price_one.xml"
     },
@@ -512,6 +536,10 @@
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\drawable\\wenjian.png"
     },
     {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_time_tb.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\time_tb.xml"
+    },
+    {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_activity_login_main.xml.flat",
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\activity_login_main.xml"
     },
@@ -574,6 +602,10 @@
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_abc_ic_menu_cut_mtrl_alpha.png.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\drawable-xhdpi\\abc_ic_menu_cut_mtrl_alpha.png"
+    },
+    {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\menu_tbzl.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\menu\\tbzl.xml"
     },
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\menu_back.xml.flat",
@@ -840,6 +872,10 @@
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\sales_statment.xml"
     },
     {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_activity_sales_object.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\activity_sales_object.xml"
+    },
+    {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable_abc_item_background_holo_light.xml.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\drawable\\abc_item_background_holo_light.xml"
     },
@@ -942,6 +978,10 @@
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\drawable-hdpi\\abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_activity_brand_out_info.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\activity_brand_out_info.xml"
     },
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\anim_push_bottom_in.xml.flat",
@@ -1174,6 +1214,10 @@
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_abc_textfield_default_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\drawable-xhdpi\\abc_textfield_default_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_tb_dqzt.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\tb_dqzt.xml"
     },
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_activity_table.xml.flat",
@@ -1532,6 +1576,10 @@
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\activity_ps_have_city.xml"
     },
     {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_tb_one_listview.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\tb_one_listview.xml"
+    },
+    {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_uu.png.flat",
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\drawable-hdpi\\uu.png"
     },
@@ -1676,6 +1724,10 @@
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\layout\\support_simple_spinner_dropdown_item.xml"
     },
     {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_tb_zzl.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\tb_zzl.xml"
+    },
+    {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_abc_btn_radio_to_on_mtrl_000.png.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\drawable-xhdpi\\abc_btn_radio_to_on_mtrl_000.png"
     },
@@ -1816,6 +1868,14 @@
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\color\\abc_secondary_text_material_dark.xml"
     },
     {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_tb_tj_set.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\tb_tj_set.xml"
+    },
+    {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_tb_zl.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\tb_zl.xml"
+    },
+    {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-hdpi_abc_ic_ab_back_mtrl_am_alpha.png.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\drawable-ldrtl-hdpi\\abc_ic_ab_back_mtrl_am_alpha.png"
     },
@@ -1842,6 +1902,10 @@
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_backgrond.png.flat",
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\drawable-hdpi\\backgrond.png"
+    },
+    {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_tb_zl_bj.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\tb_zl_bj.xml"
     },
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-hdpi_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
@@ -2156,6 +2220,10 @@
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\drawable-hdpi\\page_unfocused.png"
     },
     {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_times_line.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\times_line.xml"
+    },
+    {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_abc_popup_menu_item_layout.xml.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\layout\\abc_popup_menu_item_layout.xml"
     },
@@ -2340,6 +2408,10 @@
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\activity_designer.xml"
     },
     {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ppfx.png.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\drawable-hdpi\\ppfx.png"
+    },
+    {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable_cust.png.flat",
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\drawable\\cust.png"
     },
@@ -2474,6 +2546,14 @@
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_abc_ic_menu_share_mtrl_alpha.png.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\drawable-mdpi\\abc_ic_menu_share_mtrl_alpha.png"
+    },
+    {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_activity_sales_out_info.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\activity_sales_out_info.xml"
+    },
+    {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_activity_tb_sales.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\activity_tb_sales.xml"
     },
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_abc_list_selector_disabled_holo_light.9.png.flat",
@@ -2648,6 +2728,10 @@
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\drawable-mdpi\\abc_btn_switch_to_on_mtrl_00012.9.png"
     },
     {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_tb_head_tj.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\tb_head_tj.xml"
+    },
+    {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_abc_ic_search_api_mtrl_alpha.png.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\drawable-hdpi\\abc_ic_search_api_mtrl_alpha.png"
     },
@@ -2728,6 +2812,10 @@
         "source": "D:\\test\\YDSHOA\\src\\main\\res\\drawable\\ic_launcher.png"
     },
     {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_sale_tb_two.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\sale_tb_two.xml"
+    },
+    {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_abc_list_pressed_holo_light.9.png.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\drawable-xxhdpi\\abc_list_pressed_holo_light.9.png"
     },
@@ -2786,6 +2874,10 @@
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable_abc_btn_check_material.xml.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-21.0.3.aar\\158c5e8fb112084fbd5888b11a432696\\res\\drawable\\abc_btn_check_material.xml"
+    },
+    {
+        "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\layout_tb_head_tj_bj.xml.flat",
+        "source": "D:\\test\\YDSHOA\\src\\main\\res\\layout\\tb_head_tj_bj.xml"
     },
     {
         "merged": "D:\\test\\YDSHOA\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_abc_textfield_default_mtrl_alpha.9.png.flat",

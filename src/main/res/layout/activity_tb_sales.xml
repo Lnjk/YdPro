@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/include1"
+        layout="@layout/headall" />
+
+    <View style="@style/list_item_seperator_layout" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/include1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/ll_sale_project"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_saleNum"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/tb_btn_condition_zl"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button"
+                    android:text="种类"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/tb_btn_out"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button"
+                    android:text="转出"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/tb_btn_print"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button"
+                    android:text="打印"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+            <View style="@style/list_item_seperator_layout" />
+
+            <include layout="@layout/tb_tj_set" />
+
+            <View style="@style/list_item_seperator_layout" />
+
+            <Button
+                android:id="@+id/tb_jz"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:background="@drawable/button"
+                android:text="加载" />
+        </LinearLayout>
+    </ScrollView>
+
+    <View style="@style/list_item_seperator_layout" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="名称" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:background="@color/color_dark_grey" />
+
+        <TextView
+            android:id="@+id/tv_tb_db_dq"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="当前账套" />
+    </LinearLayout>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:background="@color/color_red" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="名称" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="10dp"
+                    android:layout_gravity="center"
+                    android:background="@color/color_dark_grey" />
+
+                <TextView
+                    android:id="@+id/tv_tb_db_db"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="历史账套" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="10dp"
+                    android:layout_gravity="center"
+                    android:background="@color/color_dark_grey" />
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="增长率" />
+            </LinearLayout>
+            <View style="@style/list_item_seperator_layout" />
+
+        </LinearLayout>
+    <View style="@style/list_item_seperator_layout" />
+    <include layout="@layout/tb_one_listview_team" />
+    <View style="@style/list_item_seperator_layout" />
+    <ListView
+        android:id="@+id/tb_dbzt_lv_one"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.0"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/color_dark_grey"
+        android:fastScrollEnabled="true"
+        android:focusable="true"
+        android:listSelector="#ffff0000"
+        android:scrollingCache="true" />
+    <View style="@style/list_item_seperator_layout" />
+</LinearLayout>

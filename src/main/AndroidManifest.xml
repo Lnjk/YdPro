@@ -201,7 +201,19 @@
         <activity android:name=".ReceiptActivity" />
         <activity android:name=".BillAmtActivity" />
         <activity android:name=".ReceiptFormActivity" />
-        <activity android:name=".TestSearchActivity"></activity>
+        <activity android:name=".TestSearchActivity" />
+        <activity android:name=".SalesObjectActivity" />
+        <activity
+            android:name=".SalesPkActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".TbSalesActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".SalesOutInfoActivity" />
+        <activity
+            android:name=".BrandFxActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".BrandOutInfoActivity"></activity>
     </application>
 
 </manifest>

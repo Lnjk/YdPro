@@ -474,28 +474,52 @@
     <View
         style="@style/list_item_seperator_layout"
         android:layout_marginTop="2.0dip" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="预收提取：" />
+            android:text="预收金额：" />
 
         <TextView
             android:id="@+id/tv_bchj_yus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="本冲合计" />
+            android:hint="预收合计" />
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="预冲提取：" />
+
+        <TextView
+            android:id="@+id/tv_bchj_yuc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="提取金额" />
+
+    </LinearLayout>
+</LinearLayout>
     <View style="@style/list_item_seperator_layout" />
 
-    <include
+    <!--<include
         android:id="@+id/skdmx_head_yus"
         layout="@layout/skd_head_yus" />
 
@@ -536,7 +560,7 @@
 
     </LinearLayout>
 
-    <View style="@style/list_item_seperator_layout" />
+    <View style="@style/list_item_seperator_layout" />-->
 
     <include
         android:id="@+id/skdmx_head_yings"
@@ -547,7 +571,8 @@
     <ListView
         android:id="@+id/lv_skd_header_yings"
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:cacheColorHint="#00000000"
         android:dividerHeight="1.0dip"
         android:drawSelectorOnTop="true"
@@ -581,10 +606,10 @@
 
                     <TextView
                         style="@style/design_name"
-                        android:text="冲销金额:" />
+                        android:text="冲收款额:" />
 
                     <TextView
-                        android:id="@+id/tv_hj_cxje"
+                        android:id="@+id/tv_hj_cske"
                         style="@style/design_name"
                         android:hint="收+预取" />
 
@@ -596,10 +621,10 @@
 
                     <TextView
                         style="@style/price_name"
-                        android:text="应收金额:" />
+                        android:text="冲应收额:" />
 
                     <TextView
-                        android:id="@+id/tv_hj_ysse"
+                        android:id="@+id/tv_hj_cyingse"
                         style="@style/design_editext"
                         android:hint="应收取" />
 
@@ -636,7 +661,7 @@
                         android:text="冲预收额:" />
 
                     <TextView
-                        android:id="@+id/tv_hj_cyse"
+                        android:id="@+id/tv_hj_cyuse"
                         style="@style/design_editext"
                         android:hint="预收取" />
 

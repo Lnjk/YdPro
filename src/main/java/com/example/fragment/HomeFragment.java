@@ -1,6 +1,7 @@
 package com.example.fragment;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -121,6 +122,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 startActivity(new Intent(this.context, SalesManageActivity.class));
 //                Toast.makeText(this.context, "暂未开放，请等待...", Toast.LENGTH_SHORT).show();
                 break;
+
             case R.id.ll_decision:
 //                决策报表
                 Log.e("LiNing", "-------" + sp.getString("PASS", ""));
@@ -256,8 +258,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     List<com.example.bean.UserInfo.User_Mod> user_Mod = info
                             .getUser_Mod();
                     if ( user_Mod != null&&user_Mod.size()>0 ) {
-                        for (int i = 0; i < user_Mod.size(); i++) {
 
+                        for (int i = 0; i < user_Mod.size(); i++) {
                             String mod_ID = user_Mod.get(i).getMod_ID();
                             modIds_get.add(mod_ID);
                             sp.edit().putString("modIds", "" + modIds_get)

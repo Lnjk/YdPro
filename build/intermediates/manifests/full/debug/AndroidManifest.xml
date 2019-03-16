@@ -204,6 +204,18 @@
         <activity android:name="com.example.ydshoa.BillAmtActivity" />
         <activity android:name="com.example.ydshoa.ReceiptFormActivity" />
         <activity android:name="com.example.ydshoa.TestSearchActivity" />
+        <activity android:name="com.example.ydshoa.SalesObjectActivity" />
+        <activity
+            android:name="com.example.ydshoa.SalesPkActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name="com.example.ydshoa.TbSalesActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name="com.example.ydshoa.SalesOutInfoActivity" />
+        <activity
+            android:name="com.example.ydshoa.BrandFxActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name="com.example.ydshoa.BrandOutInfoActivity" />
         <activity
             android:name="com.lljjcoder.style.citylist.CityListSelectActivity"
             android:screenOrientation="portrait"

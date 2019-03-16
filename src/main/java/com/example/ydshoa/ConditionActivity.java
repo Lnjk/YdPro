@@ -69,6 +69,7 @@ public class ConditionActivity extends Activity implements OnClickListener {
 	ArrayList<String> queryZTs_get = new ArrayList<String>();
 	private HashMap<String, Object> del_item;
 	private int flag_back;
+	String page,dqzt,gjss;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +80,10 @@ public class ConditionActivity extends Activity implements OnClickListener {
 		//推送
 //		PushAgent.getInstance(context).onAppStart();
 		sp = getSharedPreferences("ydbg", 0);
+		//同比数据========
+		page = getIntent().getStringExtra("page");
+		dqzt = getIntent().getStringExtra("dqzt_tb");
+		gjss = getIntent().getStringExtra("gjss");
 		initView();
 	}
 
@@ -86,6 +91,8 @@ public class ConditionActivity extends Activity implements OnClickListener {
 		head = (TextView) findViewById(R.id.all_head);
 		head.setText("查询条件");
 		c_queryDb = (TextView) findViewById(R.id.et_condition_queryDb);
+
+
 		c_bilNo = (EditText) findViewById(R.id.et_condition_bileNo);
 		c_custNo = (EditText) findViewById(R.id.et_condition_custNo);
 		c_custName = (EditText) findViewById(R.id.et_condition_custNme);
@@ -159,9 +166,9 @@ public class ConditionActivity extends Activity implements OnClickListener {
 		if (!sp.getString("PRDWH_CDTA", "").equals("")) {
 			c_prdWh.setText(sp.getString("PRDWH_CDTA", ""));
 		}
-		if (!sp.getString("DB_CDTA", "").equals("")) {
-		}
-		c_queryDb.setText(sp.getString("DB_CDTA", ""));
+//		if (!sp.getString("DB_CDTA", "").equals("")) {
+//		}
+//		c_queryDb.setText(sp.getString("DB_CDTA", ""));
 		if (!sp.getString("BILNO_CDTA", "").equals("")) {
 			c_bilNo.setText(sp.getString("BILNO_CDTA", ""));
 		}
@@ -218,6 +225,16 @@ public class ConditionActivity extends Activity implements OnClickListener {
 		btnc_prdNo.setOnClickListener(this);
 		btnc_prdIndex.setOnClickListener(this);
 		btnc_prdWh.setOnClickListener(this);
+		if(page.equals("1")){
+			c_queryDb.setText(dqzt);
+			btnc_queryDb.setEnabled(false);
+		}else{
+			btnc_queryDb.setEnabled(true);
+			if (!sp.getString("DB_CDTA", "").equals("")) {
+			}
+			c_queryDb.setText(sp.getString("DB_CDTA", ""));
+
+		}
 		// 添加数据列表显示
 		this.mHead = ((RelativeLayout) findViewById(R.id.sale_scrow_head));
 		this.mHead.setFocusable(true);
@@ -294,6 +311,7 @@ public class ConditionActivity extends Activity implements OnClickListener {
 			};
 		};
 		lv_sale.setAdapter(sAdapter);
+
 	}
 
 	// 点击事件
@@ -333,7 +351,14 @@ public class ConditionActivity extends Activity implements OnClickListener {
 			if(dList!=null&&dList.size()>0){
 				
 				String str_json = new Gson().toJson(dList);
-				sp.edit().putString("sale_tjInfo", str_json).commit();
+				if(gjss.equals("1")){
+
+					sp.edit().putString("sale_tjInfo", str_json).commit();
+				}
+				if(gjss.equals("2")){
+
+					sp.edit().putString("sale_tjInfo_db", str_json).commit();
+				}
 				Log.e("LiNing", "提交保存的数据====" + str_json);
 				finish();
 			}else{

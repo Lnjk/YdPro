@@ -148,7 +148,7 @@ public class SalesQueryTwoActivity extends Activity implements OnClickListener {
         reportBus = getIntent().getStringExtra("reportB");// 获取业务类型
         reportnos = getIntent().getStringExtra("reportNo");// 获取种类类型id
         reportname = getIntent().getStringExtra("reportName");// 获取种类类型名称
-        Log.e("LiNing", reportBus + reportnos);
+        Log.e("LiNing", reportBus + reportnos+reportname);
         getNowTime();
         initView();
 
@@ -492,7 +492,7 @@ public class SalesQueryTwoActivity extends Activity implements OnClickListener {
                 flag_index = 1;
                 // 获取查询条件
                 Intent intent = new Intent(context, ConditionActivity.class);
-                // intent.putExtra("page", page_get);
+                 intent.putExtra("page", "0");
                 startActivity(intent);
                 break;
             case R.id.btn_out:

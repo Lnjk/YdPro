@@ -260,14 +260,16 @@ public class DecisionActivity extends Activity implements OnClickListener {
 			case R.id.btn_dec_sale:
 				if (ps_id.equals("1")) {
 					sp.edit().putString("TJ", head.getText().toString()).commit();
-					Intent intent = new Intent(context, SalesNumActivity.class);
+//					Intent intent = new Intent(context, SalesNumActivity.class);
+					Intent intent = new Intent(context, SalesObjectActivity.class);
 					intent.putExtra("reportB", "SA");
 					startActivity(intent);
 				} else {
 					if (modIds_get.contains("spmsa")) {
 						sp.edit().putString("TJ", head.getText().toString())
 								.commit();
-						Intent intent = new Intent(context, SalesNumActivity.class);
+//						Intent intent = new Intent(context, SalesNumActivity.class);
+						Intent intent = new Intent(context, SalesObjectActivity.class);
 						intent.putExtra("reportB", "SA");
 						startActivity(intent);
 

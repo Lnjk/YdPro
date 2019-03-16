@@ -1082,23 +1082,23 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 				userMod.add(0, mod2);
 				adapter.notifyDataSetChanged();
 				modList.invalidate();
-				for (int i = 0; i < userMod.size(); i++) {
-					map = new HashMap<String, String>();
-					item_del = userMod.get(i);
-					item_del.getDb_ID();
-					str_dbname = item_del.getDb_ID().toString();
-					modIDs_get.add(item_del.getMod_ID().toString());
-					modZTs_get.add(str_dbname);
-					Log.e("LiNing", "LiNing--------" + modIDs_get
-							+ "LiNing--------" + modZTs_get);
-					map.put(item_del.getDb_ID().toString(), item_del
-							.getMod_ID().toString());
-
-					// map3.putAll(map);
-				}
-				// list_del.add(item_del);
-				list.add(map);
-				Log.e("LiNing", "str_dbname========" + str_dbname);
+//				for (int i = 0; i < userMod.size(); i++) {
+//					map = new HashMap<String, String>();
+//					item_del = userMod.get(i);
+//					item_del.getDb_ID();
+//					str_dbname = item_del.getDb_ID().toString();
+//					modIDs_get.add(item_del.getMod_ID().toString());
+//					modZTs_get.add(str_dbname);
+//					Log.e("LiNing", "LiNing--------" + modIDs_get
+//							+ "LiNing--------" + modZTs_get);
+//					map.put(item_del.getDb_ID().toString(), item_del
+//							.getMod_ID().toString());
+//
+//					// map3.putAll(map);
+//				}
+//				// list_del.add(item_del);
+//				list.add(map);
+//				Log.e("LiNing", "str_dbname========" + str_dbname);
 			}
 		} else if (idInfo.equals("sys")) {
 			for (int j = 0; j < list_sys.size(); j++) {
@@ -1243,23 +1243,23 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 				userMod.add(0, mod2);
 				adapter.notifyDataSetChanged();
 				modList.invalidate();
-				for (int i = 0; i < userMod.size(); i++) {
-					map = new HashMap<String, String>();
-					item_del = userMod.get(i);
-					item_del.getDb_ID();
-					str_dbname = item_del.getDb_ID().toString();
-					modIDs_get.add(item_del.getMod_ID().toString());
-					modZTs_get.add(str_dbname);
-					Log.e("LiNing", "LiNing--------" + modIDs_get
-							+ "LiNing--------" + modZTs_get);
-					map.put(item_del.getDb_ID().toString(), item_del
-							.getMod_ID().toString());
-
-					// map3.putAll(map);
-				}
-				// list_del.add(item_del);
-				list.add(map);
-				Log.e("LiNing", "str_dbname========" + str_dbname);
+//				for (int i = 0; i < userMod.size(); i++) {
+//					map = new HashMap<String, String>();
+//					item_del = userMod.get(i);
+//					item_del.getDb_ID();
+//					str_dbname = item_del.getDb_ID().toString();
+//					modIDs_get.add(item_del.getMod_ID().toString());
+//					modZTs_get.add(str_dbname);
+//					Log.e("LiNing", "LiNing--------" + modIDs_get
+//							+ "LiNing--------" + modZTs_get);
+//					map.put(item_del.getDb_ID().toString(), item_del
+//							.getMod_ID().toString());
+//
+//					// map3.putAll(map);
+//				}
+//				// list_del.add(item_del);
+//				list.add(map);
+//				Log.e("LiNing", "str_dbname========" + str_dbname);
 			}
 		}
 		else if (idInfo.equals("spmarp")) {
@@ -1303,23 +1303,23 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 				userMod.add(0, mod2);
 				adapter.notifyDataSetChanged();
 				modList.invalidate();
-				for (int i = 0; i < userMod.size(); i++) {
-					map = new HashMap<String, String>();
-					item_del = userMod.get(i);
-					item_del.getDb_ID();
-					str_dbname = item_del.getDb_ID().toString();
-					modIDs_get.add(item_del.getMod_ID().toString());
-					modZTs_get.add(str_dbname);
-					Log.e("LiNing", "LiNing--------" + modIDs_get
-							+ "LiNing--------" + modZTs_get);
-					map.put(item_del.getDb_ID().toString(), item_del
-							.getMod_ID().toString());
-
-					// map3.putAll(map);
-				}
-				// list_del.add(item_del);
-				list.add(map);
-				Log.e("LiNing", "str_dbname========" + str_dbname);
+//				for (int i = 0; i < userMod.size(); i++) {
+//					map = new HashMap<String, String>();
+//					item_del = userMod.get(i);
+//					item_del.getDb_ID();
+//					str_dbname = item_del.getDb_ID().toString();
+//					modIDs_get.add(item_del.getMod_ID().toString());
+//					modZTs_get.add(str_dbname);
+//					Log.e("LiNing", "LiNing--------" + modIDs_get
+//							+ "LiNing--------" + modZTs_get);
+//					map.put(item_del.getDb_ID().toString(), item_del
+//							.getMod_ID().toString());
+//
+//					// map3.putAll(map);
+//				}
+//				// list_del.add(item_del);
+//				list.add(map);
+//				Log.e("LiNing", "str_dbname========" + str_dbname);
 			}
 		}
 		else if (idInfo.equals("spmsa")) {
@@ -1399,23 +1399,23 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 				userMod.add(0, mod2);
 				adapter.notifyDataSetChanged();
 				modList.invalidate();
-				for (int i = 0; i < userMod.size(); i++) {
-					map = new HashMap<String, String>();
-					item_del = userMod.get(i);
-					item_del.getDb_ID();
-					str_dbname = item_del.getDb_ID().toString();
-					modIDs_get.add(item_del.getMod_ID().toString());
-					modZTs_get.add(str_dbname);
-					Log.e("LiNing", "LiNing--------" + modIDs_get
-							+ "LiNing--------" + modZTs_get);
-					map.put(item_del.getDb_ID().toString(), item_del
-							.getMod_ID().toString());
-
-					// map3.putAll(map);
-				}
-				// list_del.add(item_del);
-				list.add(map);
-				Log.e("LiNing", "str_dbname========" + str_dbname);
+//				for (int i = 0; i < userMod.size(); i++) {
+//					map = new HashMap<String, String>();
+//					item_del = userMod.get(i);
+//					item_del.getDb_ID();
+//					str_dbname = item_del.getDb_ID().toString();
+//					modIDs_get.add(item_del.getMod_ID().toString());
+//					modZTs_get.add(str_dbname);
+//					Log.e("LiNing", "LiNing--------" + modIDs_get
+//							+ "LiNing--------" + modZTs_get);
+//					map.put(item_del.getDb_ID().toString(), item_del
+//							.getMod_ID().toString());
+//
+//					// map3.putAll(map);
+//				}
+//				// list_del.add(item_del);
+//				list.add(map);
+//				Log.e("LiNing", "str_dbname========" + str_dbname);
 			}
 		}
 		else if (idInfo.equals("sk")) {
@@ -1439,23 +1439,23 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 				userMod.add(0, mod2);
 				adapter.notifyDataSetChanged();
 				modList.invalidate();
-				for (int i = 0; i < userMod.size(); i++) {
-					map = new HashMap<String, String>();
-					item_del = userMod.get(i);
-					item_del.getDb_ID();
-					str_dbname = item_del.getDb_ID().toString();
-					modIDs_get.add(item_del.getMod_ID().toString());
-					modZTs_get.add(str_dbname);
-					Log.e("LiNing", "LiNing--------" + modIDs_get
-							+ "LiNing--------" + modZTs_get);
-					map.put(item_del.getDb_ID().toString(), item_del
-							.getMod_ID().toString());
-
-					// map3.putAll(map);
-				}
-				// list_del.add(item_del);
-				list.add(map);
-				Log.e("LiNing", "str_dbname========" + str_dbname);
+//				for (int i = 0; i < userMod.size(); i++) {
+//					map = new HashMap<String, String>();
+//					item_del = userMod.get(i);
+//					item_del.getDb_ID();
+//					str_dbname = item_del.getDb_ID().toString();
+//					modIDs_get.add(item_del.getMod_ID().toString());
+//					modZTs_get.add(str_dbname);
+//					Log.e("LiNing", "LiNing--------" + modIDs_get
+//							+ "LiNing--------" + modZTs_get);
+//					map.put(item_del.getDb_ID().toString(), item_del
+//							.getMod_ID().toString());
+//
+//					// map3.putAll(map);
+//				}
+//				// list_del.add(item_del);
+//				list.add(map);
+//				Log.e("LiNing", "str_dbname========" + str_dbname);
 			}
 		}
 		else if (idInfo.equals("sm")) {
@@ -1483,23 +1483,23 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 				userMod.add(0, mod2);
 				adapter.notifyDataSetChanged();
 				modList.invalidate();
-				for (int i = 0; i < userMod.size(); i++) {
-					map = new HashMap<String, String>();
-					item_del = userMod.get(i);
-					item_del.getDb_ID();
-					str_dbname = item_del.getDb_ID().toString();
-					modIDs_get.add(item_del.getMod_ID().toString());
-					modZTs_get.add(str_dbname);
-					Log.e("LiNing", "LiNing--------" + modIDs_get
-							+ "LiNing--------" + modZTs_get);
-					map.put(item_del.getDb_ID().toString(), item_del
-							.getMod_ID().toString());
-
-					// map3.putAll(map);
-				}
-				// list_del.add(item_del);
-				list.add(map);
-				Log.e("LiNing", "str_dbname========" + str_dbname);
+//				for (int i = 0; i < userMod.size(); i++) {
+//					map = new HashMap<String, String>();
+//					item_del = userMod.get(i);
+//					item_del.getDb_ID();
+//					str_dbname = item_del.getDb_ID().toString();
+//					modIDs_get.add(item_del.getMod_ID().toString());
+//					modZTs_get.add(str_dbname);
+//					Log.e("LiNing", "LiNing--------" + modIDs_get
+//							+ "LiNing--------" + modZTs_get);
+//					map.put(item_del.getDb_ID().toString(), item_del
+//							.getMod_ID().toString());
+//
+//					// map3.putAll(map);
+//				}
+//				// list_del.add(item_del);
+//				list.add(map);
+//				Log.e("LiNing", "str_dbname========" + str_dbname);
 			}
 		} else if (idInfo.equals("spm")) {
 			for (int j = 0; j < list_spm.size(); j++) {
@@ -1613,23 +1613,23 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 				userMod.add(0, mod2);
 				adapter.notifyDataSetChanged();
 				modList.invalidate();
-				for (int i = 0; i < userMod.size(); i++) {
-					map = new HashMap<String, String>();
-					item_del = userMod.get(i);
-					item_del.getDb_ID();
-					str_dbname = item_del.getDb_ID().toString();
-					modIDs_get.add(item_del.getMod_ID().toString());
-					modZTs_get.add(str_dbname);
-					Log.e("LiNing", "LiNing--------" + modIDs_get
-							+ "LiNing--------" + modZTs_get);
-					map.put(item_del.getDb_ID().toString(), item_del
-							.getMod_ID().toString());
-
-					// map3.putAll(map);
-				}
-				// list_del.add(item_del);
-				list.add(map);
-				Log.e("LiNing", "str_dbname========" + str_dbname);
+//				for (int i = 0; i < userMod.size(); i++) {
+//					map = new HashMap<String, String>();
+//					item_del = userMod.get(i);
+//					item_del.getDb_ID();
+//					str_dbname = item_del.getDb_ID().toString();
+//					modIDs_get.add(item_del.getMod_ID().toString());
+//					modZTs_get.add(str_dbname);
+//					Log.e("LiNing", "LiNing--------" + modIDs_get
+//							+ "LiNing--------" + modZTs_get);
+//					map.put(item_del.getDb_ID().toString(), item_del
+//							.getMod_ID().toString());
+//
+//					// map3.putAll(map);
+//				}
+//				// list_del.add(item_del);
+//				list.add(map);
+//				Log.e("LiNing", "str_dbname========" + str_dbname);
 			}
 		} else if (idInfo.equals("sp")) {
 			for (int j = 0; j < list_sp.size(); j++) {
@@ -1750,23 +1750,23 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 				userMod.add(0, mod2);
 				adapter.notifyDataSetChanged();
 				modList.invalidate();
-				for (int i = 0; i < userMod.size(); i++) {
-					map = new HashMap<String, String>();
-					item_del = userMod.get(i);
-					item_del.getDb_ID();
-					str_dbname = item_del.getDb_ID().toString();
-					modIDs_get.add(item_del.getMod_ID().toString());
-					modZTs_get.add(str_dbname);
-					Log.e("LiNing", "LiNing--------" + modIDs_get
-							+ "LiNing--------" + modZTs_get);
-					map.put(item_del.getDb_ID().toString(), item_del
-							.getMod_ID().toString());
-
-					// map3.putAll(map);
-				}
-				// list_del.add(item_del);
-				list.add(map);
-				Log.e("LiNing", "str_dbname========" + str_dbname);
+//				for (int i = 0; i < userMod.size(); i++) {
+//					map = new HashMap<String, String>();
+//					item_del = userMod.get(i);
+//					item_del.getDb_ID();
+//					str_dbname = item_del.getDb_ID().toString();
+//					modIDs_get.add(item_del.getMod_ID().toString());
+//					modZTs_get.add(str_dbname);
+//					Log.e("LiNing", "LiNing--------" + modIDs_get
+//							+ "LiNing--------" + modZTs_get);
+//					map.put(item_del.getDb_ID().toString(), item_del
+//							.getMod_ID().toString());
+//
+//					// map3.putAll(map);
+//				}
+//				// list_del.add(item_del);
+//				list.add(map);
+//				Log.e("LiNing", "str_dbname========" + str_dbname);
 			}
 		} else if (idInfo.equals("spt")) {
 			for (int j = 0; j < list_spt.size(); j++) {
@@ -1787,23 +1787,23 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 				userMod.add(0, mod2);
 				adapter.notifyDataSetChanged();
 				modList.invalidate();
-				for (int i = 0; i < userMod.size(); i++) {
-					map = new HashMap<String, String>();
-					item_del = userMod.get(i);
-					item_del.getDb_ID();
-					str_dbname = item_del.getDb_ID().toString();
-					modIDs_get.add(item_del.getMod_ID().toString());
-					modZTs_get.add(str_dbname);
-					Log.e("LiNing", "LiNing--------" + modIDs_get
-							+ "LiNing--------" + modZTs_get);
-					map.put(item_del.getDb_ID().toString(), item_del
-							.getMod_ID().toString());
-
-					// map3.putAll(map);
-				}
-				// list_del.add(item_del);
-				list.add(map);
-				Log.e("LiNing", "str_dbname========" + str_dbname);
+//				for (int i = 0; i < userMod.size(); i++) {
+//					map = new HashMap<String, String>();
+//					item_del = userMod.get(i);
+//					item_del.getDb_ID();
+//					str_dbname = item_del.getDb_ID().toString();
+//					modIDs_get.add(item_del.getMod_ID().toString());
+//					modZTs_get.add(str_dbname);
+//					Log.e("LiNing", "LiNing--------" + modIDs_get
+//							+ "LiNing--------" + modZTs_get);
+//					map.put(item_del.getDb_ID().toString(), item_del
+//							.getMod_ID().toString());
+//
+//					// map3.putAll(map);
+//				}
+//				// list_del.add(item_del);
+//				list.add(map);
+//				Log.e("LiNing", "str_dbname========" + str_dbname);
 			}
 		}
 

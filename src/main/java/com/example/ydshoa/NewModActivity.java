@@ -875,7 +875,7 @@ public class NewModActivity extends Activity implements OnClickListener {
             add("SATGP");//16
             add("SATGPC");//17
             add("SATGPD");//22
-            add("SATGPCS");//21
+            add("SATGPS");//21
             add("SATGPGC");//26
             add("SATGC");//14
             add("SATGCD");//54
@@ -942,7 +942,7 @@ public class NewModActivity extends Activity implements OnClickListener {
             add("SATGP");
             add("SATGPC");
             add("SATGPD");
-            add("SATGPCS");
+            add("SATGPS");
             add("SATGPGC");
             add("SATGC");
             add("SATGCD");
@@ -970,8 +970,8 @@ public class NewModActivity extends Activity implements OnClickListener {
             add("SATGPGCI");
             add("SATGPGCIPN");
 
-            add("ARPTG");
-            add("ARPTGGC");
+            add("ArpTG");
+            add("ArpTGGC");
             add("ArpTGP");
             add("ArpTGC");
             add("ArpTGS");
@@ -990,8 +990,8 @@ public class NewModActivity extends Activity implements OnClickListener {
     ArrayList<String> list_spmarp = new ArrayList<String>() {
         {
             add("spmarp");
-            add("ARPTG");
-            add("ARPTGGC");
+            add("ArpTG");
+            add("ArpTGGC");
             add("ArpTGP");
             add("ArpTGC");
             add("ArpTGS");
@@ -1014,7 +1014,7 @@ public class NewModActivity extends Activity implements OnClickListener {
             add("SATGP");
             add("SATGPC");
             add("SATGPD");
-            add("SATGPCS");
+            add("SATGPS");
             add("SATGPGC");
             add("SATGC");
             add("SATGCD");
@@ -1055,7 +1055,7 @@ public class NewModActivity extends Activity implements OnClickListener {
             add("SATGP");
             add("SATGPC");
             add("SATGPD");
-            add("SATGPCS");
+            add("SATGPS");
             add("SATGPGC");
             add("SATGC");
             add("SATGCD");
@@ -1083,8 +1083,8 @@ public class NewModActivity extends Activity implements OnClickListener {
             add("SATGPGCI");
             add("SATGPGCIPN");
             add("spmarp");
-            add("ARPTG");
-            add("ARPTGGC");
+            add("ArpTG");
+            add("ArpTGGC");
             add("ArpTGP");
             add("ArpTGC");
             add("ArpTGS");
@@ -1171,22 +1171,23 @@ public class NewModActivity extends Activity implements OnClickListener {
                 item.put("序号", ids_str);
                 itemRoot();
                 dList.add(item);
-
-                for (int i = 0; i < dList.size(); i++) {
-                    map = new HashMap<String, String>();
-                    item_del = dList.get(i);
-                    str_dbname = item_del.get("账套").toString();
-                    modIDs_get.add(dList.get(i).get("序号").toString());
-                    modZTs_get.add(dList.get(i).get("账套").toString());
-                    Log.e("LiNing", "LiNing--------" + modIDs_get
-                            + "LiNing--------" + modZTs_get);
-                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
-                            .get("序号").toString());
-
-                }
-                list.add(map);
+                //此处数据重复遍历（特别慢）
+//                for (int i = 0; i < dList.size(); i++) {
+//                    map = new HashMap<String, String>();
+//                    item_del = dList.get(i);
+//                    str_dbname = item_del.get("账套").toString();
+//                    modIDs_get.add(dList.get(i).get("序号").toString());
+//                    modZTs_get.add(dList.get(i).get("账套").toString());
+//                    Log.e("LiNing", "LiNing--------" + modIDs_get
+//                            + "LiNing--------" + modZTs_get);
+//                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
+//                            .get("序号").toString());
+//
+//                }
+//                list.add(map);
             }
-        } else if (idInfo.equals("sys")) {
+        } else
+ if (idInfo.equals("sys")) {
             for (int j = 0; j < list_sys.size(); j++) {
                 ids_str = list_sys.get(j);
                 Log.e("LiNing", "ids_str数据是===" + ids_str);
@@ -1224,7 +1225,7 @@ public class NewModActivity extends Activity implements OnClickListener {
                     nameInfo = "分支机构+品牌+渠道销售统计表";
                 } else if (ids_str.equals("SATGPD")) {
                     nameInfo = "分支机构+品牌+部门销售统计表";
-                }  else if (ids_str.equals("SATGPCS")) {
+                }  else if (ids_str.equals("SATGPS")) {
                     nameInfo = "分支机构+品牌+业务销售统计表";
                 } else if (ids_str.equals("SATGPGC")) {
                     nameInfo = "分支机构+品牌+终端网点销售统计表";
@@ -1327,21 +1328,22 @@ public class NewModActivity extends Activity implements OnClickListener {
                 dList.add(item);
                 Log.e("LiNing", "==========ids_str数据是===" + dList.size());
 
-                for (int i = 0; i < dList.size(); i++) {
-                    map = new HashMap<String, String>();
-                    item_del = dList.get(i);
-                    str_dbname = item_del.get("账套").toString();
-                    modIDs_get.add(dList.get(i).get("序号").toString());
-                    modZTs_get.add(dList.get(i).get("账套").toString());
-                    Log.e("LiNing", "LiNing--------" + modIDs_get
-                            + "LiNing--------" + modZTs_get);
-                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
-                            .get("序号").toString());
-
-                }
-                list.add(map);
-            }
-        } else if (idInfo.equals("spmsa")) {
+//                for (int i = 0; i < dList.size(); i++) {
+//                    map = new HashMap<String, String>();
+//                    item_del = dList.get(i);
+//                    str_dbname = item_del.get("账套").toString();
+//                    modIDs_get.add(dList.get(i).get("序号").toString());
+//                    modZTs_get.add(dList.get(i).get("账套").toString());
+//                    Log.e("LiNing", "LiNing--------" + modIDs_get
+//                            + "LiNing--------" + modZTs_get);
+//                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
+//                            .get("序号").toString());
+//
+//                }
+//                list.add(map);
+    }
+}
+        else if (idInfo.equals("spmsa")) {
             for (int j = 0; j < list_spmsa.size(); j++) {
                 ids_str = list_spmsa.get(j);
                 Log.e("LiNing", "ids_str数据是===" + ids_str);
@@ -1353,7 +1355,7 @@ public class NewModActivity extends Activity implements OnClickListener {
                     nameInfo = "分支机构+品牌+渠道销售统计表";
                 } else if (ids_str.equals("SATGPD")) {
                     nameInfo = "分支机构+品牌+部门销售统计表";
-                }else if (ids_str.equals("SATGPCS")) {
+                }else if (ids_str.equals("SATGPS")) {
                     nameInfo = "分支机构+品牌+业务销售统计表";
                 } else if (ids_str.equals("SATGPGC")) {
                     nameInfo = "分支机构+品牌+终端网点销售统计表";
@@ -1416,19 +1418,19 @@ public class NewModActivity extends Activity implements OnClickListener {
                 itemRoot();
                 dList.add(item);
 
-                for (int i = 0; i < dList.size(); i++) {
-                    map = new HashMap<String, String>();
-                    item_del = dList.get(i);
-                    str_dbname = item_del.get("账套").toString();
-                    modIDs_get.add(dList.get(i).get("序号").toString());
-                    modZTs_get.add(dList.get(i).get("账套").toString());
-                    Log.e("LiNing", "LiNing--------" + modIDs_get
-                            + "LiNing--------" + modZTs_get);
-                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
-                            .get("序号").toString());
-
-                }
-                list.add(map);
+//                for (int i = 0; i < dList.size(); i++) {
+//                    map = new HashMap<String, String>();
+//                    item_del = dList.get(i);
+//                    str_dbname = item_del.get("账套").toString();
+//                    modIDs_get.add(dList.get(i).get("序号").toString());
+//                    modZTs_get.add(dList.get(i).get("账套").toString());
+//                    Log.e("LiNing", "LiNing--------" + modIDs_get
+//                            + "LiNing--------" + modZTs_get);
+//                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
+//                            .get("序号").toString());
+//
+//                }
+//                list.add(map);
             }
         } else if (idInfo.equals("spmarp")) {
             for (int j = 0; j < list_spmarp.size(); j++) {
@@ -1469,19 +1471,19 @@ public class NewModActivity extends Activity implements OnClickListener {
                 itemRoot();
                 dList.add(item);
 
-                for (int i = 0; i < dList.size(); i++) {
-                    map = new HashMap<String, String>();
-                    item_del = dList.get(i);
-                    str_dbname = item_del.get("账套").toString();
-                    modIDs_get.add(dList.get(i).get("序号").toString());
-                    modZTs_get.add(dList.get(i).get("账套").toString());
-                    Log.e("LiNing", "LiNing--------" + modIDs_get
-                            + "LiNing--------" + modZTs_get);
-                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
-                            .get("序号").toString());
-
-                }
-                list.add(map);
+//                for (int i = 0; i < dList.size(); i++) {
+//                    map = new HashMap<String, String>();
+//                    item_del = dList.get(i);
+//                    str_dbname = item_del.get("账套").toString();
+//                    modIDs_get.add(dList.get(i).get("序号").toString());
+//                    modZTs_get.add(dList.get(i).get("账套").toString());
+//                    Log.e("LiNing", "LiNing--------" + modIDs_get
+//                            + "LiNing--------" + modZTs_get);
+//                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
+//                            .get("序号").toString());
+//
+//                }
+//                list.add(map);
             }
         } else if (idInfo.equals("sk")) {
             for (int j = 0; j < list_sk.size(); j++) {
@@ -1502,19 +1504,19 @@ public class NewModActivity extends Activity implements OnClickListener {
                 itemRoot();
                 dList.add(item);
 
-                for (int i = 0; i < dList.size(); i++) {
-                    map = new HashMap<String, String>();
-                    item_del = dList.get(i);
-                    str_dbname = item_del.get("账套").toString();
-                    modIDs_get.add(dList.get(i).get("序号").toString());
-                    modZTs_get.add(dList.get(i).get("账套").toString());
-                    Log.e("LiNing", "LiNing--------" + modIDs_get
-                            + "LiNing--------" + modZTs_get);
-                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
-                            .get("序号").toString());
-
-                }
-                list.add(map);
+//                for (int i = 0; i < dList.size(); i++) {
+//                    map = new HashMap<String, String>();
+//                    item_del = dList.get(i);
+//                    str_dbname = item_del.get("账套").toString();
+//                    modIDs_get.add(dList.get(i).get("序号").toString());
+//                    modZTs_get.add(dList.get(i).get("账套").toString());
+//                    Log.e("LiNing", "LiNing--------" + modIDs_get
+//                            + "LiNing--------" + modZTs_get);
+//                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
+//                            .get("序号").toString());
+//
+//                }
+//                list.add(map);
             }
         } else if (idInfo.equals("sm")) {
             for (int j = 0; j < list_sm.size(); j++) {
@@ -1538,20 +1540,20 @@ public class NewModActivity extends Activity implements OnClickListener {
                 item.put("序号", ids_str);
                 itemRoot();
                 dList.add(item);
-
-                for (int i = 0; i < dList.size(); i++) {
-                    map = new HashMap<String, String>();
-                    item_del = dList.get(i);
-                    str_dbname = item_del.get("账套").toString();
-                    modIDs_get.add(dList.get(i).get("序号").toString());
-                    modZTs_get.add(dList.get(i).get("账套").toString());
-                    Log.e("LiNing", "LiNing--------" + modIDs_get
-                            + "LiNing--------" + modZTs_get);
-                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
-                            .get("序号").toString());
-
-                }
-                list.add(map);
+//
+//                for (int i = 0; i < dList.size(); i++) {
+//                    map = new HashMap<String, String>();
+//                    item_del = dList.get(i);
+//                    str_dbname = item_del.get("账套").toString();
+//                    modIDs_get.add(dList.get(i).get("序号").toString());
+//                    modZTs_get.add(dList.get(i).get("账套").toString());
+//                    Log.e("LiNing", "LiNing--------" + modIDs_get
+//                            + "LiNing--------" + modZTs_get);
+//                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
+//                            .get("序号").toString());
+//
+//                }
+//                list.add(map);
             }
         } else if (idInfo.equals("spm")) {
             for (int j = 0; j < list_spm.size(); j++) {
@@ -1569,7 +1571,7 @@ public class NewModActivity extends Activity implements OnClickListener {
                     nameInfo = "分支机构+品牌+渠道销售统计表";
                 } else if (ids_str.equals("SATGPD")) {
                     nameInfo = "分支机构+品牌+部门销售统计表";
-                } else if (ids_str.equals("SATGPCS")) {
+                } else if (ids_str.equals("SATGPS")) {
                     nameInfo = "分支机构+品牌+业务销售统计表";
                 } else if (ids_str.equals("SATGPGC")) {
                     nameInfo = "分支机构+品牌+终端网点销售统计表";
@@ -1660,19 +1662,19 @@ public class NewModActivity extends Activity implements OnClickListener {
                 itemRoot();
                 dList.add(item);
 
-                for (int i = 0; i < dList.size(); i++) {
-                    map = new HashMap<String, String>();
-                    item_del = dList.get(i);
-                    str_dbname = item_del.get("账套").toString();
-                    modIDs_get.add(dList.get(i).get("序号").toString());
-                    modZTs_get.add(dList.get(i).get("账套").toString());
-                    Log.e("LiNing", "LiNing--------" + modIDs_get
-                            + "LiNing--------" + modZTs_get);
-                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
-                            .get("序号").toString());
-
-                }
-                list.add(map);
+//                for (int i = 0; i < dList.size(); i++) {
+//                    map = new HashMap<String, String>();
+//                    item_del = dList.get(i);
+//                    str_dbname = item_del.get("账套").toString();
+//                    modIDs_get.add(dList.get(i).get("序号").toString());
+//                    modZTs_get.add(dList.get(i).get("账套").toString());
+//                    Log.e("LiNing", "LiNing--------" + modIDs_get
+//                            + "LiNing--------" + modZTs_get);
+//                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
+//                            .get("序号").toString());
+//
+//                }
+//                list.add(map);
             }
         } else if (idInfo.equals("sp")) {
             for (int j = 0; j < list_sp.size(); j++) {
@@ -1698,7 +1700,7 @@ public class NewModActivity extends Activity implements OnClickListener {
                     nameInfo = "分支机构+品牌+渠道销售统计表";
                 } else if (ids_str.equals("SATGPD")) {
                     nameInfo = "分支机构+品牌+部门销售统计表";
-                }else if (ids_str.equals("SATGPCS")) {
+                }else if (ids_str.equals("SATGPS")) {
                     nameInfo = "分支机构+品牌+业务销售统计表";
                 } else if (ids_str.equals("SATGPGC")) {
                     nameInfo = "分支机构+品牌+终端网点销售统计表";
@@ -1790,19 +1792,19 @@ public class NewModActivity extends Activity implements OnClickListener {
                 itemRoot();
                 dList.add(item);
 
-                for (int i = 0; i < dList.size(); i++) {
-                    map = new HashMap<String, String>();
-                    item_del = dList.get(i);
-                    str_dbname = item_del.get("账套").toString();
-                    modIDs_get.add(dList.get(i).get("序号").toString());
-                    modZTs_get.add(dList.get(i).get("账套").toString());
-                    Log.e("LiNing", "LiNing--------" + modIDs_get
-                            + "LiNing--------" + modZTs_get);
-                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
-                            .get("序号").toString());
-
-                }
-                list.add(map);
+//                for (int i = 0; i < dList.size(); i++) {
+//                    map = new HashMap<String, String>();
+//                    item_del = dList.get(i);
+//                    str_dbname = item_del.get("账套").toString();
+//                    modIDs_get.add(dList.get(i).get("序号").toString());
+//                    modZTs_get.add(dList.get(i).get("账套").toString());
+//                    Log.e("LiNing", "LiNing--------" + modIDs_get
+//                            + "LiNing--------" + modZTs_get);
+//                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
+//                            .get("序号").toString());
+//
+//                }
+//                list.add(map);
             }
         } else if (idInfo.equals("spt")) {
             for (int j = 0; j < list_spt.size(); j++) {
@@ -1821,21 +1823,22 @@ public class NewModActivity extends Activity implements OnClickListener {
                 itemRoot();
                 dList.add(item);
 
-                for (int i = 0; i < dList.size(); i++) {
-                    map = new HashMap<String, String>();
-                    item_del = dList.get(i);
-                    str_dbname = item_del.get("账套").toString();
-                    modIDs_get.add(dList.get(i).get("序号").toString());
-                    modZTs_get.add(dList.get(i).get("账套").toString());
-                    Log.e("LiNing", "LiNing--------" + modIDs_get
-                            + "LiNing--------" + modZTs_get);
-                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
-                            .get("序号").toString());
-
-                }
-                list.add(map);
+//                for (int i = 0; i < dList.size(); i++) {
+//                    map = new HashMap<String, String>();
+//                    item_del = dList.get(i);
+//                    str_dbname = item_del.get("账套").toString();
+//                    modIDs_get.add(dList.get(i).get("序号").toString());
+//                    modZTs_get.add(dList.get(i).get("账套").toString());
+//                    Log.e("LiNing", "LiNing--------" + modIDs_get
+//                            + "LiNing--------" + modZTs_get);
+//                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
+//                            .get("序号").toString());
+//
+//                }
+//                list.add(map);
             }
-        } else {
+        }
+        else {
             item = new HashMap<String, Object>();
             item.put("序号", idInfo);
             itemRoot();

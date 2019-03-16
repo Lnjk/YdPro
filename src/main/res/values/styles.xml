@@ -21,7 +21,7 @@
 
     <style name="list_item_seperator_layout">
         <item name="android:background">@color/color_dark_grey</item>
-        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1.0dip</item>
     </style>
 
