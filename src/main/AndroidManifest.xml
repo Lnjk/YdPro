@@ -213,7 +213,17 @@
         <activity
             android:name=".BrandFxActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".BrandOutInfoActivity"></activity>
+        <activity android:name=".BrandOutInfoActivity" />
+        <activity android:name=".ReceiptQueryActivity" />
+        <activity android:name=".DesignerManageActivity" />
+        <activity android:name=".DesignerJfbActivity" />
+        <activity android:name=".DesignerJlActivity" />
+        <activity android:name=".DesignerRwActivity" />
+        <activity android:name=".DesigneDhrActivity" />
+        <activity android:name=".JfClassActivity" />
+        <activity android:name=".JfDoAllActivity" />
+        <activity android:name=".DesignThreeActivity" />
+        <activity android:name=".DesignerJlMxActivity"></activity>
     </application>
 
 </manifest>

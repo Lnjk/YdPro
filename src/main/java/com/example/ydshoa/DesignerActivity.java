@@ -187,7 +187,7 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
 
     private void initView() {
         head = (TextView) findViewById(R.id.all_head);
-        head.setText("设计师管理");
+        head.setText("设计师登记单");
         this.mHead = ((RelativeLayout) findViewById(R.id.design_head));
         this.mHead.setFocusable(true);
         this.mHead.setClickable(true);
@@ -862,9 +862,10 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                     } else {
                         ssdw.setText("null");
                     }
-                    if (vipList_hd.getSalesTerminal_No() != null) {
+                    if (vipList_hd.getSalesTerminal_No() != null&&!vipList_hd.getSalesTerminal_No().toString().equals("")) {
 
                         idtoname = vipList_hd.getSalesTerminal_No().toString();
+                        Log.e("LiNing", "查询数据==idtoname=" + idtoname);
                         OkHttpClient client = new OkHttpClient();
                         FormBody body = new FormBody.Builder().add("accountNo", zt.getText().toString())
                                 .add("id", idtoname).build();
@@ -876,7 +877,7 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                             @Override
                             public void onResponse(Call call, Response response) throws IOException {
                                 String str = response.body().string();
-                                Log.e("LiNing", "查询数据===" + str);
+                                Log.e("LiNing", "查询数据==qd=" + str);
                                 final DepInfo dInfo = new Gson().fromJson(str,
                                         DepInfo.class);
                                 if (dInfo != null) {
@@ -906,7 +907,7 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                     } else {
                         bbqd.setText("null");
                     }
-                    if (vipList_hd.getSal_No() != null) {
+                    if (vipList_hd.getSal_No() != null&&!vipList_hd.getSal_No().toString().equals("")) {
                         idtoname_yw = vipList_hd.getSal_No().toString();
                         OkHttpClient client = new OkHttpClient();
                         FormBody body = new FormBody.Builder().add("accountNo", zt.getText().toString())

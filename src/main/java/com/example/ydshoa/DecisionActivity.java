@@ -265,7 +265,7 @@ public class DecisionActivity extends Activity implements OnClickListener {
 					intent.putExtra("reportB", "SA");
 					startActivity(intent);
 				} else {
-					if (modIds_get.contains("spmsa")) {
+					if (modIds_get.contains("spm")) {
 						sp.edit().putString("TJ", head.getText().toString())
 								.commit();
 //						Intent intent = new Intent(context, SalesNumActivity.class);

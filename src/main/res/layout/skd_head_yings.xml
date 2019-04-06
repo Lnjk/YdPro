@@ -4,6 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/list_item_bg"
+    android:descendantFocusability="blocksDescendants"
     android:orientation="horizontal"
     android:padding="5.0dip">
 
@@ -104,19 +105,25 @@
 
                 <View style="@style/list_item_cell_seperator_layout" />
 
-                <TextView
-                    android:id="@+id/tv_skdmx_yingsbccx"
-                    style="@style/head_scrow"
-                    android:text="本次冲销" />
-
-                <View style="@style/list_item_cell_seperator_layout" />
 
                 <TextView
                     android:id="@+id/tv_skdmx_yingswcjy"
                     style="@style/head_scrow"
                     android:text="未冲结余" />
-
                 <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_skdmx_yingsbccx"
+                    style="@style/head_scrow"
+                    android:text="本次冲销" />
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_skdmx_yingsbz"
+                    style="@style/head_scrow"
+                    android:text="备注" />
+                <View style="@style/list_item_cell_seperator_layout" />
+
+
+
 
 
             </LinearLayout>

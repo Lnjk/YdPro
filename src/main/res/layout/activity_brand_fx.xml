@@ -67,7 +67,7 @@
 
 </LinearLayout>
     <View style="@style/list_item_seperator_layout" />
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -143,8 +143,8 @@
         <View style="@style/list_item_seperator_layout" />
 
     </LinearLayout>
-    <View style="@style/list_item_seperator_layout" />
-    <include layout="@layout/tb_one_listview_team" />
+    <View style="@style/list_item_seperator_layout" />-->
+    <include layout="@layout/tb_two_listview_team_pp" />
     <View style="@style/list_item_seperator_layout" />
     <ListView
         android:id="@+id/lv_fx_pp"

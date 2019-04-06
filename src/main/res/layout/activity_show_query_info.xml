@@ -57,6 +57,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:ellipsize="end"
+                        android:text="null"
                         android:singleLine="true" />
 
                     <ImageButton
@@ -88,6 +89,7 @@
                     <TextView
                         android:id="@+id/et_modquerry_hs"
                         android:layout_width="0.0dip"
+                        android:text="null"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:ellipsize="end"
@@ -126,6 +128,7 @@
                     <TextView
                         android:id="@+id/btn_modquerry_dep"
                         android:layout_width="wrap_content"
+
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_marginLeft="2.0dip"
@@ -136,6 +139,7 @@
                     <TextView
                         android:id="@+id/et_modquerry_dep"
                         android:layout_width="0.0dip"
+                        android:text="null"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:ellipsize="end"
@@ -170,6 +174,7 @@
                     <TextView
                         android:id="@+id/et_modquerry_sup"
                         android:layout_width="0.0dip"
+                        android:text="null"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:ellipsize="end"
@@ -209,6 +214,7 @@
                         android:id="@+id/btn_modquerry_cust"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+
                         android:layout_alignParentLeft="true"
                         android:layout_marginLeft="2.0dip"
                         android:background="@android:color/transparent"
@@ -218,6 +224,7 @@
                     <TextView
                         android:id="@+id/et_modquerry_cust"
                         android:layout_width="0.0dip"
+                        android:text="null"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:ellipsize="end"
@@ -252,6 +259,7 @@
                     <TextView
                         android:id="@+id/et_modquerry_user"
                         android:layout_width="0.0dip"
+                        android:text="null"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.0"
                         android:ellipsize="end"

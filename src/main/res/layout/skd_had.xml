@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_bg"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:padding="5.0dip">
+
+
+    <TextView
+        android:id="@+id/skd_sfkdh"
+        style="@style/head_scrow_vipcontent"
+        android:text="收付款单号" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+    <TextView
+        android:id="@+id/textView2_skd_rq"
+        style="@style/head_scrow_vipcontent"
+        android:text="收付款日期" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+    <TextView
+        android:id="@+id/textView3_skd_lrr"
+        style="@style/head_scrow_vipcontent"
+        android:text="录入人" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+    <TextView
+        android:id="@+id/textView4_skd_shr"
+        style="@style/head_scrow_vipcontent"
+        android:text="审核人" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+
+    <View style="@style/list_item_cell_seperator_layout" />
+</LinearLayout>

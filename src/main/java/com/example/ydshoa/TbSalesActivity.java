@@ -9,22 +9,29 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.LeftOrRight.MyHScrollView;
 import com.example.bean.SaleMakeInfo;
 import com.example.bean.TbSales;
 import com.example.bean.URLS;
+import com.example.bean.UserInfo;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +41,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.Call;
@@ -50,8 +58,8 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
     private Button tb_all_zl, tb_all_zc, tb_all_dy, tb_all_jz, tb_sx_one, tb_sx_two, tb_dq_kstime, tb_db_kstime, tb_dq_jstime, tb_db_jstime;
     private ImageButton tb_zt_dq_xl, tb_zt_db_xl;
     private TextView head_tb, tb_db_dq, tb_db_db, tb_zl_name_dq, tb_zt_name_dq, tb_zl_name_db, tb_zt_name_db;
-    int checked,gjss_num;
-    String reportnos, str_id, str_name,str_id_db, str_name_db, hq_kssj_dq, hq_jssj_dq, hq_kssj_db, hq_jssj_db;
+    int checked,gjss_num,ischeck_gj;
+    String reportnos_qx,reportnos, str_id, str_name,str_id_db, str_name_db, hq_kssj_dq, hq_jssj_dq, hq_kssj_db, hq_jssj_db;
     String all_info_dq, all_info_dq_db, db_ids, str_all;
     //reportBus + reportnos+reportname---SASATGP账套+品牌
     private ArrayList<String> querryDBs, querryDBs_all, bilNos, custNos,
@@ -67,7 +75,13 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
     SalesInfoDbAdapter sfadapter_db;
     private ListView lv_get_one;
     public static List<TbSales> info_out = new ArrayList<TbSales>();
-
+    String url_query = URLS.userInfo_url;
+    ArrayList<String> modIds_get = new ArrayList<String>();
+    private ArrayList<HashMap<String, Object>> dList;
+    private HashMap<String, Object> item;
+    private String ps_id,db_ID,mod_ID;
+    private List<com.example.bean.UserInfo.User_Mod> user_Mod;
+    LinearLayout mHead;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,10 +91,15 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
         sp = getSharedPreferences("ydbg", 0);
         session = sp.getString("SESSION", "");
         initView();
+        getRoot();
     }
 
     private void initView() {
         head_tb = (TextView) findViewById(R.id.all_head);
+        mHead = (LinearLayout) findViewById(R.id.sales_scrowHead);
+        mHead.setFocusable(true);
+        mHead.setClickable(true);
+        mHead.setOnTouchListener(new ListViewAndHeadViewTouchLinstener());
         tb_all_zl = (Button) findViewById(R.id.tb_btn_condition_zl);//种类
         tb_all_zc = (Button) findViewById(R.id.tb_btn_out);//转出
         tb_all_dy = (Button) findViewById(R.id.tb_btn_print);//打印
@@ -113,8 +132,23 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
         tb_db_jstime.setOnClickListener(this);
         lv_get_one = (ListView) findViewById(R.id.tb_dbzt_lv_one);
 //        lv_get_db = (ListView) findViewById(R.id.tb_dbzt_lv);
+        dList = new ArrayList();
     }
 
+    // 表头滑动事件
+    class ListViewAndHeadViewTouchLinstener implements View.OnTouchListener {
+        ListViewAndHeadViewTouchLinstener() {
+        }
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            ((HorizontalScrollView) TbSalesActivity.this.mHead
+                    .findViewById(R.id.horizontalScrollView1))
+                    .onTouchEvent(event);
+            return false;
+        }
+
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -145,10 +179,19 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
                 } else {
 
                     head_bt_sale();
-//                    tb_zt_name_dq.setText(str_name+"/"+hq_kssj_dq+"/"+hq_jssj_dq);
+                    tb_zt_name_dq.setText(str_name+"/"+hq_kssj_dq+"/"+hq_jssj_dq);
 //                    tb_zt_name_db.setText(str_name+"/"+hq_kssj_db+"/"+hq_jssj_db);
+                    //判断是否有权限
+                Log.e("LiNing", "权限-" + reportnos.toString());
+                Log.e("LiNing", "modIds_get权限-" + modIds_get);
+                if (modIds_get.contains(reportnos_qx)) {
+                    Log.e("LiNing", "--modIds_get----值-" + modIds_get);
                     checked = 4;
                     first_load();
+                }else{
+                    Toast.makeText(context, "此种类无权限", Toast.LENGTH_LONG).show();
+                }
+
                 }
 //                getDbInfos();//成功加载当前数据后加载对比数据
                 break;
@@ -176,6 +219,7 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
                 }
                 break;
             case R.id.btn_gjsx_dq:
+                ischeck_gj=1;
                 if (tb_db_dq.getText().toString().equals("")) {
                     Toast.makeText(context, "账套不能为空", Toast.LENGTH_LONG).show();
                 } else {
@@ -191,6 +235,7 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
                 }
                 break;
             case R.id.btn_gjsx_bj:
+                ischeck_gj=1;
                 if (tb_db_dq.getText().toString().equals("")) {
                     Toast.makeText(context, "账套不能为空", Toast.LENGTH_LONG).show();
                 } else {
@@ -284,19 +329,39 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
 
     private void head_bt_sale() {
         String name_bt = head_tb.getText().toString();
-        if (name_bt.equals("账套")) {
+//        if (name_bt.equals("账套")) {
+//            reportnos = "SATG";
+//        }
+//        if (name_bt.equals("账套+品牌")) {
+//            reportnos = "SATGP";
+//        }
+//        if (name_bt.equals("账套+渠道")) {
+//            reportnos = "SATGC";
+//        }
+//        if (name_bt.equals("账套+部门")) {
+//            reportnos = "SATGD";
+//        }
+//        if (name_bt.equals("账套+网点")) {
+//            reportnos = "SATGGC";
+//        }
+        if (name_bt.equals("帐套销售同比表")) {
+            reportnos_qx="SATGV";
             reportnos = "SATG";
         }
-        if (name_bt.equals("账套+品牌")) {
+        if (name_bt.equals("帐套+品牌销售同比表")) {
+            reportnos_qx="SATGVP";
             reportnos = "SATGP";
         }
-        if (name_bt.equals("账套+渠道")) {
+        if (name_bt.equals("帐套+渠道销售同比表")) {
+            reportnos_qx="SATGVC";
             reportnos = "SATGC";
         }
-        if (name_bt.equals("账套+部门")) {
+        if (name_bt.equals("帐套+部门销售同比表")) {
+            reportnos_qx="SATGVD";
             reportnos = "SATGD";
         }
-        if (name_bt.equals("账套+网点")) {
+        if (name_bt.equals("帐套+网点销售同比表")) {
+            reportnos_qx="SATGVGC";
             reportnos = "SATGGC";
         }
     }
@@ -388,10 +453,195 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
 //            }
             beforPost();
         } else {
+            postNull();
             Toast.makeText(context, "数据不能为空", Toast.LENGTH_LONG).show();
             // 空数据就是全部。。。
         }
     }
+
+    private void postNull() {
+        OkHttpClient client = new OkHttpClient();
+        // if (flag_index == 1) {
+        Log.e("LiNing", "-当前数据----" + str_id);
+        FormBody body_null = new FormBody.Builder()
+                // .add("reprotNo", reportNo_get)
+                .add("reprotNo", reportnos)
+                .add("beginDate", tb_dq_kstime.getText().toString())
+                .add("endDate", tb_dq_jstime.getText().toString())
+                .add("reporyBusiness", "SA")
+                .add("isGroupSum", "T")
+                .add("query_DB", str_id).add("bilNo", "")
+                .add("custNo", "").add("custName", "").add("custPhone", "")
+                .add("custAddress", "").add("inputNo", "")
+                .add("cust_OS_NO", "").add("rem", "").add("prdMark", "")
+                .add("query_CompDep", "")
+                .add("query_Dep", "")
+                .add("query_Sup", "")
+                .add("query_Cust", "")
+                .add("query_User", "").add("chk_User", "ALL")
+                .add("area", "ALL").add("employee", "ALL").add("prdNO", "ALL")
+                .add("prdIndx", "ALL").add("prdWh", "ALL").build();
+        Request request = new Request.Builder().addHeader("cookie", session)
+                .url(url).post(body_null).build();
+        Log.e("LiNing", "-当前数据----" + body_null.toString());
+
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
+
+            @Override
+            public void onResponse(Call call, Response response)
+                    throws IOException {
+
+                str_all = response.body().string();
+                Log.e("LiNing", "-----" + str_all + "-----" + response.code());
+                Log.e("LiNing", "-----" + response.code());
+//                if (response.code() == 200) {
+//                    sp.edit().putString("sale_tjInfo", "").commit();
+//                }
+                if (str_all != null) {
+                    TbSalesActivity.this.runOnUiThread(new Runnable() {
+
+                        @Override
+                        public void run() {
+
+                        }
+                    });
+                } else {
+                    Toast.makeText(TbSalesActivity.this, "无数据。。。", Toast.LENGTH_LONG)
+                            .show();
+                }
+                final SaleMakeInfo aDb1 = new Gson().fromJson(str_all,
+                        SaleMakeInfo.class);
+                if (aDb1 != null) {
+                    TbSalesActivity.this.runOnUiThread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            data = aDb1.getData();
+//                            head_all = aDb1.getHead();
+                            Log.e("LiNing", "========" + data.size()+data);
+
+                            if (data != null && data.size() > 0) {
+//                                String s = data.get(0).getAffiliateName().toString();
+//                                tb_zt_name_db.setText(s + "/" + hq_kssj_dq + "/" + hq_jssj_dq);
+//                                showlist();//暂时不显示
+//                                //同时加载对比数据
+//                                if (all_info_db != null && !all_info_db.equals("")) {
+//                                    getDbInfos();//成功加载当前数据后加载对比数据
+//                                }else{
+//                                    Toast.makeText(context,"对比数据为空",Toast.LENGTH_LONG).show();
+//                                }
+//                                tb_zt_name_dq.setText(data.get(0).getAffiliateName().toString() + "/" + hq_kssj_dq + "/" + hq_jssj_dq);
+                                two_load_null();
+                            } else {
+                                Toast.makeText(context, "无数据", Toast.LENGTH_LONG).show();
+                            }
+
+                        }
+
+                    });
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call arg0, IOException arg1) {
+
+            }
+        });
+    }
+
+    private void two_load_null() {
+        OkHttpClient client = new OkHttpClient();
+        // if (flag_index == 1) {
+        Log.e("LiNing", "---db_ids--" + str_id_db);
+        FormBody body_null2 = new FormBody.Builder()
+                // .add("reprotNo", reportNo_get)
+                .add("reprotNo", reportnos)
+                .add("beginDate", tb_db_kstime.getText().toString())
+                .add("endDate", tb_db_jstime.getText().toString())
+                .add("reporyBusiness", "SA")
+                .add("isGroupSum", "T")
+                .add("query_DB", str_id_db).add("bilNo", "")
+                .add("custNo", "").add("custName", "").add("custPhone", "")
+                .add("custAddress", "").add("inputNo", "")
+                .add("cust_OS_NO", "").add("rem", "").add("prdMark", "")
+                .add("query_CompDep", "")
+                .add("query_Dep", "")
+                .add("query_Sup", "")
+                .add("query_Cust", "")
+                .add("query_User", "").add("chk_User", "ALL")
+                .add("area", "ALL").add("employee", "ALL").add("prdNO", "ALL")
+                .add("prdIndx", "ALL").add("prdWh", "ALL").build();
+        Request request = new Request.Builder().addHeader("cookie", session)
+                .url(url).post(body_null2).build();
+        Log.e("LiNing", "-----" + body_null2.toString());
+
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
+
+            @Override
+            public void onResponse(Call call, Response response)
+                    throws IOException {
+
+                str_all = response.body().string();
+                Log.e("LiNing", "-----" + str_all + "-----" + response.code());
+                Log.e("LiNing", "-----" + response.code());
+//                if (response.code() == 200) {
+//                    sp.edit().putString("sale_tjInfo", "").commit();
+//                }
+                if (str_all != null) {
+                    TbSalesActivity.this.runOnUiThread(new Runnable() {
+
+                        @Override
+                        public void run() {
+
+                        }
+                    });
+                } else {
+                    Toast.makeText(TbSalesActivity.this, "无数据。。。", Toast.LENGTH_LONG)
+                            .show();
+                }
+                final SaleMakeInfo aDb1 = new Gson().fromJson(str_all,
+                        SaleMakeInfo.class);
+                if (aDb1 != null) {
+                    TbSalesActivity.this.runOnUiThread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            data_db = aDb1.getData();
+//                            head_all = aDb1.getHead();
+//                            Log.e("LiNing", "========" + data.size());
+                            if (data_db != null && data_db.size() > 0) {
+//                                tb_zt_name_dq.setText(tb_db_dq.getText().toString() + "/" + hq_kssj_dq + "/" + hq_jssj_dq);
+
+                                tb_zt_name_db.setText(data_db.get(0).getAffiliateName().toString() + "/" + hq_kssj_db + "/" + hq_jssj_db);
+                                compareInfos();
+//                                showlist_db();
+//                                //同时加载对比数据
+//                                if (all_info_db != null && !all_info_db.equals("")) {
+//                                    getDbInfos();//成功加载当前数据后加载对比数据
+//                                }else{
+//                                    Toast.makeText(context,"对比数据为空",Toast.LENGTH_LONG).show();
+//                                }
+                            } else {
+                                Toast.makeText(context, "无数据", Toast.LENGTH_LONG).show();
+                            }
+
+                        }
+
+                    });
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call arg0, IOException arg1) {
+
+            }
+        });
+    }
+
     private void two_load() {
         all_info_dq_db = sp.getString("sale_tjInfo_db", "");
         Log.e("LiNing", "--更新数据-----" + all_info_dq_db);
@@ -932,6 +1182,7 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
         }
     }
     String zj_pp_m,zj_jxse_m,zj_ml_m,zj_mll_m;
+    String db_s_pp_m_yh,db_s_jxse_m_yh,db_s_ml_m_yh,db_s_mll_m_yh;
     private void bl_sales_info_add() {
         if (reportnos.equals("SATGP")) {
             for (int m = 0; m < data_db.size(); m++) {
@@ -950,8 +1201,8 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
                     String db_s_mll_m = data_db.get(m).getgPM().toString();
 
                     if (!names_2.contains(db_s_pp_m)) {
-//                        TbSales tbSales_bt_m = new TbSales("", "", "", "", db_s_pp_m, db_s_jxse_m, db_s_ml_m, db_s_mll_m);
-                        TbSales tbSales_bt_m = new TbSales(db_s_pp_m, db_s_jxse_m, db_s_ml_m, db_s_mll_m,"", "", "", "");
+                        TbSales tbSales_bt_m = new TbSales("", "", "", "", db_s_pp_m, db_s_jxse_m, db_s_ml_m, db_s_mll_m);
+//                        TbSales tbSales_bt_m = new TbSales(db_s_pp_m, db_s_jxse_m, db_s_ml_m, db_s_mll_m,"", "", "", "");
                         tb_data3.add(tbSales_bt_m);
                     }
                 }
@@ -992,8 +1243,8 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
                         }
 //                        Log.e("LiNing", "tb_data1.size--------" + tb_data1.size() + "-----" + tb_data1);
                     } else {
-//                        TbSales tbSales_bt = new TbSales(db_s_pp, db_s_jxse, db_s_ml, db_s_mll, "", "", "", "");
-                        TbSales tbSales_bt = new TbSales("", "", "", "",db_s_pp, db_s_jxse, db_s_ml, db_s_mll);
+                        TbSales tbSales_bt = new TbSales(db_s_pp, db_s_jxse, db_s_ml, db_s_mll, "", "", "", "");
+//                        TbSales tbSales_bt = new TbSales("", "", "", "",db_s_pp, db_s_jxse, db_s_ml, db_s_mll);
                         tb_data2.add(tbSales_bt);
                     }
                 }
@@ -1010,15 +1261,20 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
             for (int m = 0; m < data_db.size(); m++) {
                 zj_q(m);
                 if (data_db.get(m).getAffiliateName() != null && !data_db.get(m).getAffiliateName().equals("")) {
-                    String db_s_pp_m = data_db.get(m).getAffiliateName().toString();
-                    String db_s_jxse_m = data_db.get(m).getSnAmtn().toString();
-                    String db_s_ml_m = data_db.get(m).getgP().toString();
-                    String db_s_mll_m = data_db.get(m).getgPM().toString();
-                    if (!names_2.contains(db_s_pp_m)) {
-                        TbSales tbSales_bt_m = new TbSales("", "", "", "", db_s_pp_m, db_s_jxse_m, db_s_ml_m, db_s_mll_m);
-//                        TbSales tbSales_bt_m = new TbSales(db_s_pp_m, db_s_jxse_m, db_s_ml_m, db_s_mll_m,"", "", "", "");
-                        tb_data3.add(tbSales_bt_m);
-                    }
+
+//                     db_s_pp_m_yh = data_db.get(m).getAffiliateName().toString();
+                     db_s_jxse_m_yh = data_db.get(m).getSnAmtn().toString();
+                     db_s_ml_m_yh = data_db.get(m).getgP().toString();
+                     db_s_mll_m_yh = data_db.get(m).getgPM().toString();
+//                    String db_s_pp_m = data_db.get(m).getAffiliateName().toString();
+//                    String db_s_jxse_m = data_db.get(m).getSnAmtn().toString();
+//                    String db_s_ml_m = data_db.get(m).getgP().toString();
+//                    String db_s_mll_m = data_db.get(m).getgPM().toString();
+//                    if (!names_2.contains(db_s_pp_m)) {
+//                        TbSales tbSales_bt_m = new TbSales("", "", "", "", db_s_pp_m, db_s_jxse_m, db_s_ml_m, db_s_mll_m);
+////                        TbSales tbSales_bt_m = new TbSales(db_s_pp_m, db_s_jxse_m, db_s_ml_m, db_s_mll_m,"", "", "", "");
+//                        tb_data3.add(tbSales_bt_m);
+//                    }
                     Log.e("LiNing", "names_3--------" + tb_data3.size() + tb_data3);
                 }
             }
@@ -1049,15 +1305,17 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
                         }
                         Log.e("LiNing", "tb_data1.size--------" + tb_data1.size() + "-----" + tb_data1);
                     } else {
-                        TbSales tbSales_bt = new TbSales(db_s_pp, db_s_jxse, db_s_ml, db_s_mll, "", "", "", "");
-//                        TbSales tbSales_bt = new TbSales("", "", "", "",db_s_pp, db_s_jxse, db_s_ml, db_s_mll);
+
+                        //同一行
+                        TbSales tbSales_bt = new TbSales(db_s_pp, db_s_jxse, db_s_ml, db_s_mll, data_db.get(0).getAffiliateName().toString(), db_s_jxse_m_yh, db_s_ml_m_yh, db_s_mll_m_yh);
+//                        TbSales tbSales_bt = new TbSales(db_s_pp, db_s_jxse, db_s_ml, db_s_mll, "", "", "", "");
                         tb_data2.add(tbSales_bt);
                     }
                 }
 
             }
             Log.e("LiNing", "names_2--------" + names_2.size() + names_2);
-            tb_data1.addAll(tb_data3);
+//            tb_data1.addAll(tb_data3);
             tb_data1.addAll(tb_data2);
             tb_data1.addAll(tb_data_zj);
             Log.e("LiNing", "tb_data1.size--------" + tb_data1.size() + "-----" + tb_data1);
@@ -1072,8 +1330,8 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
                     String db_s_ml_m = data_db.get(m).getgP().toString();
                     String db_s_mll_m = data_db.get(m).getgPM().toString();
                     if (!names_2.contains(db_s_pp_m)) {
-//                        TbSales tbSales_bt_m = new TbSales("", "", "", "", db_s_pp_m, db_s_jxse_m, db_s_ml_m, db_s_mll_m);
-                        TbSales tbSales_bt_m = new TbSales(db_s_pp_m, db_s_jxse_m, db_s_ml_m, db_s_mll_m,"", "", "", "");
+                        TbSales tbSales_bt_m = new TbSales("", "", "", "", db_s_pp_m, db_s_jxse_m, db_s_ml_m, db_s_mll_m);
+//                        TbSales tbSales_bt_m = new TbSales(db_s_pp_m, db_s_jxse_m, db_s_ml_m, db_s_mll_m,"", "", "", "");
                         tb_data3.add(tbSales_bt_m);
                     }
                     Log.e("LiNing", "names_3--------" + tb_data3.size() + tb_data3);
@@ -1106,8 +1364,8 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
                         }
                         Log.e("LiNing", "tb_data1.size--------" + tb_data1.size() + "-----" + tb_data1);
                     } else {
-//                        TbSales tbSales_bt = new TbSales(db_s_pp, db_s_jxse, db_s_ml, db_s_mll, "", "", "", "");
-                        TbSales tbSales_bt = new TbSales("", "", "", "",db_s_pp, db_s_jxse, db_s_ml, db_s_mll);
+                        TbSales tbSales_bt = new TbSales(db_s_pp, db_s_jxse, db_s_ml, db_s_mll, "", "", "", "");
+//                        TbSales tbSales_bt = new TbSales("", "", "", "",db_s_pp, db_s_jxse, db_s_ml, db_s_mll);
                         tb_data2.add(tbSales_bt);
                     }
                 }
@@ -1129,8 +1387,8 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
                     String db_s_ml_m = data_db.get(m).getgP().toString();
                     String db_s_mll_m = data_db.get(m).getgPM().toString();
                     if (!names_2.contains(db_s_pp_m)) {
-//                        TbSales tbSales_bt_m = new TbSales("", "", "", "", db_s_pp_m, db_s_jxse_m, db_s_ml_m, db_s_mll_m);
-                        TbSales tbSales_bt_m = new TbSales(db_s_pp_m, db_s_jxse_m, db_s_ml_m, db_s_mll_m,"", "", "", "");
+                        TbSales tbSales_bt_m = new TbSales("", "", "", "", db_s_pp_m, db_s_jxse_m, db_s_ml_m, db_s_mll_m);
+//                        TbSales tbSales_bt_m = new TbSales(db_s_pp_m, db_s_jxse_m, db_s_ml_m, db_s_mll_m,"", "", "", "");
                         tb_data3.add(tbSales_bt_m);
                     }
                     Log.e("LiNing", "names_3--------" + tb_data3.size() + tb_data3);
@@ -1163,8 +1421,8 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
                         }
                         Log.e("LiNing", "tb_data1.size--------" + tb_data1.size() + "-----" + tb_data1);
                     } else {
-//                        TbSales tbSales_bt = new TbSales(db_s_pp, db_s_jxse, db_s_ml, db_s_mll, "", "", "", "");
-                        TbSales tbSales_bt = new TbSales("", "", "", "",db_s_pp, db_s_jxse, db_s_ml, db_s_mll);
+                        TbSales tbSales_bt = new TbSales(db_s_pp, db_s_jxse, db_s_ml, db_s_mll, "", "", "", "");
+//                        TbSales tbSales_bt = new TbSales("", "", "", "",db_s_pp, db_s_jxse, db_s_ml, db_s_mll);
                         tb_data2.add(tbSales_bt);
                     }
                 }
@@ -1186,8 +1444,8 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
                     String db_s_ml_m = data_db.get(m).getgP().toString();
                     String db_s_mll_m = data_db.get(m).getgPM().toString();
                     if (!names_2.contains(db_s_pp_m)) {
-//                        TbSales tbSales_bt_m = new TbSales("", "", "", "", db_s_pp_m, db_s_jxse_m, db_s_ml_m, db_s_mll_m);
-                        TbSales tbSales_bt_m = new TbSales(db_s_pp_m, db_s_jxse_m, db_s_ml_m, db_s_mll_m,"", "", "", "");
+                        TbSales tbSales_bt_m = new TbSales("", "", "", "", db_s_pp_m, db_s_jxse_m, db_s_ml_m, db_s_mll_m);
+//                        TbSales tbSales_bt_m = new TbSales(db_s_pp_m, db_s_jxse_m, db_s_ml_m, db_s_mll_m,"", "", "", "");
                         tb_data3.add(tbSales_bt_m);
                     }
                     Log.e("LiNing", "names_3--------" + tb_data3.size() + tb_data3);
@@ -1220,8 +1478,8 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
                         }
                         Log.e("LiNing", "tb_data1.size--------" + tb_data1.size() + "-----" + tb_data1);
                     } else {
-//                        TbSales tbSales_bt = new TbSales(db_s_pp, db_s_jxse, db_s_ml, db_s_mll, "", "", "", "");
-                        TbSales tbSales_bt = new TbSales("", "", "", "",db_s_pp, db_s_jxse, db_s_ml, db_s_mll);
+                        TbSales tbSales_bt = new TbSales(db_s_pp, db_s_jxse, db_s_ml, db_s_mll, "", "", "", "");
+//                        TbSales tbSales_bt = new TbSales("", "", "", "",db_s_pp, db_s_jxse, db_s_ml, db_s_mll);
                         tb_data2.add(tbSales_bt);
                     }
                 }
@@ -1234,6 +1492,7 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
 //            Log.e("LiNing", "tb_data1.size--------" + tb_data1.size() + "-----" + tb_data1);
             showlist_db();//显示数据
         }
+
     }
 
     private void zj_h(int j) {
@@ -1421,8 +1680,10 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder holder;
             if (convertView == null) {
+                synchronized (TbSalesActivity.this) {
                 convertView = mInflater.inflate(id_row_layout, null);
-                holder = new ViewHolder();
+                    scrow(convertView);
+                    holder = new ViewHolder();
                 holder.tb_dq_data_zl = (TextView) convertView.findViewById(R.id.tb_zl_tv_name);
                 holder.tb_dq_sn_amtn = (TextView) convertView.findViewById(R.id.tb_dqzt_tv_jxse);
                 holder.tb_dq_gp = (TextView) convertView.findViewById(R.id.tb_dqzt_tv_xsml);
@@ -1435,6 +1696,7 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
                 holder.tb_db_gp_zzl = (TextView) convertView.findViewById(R.id.tb_zzl_tv_mlzzl);
                 holder.tb_db_gpm_c = (TextView) convertView.findViewById(R.id.tb_zzl_tv_mllc);
                 convertView.setTag(holder);
+            }
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
@@ -1498,8 +1760,29 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
             info_out=tb_data_db;
             return convertView;
         }
+        private void scrow(View convertView) {
+            MyHScrollView scrollView1 = (MyHScrollView) convertView
+                    .findViewById(R.id.horizontalScrollView1);
+            MyHScrollView headSrcrollView = (MyHScrollView) mHead
+                    .findViewById(R.id.horizontalScrollView1);
+            headSrcrollView
+                    .AddOnScrollChangedListener(new OnScrollChangedListenerImp(
+                            scrollView1));
+        }
+        class OnScrollChangedListenerImp implements
+                MyHScrollView.OnScrollChangedListener {
+            MyHScrollView mScrollViewArg;
 
+            public OnScrollChangedListenerImp(MyHScrollView mScrollViewArg) {
+                super();
+                this.mScrollViewArg = mScrollViewArg;
+            }
 
+            public void onScrollChanged(int paramInt1, int paramInt2,
+                                        int paramInt3, int paramInt4) {
+                this.mScrollViewArg.smoothScrollTo(paramInt1, paramInt2);
+            }
+        }
         public class ViewHolder {
             TextView tb_dq_data_zl;// 分支机构1
             TextView tb_dq_sn_amtn;// 净销售额1
@@ -1540,12 +1823,12 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
                         menuItem.setChecked(!menuItem.isChecked());
                         head_tb.setText(menuItem.getTitle());
                         if (menuItem.getTitle().toString().equals("账套")) {
-                            tb_zl_name_dq.setText(menuItem.getTitle().toString());
+//                            tb_zl_name_dq.setText(menuItem.getTitle().toString());
                             tb_zl_name_db.setText(menuItem.getTitle().toString());
                         } else {
 
                             String name_lbxs = menuItem.getTitle().toString().substring(3);
-                            tb_zl_name_dq.setText(name_lbxs);
+//                            tb_zl_name_dq.setText(name_lbxs);
                             tb_zl_name_db.setText(name_lbxs);
                         }
                         return true;
@@ -1585,7 +1868,50 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
                 break;
         }
     }
+    private void getRoot() {
+        OkHttpClient client = new OkHttpClient();
+        Request localRequest = new Request.Builder()
+                .addHeader("cookie", session).url(url_query).build();
+        client.newCall(localRequest).enqueue(new Callback() {
 
+            @Override
+            public void onResponse(Call call, Response response)
+                    throws IOException {
+                String string = response.body().string();
+//				sp.edit().putString("all_query_tj", string).commit();
+                Gson gson = new GsonBuilder().setDateFormat(
+                        "yyyy-MM-dd HH:mm:ss").create();
+                UserInfo info = gson.fromJson(string, UserInfo.class);
+//				//查询
+                List<UserInfo.User_Query> user_Query = info.getUser_Query();
+                String query_json = new Gson().toJson(user_Query);
+                sp.edit().putString("all_query", query_json).commit();
+                Log.e("LiNing", "提交保存的数据====" + query_json);
+                //模块
+                user_Mod = info.getUser_Mod();
+                Log.e("LiNing", "===user_Mod=====" + user_Mod);
+                if (user_Mod.size() > 0 && user_Mod != null) {
+                    for (int i = 0; i < user_Mod.size(); i++) {
+                        mod_ID = user_Mod.get(i).getMod_ID();
+                        modIds_get.add(mod_ID);
+
+                    }
+//                    if (dList != null && dList.size() > 0) {
+//                        Log.e("LiNing", ",,,,,,," + dList.toString());
+//                        String stritem = new Gson().toJson(dList);
+//                        sp.edit().putString("CBQX", stritem).commit();
+//                        Log.e("LiNing", "提交的数据是" + sp.getString("CBQX", ""));
+//                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call arg0, IOException arg1) {
+
+            }
+        });
+    }
     public void allback(View v) {
         finish();
     }

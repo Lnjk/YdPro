@@ -79,7 +79,7 @@ public class BrandFxActivity extends Activity implements View.OnClickListener {
         head_fx = (TextView) findViewById(R.id.all_head);
         head_name1 = (TextView) findViewById(R.id.tb_zl_tv_name);
         head_name2 = (TextView) findViewById(R.id.tb_zl_tv_name_db);
-        head_name1.setText("品牌");
+//        head_name1.setText("品牌");
         head_name2.setText("品牌");
         head_fx.setText("经营品牌销售分析表");
         fx_jz = (Button) findViewById(R.id.btn_fx_jz);//加载
@@ -739,7 +739,7 @@ public class BrandFxActivity extends Activity implements View.OnClickListener {
             holder = (ViewHolder) convertView.getTag();
         }
         TbSales tbSales = tb_data_db.get(position);
-//            Log.e("LiNing", "----tbSales数据------" + tb_data_db.size() + tb_data_db);
+            Log.e("LiNing", "----最终数据------" + tbSales.getJxsr());
 //            if (index.equals("SATGP")) {
         if (tbSales != null) {
             holder.tb_dq_data_zl.setText(tbSales.getName());
@@ -763,18 +763,18 @@ public class BrandFxActivity extends Activity implements View.OnClickListener {
 //                        BigDecimal c_jxse = d_jxse_h.subtract(d_jxse_q);
                     BigDecimal c_jxse = d_jxse_q.subtract(d_jxse_h);//(前-后)
                     Log.e("LiNing", "净销售额率--cc--" + c_jxse);
-                    double v = c_jxse.divide(d_jxse_h, BigDecimal.ROUND_HALF_UP).doubleValue();
+                    double v = c_jxse.divide(d_jxse_h,4, BigDecimal.ROUND_HALF_UP).doubleValue();
                     Log.e("LiNing", "净销售额率----" + v);
-                    holder.tb_db_xs_zzl.setText(String.valueOf(v));
+                    holder.tb_db_xs_zzl.setText(String.valueOf(v*100)+"%");
                     //毛利增长率
                     BigDecimal d_ml_q = new BigDecimal(tbSales.getMl());
                     BigDecimal d_ml_h = new BigDecimal(tbSales.getMl_db());
 //                        BigDecimal c_ml = d_ml_h.subtract(d_ml_q);
                     BigDecimal c_ml = d_ml_q.subtract(d_ml_h);
                     Log.e("LiNing", "毛利增长率--cc--" + c_ml);
-                    double v_ml = c_ml.divide(d_ml_h, BigDecimal.ROUND_HALF_UP).doubleValue();
+                    double v_ml = c_ml.divide(d_ml_h,4, BigDecimal.ROUND_HALF_UP).doubleValue();
                     Log.e("LiNing", "毛利增长率----" + v_ml);
-                    holder.tb_db_gp_zzl.setText(String.valueOf(v_ml));
+                    holder.tb_db_gp_zzl.setText(String.valueOf(v_ml*100)+"%");
                     //毛利率差
                     String gpm_rp = tbSales.getMll().replace("%", "");
                     double v1 = Double.parseDouble(gpm_rp);
@@ -871,22 +871,53 @@ public class BrandFxActivity extends Activity implements View.OnClickListener {
                 String ml_pp = data.get(i).getgP().toString();
                 String mll_pp = data.get(i).getgPM().toString();
                 if (result1.contains(id_pp)) {
+
                     //此处添加类（new和同比一样）
                     String jxse_xt = data.get(i).getSnAmtn().toString();
+                    double v_x1 = Double.parseDouble(jxse_xt);
                     String ml_xt = data.get(i).getgP().toString();
+                    double v_x2 = Double.parseDouble(ml_xt);
                     String mll_xt = data.get(i).getgPM().toString();
-                    Log.e("LiNing", "相同数据==id_pp1==" + id_pp + "/" + jxse_xt + "/" + ml_xt + "/" + mll_xt);
+                    Log.e("LiNing", "xt品牌名称====" + id_pp + "....." + jxse_xt);
+//                    Log.e("LiNing", "相同数据==id_pp1==" + id_pp + "/" + jxse_xt + "/" + ml_xt + "/" + mll_xt);
+                    result_name1.add(id_pp);
                     BrandSame same1 = new BrandSame(id_pp, jxse_xt, ml_xt, mll_xt);
                     same_data.add(same1);
-                    result_name1.add(id_pp);
 
                 } else {
                     result1.add(id_pp);
                     BrandSame data_dif = new BrandSame(id_pp, xsje_pp, ml_pp, mll_pp);
                     dif_data.add(data_dif);
-                    Log.e("LiNing", "无相同数据====" + dif_data.size()+dif_data);
+                    Log.e("LiNing", "不同数据====" + dif_data.size()+dif_data);
 
                 }
+            }
+        }
+        List<BrandSame> same_data_two = new ArrayList<BrandSame>();
+        for(int k=0;k<same_data.size();k++){
+            String name_two = same_data.get(k).getName();
+            String jxsr_two = same_data.get(k).getJxsr();
+            String ml_two = same_data.get(k).getMl();
+            String mll_two = same_data.get(k).getMll();
+            int flag = 0;// 0为新增数据，1为增加count
+            for(int n=0;n<same_data_two.size();n++){
+                String name_two_db = same_data_two.get(n).getName();
+                String jxsr_two_db = same_data_two.get(n).getJxsr();
+                String ml_two_db = same_data_two.get(n).getMl();
+                String mll_two_db = same_data_two.get(n).getMll();
+                if(name_two.equals(name_two_db)){
+                    double v_jxse_hj = Double.parseDouble(jxsr_two) + Double.parseDouble(jxsr_two_db);
+                    double v_ml_hj = Double.parseDouble(ml_two) + Double.parseDouble(ml_two_db);
+//                    double v_mll_hj = Double.parseDouble(mll_two) + Double.parseDouble(mll_two_db);
+                    same_data_two.get(n).setJxsr(""+v_jxse_hj);
+                    same_data_two.get(n).setMl(""+v_ml_hj);
+//                    same_data_two.get(n).setMll(""+v_mll_hj);
+                    flag = 1;
+                    continue;
+                }
+            }
+            if (flag == 0) {
+                same_data_two.add(same_data.get(k));
             }
         }
         for (int i = 0; i < dif_data.size(); i++) {
@@ -897,30 +928,35 @@ public class BrandFxActivity extends Activity implements View.OnClickListener {
                 String jxse_xt = dif_data.get(i).getJxsr().toString();
                 String ml_xt = dif_data.get(i).getMl().toString();
                 String mll_xt = dif_data.get(i).getMll().replace("%", "").toString();
-                Log.e("LiNing", "相同数据==name==" + result_name1);
+                Log.e("LiNing", "相同数据==name=名字=" + result_name1);
                 if(result_name1!=null&&result_name1.size()>0){
                     if (result_name1.contains(id_pp)) {
-                        Log.e("LiNing", "相同数据==name==" + same_data.size()+same_data);
+//                        Log.e("LiNing", "相同数据==name==" + same_data.size()+same_data);
+                        Log.e("LiNing", "相同数据==name==" + same_data_two.size()+same_data_two);
 //                        相同数据==name==2[BrandSame{name='冠珠瓷砖', jxsr='1802188.84', ml='871827.09', mll='48.38%'},
 //                        BrandSame{name='瓷砖炒货', jxsr='1925.60', ml='638.60', mll='33.16%'}]
-                        for (int j = 0; j < same_data.size(); j++) {
-                            if (same_data.get(j).getName() != null && !same_data.get(j).getName().equals("")) {
-                                String s_name = same_data.get(j).getName().toString();
+                        for (int j = 0; j < same_data_two.size(); j++) {
+                            if (same_data_two.get(j).getName() != null && !same_data_two.get(j).getName().equals("")) {
+                                String s_name = same_data_two.get(j).getName().toString();
                                 if (s_name.equals(id_pp)) {
-                                    String s_jxse = same_data.get(j).getJxsr().toString();
-                                    String s_ml = same_data.get(j).getMl().toString();
-                                    String s_mll = same_data.get(j).getMll().replace("%", "").toString();
+                                    String s_jxse = same_data_two.get(j).getJxsr().toString();
+                                    String s_ml = same_data_two.get(j).getMl().toString();
+//                                    String s_mll = same_data_two.get(j).getMll().replace("%", "").toString();
                                     double v_jxse = Double.parseDouble(s_jxse);
                                     double v_jxse1 = Double.parseDouble(jxse_xt);
                                     double v_jxse_xt = v_jxse + v_jxse1;
                                     double v_ml = Double.parseDouble(s_ml);
                                     double v_ml1 = Double.parseDouble(ml_xt);
                                     double v_ml_xt = v_ml + v_ml1;
-                                    double v_mll = Double.parseDouble(s_mll);
-                                    double v_mll1 = Double.parseDouble(mll_xt);
-                                    double v_mll_xt = v_mll + v_mll1;
-                                    Log.e("LiNing", "---相同的数据---f---" + v_jxse + "===" + v_jxse1 + "===" + v_jxse_xt);
+//                                    double v_mll_xt = v_ml_xt / v_jxse_xt;
+//                                    double v_mll_xt = (double) Math.round(v_ml_xt / v_jxse_xt * 100) / 100;
+                                    double v_mll_xt = (double) Math.round(v_ml_xt / v_jxse_xt * 100);
+//                                    double v_mll = Double.parseDouble(s_mll);
+//                                    double v_mll1 = Double.parseDouble(mll_xt);
+//                                    double v_mll_xt = v_mll + v_mll1;
+//                                    Log.e("LiNing", "---相同的数据---f---" + v_jxse + "===" + v_jxse1 + "===" + v_jxse_xt);
                                     BrandSame same_all1 = new BrandSame(s_name, String.valueOf(v_jxse_xt), String.valueOf(v_ml_xt), String.valueOf(v_mll_xt));
+//                                    BrandSame same_all1 = new BrandSame(s_name, String.valueOf(v_jxse), String.valueOf(v_ml), String.valueOf(v_mll));
                                     same_data_all.add(same_all1);
                                     Log.e("LiNing", "数据==重复===" + same_data_all.size() + same_data_all);
                                 }
@@ -980,7 +1016,7 @@ public class BrandFxActivity extends Activity implements View.OnClickListener {
                     String jxse_xt = data_db.get(i).getSnAmtn().toString();
                     String ml_xt = data_db.get(i).getgP().toString();
                     String mll_xt = data_db.get(i).getgPM().toString();
-                    Log.e("LiNing", "相同数据==id_pp==" + id_pp + "/" + jxse_xt + "/" + ml_xt + "/" + mll_xt);
+//                    Log.e("LiNing", "相同数据==id_pp==" + id_pp + "/" + jxse_xt + "/" + ml_xt + "/" + mll_xt);
                     BrandSame same = new BrandSame(id_pp, jxse_xt, ml_xt, mll_xt);
                     same_data_db.add(same);
                     result_name_db.add(id_pp);
@@ -989,9 +1025,36 @@ public class BrandFxActivity extends Activity implements View.OnClickListener {
                     result.add(id_pp);
                     BrandSame same_dif = new BrandSame(id_pp, xsje_pp, ml_pp, mll_pp);
                     dif_data_db.add(same_dif);
-                    Log.e("LiNing", "无相同数据====" + data.size());
+                    Log.e("LiNing", "不同数据====" + data.size());
 
                 }
+            }
+        }
+        List<BrandSame> same_data_db_two = new ArrayList<BrandSame>();
+        for(int k=0;k<same_data_db.size();k++){
+            String name_two = same_data_db.get(k).getName();
+            String jxsr_two = same_data_db.get(k).getJxsr();
+            String ml_two = same_data_db.get(k).getMl();
+            String mll_two = same_data_db.get(k).getMll();
+            int flag = 0;// 0为新增数据，1为增加count
+            for(int n=0;n<same_data_db_two.size();n++){
+                String name_two_db = same_data_db_two.get(n).getName();
+                String jxsr_two_db = same_data_db_two.get(n).getJxsr();
+                String ml_two_db = same_data_db_two.get(n).getMl();
+                String mll_two_db = same_data_db_two.get(n).getMll();
+                if(name_two.equals(name_two_db)){
+                    double v_jxse_hj = Double.parseDouble(jxsr_two) + Double.parseDouble(jxsr_two_db);
+                    double v_ml_hj = Double.parseDouble(ml_two) + Double.parseDouble(ml_two_db);
+//                    double v_mll_hj = Double.parseDouble(mll_two) + Double.parseDouble(mll_two_db);
+                    same_data_db_two.get(n).setJxsr(""+v_jxse_hj);
+                    same_data_db_two.get(n).setMl(""+v_ml_hj);
+//                    same_data_two.get(n).setMll(""+v_mll_hj);
+                    flag = 1;
+                    continue;
+                }
+            }
+            if (flag == 0) {
+                same_data_db_two.add(same_data_db.get(k));
             }
         }
         for (int i = 0; i < dif_data_db.size(); i++) {
@@ -1003,23 +1066,26 @@ public class BrandFxActivity extends Activity implements View.OnClickListener {
                 String mll_xt = dif_data_db.get(i).getMll().replace("%", "").toString();
                 if(result_name_db!=null&&result_name_db.size()>0){
                     if (result_name_db.contains(id_pp)) {
-                        for (int j = 0; j < same_data_db.size(); j++) {
-                            if (same_data_db.get(j).getName() != null && !same_data_db.get(j).getName().equals("")) {
-                                String s_name = same_data_db.get(j).getName().toString();
+                        for (int j = 0; j < same_data_db_two.size(); j++) {
+                            if (same_data_db_two.get(j).getName() != null && !same_data_db_two.get(j).getName().equals("")) {
+                                String s_name = same_data_db_two.get(j).getName().toString();
                                 if (s_name.equals(id_pp)) {
-                                    String s_jxse = same_data_db.get(j).getJxsr().toString();
-                                    String s_ml = same_data_db.get(j).getMl().toString();
-                                    String s_mll = same_data_db.get(j).getMll().replace("%", "").toString();
+                                    String s_jxse = same_data_db_two.get(j).getJxsr().toString();
+                                    String s_ml = same_data_db_two.get(j).getMl().toString();
+                                    String s_mll = same_data_db_two.get(j).getMll().replace("%", "").toString();
                                     double v_jxse = Double.parseDouble(s_jxse);
                                     double v_jxse1 = Double.parseDouble(jxse_xt);
                                     double v_jxse_xt = v_jxse + v_jxse1;
                                     double v_ml = Double.parseDouble(s_ml);
                                     double v_ml1 = Double.parseDouble(ml_xt);
                                     double v_ml_xt = v_ml + v_ml1;
-                                    double v_mll = Double.parseDouble(s_mll);
-                                    double v_mll1 = Double.parseDouble(mll_xt);
-                                    double v_mll_xt = v_mll + v_mll1;
-                                    Log.e("LiNing", "---相同的数据" + v_jxse_xt + "===" + v_ml_xt + "===" + v_mll_xt);
+//                                    double v_mll_xt = v_ml_xt / v_jxse_xt;
+//                                    double v_mll_xt = (double) Math.round(v_ml_xt / v_jxse_xt * 100) / 100;
+                                    double v_mll_xt = (double) Math.round(v_ml_xt / v_jxse_xt * 100) ;
+//                                    double v_mll = Double.parseDouble(s_mll);
+//                                    double v_mll1 = Double.parseDouble(mll_xt);
+//                                    double v_mll_xt = v_mll + v_mll1;
+//                                    Log.e("LiNing", "---相同的数据" + v_jxse_xt + "===" + v_ml_xt + "===" + v_mll_xt);
                                     BrandSame same_all = new BrandSame(s_name, String.valueOf(v_jxse_xt), String.valueOf(v_ml_xt), String.valueOf(v_mll_xt));
                                     same_data_db_all.add(same_all);
                                     Log.e("LiNing", "-b--相同的数据" + same_data_db_all.size());

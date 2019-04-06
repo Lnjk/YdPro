@@ -5,19 +5,20 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/tb_check1"
-            android:title="账套"/>
+            android:title="帐套销售同比表"/>
         <item
             android:id="@+id/tb_check2"
-            android:title="账套+品牌"/>
+            android:title="帐套+品牌销售同比表"/>
         <item
             android:id="@+id/tb_check3"
-            android:title="账套+渠道"/>
+            android:title="帐套+渠道销售同比表"/>
         <item
             android:id="@+id/tb_check4"
-            android:title="账套+部门"/>
+            android:title="帐套+部门销售同比表"/>
         <item
             android:id="@+id/tb_check5"
-            android:title="账套+网点"/>
+            android:title="帐套+网点销售同比表"/>
+
 
     </group>
 

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/ll_xstb"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/tb_zl_tv_name"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textSize="12sp"
+        android:text="名称"/>
+    <View style="@style/list_item_seperator_layout" />
+    <TextView
+        android:id="@+id/tb_zl_tv_name1"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textSize="12sp"
+        android:text="名称"/>
+
+</LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:background="@color/color_dark_grey"/>
+        <com.example.LeftOrRight.InterceptScrollContainer
+            android:id="@+id/scroollContainter"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:focusable="false" >
+
+            <com.example.LeftOrRight.MyHScrollView
+                android:id="@+id/horizontalScrollView1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:scrollbars="none" >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:orientation="horizontal" >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:id="@+id/tv_tb_db_dq"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="当前账套" />
+                    </LinearLayout>
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:background="@color/color_red" />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="名称" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="10dp"
+                            android:layout_gravity="center"
+                            android:background="@color/color_dark_grey" />
+
+                        <TextView
+                            android:id="@+id/tv_tb_db_db"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="历史账套" />
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="10dp"
+                            android:layout_gravity="center"
+                            android:background="@color/color_dark_grey" />
+
+                        <TextView
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="增长率" />
+                    </LinearLayout>
+                    <View style="@style/list_item_seperator_layout" />
+                </LinearLayout>
+                    <View style="@style/list_item_seperator_layout" />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:orientation="horizontal" >
+
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/tb_dqzt_tv_jxse"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:textSize="12sp"
+                            android:text="净销售额"/>
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="10dp"
+                            android:layout_gravity="center"
+                            android:background="@color/color_dark_grey"/>
+                        <TextView
+                            android:id="@+id/tb_dqzt_tv_xsml"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_weight="2"
+                            android:singleLine="true"
+                            android:textSize="12sp"
+                            android:text="销售毛利"/>
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="10dp"
+                            android:layout_gravity="center"
+                            android:background="@color/color_dark_grey"/>
+                        <TextView
+                            android:id="@+id/tb_dqzt_tv_mll"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:singleLine="true"
+                            android:textSize="12sp"
+                            android:text="毛利率"/>
+                    </LinearLayout>
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:background="@color/color_dark_grey"/>
+                    <TextView
+                        android:id="@+id/tb_zl_tv_name_db"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:textSize="12sp"
+                        android:text="名称2"/>
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:background="@color/color_dark_grey"/>
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:id="@+id/tb_dbzt_tv_jxse"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:textSize="12sp"
+                            android:text="净销售额"/>
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="10dp"
+                            android:layout_gravity="center"
+                            android:background="@color/color_dark_grey"/>
+                        <TextView
+                            android:id="@+id/tb_dbzt_tv_xsml"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_weight="2"
+                            android:singleLine="true"
+                            android:textSize="12sp"
+                            android:text="销售毛利"/>
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="10dp"
+                            android:layout_gravity="center"
+                            android:background="@color/color_dark_grey"/>
+                        <TextView
+                            android:id="@+id/tb_dbzt_tv_mll"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:singleLine="true"
+                            android:textSize="12sp"
+                            android:text="毛利率"/>
+                    </LinearLayout>
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center"
+                        android:background="@color/color_dark_grey"/>
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            android:id="@+id/tb_zzl_tv_xszzl"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:textSize="12sp"
+                            android:text="销售增长%"/>
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="10dp"
+                            android:layout_gravity="center"
+                            android:background="@color/color_dark_grey"/>
+                        <TextView
+                            android:id="@+id/tb_zzl_tv_mlzzl"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:singleLine="true"
+                            android:textSize="12sp"
+                            android:text="毛利增长%"/>
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="10dp"
+                            android:layout_gravity="center"
+                            android:background="@color/color_dark_grey"/>
+                        <TextView
+                            android:id="@+id/tb_zzl_tv_mllc"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:singleLine="true"
+                            android:textSize="12sp"
+                            android:text="毛利率差"/>
+                    </LinearLayout>
+                </LinearLayout>
+                </LinearLayout>
+            </com.example.LeftOrRight.MyHScrollView>
+        </com.example.LeftOrRight.InterceptScrollContainer>
+    </LinearLayout>
+
+    <View style="@style/list_item_seperator_layout" />
+
+</LinearLayout>

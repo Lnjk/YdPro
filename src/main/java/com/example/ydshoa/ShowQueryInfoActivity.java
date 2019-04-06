@@ -96,7 +96,7 @@ public class ShowQueryInfoActivity extends Activity implements OnClickListener {
     private Button queryAddOk;
     private String str1id, str2id, str3id, str4id, str5id, straccount;
     private TableRow tvNull;
-    private String dB_comit;
+    private String dB_comit,idsUser;
     private String test_db;
     private List<CheckBox> checkBoxList;
     private List<Integer> checkedIndexList;
@@ -126,6 +126,7 @@ public class ShowQueryInfoActivity extends Activity implements OnClickListener {
         head.setText("查询权限");
         queryList = (ListView) findViewById(R.id.lv_modquerry_header);
         tvText = ((TableLayout) findViewById(R.id.stock_list_item_table_layout));
+        idsUser = getIntent().getStringExtra("userId");
         String info_flag = getIntent().getStringExtra("QUERY_FLAG");
         String stringExtra = getIntent().getStringExtra("INFO_int");
         result = Integer.valueOf(stringExtra);
@@ -222,7 +223,9 @@ public class ShowQueryInfoActivity extends Activity implements OnClickListener {
     private void getinfos() {
         tvText.setVisibility(View.GONE);
         OkHttpClient client = new OkHttpClient();
-        FormBody body = new FormBody.Builder().build();
+        FormBody body = new FormBody.Builder()
+                .add("user_Id",idsUser)
+                .build();
         client.newCall(
                 new Request.Builder().addHeader("cookie", session).url(urlGet)
                         .post(body).build()).enqueue(new Callback() {
@@ -242,7 +245,9 @@ public class ShowQueryInfoActivity extends Activity implements OnClickListener {
 
                         @Override
                         public void run() {
-                            userQuery = cInfoDB.getUsers().get(result)
+//                            userQuery = cInfoDB.getUsers().get(result)
+//                                    .getUser_Query();
+                            userQuery = cInfoDB.getUsers().get(0)
                                     .getUser_Query();
                             Log.e("LiNing",
                                     "userMod--------" + userQuery.toString());
@@ -276,49 +281,50 @@ public class ShowQueryInfoActivity extends Activity implements OnClickListener {
             ArrayList<String> listcust = new ArrayList<String>();
             ArrayList<String> listuser = new ArrayList<String>();
             ArrayList<String> lisths = new ArrayList<String>();
+
             for (int i = 0; i < userQuery.size(); i++) {
                 dB_comit = userQuery.get(i).getQuery_DB();
-                if (dB_comit == null) {
-                    list_id.add(null);
+                if (dB_comit == null&&dB_comit.equals("")) {
+                    list_id.add("null");
                 } else {
 
                     list_id.add(dB_comit);
                 }
                 String dep_comit = userQuery.get(i).getQuery_Dep();
                 Log.e("LiNing", "=======" + dep_comit);
-                if (dep_comit == null) {
-                    listdep.add(null);
+                if (dep_comit == null&&dep_comit.equals("")) {
+                    listdep.add("null");
                 } else {
 
                     listdep.add(dep_comit);
                 }
 
                 String sup_comit = userQuery.get(i).getQuery_Sup();
-                if (sup_comit == null) {
-                    listsup.add(null);
+                if (sup_comit == null&&sup_comit.equals("")) {
+                    listsup.add("null");
                 } else {
 
                     listsup.add(sup_comit);
                 }
                 String hs_comit = userQuery.get(i).getQuery_CompDep();
-                if (hs_comit == null) {
-                    lisths.add(null);
+                if (hs_comit == null&&hs_comit.equals("")) {
+                    lisths.add("null");
                 } else {
 
                     lisths.add(hs_comit);
                 }
 
                 String cust_comit = userQuery.get(i).getQuery_Cust();
-                if (cust_comit == null) {
-                    listcust.add(null);
+                if (cust_comit == null&&cust_comit.equals("")) {
+                    listcust.add("null");
                 } else {
 
                     listcust.add(cust_comit);
                 }
 
                 String user_comit = userQuery.get(i).getQuery_User();
-                if (user_comit == null) {
-                    listuser.add(null);
+                if (user_comit == null&&user_comit.equals("")) {
+                    listuser.add("null");
                 } else {
 
                     listuser.add(user_comit);
@@ -421,12 +427,18 @@ public class ShowQueryInfoActivity extends Activity implements OnClickListener {
                             userQuery.add(0, query);
                             tvNull.setVisibility(View.GONE);
 
-                            tvAccount.setText(null);
-                            tvDep.setText(null);
-                            tvSup.setText(null);
-                            tvCust.setText(null);
-                            tvUser.setText(null);
-                            tvHs.setText(null);
+//                            tvAccount.setText(null);
+//                            tvDep.setText(null);
+//                            tvSup.setText(null);
+//                            tvCust.setText(null);
+//                            tvUser.setText(null);
+//                            tvHs.setText(null);
+                            tvAccount.setText("null");
+                            tvDep.setText("null");
+                            tvSup.setText("null");
+                            tvCust.setText("null");
+                            tvUser.setText("null");
+                            tvHs.setText("null");
                             lntag = 0;
                             adapter.notifyDataSetInvalidated();
                             queryList.invalidate();
@@ -462,12 +474,18 @@ public class ShowQueryInfoActivity extends Activity implements OnClickListener {
                                 userQuery.add(0, query);
                                 tvNull.setVisibility(View.GONE);
 
-                                tvAccount.setText(null);
-                                tvDep.setText(null);
-                                tvSup.setText(null);
-                                tvCust.setText(null);
-                                tvUser.setText(null);
-                                tvHs.setText(null);
+//                                tvAccount.setText(null);
+//                                tvDep.setText(null);
+//                                tvSup.setText(null);
+//                                tvCust.setText(null);
+//                                tvUser.setText(null);
+//                                tvHs.setText(null);
+                                tvAccount.setText("null");
+                                tvDep.setText("null");
+                                tvSup.setText("null");
+                                tvCust.setText("null");
+                                tvUser.setText("null");
+                                tvHs.setText("null");
                                 lntag = 0;
                                 adapter.notifyDataSetInvalidated();
                                 queryList.invalidate();
@@ -485,12 +503,18 @@ public class ShowQueryInfoActivity extends Activity implements OnClickListener {
                             userQuery.add(0, query);
                             tvNull.setVisibility(View.GONE);
 
-                            tvAccount.setText(null);
-                            tvDep.setText(null);
-                            tvSup.setText(null);
-                            tvCust.setText(null);
-                            tvUser.setText(null);
-                            tvHs.setText(null);
+//                            tvAccount.setText(null);
+//                            tvDep.setText(null);
+//                            tvSup.setText(null);
+//                            tvCust.setText(null);
+//                            tvUser.setText(null);
+//                            tvHs.setText(null);
+                            tvAccount.setText("null");
+                            tvDep.setText("null");
+                            tvSup.setText("null");
+                            tvCust.setText("null");
+                            tvUser.setText("null");
+                            tvHs.setText("null");
                             lntag = 0;
                             adapter.notifyDataSetChanged();
                             queryList.invalidate();
@@ -516,12 +540,18 @@ public class ShowQueryInfoActivity extends Activity implements OnClickListener {
                         tvHs.setText(hs_exar);
                     } else {
                         Toast.makeText(this.context, "请选择一条数据", Toast.LENGTH_LONG).show();
-                        tvAccount.setText(null);
-                        tvDep.setText(null);
-                        tvSup.setText(null);
-                        tvCust.setText(null);
-                        tvUser.setText(null);
-                        tvHs.setText(null);
+//                        tvAccount.setText(null);
+//                        tvDep.setText(null);
+//                        tvSup.setText(null);
+//                        tvCust.setText(null);
+//                        tvUser.setText(null);
+//                        tvHs.setText(null);
+                        tvAccount.setText("null");
+                        tvDep.setText("null");
+                        tvSup.setText("null");
+                        tvCust.setText("null");
+                        tvUser.setText("null");
+                        tvHs.setText("null");
                     }
 
                 } else {
@@ -827,11 +857,36 @@ public class ShowQueryInfoActivity extends Activity implements OnClickListener {
             User_Query user_Query = usesInfo.get(position);
 //			Log.e("LiNing", "---------" + user_Query);
             holder.db.setText(user_Query.getQuery_DB());
-            holder.dep.setText(user_Query.getQuery_Dep());
-            holder.sup.setText(user_Query.getQuery_Sup());
-            holder.cust.setText(user_Query.getQuery_Cust());
-            holder.user.setText(user_Query.getQuery_User());
-            holder.hs.setText(user_Query.getQuery_CompDep());
+            if(user_Query.getQuery_Dep().equals("")||user_Query.getQuery_Dep().toString()==null){
+                holder.dep.setText("null");
+            }else{
+
+                holder.dep.setText(user_Query.getQuery_Dep());
+            }
+            if(user_Query.getQuery_Sup().equals("")||user_Query.getQuery_Sup().toString()==null){
+                holder.sup.setText("null");
+            }else{
+
+                holder.sup.setText(user_Query.getQuery_Sup());
+            }
+            if(user_Query.getQuery_Cust().equals("")||user_Query.getQuery_Cust().toString()==null){
+                holder.cust.setText("null");
+            }else{
+
+                holder.cust.setText(user_Query.getQuery_Cust());
+            }
+            if(user_Query.getQuery_User().equals("")||user_Query.getQuery_User().toString()==null){
+                holder.user.setText("null");
+            }else{
+
+                holder.user.setText(user_Query.getQuery_User());
+            }
+            if(user_Query.getQuery_CompDep().equals("")||user_Query.getQuery_CompDep().toString()==null){
+                holder.hs.setText("null");
+            }else{
+
+                holder.hs.setText(user_Query.getQuery_CompDep());
+            }
             // 设置判断数据
             holder.checkBox.setOnCheckedChangeListener(new CheckBoxListener(
                     position));

@@ -59,6 +59,15 @@
                     android:background="@drawable/button"
                     android:text="打印"
                     android:textSize="16sp" />
+                <Button
+                    android:id="@+id/tb_jz"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button"
+                    android:text="加载"
+                    android:textSize="16sp" />
 
 
             </LinearLayout>
@@ -67,21 +76,20 @@
 
             <include layout="@layout/tb_tj_set" />
 
-            <View style="@style/list_item_seperator_layout" />
 
-            <Button
+          <!--  <Button
                 android:id="@+id/tb_jz"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
                 android:background="@drawable/button"
-                android:text="加载" />
+                android:text="加载" />-->
         </LinearLayout>
     </ScrollView>
 
     <View style="@style/list_item_seperator_layout" />
-    <LinearLayout
+ <!--   <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -156,9 +164,10 @@
             </LinearLayout>
             <View style="@style/list_item_seperator_layout" />
 
-        </LinearLayout>
-    <View style="@style/list_item_seperator_layout" />
-    <include layout="@layout/tb_one_listview_team" />
+        </LinearLayout>-->
+    <include
+        android:id="@+id/sales_scrowHead"
+        layout="@layout/tb_two_listview_team" />
     <View style="@style/list_item_seperator_layout" />
     <ListView
         android:id="@+id/tb_dbzt_lv_one"

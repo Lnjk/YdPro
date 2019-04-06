@@ -18,6 +18,7 @@ import com.example.bean.URLS;
 import com.example.bean.UserInfo;
 import com.example.ydshoa.CustersAllActivity;
 import com.example.ydshoa.DesignerActivity;
+import com.example.ydshoa.DesignerManageActivity;
 import com.example.ydshoa.R;
 import com.example.ydshoa.ReceiptFormActivity;
 import com.example.ydshoa.SalesManageActivity;
@@ -103,10 +104,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 Log.e("LiNing", "---modid===FFFFFF---" + modIds_get);
                 if (sp.getString("PASS", "").equals("1")) {
 
-                    startActivity(new Intent(context, DesignerActivity.class));
+                    startActivity(new Intent(context, DesignerManageActivity.class));
                 } else if (modIds_get.contains("skvp")) {
 
-                    startActivity(new Intent(context, DesignerActivity.class));
+                    startActivity(new Intent(context, DesignerManageActivity.class));
                 } else {
                     Toast.makeText(this.context, "无此权限", Toast.LENGTH_SHORT).show();
                 }

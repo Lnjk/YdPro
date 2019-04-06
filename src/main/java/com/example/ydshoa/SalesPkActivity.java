@@ -25,7 +25,9 @@ import android.widget.Toast;
 
 import com.example.bean.SaleMakeInfo;
 import com.example.bean.URLS;
+import com.example.bean.UserInfo;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,6 +37,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.Call;
@@ -69,7 +72,12 @@ public class SalesPkActivity extends Activity implements View.OnClickListener {
     SalesInfoAdapter sfadapter_dq;
     SalesInfoDbAdapter sfadapter_db;
     private ListView lv_get_dq, lv_get_db;
-
+    String url_query = URLS.userInfo_url;
+    ArrayList<String> modIds_get = new ArrayList<String>();
+    private ArrayList<HashMap<String, Object>> dList;
+    private HashMap<String, Object> item;
+    private String ps_id,db_ID,mod_ID;
+    private List<com.example.bean.UserInfo.User_Mod> user_Mod;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +87,7 @@ public class SalesPkActivity extends Activity implements View.OnClickListener {
         sp = getSharedPreferences("ydbg", 0);
         session = sp.getString("SESSION", "");
         initView();
+        getRoot();
     }
 
     private void initView() {
@@ -115,6 +124,7 @@ public class SalesPkActivity extends Activity implements View.OnClickListener {
         tb_db_jstime.setOnClickListener(this);
         lv_get_dq = (ListView) findViewById(R.id.tb_dqzt_lv);
         lv_get_db = (ListView) findViewById(R.id.tb_dbzt_lv);
+        dList = new ArrayList();
     }
 
     @Override
@@ -134,23 +144,30 @@ public class SalesPkActivity extends Activity implements View.OnClickListener {
 //                    Toast.makeText(context, "对比数据为空", Toast.LENGTH_LONG).show();
 //                }
                 String name_bt = head_tb.getText().toString();
-                if (name_bt.equals("账套")) {
-                    reportnos = "SATG";
+                if (name_bt.equals("帐套销售同比表")) {
+                    reportnos = "SATGV";
                 }
-                if (name_bt.equals("账套+品牌")) {
-                    reportnos = "SATGP";
+                if (name_bt.equals("帐套+品牌销售同比表")) {
+                    reportnos = "SATGVP";
                 }
-                if (name_bt.equals("账套+渠道")) {
-                    reportnos = "SATGC";
+                if (name_bt.equals("帐套+渠道销售同比表")) {
+                    reportnos = "SATGVC";
                 }
-                if (name_bt.equals("账套+部门")) {
-                    reportnos = "SATGD";
+                if (name_bt.equals("帐套+部门销售同比表")) {
+                    reportnos = "SATGVD";
                 }
-                if (name_bt.equals("账套+网点")) {
-                    reportnos = "SATGGC";
+                if (name_bt.equals("帐套+网点销售同比表")) {
+                    reportnos = "SATGVGC";
                 }
                 checked = 4;
-                first_load();
+                //判断是否有权限
+//                Log.e("LiNing", "权限-" + reportnos.toString());
+//                if (modIds_get.contains(reportnos.toString())) {
+//                    Log.e("LiNing", "--modIds_get----值-" + modIds_get);
+                    first_load();
+//                }else{
+//                    Toast.makeText(context, "此种类无权限", Toast.LENGTH_LONG).show();
+//                }
 //                getDbInfos();//成功加载当前数据后加载对比数据
                 break;
             case R.id.ib_queryDb_dqzt:
@@ -161,26 +178,34 @@ public class SalesPkActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.ib_queryDb_bjzt:
                 if (tb_db_dq.getText().toString().equals("")) {
-                    Toast.makeText(context, "请选择当前账套", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请选择当前帐套", Toast.LENGTH_LONG).show();
                 } else {
                     String name_bt_h = head_tb.getText().toString();
-                    if (name_bt_h.equals("账套")) {
-                        reportnos = "SATG";
+                    if (name_bt_h.equals("帐套销售同比表")) {
+                        reportnos = "SATGV";
                     }
-                    if (name_bt_h.equals("账套+品牌")) {
-                        reportnos = "SATGP";
+                    if (name_bt_h.equals("帐套+品牌销售同比表")) {
+                        reportnos = "SATGVP";
                     }
-                    if (name_bt_h.equals("账套+渠道")) {
-                        reportnos = "SATGC";
+                    if (name_bt_h.equals("帐套+渠道销售同比表")) {
+                        reportnos = "SATGVC";
                     }
-                    if (name_bt_h.equals("账套+部门")) {
-                        reportnos = "SATGD";
+                    if (name_bt_h.equals("帐套+部门销售同比表")) {
+                        reportnos = "SATGVD";
                     }
-                    if (name_bt_h.equals("账套+网点")) {
-                        reportnos = "SATGGC";
+                    if (name_bt_h.equals("帐套+网点销售同比表")) {
+                        reportnos = "SATGGVC";
                     }
                     checked = 3;
-                    first_load();
+//                    first_load();
+                    //判断是否有权限
+                    Log.e("LiNing", "权限-" + reportnos.toString());
+//                    if (modIds_get.contains(reportnos.toString())) {
+//                        Log.e("LiNing", "--modIds_get----值-" + modIds_get);
+//                        first_load();
+//                    }else{
+//                        Toast.makeText(context, "此种类无权限", Toast.LENGTH_LONG).show();
+//                    }
 //                    beforPost();
 //                    all_info_dq = sp.getString("sale_tjInfo", "");
 //                    Log.e("LiNing", "--更新数据--" + all_info_dq);
@@ -864,24 +889,24 @@ public class SalesPkActivity extends Activity implements View.OnClickListener {
             }
             SaleMakeInfo.Data data_dq_infos = SalesPkActivity.this.data.get(position);
             Log.e("LiNing", "----------" + data.size());
-            if (index.equals("SATG")) {
+            if (index.equals("SATGV")) {
 
                 holder.tb_dq_data_zl.setText(data_dq_infos.getAffiliateName());
             }
-            if (index.equals("SATGP")) {
+            if (index.equals("SATGVP")) {
 
                 holder.tb_dq_data_zl.setText(data_dq_infos.getBrandName());
 
             }
-            if (index.equals("SATGC")) {
+            if (index.equals("SATGVC")) {
 
                 holder.tb_dq_data_zl.setText(data_dq_infos.getSalesChannelName());
             }
-            if (index.equals("SATGD")) {
+            if (index.equals("SATGVD")) {
 
                 holder.tb_dq_data_zl.setText(data_dq_infos.getSalesDepartmentName());
             }
-            if (index.equals("SATGGC")) {
+            if (index.equals("SATGVGC")) {
 
                 holder.tb_dq_data_zl.setText(data_dq_infos.getSalesTerminalName());
             }
@@ -954,24 +979,24 @@ public class SalesPkActivity extends Activity implements View.OnClickListener {
             }
             SaleMakeInfo.Data data_db_infos = SalesPkActivity.this.data_db.get(position);
             Log.e("LiNing", "----------" + data_db.size());
-            if (index.equals("SATG")) {
+            if (index.equals("SATGV")) {
 
                 holder.tb_db_data_zl.setText(data_db_infos.getAffiliateName());
             }
-            if (index.equals("SATGP")) {
+            if (index.equals("SATGVP")) {
 
                 holder.tb_db_data_zl.setText(data_db_infos.getBrandName());
 
             }
-            if (index.equals("SATGC")) {
+            if (index.equals("SATGVC")) {
 
                 holder.tb_db_data_zl.setText(data_db_infos.getSalesChannelName());
             }
-            if (index.equals("SATGD")) {
+            if (index.equals("SATGVD")) {
 
                 holder.tb_db_data_zl.setText(data_db_infos.getSalesDepartmentName());
             }
-            if (index.equals("SATGGC")) {
+            if (index.equals("SATGVGC")) {
 
                 holder.tb_db_data_zl.setText(data_db_infos.getSalesTerminalName());
             }
@@ -983,7 +1008,7 @@ public class SalesPkActivity extends Activity implements View.OnClickListener {
             if(data.size()>0&&data!=null){
 
                 SaleMakeInfo.Data data_dq_infos = SalesPkActivity.this.data.get(position);
-                if (index.equals("SATGP")) {
+                if (index.equals("SATGVP")) {
                     if(data_db_infos.getBrandName().toString().equals(data_dq_infos.getBrandName().toString())){
 //                        String db_jxse = data_db_infos.getSnAmtn().toString();
 //                        String dq_jxse = data_dq_infos.getSnAmtn().toString();
@@ -1002,7 +1027,7 @@ public class SalesPkActivity extends Activity implements View.OnClickListener {
                         holder.tb_db_gpm_c.setText("");
                     }
                 }
-                if (index.equals("SATG")) {
+                if (index.equals("SATGV")) {
                     if(data_db_infos.getAffiliateName().toString().equals(data_dq_infos.getAffiliateName().toString())){
                         //公式套用
                         ll_c_tb(holder, data_db_infos, data_dq_infos);
@@ -1013,7 +1038,7 @@ public class SalesPkActivity extends Activity implements View.OnClickListener {
                         holder.tb_db_gpm_c.setText("");
                     }
                 }
-                if (index.equals("SATGC")) {
+                if (index.equals("SATGVC")) {
                     if(data_db_infos.getSalesChannelName().toString().equals(data_dq_infos.getSalesChannelName().toString())){
                         //公式套用
                         ll_c_tb(holder, data_db_infos, data_dq_infos);
@@ -1024,7 +1049,7 @@ public class SalesPkActivity extends Activity implements View.OnClickListener {
                         holder.tb_db_gpm_c.setText("");
                     }
                 }
-                if (index.equals("SATGD")) {
+                if (index.equals("SATGVD")) {
                     if(data_db_infos.getSalesDepartmentName().toString().equals(data_dq_infos.getSalesDepartmentName().toString())){
                         //公式套用
                         ll_c_tb(holder, data_db_infos, data_dq_infos);
@@ -1035,7 +1060,7 @@ public class SalesPkActivity extends Activity implements View.OnClickListener {
                         holder.tb_db_gpm_c.setText("");
                     }
                 }
-                if (index.equals("SATGGC")) {
+                if (index.equals("SATGVGC")) {
                     if(data_db_infos.getSalesTerminalName().toString().equals(data_dq_infos.getSalesTerminalName().toString())){
                         //公式套用
                         ll_c_tb(holder, data_db_infos, data_dq_infos);
@@ -1165,7 +1190,50 @@ public class SalesPkActivity extends Activity implements View.OnClickListener {
                 break;
         }
     }
+    private void getRoot() {
+        OkHttpClient client = new OkHttpClient();
+        Request localRequest = new Request.Builder()
+                .addHeader("cookie", session).url(url_query).build();
+        client.newCall(localRequest).enqueue(new Callback() {
 
+            @Override
+            public void onResponse(Call call, Response response)
+                    throws IOException {
+                String string = response.body().string();
+//				sp.edit().putString("all_query_tj", string).commit();
+                Gson gson = new GsonBuilder().setDateFormat(
+                        "yyyy-MM-dd HH:mm:ss").create();
+                UserInfo info = gson.fromJson(string, UserInfo.class);
+//				//查询
+                List<UserInfo.User_Query> user_Query = info.getUser_Query();
+                String query_json = new Gson().toJson(user_Query);
+                sp.edit().putString("all_query", query_json).commit();
+                Log.e("LiNing", "提交保存的数据====" + query_json);
+                //模块
+                user_Mod = info.getUser_Mod();
+                Log.e("LiNing", "===user_Mod=====" + user_Mod);
+                if (user_Mod.size() > 0 && user_Mod != null) {
+                    for (int i = 0; i < user_Mod.size(); i++) {
+                        mod_ID = user_Mod.get(i).getMod_ID();
+                        modIds_get.add(mod_ID);
+
+                    }
+//                    if (dList != null && dList.size() > 0) {
+//                        Log.e("LiNing", ",,,,,,," + dList.toString());
+//                        String stritem = new Gson().toJson(dList);
+//                        sp.edit().putString("CBQX", stritem).commit();
+//                        Log.e("LiNing", "提交的数据是" + sp.getString("CBQX", ""));
+//                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call arg0, IOException arg1) {
+
+            }
+        });
+    }
     public void allback(View v) {
         finish();
     }

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/headall" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:text="积分类型:"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/et_jf_type_jf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:background="@null"
+            android:hint="VP"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <View style="@style/price_view" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:text="单据类型:"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/et_biln_type_jf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:background="@null"
+            android:hint="单据类型"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <View style="@style/price_view" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:text="积分编号:"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_type_id_jf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:background="@null"
+            android:hint="积分编号"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <View style="@style/price_view" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:text="积分名称:"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/et_type_name_jf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:background="@null"
+            android:hint="积分名称"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <View style="@style/price_view" />
+
+    <LinearLayout
+        style="@style/price_ll1"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:id="@+id/btn_jf_add_all_jf"
+            style="@style/price_button"
+            android:text="添加" />
+
+
+        <Button
+            android:id="@+id/btn_jf_reset_all_jf"
+            style="@style/price_button"
+            android:text="修改" />
+
+        <Button
+            android:id="@+id/btn_jf_del_all_jf"
+            style="@style/price_button"
+            android:text="删除" />
+
+    </LinearLayout>
+
+</LinearLayout>

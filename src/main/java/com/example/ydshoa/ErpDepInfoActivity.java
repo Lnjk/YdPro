@@ -48,7 +48,7 @@ public class ErpDepInfoActivity extends Activity implements OnClickListener {
 	private ListView lv_one;
 	private Context context;
 	private int selectPosition = -1;
-	private String dBID;
+	private String dBID,lx_type;
 	private String session;
 	private SharedPreferences sp;
 	private List<IdNameList> depInfo;
@@ -71,6 +71,8 @@ public class ErpDepInfoActivity extends Activity implements OnClickListener {
 	private String url_employee = URLS.employee_url;
 	//中类
 	private String url_prdIndex = URLS.prdIndex;
+	//付款类型
+	String url_add_zhlx =  URLS.prd_obj_zh;
 	private String idString;
 	private String nameString;
 	private String allString;
@@ -92,6 +94,7 @@ public class ErpDepInfoActivity extends Activity implements OnClickListener {
 		session = sp.getString("SESSION", "");
 //		dBID = sp.getString("DB_ID", "");
 		dBID = getIntent().getStringExtra("DB_ID");
+		lx_type = getIntent().getStringExtra("fk_lx");
 		Log.e("LiNing", dBID + "------" + session);
 		rg_one = (RadioGroup) findViewById(R.id.rg_info_one);
 		lv_one = (ListView) findViewById(R.id.lv_rd_one);
@@ -141,7 +144,13 @@ public class ErpDepInfoActivity extends Activity implements OnClickListener {
 
 			requestph();
 		}
+		// 5，获取付款类型（单选）
+		if (extraFlag.equals("30")) {
+
+			requestfllx();
+		}
 	}
+
 
 	private void requestZl() {
 		OkHttpClient client = new OkHttpClient();
@@ -290,6 +299,57 @@ public class ErpDepInfoActivity extends Activity implements OnClickListener {
 			public void onFailure(Call arg0, IOException arg1) {
 
 			}
+		});
+	}
+	private void requestfllx() {
+		OkHttpClient client = new OkHttpClient();
+		FormBody body = new FormBody.Builder()
+				.add("accountNo",dBID)
+				.add("custType",lx_type)
+				.build();
+		Request request = new Request.Builder().addHeader("cookie", session)
+				.url(url_add_zhlx).post(body).build();
+		Call call = client.newCall(request);
+		call.enqueue(new Callback() {
+			@Override
+			public void onResponse(Call call, Response response) throws IOException {
+				String struser = response.body().string();
+				Log.e("LiNing", "用户数据===" + struser);
+
+				final DepInfo dInfo = new Gson().fromJson(struser,
+						DepInfo.class);
+				if (dInfo.isRLO() == false) {
+					ErpDepInfoActivity.this.runOnUiThread(new Runnable() {
+
+						@Override
+						public void run() {
+							Toast.makeText(context, "数据库已断开",
+									Toast.LENGTH_SHORT).show();
+						}
+					});
+				} else {
+
+					if (dInfo != null) {
+						ErpDepInfoActivity.this.runOnUiThread(new Runnable() {
+
+							@Override
+							public void run() {
+								depInfo = dInfo.getIdNameList();
+								showCheckBoxListViewDep();
+							}
+
+						});
+					} else {
+						Toast.makeText(context, "数据为空", Toast.LENGTH_LONG).show();
+					}
+				}
+			}
+			@Override
+			public void onFailure(Call call, IOException e) {
+
+			}
+
+
 		});
 	}
 

@@ -87,7 +87,7 @@ public class ShowModInfoScrowActivity extends Activity implements
 	private int flag, checkflag;
 	private Map<Integer, Boolean> isSelected;
 	RelativeLayout mHead;
-	private String mod_ID, mod_Name;
+	private String mod_ID, mod_Name,idsUser;
 	private boolean mod_Add, mod_Query, mod_Alter, mod_Del, mod_Amt, mod_Prt,
 			mod_Out, mod_Cst, mod_GP, mod_GPR, mod_Up, mod_Qty;
 
@@ -128,6 +128,7 @@ public class ShowModInfoScrowActivity extends Activity implements
 		add.setOnClickListener(this);
 		del.setOnClickListener(this);
 		// reset.setOnClickListener(this);
+		idsUser = getIntent().getStringExtra("userId");
 		String info_flag = getIntent().getStringExtra("MOD_FLAG");
 		String stringExtra = getIntent().getStringExtra("INFO_int");
 		result = Integer.valueOf(stringExtra);
@@ -189,7 +190,9 @@ public class ShowModInfoScrowActivity extends Activity implements
 	private void getinfos() {
 		// tvText.setVisibility(View.GONE);
 		OkHttpClient client = new OkHttpClient();
-		FormBody body = new FormBody.Builder().build();
+		FormBody body = new FormBody.Builder()
+				.add("user_Id",idsUser)
+				.build();
 		client.newCall(
 				new Request.Builder().addHeader("cookie", session).url(urlGet)
 						.post(body).build()).enqueue(new Callback() {
@@ -209,7 +212,7 @@ public class ShowModInfoScrowActivity extends Activity implements
 
 						@Override
 						public void run() {
-							userMod = cInfoDB.getUsers().get(result)
+							userMod = cInfoDB.getUsers().get(0)
 									.getUser_Mod();
 							Log.e("LiNing",
 									"userMod--------" + userMod.toString());

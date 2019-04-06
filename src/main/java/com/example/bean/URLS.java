@@ -112,6 +112,8 @@ public class URLS {
     public static final String prdWh = base_url
             + "/InfManagePlatform/QueryErpInfqueryprdWh.action";
 
+//
+
     //--------定价单号------(临时单号)http://localhost:8080/InfManagePlatform/BilngetBiln_no.action?bn_Type=dj&db_Id=DB_BJ15&bn_Date=2016-06-16
     public static final String price_num_ls = base_url
             + "/InfManagePlatform/BilngetBiln_no.action";
@@ -214,11 +216,11 @@ public class URLS {
     // http://oa.ydshce.com:8080/InfManagePlatform/CustupdateCust_Conn.action?db_Id=DB_BJ15
     public static final String cust_z_updata = base_url
             + "/InfManagePlatform/CustupdateCust.action";
-//    报表（客户完成以后）
+    //    报表（客户完成以后）
 //    http://oa.ydshce.com:8080/InfManagePlatform/Report.action?reporyBusiness=ARP&reprotNo=ArpTG&beginDate=2018-1-1&endDate=2018-10-1
 //跟踪信息查询
-public static final String cust_gzxx_query = base_url
-        + "/InfManagePlatform/CustqueryCust_FollList.action";
+    public static final String cust_gzxx_query = base_url
+            + "/InfManagePlatform/CustqueryCust_FollList.action";
     //跟踪信息添加
     // oa.ydshce.com:8080/InfManagePlatform/CustaddCust_Foll.action?Cust_Acc=DB_BJ15&Cust_No=KH1810310007&Foll_DD=2018-11-6&Foll_Way=其他
     // &Foll_Them=销售&Foll_Case=开始&Stag_Class=意向客户&Foll_Per=李宁&User_ID=ln123&Foll_No=CF1811070001
@@ -238,13 +240,67 @@ public static final String cust_gzxx_query = base_url
     public static final String cust_bjxx_add = base_url
             + "/InfManagePlatform/QuotationaddQuotation.action";
     //报价信息(删除)
-    public static final String cust_bjxx_del= base_url
+    public static final String cust_bjxx_del = base_url
             + "/InfManagePlatform/QuotationdelQuotation.action";
     //报价信息(更新)
     public static final String cust_bjxx_update = base_url
             + "/InfManagePlatform/QuotationupdateQuotation.action";
-//    单据类别
+    //    单据类别
     //http://oa.ydshce.com:8080/InfManagePlatform/QueryErpInfqueryBilnType.action?accountNo=DB_BJ15&&bil_Id=SA
-public static final String djlb_url = base_url
-        + "/InfManagePlatform/QueryErpInfqueryBilnType.action";
+    public static final String djlb_url = base_url
+            + "/InfManagePlatform/QueryErpInfqueryBilnType.action";
+    //    收款单
+//    http://oa.ydshce.com:8080/InfManagePlatform/PaymentsqueryPayment.action?db_Id=DB_BJ18&&showRow=300&&clientRows=0&&rp_ID=1&&rp_NO=RT201805230051
+//            &&rp_DD=2018-05-23&&usr_NO=L022&&dep=2023&&rem=孙黎明&&bil_NO=SO201805230097&&irp_ID=T&&CLS_ID=T&&cus_NO=KH031&&bil_TYPE=06&&usr=Z002&&chk_MAN=Z002
+//   &&cus_NO_OS=123(查询,新增，删除，更新)
+    public static final String skd_url_query = base_url
+            + "/InfManagePlatform/PaymentsqueryPayment.action";
+    public static final String skd_url_add = base_url
+            + "/InfManagePlatform/PaymentsqaddPayment.action";
+    public static final String skd_url_del= base_url
+            + "/InfManagePlatform/PaymentsdelPayment.action";
+    public static final String skd_url_reset = base_url
+            + "/InfManagePlatform/PaymentsupdatePayment.action";
+    //明细表(通过irp_ID判断预收还是应收)
+    //    oa.ydshce.com:8080/InfManagePlatform/PaymentsqueryMf_ARP.action?db_Id=DB_BJ18&&cus_NO=KH347
+    public static final String skd_url_mx = base_url
+            + "/InfManagePlatform/PaymentsqueryMf_ARP.action";
+    //    http://oa.ydshce.com:8080/InfManagePlatform/QueryErpInfqueryBacc.action?accountNo=DB_BJ18&&id=null&&name=null
+//现金账户，银行账户(区分时根据客户类型)custType=1(银行)2，现金
+    public static final String prd_obj_zh = base_url
+            + "/InfManagePlatform/QueryErpInfqueryBacc.action";
+    //设计师积分
+    //登记单
+    public static final String design_jfdj_add = base_url
+            + "/InfManagePlatform/Deco_Vip_Of_PointsaddDeco_Vip_Points.action";
+    public static final String design_jfrw_add = base_url
+            + "/InfManagePlatform/Deco_Vip_Of_PointsaddDeco_Vip_Task.action";
+    public static final String design_jfsp_add = base_url
+            + "/InfManagePlatform/Deco_Vip_Of_PointsaddDeco_Vip_Prdt.action";
+    public static final String design_jfdj_del = base_url
+            + "/InfManagePlatform/Deco_Vip_Of_PointsdelDeco_Vip_Points.action";
+    public static final String design_jfrw_del = base_url
+            + "/InfManagePlatform/Deco_Vip_Of_PointsdelDeco_Vip_Task.action";
+    public static final String design_jfsp_del = base_url
+            + "/InfManagePlatform/Deco_Vip_Of_PointsdelPoints_Prdt.action";
+    public static final String design_jfdj_set = base_url
+            + "/InfManagePlatform/Deco_Vip_Of_PointssetDeco_Vip_Points.action";
+    public static final String design_jfrw_set = base_url
+            + "/InfManagePlatform/Deco_Vip_Of_PointssetDeco_Vip_Task.action";
+    public static final String design_jfsp_set = base_url
+            + "/InfManagePlatform/Deco_Vip_Of_PointssetPoints_Prdt.action";
+    //统计所有
+    public static final String design_jfdj_query = base_url
+            + "/InfManagePlatform/Deco_Vip_Of_PointsquerySum_Deco_Vip_points.action";
+    public static final String design_jfrw_query = base_url
+            + "/InfManagePlatform/Deco_Vip_Of_PointsquerySum_Deco_Vip_Task.action";
+    public static final String design_jfsp_query = base_url
+            + "/InfManagePlatform/Deco_Vip_Of_PointsquerySumPoints_Prdt.action";
+    //明细
+    public static final String design_jfdjquery_mx = base_url
+            + "/InfManagePlatform/Deco_Vip_Of_PointsqueryDeco_Vip_points.action";
+    public static final String design_jfrwquery_mx = base_url
+            + "/InfManagePlatform/Deco_Vip_Of_PointsqueryDeco_Vip_Task.action";
+    public static final String design_jfspquery_mx = base_url
+            + "/InfManagePlatform/Deco_Vip_Of_PointsqueryPoints_Prdt.action";
 }

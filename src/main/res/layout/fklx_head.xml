@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_item"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_bg"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:padding="5.0dip">
+
+
+    <TextView
+        android:id="@+id/fk_id"
+        style="@style/head_scrow_vipcontent"
+        android:text="ID" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+    <TextView
+        android:id="@+id/fk_name"
+        style="@style/head_scrow_vipcontent"
+        android:text="名称" />
+
+
+
+    <View style="@style/list_item_cell_seperator_layout" />
+</LinearLayout>

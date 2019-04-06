@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_touch_vip"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/smallbk"
+    android:orientation="vertical">
+
+    <include layout="@layout/headall" />
+
+    <LinearLayout
+        style="@style/price_ll1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_designdh_add"
+            style="@style/price_button"
+            android:text="新增" />
+
+        <Button
+            android:id="@+id/btn_designdh_del"
+            style="@style/price_button"
+            android:text="删除" />
+
+        <Button
+            android:id="@+id/btn_designdh_reset"
+            style="@style/price_button"
+            android:text="修改" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/price_ll1"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/btn_designdh_query"
+            style="@style/price_button"
+            android:text="查询" />
+
+        <Button
+            android:id="@+id/btn_designdh_sh"
+            style="@style/price_button"
+            android:text="审核" />
+
+        <Button
+            android:id="@+id/btn_designdh_save"
+            style="@style/price_button"
+            android:text="保存" />
+
+
+    </LinearLayout>
+
+
+    <!-- <ScrollView
+         android:id="@+id/scrollView1"
+         android:layout_width="fill_parent"
+         android:layout_height="200dp"
+         android:layout_alignParentLeft="true"
+         android:layout_below="@+id/include1">-->
+
+    <LinearLayout
+        style="@style/price_ll1"
+        android:orientation="vertical">
+
+        <View style="@style/price_view" />
+
+        <LinearLayout
+            style="@style/price_ll1"
+            android:orientation="horizontal">
+
+
+            <LinearLayout style="@style/price_ll2">
+
+                <TextView
+                    android:id="@+id/tv_designdh_ztid"
+                    style="@style/price_name"
+                    android:text="所属账套:" />
+
+                <TextView
+                    android:id="@+id/et_designdh_zt"
+                    style="@style/price_info" />
+
+                <ImageButton
+                    android:id="@+id/ib_designdh_account"
+                    style="@style/price_button_down" />
+
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/price_ll2">
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View style="@style/price_view" />
+
+        <LinearLayout
+            style="@style/price_ll1"
+            android:orientation="horizontal">
+
+
+            <LinearLayout style="@style/price_ll2">
+
+                <TextView
+                    style="@style/design_name"
+                    android:text="商品编号:" />
+
+                <EditText
+                    android:id="@+id/tv_spbh"
+                    style="@style/design_name"
+                    android:text="" />
+
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/price_ll2">
+
+                <TextView
+                    style="@style/price_name"
+                    android:text="商品名称:" />
+
+                <EditText
+                    android:id="@+id/et_designdh_spmc"
+                    style="@style/design_editext"
+                     />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <View style="@style/price_view" />
+
+        <LinearLayout
+            style="@style/price_ll1"
+            android:orientation="horizontal">
+
+
+            <LinearLayout style="@style/price_ll2">
+
+                <TextView
+                    style="@style/design_name"
+                    android:text="商品图片:" />
+
+                <TextView
+                    android:id="@+id/et_designdh_sptp"
+                    style="@style/design_editext" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/price_ll2">
+
+                <TextView
+                    style="@style/price_name"
+                    android:text="积分额度:" />
+
+                <EditText
+                    android:id="@+id/et_designdh_jfed"
+                    style="@style/design_editext" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <View style="@style/price_view" />
+
+        <LinearLayout
+            style="@style/price_ll1"
+            android:orientation="horizontal">
+
+
+            <LinearLayout style="@style/price_ll2">
+
+
+                <TextView
+                    style="@style/design_name"
+                    android:text="商品描述:" />
+
+                <EditText
+                    android:id="@+id/et_designdh_spms"
+                    style="@style/design_editext" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View style="@style/price_view" />
+
+
+        <LinearLayout
+            style="@style/price_ll1"
+            android:orientation="horizontal">
+
+
+            <LinearLayout style="@style/price_ll2">
+
+                <TextView
+                    style="@style/design_name"
+                    android:text="制单人:" />
+
+                <TextView
+                    android:id="@+id/et_designdh_zdr"
+                    style="@style/design_editext" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/price_ll2">
+
+                <TextView
+                    style="@style/price_name"
+                    android:text="审核人:" />
+
+                <TextView
+                    android:id="@+id/et_designdh_shr"
+                    style="@style/design_editext" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <View style="@style/price_view" />
+
+    </LinearLayout>
+    <!--</ScrollView>-->
+
+    <View
+        style="@style/list_item_seperator_layout"
+        android:layout_marginTop="2.0dip" />
+
+    <include
+        android:id="@+id/designdh_head"
+        layout="@layout/design_jfjl_log" />
+
+    <View
+        style="@style/list_item_seperator_layout"
+        android:layout_marginTop="2.0dip" />
+
+
+    <!--<include
+        android:id="@+id/designdh_head_item"
+        layout="@layout/designdh_dairy_item" />
+
+    <View style="@style/price_view" />-->
+
+    <ListView
+        android:id="@+id/lv_designdh_header"
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1.0"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/color_dark_grey"
+        android:dividerHeight="1.0dip"
+        android:fastScrollEnabled="true"
+        android:focusable="true"
+        android:listSelector="#ffff0000"
+        android:scrollingCache="true" />
+
+    <View style="@style/price_view" />
+
+
+</LinearLayout>

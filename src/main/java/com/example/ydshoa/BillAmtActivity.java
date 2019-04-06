@@ -11,21 +11,30 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class BillAmtActivity extends Activity implements View.OnClickListener {
     //根数据
     private Context context;
     private SharedPreferences sp;
-    private String session;
+    private String session,fh_sjs;
 
     //基本数据
     private String db_zt,date_dd,skdpb_id,skdkpyh_id;
     private TextView head,pb_one,pb_two,pb_three,pb_four,pb_five,yh_one,yh_two,yh_three,yh_four,yh_five,time_one,time_two,time_three,time_four,time_five;
     private int object_chk,checked,checked_yh;
+    private EditText pjhm_one,pjhm_two,pjhm_three,pjhm_four,pjhm_five,je_one,je_two,je_three
+            ,je_four,je_five,dxzh_one,dxzh_two,dxzh_three,dxzh_four,dxzh_five;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +44,14 @@ public class BillAmtActivity extends Activity implements View.OnClickListener {
         session = sp.getString("SESSION", "");
         context=BillAmtActivity.this;
         db_zt = sp.getString("DB_MR", "");
+         fh_sjs = getIntent().getStringExtra("fh_sjs");
         getNowTime();
         intView();
+        infos_chage();
     }
+
+
+
     private void getNowTime() {
         Calendar c = Calendar.getInstance();
         int mYear = c.get(Calendar.YEAR); // 获取当前年份
@@ -48,6 +62,24 @@ public class BillAmtActivity extends Activity implements View.OnClickListener {
     private void intView() {
         head = (TextView) findViewById(R.id.all_head);
         head.setText("票据明细");
+        //填写数据
+        pjhm_one= (EditText) findViewById(R.id.et_pjje_pjhm_one);
+        pjhm_two= (EditText) findViewById(R.id.et_pjje_pjhm_two);
+        pjhm_three= (EditText) findViewById(R.id.et_pjje_pjhm_three);
+        pjhm_four= (EditText) findViewById(R.id.et_pjje_pjhm_four);
+        pjhm_five= (EditText) findViewById(R.id.et_pjje_pjhm_five);
+        je_one= (EditText) findViewById(R.id.et_pjje_je_one);
+        je_two= (EditText) findViewById(R.id.et_pjje_je_two);
+        je_three= (EditText) findViewById(R.id.et_pjje_je_three);
+        je_four= (EditText) findViewById(R.id.et_pjje_je_four);
+        je_five= (EditText) findViewById(R.id.et_pjje_je_five);
+        dxzh_one= (EditText) findViewById(R.id.et_pjje_dxzh_one);
+        dxzh_two= (EditText) findViewById(R.id.et_pjje_dxzh_two);
+        dxzh_three= (EditText) findViewById(R.id.et_pjje_dxzh_three);
+        dxzh_four= (EditText) findViewById(R.id.et_pjje_dxzh_four);
+        dxzh_five= (EditText) findViewById(R.id.et_pjje_dxzh_five);
+
+
         pb_one= (TextView) findViewById(R.id.tv_pjje_pb_one);
         pb_one.setOnClickListener(this);
         pb_two= (TextView) findViewById(R.id.tv_pjje_pb_two);
@@ -188,6 +220,35 @@ public class BillAmtActivity extends Activity implements View.OnClickListener {
                         }, mYear_time, mMonth_time, mDay_time).show();//获取当前时间
             }
         });
+    }
+    private void infos_chage() {
+        try {
+            JSONArray arr = new JSONArray(fh_sjs);
+            int size = arr.length();
+            JSONObject jsonObject = arr.getJSONObject(0);
+//            String pjje_dqr,pjje_pb,pjje_pjhm,pjje_je,pjje_kpyh,pjje_dxzh;
+            String pjje_pb = jsonObject.get("chk_KND").toString();//票别
+            String pjje_pjhm = jsonObject.get("chk_NO").toString();//票据号码
+            String pjje_je = jsonObject.get("amtn").toString();//金额
+            String pjje_kpyh = jsonObject.get("bank_NO").toString();//开票银行
+            String pjje_dxzh = jsonObject.get("usr").toString();//兑现帐户
+            String pjje_dqr = jsonObject.get("end_DD").toString();//到期日
+            pb_one.setText(pjje_pb);
+            pjhm_one.setText(pjje_pjhm);
+            je_one.setText(pjje_je);
+            yh_one.setText(pjje_kpyh);
+            dxzh_one.setText(pjje_dxzh);
+            //日期转换
+            Date date = new Date(pjje_dqr);
+            SimpleDateFormat dateformat1 = new SimpleDateFormat("yyyy-MM-dd");
+            String a1 = dateformat1.format(date);
+            time_one.setText(a1);
+//            for (int i = 0; i < size; i++) {
+//                //多数据遍历
+//            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
     public void allback(View v) {
         finish();

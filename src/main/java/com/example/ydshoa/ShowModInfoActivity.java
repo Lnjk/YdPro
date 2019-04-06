@@ -126,6 +126,7 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 		del = (Button) findViewById(R.id.ibbtn_mod_del);
 		add.setOnClickListener(this);
 		del.setOnClickListener(this);
+		 idsUser = getIntent().getStringExtra("userId");
 		String info_flag = getIntent().getStringExtra("MOD_FLAG");
 		String stringExtra = getIntent().getStringExtra("INFO_int");
 		isquery = getIntent().getStringExtra("ischeck");
@@ -177,7 +178,9 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 	private void getinfos() {
 		tvText.setVisibility(View.GONE);
 		OkHttpClient client = new OkHttpClient();
-		FormBody body = new FormBody.Builder().build();
+		FormBody body = new FormBody.Builder()
+				.add("user_Id",idsUser)
+				.build();
 		client.newCall(
 				new Request.Builder().addHeader("cookie", session).url(urlGet)
 						.post(body).build()).enqueue(new Callback() {
@@ -197,7 +200,7 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 
 						@Override
 						public void run() {
-							userMod = cInfoDB.getUsers().get(result)
+							userMod = cInfoDB.getUsers().get(0)
 									.getUser_Mod();
 							Log.e("LiNing",
 									"userMod--------" + userMod.toString());
@@ -822,6 +825,13 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 			add("SATGPGCPN");//29
 			add("SATGPGCI");//27
 			add("SATGPGCIPN");//28
+			//同比分析
+			add("SATGV");
+			add("SATGVC");
+			add("SATGVD");
+			add("SATGVGC");
+			add("SATGVP");
+			add("SATGVTP");
 
 			add("ArpTG");//0
 			add("ArpTGGC");//3
@@ -886,6 +896,13 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 			add("SATGPGCPN");
 			add("SATGPGCI");
 			add("SATGPGCIPN");
+			//同比分析
+			add("SATGV");
+			add("SATGVC");
+			add("SATGVD");
+			add("SATGVGC");
+			add("SATGVP");
+			add("SATGVTP");
 
 			add("ArpTG");
 			add("ArpTGGC");
@@ -999,6 +1016,14 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 			add("SATGPGCPN");
 			add("SATGPGCI");
 			add("SATGPGCIPN");
+			//同比分析
+			add("SATGV");
+			add("SATGVC");
+			add("SATGVD");
+			add("SATGVGC");
+			add("SATGVP");
+			add("SATGVTP");
+
 			add("spmarp");
 			add("ArpTG");
 			add("ArpTGGC");
@@ -1131,98 +1156,116 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 				} else if (ids_str.equals("sp")) {
 					nameInfo = "决策报表";
 				}
-				else
-				if (ids_str.equals("SATG")) {
-					nameInfo = "分支机构销售统计表";
+				else if (ids_str.equals("SATG")) {
+					nameInfo = "帐套销售统计表";
 				} else if (ids_str.equals("SATGP")) {
-					nameInfo = "分支机构+品牌销售统计表";
+					nameInfo = "帐套+品牌销售统计表";
 				} else if (ids_str.equals("SATGPC")) {
-					nameInfo = "分支机构+品牌+渠道销售统计表";
+					nameInfo = "帐套+品牌+渠道销售统计表";
 				} else if (ids_str.equals("SATGPD")) {
-					nameInfo = "分支机构+品牌+部门销售统计表";
+					nameInfo = "帐套+品牌+部门销售统计表";
 				}else if (ids_str.equals("SATGPS")) {
-					nameInfo = "分支机构+品牌+业务销售统计表";
+					nameInfo = "帐套+品牌+业务销售统计表";
 				}else if (ids_str.equals("SATGPGC")) {
-					nameInfo = "分支机构+品牌+终端网点销售统计表";
+					nameInfo = "帐套+品牌+终端网点销售统计表";
 				}else if (ids_str.equals("SATGC")) {
-					nameInfo = "分支机构+渠道销售统计表";
+					nameInfo = "帐套+渠道销售统计表";
 				}else if (ids_str.equals("SATGCD")) {
-					nameInfo = "分支机构+渠道+部门销售统计表";
+					nameInfo = "帐套+渠道+部门销售统计表";
 				}else if (ids_str.equals("SATGCS")) {
-					nameInfo = "分支机构+渠道+业务销售统计表";
+					nameInfo = "帐套+渠道+业务销售统计表";
 				}else if (ids_str.equals("SATGCGC")) {
-					nameInfo = "分支机构+渠道+终端网点销售统计表";
+					nameInfo = "帐套+渠道+终端网点销售统计表";
 				}else if (ids_str.equals("SATGD")) {
-					nameInfo = "分支机构+部门销售统计表";
+					nameInfo = "帐套+部门销售统计表";
 				}else if (ids_str.equals("SATGDS")) {
-					nameInfo = "分支机构+部门+业务销售统计表";
+					nameInfo = "帐套+部门+业务销售统计表";
 				}else if (ids_str.equals("SATGDGC")) {
-					nameInfo = "分支机构+部门+终端网点销售统计表";
+					nameInfo = "帐套+部门+终端网点销售统计表";
 				}else if (ids_str.equals("SATGS")) {
-					nameInfo = "分支机构+业务销售统计表";
+					nameInfo = "帐套+业务销售统计表";
 				}else if (ids_str.equals("SATGSGC")) {
-					nameInfo = "分支机构+业务+终端网点销售统计表";
+					nameInfo = "帐套+业务+终端网点销售统计表";
 				}else if (ids_str.equals("SATGGC")) {
-					nameInfo = "分支机构+终端网点销售统计表";
+					nameInfo = "帐套+终端网点销售统计表";
 				}else if (ids_str.equals("SATGPPN")) {
-					nameInfo = "分支机构+品牌+品号销售统计表";
+					nameInfo = "帐套+品牌+品号销售统计表";
 				}else if (ids_str.equals("SATGPI")) {
-					nameInfo = "分支机构+品牌+货品中类销售统计表";
+					nameInfo = "帐套+品牌+货品中类销售统计表";
 				}else if (ids_str.equals("SATGPIPN")) {
-					nameInfo = "分支机构+品牌+货品中类+品号销售统计表";
+					nameInfo = "帐套+品牌+货品中类+品号销售统计表";
 				}else if (ids_str.equals("SATGPCPN")) {
-					nameInfo = "分支机构+品牌+渠道+品号销售统计表";
+					nameInfo = "帐套+品牌+渠道+品号销售统计表";
 				}else if (ids_str.equals("SATGPCI")) {
-					nameInfo = "分支机构+品牌+渠道+货品中类销售统计表";
+					nameInfo = "帐套+品牌+渠道+货品中类销售统计表";
 				}else if (ids_str.equals("SATGPCIPN")) {
-					nameInfo = "分支机构+品牌+渠道+货品中类+品号销售统计表";
+					nameInfo = "帐套+品牌+渠道+货品中类+品号销售统计表";
 				}else if (ids_str.equals("SATGPDPN")) {
-					nameInfo = "分支机构+品牌+部门+品号销售统计表";
+					nameInfo = "帐套+品牌+部门+品号销售统计表";
 				}else if (ids_str.equals("SATGPDI")) {
-					nameInfo = "分支机构+品牌+部门+品号+货品中类销售统计表";
+					nameInfo = "帐套+品牌+部门+品号+货品中类销售统计表";
 				}else if (ids_str.equals("SATGPDIPN")) {
-					nameInfo = "分支机构+品牌+部门+品号+货品中类+品号销售统计表";
+					nameInfo = "帐套+品牌+部门+品号+货品中类+品号销售统计表";
 				}else if (ids_str.equals("SATGPSPN")) {
-					nameInfo = "分支机构+品牌+业务+品号销售统计表";
+					nameInfo = "帐套+品牌+业务+品号销售统计表";
 				}else if (ids_str.equals("SATGPSI")) {
-					nameInfo = "分支机构+品牌+业务+货品中类销售统计表";
+					nameInfo = "帐套+品牌+业务+货品中类销售统计表";
 				}else if (ids_str.equals("SATGPSIPN")) {
-					nameInfo = "分支机构+品牌+业务+货品中类+品号销售统计表";
+					nameInfo = "帐套+品牌+业务+货品中类+品号销售统计表";
 				}else if (ids_str.equals("SATGPGCPN")) {
-					nameInfo = "分支机构+品牌+终端+品号销售统计表";
+					nameInfo = "帐套+品牌+终端+品号销售统计表";
 				}else if (ids_str.equals("SATGPGCI")) {
-					nameInfo = "分支机构+品牌+终端+货品中类销售统计表";
+					nameInfo = "帐套+品牌+终端+货品中类销售统计表";
 				}else if (ids_str.equals("SATGPGCIPN")) {
-					nameInfo = "分支机构+品牌+终端+货品中类+品号销售统计表";
-				}else if (ids_str.equals("spmsa")) {
+					nameInfo = "帐套+品牌+终端+货品中类+品号销售统计表";
+				}
+				else if (ids_str.equals("SATGV")) {
+					nameInfo = "帐套销售同比表";
+				}
+				else if (ids_str.equals("SATGVC")) {
+					nameInfo = "帐套+渠道销售同比表";
+				}
+				else if (ids_str.equals("SATGVD")) {
+					nameInfo = "帐套+部门销售同比表";
+				}
+				else if (ids_str.equals("SATGVGC")) {
+					nameInfo = "帐套+网点销售同比表";
+				}
+				else if (ids_str.equals("SATGVP")) {
+					nameInfo = "帐套+品牌销售同比表";
+				}
+				else if (ids_str.equals("SATGVTP")) {
+					nameInfo = "经营品牌销售分析表";
+				}
+				else if (ids_str.equals("spmsa")) {
 					nameInfo = "销售统计表";
 				}else
 				if (ids_str.equals("ArpTG")) {
-					nameInfo = "分支机构应收账龄表";
+					nameInfo = "帐套应收账龄表";
 				} else if (ids_str.equals("ArpTGGC")) {
-					nameInfo = "机构+终端网点应收账龄表";
+					nameInfo = "帐套+终端网点应收账龄表";
 				} else if (ids_str.equals("ArpTGP")) {
-					nameInfo = "机构+核算单位应收账龄表";
+					nameInfo = "帐套+核算单位应收账龄表";
 				} else if (ids_str.equals("ArpTGC")) {
-					nameInfo = "机构+渠道应收账龄表";
+					nameInfo = "帐套+渠道应收账龄表";
 				}else if (ids_str.equals("ArpTGS")) {
-					nameInfo = "机构+业务应收账龄表";
+					nameInfo = "帐套+业务应收账龄表";
 				} else if (ids_str.equals("ArpTGD")) {
-					nameInfo = "机构+部门应收账龄表";
+					nameInfo = "帐套+部门应收账龄表";
 				} else if (ids_str.equals("ArpTGPC")) {
-					nameInfo = "机构+核算单位+渠道应收账龄表";
+					nameInfo = "帐套+核算单位+渠道应收账龄表";
 				}else if (ids_str.equals("ArpTGPD")) {
-					nameInfo = "机构+核算单位+部门应收账龄表";
+					nameInfo = "帐套+核算单位+部门应收账龄表";
 				} else if (ids_str.equals("ArpTGPS")) {
-					nameInfo = "机构+核算单位+业务应收账龄表";
+					nameInfo = "帐套+核算单位+业务应收账龄表";
 				} else if (ids_str.equals("ArpTGPGC")) {
-					nameInfo = "机构+核算单位+终端网点应收账龄表";
+					nameInfo = "帐套+核算单位+终端网点应收账龄表";
 				}else if (ids_str.equals("ArpTGPCGC")) {
-					nameInfo = "机构+核算单位+渠道+终端网点应收账龄表";
+					nameInfo = "帐套+核算单位+渠道+终端网点应收账龄表";
 				} else if (ids_str.equals("ArpTGPDGC")) {
-					nameInfo = "机构+核算单位+部门+终端网点应收账龄表";
+					nameInfo = "帐套+核算单位+部门+终端网点应收账龄表";
 				} else if (ids_str.equals("ArpTGPSGC")) {
-					nameInfo = "机构+核算单位+业务+终端网点应收账龄表";
+					nameInfo = "帐套+核算单位+业务+终端网点应收账龄表";
 				}else if (ids_str.equals("spmarp")) {
 					nameInfo = "应收账龄表";
 				}else
@@ -1267,31 +1310,31 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 				ids_str = list_spmarp.get(j);
 				Log.e("LiNing", "ids_str数据是===" + ids_str);
 				if (ids_str.equals("ArpTG")) {
-					nameInfo = "分支机构应收账龄表";
+					nameInfo = "帐套应收账龄表";
 				} else if (ids_str.equals("ArpTGGC")) {
-					nameInfo = "机构+终端网点应收账龄表";
+					nameInfo = "帐套+终端网点应收账龄表";
 				} else if (ids_str.equals("ArpTGP")) {
-					nameInfo = "机构+核算单位应收账龄表";
+					nameInfo = "帐套+核算单位应收账龄表";
 				} else if (ids_str.equals("ArpTGC")) {
-					nameInfo = "机构+渠道应收账龄表";
+					nameInfo = "帐套+渠道应收账龄表";
 				}else if (ids_str.equals("ArpTGS")) {
-					nameInfo = "机构+业务应收账龄表";
+					nameInfo = "帐套+业务应收账龄表";
 				} else if (ids_str.equals("ArpTGD")) {
-					nameInfo = "机构+部门应收账龄表";
+					nameInfo = "帐套+部门应收账龄表";
 				} else if (ids_str.equals("ArpTGPC")) {
-					nameInfo = "机构+核算单位+渠道应收账龄表";
+					nameInfo = "帐套+核算单位+渠道应收账龄表";
 				}else if (ids_str.equals("ArpTGPD")) {
-					nameInfo = "机构+核算单位+部门应收账龄表";
+					nameInfo = "帐套+核算单位+部门应收账龄表";
 				} else if (ids_str.equals("ArpTGPS")) {
-					nameInfo = "机构+核算单位+业务应收账龄表";
+					nameInfo = "帐套+核算单位+业务应收账龄表";
 				} else if (ids_str.equals("ArpTGPGC")) {
-					nameInfo = "机构+核算单位+终端网点应收账龄表";
+					nameInfo = "帐套+核算单位+终端网点应收账龄表";
 				}else if (ids_str.equals("ArpTGPCGC")) {
-					nameInfo = "机构+核算单位+渠道+终端网点应收账龄表";
+					nameInfo = "帐套+核算单位+渠道+终端网点应收账龄表";
 				} else if (ids_str.equals("ArpTGPDGC")) {
-					nameInfo = "机构+核算单位+部门+终端网点应收账龄表";
+					nameInfo = "帐套+核算单位+部门+终端网点应收账龄表";
 				} else if (ids_str.equals("ArpTGPSGC")) {
-					nameInfo = "机构+核算单位+业务+终端网点应收账龄表";
+					nameInfo = "帐套+核算单位+业务+终端网点应收账龄表";
 				}else if (ids_str.equals("spmarp")) {
 					nameInfo = "应收账龄表";
 				}
@@ -1327,68 +1370,70 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 				ids_str = list_spmsa.get(j);
 				Log.e("LiNing", "ids_str数据是===" + ids_str);
 				if (ids_str.equals("SATG")) {
-					nameInfo = "分支机构销售统计表";
+					nameInfo = "帐套销售统计表";
 				} else if (ids_str.equals("SATGP")) {
-					nameInfo = "分支机构+品牌销售统计表";
+					nameInfo = "帐套+品牌销售统计表";
 				} else if (ids_str.equals("SATGPC")) {
-					nameInfo = "分支机构+品牌+渠道销售统计表";
+					nameInfo = "帐套+品牌+渠道销售统计表";
 				} else if (ids_str.equals("SATGPD")) {
-					nameInfo = "分支机构+品牌+部门销售统计表";
+					nameInfo = "帐套+品牌+部门销售统计表";
 				}else if (ids_str.equals("SATGPS")) {
-					nameInfo = "分支机构+品牌+业务销售统计表";
+					nameInfo = "帐套+品牌+业务销售统计表";
 				}else if (ids_str.equals("SATGPGC")) {
-					nameInfo = "分支机构+品牌+终端网点销售统计表";
+					nameInfo = "帐套+品牌+终端网点销售统计表";
 				}else if (ids_str.equals("SATGC")) {
-					nameInfo = "分支机构+渠道销售统计表";
+					nameInfo = "帐套+渠道销售统计表";
 				}else if (ids_str.equals("SATGCD")) {
-					nameInfo = "分支机构+渠道+部门销售统计表";
+					nameInfo = "帐套+渠道+部门销售统计表";
 				}else if (ids_str.equals("SATGCS")) {
-					nameInfo = "分支机构+渠道+业务销售统计表";
+					nameInfo = "帐套+渠道+业务销售统计表";
 				}else if (ids_str.equals("SATGCGC")) {
-					nameInfo = "分支机构+渠道+终端网点销售统计表";
+					nameInfo = "帐套+渠道+终端网点销售统计表";
 				}else if (ids_str.equals("SATGD")) {
-					nameInfo = "分支机构+部门销售统计表";
+					nameInfo = "帐套+部门销售统计表";
 				}else if (ids_str.equals("SATGDS")) {
-					nameInfo = "分支机构+部门+业务销售统计表";
+					nameInfo = "帐套+部门+业务销售统计表";
 				}else if (ids_str.equals("SATGDGC")) {
-					nameInfo = "分支机构+部门+终端网点销售统计表";
+					nameInfo = "帐套+部门+终端网点销售统计表";
 				}else if (ids_str.equals("SATGS")) {
-					nameInfo = "分支机构+业务销售统计表";
+					nameInfo = "帐套+业务销售统计表";
 				}else if (ids_str.equals("SATGSGC")) {
-					nameInfo = "分支机构+业务+终端网点销售统计表";
+					nameInfo = "帐套+业务+终端网点销售统计表";
 				}else if (ids_str.equals("SATGGC")) {
-					nameInfo = "分支机构+终端网点销售统计表";
+					nameInfo = "帐套+终端网点销售统计表";
 				}else if (ids_str.equals("SATGPPN")) {
-					nameInfo = "分支机构+品牌+品号销售统计表";
+					nameInfo = "帐套+品牌+品号销售统计表";
 				}else if (ids_str.equals("SATGPI")) {
-					nameInfo = "分支机构+品牌+货品中类销售统计表";
+					nameInfo = "帐套+品牌+货品中类销售统计表";
 				}else if (ids_str.equals("SATGPIPN")) {
-					nameInfo = "分支机构+品牌+货品中类+品号销售统计表";
+					nameInfo = "帐套+品牌+货品中类+品号销售统计表";
 				}else if (ids_str.equals("SATGPCPN")) {
-					nameInfo = "分支机构+品牌+渠道+品号销售统计表";
+					nameInfo = "帐套+品牌+渠道+品号销售统计表";
 				}else if (ids_str.equals("SATGPCI")) {
-					nameInfo = "分支机构+品牌+渠道+货品中类销售统计表";
+					nameInfo = "帐套+品牌+渠道+货品中类销售统计表";
 				}else if (ids_str.equals("SATGPCIPN")) {
-					nameInfo = "分支机构+品牌+渠道+货品中类+品号销售统计表";
+					nameInfo = "帐套+品牌+渠道+货品中类+品号销售统计表";
 				}else if (ids_str.equals("SATGPDPN")) {
-					nameInfo = "分支机构+品牌+部门+品号销售统计表";
+					nameInfo = "帐套+品牌+部门+品号销售统计表";
 				}else if (ids_str.equals("SATGPDI")) {
-					nameInfo = "分支机构+品牌+部门+品号+货品中类销售统计表";
+					nameInfo = "帐套+品牌+部门+品号+货品中类销售统计表";
 				}else if (ids_str.equals("SATGPDIPN")) {
-					nameInfo = "分支机构+品牌+部门+品号+货品中类+品号销售统计表";
+					nameInfo = "帐套+品牌+部门+品号+货品中类+品号销售统计表";
 				}else if (ids_str.equals("SATGPSPN")) {
-					nameInfo = "分支机构+品牌+业务+品号销售统计表";
+					nameInfo = "帐套+品牌+业务+品号销售统计表";
 				}else if (ids_str.equals("SATGPSI")) {
-					nameInfo = "分支机构+品牌+业务+货品中类销售统计表";
+					nameInfo = "帐套+品牌+业务+货品中类销售统计表";
 				}else if (ids_str.equals("SATGPSIPN")) {
-					nameInfo = "分支机构+品牌+业务+货品中类+品号销售统计表";
+					nameInfo = "帐套+品牌+业务+货品中类+品号销售统计表";
 				}else if (ids_str.equals("SATGPGCPN")) {
-					nameInfo = "分支机构+品牌+终端+品号销售统计表";
+					nameInfo = "帐套+品牌+终端+品号销售统计表";
 				}else if (ids_str.equals("SATGPGCI")) {
-					nameInfo = "分支机构+品牌+终端+货品中类销售统计表";
+					nameInfo = "帐套+品牌+终端+货品中类销售统计表";
 				}else if (ids_str.equals("SATGPGCIPN")) {
-					nameInfo = "分支机构+品牌+终端+货品中类+品号销售统计表";
-				}else if (ids_str.equals("spmsa")) {
+					nameInfo = "帐套+品牌+终端+货品中类+品号销售统计表";
+				}
+
+				else if (ids_str.equals("spmsa")) {
 					nameInfo = "销售统计表";
 				}
 				Log.e("LiNing", "ids_str数据是===" + list_spmsa);
@@ -1512,96 +1557,114 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 				}
 				else
 				if (ids_str.equals("SATG")) {
-					nameInfo = "分支机构销售统计表";
+					nameInfo = "帐套销售统计表";
 				} else if (ids_str.equals("SATGP")) {
-					nameInfo = "分支机构+品牌销售统计表";
+					nameInfo = "帐套+品牌销售统计表";
 				} else if (ids_str.equals("SATGPC")) {
-					nameInfo = "分支机构+品牌+渠道销售统计表";
+					nameInfo = "帐套+品牌+渠道销售统计表";
 				} else if (ids_str.equals("SATGPD")) {
-					nameInfo = "分支机构+品牌+部门销售统计表";
+					nameInfo = "帐套+品牌+部门销售统计表";
 				}else if (ids_str.equals("SATGPS")) {
-					nameInfo = "分支机构+品牌+业务销售统计表";
+					nameInfo = "帐套+品牌+业务销售统计表";
 				}else if (ids_str.equals("SATGPGC")) {
-					nameInfo = "分支机构+品牌+终端网点销售统计表";
+					nameInfo = "帐套+品牌+终端网点销售统计表";
 				}else if (ids_str.equals("SATGC")) {
-					nameInfo = "分支机构+渠道销售统计表";
+					nameInfo = "帐套+渠道销售统计表";
 				}else if (ids_str.equals("SATGCD")) {
-					nameInfo = "分支机构+渠道+部门销售统计表";
+					nameInfo = "帐套+渠道+部门销售统计表";
 				}else if (ids_str.equals("SATGCS")) {
-					nameInfo = "分支机构+渠道+业务销售统计表";
+					nameInfo = "帐套+渠道+业务销售统计表";
 				}else if (ids_str.equals("SATGCGC")) {
-					nameInfo = "分支机构+渠道+终端网点销售统计表";
+					nameInfo = "帐套+渠道+终端网点销售统计表";
 				}else if (ids_str.equals("SATGD")) {
-					nameInfo = "分支机构+部门销售统计表";
+					nameInfo = "帐套+部门销售统计表";
 				}else if (ids_str.equals("SATGDS")) {
-					nameInfo = "分支机构+部门+业务销售统计表";
+					nameInfo = "帐套+部门+业务销售统计表";
 				}else if (ids_str.equals("SATGDGC")) {
-					nameInfo = "分支机构+部门+终端网点销售统计表";
+					nameInfo = "帐套+部门+终端网点销售统计表";
 				}else if (ids_str.equals("SATGS")) {
-					nameInfo = "分支机构+业务销售统计表";
+					nameInfo = "帐套+业务销售统计表";
 				}else if (ids_str.equals("SATGSGC")) {
-					nameInfo = "分支机构+业务+终端网点销售统计表";
+					nameInfo = "帐套+业务+终端网点销售统计表";
 				}else if (ids_str.equals("SATGGC")) {
-					nameInfo = "分支机构+终端网点销售统计表";
+					nameInfo = "帐套+终端网点销售统计表";
 				}else if (ids_str.equals("SATGPPN")) {
-					nameInfo = "分支机构+品牌+品号销售统计表";
+					nameInfo = "帐套+品牌+品号销售统计表";
 				}else if (ids_str.equals("SATGPI")) {
-					nameInfo = "分支机构+品牌+货品中类销售统计表";
+					nameInfo = "帐套+品牌+货品中类销售统计表";
 				}else if (ids_str.equals("SATGPIPN")) {
-					nameInfo = "分支机构+品牌+货品中类+品号销售统计表";
+					nameInfo = "帐套+品牌+货品中类+品号销售统计表";
 				}else if (ids_str.equals("SATGPCPN")) {
-					nameInfo = "分支机构+品牌+渠道+品号销售统计表";
+					nameInfo = "帐套+品牌+渠道+品号销售统计表";
 				}else if (ids_str.equals("SATGPCI")) {
-					nameInfo = "分支机构+品牌+渠道+货品中类销售统计表";
+					nameInfo = "帐套+品牌+渠道+货品中类销售统计表";
 				}else if (ids_str.equals("SATGPCIPN")) {
-					nameInfo = "分支机构+品牌+渠道+货品中类+品号销售统计表";
+					nameInfo = "帐套+品牌+渠道+货品中类+品号销售统计表";
 				}else if (ids_str.equals("SATGPDPN")) {
-					nameInfo = "分支机构+品牌+部门+品号销售统计表";
+					nameInfo = "帐套+品牌+部门+品号销售统计表";
 				}else if (ids_str.equals("SATGPDI")) {
-					nameInfo = "分支机构+品牌+部门+品号+货品中类销售统计表";
+					nameInfo = "帐套+品牌+部门+品号+货品中类销售统计表";
 				}else if (ids_str.equals("SATGPDIPN")) {
-					nameInfo = "分支机构+品牌+部门+品号+货品中类+品号销售统计表";
+					nameInfo = "帐套+品牌+部门+品号+货品中类+品号销售统计表";
 				}else if (ids_str.equals("SATGPSPN")) {
-					nameInfo = "分支机构+品牌+业务+品号销售统计表";
+					nameInfo = "帐套+品牌+业务+品号销售统计表";
 				}else if (ids_str.equals("SATGPSI")) {
-					nameInfo = "分支机构+品牌+业务+货品中类销售统计表";
+					nameInfo = "帐套+品牌+业务+货品中类销售统计表";
 				}else if (ids_str.equals("SATGPSIPN")) {
-					nameInfo = "分支机构+品牌+业务+货品中类+品号销售统计表";
+					nameInfo = "帐套+品牌+业务+货品中类+品号销售统计表";
 				}else if (ids_str.equals("SATGPGCPN")) {
-					nameInfo = "分支机构+品牌+终端+品号销售统计表";
+					nameInfo = "帐套+品牌+终端+品号销售统计表";
 				}else if (ids_str.equals("SATGPGCI")) {
-					nameInfo = "分支机构+品牌+终端+货品中类销售统计表";
+					nameInfo = "帐套+品牌+终端+货品中类销售统计表";
 				}else if (ids_str.equals("SATGPGCIPN")) {
-					nameInfo = "分支机构+品牌+终端+货品中类+品号销售统计表";
-				}else if (ids_str.equals("spmsa")) {
+					nameInfo = "帐套+品牌+终端+货品中类+品号销售统计表";
+				} else if (ids_str.equals("SATGV")) {
+					nameInfo = "帐套销售同比表";
+				}
+				else if (ids_str.equals("SATGVC")) {
+					nameInfo = "帐套+渠道销售同比表";
+				}
+				else if (ids_str.equals("SATGVD")) {
+					nameInfo = "帐套+部门销售同比表";
+				}
+				else if (ids_str.equals("SATGVGC")) {
+					nameInfo = "帐套+网点销售同比表";
+				}
+				else if (ids_str.equals("SATGVP")) {
+					nameInfo = "帐套+品牌销售同比表";
+				}
+				else if (ids_str.equals("SATGVTP")) {
+					nameInfo = "经营品牌销售分析表";
+				}
+				else if (ids_str.equals("spmsa")) {
 					nameInfo = "销售统计表";
 				}else
 				if (ids_str.equals("ArpTG")) {
-					nameInfo = "分支机构应收账龄表";
+					nameInfo = "帐套应收账龄表";
 				} else if (ids_str.equals("ArpTGGC")) {
-					nameInfo = "机构+终端网点应收账龄表";
+					nameInfo = "帐套+终端网点应收账龄表";
 				} else if (ids_str.equals("ArpTGP")) {
-					nameInfo = "机构+核算单位应收账龄表";
+					nameInfo = "帐套+核算单位应收账龄表";
 				} else if (ids_str.equals("ArpTGC")) {
-					nameInfo = "机构+渠道应收账龄表";
+					nameInfo = "帐套+渠道应收账龄表";
 				}else if (ids_str.equals("ArpTGS")) {
-					nameInfo = "机构+业务应收账龄表";
+					nameInfo = "帐套+业务应收账龄表";
 				} else if (ids_str.equals("ArpTGD")) {
-					nameInfo = "机构+部门应收账龄表";
+					nameInfo = "帐套+部门应收账龄表";
 				} else if (ids_str.equals("ArpTGPC")) {
-					nameInfo = "机构+核算单位+渠道应收账龄表";
+					nameInfo = "帐套+核算单位+渠道应收账龄表";
 				}else if (ids_str.equals("ArpTGPD")) {
-					nameInfo = "机构+核算单位+部门应收账龄表";
+					nameInfo = "帐套+核算单位+部门应收账龄表";
 				} else if (ids_str.equals("ArpTGPS")) {
-					nameInfo = "机构+核算单位+业务应收账龄表";
+					nameInfo = "帐套+核算单位+业务应收账龄表";
 				} else if (ids_str.equals("ArpTGPGC")) {
-					nameInfo = "机构+核算单位+终端网点应收账龄表";
+					nameInfo = "帐套+核算单位+终端网点应收账龄表";
 				}else if (ids_str.equals("ArpTGPCGC")) {
-					nameInfo = "机构+核算单位+渠道+终端网点应收账龄表";
+					nameInfo = "帐套+核算单位+渠道+终端网点应收账龄表";
 				} else if (ids_str.equals("ArpTGPDGC")) {
-					nameInfo = "机构+核算单位+部门+终端网点应收账龄表";
+					nameInfo = "帐套+核算单位+部门+终端网点应收账龄表";
 				} else if (ids_str.equals("ArpTGPSGC")) {
-					nameInfo = "机构+核算单位+业务+终端网点应收账龄表";
+					nameInfo = "帐套+核算单位+业务+终端网点应收账龄表";
 				}else if (ids_str.equals("spmarp")) {
 					nameInfo = "应收账龄表";
 				}
@@ -1649,96 +1712,114 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 					nameInfo = "决策报表";
 				}else
 				if (ids_str.equals("SATG")) {
-					nameInfo = "分支机构销售统计表";
+					nameInfo = "帐套销售统计表";
 				} else if (ids_str.equals("SATGP")) {
-					nameInfo = "分支机构+品牌销售统计表";
+					nameInfo = "帐套+品牌销售统计表";
 				} else if (ids_str.equals("SATGPC")) {
-					nameInfo = "分支机构+品牌+渠道销售统计表";
+					nameInfo = "帐套+品牌+渠道销售统计表";
 				} else if (ids_str.equals("SATGPD")) {
-					nameInfo = "分支机构+品牌+部门销售统计表";
+					nameInfo = "帐套+品牌+部门销售统计表";
 				}else if (ids_str.equals("SATGPS")) {
-					nameInfo = "分支机构+品牌+业务销售统计表";
+					nameInfo = "帐套+品牌+业务销售统计表";
 				}else if (ids_str.equals("SATGPGC")) {
-					nameInfo = "分支机构+品牌+终端网点销售统计表";
+					nameInfo = "帐套+品牌+终端网点销售统计表";
 				}else if (ids_str.equals("SATGC")) {
-					nameInfo = "分支机构+渠道销售统计表";
+					nameInfo = "帐套+渠道销售统计表";
 				}else if (ids_str.equals("SATGCD")) {
-					nameInfo = "分支机构+渠道+部门销售统计表";
+					nameInfo = "帐套+渠道+部门销售统计表";
 				}else if (ids_str.equals("SATGCS")) {
-					nameInfo = "分支机构+渠道+业务销售统计表";
+					nameInfo = "帐套+渠道+业务销售统计表";
 				}else if (ids_str.equals("SATGCGC")) {
-					nameInfo = "分支机构+渠道+终端网点销售统计表";
+					nameInfo = "帐套+渠道+终端网点销售统计表";
 				}else if (ids_str.equals("SATGD")) {
-					nameInfo = "分支机构+部门销售统计表";
+					nameInfo = "帐套+部门销售统计表";
 				}else if (ids_str.equals("SATGDS")) {
-					nameInfo = "分支机构+部门+业务销售统计表";
+					nameInfo = "帐套+部门+业务销售统计表";
 				}else if (ids_str.equals("SATGDGC")) {
-					nameInfo = "分支机构+部门+终端网点销售统计表";
+					nameInfo = "帐套+部门+终端网点销售统计表";
 				}else if (ids_str.equals("SATGS")) {
-					nameInfo = "分支机构+业务销售统计表";
+					nameInfo = "帐套+业务销售统计表";
 				}else if (ids_str.equals("SATGSGC")) {
-					nameInfo = "分支机构+业务+终端网点销售统计表";
+					nameInfo = "帐套+业务+终端网点销售统计表";
 				}else if (ids_str.equals("SATGGC")) {
-					nameInfo = "分支机构+终端网点销售统计表";
+					nameInfo = "帐套+终端网点销售统计表";
 				}else if (ids_str.equals("SATGPPN")) {
-					nameInfo = "分支机构+品牌+品号销售统计表";
+					nameInfo = "帐套+品牌+品号销售统计表";
 				}else if (ids_str.equals("SATGPI")) {
-					nameInfo = "分支机构+品牌+货品中类销售统计表";
+					nameInfo = "帐套+品牌+货品中类销售统计表";
 				}else if (ids_str.equals("SATGPIPN")) {
-					nameInfo = "分支机构+品牌+货品中类+品号销售统计表";
+					nameInfo = "帐套+品牌+货品中类+品号销售统计表";
 				}else if (ids_str.equals("SATGPCPN")) {
-					nameInfo = "分支机构+品牌+渠道+品号销售统计表";
+					nameInfo = "帐套+品牌+渠道+品号销售统计表";
 				}else if (ids_str.equals("SATGPCI")) {
-					nameInfo = "分支机构+品牌+渠道+货品中类销售统计表";
+					nameInfo = "帐套+品牌+渠道+货品中类销售统计表";
 				}else if (ids_str.equals("SATGPCIPN")) {
-					nameInfo = "分支机构+品牌+渠道+货品中类+品号销售统计表";
+					nameInfo = "帐套+品牌+渠道+货品中类+品号销售统计表";
 				}else if (ids_str.equals("SATGPDPN")) {
-					nameInfo = "分支机构+品牌+部门+品号销售统计表";
+					nameInfo = "帐套+品牌+部门+品号销售统计表";
 				}else if (ids_str.equals("SATGPDI")) {
-					nameInfo = "分支机构+品牌+部门+品号+货品中类销售统计表";
+					nameInfo = "帐套+品牌+部门+品号+货品中类销售统计表";
 				}else if (ids_str.equals("SATGPDIPN")) {
-					nameInfo = "分支机构+品牌+部门+品号+货品中类+品号销售统计表";
+					nameInfo = "帐套+品牌+部门+品号+货品中类+品号销售统计表";
 				}else if (ids_str.equals("SATGPSPN")) {
-					nameInfo = "分支机构+品牌+业务+品号销售统计表";
+					nameInfo = "帐套+品牌+业务+品号销售统计表";
 				}else if (ids_str.equals("SATGPSI")) {
-					nameInfo = "分支机构+品牌+业务+货品中类销售统计表";
+					nameInfo = "帐套+品牌+业务+货品中类销售统计表";
 				}else if (ids_str.equals("SATGPSIPN")) {
-					nameInfo = "分支机构+品牌+业务+货品中类+品号销售统计表";
+					nameInfo = "帐套+品牌+业务+货品中类+品号销售统计表";
 				}else if (ids_str.equals("SATGPGCPN")) {
-					nameInfo = "分支机构+品牌+终端+品号销售统计表";
+					nameInfo = "帐套+品牌+终端+品号销售统计表";
 				}else if (ids_str.equals("SATGPGCI")) {
-					nameInfo = "分支机构+品牌+终端+货品中类销售统计表";
+					nameInfo = "帐套+品牌+终端+货品中类销售统计表";
 				}else if (ids_str.equals("SATGPGCIPN")) {
-					nameInfo = "分支机构+品牌+终端+货品中类+品号销售统计表";
-				}else if (ids_str.equals("spmsa")) {
+					nameInfo = "帐套+品牌+终端+货品中类+品号销售统计表";
+				} else if (ids_str.equals("SATGV")) {
+					nameInfo = "帐套销售同比表";
+				}
+				else if (ids_str.equals("SATGVC")) {
+					nameInfo = "帐套+渠道销售同比表";
+				}
+				else if (ids_str.equals("SATGVD")) {
+					nameInfo = "帐套+部门销售同比表";
+				}
+				else if (ids_str.equals("SATGVGC")) {
+					nameInfo = "帐套+网点销售同比表";
+				}
+				else if (ids_str.equals("SATGVP")) {
+					nameInfo = "帐套+品牌销售同比表";
+				}
+				else if (ids_str.equals("SATGVTP")) {
+					nameInfo = "经营品牌销售分析表";
+				}
+				else if (ids_str.equals("spmsa")) {
 					nameInfo = "销售统计表";
 				}else
 				if (ids_str.equals("ArpTG")) {
-					nameInfo = "分支机构应收账龄表";
+					nameInfo = "帐套应收账龄表";
 				} else if (ids_str.equals("ArpTGGC")) {
-					nameInfo = "机构+终端网点应收账龄表";
+					nameInfo = "帐套+终端网点应收账龄表";
 				} else if (ids_str.equals("ArpTGP")) {
-					nameInfo = "机构+核算单位应收账龄表";
+					nameInfo = "帐套+核算单位应收账龄表";
 				} else if (ids_str.equals("ArpTGC")) {
-					nameInfo = "机构+渠道应收账龄表";
+					nameInfo = "帐套+渠道应收账龄表";
 				}else if (ids_str.equals("ArpTGS")) {
-					nameInfo = "机构+业务应收账龄表";
+					nameInfo = "帐套+业务应收账龄表";
 				} else if (ids_str.equals("ArpTGD")) {
-					nameInfo = "机构+部门应收账龄表";
+					nameInfo = "帐套+部门应收账龄表";
 				} else if (ids_str.equals("ArpTGPC")) {
-					nameInfo = "机构+核算单位+渠道应收账龄表";
+					nameInfo = "帐套+核算单位+渠道应收账龄表";
 				}else if (ids_str.equals("ArpTGPD")) {
-					nameInfo = "机构+核算单位+部门应收账龄表";
+					nameInfo = "帐套+核算单位+部门应收账龄表";
 				} else if (ids_str.equals("ArpTGPS")) {
-					nameInfo = "机构+核算单位+业务应收账龄表";
+					nameInfo = "帐套+核算单位+业务应收账龄表";
 				} else if (ids_str.equals("ArpTGPGC")) {
-					nameInfo = "机构+核算单位+终端网点应收账龄表";
+					nameInfo = "帐套+核算单位+终端网点应收账龄表";
 				}else if (ids_str.equals("ArpTGPCGC")) {
-					nameInfo = "机构+核算单位+渠道+终端网点应收账龄表";
+					nameInfo = "帐套+核算单位+渠道+终端网点应收账龄表";
 				} else if (ids_str.equals("ArpTGPDGC")) {
-					nameInfo = "机构+核算单位+部门+终端网点应收账龄表";
+					nameInfo = "帐套+核算单位+部门+终端网点应收账龄表";
 				} else if (ids_str.equals("ArpTGPSGC")) {
-					nameInfo = "机构+核算单位+业务+终端网点应收账龄表";
+					nameInfo = "帐套+核算单位+业务+终端网点应收账龄表";
 				}else if (ids_str.equals("spmarp")) {
 					nameInfo = "应收账龄表";
 				}
@@ -1918,7 +1999,7 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 	private String del_dbs;
 	private User_Mod mod2;
 	private String querryRoot;
-	private String isquery;
+	private String isquery,idsUser;
 
 	private void initView_new() {
 		account = (Spinner) findViewById(R.id.newmod_sp_account);
