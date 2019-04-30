@@ -215,21 +215,6 @@ public class DecisionActivity extends Activity implements OnClickListener {
 						sp.edit().putString("CBQX", stritem).commit();
 						Log.e("LiNing", "提交的数据是" + sp.getString("CBQX", ""));
 					}
-					// if (query == false && add == false && alter == false
-					// && amt == false && cst == false && del == false
-					// && gp == false && gpr == false && out == false
-					// && prt == false && qty == false && up == false) {
-					// Log.e("LiNing", "------" + "无此权限");
-					// // Toast.makeText(context, "无此权限", 1).show();
-					//
-					// } else {
-					// sp.edit().putString("TJ", head.getText().toString())
-					// .commit();
-					// Intent intent = new Intent(context,
-					// SalesNumActivity.class);
-					// intent.putExtra("reportB", "SA");
-					// startActivity(intent);
-					// }
 
 				}
 			}

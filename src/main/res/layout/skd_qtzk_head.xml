@@ -16,6 +16,14 @@
 
 
                 <TextView
+                    android:id="@+id/tv_qtzk_xz"
+                    android:layout_width="40sp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="选择" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
                     android:id="@+id/tv_qtzk_kmdh"
                     android:layout_width="0dp"
                     android:layout_weight="1"

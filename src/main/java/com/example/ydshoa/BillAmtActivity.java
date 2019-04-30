@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.PopupMenu;
@@ -31,10 +32,12 @@ public class BillAmtActivity extends Activity implements View.OnClickListener {
 
     //基本数据
     private String db_zt,date_dd,skdpb_id,skdkpyh_id;
-    private TextView head,pb_one,pb_two,pb_three,pb_four,pb_five,yh_one,yh_two,yh_three,yh_four,yh_five,time_one,time_two,time_three,time_four,time_five;
+    private TextView head,pb_one,pb_two,pb_three,pb_four,pb_five,yh_one,yh_two,yh_three,yh_four,yh_five,time_one,time_two,time_three,time_four,time_five,dxzh_one,
+            dxzh_two,dxzh_three,dxzh_four,dxzh_five;
     private int object_chk,checked,checked_yh;
     private EditText pjhm_one,pjhm_two,pjhm_three,pjhm_four,pjhm_five,je_one,je_two,je_three
-            ,je_four,je_five,dxzh_one,dxzh_two,dxzh_three,dxzh_four,dxzh_five;
+            ,je_four,je_five;
+    private Button pjok_hd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,11 +76,11 @@ public class BillAmtActivity extends Activity implements View.OnClickListener {
         je_three= (EditText) findViewById(R.id.et_pjje_je_three);
         je_four= (EditText) findViewById(R.id.et_pjje_je_four);
         je_five= (EditText) findViewById(R.id.et_pjje_je_five);
-        dxzh_one= (EditText) findViewById(R.id.et_pjje_dxzh_one);
-        dxzh_two= (EditText) findViewById(R.id.et_pjje_dxzh_two);
-        dxzh_three= (EditText) findViewById(R.id.et_pjje_dxzh_three);
-        dxzh_four= (EditText) findViewById(R.id.et_pjje_dxzh_four);
-        dxzh_five= (EditText) findViewById(R.id.et_pjje_dxzh_five);
+        dxzh_one= (TextView) findViewById(R.id.et_pjje_dxzh_one);
+        dxzh_two= (TextView) findViewById(R.id.et_pjje_dxzh_two);
+        dxzh_three= (TextView) findViewById(R.id.et_pjje_dxzh_three);
+        dxzh_four= (TextView) findViewById(R.id.et_pjje_dxzh_four);
+        dxzh_five= (TextView) findViewById(R.id.et_pjje_dxzh_five);
 
 
         pb_one= (TextView) findViewById(R.id.tv_pjje_pb_one);
@@ -220,6 +223,117 @@ public class BillAmtActivity extends Activity implements View.OnClickListener {
                         }, mYear_time, mMonth_time, mDay_time).show();//获取当前时间
             }
         });
+        dxzh_one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar c_time = Calendar.getInstance();
+                int mYear_time = c_time.get(Calendar.YEAR); // 获取当前年份
+                int mMonth_time = c_time.get(Calendar.MONTH);// 获取当前月份
+                int mDay_time = c_time.get(Calendar.DAY_OF_MONTH);// 获取当日期cal.set(Calendar.DAY_OF_MONTH, 1);
+                Log.e("LiNing", "y" + mYear_time + "/y" + mMonth_time + "/r" + mDay_time);
+                new DatePickerDialog(context, DatePickerDialog.THEME_HOLO_LIGHT,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                String startTime = String.format("%d-%d-%d", year,
+                                        monthOfYear + 1, dayOfMonth);
+                                dxzh_one.setText(startTime);
+
+                            }
+                        }, mYear_time, mMonth_time, mDay_time).show();//获取当前时间
+            }
+        });
+        dxzh_two.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar c_time = Calendar.getInstance();
+                int mYear_time = c_time.get(Calendar.YEAR); // 获取当前年份
+                int mMonth_time = c_time.get(Calendar.MONTH);// 获取当前月份
+                int mDay_time = c_time.get(Calendar.DAY_OF_MONTH);// 获取当日期cal.set(Calendar.DAY_OF_MONTH, 1);
+                Log.e("LiNing", "y" + mYear_time + "/y" + mMonth_time + "/r" + mDay_time);
+                new DatePickerDialog(context, DatePickerDialog.THEME_HOLO_LIGHT,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                String startTime = String.format("%d-%d-%d", year,
+                                        monthOfYear + 1, dayOfMonth);
+                                dxzh_two.setText(startTime);
+
+                            }
+                        }, mYear_time, mMonth_time, mDay_time).show();//获取当前时间
+            }
+        });
+        dxzh_three.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar c_time = Calendar.getInstance();
+                int mYear_time = c_time.get(Calendar.YEAR); // 获取当前年份
+                int mMonth_time = c_time.get(Calendar.MONTH);// 获取当前月份
+                int mDay_time = c_time.get(Calendar.DAY_OF_MONTH);// 获取当日期cal.set(Calendar.DAY_OF_MONTH, 1);
+                Log.e("LiNing", "y" + mYear_time + "/y" + mMonth_time + "/r" + mDay_time);
+                new DatePickerDialog(context, DatePickerDialog.THEME_HOLO_LIGHT,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                String startTime = String.format("%d-%d-%d", year,
+                                        monthOfYear + 1, dayOfMonth);
+                                dxzh_three.setText(startTime);
+
+                            }
+                        }, mYear_time, mMonth_time, mDay_time).show();//获取当前时间
+            }
+        });
+        dxzh_four.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar c_time = Calendar.getInstance();
+                int mYear_time = c_time.get(Calendar.YEAR); // 获取当前年份
+                int mMonth_time = c_time.get(Calendar.MONTH);// 获取当前月份
+                int mDay_time = c_time.get(Calendar.DAY_OF_MONTH);// 获取当日期cal.set(Calendar.DAY_OF_MONTH, 1);
+                Log.e("LiNing", "y" + mYear_time + "/y" + mMonth_time + "/r" + mDay_time);
+                new DatePickerDialog(context, DatePickerDialog.THEME_HOLO_LIGHT,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                String startTime = String.format("%d-%d-%d", year,
+                                        monthOfYear + 1, dayOfMonth);
+                                dxzh_four.setText(startTime);
+
+                            }
+                        }, mYear_time, mMonth_time, mDay_time).show();//获取当前时间
+            }
+        });
+        dxzh_five.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar c_time = Calendar.getInstance();
+                int mYear_time = c_time.get(Calendar.YEAR); // 获取当前年份
+                int mMonth_time = c_time.get(Calendar.MONTH);// 获取当前月份
+                int mDay_time = c_time.get(Calendar.DAY_OF_MONTH);// 获取当日期cal.set(Calendar.DAY_OF_MONTH, 1);
+                Log.e("LiNing", "y" + mYear_time + "/y" + mMonth_time + "/r" + mDay_time);
+                new DatePickerDialog(context, DatePickerDialog.THEME_HOLO_LIGHT,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                String startTime = String.format("%d-%d-%d", year,
+                                        monthOfYear + 1, dayOfMonth);
+                                dxzh_five.setText(startTime);
+
+                            }
+                        }, mYear_time, mMonth_time, mDay_time).show();//获取当前时间
+            }
+        });
+        pjok_hd= (Button) findViewById(R.id.pjok);
     }
     private void infos_chage() {
         try {
@@ -231,13 +345,15 @@ public class BillAmtActivity extends Activity implements View.OnClickListener {
             String pjje_pjhm = jsonObject.get("chk_NO").toString();//票据号码
             String pjje_je = jsonObject.get("amtn").toString();//金额
             String pjje_kpyh = jsonObject.get("bank_NO").toString();//开票银行
-            String pjje_dxzh = jsonObject.get("usr").toString();//兑现帐户
+//            String pjje_dxzh = jsonObject.get("usr").toString();//兑现帐户
+            String pjje_dxzh = jsonObject.get("cah_DD").toString();//预兑日
             String pjje_dqr = jsonObject.get("end_DD").toString();//到期日
             pb_one.setText(pjje_pb);
             pjhm_one.setText(pjje_pjhm);
             je_one.setText(pjje_je);
             yh_one.setText(pjje_kpyh);
             dxzh_one.setText(pjje_dxzh);
+
             //日期转换
             Date date = new Date(pjje_dqr);
             SimpleDateFormat dateformat1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -307,6 +423,9 @@ public class BillAmtActivity extends Activity implements View.OnClickListener {
                 object_chk=2;
                 checked_yh=5;
                 showPopupMenu(yh_five);
+                break;
+            case R.id.pjok:
+
                 break;
 
                 default:

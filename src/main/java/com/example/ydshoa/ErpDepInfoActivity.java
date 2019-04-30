@@ -53,7 +53,7 @@ public class ErpDepInfoActivity extends Activity implements OnClickListener {
 	private SharedPreferences sp;
 	private List<IdNameList> depInfo;
 	private IdNameList selectBrand;
-	private String name;
+	private String name,type_obj;
 	// 搜索
 	private EditText infoId, infoName, infoAll;
 	private ImageButton search;
@@ -136,7 +136,12 @@ public class ErpDepInfoActivity extends Activity implements OnClickListener {
 		}
 		// 4，获取单据类别
 		if (extraFlag.equals("22")) {
-
+			type_obj="SA";
+			requestdjlb();
+		}
+		// 4，获取单据类别
+		if (extraFlag.equals("7")) {
+			type_obj="VP";
 			requestdjlb();
 		}
 		// 5，获取品号（单选）
@@ -357,7 +362,8 @@ public class ErpDepInfoActivity extends Activity implements OnClickListener {
 		OkHttpClient client = new OkHttpClient();
 		FormBody body = new FormBody.Builder()
 				.add("accountNo", dBID)
-				.add("bil_Id", "SA")
+//				.add("bil_Id", "SA")
+				.add("bil_Id", type_obj)
 				.build();
 		Request request = new Request.Builder().addHeader("cookie", session)
 				.url(url_djlb).post(body).build();
@@ -676,6 +682,9 @@ public class ErpDepInfoActivity extends Activity implements OnClickListener {
 			if (extraFlag.equals("4")) {
 				requestuser();
 			}
+			if (extraFlag.equals("5")) {
+				requestYw();
+			}
 		} else if (!idString.equals("") && TextUtils.isEmpty(nameString)
 				) {
 			cussor = 1;
@@ -793,7 +802,8 @@ public class ErpDepInfoActivity extends Activity implements OnClickListener {
 
 				}
 			});
-		} else if (extraFlag.equals("4")) {
+		}
+		else if (extraFlag.equals("4")) {
 			OkHttpClient client = new OkHttpClient();
 			// FormBody body = new FormBody.Builder().add("accountNo", dBID)
 			// .add("custType", "" + 2).add("id", idString).build();
@@ -814,6 +824,59 @@ public class ErpDepInfoActivity extends Activity implements OnClickListener {
 			}
 			Request request = new Request.Builder()
 					.addHeader("cookie", session).url(urlUser).post(body)
+					.build();
+			Call call = client.newCall(request);
+			call.enqueue(new Callback() {
+
+				@Override
+				public void onResponse(Call call, Response response)
+						throws IOException {
+					String str = response.body().string();
+					Log.e("LiNing", "查询数据===" + str);
+					final DepInfo dInfo = new Gson().fromJson(str,
+							DepInfo.class);
+					if (dInfo != null) {
+						ErpDepInfoActivity.this.runOnUiThread(new Runnable() {
+
+							@Override
+							public void run() {
+								depInfo = dInfo.getIdNameList();
+								showCheckBoxListViewDep();
+							}
+
+						});
+					} else {
+						Toast.makeText(context, "数据为空", Toast.LENGTH_LONG).show();
+					}
+				}
+
+				@Override
+				public void onFailure(Call arg0, IOException arg1) {
+
+				}
+			});
+		}
+		else if (extraFlag.equals("5")) {
+			OkHttpClient client = new OkHttpClient();
+			// FormBody body = new FormBody.Builder().add("accountNo", dBID)
+			// .add("custType", "" + 2).add("id", idString).build();
+			if (cussor == 1) {
+				body = new FormBody.Builder().add("accountNo", dBID)
+						// .add("custType", "" + 2)
+						.add("id", idString).build();
+			} else if (cussor == 2) {
+				body = new FormBody.Builder().add("accountNo", dBID)
+						// .add("custType", "" + 2)
+						.add("name", nameString).build();
+			} else if (cussor == 3) {
+				body = new FormBody.Builder().add("accountNo", dBID)
+						// .add("custType", "" + 2)
+						.add("name", nameString).add("id", idString).build();
+			} else if (cussor == 4) {
+				requestuser();
+			}
+			Request request = new Request.Builder()
+					.addHeader("cookie", session).url(url_employee).post(body)
 					.build();
 			Call call = client.newCall(request);
 			call.enqueue(new Callback() {

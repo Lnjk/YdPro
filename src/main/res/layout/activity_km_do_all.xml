@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/headall" />
+
+    <include
+        android:id="@+id/vip_head_all"
+        layout="@layout/km_head" />
+
+    <View
+        style="@style/list_item_seperator_layout"
+        android:layout_marginTop="2.0dip" />
+
+
+    <!--<include
+        android:id="@+id/vip_head_item"
+        layout="@layout/vip_item" />
+    <View style="@style/price_view" />-->
+
+    <ListView
+        android:id="@+id/lv_km_header_all"
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1.0"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/color_dark_grey"
+        android:dividerHeight="1.0dip"
+        android:fastScrollEnabled="true"
+        android:focusable="true"
+        android:listSelector="#ffff0000"
+        android:scrollingCache="true" />
+
+</LinearLayout>

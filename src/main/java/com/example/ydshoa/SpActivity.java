@@ -125,7 +125,7 @@ public class SpActivity extends Activity implements OnClickListener {
 						sp.edit().putString("JC", head.getText().toString())
 								.commit();
 					} else {
-						Toast.makeText(this.context, "无此权限", Toast.LENGTH_LONG).show();
+						Toast.makeText(this.context, "请等待...", Toast.LENGTH_LONG).show();
 					}
 				}
 
@@ -136,7 +136,7 @@ public class SpActivity extends Activity implements OnClickListener {
 				if (modIds_get.contains("spt")) {
 					Toast.makeText(this.context, "暂未开放", Toast.LENGTH_LONG).show();
 				} else {
-					Toast.makeText(this.context, "无此权限", Toast.LENGTH_LONG).show();
+					Toast.makeText(this.context, "请等待...", Toast.LENGTH_LONG).show();
 				}
 				break;
 

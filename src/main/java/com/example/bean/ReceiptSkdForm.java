@@ -158,6 +158,15 @@ private List<Mf_CHK> mf_CHK;
     public class Mf_BAC {
 
     }
+    public class Tf_MON1 {
+
+    }
+    public class Tf_MON3 {
+
+    }
+    public class Tc_MON {
+
+    }
     public class Mf_CHK {
 
         private String amt;
@@ -438,11 +447,67 @@ private List<Mf_CHK> mf_CHK;
         private String rp_ID;
         private String rp_NO;
         private String sor_ID;
-        private String tc_MON;
-        private String tf_MON1;
-        private String tf_MON3;
+        private Tc_MON tc_MON;
+        private Tf_MON1 tf_MON1;
+        private Tf_MON3 tf_MON3;
         private String usr;
         private String usr_NO;
+        //自定义
+        private String yis_bccx;
+        private String yis_khmc;
+        private String yis_wcjy;
+        private String yis_ysph;
+        private String yis_yshl;
+        private String yis_kzbz;
+
+        public String getYis_bccx() {
+            return yis_bccx;
+        }
+
+        public void setYis_bccx(String yis_bccx) {
+            this.yis_bccx = yis_bccx;
+        }
+
+        public String getYis_khmc() {
+            return yis_khmc;
+        }
+
+        public void setYis_khmc(String yis_khmc) {
+            this.yis_khmc = yis_khmc;
+        }
+
+        public String getYis_wcjy() {
+            return yis_wcjy;
+        }
+
+        public void setYis_wcjy(String yis_wcjy) {
+            this.yis_wcjy = yis_wcjy;
+        }
+
+        public String getYis_ysph() {
+            return yis_ysph;
+        }
+
+        public void setYis_ysph(String yis_ysph) {
+            this.yis_ysph = yis_ysph;
+        }
+
+        public String getYis_yshl() {
+            return yis_yshl;
+        }
+
+        public void setYis_yshl(String yis_yshl) {
+            this.yis_yshl = yis_yshl;
+        }
+
+        public String getYis_kzbz() {
+            return yis_kzbz;
+        }
+
+        public void setYis_kzbz(String yis_kzbz) {
+            this.yis_kzbz = yis_kzbz;
+        }
+
         public void setAmtn_BB(String amtn_BB) {
             this.amtn_BB = amtn_BB;
         }
@@ -738,25 +803,28 @@ private List<Mf_CHK> mf_CHK;
             return sor_ID;
         }
 
-        public void setTc_MON(String tc_MON) {
-            this.tc_MON = tc_MON;
-        }
-        public String getTc_MON() {
+        public Tc_MON getTc_MON() {
             return tc_MON;
         }
 
-        public void setTf_MON1(String tf_MON1) {
-            this.tf_MON1 = tf_MON1;
+        public void setTc_MON(Tc_MON tc_MON) {
+            this.tc_MON = tc_MON;
         }
-        public String getTf_MON1() {
+
+        public Tf_MON1 getTf_MON1() {
             return tf_MON1;
         }
 
-        public void setTf_MON3(String tf_MON3) {
-            this.tf_MON3 = tf_MON3;
+        public void setTf_MON1(Tf_MON1 tf_MON1) {
+            this.tf_MON1 = tf_MON1;
         }
-        public String getTf_MON3() {
+
+        public Tf_MON3 getTf_MON3() {
             return tf_MON3;
+        }
+
+        public void setTf_MON3(Tf_MON3 tf_MON3) {
+            this.tf_MON3 = tf_MON3;
         }
 
         public void setUsr(String usr) {
@@ -817,7 +885,7 @@ private List<Mf_CHK> mf_CHK;
         }
 
     }
-    public class Mf_monList {
+    public  class Mf_monList {
 
         private String amtn;
         private String amtn_ARP;
@@ -831,6 +899,8 @@ private List<Mf_CHK> mf_CHK;
         private Tf_MON tf_MON;
         private Tf_MON_Z tf_MON_Z;
         private String usr_NO;
+
+
         public void setAmtn(String amtn) {
             this.amtn = amtn;
         }

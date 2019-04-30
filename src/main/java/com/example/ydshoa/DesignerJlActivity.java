@@ -29,6 +29,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bean.DepInfo;
 import com.example.bean.DesignAllInfos;
 import com.example.bean.JfMxBean;
 import com.example.bean.JsonRootBean;
@@ -36,6 +37,7 @@ import com.example.bean.Jsonjf;
 import com.example.bean.NumberToCN;
 import com.example.bean.PriceNumID;
 import com.example.bean.ReceiptSkdForm;
+import com.example.bean.SjsJf;
 import com.example.bean.URLS;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -45,6 +47,7 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -60,14 +63,14 @@ import okhttp3.Response;
 public class DesignerJlActivity extends Activity implements View.OnClickListener {
     private Context context;
     private SharedPreferences sp;
-    private String session, db_zt, user_Id, user_yh, user_Name, jf_id_hd;
-    private TextView head, jl_sszt, jl_sjsdh, jl_jfdh, jl_jflx, jl_jfrq, jl_jabz, jl_zdr, jl_shr, jl_lydh,jl_sfzh;
+    private String session, db_zt, user_Id, user_yh, user_Name, jf_id_hd,sp_query, sp_add, sp_del, sp_set;
+    private TextView head, jl_sszt, jl_sjsdh, jl_jfdh, jl_jflx, jl_jfrq, jl_jabz, jl_zdr, jl_shr, jl_lydh, jl_sfzh;
     private Button jl_add, jl_del, jl_reset, jl_query, jl_save, jl_sh;
-    private EditText  jl_szmc, jl_jfbd, jl_jfms;
+    private EditText jl_szmc, jl_jfbd, jl_jfms, jl_flje;
     private ImageButton jl_sszt_ib, jl_sjsdh_ib, jl_jabz_ib, jl_jalx_ib;
     private String str_name, date_dd, vip_no_cust, sjsdh_del;
     int do_design_jl;
-    String zt_comit_jl, jfdh_comit_jl, sjsdh_comit_jl, sfzh_comit_jl, jflx_comit_jl, szmc_comit_jl, lydh_comit_jl, jfrq_comit_jl, jfbd_comit_jl, jfms_comit_jl, jabz_comit_jl, zdr_comit_jl, shr_comit_jl, sjsdh_comit_jl_id;
+    String zt_comit_jl, jfdh_comit_jl, sjsdh_comit_jl, sfzh_comit_jl, jflx_comit_jl, szmc_comit_jl, lydh_comit_jl, jfrq_comit_jl, jfbd_comit_jl, jfms_comit_jl, jabz_comit_jl, zdr_comit_jl, shr_comit_jl, sjsdh_comit_jl_id, flje_comit_jl;
     //判断新增数据是否存在
     ArrayList<String> card_list;
     LinearLayout touch;
@@ -77,6 +80,8 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
     String jfjl_del = URLS.design_jfdj_del;
     String jfjl_set = URLS.design_jfdj_set;
     String url_dh_price = URLS.price_num_ls;
+    String url_dh_toname = URLS.design_toname;
+    String url_dh_toname_jflx = URLS.design_toname_jf;
     //dialog数据
     private Button query_ok_cd, start_quick, stop_quick, jf_get;
     private ImageButton query_fh_cd;
@@ -84,9 +89,11 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
     String str_time, stopTime;
     private AlertDialog alertDialog;
     String s_zh, clientRows, comit_zt, comit_time, comit_time_zb, comit_dh, comit_sjsdh, comit_sfzh, comit_jflx, comit_szmc, comit_jabz, comit_jabz_quy,
-            comit_zdr, comit_jfbd, comit_lydh, comit_jfms,jf_fh_jflx,jf_fh_sjsdh;
+            comit_zdr, comit_jfbd, comit_lydh, comit_jfms, jf_fh_jflx, jf_fh_sjsdh, comit_flje;
     List<JfMxBean.Data> mf_monList;
     private JfsQtyAdapter qtyAdapter;
+    private JfsQtyAdapterName qtyAdapter_name;
+    int check;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +106,12 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
         user_yh = sp.getString("MR_YH", "");
         user_Name = sp.getString("USER_NAME", "");
         session = sp.getString("SESSION", "");
+        //增删改查权限
+        sp_query = sp.getString("USER_QUERY","");
+        sp_add = sp.getString("USER_ADD","");
+        sp_del = sp.getString("USER_DEL", "");
+        sp_set = sp.getString("USER_UP", "");
+        Log.e("LiNing", "sp数据----" + sp_add + sp_query + sp_del + sp_set);
         getNowTime();
         initView();//初始化
     }
@@ -161,6 +174,7 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
         jl_szmc = (EditText) findViewById(R.id.et_designjl_szmc);
         jl_jfbd = (EditText) findViewById(R.id.et_designjl_jfbd);
         jl_jfms = (EditText) findViewById(R.id.et_designjl_jfms);
+        jl_flje = (EditText) findViewById(R.id.et_designjl_flje);
 
         jl_sszt_ib = (ImageButton) findViewById(R.id.ib_designjl_account);
         jl_sjsdh_ib = (ImageButton) findViewById(R.id.ib_designjl_sjsdh);
@@ -195,6 +209,7 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
                 startActivityForResult(intent, 1);
                 break;
             case R.id.ib_designjl_sjsdh:
+                check = 1;
 //                设计师
                 Intent intent_vip = new Intent(context, QueryDesigActivity.class);
                 intent_vip.putExtra("ZT_VIP", jl_sszt.getText().toString());
@@ -215,39 +230,59 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
                 showPopupMenu(jl_jabz_ib);
                 break;
             case R.id.btn_designjl_add:
-                clearInfo();
-                jl_sjsdh_ib.setFocusable(false);
-                do_design_jl = 1;
-                jl_zdr.setEnabled(false);
-                jl_shr.setEnabled(false);
-                jl_jabz.setText("否");
-                jl_jabz_ib.setEnabled(false);
+                if (sp_add .equals("true") ) {
+                    clearInfo();
+                    jl_sjsdh_ib.setFocusable(false);
+                    do_design_jl = 1;
+                    jl_zdr.setEnabled(false);
+                    jl_shr.setEnabled(false);
+//                jl_jabz.setText("否");
+//                jl_jabz_ib.setEnabled(false);
+                }else {
+                    Toast.makeText(context, "请等待", Toast.LENGTH_LONG).show();
+                }
+
 
                 break;
             case R.id.btn_designjl_del:
-                new AlertDialog.Builder(context)
-                        .setTitle("是否删除")
-                        .setPositiveButton("是", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                delInfo();
-                            }
-                        })
-                        .setNegativeButton("否", null)
-                        .show();
+                if (sp_del .equals("true") ) {
+                    new AlertDialog.Builder(context)
+                            .setTitle("是否删除")
+                            .setPositiveButton("是", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    delInfo();
+                                }
+                            })
+                            .setNegativeButton("否", null)
+                            .show();
+                }else {
+                    Toast.makeText(context, "请等待", Toast.LENGTH_LONG).show();
+                }
+
                 break;
             case R.id.btn_designjl_reset:
-                do_design_jl = 2;
-                jl_jabz_ib.setEnabled(true);
-                jl_jalx_ib.setEnabled(true);
+                if (sp_set .equals("true") ) {
+                    do_design_jl = 2;
+                    jl_jabz_ib.setEnabled(true);
+                    jl_jalx_ib.setEnabled(true);
+                }else{
+                    Toast.makeText(context, "请等待", Toast.LENGTH_LONG).show();
+                }
+
                 break;
             case R.id.btn_designjl_query:
-                if (jl_sszt.getText().toString().equals("")) {
-                    Toast.makeText(context, "请选择账套", Toast.LENGTH_LONG).show();
-                } else {
+                if (sp_query .equals("true") ) {
+                    if (jl_sszt.getText().toString().equals("")) {
+                        Toast.makeText(context, "请选择账套", Toast.LENGTH_LONG).show();
+                    } else {
 
-                    get_aleartDialog();
+                        get_aleartDialog();
+                    }
+                }else{
+                    Toast.makeText(context, "请等待", Toast.LENGTH_LONG).show();
                 }
+
                 break;
             case R.id.btn_designjl_save:
                 if (do_design_jl == 1) {
@@ -269,7 +304,9 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
         }
 
     }
+
     boolean ischeck_vip = false;//用于判断type_id是否点击
+
     private void getinfos_queryToset() {
         if (ischeck_vip == false) {
             jflx_comit_jl = jf_fh_jflx;
@@ -279,12 +316,12 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
         OkHttpClient client = new OkHttpClient();
         FormBody body = new FormBody.Builder()
                 .add("db_Id", zt_comit_jl)
-//                .add("vip_NO", sjsdh_comit_jl_id)
-                    .add("vip_NO", jf_fh_sjsdh)
+                .add("vip_NO", sjsdh_comit_jl_id)
+//                    .add("vip_NO", jf_fh_sjsdh)
                 .add("card_Num", sfzh_comit_jl)
                 .add("vp_No", jfdh_comit_jl)
                 .add("points_Type", jflx_comit_jl)
-                .add("item_Name", "厂家自登")
+                .add("item_Name", szmc_comit_jl)
                 .add("source_No", lydh_comit_jl)
                 .add("points_Date", jfrq_comit_jl)
                 .add("points", jfbd_comit_jl)
@@ -311,12 +348,12 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
 
                         @Override
                         public void run() {
-                            boolean rlo = localJsonRootBean.isAddResult();
-                            if (rlo == true) {
+                            String rlo = localJsonRootBean.getSetResult().toString();
+                            if (!rlo.equals("")) {
                                 Toast.makeText(DesignerJlActivity.this,
                                         "修改成功", Toast.LENGTH_SHORT).show();
                                 clearInfo();
-                            } else if (rlo == false) {
+                            } else {
                                 Toast.makeText(DesignerJlActivity.this,
                                         "修改失败", Toast.LENGTH_SHORT).show();
                             }
@@ -422,41 +459,155 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
         lv_query_jf.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                JfMxBean.Data item_jfqty = (JfMxBean.Data) parent.getAdapter().getItem(position);
-                String jf_fh_rq = item_jfqty.getPoints_Date().toString();
-                String jf_fh_dh = item_jfqty.getVp_No().toString();
-                String jf_fh_lydh = item_jfqty.getSource_No().toString();
-                jf_fh_jflx = item_jfqty.getPoints_Type().toString();
-                String jf_fh_szmc = item_jfqty.getItem_Name().toString();
-                String jf_fh_jfms = item_jfqty.getRem().toString();
-                String jf_fh_jfbd = item_jfqty.getPoints().toString();
-                String jf_fh_jabz = item_jfqty.getCls_Id().toString();
-                 jf_fh_sjsdh = item_jfqty.getDepco_Vip().getVip_NO().toString();
-                String jf_fh_sjsdhmc = item_jfqty.getDepco_Vip().getVip_Name().toString();
-                String jf_fh_sfzh = item_jfqty.getDepco_Vip().getCard_Num().toString();
-                String jf_fh_sszt = item_jfqty.getDepco_Vip().getDb_Id().toString();
+                SjsJf item_jf = (SjsJf) parent.getAdapter().getItem(position);
+                String jf_id = item_jf.getJfdh().toString();
+                Log.e("LiNing", "string数据===" + jf_id + jl_sszt.getText().toString());
+                OkHttpClient client = new OkHttpClient();
+                FormBody body = new FormBody.Builder()
+                        .add("db_Id", jl_sszt.getText().toString())
+                        .add("showRow", "50")
+                        .add("clientRows", "0")
+                        .add("vp_No", jf_id)
+                        .build();
+                client.newCall(new Request.Builder().addHeader("cookie", session).post(body)
+                        .url(jfjl_get).build()).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
 
-                //日期转换
-                SimpleDateFormat sf1= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                try {
-                    Date  parse = sf1.parse(jf_fh_rq);
-                    String format = new SimpleDateFormat("yyyy-MM-dd").format(parse);
-                    Log.e("LiNing","时间====xin====="+format);
-                    jl_jfrq.setText(format);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                    }
 
-                jl_sszt.setText(jf_fh_sszt);
-                jl_jfdh.setText(jf_fh_dh);
-                jl_sjsdh.setText(jf_fh_sjsdh);
-                jl_sfzh.setText(jf_fh_sfzh);
-                jl_jflx.setText(jf_fh_jflx);
-                jl_szmc.setText(jf_fh_szmc);
-                jl_lydh.setText(jf_fh_lydh);
-                jl_jfbd.setText(jf_fh_jfbd);
-                jl_jfms.setText(jf_fh_jfms);
-                jl_jabz.setText(jf_fh_jabz);
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String string = response.body().string();
+                        Log.e("LiNing", "string数据===" + string);
+                        Gson gson = new GsonBuilder().setDateFormat(
+                                "yyyy-MM-dd HH:mm:ss").create();
+                        final JfMxBean jf_all = gson.fromJson(string,
+                                JfMxBean.class);
+                        if (jf_all != null) {
+                            DesignerJlActivity.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    JfMxBean.Data item_jfqty = jf_all.getData().get(0);
+                                    String jf_fh_flje = item_jfqty.getAmtn().toString();
+                                    String jf_fh_rq = item_jfqty.getPoints_Date().toString();
+                                    String jf_fh_dh = item_jfqty.getVp_No().toString();
+                                    String jf_fh_lydh = item_jfqty.getSource_No().toString();
+                                    jf_fh_jflx = item_jfqty.getPoints_Type().toString();
+                                    String jf_fh_szmc = item_jfqty.getItem_Name().toString();
+                                    String jf_fh_jfms = item_jfqty.getRem().toString();
+                                    String jf_fh_jfbd = item_jfqty.getPoints().toString();
+                                    String jf_fh_jabz = item_jfqty.getCls_Id().toString();
+                                    jf_fh_sjsdh = item_jfqty.getDepco_Vip().getVip_NO().toString();
+                                    String jf_fh_sjsdhmc = item_jfqty.getDepco_Vip().getVip_Name().toString();
+                                    String jf_fh_sfzh = item_jfqty.getDepco_Vip().getCard_Num().toString();
+                                    String jf_fh_sszt = item_jfqty.getDepco_Vip().getDb_Id().toString();
+
+                                    //日期转换
+                                    SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                    try {
+                                        Date parse = sf1.parse(jf_fh_rq);
+                                        String format = new SimpleDateFormat("yyyy-MM-dd").format(parse);
+                                        Log.e("LiNing", "时间====xin=====" + format);
+                                        jl_jfrq.setText(format);
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                    }
+                                    jl_sszt.setText(jf_fh_sszt);
+                                    jl_jfdh.setText(jf_fh_dh);
+
+                                    OkHttpClient client = new OkHttpClient();
+                                    FormBody body = new FormBody.Builder().add("accountNo", jl_sszt.getText().toString())
+                                            .add("id", jf_fh_sjsdh).build();
+                                    Request request = new Request.Builder()
+                                            .addHeader("cookie", session).url(url_dh_toname).post(body)
+                                            .build();
+                                    Call call = client.newCall(request);
+                                    call.enqueue(new Callback() {
+                                        @Override
+                                        public void onResponse(Call call, Response response) throws IOException {
+                                            String str = response.body().string();
+                                            Log.e("LiNing", "查询数据==qd=" + str);
+                                            final DepInfo dInfo = new Gson().fromJson(str,
+                                                    DepInfo.class);
+                                            if (dInfo != null) {
+                                                DesignerJlActivity.this.runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        List<DepInfo.IdNameList> idNameList = dInfo.getIdNameList();
+//                                            String xszd_hd_name = idNameList.get(0).getName().toString();
+
+                                                        if (idNameList != null && idNameList.size() > 0) {
+
+                                                            String sjs_hd_name = idNameList.get(0).getName().toString();
+                                                            jl_sjsdh.setText(sjs_hd_name);
+                                                        } else {
+                                                            jl_sjsdh.setText(jf_fh_sjsdh);
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call call, IOException e) {
+
+                                        }
+                                    });
+
+                                    jl_sfzh.setText(jf_fh_sfzh);
+                                    OkHttpClient client_jflx = new OkHttpClient();
+                                    FormBody body_jflx = new FormBody.Builder().add("accountNo", jl_sszt.getText().toString())
+                                            .add("id", jf_fh_jflx)
+                                            .build();
+                                    Request request_jflx = new Request.Builder()
+                                            .addHeader("cookie", session).url(url_dh_toname_jflx).post(body_jflx)
+                                            .build();
+                                    Call call_jflx = client_jflx.newCall(request_jflx);
+                                    call_jflx.enqueue(new Callback() {
+                                        @Override
+                                        public void onResponse(Call call, Response response) throws IOException {
+                                            String str = response.body().string();
+                                            Log.e("LiNing", "查询数据==qd=" + str);
+                                            final DepInfo dInfo = new Gson().fromJson(str,
+                                                    DepInfo.class);
+                                            if (dInfo != null) {
+                                                DesignerJlActivity.this.runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        List<DepInfo.IdNameList> idNameList = dInfo.getIdNameList();
+//                                            String xszd_hd_name = idNameList.get(0).getName().toString();
+
+                                                        if (idNameList != null && idNameList.size() > 0) {
+
+                                                            String xsgw_hd_name = idNameList.get(0).getName().toString();
+                                                            jl_jflx.setText(xsgw_hd_name);
+                                                        } else {
+                                                            jl_jflx.setText(jf_fh_jflx);
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call call, IOException e) {
+
+                                        }
+                                    });
+
+                                    jl_flje.setText(jf_fh_flje);
+                                    jl_szmc.setText(jf_fh_szmc);
+                                    jl_lydh.setText(jf_fh_lydh);
+                                    jl_jfbd.setText(jf_fh_jfbd);
+                                    jl_jfms.setText(jf_fh_jfms);
+                                    jl_jabz.setText(jf_fh_jabz);
+                                }
+                            });
+
+                        }
+                    }
+                });
 
 
             }
@@ -519,32 +670,45 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
             public void onResponse(Call call, Response response) throws IOException {
                 String str = response.body().string();
                 Log.e("LiNing", "所有收款单===new" + str);
-                // 解析包含date的数据必须添加此代码(InputStream型)
-                Gson gson = new GsonBuilder().setDateFormat(
-                        "yyyy-MM-dd HH:mm:ss").create();
-                final JfMxBean jf_all = gson.fromJson(str,
-                        JfMxBean.class);
-                int sumShowRow = jf_all.getSumShowRow();
-                s_zh = String.valueOf(sumShowRow);
-                clientRows = s_zh;
-                if (jf_all != null) {
+                if (str != null && !str.equals("") && !str.equals("null")) {
+                    // 解析包含date的数据必须添加此代码(InputStream型)
+                    Gson gson = new GsonBuilder().setDateFormat(
+                            "yyyy-MM-dd HH:mm:ss").create();
+                    final JfMxBean jf_all = gson.fromJson(str,
+                            JfMxBean.class);
+                    int sumShowRow = jf_all.getSumShowRow();
+                    s_zh = String.valueOf(sumShowRow);
+                    clientRows = s_zh;
+                    if (jf_all != null) {
+                        DesignerJlActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+
+                                mf_monList = jf_all.getData();
+                                Log.e("LiNing", "查询数据==mf_monList=" + mf_monList);
+                                if (mf_monList != null && mf_monList.size() > 0) {
+
+                                    get_newInfo();
+                                    getname();
+
+//                                qtyAdapter = new JfsQtyAdapter(R.layout.sjsjl_head, mf_monList, context);
+//                                lv_query_jf.setAdapter(qtyAdapter);
+//                                qtyAdapter.notifyDataSetChanged();
+                                }
+                            }
+                        });
+                    }
+
+
+                } else {
                     DesignerJlActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-
-
-                            mf_monList = jf_all.getData();
-                            if (mf_monList != null && mf_monList.size() > 0) {
-
-                                qtyAdapter = new JfsQtyAdapter(R.layout.sjsjl_head, mf_monList, context);
-                                lv_query_jf.setAdapter(qtyAdapter);
-                                qtyAdapter.notifyDataSetChanged();
-                            }
+                            Toast.makeText(context, "无数据", Toast.LENGTH_LONG).show();
                         }
                     });
                 }
-
-
             }
 
             @Override
@@ -554,6 +718,173 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
 
 
         });
+    }
+
+    private void getname() {
+        if (sub_id != null && sub_lx != null) {
+
+            listvipids_name = new ArrayList<String>();
+            listjflxs_name = new ArrayList<String>();
+            OkHttpClient client = new OkHttpClient();
+            FormBody body = new FormBody.Builder().add("accountNo", jl_sszt.getText().toString())
+                    .add("id", sub_id).build();
+            Request request = new Request.Builder()
+                    .addHeader("cookie", session).url(url_dh_toname).post(body)
+                    .build();
+            Call call = client.newCall(request);
+            call.enqueue(new Callback() {
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    String str = response.body().string();
+                    Log.e("LiNing", "查询数据==vip=" + str);
+                    final DepInfo dInfo = new Gson().fromJson(str,
+                            DepInfo.class);
+                    if (dInfo != null) {
+                        DesignerJlActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                List<DepInfo.IdNameList> idNameList = dInfo.getIdNameList();
+                                Log.e("LiNing", "查询数据==idNameList=" + idNameList);
+                                for (int m = 0; m < listvipids.size(); m++) {
+                                    String s_id = listvipids.get(m).toString();
+                                    Log.e("LiNing", "查询数据==vip=1" + s_id);
+                                    for (int n = 0; n < idNameList.size(); n++) {
+                                        String s_id_db = idNameList.get(n).getId().toString();
+                                        Log.e("LiNing", "查询数据==vip=2" + s_id_db);
+                                        if (s_id_db.equals(s_id)) {
+                                            listvipids_name.add(idNameList.get(n).getName().toString());
+                                            Log.e("LiNing", "查询数据==vip=name" + idNameList.get(n).getName().toString());
+                                        }
+                                    }
+                                }
+                                if(listvipids_name.size()>0&&listvipids_name!=null){
+                                    getJflx_name();
+                                }
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onFailure(Call call, IOException e) {
+
+                }
+            });
+
+
+        } else {
+            Log.e("LiNing", "无数据====" + data_all_sjslx);
+        }
+    }
+
+    private void getJflx_name() {
+        OkHttpClient client_jflx = new OkHttpClient();
+        FormBody body_jflx = new FormBody.Builder().add("accountNo", jl_sszt.getText().toString())
+                .add("id", sub_lx).build();
+        Request request_jflx = new Request.Builder()
+                .addHeader("cookie", session).url(url_dh_toname_jflx).post(body_jflx)
+                .build();
+        Call call_jflx = client_jflx.newCall(request_jflx);
+        call_jflx.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String str = response.body().string();
+                Log.e("LiNing", "查询数据==lx=" + str);
+                final DepInfo dInfo = new Gson().fromJson(str,
+                        DepInfo.class);
+                if (dInfo != null) {
+                    DesignerJlActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            List<DepInfo.IdNameList> idNameList = dInfo.getIdNameList();
+                            for (int m = 0; m < listjflxs.size(); m++) {
+                                String s_id = listjflxs.get(m).toString();
+                                Log.e("LiNing", "查询数据==vip=1" + s_id);
+                                for (int n = 0; n < idNameList.size(); n++) {
+                                    String s_id_db = idNameList.get(n).getId().toString();
+                                    Log.e("LiNing", "查询数据==vip=2" + s_id_db);
+                                    if (s_id_db.equals(s_id)) {
+                                        listjflxs_name.add(idNameList.get(n).getName().toString());
+                                        Log.e("LiNing", "查询数据==vip=name" + idNameList.get(n).getName().toString());
+                                    }
+                                }
+                            }
+
+                        }
+                    });
+                }
+                Log.e("LiNing", "查询数据==vip=" + listvipids_name + listdhs + listbzs + listjflxs_name);
+                if (listdhs.size() > 0 && listjflxs_name.size() > 0 && listvipids_name.size() > 0 && listbzs.size() > 0) {
+                    Log.e("LiNing", "查询数据==vip=" + listvipids_name + listdhs + listbzs + listjflxs_name);
+                    Log.e("LiNing", "查询数据==mf_monList=" + mf_monList.size() + listdhs.size() + listvipids_name.size()
+                            + listjflxs_name.size() + listbzs.size());
+                    data_all_sjslx = new ArrayList<SjsJf>();
+
+                    for (int k = 0; k < mf_monList.size(); k++) {
+                        SjsJf sjsJf = new SjsJf(listdhs.get(k).toString(), listjflxs_name.get(k).toString(), listvipids_name.get(k).toString(),
+                                listbzs.get(k).toString());
+                        data_all_sjslx.add(sjsJf);
+                    }
+
+                }
+                Log.e("LiNing", "data_all_sjslx====" + data_all_sjslx);
+                if (data_all_sjslx != null && data_all_sjslx.size() > 0) {
+
+                    DesignerJlActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            qtyAdapter_name = new JfsQtyAdapterName(R.layout.sjsjl_head, data_all_sjslx, context);
+                            lv_query_jf.setAdapter(qtyAdapter_name);
+                            qtyAdapter_name.notifyDataSetChanged();
+                        }
+                    });
+
+                }
+//
+            }
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+        });
+    }
+
+    private List<SjsJf> data_all_sjslx;
+
+    private void get_newInfo() {
+        listvipids = new ArrayList<String>();
+        listjflxs = new ArrayList<String>();
+        listbzs = new ArrayList<String>();
+        listdhs = new ArrayList<String>();
+
+//        listAll = new ArrayList<String>();
+        for (int i = 0; i < mf_monList.size(); i++) {
+            String s_bz = mf_monList.get(i).getRem().toString();
+            listbzs.add(s_bz);
+            String s_dh = mf_monList.get(i).getVp_No().toString();
+            listdhs.add(s_dh);
+            String str_vipid = mf_monList.get(i).getDepco_Vip().getVip_NO().toString();
+            listvipids.add(str_vipid);
+            String str_jflx = mf_monList.get(i).getPoints_Type().toString();
+            listjflxs.add(str_jflx);
+
+        }
+        String ids_str = "";
+        for (String name : listvipids) {
+            ids_str += name + ",";
+        }
+        sub_id = ids_str.substring(0,
+                ids_str.length() - 1);
+        String lxs_str = "";
+        for (String name : listjflxs) {
+            lxs_str += name + ",";
+        }
+        sub_lx = lxs_str.substring(0,
+                lxs_str.length() - 1);
+        Log.e("LiNing", "时间===集合数据=====" + sub_id + "-----" + sub_lx);
+
+
     }
 
     private void get_info_comint() {
@@ -618,6 +949,11 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
             comit_jfms = "null";
 
         }
+        comit_flje = jl_flje.getText().toString();
+        if (comit_flje.equals("")) {
+            comit_flje = "null";
+
+        }
         comit_lydh = jl_lydh.getText().toString();
         if (comit_lydh.equals("") || comit_lydh == null) {
             comit_lydh = "null";
@@ -639,7 +975,7 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
         if (sjsid_hd.equals("")) {
             Toast.makeText(context, "设计师代号不能为空", Toast.LENGTH_LONG).show();
         } else {
-            sjsdh_del = vip_no_cust;
+            sjsdh_del = jf_fh_sjsdh;
         }
         String jfdh_hd = jl_jfdh.getText().toString();
         String userno_hd = jl_zdr.getText().toString();
@@ -655,7 +991,6 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
                     .add("db_Id", jfzt_hd)
                     .add("vip_NO", sjsdh_del)
                     .add("vp_No", jfdh_hd)
-                    .add("user_No", user_Id)
                     .add("card_Num", sfzh_hd)
                     .add("points_Date", jfrq_hd)
                     .build();
@@ -774,7 +1109,7 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
                     .add("vp_No", jfdh_comit_jl)
                     .add("points_Type", jflx_comit_jl)
 //                    .add("points_Type", "ln")
-                    .add("item_Name", "厂家自登")
+                    .add("item_Name", szmc_comit_jl)
                     .add("source_No", lydh_comit_jl)
                     .add("points_Date", jfrq_comit_jl)
                     .add("points", jfbd_comit_jl)
@@ -782,6 +1117,7 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
                     .add("cls_Id", jabz_comit_jl)
                     .add("usr_No", user_yh)
                     .add("chk_No", user_yh)
+                    .add("Amtn", "123")
                     .build();
             Log.e("LiNing", "添加结果====" + zt_comit_jl + "---" + sjsdh_comit_jl_id + "---" + sfzh_comit_jl + "---" + jfdh_comit_jl + "---" + jflx_comit_jl + "---"
                     + szmc_comit_jl + "---" + lydh_comit_jl + "---" + jfrq_comit_jl + "---" + jfbd_comit_jl + "---" + jfms_comit_jl + "---" + jabz_comit_jl + "---" + user_yh);
@@ -839,11 +1175,16 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
         if (sjsdh_comit_jl.equals("")) {
             Toast.makeText(context, "请添加设计师代号", Toast.LENGTH_LONG).show();
         } else {
-            if(do_design_jl==1){
+            if (do_design_jl == 1) {
 
                 sjsdh_comit_jl_id = vip_no_cust;
-            }else if(do_design_jl==2){
-                sjsdh_comit_jl = jf_fh_sjsdh;
+            } else if (do_design_jl == 2) {
+                if (check == 1) {
+                    sjsdh_comit_jl_id = vip_no_cust;
+                } else {
+                    sjsdh_comit_jl_id = jf_fh_sjsdh;
+                }
+
             }
         }
         sfzh_comit_jl = jl_sfzh.getText().toString();
@@ -875,10 +1216,14 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
         if (jfms_comit_jl.equals("")) {
             Toast.makeText(context, "请添加积分描述", Toast.LENGTH_LONG).show();
         }
+        flje_comit_jl = jl_flje.getText().toString();
+        if (flje_comit_jl.equals("")) {
+            Toast.makeText(context, "请添加积分描述", Toast.LENGTH_LONG).show();
+        }
         jabz_comit_jl = jl_jabz.getText().toString();
         if (jabz_comit_jl.equals("")) {
             jabz_comit_jl = "F";
-        }else{
+        } else {
             jabz_comit_jl = jl_jabz.getText().toString();
         }
         jfbd_comit_jl = jl_jfbd.getText().toString();
@@ -894,7 +1239,7 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
             }
         }
         shr_comit_jl = jl_shr.getText().toString();
-        if (do_design_jl != 1&&do_design_jl != 2) {
+        if (do_design_jl != 1 && do_design_jl != 2) {
 
             if (shr_comit_jl.equals("")) {
                 Toast.makeText(context, "审核用户为空", Toast.LENGTH_LONG).show();
@@ -920,6 +1265,7 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
         jl_szmc.setText("");
         jl_jfbd.setText("");
         jl_jfms.setText("");
+        jl_flje.setText("");
 
     }
 
@@ -987,6 +1333,20 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
                     jf_id_hd = data.getStringExtra("jf_ID");
                     String vip_name_hd = data.getStringExtra("jf_NAME");
                     jl_jflx.setText(vip_name_hd);
+                    if (jf_id_hd.equals("01") || jf_id_hd.equals("02")) {
+                        jl_jabz.setText("否");
+                    }
+                    if (jf_id_hd.equals("03")) {
+                        jl_jabz.setText("是");
+                    }
+                    if (jf_id_hd.equals("04")) {
+                        jl_jabz.setText("否");
+                        jl_szmc.setText("抵扣");
+                    }
+                    if (jf_id_hd.equals("05")) {
+                        jl_jabz.setText("是");
+                        jl_szmc.setText("不限");
+                    }
                     jflx_comit_jl = jf_id_hd;
                     sp.edit().putString("JF_ID_SJS", jf_id_hd).commit();
                     Log.e("LiNing", "提交的id====" + jf_id_hd + vip_name_hd);
@@ -994,6 +1354,84 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
                 break;
             default:
                 break;
+        }
+    }
+
+    private ArrayList<String> listvipids;
+    private ArrayList<String> listjflxs;
+    private ArrayList<String> listvipids_name;
+    private ArrayList<String> listjflxs_name;
+    private ArrayList<String> listbzs;
+    private ArrayList<String> listdhs;
+    String sub_id, sub_lx;
+
+    public class JfsQtyAdapterName extends BaseAdapter {
+        int id_row_layout;
+        LayoutInflater mInflater;
+        List<SjsJf> skdqty_infos;
+        //item高亮显示
+        private int selectItem = -1;
+
+        public void setSelectItem(int selectItem) {
+            this.selectItem = selectItem;
+        }
+
+        public JfsQtyAdapterName(int sjsjl_head, List<SjsJf> data_all_sjslx, Context context) {
+            this.id_row_layout = sjsjl_head;
+            this.skdqty_infos = data_all_sjslx;
+            this.mInflater = LayoutInflater.from(context);
+        }
+
+        @Override
+        public int getCount() {
+            return skdqty_infos.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return skdqty_infos.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder;
+            if (convertView == null) {
+                convertView = mInflater.inflate(id_row_layout, null);
+                holder = new ViewHolder();
+                holder.jf_qty_jfdh = (TextView) convertView.findViewById(R.id.jfquy_jfdh);
+                holder.jf_qty_jflx = (TextView) convertView.findViewById(R.id.jfquy_jflx);
+                holder.jf_qty_jfrq = (TextView) convertView.findViewById(R.id.jfquy_rq);
+                holder.jf_qty_zdr = (TextView) convertView.findViewById(R.id.jfquy_zdr);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+            SjsJf sjsJf = skdqty_infos.get(position);
+            holder.jf_qty_jfdh.setText(sjsJf.getJfdh().toString());
+            holder.jf_qty_jflx.setText(sjsJf.getJflx().toString());
+            holder.jf_qty_jfrq.setText(sjsJf.getSjsname().toString());
+            holder.jf_qty_zdr.setText(sjsJf.getBz().toString());
+            //操作修改，删除等
+            if (position == selectItem) {
+                convertView.setBackgroundColor(Color.RED);
+//                Log.e("LiNing", "id_type结果====" + id_itm);
+            } else {
+                convertView.setBackgroundColor(Color.TRANSPARENT);
+            }
+            return convertView;
+        }
+
+        class ViewHolder {
+
+            public TextView jf_qty_jfdh;
+            public TextView jf_qty_jflx;
+            public TextView jf_qty_jfrq;
+            public TextView jf_qty_zdr;
         }
     }
 
@@ -1031,7 +1469,7 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder holder;
+            final ViewHolder holder;
             if (convertView == null) {
                 convertView = mInflater.inflate(id_row_layout, null);
                 holder = new ViewHolder();
@@ -1046,28 +1484,120 @@ public class DesignerJlActivity extends Activity implements View.OnClickListener
             JfMxBean.Data mf_monList_all = skdqty_infos.get(position);
             holder.jf_qty_jfdh.setText(mf_monList_all.getVp_No().toString());
             Log.e("LiNing", "时间====xin=====" + mf_monList_all.getPoints_Date().toString());
-
-            SimpleDateFormat sf1= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            try {
-                Date  parse = sf1.parse(mf_monList_all.getPoints_Date().toString());
-                String format = new SimpleDateFormat("yyyy-MM-dd").format(parse);
-                Log.e("LiNing","时间====xin====="+format);
-                holder.jf_qty_jfrq.setText(format);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-//            if (mf_monList_all.getPoints_Date() != null) {
-//
-//                Date date = new Date(mf_monList_all.getPoints_Date().toString());
-//                SimpleDateFormat dateformat1 = new SimpleDateFormat("yyyy-MM-dd");
-//                String a1 = dateformat1.format(date);
-//                holder.jf_qty_jfrq.setText(a1);
+//            组合集合
+//            listvipids = new ArrayList<String>();
+//            listjflxs = new ArrayList<String>();
+//            listvipids_name = new ArrayList<String>();
+//            listjflxs_name = new ArrayList<String>();
+//            for (int i=0;i<skdqty_infos.size();i++){
+//                String str_vipid = skdqty_infos.get(i).getDepco_Vip().getVip_NO().toString();
+//                listvipids.add(str_vipid);
+//                String str_jflx = skdqty_infos.get(i).getPoints_Type().toString();
+//                listjflxs.add(str_jflx);
 //            }
+//            Log.e("LiNing", "时间===集合数据=====" + mf_monList_all.getPoints_Date().toString());
+//            String ids_str = "";
+//            for (String name : listvipids) {
+//                ids_str += name + ",";
+//            }
+//            sub_id = ids_str.substring(0,
+//                    ids_str.length() - 1);
+//            String lxs_str = "";
+//            for (String name : listjflxs) {
+//                lxs_str += name + ",";
+//            }
+//            sub_lx = lxs_str.substring(0,
+//                    lxs_str.length() - 1);
+//            Log.e("LiNing", "时间===集合数据=====" + sub_id+"-----"+sub_lx);
+//            OkHttpClient client = new OkHttpClient();
+//            FormBody body = new FormBody.Builder().add("accountNo", jl_sszt.getText().toString())
+//                    .add("id", sub_id).build();
+//            Request request = new Request.Builder()
+//                    .addHeader("cookie", session).url(url_dh_toname).post(body)
+//                    .build();
+//            Call call = client.newCall(request);
+//            call.enqueue(new Callback() {
+//                @Override
+//                public void onResponse(Call call, Response response) throws IOException {
+//                    String str = response.body().string();
+//                    Log.e("LiNing", "查询数据==vip=" + str);
+//                    final DepInfo dInfo = new Gson().fromJson(str,
+//                            DepInfo.class);
+//                    if (dInfo != null) {
+//                        DesignerJlActivity.this.runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                List<DepInfo.IdNameList> idNameList = dInfo.getIdNameList();
+////                                Log.e("LiNing", "查询数据==dInfo=" + dInfo);
+////                                Log.e("LiNing", "查询数据==idNameList=" + idNameList);
+////                                for(int m=0;m<listvipids.size();m++){
+////                                    String  s_id= listvipids.get(m).toString();
+////                                    Log.e("LiNing", "查询数据==vip=1" + s_id);
+////                                    for(int n=0;n<idNameList.size();n++){
+////                                        String s_id_db = idNameList.get(n).getId().toString();
+////                                        Log.e("LiNing", "查询数据==vip=2" + s_id_db);
+////                                        if(s_id.equals(s_id_db)){
+//////                                            listvipids_name.add(idNameList.get(n).getName().toString());
+//////                                            holder.jf_qty_jfrq.setText(idNameList.get(n).getName().toString());
+////                                            Log.e("LiNing", "查询数据==vip=name" + idNameList.get(n).getName().toString());
+////                                        }
+////                                        holder.jf_qty_jfrq.setText(idNameList.get(n).getName().toString());
+////                                        break;
+////                                    }
+////                                }
+////                                Log.e("LiNing", "查询数据==vip=" + listvipids_name);
+//                            }
+//                        });
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call call, IOException e) {
+//
+//                }
+//            });
+//            OkHttpClient client_jflx = new OkHttpClient();
+//            FormBody body_jflx = new FormBody.Builder().add("accountNo", jl_sszt.getText().toString())
+//                    .add("id", sub_lx).build();
+//            Request request_jflx = new Request.Builder()
+//                    .addHeader("cookie", session).url(url_dh_toname_jflx).post(body_jflx)
+//                    .build();
+//            Call call_jflx = client_jflx.newCall(request_jflx);
+//            call_jflx.enqueue(new Callback() {
+//                @Override
+//                public void onResponse(Call call, Response response) throws IOException {
+//                    String str = response.body().string();
+//                    Log.e("LiNing", "查询数据==lx=" + str);
+//                    final DepInfo dInfo = new Gson().fromJson(str,
+//                            DepInfo.class);
+//                    if (dInfo != null) {
+//                        DesignerJlActivity.this.runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                List<DepInfo.IdNameList> idNameList = dInfo.getIdNameList();
+//                                for(int m=0;m<listjflxs.size();m++){
+//                                    String s_id = listjflxs.get(m).toString();
+//                                    for(int n=0;n<idNameList.size();n++){
+//                                        String s_id_db = idNameList.get(n).getId().toString();
+//                                        if(s_id.equals(s_id_db)){
+//                                            holder.jf_qty_jflx.setText(idNameList.get(n).getName().toString());
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        });
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call call, IOException e) {
+//
+//                }
+//            });
 
 
-            holder.jf_qty_jflx.setText(mf_monList_all.getPoints_Type().toString());
-            holder.jf_qty_zdr.setText(mf_monList_all.getUsr_No().toString());
+//            holder.jf_qty_jflx.setText(mf_monList_all.getPoints_Type().toString());
+            holder.jf_qty_zdr.setText(mf_monList_all.getRem().toString());
 
             //操作修改，删除等
             if (position == selectItem) {

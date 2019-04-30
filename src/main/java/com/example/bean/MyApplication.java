@@ -9,6 +9,10 @@ import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MyApplication extends Application {
 	public static Context context;
 	public static Handler handler;
@@ -49,6 +53,16 @@ public class MyApplication extends Application {
 //			}
 //		});
 
+//		时间转换
+//		SimpleDateFormat sf1= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		try {
+//			Date parse = sf1.parse(mf_monList_all.getPoints_Date().toString());
+//			String format = new SimpleDateFormat("yyyy-MM-dd").format(parse);
+//			Log.e("LiNing","时间====xin====="+format);
+//			holder.jf_qty_jfrq.setText(format);
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
 	}
 	
 }

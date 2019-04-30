@@ -6,6 +6,15 @@ package com.example.bean;
 
 public class Jsonjf {
     private boolean addResult;
+    private String setResult;
+
+    public String getSetResult() {
+        return setResult;
+    }
+
+    public void setSetResult(String setResult) {
+        this.setResult = setResult;
+    }
 
     public boolean isAddResult() {
         return addResult;

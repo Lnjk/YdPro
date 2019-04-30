@@ -94,33 +94,59 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                     startActivity(new Intent(context, CustersAllActivity.class));
                 } else {
-                    Toast.makeText(this.context, "无此权限", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this.context, "请等待...", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.ll_offer:
                 //设计师管理
 //                Toast.makeText(this.context, "生产管理暂未开放，请等待...", Toast.LENGTH_SHORT).show();
 //                startActivity(new Intent(this.context, DesignerActivity.class));
-                Log.e("LiNing", "---modid===FFFFFF---" + modIds_get);
+                Log.e("LiNing", "---modid===FFFFFF---" + modIds_get+pass);
                 if (sp.getString("PASS", "").equals("1")) {
 
                     startActivity(new Intent(context, DesignerManageActivity.class));
                 } else if (modIds_get.contains("skvp")) {
-
-                    startActivity(new Intent(context, DesignerManageActivity.class));
+                    Intent intent_vip=new Intent(context, DesignerManageActivity.class);
+//                    intent_vip.putExtra("PASS",1);
+//                    intent_vip.putStringArrayListExtra("MODIDS",modIds_get);
+                    startActivity(intent_vip);
                 } else {
-                    Toast.makeText(this.context, "无此权限", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this.context, "请等待...", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.ll_form:
+                if (sp.getString("PASS", "").equals("1")) {
+
+                    startActivity(new Intent(this.context, ReceiptFormActivity.class));
+                } else{
+                    if (modIds_get.contains("sm")) {
+
+                        startActivity(new Intent(this.context, ReceiptFormActivity.class));
+                    } else {
+                        Toast.makeText(this.context, "请等待...", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
 //                物流管理
-                startActivity(new Intent(this.context, ReceiptFormActivity.class));
-                Toast.makeText(this.context, "暂时放收款信息.", Toast.LENGTH_SHORT).show();
+
+//                Toast.makeText(this.context, "暂时放收款信息.", Toast.LENGTH_SHORT).show();
 //                startActivity(new Intent(this.context, TestSearchActivity.class));
                 break;
             case R.id.ll_sell:
+                if (sp.getString("PASS", "").equals("1")) {
+
+                    startActivity(new Intent(this.context, SalesManageActivity.class));
+                } else {
+                    if (modIds_get.contains("sm")) {
+
+                        startActivity(new Intent(this.context, SalesManageActivity.class));
+                    } else {
+                        Toast.makeText(this.context, "请等待...", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
 //                销售管理
-                startActivity(new Intent(this.context, SalesManageActivity.class));
+
 //                Toast.makeText(this.context, "暂未开放，请等待...", Toast.LENGTH_SHORT).show();
                 break;
 
@@ -133,7 +159,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     if (modIds_get.contains("sp")) {
                         startActivity(new Intent(context, SpActivity.class));
                     } else {
-                        Toast.makeText(this.context, "无此权限", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this.context, "请等待...", Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;
@@ -147,7 +173,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                     startActivity(new Intent(context, SmrtActivity.class));
                 } else {
-                    Toast.makeText(this.context, "无此权限", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this.context, "请等待...", Toast.LENGTH_SHORT).show();
                 }
             default:
                 break;
@@ -189,6 +215,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                                 stritem_idTname = new Gson().toJson(dList_idTn);
                                 Log.e("LiNing", "11111111====333=="+stritem_idTname);
                                 sp.edit().putString("all_query_tj_to", stritem_idTname).commit();
+                                //用于账套获取名称（销售报表里边的条件账套处）
                             }
                         }
                     });
@@ -225,7 +252,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 String user_Id = info.getUser_Id();
                 String user_Pwd = info.getUser_Pwd();
                 String user_name = info.getUser_Name();
-                String user_db = info.getUser_DB();
+                String user_db = info.getUser_DB();//默认账套（根基判断权限）
                 String user_erp = info.getUser_erpUser();
                 String user_dep = info.getUser_Dep();
                 String user_cust= info.getUser_Cust();
@@ -256,6 +283,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 //                        sp.edit().putString("QueryDB", stritem).commit();
 //                        Log.e("LiNing", "---FFFFFFFFFFFFFFFFF---" + stritem);
 //                    }
+                    sp.edit().putString("PASS", "" + 1).commit();
                     List<com.example.bean.UserInfo.User_Mod> user_Mod = info
                             .getUser_Mod();
                     if ( user_Mod != null&&user_Mod.size()>0 ) {

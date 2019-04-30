@@ -398,7 +398,7 @@ public class CusterInfoActivity extends Activity implements OnClickListener {
                     if (sp_add == true) {
                         startActivity(new Intent(context, NewAccountActivity.class));
                     } else {
-                        Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                     }
                 }
                 break;
@@ -411,7 +411,7 @@ public class CusterInfoActivity extends Activity implements OnClickListener {
                         if (sp_set == true) {
                             resetInfo();
                         } else {
-                            Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                         }
                     }
                 } else {
@@ -461,7 +461,7 @@ public class CusterInfoActivity extends Activity implements OnClickListener {
                                                 }
                                             }).setNegativeButton("否", null).show();
                         } else {
-                            Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                         }
                     }
                 } else {
@@ -484,7 +484,7 @@ public class CusterInfoActivity extends Activity implements OnClickListener {
                         if (sp_query == true) {
                             showInfo();
                         } else {
-                            Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                         }
                     }
                 } else {
@@ -554,7 +554,7 @@ public class CusterInfoActivity extends Activity implements OnClickListener {
 
             @Override
             public void run() {
-                Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -217,52 +217,6 @@ public class PostInfoActivity extends Activity implements OnClickListener {
 				}
 			}
 		});
-		// this.lv_info.setOnItemClickListener(new OnItemClickListener() {
-		//
-		// @Override
-		// public void onItemClick(AdapterView<?> paramAnonymousAdapterView,
-		// View paramAnonymousView, int paramAnonymousInt,
-		// long paramAnonymousLong) {
-		// PostInfoActivity.this.items = ((HashMap) PostInfoActivity.this.dList
-		// .get(paramAnonymousInt));
-		// Log.e("LiNing", "11111111" + PostInfoActivity.this.items);
-		// Boolean localBoolean = (Boolean) PostInfoActivity.this.items
-		// .get("checkbox");
-		// Log.e("LiNing", "isChecked====" + localBoolean);
-		// PostInfoActivity.this.nameCopy = ((String)
-		// PostInfoActivity.this.items
-		// .get("账套编号"));
-		// Log.e("LiNing", "nameCopy====" + PostInfoActivity.this.nameCopy);
-		// PostInfoActivity.this.depCopy = ((String) PostInfoActivity.this.items
-		// .get("部门"));
-		// PostInfoActivity.this.supCopy = ((String) PostInfoActivity.this.items
-		// .get("供应商"));
-		// PostInfoActivity.this.custCopy = ((String)
-		// PostInfoActivity.this.items
-		// .get("客户"));
-		// PostInfoActivity.this.usrCopy = ((String) PostInfoActivity.this.items
-		// .get("用户"));
-		// HashMap localHashMap = PostInfoActivity.this.items;
-		// if (!localBoolean) {
-		// // localHashMap.put("checkbox", false);
-		// PostInfoActivity.this.checkFalg = 1;
-		// PostInfoActivity.this.lv_info
-		// .setSelector(R.color.color_red);
-		// Toast.makeText(
-		// PostInfoActivity.this.getApplicationContext(),
-		// PostInfoActivity.this.nameCopy + " 被选中！", 0).show();
-		// } else {
-		// PostInfoActivity.this.checkFalg = 0;
-		// PostInfoActivity.this.lv_info
-		// .setSelector(R.color.color_white);
-		// Toast.makeText(
-		// PostInfoActivity.this.getApplicationContext(),
-		// PostInfoActivity.this.nameCopy + " 被取消！", 0).show();
-		// }
-		// PostInfoActivity.this.sAdapter.notifyDataSetChanged();
-		//
-		// }
-		// });
 	}
 
 	private void initview() {
@@ -299,23 +253,6 @@ public class PostInfoActivity extends Activity implements OnClickListener {
 		// 回调信息
 		tvAccount = (TextView) findViewById(R.id.et_querry_zt);
 		tvDep = (TextView) findViewById(R.id.et_querry_dep);
-		// tvDep.setOnClickListener(new OnClickListener() {
-		// Boolean flag = true;
-		//
-		// @Override
-		// public void onClick(View v) {
-		// if (flag) {
-		// flag = false;
-		// tvDep.setEllipsize(null); // 展开
-		// tvDep.setSingleLine(false);
-		// } else {
-		// flag = true;
-		// tvDep.setEllipsize(TextUtils.TruncateAt.END); // 收缩
-		// tvDep.setSingleLine(true);
-		// }
-		//
-		// }
-		// });
 		tvSup = (TextView) findViewById(R.id.et_querry_sup);
 		tvCust = (TextView) findViewById(R.id.et_querry_cust);
 		tvUser = (TextView) findViewById(R.id.et_querry_user);

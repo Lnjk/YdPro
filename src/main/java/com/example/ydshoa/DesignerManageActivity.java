@@ -20,6 +20,7 @@ import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import okhttp3.Call;
@@ -38,6 +39,7 @@ public class DesignerManageActivity extends Activity implements View.OnClickList
     String url = URLS.userInfo_url;
     private String ps_id;
     private int pass2;
+//    ArrayList<String> modIds_get;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,9 +49,20 @@ public class DesignerManageActivity extends Activity implements View.OnClickList
 //		PushAgent.getInstance(context).onAppStart();
         sp = getSharedPreferences("ydbg", 0);
         session = sp.getString("SESSION", "");
-        ps_id = sp.getString("PASS", "");
+//        ps_id = sp.getString("PASS", "");
+//        pass2 = getIntent().getIntExtra("PASS", 0);
+//        modIds_get = getIntent().getStringArrayListExtra("MODIDS");
+         pass2 = Integer.valueOf(sp.getString("PASS", ""));
+        String modIds = sp.getString("modIds", "");
+        String substring = modIds.substring(1, modIds.length() - 1);
+        String[] db_spls = substring.split(",");
+        for (int i = 0; i < db_spls.length; i++) {
+            String A = db_spls[i];
+            modIds_get.add(A);
+        }
+        Log.e("LiNing", "===A==" +pass2+ modIds_get.size()+modIds_get);
         initView();
-        getRoot();
+//        getRoot();
     }
     private void getRoot() {
         OkHttpClient client = new OkHttpClient();
@@ -79,6 +92,16 @@ public class DesignerManageActivity extends Activity implements View.OnClickList
                             modIds_get.add(mod_ID);
                             sp.edit().putString("modIds", "" + modIds_get)
                                     .commit();
+//                            Boolean query = user_Mod.get(i).isMod_Query();//查询
+//                            Boolean add = user_Mod.get(i).isMod_Add();//新增
+//                            Boolean  del = user_Mod.get(i).isMod_Del();//删除
+//                            Boolean alter = user_Mod.get(i).isMod_Alter();//更新
+//                            Boolean  out = user_Mod.get(i).isMod_Out();//转出
+//                            sp.edit().putString("PRICE_QUERY", "" + query).commit();
+//                            sp.edit().putString("PRICE_ADD", "" + add).commit();
+//                            sp.edit().putString("PRICE_DEL", "" + del).commit();
+//                            sp.edit().putString("PRICE_OUT", "" + out).commit();
+//                            sp.edit().putString("USER_UP", "" + alter).commit();
 
                         }
                     }
@@ -109,21 +132,42 @@ public class DesignerManageActivity extends Activity implements View.OnClickList
                 if (pass2 == 1) {
                     startActivity(new Intent(context, DesignThreeActivity.class));
                 }else {
-
-                    if (modIds_get.contains("skvp")) {
+                    if (modIds_get.contains("skvphb")) {
 
                         startActivity(new Intent(context, DesignThreeActivity.class));
                     } else {
-                        Toast.makeText(this.context, "无此权限", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this.context, "请等待...", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 break;
             case R.id.design_jfb:
-                startActivity(new Intent(context, DesignerJfbActivity.class));
+                if (pass2 == 1) {
+                    startActivity(new Intent(context, DesignerJfbActivity.class));
+                }else {
+                    if (modIds_get.contains("skvpjb")) {
+
+                        startActivity(new Intent(context, DesignerJfbActivity.class));
+                    } else {
+                        Toast.makeText(this.context, "请等待...", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+
                 break;
             case R.id.design_jfb1:
-                startActivity(new Intent(context, DesignerRwActivity.class));
+                if (pass2 == 1) {
+                    startActivity(new Intent(context, DesignerRwManageActivity.class));
+                }else {
+                    if (modIds_get.contains("skvpwb")) {
+
+                        startActivity(new Intent(context, DesignerRwManageActivity.class));
+                    } else {
+                        Toast.makeText(this.context, "请等待...", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+
                 break;
 
             default:

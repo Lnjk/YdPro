@@ -95,8 +95,8 @@ public class SmrtActivity extends Activity implements OnClickListener {
 								query = user_Mod.get(i).isMod_Query();//查询
 								add = user_Mod.get(i).isMod_Add();//新增
 								del = user_Mod.get(i).isMod_Del();//删除
-								out = user_Mod.get(i).isMod_Out();//转出
 								alter = user_Mod.get(i).isMod_Alter();//更新
+								out = user_Mod.get(i).isMod_Out();//转出
 								sp.edit().putString("PRICE_QUERY", "" + query).commit();
 								sp.edit().putString("PRICE_ADD", "" + add).commit();
 								sp.edit().putString("PRICE_DEL", "" + del).commit();
@@ -147,11 +147,11 @@ public class SmrtActivity extends Activity implements OnClickListener {
 				if (flag == 1) {
 					startActivity(new Intent(context, SysActivity.class));
 				} else {
-
+					Log.e("LiNing", "------" + modIds_get.size() + "------" + modIds_get);
 					if (modIds_get.contains("smrt")) {
 						startActivity(new Intent(context, SysActivity.class));
 					} else {
-						Toast.makeText(this.context, "无此权限", Toast.LENGTH_LONG).show();
+						Toast.makeText(this.context, "请等待...", Toast.LENGTH_LONG).show();
 					}
 				}
 				break;
@@ -163,7 +163,7 @@ public class SmrtActivity extends Activity implements OnClickListener {
 					if (modIds_get.contains("smprice")) {
 						startActivity(new Intent(context, PriceActivity.class));
 					} else {
-						Toast.makeText(this.context, "无此权限", Toast.LENGTH_LONG).show();
+						Toast.makeText(this.context, "请等待...", Toast.LENGTH_LONG).show();
 					}
 				}
 				break;

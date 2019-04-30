@@ -90,7 +90,7 @@ public class SysActivity extends Activity implements OnClickListener {
 						startActivity(new Intent(this.context,
 								RootActivity.class));
 					}else{
-						Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+						Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
 					}
 
 				}
@@ -104,7 +104,7 @@ public class SysActivity extends Activity implements OnClickListener {
 						startActivity(new Intent(this.context,
 								AccountActivity.class));
 					}else{
-						Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+						Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
 					}
 
 					// startActivity(new Intent(this.context,
@@ -119,7 +119,7 @@ public class SysActivity extends Activity implements OnClickListener {
 						startActivity(new Intent(this.context,
 								CusterInfoActivity.class));
 					}else{
-						Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+						Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
 					}
 
 				}
@@ -200,8 +200,8 @@ public class SysActivity extends Activity implements OnClickListener {
 //							&& amt == false && cst == false && del == false
 //							&& gp == false && gpr == false && out == false
 //							&& prt == false && qty == false && up == false) {
-//						Log.e("LiNing", "------" + "无此权限");
-//						// Toast.makeText(context, "无此权限", 1).show();
+//						Log.e("LiNing", "------" + "请等待...");
+//						// Toast.makeText(context, "请等待...", 1).show();
 //
 //					} else {
 //						startActivity(new Intent(this.context,

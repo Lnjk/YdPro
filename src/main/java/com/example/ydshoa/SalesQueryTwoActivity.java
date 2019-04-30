@@ -134,6 +134,9 @@ public class SalesQueryTwoActivity extends Activity implements OnClickListener {
     private ImageButton sum;
     private TextView tv_sum;
     public String arp_sum;
+    //表头展开收缩
+    LinearLayout tj_head_hint;
+    private ImageButton tj_head_show;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -197,7 +200,8 @@ public class SalesQueryTwoActivity extends Activity implements OnClickListener {
         ml_xy = sp.getString("ML", "");
         mll_xy = sp.getString("MLL", "");
         Log.e("LiNing", "----" + zc_xy + cb_xy + ml_xy + mll_xy);
-
+        tj_head_show = (ImageButton) findViewById(R.id.ib_nulladd);
+        tj_head_hint = (LinearLayout) findViewById(R.id.ll_tb_show);
         head = (TextView) findViewById(R.id.all_head);
         head.setTextSize(15);
         tv_sum = (TextView) findViewById(R.id.tv_sfhz);
@@ -288,6 +292,17 @@ public class SalesQueryTwoActivity extends Activity implements OnClickListener {
         // } else {
         // stop.setText(time_stop);
         // }
+        tj_head_show.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(tj_head_hint.isShown()){
+                    tj_head_hint.setVisibility(View.GONE);
+                }else{
+                    tj_head_hint.setVisibility(View.VISIBLE);
+                }
+            }
+        });
         getXSqx_all();
     }
     private void showPopupMenu(View view) {
@@ -493,6 +508,7 @@ public class SalesQueryTwoActivity extends Activity implements OnClickListener {
                 // 获取查询条件
                 Intent intent = new Intent(context, ConditionActivity.class);
                  intent.putExtra("page", "0");
+                 intent.putExtra("gjss", "1");
                 startActivity(intent);
                 break;
             case R.id.btn_out:
@@ -508,14 +524,14 @@ public class SalesQueryTwoActivity extends Activity implements OnClickListener {
                     Log.e("LiNing", "传递数据====" + reportnos + "===" + str_all);
                     startActivity(intent2);
                 } else {
-                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                 }
                 break;
             case R.id.btn_print:
 
                 if (dy_xy.equals("false")) {
 
-                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                 } else {
 
                 }
@@ -1194,6 +1210,10 @@ public class SalesQueryTwoActivity extends Activity implements OnClickListener {
         lv_get.setAdapter(sfadapter);
         sfadapter.notifyDataSetChanged();
         sp.edit().putString("NEWDATA_NO", "" + data).commit();
+        if(lv_get.getCount()>0){
+            tj_head_hint.setVisibility(View.GONE);
+            tj_head_show.setVisibility(View.VISIBLE);
+        }
     }
 
     private void settoOut() {

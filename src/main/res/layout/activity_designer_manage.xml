@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="设计师管理" />
+            android:text="会员" />
     </LinearLayout>
 
     <LinearLayout
@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="积分管理" />
+            android:text="积分" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/manage_jfb1"
@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="任务管理" />
+            android:text="任务" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <CheckBox
+                android:id="@+id/listDeleteCheckBox"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="false"
+                android:visibility="visible" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/new_querry_item_kbid"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/new_querry_item_kbmc"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+            <TextView
+                android:id="@+id/new_querry_item_kbje"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:ellipsize="end"
+                android:padding="2.0dip"
+                android:singleLine="true"
+                android:textColor="#ff000000"
+                android:textSize="10sp" />
+
+            <View style="@style/list_item_cell_seperator_layout" />
+
+
+
+</LinearLayout>

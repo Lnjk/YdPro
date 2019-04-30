@@ -470,7 +470,7 @@ public class SalesQueryActivity extends Activity implements OnClickListener {
 			// startActivity(intent);
 			if (dy_xy.equals("false")) {
 
-				Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+				Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
 			} else {
 
 			}

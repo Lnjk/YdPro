@@ -351,6 +351,7 @@
 
                     <EditText
                         android:id="@+id/et_design_userchk"
+                        android:enabled="false"
                         style="@style/design_editext" />
                 </LinearLayout>
 
@@ -358,7 +359,7 @@
 
                     <TextView
                         style="@style/price_name"
-                        android:text="是否启用:" />
+                        android:text="单据状态:" />
                     <TextView
                         android:id="@+id/tv_design_isno"
                         style="@style/design_editext"

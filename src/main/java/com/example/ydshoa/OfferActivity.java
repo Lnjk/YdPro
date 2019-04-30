@@ -222,7 +222,7 @@ public class OfferActivity extends Activity implements View.OnClickListener {
             }
         });
         khly = (TextView) findViewById(R.id.et_offer_all_khly);
-        tjmj = (TextView) findViewById(R.id.et_offer_all_tjmj);
+        tjmj = (EditText) findViewById(R.id.et_offer_all_tjmj);
         djlb = (TextView) findViewById(R.id.et_offer_all_djlb);
         htdh = (EditText) findViewById(R.id.et_offer_all_htdh);
         xszd = (TextView) findViewById(R.id.et_offer_all_xszd);
@@ -536,7 +536,7 @@ public class OfferActivity extends Activity implements View.OnClickListener {
 //                if (kh_query_qx == true) {
 //
 //                } else {
-//                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
 //                }
                 //调取查询客户的界面
                 Intent intent_cust = new Intent(context, QueryCustersActivity.class);
@@ -585,15 +585,16 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                 break;
             //推荐媒介
             case R.id.ib_offer_all_tjmj:
-                if (!khly.getText().toString().equals("")) {
-                    Log.e("LiNing", "---" + khly.getText().toString());
-                    ib_tjmj_xl.setFocusable(true);
-                    checked = 1;
-                    showPopupMenu(ib_tjmj_xl);
-                } else {
-                    ib_tjmj_xl.setFocusable(false);
-                }
-
+//                if (!khly.getText().toString().equals("")) {
+//                    Log.e("LiNing", "---" + khly.getText().toString());
+//                    ib_tjmj_xl.setFocusable(true);
+//                    checked = 1;
+//                    showPopupMenu(ib_tjmj_xl);
+//                } else {
+//                    ib_tjmj_xl.setFocusable(false);
+//                }
+                checked = 1;
+                showPopupMenu(ib_tjmj_xl);
                 break;
             //速查
             case R.id.btn_offer_all_quickquery:
@@ -648,7 +649,7 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                                     }
                                 }).setNegativeButton("否", null).show();
 //                } else {
-//                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
 //                }
 
                 break;
@@ -819,9 +820,10 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                         || menuItem.getItemId() == R.id.check6_khly
                         || menuItem.getItemId() == R.id.check7_khly
                         || menuItem.getItemId() == R.id.check8_khly
-                        || menuItem.getItemId() == R.id.check9_khly) {
+                        || menuItem.getItemId() == R.id.check9_khly
+                        ) {
                     menuItem.setChecked(!menuItem.isChecked());
-                    tjmj.setText(menuItem.getTitle());
+                    khly.setText(menuItem.getTitle());
                 }
                 return true;
             }

@@ -243,49 +243,6 @@ public class OutInfoActivity extends Activity {
 			if (ln.contains("商品中类")) {
 				beanList.add(out_data.get(i).getPrdIndx());
 			}
-//			try {
-//				JSONArray arr = new JSONArray(info_out_new);
-//				int size = arr.length();
-//				for (int j = 0; j < size; j++) {
-//					JSONObject jsonObject = arr.getJSONObject(i);
-//					if (ln.contains("销售金额")) {
-//						beanList.add(jsonObject.get("saAmtn").toString());
-//					}
-//					if (ln.contains("退货金额")) {
-//						beanList.add(jsonObject.get("sbAmtn").toString());
-//					}
-//					if (ln.contains("退返金额")) {
-//						beanList.add(jsonObject.get("sbsAmatn").toString());
-//					}
-//					if (ln.contains("销售返点")) {
-//						beanList.add(jsonObject.get("ssAmtn").toString());
-//					}
-//					if (ln.contains("销售折让")) {
-//						beanList.add(jsonObject.get("sdAmtn").toString());
-//					}
-//					if (ln.contains("净销售额")) {
-//						beanList.add(jsonObject.get("snAmtn").toString());
-//					}
-//					if (ln.contains("销售成本")) {
-//						beanList.add(jsonObject.get("saCst").toString());
-//					}
-//					if (ln.contains("退货成本")) {
-//						beanList.add(jsonObject.get("sbCst").toString());
-//					}
-//					if (ln.contains("净销成本")) {
-//						beanList.add(jsonObject.get("snCst").toString());
-//					}
-//					if (ln.contains("销售毛利")) {
-//						beanList.add(jsonObject.get("gP").toString());
-//					}
-//					if (ln.contains("毛利率")) {
-//						beanList.add(jsonObject.get("gPM").toString());
-//					}
-//				}
-//			} catch (JSONException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
 			if (ln.contains("销售金额")) {
 				beanList.add(out_data.get(i).getSaAmtn());
 			}

@@ -923,7 +923,7 @@ public class PriceActivity extends Activity implements OnClickListener {
 //                    out_info=1;
                 } else {
 
-                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                 }
 
                 break;
@@ -1001,7 +1001,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                     }
                 } else {
 
-                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                 }
                 break;
             //删除
@@ -1059,7 +1059,7 @@ public class PriceActivity extends Activity implements OnClickListener {
 
                 } else {
 
-                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                 }
                 break;
             //保存
@@ -1287,7 +1287,7 @@ public class PriceActivity extends Activity implements OnClickListener {
                         Toast.makeText(this.context, "请加载数据", Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                 }
                 break;
             //政策执行
@@ -1680,7 +1680,7 @@ public class PriceActivity extends Activity implements OnClickListener {
             alertDialog.show();
         } else {
 
-            Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
         }
     }
 

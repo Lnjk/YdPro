@@ -250,7 +250,7 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
                 } else {
                     Toast.makeText(context, "请选择单账套", Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(context, "核算部门（ERP）", Toast.LENGTH_LONG).show();
+//                Toast.makeText(context, "核算部门（ERP）", Toast.LENGTH_LONG).show();
                 break;
             //销售人员
             case R.id.ib_load_employee:
@@ -263,7 +263,7 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
                 } else {
                     Toast.makeText(context, "请选择单账套", Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(context, "销售人员", Toast.LENGTH_LONG).show();
+//                Toast.makeText(context, "销售人员", Toast.LENGTH_LONG).show();
                 break;
             //品号
             case R.id.ib_load_prdNo:
@@ -276,7 +276,7 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
                 } else {
                     Toast.makeText(context, "请选择单账套", Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(context, "品号", Toast.LENGTH_LONG).show();
+//                Toast.makeText(context, "品号", Toast.LENGTH_LONG).show();
                 break;
             //货品中类
             case R.id.ib_load_prdIndx:
@@ -289,7 +289,7 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
                 } else {
                     Toast.makeText(context, "请选择单账套", Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(context, "货品中类", Toast.LENGTH_LONG).show();
+//                Toast.makeText(context, "货品中类", Toast.LENGTH_LONG).show();
                 break;
             //货品库区
             case R.id.ib_load_prdWh:
@@ -302,7 +302,7 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
                 } else {
                     Toast.makeText(context, "请选择单账套", Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(context, "货品库区", Toast.LENGTH_LONG).show();
+//                Toast.makeText(context, "货品库区", Toast.LENGTH_LONG).show();
                 break;
             //货品等级（单选）
             case R.id.ib_load_prdLevel:
@@ -409,104 +409,6 @@ public class AddMoreActivity extends Activity implements View.OnClickListener {
                     tv_showStop.setText(menuItem.getTitle());
                     return true;
                 }
-//                else if (menuItem.getItemId() == R.id.check1_six
-//                        || menuItem.getItemId() == R.id.check2_six
-//                        || menuItem.getItemId() == R.id.check3_six
-//                        || menuItem.getItemId() == R.id.check4_six
-//                        || menuItem.getItemId() == R.id.check5_six
-//                        || menuItem.getItemId() == R.id.check6_six
-//                        || menuItem.getItemId() == R.id.check7_six
-//                        ) {
-//                    menuItem.setChecked(!menuItem.isChecked());
-//                    if (!idList_hpdj.contains(menuItem.getTitle())) {
-//                        idList_hpdj.add(menuItem.getTitle().toString());
-//                        if (!idList_hpdjID.contains(menuItem.getTitle().charAt(0))) {
-//                            idList_hpdjID.add("" + menuItem.getTitle().charAt(0));
-//                        }
-//                    }
-//                    String hpdj_str = "";
-//                    for (String zt : idList_hpdj) {
-//                        hpdj_str += zt + ",";
-//                    }
-//                    String sub_level = hpdj_str.substring(0, hpdj_str.length() - 1);
-//                    Log.e("LiNing", "------新增的数据" + sub_level);
-//                    if (idList_hpdj != null && idList_hpdj.size() > 0) {
-//                        tv_prdKND.setText(sub_level);
-//                        tv_prdKND.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//                                TextView view = new TextView(context);
-//                                view.setMovementMethod(ScrollingMovementMethod.getInstance());
-//                                view.setText(tv_prdKND.getText().toString());
-//                                alertDialog = new AlertDialog.Builder(context).create();
-////                                alertDialog.setTitle("品牌信息");
-//                                alertDialog.setCancelable(true);
-//                                alertDialog.setView(view);
-//                                alertDialog.show();
-//                            }
-//                        });
-//                    }
-//
-//                    String hpdjid_str = "";
-//                    for (String zt : idList_hpdjID) {
-//                        hpdjid_str += zt + ",";
-//                    }
-//
-//                    hpdj_id = hpdjid_str.substring(0, hpdjid_str.length() - 1);
-//                    Log.e("LiNing", "------新增的数据id" + hpdj_id);
-////                    tv_prdKND.setText(menuItem.getTitle());
-//                    Log.e("LiNing", "提交的大类id====" + tv_prdKND.getText().charAt(0));
-//                    return true;
-//                } else if (menuItem.getItemId() == R.id.check1_seven
-//                        || menuItem.getItemId() == R.id.check2_seven
-//                        || menuItem.getItemId() == R.id.check3_seven
-//                        || menuItem.getItemId() == R.id.check4_seven
-//                        || menuItem.getItemId() == R.id.check5_seven
-//                        || menuItem.getItemId() == R.id.check6_seven
-//                        || menuItem.getItemId() == R.id.check7_seven
-//                        ) {
-//                    menuItem.setChecked(!menuItem.isChecked());
-//
-//                    if (!idList_hpdl.contains(menuItem.getTitle())) {
-//                        idList_hpdl.add(menuItem.getTitle().toString());
-//                        if (!idList_hpdlID.contains(menuItem.getTitle().charAt(0))) {
-//                            idList_hpdlID.add("" + menuItem.getTitle().charAt(0));
-//                        }
-//                    }
-//                    String hpdl_str = "";
-//                    for (String zt : idList_hpdl) {
-//                        hpdl_str += zt + ",";
-//                    }
-//                    String sub_level = hpdl_str.substring(0, hpdl_str.length() - 1);
-//                    Log.e("LiNing", "------新增的数据" + sub_level);
-//                    if (idList_hpdl != null && idList_hpdl.size() > 0) {
-//                        tv_prdLevre.setText(sub_level);
-//                        tv_prdLevre.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//                                TextView view = new TextView(context);
-//                                view.setMovementMethod(ScrollingMovementMethod.getInstance());
-//                                view.setText(tv_prdLevre.getText().toString());
-//                                alertDialog = new AlertDialog.Builder(context).create();
-////                                alertDialog.setTitle("品牌信息");
-//                                alertDialog.setCancelable(true);
-//                                alertDialog.setView(view);
-//                                alertDialog.show();
-//                            }
-//                        });
-//                    }
-//
-//                    String hpdlid_str = "";
-//                    for (String zt : idList_hpdlID) {
-//                        hpdlid_str += zt + ",";
-//                    }
-//
-//                    hpdl_id = hpdlid_str.substring(0, hpdlid_str.length() - 1);
-//                    Log.e("LiNing", "------新增的数据id" + hpdl_id);
-//
-//
-//                    return true;
-//                }
 
                 return false;
             }

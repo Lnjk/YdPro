@@ -5,31 +5,31 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/check1_khly"
-            android:title="TV"/>
+            android:title="网络"/>
         <item
             android:id="@+id/check2_khly"
-            android:title="纸媒"/>
+            android:title="同事"/>
         <item
             android:id="@+id/check3_khly"
-            android:title="广播"/>
+            android:title="媒体"/>
         <item
             android:id="@+id/check4_khly"
             android:title="网络"/>
         <item
             android:id="@+id/check5_khly"
-            android:title="异业"/>
+            android:title="自然客流"/>
         <item
             android:id="@+id/check6_khly"
-            android:title="亲友"/>
+            android:title="社会关系"/>
         <item
             android:id="@+id/check7_khly"
-            android:title="同司"/>
+            android:title="外单位"/>
         <item
             android:id="@+id/check8_khly"
-            android:title="活动"/>
+            android:title="合作单位"/>
         <item
             android:id="@+id/check9_khly"
-            android:title="设计师"/>
+            android:title="其他"/>
     </group>
 
 </menu>

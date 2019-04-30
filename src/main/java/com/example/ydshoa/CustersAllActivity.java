@@ -205,16 +205,6 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
 
     //初始化
     private void initView() {
-//        //viewpager切换
-//        mViewPager = (ViewPager) findViewById(R.id.id_viewpage);
-//        btn_gz_rb = (ImageButton) findViewById(R.id.rb_gzxx);
-//        btn_bj_rb = (ImageButton) findViewById(R.id.rb_bjxx);
-//        btn_xs_rb = (ImageButton) findViewById(R.id.rb_xsxx);
-//        btn_hk_rb = (ImageButton) findViewById(R.id.rb_hkxx);
-//        btn_ps_rb = (ImageButton) findViewById(R.id.rb_psxx_fg);
-//        btn_sh_rb = (ImageButton) findViewById(R.id.rb_shxx);
-//        initEvent();
-//        initViewPage(0);
         //----------------------
         tel_List = new ArrayList<String>();
         rg_gz = (RadioGroup) findViewById(R.id.rg_gzxx_obj);
@@ -383,58 +373,6 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
         cust_out.setOnClickListener(this);//关闭
     }
 
-//    private void initViewPage(int i) {
-//        FragmentManager fm = getSupportFragmentManager();
-//        FragmentTransaction transaction = fm.beginTransaction();// 创建一个事务
-//        hideFragment(transaction);// 我们先把所有的Fragment隐藏了，然后下面再开始处理具体要显示的Fragment
-//        switch (i) {
-//            case 0:
-//                if (gz_Fragment == null) {
-//                    sp.edit().putString("FRG_ZT",qty_cust_zt).commit();
-//                    sp.edit().putString("FRG_NO",qty_cust_dabh).commit();
-//                    gz_Fragment = new GzFragment();
-//                    transaction.add(R.id.id_content, gz_Fragment);
-//                } else {
-//                    transaction.show(gz_Fragment);
-//                }
-//                break;
-//        }
-//    }
-//
-//    private void hideFragment(FragmentTransaction transaction) {
-//        if (gz_Fragment != null) {
-//            transaction.hide(gz_Fragment);
-//        }
-//    }
-//
-//    private void initEvent() {
-//        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageSelected(int position) {
-//                int currentItem = mViewPager.getCurrentItem();
-//                switch (currentItem) {
-//                    case 0:
-//                        resetImg();
-////                        btn_gz_rb.setImageResource(R.drawable.tab_bar_04_check);
-//                        break;
-//                }
-//            }
-//
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//
-//            }
-//        });
-//    }
-//
-//    private void resetImg() {
-////        btn_gz_rb.setImageResource(R.drawable.tab_bar_04_check);
-//    }
 
     public void allback(View v) {
         finish();
@@ -459,7 +397,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                     clearInfos();
                     clearChecbox();
                 }else{
-                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                 }
 
                 break;
@@ -479,7 +417,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                         Toast.makeText(context, "客户数据为空", Toast.LENGTH_LONG).show();
                     }
                 }else{
-                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                 }
 
                 break;
@@ -507,7 +445,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                         Toast.makeText(context, "客户数据为空", Toast.LENGTH_LONG).show();
                     }
                 }else{
-                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                 }
 
 
@@ -521,7 +459,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                     intent_cust.putExtra("ZT_VIP", cust_tv_zt.getText().toString());
                     startActivityForResult(intent_cust, 3);
                 }else{
-                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                 }
                 break;
             case R.id.btn_cust_all_save:
@@ -540,21 +478,13 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
             case R.id.btn_cust_all_out:
                 if(khgz_add_qx==true){
                     if (cust_callback != null) {
-                   /* if (!qty_cust_zt.equals("") && !qty_cust_dabh.equals("")) {
-                        Intent intent_gz = new Intent(context, TraceAllInfosActivity.class);
-                        intent_gz.putExtra("SSZT", qty_cust_zt);
-                        intent_gz.putExtra("DABH", qty_cust_dabh);
-                        startActivity(intent_gz);
-                    } else {
-                        Toast.makeText(context, "客户数据不完整", Toast.LENGTH_LONG).show();
-                    }*/
                         gz_do = 1;
                         addorSetInfos_obj();
                     } else {
                         Toast.makeText(context, "客户数据为空", Toast.LENGTH_LONG).show();
                     }
                 }else{
-                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                 }
 
 
@@ -1924,7 +1854,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                         Toast.makeText(context, "请选择数据", Toast.LENGTH_LONG).show();
                     }
                 }else{
-                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -1942,7 +1872,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                         Toast.makeText(context, "请选择一条数据", Toast.LENGTH_LONG).show();
                     }
                 }else{
-                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -2047,7 +1977,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                 Toast.makeText(context, "无信息", Toast.LENGTH_LONG).show();
             }
         }else{
-            Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
         }
 
     }

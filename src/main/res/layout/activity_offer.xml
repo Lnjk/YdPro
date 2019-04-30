@@ -196,6 +196,10 @@
                     <TextView
                         android:id="@+id/et_offer_all_khly"
                         style="@style/design_editext" />
+                    <ImageButton
+                        android:id="@+id/ib_offer_all_tjmj"
+                        style="@style/price_button_down"
+                        />
 
                 </LinearLayout>
 
@@ -210,13 +214,11 @@
                         style="@style/price_name"
                         android:text="推荐媒介:" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/et_offer_all_tjmj"
-                        style="@style/design_editext" />
-                    <ImageButton
-                        android:id="@+id/ib_offer_all_tjmj"
-                        style="@style/price_button_down"
-                        />
+                        style="@style/design_editext"
+                        android:text="无"/>
+
 
                 </LinearLayout>
             </LinearLayout>
@@ -229,7 +231,10 @@
 
 
                 <LinearLayout style="@style/price_ll2">
-
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
                     <TextView
                         style="@style/design_name"
                         android:text="单据类别:" />

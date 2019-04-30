@@ -708,7 +708,44 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 							name.setText(null);
 							level.setText(null);
 
-						} else {
+						}
+						else if (idInfo.equals("skvp")
+								&& modZTs_get.contains(ztInfo)) {
+							delOld();
+							NewModInfo();
+							id.setText(null);
+							name.setText(null);
+							level.setText(null);
+
+						}
+						else if (idInfo.equals("skvphb")
+								&& modZTs_get.contains(ztInfo)) {
+							delOld();
+							NewModInfo();
+							id.setText(null);
+							name.setText(null);
+							level.setText(null);
+
+						}
+						else if (idInfo.equals("skvpjb")
+								&& modZTs_get.contains(ztInfo)) {
+							delOld();
+							NewModInfo();
+							id.setText(null);
+							name.setText(null);
+							level.setText(null);
+
+						}
+						else if (idInfo.equals("skvpwb")
+								&& modZTs_get.contains(ztInfo)) {
+							delOld();
+							NewModInfo();
+							id.setText(null);
+							name.setText(null);
+							level.setText(null);
+
+						}
+						else {
 
 							NewModInfo();
 							id.setText(null);
@@ -765,7 +802,7 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 		while (it.hasNext()) {
 			User_Mod next2 = it.next();
 			// List<User_Mod> next = (List<User_Mod>) it.next();
-			if (next2.getDb_ID().equals(ztInfo)) {
+			if (next2.getDb_ID().equals(ztInfo)&&next2.getMod_ID().equals(idInfo)) {
 
 				it.remove();
 				Log.e("LiNing", "userMod-----new ----" + next2);
@@ -851,6 +888,21 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 			add("skf");//37
 			add("skh");//38
 			add("sk");//36
+			//会员登记
+			add("skvphj");
+			add("skvphb");
+			add("skvphbm");
+			add("skvphbt");
+			//积分登记
+			add("skvpjj");
+			add("skvpjb");
+			add("skvpjbm");
+			add("skvpjbt");
+			//任务登记
+			add("skvpwj");
+			add("skvpwb");
+			add("skvpwbm");
+			add("skvpwbt");
 		}
 
 	};
@@ -1078,6 +1130,70 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 			add("skh");
 			add("skf");
 			add("skvp");
+			//会员登记
+			add("skvphj");
+			add("skvphb");
+			add("skvphbm");
+			add("skvphbt");
+			//积分登记
+			add("skvpjj");
+			add("skvpjb");
+			add("skvpjbm");
+			add("skvpjbt");
+			//任务登记
+			add("skvpwj");
+			add("skvpwb");
+			add("skvpwbm");
+			add("skvpwbt");
+		}
+	};
+	// 会员管理
+	ArrayList<String> list_skvp = new ArrayList<String>() {
+		{
+			add("skvp");
+			//会员登记
+			add("skvphj");
+			add("skvphb");
+			add("skvphbm");
+			add("skvphbt");
+			//积分登记
+			add("skvpjj");
+			add("skvpjb");
+			add("skvpjbm");
+			add("skvpjbt");
+			//任务登记
+			add("skvpwj");
+			add("skvpwb");
+			add("skvpwbm");
+			add("skvpwbt");
+
+		}
+	};
+	// 会员管理(报表)
+	ArrayList<String> list_skvphb = new ArrayList<String>() {
+		{
+			add("skvphb");
+			add("skvphbm");
+			add("skvphbt");
+
+		}
+	};
+	// 会员管理(积分)
+	ArrayList<String> list_skvpjb = new ArrayList<String>() {
+		{
+			add("skvpjb");
+			add("skvpjbm");
+			add("skvpjbt");
+
+		}
+	};
+	// 会员管理(任务)
+	ArrayList<String> list_skvpwb = new ArrayList<String>() {
+		{
+			add("skvpwb");
+			add("skvpwbm");
+			add("skvpwbt");
+
 		}
 	};
 	private void NewModInfo() {
@@ -1274,9 +1390,45 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 				} else if (ids_str.equals("skf")) {
 					nameInfo = "客户跟踪";
 				} else if (ids_str.equals("skvp")) {
-					nameInfo = "会员建档";
+					nameInfo = "会员管理";
 				} else if (ids_str.equals("sk")) {
 					nameInfo = "客户管理";
+				}
+				else if (ids_str.equals("skvphj")) {
+					nameInfo = "会员登记";
+				}
+				else if (ids_str.equals("skvphb")) {
+					nameInfo = "会员报表";
+				}
+				else if (ids_str.equals("skvphbm")) {
+					nameInfo = "会员明细";
+				}
+				else if (ids_str.equals("skvphbt")) {
+					nameInfo = "会员统计";
+				}
+				else if (ids_str.equals("skvpjj")) {
+					nameInfo = "积分登记";
+				}
+				else if (ids_str.equals("skvpjb")) {
+					nameInfo = "积分报表";
+				}
+				else if (ids_str.equals("skvpjbm")) {
+					nameInfo = "积分明细";
+				}
+				else if (ids_str.equals("skvpjbt")) {
+					nameInfo = "积分统计";
+				}
+				else if (ids_str.equals("skvpwj")) {
+					nameInfo = "任务登记";
+				}
+				else if (ids_str.equals("skvpwb")) {
+					nameInfo = "任务报表";
+				}
+				else if (ids_str.equals("skvpwbm")) {
+					nameInfo = "任务明细";
+				}
+				else if (ids_str.equals("skvpwbt")) {
+					nameInfo = "任务统计";
 				}
 				Log.e("LiNing", "ids_str数据是===" + list_sys);
 				mod2 = new User_Mod();
@@ -1472,9 +1624,45 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 				} else if (ids_str.equals("skf")) {
 					nameInfo = "客户跟踪";
 				} else if (ids_str.equals("skvp")) {
-					nameInfo = "会员建档";
+					nameInfo = "会员管理";
 				} else if (ids_str.equals("sk")) {
 					nameInfo = "客户管理";
+				}
+				else if (ids_str.equals("skvphj")) {
+					nameInfo = "会员登记";
+				}
+				else if (ids_str.equals("skvphb")) {
+					nameInfo = "会员报表";
+				}
+				else if (ids_str.equals("skvphbm")) {
+					nameInfo = "会员明细";
+				}
+				else if (ids_str.equals("skvphbt")) {
+					nameInfo = "会员统计";
+				}
+				else if (ids_str.equals("skvpjj")) {
+					nameInfo = "积分登记";
+				}
+				else if (ids_str.equals("skvpjb")) {
+					nameInfo = "积分报表";
+				}
+				else if (ids_str.equals("skvpjbm")) {
+					nameInfo = "积分明细";
+				}
+				else if (ids_str.equals("skvpjbt")) {
+					nameInfo = "积分统计";
+				}
+				else if (ids_str.equals("skvpwj")) {
+					nameInfo = "任务登记";
+				}
+				else if (ids_str.equals("skvpwb")) {
+					nameInfo = "任务报表";
+				}
+				else if (ids_str.equals("skvpwbm")) {
+					nameInfo = "任务明细";
+				}
+				else if (ids_str.equals("skvpwbt")) {
+					nameInfo = "任务统计";
 				}
 				Log.e("LiNing", "ids_str数据是===" + list_sk);
 				mod2 = new User_Mod();
@@ -1501,6 +1689,186 @@ public class ShowModInfoActivity<ViewHolder> extends Activity implements
 //				// list_del.add(item_del);
 //				list.add(map);
 //				Log.e("LiNing", "str_dbname========" + str_dbname);
+			}
+		}
+		else if (idInfo.equals("skvp")) {
+			for (int j = 0; j < list_skvp.size(); j++) {
+				ids_str = list_skvp.get(j);
+				Log.e("LiNing", "ids_str数据是===" + ids_str);
+				if (ids_str.equals("skvp")) {
+					nameInfo = "会员管理";
+				}
+				else if (ids_str.equals("skvphj")) {
+					nameInfo = "会员登记";
+				}
+				else if (ids_str.equals("skvphb")) {
+					nameInfo = "会员报表";
+				}
+				else if (ids_str.equals("skvphbm")) {
+					nameInfo = "会员明细";
+				}
+				else if (ids_str.equals("skvphbt")) {
+					nameInfo = "会员统计";
+				}
+				else if (ids_str.equals("skvpjj")) {
+					nameInfo = "积分登记";
+				}
+				else if (ids_str.equals("skvpjb")) {
+					nameInfo = "积分报表";
+				}
+				else if (ids_str.equals("skvpjbm")) {
+					nameInfo = "积分明细";
+				}
+				else if (ids_str.equals("skvpjbt")) {
+					nameInfo = "积分统计";
+				}
+				else if (ids_str.equals("skvpwj")) {
+					nameInfo = "任务登记";
+				}
+				else if (ids_str.equals("skvpwb")) {
+					nameInfo = "任务报表";
+				}
+				else if (ids_str.equals("skvpwbm")) {
+					nameInfo = "任务明细";
+				}
+				else if (ids_str.equals("skvpwbt")) {
+					nameInfo = "任务统计";
+				}
+				Log.e("LiNing", "ids_str数据是===" + list_sk);
+				mod2 = new User_Mod();
+				mod2.setMod_ID(ids_str);
+				resetMod();
+				// userMod.add(0, mod);
+				userMod.add(0, mod2);
+				adapter.notifyDataSetChanged();
+				modList.invalidate();
+
+//                for (int i = 0; i < dList.size(); i++) {
+//                    map = new HashMap<String, String>();
+//                    item_del = dList.get(i);
+//                    str_dbname = item_del.get("账套").toString();
+//                    modIDs_get.add(dList.get(i).get("序号").toString());
+//                    modZTs_get.add(dList.get(i).get("账套").toString());
+//                    Log.e("LiNing", "LiNing--------" + modIDs_get
+//                            + "LiNing--------" + modZTs_get);
+//                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
+//                            .get("序号").toString());
+//
+//                }
+//                list.add(map);
+			}
+		}
+		else if (idInfo.equals("skvpwb")) {
+			for (int j = 0; j < list_skvpwb.size(); j++) {
+				ids_str = list_skvpwb.get(j);
+				Log.e("LiNing", "ids_str数据是===" + ids_str);
+				if (ids_str.equals("skvpwb")) {
+					nameInfo = "任务报表";
+				}
+				else if (ids_str.equals("skvpwbm")) {
+					nameInfo = "任务明细";
+				}
+				else if (ids_str.equals("skvpwbt")) {
+					nameInfo = "任务统计";
+				}
+				Log.e("LiNing", "ids_str数据是===" + list_sk);
+				mod2 = new User_Mod();
+				mod2.setMod_ID(ids_str);
+				resetMod();
+				// userMod.add(0, mod);
+				userMod.add(0, mod2);
+				adapter.notifyDataSetChanged();
+				modList.invalidate();
+
+//                for (int i = 0; i < dList.size(); i++) {
+//                    map = new HashMap<String, String>();
+//                    item_del = dList.get(i);
+//                    str_dbname = item_del.get("账套").toString();
+//                    modIDs_get.add(dList.get(i).get("序号").toString());
+//                    modZTs_get.add(dList.get(i).get("账套").toString());
+//                    Log.e("LiNing", "LiNing--------" + modIDs_get
+//                            + "LiNing--------" + modZTs_get);
+//                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
+//                            .get("序号").toString());
+//
+//                }
+//                list.add(map);
+			}
+		}
+		else if (idInfo.equals("skvpjb")) {
+			for (int j = 0; j < list_skvp.size(); j++) {
+				ids_str = list_skvp.get(j);
+				Log.e("LiNing", "ids_str数据是===" + ids_str);
+				if (ids_str.equals("skvpjb")) {
+					nameInfo = "积分报表";
+				}
+				else if (ids_str.equals("skvpjbm")) {
+					nameInfo = "积分明细";
+				}
+				else if (ids_str.equals("skvpjbt")) {
+					nameInfo = "积分统计";
+				}
+				Log.e("LiNing", "ids_str数据是===" + list_sk);
+				mod2 = new User_Mod();
+				mod2.setMod_ID(ids_str);
+				resetMod();
+				// userMod.add(0, mod);
+				userMod.add(0, mod2);
+				adapter.notifyDataSetChanged();
+				modList.invalidate();
+
+
+//                for (int i = 0; i < dList.size(); i++) {
+//                    map = new HashMap<String, String>();
+//                    item_del = dList.get(i);
+//                    str_dbname = item_del.get("账套").toString();
+//                    modIDs_get.add(dList.get(i).get("序号").toString());
+//                    modZTs_get.add(dList.get(i).get("账套").toString());
+//                    Log.e("LiNing", "LiNing--------" + modIDs_get
+//                            + "LiNing--------" + modZTs_get);
+//                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
+//                            .get("序号").toString());
+//
+//                }
+//                list.add(map);
+			}
+		}
+		else if (idInfo.equals("skvphb")) {
+			for (int j = 0; j < list_skvphb.size(); j++) {
+				ids_str = list_skvphb.get(j);
+				Log.e("LiNing", "ids_str数据是===" + ids_str);
+				if (ids_str.equals("skvphb")) {
+					nameInfo = "会员报表";
+				}
+				else if (ids_str.equals("skvphbm")) {
+					nameInfo = "会员明细";
+				}
+				else if (ids_str.equals("skvphbt")) {
+					nameInfo = "会员统计";
+				}
+				Log.e("LiNing", "ids_str数据是===" + list_sk);
+				mod2 = new User_Mod();
+				mod2.setMod_ID(ids_str);
+				resetMod();
+				// userMod.add(0, mod);
+				userMod.add(0, mod2);
+				adapter.notifyDataSetChanged();
+				modList.invalidate();
+
+
+//                for (int i = 0; i < dList.size(); i++) {
+//                    map = new HashMap<String, String>();
+//                    item_del = dList.get(i);
+//                    str_dbname = item_del.get("账套").toString();
+//                    modIDs_get.add(dList.get(i).get("序号").toString());
+//                    modZTs_get.add(dList.get(i).get("账套").toString());
+//                    Log.e("LiNing", "LiNing--------" + modIDs_get
+//                            + "LiNing--------" + modZTs_get);
+//                    map.put(dList.get(i).get("账套").toString(), dList.get(i)
+//                            .get("序号").toString());
+//
+//                }
+//                list.add(map);
 			}
 		}
 		else if (idInfo.equals("sm")) {

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_touch_skd_all"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/smallbk"
+    android:orientation="vertical">
+
+    <include layout="@layout/head_cust_gz" />
+
+
+
+
+    <include
+        android:id="@+id/skdmx_head_yus"
+        layout="@layout/skd_head_yus" />
+
+    <View style="@style/list_item_seperator_layout" />
+
+
+    <ListView
+        android:id="@+id/lv_skd_header_yus"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="#00000000"
+        android:dividerHeight="1.0dip"
+        android:drawSelectorOnTop="true"
+        android:fastScrollEnabled="true"
+        android:focusable="true"
+        android:listSelector="#00000000"
+        android:scrollingCache="true" />
+
+    <View
+        style="@style/list_item_seperator_layout"
+        android:layout_marginTop="2.0dip" />
+
+
+
+
+</LinearLayout>

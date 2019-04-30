@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_item_sjstj"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_bg"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:padding="5.0dip">
+
+
+    <TextView
+        android:id="@+id/jfquy_jfdh"
+        style="@style/head_scrow_vipcontent"
+        android:text="设计师ID" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+    <TextView
+        android:id="@+id/jfquy_rq"
+        style="@style/head_scrow_vipcontent"
+        android:text="设计师名称" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+    <TextView
+        android:id="@+id/jfquy_jflx"
+        style="@style/head_scrow_vipcontent"
+        android:text="积分类型" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+    <TextView
+        android:id="@+id/jfquy_zdr"
+        style="@style/head_scrow_vipcontent"
+        android:text="收支名称" />
+
+    <View style="@style/list_item_cell_seperator_layout" />
+
+
+    <View style="@style/list_item_cell_seperator_layout" />
+</LinearLayout>

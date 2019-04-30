@@ -223,7 +223,12 @@
         <activity android:name=".JfClassActivity" />
         <activity android:name=".JfDoAllActivity" />
         <activity android:name=".DesignThreeActivity" />
-        <activity android:name=".DesignerJlMxActivity"></activity>
+        <activity android:name=".DesignerJlMxActivity" />
+        <activity android:name=".DesignerRwManageActivity" />
+        <activity android:name=".DesignerRwMxActivity" />
+        <activity android:name=".KmClassActivity" />
+        <activity android:name=".KmDoAllActivity" />
+        <activity android:name=".YuShouActivity"></activity>
     </application>
 
 </manifest>

@@ -195,7 +195,8 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
                 flag_index = 1;
                 // 获取查询条件
                 Intent intent = new Intent(context, ConditionActivity.class);
-                // intent.putExtra("page", page_get);
+                 intent.putExtra("page", "0");
+                intent.putExtra("gjss", "1");
                 startActivity(intent);
                 break;
             case R.id.btn_out_arp:
@@ -210,14 +211,14 @@ public class SalesQueryArpActivity extends Activity implements View.OnClickListe
                     Log.e("LiNing", "传递数据====" + reportnos + "===" +  "===" + head_all);
                     startActivity(intent2);
                 } else {
-                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                 }
                 break;
             case R.id.btn_print_arp:
 
                 if (dy_xy.equals("false")) {
 
-                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                 } else {
 
                 }

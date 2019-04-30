@@ -9,16 +9,21 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.LeftOrRight.MyHScrollView;
 import com.example.bean.BrandSame;
 import com.example.bean.SaleMakeInfo;
 import com.example.bean.TbSales;
@@ -64,6 +69,8 @@ public class BrandFxActivity extends Activity implements View.OnClickListener {
     SalesInfoDbAdapter sfadapter_db;
     private ListView lv_get_all;
     public static List<TbSales> info_out = new ArrayList<TbSales>();
+    LinearLayout mHead,tj_head_hint;
+    private ImageButton tj_head_show;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,12 +83,19 @@ public class BrandFxActivity extends Activity implements View.OnClickListener {
     }
 
     private void initView() {
+        tj_head_show = (ImageButton) findViewById(R.id.ib_nulladd);
+        tj_head_hint = (LinearLayout) findViewById(R.id.ll_tb_show);
         head_fx = (TextView) findViewById(R.id.all_head);
         head_name1 = (TextView) findViewById(R.id.tb_zl_tv_name);
         head_name2 = (TextView) findViewById(R.id.tb_zl_tv_name_db);
 //        head_name1.setText("品牌");
         head_name2.setText("品牌");
         head_fx.setText("经营品牌销售分析表");
+        mHead = (LinearLayout) findViewById(R.id.sales_scrowHead);
+        mHead.setFocusable(true);
+        mHead.setClickable(true);
+        mHead.setOnTouchListener(new ListViewAndHeadViewTouchLinstener());
+
         fx_jz = (Button) findViewById(R.id.btn_fx_jz);//加载
         fx_zc = (Button) findViewById(R.id.btn_fx_zc);//转出
         fx_time_name_dq = (TextView) findViewById(R.id.tv_fx_dqsj);//当前时间
@@ -91,13 +105,24 @@ public class BrandFxActivity extends Activity implements View.OnClickListener {
         fx_db_kstime = (Button) findViewById(R.id.btn_start_time_tb);//开始时间1
         fx_db_jstime = (Button) findViewById(R.id.btn_stop_time_tb);//结束时间2
         lv_get_all = (ListView) findViewById(R.id.lv_fx_pp);//结束时间2
-
+        lv_get_all.setOnTouchListener(new ListViewAndHeadViewTouchLinstener());
         fx_jz.setOnClickListener(this);
         fx_zc.setOnClickListener(this);
         fx_dq_kstime.setOnClickListener(this);
         fx_dq_jstime.setOnClickListener(this);
         fx_db_kstime.setOnClickListener(this);
         fx_db_jstime.setOnClickListener(this);
+        tj_head_show.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(tj_head_hint.isShown()){
+                    tj_head_hint.setVisibility(View.GONE);
+                }else{
+                    tj_head_hint.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
     @Override
@@ -684,6 +709,10 @@ public class BrandFxActivity extends Activity implements View.OnClickListener {
         sfadapter_db = new SalesInfoDbAdapter(R.layout.tb_one_listview_team, context, tb_data1);
         lv_get_all.setAdapter(sfadapter_db);
         sfadapter_db.notifyDataSetChanged();
+        if(lv_get_all.getCount()>0){
+            tj_head_hint.setVisibility(View.GONE);
+            tj_head_show.setVisibility(View.VISIBLE);
+        }
     }
     public class SalesInfoDbAdapter extends BaseAdapter {
         SaleMakeInfo.Data data_dq_infos;
@@ -721,20 +750,24 @@ public class BrandFxActivity extends Activity implements View.OnClickListener {
         public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
-            convertView = mInflater.inflate(id_row_layout, null);
-            holder = new ViewHolder();
-            holder.tb_dq_data_zl = (TextView) convertView.findViewById(R.id.tb_zl_tv_name);
-            holder.tb_dq_sn_amtn = (TextView) convertView.findViewById(R.id.tb_dqzt_tv_jxse);
-            holder.tb_dq_gp = (TextView) convertView.findViewById(R.id.tb_dqzt_tv_xsml);
-            holder.tb_dq_gpm = (TextView) convertView.findViewById(R.id.tb_dqzt_tv_mll);
-            holder.tb_db_data_zl = (TextView) convertView.findViewById(R.id.tb_zl_tv_name_db);
-            holder.tb_db_sn_amtn = (TextView) convertView.findViewById(R.id.tb_dbzt_tv_jxse);
-            holder.tb_db_gp = (TextView) convertView.findViewById(R.id.tb_dbzt_tv_xsml);
-            holder.tb_db_gpm = (TextView) convertView.findViewById(R.id.tb_dbzt_tv_mll);
-            holder.tb_db_xs_zzl = (TextView) convertView.findViewById(R.id.tb_zzl_tv_xszzl);
-            holder.tb_db_gp_zzl = (TextView) convertView.findViewById(R.id.tb_zzl_tv_mlzzl);
-            holder.tb_db_gpm_c = (TextView) convertView.findViewById(R.id.tb_zzl_tv_mllc);
-            convertView.setTag(holder);
+            synchronized (BrandFxActivity.this) {
+
+                convertView = mInflater.inflate(id_row_layout, null);
+                scrow(convertView);
+                holder = new ViewHolder();
+                holder.tb_dq_data_zl = (TextView) convertView.findViewById(R.id.tb_zl_tv_name);
+                holder.tb_dq_sn_amtn = (TextView) convertView.findViewById(R.id.tb_dqzt_tv_jxse);
+                holder.tb_dq_gp = (TextView) convertView.findViewById(R.id.tb_dqzt_tv_xsml);
+                holder.tb_dq_gpm = (TextView) convertView.findViewById(R.id.tb_dqzt_tv_mll);
+                holder.tb_db_data_zl = (TextView) convertView.findViewById(R.id.tb_zl_tv_name_db);
+                holder.tb_db_sn_amtn = (TextView) convertView.findViewById(R.id.tb_dbzt_tv_jxse);
+                holder.tb_db_gp = (TextView) convertView.findViewById(R.id.tb_dbzt_tv_xsml);
+                holder.tb_db_gpm = (TextView) convertView.findViewById(R.id.tb_dbzt_tv_mll);
+                holder.tb_db_xs_zzl = (TextView) convertView.findViewById(R.id.tb_zzl_tv_xszzl);
+                holder.tb_db_gp_zzl = (TextView) convertView.findViewById(R.id.tb_zzl_tv_mlzzl);
+                holder.tb_db_gpm_c = (TextView) convertView.findViewById(R.id.tb_zzl_tv_mllc);
+                convertView.setTag(holder);
+            }
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
@@ -1114,7 +1147,43 @@ public class BrandFxActivity extends Activity implements View.OnClickListener {
         Log.e("LiNing", "数据===1=b==" + same_data_db_all.size() + same_data_db_all);
 
     }
+    // 表头滑动事件
+    class ListViewAndHeadViewTouchLinstener implements View.OnTouchListener {
+        ListViewAndHeadViewTouchLinstener() {
+        }
 
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            ((HorizontalScrollView) BrandFxActivity.this.mHead
+                    .findViewById(R.id.horizontalScrollView1))
+                    .onTouchEvent(event);
+            return false;
+        }
+
+    }
+    private void scrow(View convertView) {
+        MyHScrollView scrollView1 = (MyHScrollView) convertView
+                .findViewById(R.id.horizontalScrollView1);
+        MyHScrollView headSrcrollView = (MyHScrollView) mHead
+                .findViewById(R.id.horizontalScrollView1);
+        headSrcrollView
+                .AddOnScrollChangedListener(new OnScrollChangedListenerImp(
+                        scrollView1));
+    }
+    class OnScrollChangedListenerImp implements
+            MyHScrollView.OnScrollChangedListener {
+        MyHScrollView mScrollViewArg;
+
+        public OnScrollChangedListenerImp(MyHScrollView mScrollViewArg) {
+            super();
+            this.mScrollViewArg = mScrollViewArg;
+        }
+
+        public void onScrollChanged(int paramInt1, int paramInt2,
+                                    int paramInt3, int paramInt4) {
+            this.mScrollViewArg.smoothScrollTo(paramInt1, paramInt2);
+        }
+    }
     public void allback(View v) {
         finish();
     }

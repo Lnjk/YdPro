@@ -93,30 +93,6 @@ public class BrandNumActivity extends Activity {
                     finish();
                 }
             });
-//        }else if(getIntent().getStringExtra("flag").equals("1")){
-//
-//            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//                @Override
-//                public void onItemClick(AdapterView<?> parent, View view,
-//                                        int position, long id) {
-//
-//                    int mSelected = position;
-//                    adapter.setSelectItem(position);
-//
-//                    String ID_zl = pictures.get(position).getId();
-//                    String name_zl = pictures.get(position).getTitle();
-//                    // 传递的id值
-//                    Log.e("LiNing", "---------" + ID_zl);
-//                    Intent intent = new Intent(context, PriceActivity.class);
-//                    intent.putExtra("reportB", reportBus);
-//                    intent.putExtra("reportNo", ID_zl);
-//                    intent.putExtra("reportName", name_zl);
-//                    startActivity(intent);
-//                    adapter.notifyDataSetChanged();
-//                }
-//            });
-//        }
 
     }
     class PictureAdapter extends BaseAdapter {

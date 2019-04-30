@@ -23,8 +23,10 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bean.DepInfo;
 import com.example.bean.DesignAllInfos;
 import com.example.bean.JfMxBean;
+import com.example.bean.SjsJf;
 import com.example.bean.URLS;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -32,6 +34,7 @@ import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -46,13 +49,13 @@ import okhttp3.Response;
 public class DesignerJlMxActivity extends Activity implements View.OnClickListener {
     private Context context;
     private SharedPreferences sp;
-    private String session,db_zt,user_Id, user_yh, user_Name, jf_id_hd,date_dd,mxtj,str_name,vip_no_cust;
+    private String session,db_zt,user_Id, user_yh, user_Name, jf_id_hd,date_dd,mxtj,str_name,vip_no_cust,sp_query;
     private TextView head, jlmx_sszt, jlmx_sjsdh, jlmx_jfdh, jlmx_jflx, jlmx_jfrqks,jlmx_jfrqjs, jlmx_jabz, jlmx_zdr, jlmx_shr, jlmx_lydh,jlmx_sfzh;
     private Button jlmx_add, jlmx_del, jlmx_reset, jlmx_query, jlmx_save, jlmx_sh;
     private EditText  jlmx_szmc, jlmx_jfbd, jlmx_jfms;
     private ImageButton jlmx_sszt_ib, jlmx_sjsdh_ib, jlmx_jabz_ib, jlmx_jalx_ib;
     String s_zh, clientRows, comitmx_zt, comitmx_time, comitmx_time_zb, comitmx_dh, comitmx_sjsdh, comitmx_sfzh, comitmx_jflx, comitmx_szmc, comitmx_jabz, comitmx_jabz_quy,
-            comitmx_zdr, comitmx_jfbd, comitmx_lydh, comitmx_jfms,jf_fh_jflx,jf_fh_sjsdh;
+            comitmx_zdr, comitmx_jfbd, comitmx_lydh, comitmx_jfms,jf_fh_jflx,jf_fh_sjsdh,comitmx_jflx_tj;
     List<JfMxBean.Data> mf_monList;
     List<JfMxBean.QueryResult> mf_monList_tj;
     private ListView lv_query_jfmx;
@@ -75,6 +78,8 @@ public class DesignerJlMxActivity extends Activity implements View.OnClickListen
         user_yh = sp.getString("MR_YH", "");
         user_Name = sp.getString("USER_NAME", "");
         session = sp.getString("SESSION", "");
+        //增删改查权限
+        sp_query = sp.getString("USER_QUERY","");
          mxtj = getIntent().getStringExtra("MXTJ");
         getNowTime();
         initView();//初始化
@@ -90,9 +95,11 @@ public class DesignerJlMxActivity extends Activity implements View.OnClickListen
         head = (TextView) findViewById(R.id.all_head);
         if(mxtj.equals("1")){
             head.setText("会员明细表");
+            findViewById(R.id.designjltj_head).setVisibility(View.GONE);
         }
         if(mxtj.equals("2")){
             head.setText("会员统计表");
+            findViewById(R.id.designjlmx_head).setVisibility(View.GONE);
         }
 
         lv_query_jfmx = (ListView)findViewById(R.id.lv_designjlmx_header);
@@ -144,6 +151,7 @@ public class DesignerJlMxActivity extends Activity implements View.OnClickListen
                                 String startTime = String.format("%d-%d-%d", year,
                                         monthOfYear + 1, dayOfMonth);
                                 jlmx_jfrqjs.setText(startTime);
+
 
                             }
                         }, mYear_time, mMonth_time, mDay_time).show();//获取当前时间
@@ -200,17 +208,22 @@ public class DesignerJlMxActivity extends Activity implements View.OnClickListen
                 break;
             
             case R.id.btn_designjlmx_query:
-                if (jlmx_sszt.getText().toString().equals("")) {
-                    Toast.makeText(context, "请选择账套", Toast.LENGTH_LONG).show();
-                } else {
-                    if(jlmx_jfrqks.getText().toString().equals("")||jlmx_jfrqjs.getText().toString().equals("")){
-                        Toast.makeText(context, "请填写日期", Toast.LENGTH_LONG).show();
-                    }else{
+                if(sp_query.equals("true")){
+                    if (jlmx_sszt.getText().toString().equals("")) {
+                        Toast.makeText(context, "请选择账套", Toast.LENGTH_LONG).show();
+                    } else {
+                        if(jlmx_jfrqks.getText().toString().equals("")||jlmx_jfrqjs.getText().toString().equals("")){
+                            Toast.makeText(context, "请填写日期", Toast.LENGTH_LONG).show();
+                        }else{
 
-                        get_info_comint();//提交查询条件
-                        get_alljfs();//请求数据
+                            get_info_comint();//提交查询条件
+                            get_alljfs();//请求数据
+                        }
                     }
+                }else{
+                    Toast.makeText(context, "请等待", Toast.LENGTH_LONG).show();
                 }
+
                 break;
           
             default:
@@ -218,7 +231,6 @@ public class DesignerJlMxActivity extends Activity implements View.OnClickListen
         }
     }
     private void get_alljfs() {
-        Log.e("LiNing", "提交数据===" + comitmx_zt + comitmx_time + clientRows);
 
         if (lv_query_jfmx.getCount() <= 0) {
             clientRows = "0";
@@ -239,7 +251,7 @@ public class DesignerJlMxActivity extends Activity implements View.OnClickListen
                 .add("vip_NO", comitmx_sjsdh)
                 .add("card_Num", comitmx_sfzh)
                 .add("vp_No", comitmx_dh)
-                .add("points_Type", comitmx_jflx)
+                .add("points_Type", comitmx_jflx_tj)
                 .add("item_Name", comitmx_szmc)
                 .add("source_No", comitmx_lydh)
                 .add("points_Date", comitmx_time)
@@ -256,50 +268,60 @@ public class DesignerJlMxActivity extends Activity implements View.OnClickListen
             public void onResponse(Call call, Response response) throws IOException {
                 String str = response.body().string();
                 Log.e("LiNing", "所有收款单===new" + str);
-                // 解析包含date的数据必须添加此代码(InputStream型)
-                Gson gson = new GsonBuilder().setDateFormat(
-                        "yyyy-MM-dd HH:mm:ss").create();
-                final JfMxBean jf_all = gson.fromJson(str,
-                        JfMxBean.class);
-                int sumShowRow = jf_all.getSumShowRow();
-                s_zh = String.valueOf(sumShowRow);
-                clientRows = s_zh;
-                if (jf_all != null) {
+                if (str != null && !str.equals("") && !str.equals("null")) {
+                    // 解析包含date的数据必须添加此代码(InputStream型)
+                    Gson gson = new GsonBuilder().setDateFormat(
+                            "yyyy-MM-dd HH:mm:ss").create();
+                    final JfMxBean jf_all = gson.fromJson(str,
+                            JfMxBean.class);
+                    int sumShowRow = jf_all.getSumShowRow();
+                    s_zh = String.valueOf(sumShowRow);
+                    clientRows = s_zh;
+                    if (jf_all != null) {
+                        DesignerJlMxActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+
+                                if (mxtj.equals("1")) {
+
+                                    mf_monList = jf_all.getData();
+                                    if (mf_monList != null && mf_monList.size() > 0) {
+                                        get_newInfo();
+//                                        getname();
+
+//                                        qtyAdapter = new JfsQtyAdapter(R.layout.desigh_jfjl_mx, mf_monList, context);
+//                                        lv_query_jfmx.setAdapter(qtyAdapter);
+//                                        qtyAdapter.notifyDataSetChanged();
+                                    }
+                                }
+                                if (mxtj.equals("2")) {
+                                    mf_monList_tj = jf_all.getQueryResult();
+                                    if (mf_monList_tj != null && mf_monList_tj.size() > 0) {
+
+                                        get_newInfo();
+//                                        getname();
+//                                        qtyAdapter_tj = new JfsQtyAdapterTj(R.layout.desigh_jfjl_mx, mf_monList_tj, context);
+//                                        lv_query_jfmx.setAdapter(qtyAdapter_tj);
+//                                        qtyAdapter_tj.notifyDataSetChanged();
+                                    }
+                                }
+
+
+                            }
+                        });
+                    }
+
+
+                }else{
                     DesignerJlMxActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-
-
-                            if(mxtj.equals("1")){
-
-                                mf_monList = jf_all.getData();
-                                if (mf_monList != null && mf_monList.size() > 0) {
-
-
-                                    qtyAdapter = new JfsQtyAdapter(R.layout.desigh_jfjl_mx, mf_monList, context);
-                                    lv_query_jfmx.setAdapter(qtyAdapter);
-                                    qtyAdapter.notifyDataSetChanged();
-                                }
-                            }
-                            if(mxtj.equals("2")){
-                                mf_monList_tj = jf_all.getQueryResult();
-                                if (mf_monList_tj != null && mf_monList_tj.size() > 0) {
-
-
-                                    qtyAdapter_tj = new JfsQtyAdapterTj(R.layout.desigh_jfjl_mx, mf_monList_tj, context);
-                                    lv_query_jfmx.setAdapter(qtyAdapter_tj);
-                                    qtyAdapter_tj.notifyDataSetChanged();
-                                }
-                            }
-
-
+                            Toast.makeText(context, "无数据", Toast.LENGTH_LONG).show();
                         }
                     });
                 }
-
-
             }
-
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -307,6 +329,487 @@ public class DesignerJlMxActivity extends Activity implements View.OnClickListen
 
 
         });
+    }
+    private ArrayList<String> listvipids;
+    private ArrayList<String> listjflxs;
+    private ArrayList<String> listvipids_name;
+    private ArrayList<String> listjflxs_name;
+    private ArrayList<String> listbzs;
+    private ArrayList<String> listdhs;
+    String sub_id, sub_lx;
+    private JfsQtyAdapterName qtyAdapter_name;
+    private JfsQtyAdapterNameTj qtyAdapter_nametj;
+    private List<SjsJf> data_all_sjslx;
+    String url_dh_toname = URLS.design_toname;
+    String url_dh_toname_jflx = URLS.design_toname_jf;
+    private void get_newInfo() {
+        listvipids = new ArrayList<String>();
+        listjflxs = new ArrayList<String>();
+        listbzs = new ArrayList<String>();
+        listdhs = new ArrayList<String>();
+
+//        listAll = new ArrayList<String>();
+        if(mxtj.equals("1")){
+
+            for (int i = 0; i < mf_monList.size(); i++) {
+                String s_bz = mf_monList.get(i).getRem().toString();
+                listbzs.add(s_bz);
+                String s_dh = mf_monList.get(i).getVp_No().toString();
+                listdhs.add(s_dh);
+                String str_vipid = mf_monList.get(i).getDepco_Vip().getVip_NO().toString();
+                listvipids.add(str_vipid);
+                String str_jflx = mf_monList.get(i).getPoints_Type().toString();
+                listjflxs.add(str_jflx);
+
+            }
+        }
+        if(mxtj.equals("2")){
+
+            for (int i = 0; i < mf_monList_tj.size(); i++) {
+                String s_bz = mf_monList_tj.get(i).getItem_Name().toString();
+                listbzs.add(s_bz);
+//                String s_dh = mf_monList_tj.get(i).getVp_No().toString();
+//                listdhs.add(s_dh);
+                String str_vipid = mf_monList_tj.get(i).getDepco_Vip().getVip_NO().toString();
+                listvipids.add(str_vipid);
+                String str_jflx = mf_monList_tj.get(i).getPoints_Type().toString();
+                listjflxs.add(str_jflx);
+
+            }
+        }
+
+        String ids_str = "";
+        for (String name : listvipids) {
+            ids_str += name + ",";
+        }
+        sub_id = ids_str.substring(0,
+                ids_str.length() - 1);
+        String lxs_str = "";
+        for (String name : listjflxs) {
+            lxs_str += name + ",";
+        }
+        sub_lx = lxs_str.substring(0,
+                lxs_str.length() - 1);
+        Log.e("LiNing", "时间===集合数据=====" + sub_id + "-----" + sub_lx);
+        if (sub_id != null && sub_lx != null) {
+            data_all_sjslx = new ArrayList<SjsJf>();
+            listvipids_name = new ArrayList<String>();
+            listjflxs_name = new ArrayList<String>();
+            OkHttpClient client = new OkHttpClient();
+            FormBody body = new FormBody.Builder().add("accountNo", jlmx_sszt.getText().toString())
+                    .add("id", sub_id).build();
+            Request request = new Request.Builder()
+                    .addHeader("cookie", session).url(url_dh_toname).post(body)
+                    .build();
+            Call call = client.newCall(request);
+            call.enqueue(new Callback() {
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    String str = response.body().string();
+                    Log.e("LiNing", "查询数据==vip=" + str);
+                    final DepInfo dInfo = new Gson().fromJson(str,
+                            DepInfo.class);
+                    if (dInfo != null) {
+                        DesignerJlMxActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                List<DepInfo.IdNameList> idNameList = dInfo.getIdNameList();
+                                Log.e("LiNing", "查询数据==idNameList=" + idNameList);
+                                for (int m = 0; m < listvipids.size(); m++) {
+                                    String s_id = listvipids.get(m).toString();
+                                    Log.e("LiNing", "查询数据==vip=1" + s_id);
+                                    for (int n = 0; n < idNameList.size(); n++) {
+                                        String s_id_db = idNameList.get(n).getId().toString();
+                                        Log.e("LiNing", "查询数据==vip=2" + s_id_db);
+                                        if (s_id_db.equals(s_id)) {
+                                            listvipids_name.add(idNameList.get(n).getName().toString());
+                                            Log.e("LiNing", "查询数据==vip=name" + idNameList.get(n).getName().toString());
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onFailure(Call call, IOException e) {
+
+                }
+            });
+            OkHttpClient client_jflx = new OkHttpClient();
+            FormBody body_jflx = new FormBody.Builder().add("accountNo", jlmx_sszt.getText().toString())
+                    .add("id", sub_lx).build();
+            Request request_jflx = new Request.Builder()
+                    .addHeader("cookie", session).url(url_dh_toname_jflx).post(body_jflx)
+                    .build();
+            Call call_jflx = client_jflx.newCall(request_jflx);
+            call_jflx.enqueue(new Callback() {
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    String str = response.body().string();
+                    Log.e("LiNing", "查询数据==lx=" + str);
+                    final DepInfo dInfo = new Gson().fromJson(str,
+                            DepInfo.class);
+                    if (dInfo != null) {
+                        DesignerJlMxActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                List<DepInfo.IdNameList> idNameList = dInfo.getIdNameList();
+                                for (int m = 0; m < listjflxs.size(); m++) {
+                                    String s_id = listjflxs.get(m).toString();
+                                    Log.e("LiNing", "查询数据==vip=1" + s_id);
+                                    for (int n = 0; n < idNameList.size(); n++) {
+                                        String s_id_db = idNameList.get(n).getId().toString();
+                                        Log.e("LiNing", "查询数据==vip=2" + s_id_db);
+                                        if (s_id_db.equals(s_id)) {
+                                            listjflxs_name.add(idNameList.get(n).getName().toString());
+                                            Log.e("LiNing", "查询数据==vip=name" + idNameList.get(n).getName().toString());
+                                        }
+                                    }
+                                }
+
+                            }
+                        });
+                    }
+                    Log.e("LiNing", "查询数据==vip=" + listvipids_name + listdhs + listbzs + listjflxs_name+listvipids);
+                    if (listjflxs_name.size() > 0 && listvipids_name.size() > 0 && listbzs.size() > 0) {
+
+                        if(mxtj.equals("1")){
+
+                            for (int k = 0; k < mf_monList.size(); k++) {
+
+                                SjsJf sjsJf = new SjsJf(listdhs.get(k).toString(), listjflxs_name.get(k).toString(), listvipids_name.get(k).toString(),
+                                        listbzs.get(k).toString());
+                                data_all_sjslx.add(sjsJf);
+                            }
+                        }
+                        if(mxtj.equals("2")){
+                            for (int k = 0; k < mf_monList_tj.size(); k++) {
+                                SjsJf sjsJf = new SjsJf(listvipids.get(k).toString(), listjflxs_name.get(k).toString(),listvipids_name.get(k).toString(),
+                                        listbzs.get(k).toString());
+                                data_all_sjslx.add(sjsJf);
+                            }
+                        }
+
+                    }
+                    Log.e("LiNing", "data_all_sjslx====" + data_all_sjslx);
+                    if (data_all_sjslx != null && data_all_sjslx.size() > 0) {
+                        if(mxtj.equals("1")){
+
+                            DesignerJlMxActivity.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    qtyAdapter_name = new JfsQtyAdapterName(mxtj,R.layout.sjsjl_head, data_all_sjslx, context);
+                                    lv_query_jfmx.setAdapter(qtyAdapter_name);
+                                    qtyAdapter_name.notifyDataSetChanged();
+                                }
+                            });
+                        }
+                        if(mxtj.equals("2")){
+
+                            DesignerJlMxActivity.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    qtyAdapter_nametj = new JfsQtyAdapterNameTj(mxtj,R.layout.sjsjl_tj_head, data_all_sjslx, context);
+                                    lv_query_jfmx.setAdapter(qtyAdapter_nametj);
+                                    qtyAdapter_nametj.notifyDataSetChanged();
+                                }
+                            });
+                        }
+
+                    }
+//
+                }
+
+                @Override
+                public void onFailure(Call call, IOException e) {
+
+                }
+            });
+
+        } else {
+            Log.e("LiNing", "无数据====" + data_all_sjslx);
+        }
+
+    }
+    private void getname() {
+        if (sub_id != null && sub_lx != null) {
+
+            listvipids_name = new ArrayList<String>();
+            listjflxs_name = new ArrayList<String>();
+            OkHttpClient client = new OkHttpClient();
+            FormBody body = new FormBody.Builder().add("accountNo", jlmx_sszt.getText().toString())
+                    .add("id", sub_id).build();
+            Request request = new Request.Builder()
+                    .addHeader("cookie", session).url(url_dh_toname).post(body)
+                    .build();
+            Call call = client.newCall(request);
+            call.enqueue(new Callback() {
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    String str = response.body().string();
+                    Log.e("LiNing", "查询数据==vip=" + str);
+                    final DepInfo dInfo = new Gson().fromJson(str,
+                            DepInfo.class);
+                    if (dInfo != null) {
+                        DesignerJlMxActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                List<DepInfo.IdNameList> idNameList = dInfo.getIdNameList();
+                                Log.e("LiNing", "查询数据==idNameList=" + idNameList);
+                                for (int m = 0; m < listvipids.size(); m++) {
+                                    String s_id = listvipids.get(m).toString();
+                                    Log.e("LiNing", "查询数据==vip=1" + s_id);
+                                    for (int n = 0; n < idNameList.size(); n++) {
+                                        String s_id_db = idNameList.get(n).getId().toString();
+                                        Log.e("LiNing", "查询数据==vip=2" + s_id_db);
+                                        if (s_id_db.equals(s_id)) {
+                                            listvipids_name.add(idNameList.get(n).getName().toString());
+                                            Log.e("LiNing", "查询数据==vip=name" + idNameList.get(n).getName().toString());
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onFailure(Call call, IOException e) {
+
+                }
+            });
+            OkHttpClient client_jflx = new OkHttpClient();
+            FormBody body_jflx = new FormBody.Builder().add("accountNo", jlmx_sszt.getText().toString())
+                    .add("id", sub_lx).build();
+            Request request_jflx = new Request.Builder()
+                    .addHeader("cookie", session).url(url_dh_toname_jflx).post(body_jflx)
+                    .build();
+            Call call_jflx = client_jflx.newCall(request_jflx);
+            call_jflx.enqueue(new Callback() {
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    String str = response.body().string();
+                    Log.e("LiNing", "查询数据==lx=" + str);
+                    final DepInfo dInfo = new Gson().fromJson(str,
+                            DepInfo.class);
+                    if (dInfo != null) {
+                        DesignerJlMxActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                List<DepInfo.IdNameList> idNameList = dInfo.getIdNameList();
+                                for (int m = 0; m < listjflxs.size(); m++) {
+                                    String s_id = listjflxs.get(m).toString();
+                                    Log.e("LiNing", "查询数据==vip=1" + s_id);
+                                    for (int n = 0; n < idNameList.size(); n++) {
+                                        String s_id_db = idNameList.get(n).getId().toString();
+                                        Log.e("LiNing", "查询数据==vip=2" + s_id_db);
+                                        if (s_id_db.equals(s_id)) {
+                                            listjflxs_name.add(idNameList.get(n).getName().toString());
+                                            Log.e("LiNing", "查询数据==vip=name" + idNameList.get(n).getName().toString());
+                                        }
+                                    }
+                                }
+
+                            }
+                        });
+                    }
+                    Log.e("LiNing", "查询数据==vip=" + listvipids_name + listdhs + listbzs + listjflxs_name);
+                    if (listdhs.size() > 0 && listjflxs_name.size() > 0 && listvipids_name.size() > 0 && listbzs.size() > 0) {
+                        Log.e("LiNing", "查询数据==vip=" + listvipids_name + listdhs + listbzs + listjflxs_name);
+                        Log.e("LiNing", "查询数据==mf_monList=" + mf_monList.size() + listdhs.size() + listvipids_name.size()
+                                + listjflxs_name.size() + listbzs.size());
+                        data_all_sjslx = new ArrayList<SjsJf>();
+
+                        for (int k = 0; k < mf_monList.size(); k++) {
+                            SjsJf sjsJf = new SjsJf(listdhs.get(k).toString(), listjflxs_name.get(k).toString(), listvipids_name.get(k).toString(),
+                                    listbzs.get(k).toString());
+                            data_all_sjslx.add(sjsJf);
+                        }
+
+                    }
+                    Log.e("LiNing", "data_all_sjslx====" + data_all_sjslx);
+                    if (data_all_sjslx != null && data_all_sjslx.size() > 0) {
+
+                        DesignerJlMxActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                qtyAdapter_name = new JfsQtyAdapterName(mxtj,R.layout.sjsjl_head, data_all_sjslx, context);
+                                lv_query_jfmx.setAdapter(qtyAdapter_name);
+                                qtyAdapter_name.notifyDataSetChanged();
+                            }
+                        });
+
+                    }
+//
+                }
+
+                @Override
+                public void onFailure(Call call, IOException e) {
+
+                }
+            });
+
+        } else {
+            Log.e("LiNing", "无数据====" + data_all_sjslx);
+        }
+    }
+    public class JfsQtyAdapterName extends BaseAdapter {
+        int id_row_layout;
+        LayoutInflater mInflater;
+        List<SjsJf> skdqty_infos;
+        //item高亮显示
+        private int selectItem = -1;
+        String index_flag;
+
+
+        public void setSelectItem(int selectItem) {
+            this.selectItem = selectItem;
+        }
+
+        public JfsQtyAdapterName(String mxtj,int sjsjl_head, List<SjsJf> data_all_sjslx, Context context) {
+
+            this.index_flag=mxtj;
+            this.id_row_layout = sjsjl_head;
+            this.skdqty_infos = data_all_sjslx;
+            this.mInflater = LayoutInflater.from(context);
+        }
+
+        @Override
+        public int getCount() {
+            return skdqty_infos.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return skdqty_infos.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder;
+            if (convertView == null) {
+                convertView = mInflater.inflate(id_row_layout, null);
+                holder = new ViewHolder();
+                holder.jf_qty_jfdh = (TextView) convertView.findViewById(R.id.jfquy_jfdh);
+                holder.jf_qty_jflx = (TextView) convertView.findViewById(R.id.jfquy_jflx);
+                holder.jf_qty_jfrq = (TextView) convertView.findViewById(R.id.jfquy_rq);
+                holder.jf_qty_zdr = (TextView) convertView.findViewById(R.id.jfquy_zdr);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+            SjsJf sjsJf = skdqty_infos.get(position);
+//            if(index_flag.equals("1")){
+//
+//                holder.jf_qty_jfdh.setText(sjsJf.getJfdh().toString());
+//            }
+            holder.jf_qty_jfdh.setText(sjsJf.getJfdh().toString());
+            holder.jf_qty_jflx.setText(sjsJf.getJflx().toString());
+            holder.jf_qty_jfrq.setText(sjsJf.getSjsname().toString());
+            holder.jf_qty_zdr.setText(sjsJf.getBz().toString());
+            //操作修改，删除等
+            if (position == selectItem) {
+                convertView.setBackgroundColor(Color.RED);
+//                Log.e("LiNing", "id_type结果====" + id_itm);
+            } else {
+                convertView.setBackgroundColor(Color.TRANSPARENT);
+            }
+            return convertView;
+        }
+
+        class ViewHolder {
+
+            public TextView jf_qty_jfdh;
+            public TextView jf_qty_jflx;
+            public TextView jf_qty_jfrq;
+            public TextView jf_qty_zdr;
+            public TextView jf_qty_sjsdh;
+        }
+    }
+    public class JfsQtyAdapterNameTj extends BaseAdapter {
+        int id_row_layout;
+        LayoutInflater mInflater;
+        List<SjsJf> skdqty_infos;
+        //item高亮显示
+        private int selectItem = -1;
+        String index_flag;
+
+
+        public void setSelectItem(int selectItem) {
+            this.selectItem = selectItem;
+        }
+
+        public JfsQtyAdapterNameTj(String mxtj,int sjsjl_tj_head, List<SjsJf> data_all_sjslx, Context context) {
+
+            this.index_flag=mxtj;
+            this.id_row_layout = sjsjl_tj_head;
+            this.skdqty_infos = data_all_sjslx;
+            this.mInflater = LayoutInflater.from(context);
+        }
+
+        @Override
+        public int getCount() {
+            return skdqty_infos.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return skdqty_infos.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder;
+            if (convertView == null) {
+                convertView = mInflater.inflate(id_row_layout, null);
+                holder = new ViewHolder();
+                holder.jf_qty_jfdh = (TextView) convertView.findViewById(R.id.jfquy_jfdh);
+                holder.jf_qty_jflx = (TextView) convertView.findViewById(R.id.jfquy_jflx);
+                holder.jf_qty_jfrq = (TextView) convertView.findViewById(R.id.jfquy_rq);
+                holder.jf_qty_zdr = (TextView) convertView.findViewById(R.id.jfquy_zdr);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+            SjsJf sjsJf = skdqty_infos.get(position);
+//            if(index_flag.equals("1")){
+//
+//                holder.jf_qty_jfdh.setText(sjsJf.getJfdh().toString());
+//            }
+            holder.jf_qty_jfdh.setText(sjsJf.getJfdh().toString());
+            holder.jf_qty_jflx.setText(sjsJf.getJflx().toString());
+            holder.jf_qty_jfrq.setText(sjsJf.getSjsname().toString());
+            holder.jf_qty_zdr.setText(sjsJf.getBz().toString());
+            //操作修改，删除等
+            if (position == selectItem) {
+                convertView.setBackgroundColor(Color.RED);
+//                Log.e("LiNing", "id_type结果====" + id_itm);
+            } else {
+                convertView.setBackgroundColor(Color.TRANSPARENT);
+            }
+            return convertView;
+        }
+
+        class ViewHolder {
+
+            public TextView jf_qty_jfdh;
+            public TextView jf_qty_jflx;
+            public TextView jf_qty_jfrq;
+            public TextView jf_qty_zdr;
+            public TextView jf_qty_sjsdh;
+        }
     }
     public class JfsQtyAdapter extends BaseAdapter {
         int id_row_layout;
@@ -481,7 +984,9 @@ public class DesignerJlMxActivity extends Activity implements View.OnClickListen
         }
         comitmx_jflx = jlmx_jflx.getText().toString();
         if (comitmx_jflx.equals("")) {
-            comitmx_jflx = "null";
+            comitmx_jflx_tj = "null";
+        }else{
+            comitmx_jflx_tj=jf_id_hd;
         }
         comitmx_szmc = jlmx_szmc.getText().toString();
         if (comitmx_szmc.equals("")) {
@@ -556,8 +1061,22 @@ public class DesignerJlMxActivity extends Activity implements View.OnClickListen
                 if (resultCode == 1) {
                     jf_id_hd = data.getStringExtra("jf_ID");
                     String vip_name_hd = data.getStringExtra("jf_NAME");
-                    jlmx_jflx.setText(jf_id_hd);
+                    jlmx_jflx.setText(vip_name_hd);
                     Log.e("LiNing", "提交的id====" + jf_id_hd + vip_name_hd);
+                    if(jf_id_hd.equals("01")||jf_id_hd.equals("02")){
+                        jlmx_jabz.setText("否");
+                    }
+                    if(jf_id_hd.equals("03")){
+                        jlmx_jabz.setText("是");
+                    }
+                    if(jf_id_hd.equals("04")){
+                        jlmx_jabz.setText("否");
+                        jlmx_szmc.setText("抵扣");
+                    }
+                    if(jf_id_hd.equals("05")){
+                        jlmx_jabz.setText("是");
+                        jlmx_szmc.setText("不限");
+                    }
                 }
                 break;
             default:

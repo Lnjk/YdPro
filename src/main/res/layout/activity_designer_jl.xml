@@ -174,6 +174,7 @@
 
                 <EditText
                     android:id="@+id/et_designjl_szmc"
+                    android:hint="A-Z"
                     style="@style/design_editext" />
 
             </LinearLayout>
@@ -240,11 +241,35 @@
             style="@style/price_ll1"
             android:orientation="horizontal">
 
+
+            <LinearLayout style="@style/price_ll2">
+
+
+                <TextView
+                    style="@style/design_name"
+                    android:text="返利金额:" />
+
+                <EditText
+                    android:id="@+id/et_designjl_flje"
+                    android:singleLine="true"
+                    style="@style/design_editext" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View style="@style/price_view" />
+        <LinearLayout
+            style="@style/price_ll1"
+            android:orientation="horizontal">
+
             <LinearLayout style="@style/price_ll2">
 
                 <TextView
                     style="@style/design_name"
-                    android:text="积分变动:" />
+                    android:text="销售积分:" />
 
                 <EditText
                     android:id="@+id/et_designjl_jfbd"

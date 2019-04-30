@@ -706,10 +706,6 @@ public class CondicionInfoActivity extends Activity implements OnClickListener {
 					// getidtoName();
 				}
 
-				// query_Dep = user_Query.get(position).getQuery_Dep();
-				// query_Sup = user_Query.get(position).getQuery_Sup();
-				// query_Cust = user_Query.get(position).getQuery_Cust();
-				// query_User = user_Query.get(position).getQuery_User();
 				if (localViewHolder.cb.isChecked()) {
 
 					listStr.add(query_DB);
@@ -888,35 +884,6 @@ public class CondicionInfoActivity extends Activity implements OnClickListener {
 			break;
 		case R.id.c_cancel:
 			finish();
-			// if (flag == 1) {
-			// if (user_Query == null) {
-			// finish();
-			// } else {
-			//
-			// for (int i = 0; i < user_Query.size(); i++) {
-			// if (ConditionInfoAdapter.isSelected.get(i) == true) {
-			// ConditionInfoAdapter.isSelected.put(i, false);
-			// listStr.remove(user_Query.toArray()[i].toString());
-			// }
-			// }
-			// adapter.notifyDataSetChanged();
-			// }
-			// } else {
-			// if (depInfo == null) {
-			// finish();
-			// } else {
-			//
-			// for (int i = 0; i < depInfo.size(); i++) {
-			// if (SupInfoAdapter.isSelected.get(i) == true) {
-			// SupInfoAdapter.isSelected.put(i, false);
-			// // listStr.remove(depInfo.toArray()[i].toString());
-			// listStr.remove(depInfo.get(i).name);
-			// listIDs.remove(depInfo.get(i).id);
-			// }
-			// }
-			// adapter_all.notifyDataSetChanged();
-			// }
-			// }
 			break;
 
 		default:
@@ -1013,152 +980,6 @@ public class CondicionInfoActivity extends Activity implements OnClickListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-//			}
-			//此处通过id对应name
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_HF15")) {
-//
-//				viewHolder.name.setText("合肥15");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_HS15")) {
-//				
-//				viewHolder.name.setText("呼市15");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_JN17")) {
-//				
-//				viewHolder.name.setText("济南17");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_NJ15")) {
-//				
-//				viewHolder.name.setText("南京15");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_QD15")) {
-//				
-//				viewHolder.name.setText("青岛15");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_SJ15")) {
-//				
-//				viewHolder.name.setText("石家庄15");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_TY15")) {
-//				
-//				viewHolder.name.setText("太原15");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_SY15")) {
-//				
-//				viewHolder.name.setText("沈阳15");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_TJ15")) {
-//				
-//				viewHolder.name.setText("天津15");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_NJ18")) {
-//				
-//				viewHolder.name.setText("南京18");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_ZJ17")) {
-//				
-//				viewHolder.name.setText("张家口17");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_BJ15")) {
-//				
-//				viewHolder.name.setText("北京15");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_CQ16")) {
-//				
-//				viewHolder.name.setText("重庆16");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_BT15")) {
-//
-//				viewHolder.name.setText("包头15");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_BJ18")) {
-//
-//				viewHolder.name.setText("北京18");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_BT18")) {
-//
-//				viewHolder.name.setText("包头18");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_CD18")) {
-//				
-//				viewHolder.name.setText("成都18");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_CQ18")) {
-//				
-//				viewHolder.name.setText("重庆18");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_HF18")) {
-//				
-//				viewHolder.name.setText("合肥18");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_HS18")) {
-//				
-//				viewHolder.name.setText("呼市18");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_JN18")) {
-//				
-//				viewHolder.name.setText("济南18");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_NJ18")) {
-//				
-//				viewHolder.name.setText("南京18");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_QD18")) {
-//				
-//				viewHolder.name.setText("青岛18");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_SJ18")) {
-//				
-//				viewHolder.name.setText("石家庄18");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_SY18")) {
-//				
-//				viewHolder.name.setText("沈阳18");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_TJ18")) {
-//				
-//				viewHolder.name.setText("天津18");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_TY18")) {
-//				
-//				viewHolder.name.setText("太原18");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_ZZ18")) {
-//				
-//				viewHolder.name.setText("郑州18");
-//			}
-//			if (brandsList.get(position).getQuery_DB().toString()
-//					.equals("DB_DZ16")) {
-//				
-//				viewHolder.name.setText("定制16");
 //			}
 			if (selectPosition == position) {
 				viewHolder.select.setChecked(true);

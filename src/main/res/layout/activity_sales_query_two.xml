@@ -1,46 +1,41 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="@drawable/smallbk"
+    >
+<include layout="@layout/headall" />
+<LinearLayout
+    android:id="@+id/ll_tb_show"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/smallbk"
-     >
-
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <include layout="@layout/time" />
     <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:orientation="vertical" >
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-        <include layout="@layout/headall" />
-
-        <include layout="@layout/time" />
-        <LinearLayout
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="分类汇总否:" />
-            <TextView
-                android:id="@+id/tv_sfhz"
-                style="@style/design_editext"
-                android:text="否"/>
-            <ImageButton
-                android:id="@+id/ib_sfhz"
-                style="@style/price_button_down" />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:text="分类汇总否:" />
+        <TextView
+            android:id="@+id/tv_sfhz"
+            style="@style/design_editext"
+            android:text="否"/>
+        <ImageButton
+            android:id="@+id/ib_sfhz"
+            style="@style/price_button_down" />
     </LinearLayout>
-
+    <View style="@style/list_item_seperator_layout" />
     <LinearLayout
         android:id="@+id/ll_sale_project"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ll_saleNum"
         android:orientation="horizontal" >
 
         <Button
@@ -93,83 +88,258 @@
             android:text="返回"
             android:textSize="16sp" />
     </LinearLayout>
+</LinearLayout>
+<View style="@style/list_item_seperator_layout" />
+<LinearLayout
+    android:id="@+id/ll_head"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignLeft="@+id/ll_sale_project"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/sales_scrowHead"
+        layout="@layout/sale_info_all_test" />
+
+    <View style="@style/list_item_seperator_layout" />
+
+
+
+    <ListView
+        android:id="@+id/lv_saleGet_header"
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1.0"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/color_dark_grey"
+        android:dividerHeight="1.0dip"
+        android:fastScrollEnabled="true"
+        android:focusable="true"
+        android:listSelector="#ffff0000"
+        android:scrollingCache="true" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dip"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="3.0dip"
+        android:background="#ff808080" />
+</LinearLayout>
+
+<LinearLayout
+    android:id="@+id/ll_saleNum"
+    android:layout_width="fill_parent"
+    android:layout_height="30dp"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal"
+    android:visibility="gone" >
 
     <LinearLayout
-        android:id="@+id/ll_head"
-        android:layout_width="fill_parent"
+        android:layout_width="0.0dip"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ll_sale_project"
-        android:layout_below="@+id/ll_sale_project"
-        android:orientation="vertical" >
+        android:layout_weight="1.0"
+        android:orientation="horizontal" >
 
-        <include
-            android:id="@+id/sales_scrowHead"
-            layout="@layout/sale_info_all_test" />
-
-        <View style="@style/list_item_seperator_layout" />
-
-        
-
-        <ListView
-            android:id="@+id/lv_saleGet_header"
-            android:layout_width="fill_parent"
-            android:layout_height="0.0dip"
-            android:layout_weight="1.0"
-            android:cacheColorHint="#00000000"
-            android:divider="@color/color_dark_grey"
-            android:dividerHeight="1.0dip"
-            android:fastScrollEnabled="true"
-            android:focusable="true"
-            android:listSelector="#ffff0000"
-            android:scrollingCache="true" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="0.5dip"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_margin="3.0dip"
-            android:background="#ff808080" />
+            android:layout_marginLeft="2.0dip"
+            android:background="@android:color/transparent"
+            android:text="报表种类:"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_makeNum"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true" />
+
+        <ImageButton
+            android:id="@+id/ib_sale_getNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:src="@drawable/xialabuttons" />
     </LinearLayout>
+</LinearLayout>
+
+</LinearLayout>
+<!--
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@drawable/smallbk"
+    >
+
+<LinearLayout
+    android:id="@+id/linearLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:orientation="vertical" >
+
+    <include layout="@layout/headall" />
+
+    <include layout="@layout/time" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分类汇总否:" />
+        <TextView
+            android:id="@+id/tv_sfhz"
+            style="@style/design_editext"
+            android:text="否"/>
+        <ImageButton
+            android:id="@+id/ib_sfhz"
+            style="@style/price_button_down" />
+    </LinearLayout>
+</LinearLayout>
+
+<LinearLayout
+    android:id="@+id/ll_sale_project"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/ll_saleNum"
+    android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/btn_condition"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/button"
+        android:text="条件"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btn_out"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/button"
+        android:text="转出"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btn_print"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/button"
+        android:text="打印"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btn_making"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/button"
+        android:text="制表"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btn_back_zb"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/button"
+        android:text="返回"
+        android:textSize="16sp" />
+</LinearLayout>
+
+<LinearLayout
+    android:id="@+id/ll_head"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignLeft="@+id/ll_sale_project"
+    android:layout_below="@+id/ll_sale_project"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/sales_scrowHead"
+        layout="@layout/sale_info_all_test" />
+
+    <View style="@style/list_item_seperator_layout" />
+
+
+
+    <ListView
+        android:id="@+id/lv_saleGet_header"
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="1.0"
+        android:cacheColorHint="#00000000"
+        android:divider="@color/color_dark_grey"
+        android:dividerHeight="1.0dip"
+        android:fastScrollEnabled="true"
+        android:focusable="true"
+        android:listSelector="#ffff0000"
+        android:scrollingCache="true" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dip"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="3.0dip"
+        android:background="#ff808080" />
+</LinearLayout>
+
+<LinearLayout
+    android:id="@+id/ll_saleNum"
+    android:layout_width="fill_parent"
+    android:layout_height="30dp"
+    android:layout_below="@+id/linearLayout1"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal"
+    android:visibility="gone" >
 
     <LinearLayout
-        android:id="@+id/ll_saleNum"
-        android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:layout_below="@+id/linearLayout1"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:visibility="gone" >
+        android:layout_width="0.0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:orientation="horizontal" >
 
-        <LinearLayout
-            android:layout_width="0.0dip"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1.0"
-            android:orientation="horizontal" >
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="2.0dip"
+            android:background="@android:color/transparent"
+            android:text="报表种类:"
+            android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="2.0dip"
-                android:background="@android:color/transparent"
-                android:text="报表种类:"
-                android:textSize="16sp" />
+        <TextView
+            android:id="@+id/tv_makeNum"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true" />
 
-            <TextView
-                android:id="@+id/tv_makeNum"
-                android:layout_width="100dip"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:singleLine="true" />
-
-            <ImageButton
-                android:id="@+id/ib_sale_getNum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@android:color/transparent"
-                android:src="@drawable/xialabuttons" />
-        </LinearLayout>
+        <ImageButton
+            android:id="@+id/ib_sale_getNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:src="@drawable/xialabuttons" />
     </LinearLayout>
+</LinearLayout>
 
-</RelativeLayout>
+</RelativeLayout>-->

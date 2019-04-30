@@ -122,6 +122,7 @@
 
                 <EditText
                     android:id="@+id/et_designjlmx_szmc"
+                    android:hint="A-Z"
                     style="@style/design_editext" />
 
             </LinearLayout>
@@ -268,7 +269,12 @@
 
      <include
          android:id="@+id/designjlmx_head"
-         layout="@layout/desigh_jfjl_mx" />
+         layout="@layout/sjsjl_head"
+         />
+     <include
+         android:id="@+id/designjltj_head"
+         layout="@layout/sjsjl_tj_head"
+         />
 
     <!-- <View
          style="@style/list_item_seperator_layout"

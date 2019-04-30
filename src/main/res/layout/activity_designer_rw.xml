@@ -128,7 +128,7 @@
                 <TextView
                     android:id="@+id/tv_rwdh"
                     style="@style/design_name"
-                    android:text="自动获取" />
+                    android:hint="自动获取" />
 
 
             </LinearLayout>
@@ -139,7 +139,7 @@
                     style="@style/price_name"
                     android:text="身份证号:" />
 
-                <EditText
+                <TextView
                     android:id="@+id/et_designrw_usercard"
                     style="@style/design_editext"
                     android:maxLength="18" />
@@ -236,7 +236,7 @@
 
                 <TextView
                     style="@style/design_name"
-                    android:text="到期转可用:" />
+                    android:text="返利结案:" />
 
                 <TextView
                     android:id="@+id/et_designrw_dqzky"
@@ -288,7 +288,7 @@
     </LinearLayout>
     <!--</ScrollView>-->
 
-    <View
+    <!--<View
         style="@style/list_item_seperator_layout"
         android:layout_marginTop="2.0dip" />
 
@@ -301,11 +301,11 @@
         android:layout_marginTop="2.0dip" />
 
 
-    <!--<include
+    &lt;!&ndash;<include
         android:id="@+id/designrw_head_item"
         layout="@layout/designrw_dairy_item" />
 
-    <View style="@style/price_view" />-->
+    <View style="@style/price_view" />&ndash;&gt;
 
     <ListView
         android:id="@+id/lv_designrw_header"
@@ -320,7 +320,7 @@
         android:listSelector="#ffff0000"
         android:scrollingCache="true" />
 
-    <View style="@style/price_view" />
+    <View style="@style/price_view" />-->
 
 
 </LinearLayout>

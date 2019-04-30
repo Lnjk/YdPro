@@ -77,7 +77,13 @@ public class DesignerJfbActivity extends Activity implements View.OnClickListene
                     startActivity(new Intent(context, DesignerJlActivity.class));
                 } else {
                     //判断对应权限
-                    startActivity(new Intent(context, DesignerJlActivity.class));
+                    if (modIds_get.contains("skvpjj")) {
+
+                        startActivity(new Intent(context, DesignerJlActivity.class));
+                    } else {
+                        Toast.makeText(this.context, "请等待...", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
 
                 break;
@@ -89,10 +95,16 @@ public class DesignerJfbActivity extends Activity implements View.OnClickListene
                     intent.putExtra("MXTJ", "1");
                     startActivity(intent);
                 } else {
-                    //判断对应权限
-                    Intent intent = new Intent(context, DesignerJlMxActivity.class);
-                    intent.putExtra("MXTJ", "1");
-                    startActivity(intent);
+                    if (modIds_get.contains("skvpjbm")) {
+
+                        //判断对应权限
+                        Intent intent = new Intent(context, DesignerJlMxActivity.class);
+                        intent.putExtra("MXTJ", "1");
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(this.context, "请等待...", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
 
                 break;
@@ -103,10 +115,16 @@ public class DesignerJfbActivity extends Activity implements View.OnClickListene
                     intent.putExtra("MXTJ", "2");
                     startActivity(intent);
                 } else {
-                    //判断对应权限
-                    Intent intent = new Intent(context, DesignerJlMxActivity.class);
-                    intent.putExtra("MXTJ", "2");
-                    startActivity(intent);
+
+                    if (modIds_get.contains("skvpjbt")) {
+
+                        //判断对应权限
+                        Intent intent = new Intent(context, DesignerJlMxActivity.class);
+                        intent.putExtra("MXTJ", "2");
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(this.context, "请等待...", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
                 break;
@@ -148,6 +166,16 @@ public class DesignerJfbActivity extends Activity implements View.OnClickListene
                             modIds_get.add(mod_ID);
                             sp.edit().putString("modIds", "" + modIds_get)
                                     .commit();
+                            Boolean query = user_Mod.get(i).isMod_Query();//查询
+                            Boolean add = user_Mod.get(i).isMod_Add();//新增
+                            Boolean  del = user_Mod.get(i).isMod_Del();//删除
+                            Boolean alter = user_Mod.get(i).isMod_Alter();//更新
+                            Boolean  out = user_Mod.get(i).isMod_Out();//转出
+                            sp.edit().putString("USER_QUERY", "" + query).commit();
+                            sp.edit().putString("USER_ADD", "" + add).commit();
+                            sp.edit().putString("USER_DEL", "" + del).commit();
+                            sp.edit().putString("USER_OUT", "" + out).commit();
+                            sp.edit().putString("USER_UP", "" + alter).commit();
 
                         }
                     }

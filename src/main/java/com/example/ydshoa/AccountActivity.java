@@ -167,7 +167,7 @@ public class AccountActivity extends Activity implements OnClickListener {
 						Toast.makeText(mContext, "以上为全部信息", Toast.LENGTH_SHORT)
 								.show();
 					} else {
-						Toast.makeText(mContext, "无此权限", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, "请等待...", Toast.LENGTH_SHORT).show();
 					}
 				}
 				break;
@@ -179,7 +179,7 @@ public class AccountActivity extends Activity implements OnClickListener {
 					if (sp_add == true) {
 						insertAccount();// 新增
 					} else {
-						Toast.makeText(mContext, "无此权限", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, "请等待...", Toast.LENGTH_SHORT).show();
 					}
 				}
 				break;
@@ -221,7 +221,7 @@ public class AccountActivity extends Activity implements OnClickListener {
 												}
 											}).setNegativeButton("取消", null).show();
 						} else {
-							Toast.makeText(mContext, "无此权限", Toast.LENGTH_SHORT)
+							Toast.makeText(mContext, "请等待...", Toast.LENGTH_SHORT)
 									.show();
 						}
 					}
@@ -240,7 +240,7 @@ public class AccountActivity extends Activity implements OnClickListener {
 							Toast.makeText(mContext, "更改成功", Toast.LENGTH_SHORT)
 									.show();
 						} else {
-							Toast.makeText(mContext, "无此权限...", Toast.LENGTH_SHORT)
+							Toast.makeText(mContext, "请等待......", Toast.LENGTH_SHORT)
 									.show();
 						}
 					}

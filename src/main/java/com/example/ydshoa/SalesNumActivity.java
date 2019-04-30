@@ -135,7 +135,7 @@ public class SalesNumActivity extends Activity {
 						startActivity(intent);
 						adapter.notifyDataSetChanged();
 				}else{
-					Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+					Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
 				}
 
 			}

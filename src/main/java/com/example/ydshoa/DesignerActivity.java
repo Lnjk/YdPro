@@ -96,6 +96,7 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
     boolean ischeck_vip = false;//用于判断type_id是否点击
     String idtoname, idtoname_yw, idtoname_vip;
     private String url_idTocust = URLS.ERP_cust_url;
+
     private String url_employee = URLS.employee_url;
     DesighAdapter_content adapter_content;
     private int flag;
@@ -325,12 +326,12 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                         sAdapter.notifyDataSetChanged();
                     }
                     do_design = 1;
-                    dbr.setEnabled(false);
                     shyh.setEnabled(false);
+                    shyh.setFocusable(true);
                     sfqy.setText("未审核");
                     ib_sfqy.setEnabled(false);
                 }else{
-                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
             }
 
                 break;
@@ -395,7 +396,7 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                         Toast.makeText(context, "数据不完整", Toast.LENGTH_LONG).show();
                     }
                 }else{
-                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                 }
 
 
@@ -410,7 +411,8 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                         Log.e("LiNing", "lv_vip大小===" + lv_vip.getCount());
                         vipcard.setEnabled(false);
                         ztbtn.setEnabled(false);
-                        dbr.setEnabled(false);
+                        shyh.setEnabled(false);
+                        shyh.setFocusable(true);
                         ib_sfqy.setEnabled(true);
                         sfqy.setText("未审核");
                         do_design_set = 1;
@@ -420,7 +422,7 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                         Toast.makeText(context, "数据不完整", Toast.LENGTH_LONG).show();
                     }
                 }else{
-                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                 }
 
 
@@ -436,10 +438,11 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                         user_dep = sp.getString("USER_DEPBM", "");
                         Intent intent_vip = new Intent(context, QueryDesigActivity.class);
                         intent_vip.putExtra("ZT_VIP", zt.getText().toString());
+                        intent_vip.putExtra("CUST_DO", "10");
                         startActivityForResult(intent_vip, 11);
                     }
                 }else{
-                    Toast.makeText(context, "无此权限", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
                 }
 
                 break;
@@ -728,9 +731,9 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
         bbyw.setText("");
         yhkh.setText("");
         khyh.setText("");
-        dbr.setText("");
+//        dbr.setText("");
         zdyh.setText(user_Name);
-        shyh.setText("");
+//        shyh.setText("");
 
     }
 
@@ -853,7 +856,8 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                     }
                     if (vipList_hd.getType_Id() != null) {
                         idtoname_vip = vipList_hd.getType_Id().toString();
-                        viplb.setText(vipList_hd.getType_Id());
+                        viplb.setText(idtoname_vip);
+
                     } else {
                         viplb.setText("null");
                     }
@@ -994,68 +998,6 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
 
                         adapter_content = new DesighAdapter_content(R.layout.design_log, alteList,context);
                         lv_vip.setAdapter(adapter_content);
-//                        synchronized (DesignerActivity.this) {
-//                            MyHScrollView scrollView1 = (MyHScrollView) findViewById(R.id.horizontalScrollView1);
-//                            this.alteList = vipList_hd.getAlteList();
-//                            Log.e("LiNing", "----1----more--" + this.alteList);
-//                            if (this.alteList.size() == 1) {
-//                                item = new HashMap<String, Object>();
-//                                item.put("序号", this.alteList.get(0).getITM());
-//                                item.put("VIP卡号", this.alteList.get(0).getVip_No());
-//                                item.put("执行动作", this.alteList.get(0).getAction());
-//                                SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-//                                try {
-//                                    Date parse = sf1.parse(this.alteList.get(0).getAlte_DD().toString());
-//                                    String format = new SimpleDateFormat("yyyy-MM-dd").format(parse);
-//                                    Log.e("LiNing", "时间====xin=====" + format);
-//                                    item.put("变更日期", format);
-//                                } catch (ParseException e) {
-//                                    e.printStackTrace();
-//                                }
-//                                item.put("变更内容", this.alteList.get(0).getAlte_Cont());
-//                                item.put("变更用户", this.alteList.get(0).getUser_no());
-//                                Log.e("LiNing", "----1------" + item);
-//                                dList.add(item);
-//                                sAdapter.notifyDataSetChanged();
-//                                Log.e("LiNing", "----1------" + dList);
-//                            } else if (this.alteList.size() > 1) {
-//                                for (int i = 0; i < this.alteList.size(); i++) {
-//                                    item = new HashMap<String, Object>();
-//                                    item.put("序号", this.alteList.get(i).getITM());
-//                                    item.put("VIP卡号", this.alteList.get(i).getVip_No());
-//                                    item.put("执行动作", this.alteList.get(i).getAction());
-//                                    SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-//                                    try {
-//                                        Date parse = sf1.parse(this.alteList.get(i).getAlte_DD().toString());
-//                                        String format = new SimpleDateFormat("yyyy-MM-dd").format(parse);
-//                                        Log.e("LiNing", "时间====xin=====" + format);
-//                                        item.put("变更日期", format);
-//                                    } catch (ParseException e) {
-//                                        e.printStackTrace();
-//                                    }
-//                                    item.put("变更内容", this.alteList.get(i).getAlte_Cont());
-//                                    item.put("变更用户", this.alteList.get(i).getUser_no());
-//                                    Log.e("LiNing", "----more------" + item);
-//                                    dList.add(item);
-//                                }
-//                                sAdapter.notifyDataSetChanged();
-//                                Log.e("LiNing", "----more---list---" + dList);
-//                            } else {
-//                                item = new HashMap<String, Object>();
-//                                item.put("序号", "");
-//                                item.put("VIP卡号", "");
-//                                item.put("执行动作", "");
-//                                item.put("变更日期", "");
-//                                item.put("变更内容", "");
-//                                item.put("变更用户", "");
-//                                Log.e("LiNing", "----无------" + item);
-//                                dList.add(item);
-//                                sAdapter.notifyDataSetChanged();
-//                            }
-//                            MyHScrollView headSrcrollView = (MyHScrollView) mHead.findViewById(R.id.horizontalScrollView1);
-//                            headSrcrollView.AddOnScrollChangedListener(new OnScrollChangedListenerImp(
-//                                    scrollView1));
-//                        }
 
                     }
                 }

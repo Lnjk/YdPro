@@ -120,6 +120,8 @@ public class JfClassActivity extends Activity implements View.OnClickListener {
                 intent_jf.putExtra("ZT_VIP", DB);
                 startActivity(intent_jf);
                 break;
+                default:
+                    break;
         }
     }
     //模糊查询

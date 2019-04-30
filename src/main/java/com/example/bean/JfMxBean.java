@@ -56,6 +56,7 @@ public class JfMxBean {
         ShowRow = showRow;
     }
     public class Data {
+        private String amtn;
         private String chk_No;
 
         private String cls_Id;
@@ -77,6 +78,14 @@ public class JfMxBean {
         private String usr_No;
 
         private String vp_No;
+
+        public String getAmtn() {
+            return amtn;
+        }
+
+        public void setAmtn(String amtn) {
+            this.amtn = amtn;
+        }
 
         public String getChk_No() {
             return chk_No;

@@ -5,6 +5,8 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -56,7 +58,7 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
     public String session;
     private SharedPreferences sp;
     private Button tb_all_zl, tb_all_zc, tb_all_dy, tb_all_jz, tb_sx_one, tb_sx_two, tb_dq_kstime, tb_db_kstime, tb_dq_jstime, tb_db_jstime;
-    private ImageButton tb_zt_dq_xl, tb_zt_db_xl;
+    private ImageButton tb_zt_dq_xl, tb_zt_db_xl,tj_head_show;
     private TextView head_tb, tb_db_dq, tb_db_db, tb_zl_name_dq, tb_zt_name_dq, tb_zl_name_db, tb_zt_name_db;
     int checked,gjss_num,ischeck_gj;
     String reportnos_qx,reportnos, str_id, str_name,str_id_db, str_name_db, hq_kssj_dq, hq_jssj_dq, hq_kssj_db, hq_jssj_db;
@@ -81,7 +83,7 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
     private HashMap<String, Object> item;
     private String ps_id,db_ID,mod_ID;
     private List<com.example.bean.UserInfo.User_Mod> user_Mod;
-    LinearLayout mHead;
+    LinearLayout mHead,tj_head_hint;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,10 +98,13 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
 
     private void initView() {
         head_tb = (TextView) findViewById(R.id.all_head);
+        tj_head_show = (ImageButton) findViewById(R.id.ib_nulladd);
+        tj_head_hint = (LinearLayout) findViewById(R.id.ll_tb_show);
         mHead = (LinearLayout) findViewById(R.id.sales_scrowHead);
         mHead.setFocusable(true);
         mHead.setClickable(true);
         mHead.setOnTouchListener(new ListViewAndHeadViewTouchLinstener());
+
         tb_all_zl = (Button) findViewById(R.id.tb_btn_condition_zl);//种类
         tb_all_zc = (Button) findViewById(R.id.tb_btn_out);//转出
         tb_all_dy = (Button) findViewById(R.id.tb_btn_print);//打印
@@ -131,8 +136,21 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
         tb_db_kstime.setOnClickListener(this);
         tb_db_jstime.setOnClickListener(this);
         lv_get_one = (ListView) findViewById(R.id.tb_dbzt_lv_one);
+        lv_get_one.setOnTouchListener(new ListViewAndHeadViewTouchLinstener());
 //        lv_get_db = (ListView) findViewById(R.id.tb_dbzt_lv);
         dList = new ArrayList();
+        tj_head_show.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(tj_head_hint.isShown()){
+                    tj_head_hint.setVisibility(View.GONE);
+                }else{
+                    tj_head_hint.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
     }
 
     // 表头滑动事件
@@ -454,7 +472,7 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
             beforPost();
         } else {
             postNull();
-            Toast.makeText(context, "数据不能为空", Toast.LENGTH_LONG).show();
+//            Toast.makeText(context, "数据不能为空", Toast.LENGTH_LONG).show();
             // 空数据就是全部。。。
         }
     }
@@ -1640,6 +1658,10 @@ public class TbSalesActivity extends Activity implements View.OnClickListener {
         sfadapter_db = new SalesInfoDbAdapter(R.layout.tb_one_listview_team, context, tb_data1, reportnos);
         lv_get_one.setAdapter(sfadapter_db);
         sfadapter_db.notifyDataSetChanged();
+        if(lv_get_one.getCount()>0){
+            tj_head_hint.setVisibility(View.GONE);
+            tj_head_show.setVisibility(View.VISIBLE);
+        }
     }
 
 

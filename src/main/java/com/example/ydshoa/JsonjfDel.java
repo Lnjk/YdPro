@@ -5,13 +5,13 @@ package com.example.ydshoa;
  */
 
 public class JsonjfDel {
-    private boolean delResult;
+    private boolean addResult;
 
     public boolean isDelResult() {
-        return delResult;
+        return addResult;
     }
 
-    public void setDelResult(boolean delResult) {
-        this.delResult = delResult;
+    public void setDelResult(boolean addResult) {
+        this.addResult = addResult;
     }
 }

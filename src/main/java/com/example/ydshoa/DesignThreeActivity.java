@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bean.URLS;
 import com.example.bean.UserInfo;
@@ -50,13 +51,23 @@ public class DesignThreeActivity extends Activity implements View.OnClickListene
         context = DesignThreeActivity.this;
         sp = getSharedPreferences("ydbg", 0);
         session = sp.getString("SESSION", "");
-        ps_id = sp.getString("PASS", "");
+//        ps_id = sp.getString("PASS", "");
+        pass2 = Integer.valueOf(sp.getString("PASS", ""));
+        String modIds = sp.getString("modIds", "");
+        String substring = modIds.substring(1, modIds.length() - 1);
+        String[] db_spls = substring.split(",");
+        for (int i = 0; i < db_spls.length; i++) {
+            String A = db_spls[i];
+            modIds_get.add(A);
+        }
+        Log.e("LiNing", "===A==" +pass2+ modIds_get.size()+modIds_get);
         initView();
-        getRoot();
+
+//        getRoot();
     }
     private void initView() {
         head = (TextView) findViewById(R.id.all_head);
-        head.setText("设计师管理");
+        head.setText("会员管理");
         jf_jl = (ImageButton) findViewById(R.id.btn_vip_jlb);
         jf_rw = (ImageButton) findViewById(R.id.btn_vip_rwb);
         jf_dh = (ImageButton) findViewById(R.id.btn_vip_dhb);
@@ -74,7 +85,13 @@ public class DesignThreeActivity extends Activity implements View.OnClickListene
                     startActivity(new Intent(context, DesignerActivity.class));
                 } else {
                     //判断对应权限
-                    startActivity(new Intent(context, DesignerActivity.class));
+                    if (modIds_get.contains("skvphj")) {
+
+                        startActivity(new Intent(context, DesignerActivity.class));
+                    } else {
+                        Toast.makeText(this.context, "请等待...", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
 
                 break;
@@ -136,6 +153,16 @@ public class DesignThreeActivity extends Activity implements View.OnClickListene
                             modIds_get.add(mod_ID);
                             sp.edit().putString("modIds", "" + modIds_get)
                                     .commit();
+                            Boolean query = user_Mod.get(i).isMod_Query();//查询
+                            Boolean add = user_Mod.get(i).isMod_Add();//新增
+                            Boolean  del = user_Mod.get(i).isMod_Del();//删除
+                            Boolean alter = user_Mod.get(i).isMod_Alter();//更新
+                            Boolean  out = user_Mod.get(i).isMod_Out();//转出
+                            sp.edit().putString("USER_QUERY", "" + query).commit();
+                            sp.edit().putString("USER_ADD", "" + add).commit();
+                            sp.edit().putString("USER_DEL", "" + del).commit();
+                            sp.edit().putString("USER_OUT", "" + out).commit();
+                            sp.edit().putString("USER_UP", "" + alter).commit();
 
                         }
                     }

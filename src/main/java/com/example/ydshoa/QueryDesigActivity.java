@@ -50,7 +50,7 @@ import okhttp3.Response;
 public class QueryDesigActivity extends Activity implements View.OnClickListener {
     private Context context;
     private SharedPreferences sp;
-    private String session, user_Name, user_dep, query_db,cust_do;
+    private String session, user_Name, user_dep, query_db,cust_do,all_infos;
     RelativeLayout mHead;
     private TextView head, viplb, bbqd, bbyw, sfqy;
     private EditText sfzh, vipname, zym, lxdh, lxdh2, ssdw, yhkh, khyh, dbr, shyh, vipcard, zdyh;
@@ -429,21 +429,43 @@ public class QueryDesigActivity extends Activity implements View.OnClickListener
                 holder = (ViewHolder) convertView.getTag();
             }
             DesignAllInfos.VipList vipList = data_adp.get(position);
-            holder.design_checkboxid.setText(vipList.getVip_Name());
-            holder.design_vipno.setText(vipList.getVip_NO());
-            holder.design_action.setText(vipList.getCon_Tel());
+            if(cust_do.equals("10")){
+                holder.design_checkboxid.setText(vipList.getVip_Name());
+                holder.design_vipno.setText(vipList.getVip_NO());
+                holder.design_action.setText(vipList.getCon_Tel());
 //            holder.design_altedd.setText(vipList.getCard_Num());
-            holder.design_altedd.setText(vipList.getComp());
-            String stat = vipList.getStat();
-            if(stat.equals("1")){
-                holder.stat.setText("启用");
+                holder.design_altedd.setText(vipList.getComp());
+                String stat = vipList.getStat();
+                if(stat.equals("1")){
+                    holder.stat.setText("启用");
+                }
+                if(stat.equals("2")){
+                    holder.stat.setText("停用");
+                }
+                if(stat.equals("3")){
+                    holder.stat.setText("未审核");
+                }
+            }else{
+                if(vipList.getStat().equals("1")){
+                    holder.design_checkboxid.setText(vipList.getVip_Name());
+                    holder.design_vipno.setText(vipList.getVip_NO());
+                    holder.design_action.setText(vipList.getCon_Tel());
+//            holder.design_altedd.setText(vipList.getCard_Num());
+                    holder.design_altedd.setText(vipList.getComp());
+                    String stat = vipList.getStat();
+                    if(stat.equals("1")){
+                        holder.stat.setText("启用");
+                    }
+                    if(stat.equals("2")){
+                        holder.stat.setText("停用");
+                    }
+                    if(stat.equals("3")){
+                        holder.stat.setText("未审核");
+                    }
+
+                }
             }
-            if(stat.equals("2")){
-                holder.stat.setText("停用");
-            }
-            if(stat.equals("3")){
-                holder.stat.setText("未审核");
-            }
+
 
 //            if(vipList.getAlteList()!=null&&vipList.getAlteList().size()>0){
 //                String id_itm = vipList.getAlteList().get(0).getITM();
