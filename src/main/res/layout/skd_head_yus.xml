@@ -73,6 +73,12 @@
                     android:text="预收单号" />
 
                 <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_skdmx_djrq"
+                    style="@style/head_scrow"
+                    android:text="预收日期" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
 
                 <TextView
                     android:id="@+id/tv_skdmx_ysse"
@@ -97,6 +103,12 @@
                     android:id="@+id/tv_skdmx_bccx"
                     style="@style/head_scrow"
                     android:text="本次冲销" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_skdmx_bzsm"
+                    style="@style/head_scrow"
+                    android:text="备注" />
 
                 <View style="@style/list_item_cell_seperator_layout" />
 

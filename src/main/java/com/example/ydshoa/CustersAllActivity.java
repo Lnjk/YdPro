@@ -1294,7 +1294,6 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                         || menuItem.getItemId() == R.id.check6_khly
                         || menuItem.getItemId() == R.id.check7_khly
                         || menuItem.getItemId() == R.id.check8_khly
-                        || menuItem.getItemId() == R.id.check9_khly
                         ) {
                     menuItem.setChecked(!menuItem.isChecked());
                     cust_tv_khly.setText(menuItem.getTitle());

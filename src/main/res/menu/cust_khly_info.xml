@@ -14,21 +14,18 @@
             android:title="媒体"/>
         <item
             android:id="@+id/check4_khly"
-            android:title="网络"/>
-        <item
-            android:id="@+id/check5_khly"
             android:title="自然客流"/>
         <item
-            android:id="@+id/check6_khly"
+            android:id="@+id/check5_khly"
             android:title="社会关系"/>
         <item
-            android:id="@+id/check7_khly"
+            android:id="@+id/check6_khly"
             android:title="外单位"/>
         <item
-            android:id="@+id/check8_khly"
+            android:id="@+id/check7_khly"
             android:title="合作单位"/>
         <item
-            android:id="@+id/check9_khly"
+            android:id="@+id/check8_khly"
             android:title="其他"/>
     </group>
 

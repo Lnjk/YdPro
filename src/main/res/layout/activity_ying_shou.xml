@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_touch_skd_all"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/smallbk"
+    android:orientation="vertical">
+
+    <include layout="@layout/head_cust_gz" />
+
+
+
+
+    <include
+        android:id="@+id/skdmx_head_yings"
+        layout="@layout/skd_head_yings" />
+
+    <View style="@style/list_item_seperator_layout" />
+
+
+    <ListView
+        android:id="@+id/lv_skd_header_yings"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:cacheColorHint="#00000000"
+        android:dividerHeight="1.0dip"
+        android:drawSelectorOnTop="true"
+        android:fastScrollEnabled="true"
+        android:focusable="true"
+        android:listSelector="#00000000"
+        android:scrollingCache="true" />
+
+    <View
+        style="@style/list_item_seperator_layout"
+        android:layout_marginTop="2.0dip" />
+
+    <Button
+        android:id="@+id/btn_skd_yings_qd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:onClick="yingsclick"
+        android:text="确定"/>
+
+
+</LinearLayout>

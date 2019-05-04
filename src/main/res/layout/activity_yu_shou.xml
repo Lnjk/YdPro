@@ -22,7 +22,8 @@
     <ListView
         android:id="@+id/lv_skd_header_yus"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:cacheColorHint="#00000000"
         android:dividerHeight="1.0dip"
         android:drawSelectorOnTop="true"
@@ -35,7 +36,13 @@
         style="@style/list_item_seperator_layout"
         android:layout_marginTop="2.0dip" />
 
-
+<Button
+    android:id="@+id/btn_skd_yus_qd"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/button"
+    android:onClick="yusclick"
+    android:text="确定"/>
 
 
 </LinearLayout>

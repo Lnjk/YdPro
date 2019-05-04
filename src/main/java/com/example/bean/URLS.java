@@ -111,6 +111,9 @@ public class URLS {
     // 货品库区（"http://192.168.2.178:8080/InfManagePlatform/QueryErpInfqueryprdWh.action"）
     public static final String prdWh = base_url
             + "/InfManagePlatform/QueryErpInfqueryprdWh.action";
+    // 客户编号获取name（"http://192.168.2.178:8080/InfManagePlatform/QueryErpInfqueryInfCust.action"）
+    public static final String id_Custbh = base_url
+            + "/InfManagePlatform/QueryErpInfqueryInfCust.action";
 
 //
 

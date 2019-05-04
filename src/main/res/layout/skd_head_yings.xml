@@ -8,10 +8,25 @@
     android:orientation="horizontal"
     android:padding="5.0dip">
 
+    <CheckBox
+        android:id="@+id/skdmx_yings_xz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+         />
+
+    <View
+        android:id="@+id/first_line_xz"
+        android:layout_width="1dp"
+        android:layout_height="25dp"
+        android:layout_toRightOf="@+id/skdmx_yings_xz"
+        android:background="@color/color_dark_grey" />
     <TextView
         android:id="@+id/skdmx_yings_xh"
         style="@style/head_scrow"
         android:gravity="center"
+        android:layout_toRightOf="@+id/first_line_xz"
         android:text="序号" />
 
     <View
@@ -121,10 +136,6 @@
                     style="@style/head_scrow"
                     android:text="备注" />
                 <View style="@style/list_item_cell_seperator_layout" />
-
-
-
-
 
             </LinearLayout>
         </com.example.LeftOrRight.MyHScrollView>

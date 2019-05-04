@@ -181,10 +181,6 @@
 
                 <LinearLayout style="@style/price_ll2">
 
-                    <TextView
-                        style="@style/price_name"
-                        android:text="*"
-                        android:textColor="@color/color_red" />
 
                     <TextView
                         style="@style/design_name"
@@ -198,10 +194,6 @@
 
                 <LinearLayout style="@style/price_ll2">
 
-                    <TextView
-                        style="@style/price_name"
-                        android:text="*"
-                        android:textColor="@color/color_red" />
 
                     <TextView
                         style="@style/price_name"
@@ -323,11 +315,6 @@
                 <LinearLayout style="@style/price_ll2">
 
                     <TextView
-                        style="@style/price_name"
-                        android:text="*"
-                        android:textColor="@color/color_red" />
-
-                    <TextView
                         style="@style/design_name"
                         android:text="备注信息:" />
 
@@ -409,17 +396,13 @@
 
                 <LinearLayout style="@style/price_ll2">
 
-                    <TextView
-                        style="@style/price_name"
-                        android:text="*"
-                        android:textColor="@color/color_red" />
 
                     <TextView
 
                         style="@style/price_name"
                         android:text="其他金额:" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/et_skd_qtje"
                         style="@style/design_editext" />
 
@@ -438,10 +421,6 @@
 
                 <LinearLayout style="@style/price_ll2">
 
-                    <TextView
-                        style="@style/price_name"
-                        android:text="*"
-                        android:textColor="@color/color_red" />
 
                     <TextView
 
@@ -459,10 +438,6 @@
 
                 <LinearLayout style="@style/price_ll2">
 
-                    <TextView
-                        style="@style/price_name"
-                        android:text="*"
-                        android:textColor="@color/color_red" />
 
                     <TextView
 
@@ -475,7 +450,7 @@
                         style="@style/design_editext"
                         android:maxLength="10"
                         android:hint="点击获取"
-                        android:text="123456789"/>
+                        android:text="0"/>
 
 
                 </LinearLayout>
@@ -529,7 +504,8 @@
             android:id="@+id/tv_bchj_yuc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="提取金额" />
+            android:singleLine="true"
+            android:hint="提取金额（amtn_IRP）" />
 
     </LinearLayout>
 </LinearLayout>
@@ -635,7 +611,8 @@
                     <TextView
                         android:id="@+id/tv_hj_cske"
                         style="@style/design_name"
-                        android:hint="收+预取" />
+                        android:singleLine="true"
+                        android:hint="收+预取(amtn_ARP)" />
 
 
                 </LinearLayout>
@@ -650,7 +627,8 @@
                     <TextView
                         android:id="@+id/tv_hj_cyingse"
                         style="@style/design_editext"
-                        android:hint="应收取" />
+                        android:singleLine="true"
+                        android:hint="应收取(amtn_cls)" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -672,7 +650,8 @@
                     <TextView
                         android:id="@+id/tv_hj_skje"
                         style="@style/design_name"
-                        android:hint="sum" />
+                        android:singleLine="true"
+                        android:hint="sum(合计现银票其)" />
 
 
                 </LinearLayout>
@@ -687,7 +666,8 @@
                     <TextView
                         android:id="@+id/tv_hj_cyuse"
                         style="@style/design_editext"
-                        android:hint="预收取" />
+                        android:singleLine="true"
+                        android:hint="预收取(amtn_IRP)" />
 
                 </LinearLayout>
             </LinearLayout>

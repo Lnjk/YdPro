@@ -820,7 +820,6 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                         || menuItem.getItemId() == R.id.check6_khly
                         || menuItem.getItemId() == R.id.check7_khly
                         || menuItem.getItemId() == R.id.check8_khly
-                        || menuItem.getItemId() == R.id.check9_khly
                         ) {
                     menuItem.setChecked(!menuItem.isChecked());
                     khly.setText(menuItem.getTitle());

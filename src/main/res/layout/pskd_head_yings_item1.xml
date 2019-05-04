@@ -7,11 +7,26 @@
     android:orientation="horizontal"
     android:padding="5.0dip">
 
+    <CheckBox
+        android:id="@+id/skdmx_yings_xz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+        />
+
+    <View
+        android:id="@+id/first_line_xz"
+        android:layout_width="1dp"
+        android:layout_height="25dp"
+        android:layout_toRightOf="@+id/skdmx_yings_xz"
+        android:background="@color/color_dark_grey" />
     <TextView
         android:id="@+id/skdmx_yings_xh_item"
         style="@style/head_scrow"
         android:gravity="center"
-        android:text="0" />
+        android:layout_toRightOf="@+id/first_line_xz"
+        android:hint="0" />
 
     <View
         android:id="@+id/first_line"
@@ -25,7 +40,7 @@
         style="@style/head_scrow"
         android:layout_toRightOf="@+id/first_line"
         android:gravity="center"
-        android:text="KH001" />
+        android:hint="KH001" />
 
     <View
         android:id="@+id/first_two"
@@ -39,7 +54,7 @@
         style="@style/head_scrow"
         android:layout_toRightOf="@+id/first_two"
         android:gravity="center"
-        android:text="李宁" />
+        android:hint="李宁" />
 
     <View
         android:id="@+id/first_three"
@@ -73,39 +88,39 @@
                 <TextView
                     android:id="@+id/tv_skdmx_yingsph_item"
                     style="@style/head_scrow"
-                    android:text="ph123" />
+                    android:hint="ph123" />
 
                 <View style="@style/list_item_cell_seperator_layout" />
 
                 <TextView
                     android:id="@+id/tv_skdmx_yingsdh_item"
                     style="@style/head_scrow"
-                    android:text="dh123" />
+                    android:hint="dh123" />
 
                 <View style="@style/list_item_cell_seperator_layout" />
 
                 <TextView
                     android:id="@+id/tv_skdmx_djrq_item"
                     style="@style/head_scrow"
-                    android:text="2018-3-28" />
+                    android:hint="2018-3-28" />
 
                 <View style="@style/list_item_cell_seperator_layout" />
                 <TextView
                     android:id="@+id/tv_skdmx_yingsje_item"
                     style="@style/head_scrow"
-                    android:text="100" />
+                    android:hint="100" />
 
                 <View style="@style/list_item_cell_seperator_layout" />
 
                 <TextView
                     android:id="@+id/tv_skdmx_yingsycje_item"
                     style="@style/head_scrow"
-                    android:text="100" />
+                    android:hint="100" />
                 <View style="@style/list_item_cell_seperator_layout" />
                 <TextView
                     android:id="@+id/tv_skdmx_yingswcjy_item"
                     style="@style/head_scrow"
-                    android:text="0" />
+                    android:hint="0" />
                 <View style="@style/list_item_cell_seperator_layout" />
                 <EditText
                     android:id="@+id/tv_skdmx_yingsbccx_item"
@@ -116,13 +131,14 @@
                     android:textSize="12sp"
                     android:singleLine="true"
                     android:background="@null"
-                    android:text="100" />
+                    android:hint="100" />
                 <View style="@style/list_item_cell_seperator_layout" />
 
                 <TextView
                     android:id="@+id/tv_skdmx_yingsbz_item"
                     style="@style/head_scrow"
-                    android:text="0" />
+                    android:singleLine="true"
+                    android:hint="0" />
                 <View style="@style/list_item_cell_seperator_layout" />
 
 

@@ -47,6 +47,7 @@ import com.example.bean.NumberToCN;
 import com.example.bean.PriceNumID;
 import com.example.bean.ReceiptInfos;
 import com.example.bean.ReceiptSkdForm;
+import com.example.bean.ReceptYingshou;
 import com.example.bean.SkdYingsMx;
 import com.example.bean.URLS;
 import com.google.gson.Gson;
@@ -75,63 +76,80 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
     //根数据
     private Context context;
     private SharedPreferences sp;
-    private String session,user_yh,kh_bh_tj,kh_bh,str_id_zdwd,id_ls_bddh,str_id_bm,str_id_ywy,str_id_djlb;
+    private String session, user_yh, kh_bh_tj, kh_bh, str_id_zdwd, id_ls_bddh, str_id_bm, str_id_ywy, str_id_djlb,bccx_wdj;
     //表头操作（功能）
-    private Button query, add, reset, del, print, save, info, out,yings_mx,yus_mx,tjlb_qtzk,tjlb_qtzk_sc,tjlb_qtzk_xg,tjlb_qtzk_commit;
+    private Button query, add, reset, del, print, save, info, out, yings_mx, yus_mx, tjlb_qtzk, tjlb_qtzk_sc, tjlb_qtzk_xg, tjlb_qtzk_commit;
     //基本数据
-    private String db_zt, date_dd, date_dd_dh, db_bm, db_kh,lx_type;
+    private String db_zt, date_dd, date_dd_dh, db_bm, db_kh, lx_type;
     RelativeLayout mHead_yis_item, mHead_yings;
     private ListView lv_skd_qry_yus, lv_skd_qry_yings;
-    private TextView head, skd_tv_zt, skd_time, skd_tv_dh, skd_lydh,skd_bm, skd_kh, skd_ywy, skd_zdwd, skd_djlb,  skd_yscz,
-            skd_time_sx, skd_time_zs, skd_xxje, skd_hjje,skd_cske,skd_cyingse,skd_skje,skd_cyusee,skd_zdr,skd_shr,skd_yushoujine,skd_yuchongtiqu,kb_qtzk;
-    private EditText et,skd_zy,skd_pjje, skd_yhzh, skd_qtzk, skd_xjzh,je_qtzk;
+    private TextView head, skd_qtzk,skd_tv_zt, skd_time, skd_tv_dh, skd_lydh, skd_bm, skd_kh, skd_ywy, skd_zdwd, skd_djlb, skd_yscz,
+            skd_time_sx, skd_time_zs, skd_xxje, skd_hjje, skd_cske, skd_cyingse, skd_skje, skd_cyusee, skd_zdr, skd_shr, skd_yushoujine, skd_yuchongtiqu, kb_qtzk;
+    private EditText et,skd_pjje, skd_zy,  skd_yhzh,  skd_xjzh, je_qtzk;
     private ImageButton skd_ib_zt, skd_ib_bm, skd_ib_kh, skd_ib_ywy, skd_ib_zdwd, skd_ib_djlb, skd_ib_pjje, skd_ib_yhzh, skd_ib_qtzk, skd_ib_xjzh, skd_ib_yscz;
     LinearLayout touch;
     String url_dh_skd = URLS.price_num_ls;
-    AlertDialog alg_qtzk,alg_xjzh;
+    AlertDialog alg_qtzk, alg_xjzh;
     CustAllObjectInfos.CustList cust_callback;
-    String s_zh,clientRows,comit_zt,comit_time,comit_time_zb,comit_dh,comit_dep,comit_czy,comit_zdwd,comit_zdkh,comit_djlb,comit_zdr,comit_shr,
-            comit_lydh,comit_zy,comit_bil_ID,comit_sor_ID;
-    String url_query_skd =  URLS.skd_url_query;
-    String url_add_skd =  URLS.skd_url_add;
-    String url_add_mx =  URLS.skd_url_mx;
-    List<ReceiptSkdForm.Mf_monList> mf_monList;
-    List<ReceiptSkdForm.Mf_monList> mf_monList_all= new ArrayList<ReceiptSkdForm.Mf_monList>();
+    String s_zh, clientRows, comit_zt, comit_time, comit_time_zb, comit_dh, comit_dep, comit_czy, comit_zdwd, comit_zdkh, comit_djlb, comit_zdr, comit_shr,
+            comit_lydh, comit_zy, comit_bil_ID, comit_sor_ID;
+    String url_query_skd = URLS.skd_url_query;
+    String url_add_skd = URLS.skd_url_add;
+    String url_add_mx = URLS.skd_url_mx;
+    String url_add_mx_yus = URLS.skd_url_query;
+    List<ReceptYingshou.Mf_monList> mf_monList;
+    List<ReceptYingshou.Mf_monList> mf_monList_all = new ArrayList<ReceptYingshou.Mf_monList>();
     //dialog数据
-    private Button query_ok_cd,start_quick,stop_quick,skd_get;
+    private Button query_ok_cd, start_quick, stop_quick, skd_get;
     private ImageButton query_fh_cd;
     private ListView lv_query_skd;
     String str_time, stopTime;
     //新增的数据
-    String add_zt,add_rp_dd,add_rp_NO,add_bil_NO,add_bil_type,add_dep,add_usr_NO,add_zdwd,add_cus_NO,
-            add_rem,add_amtn_BC,add_amtn_BB,add_amtn_Net,add_amtn_qt,add_amtn_hj,add_amtn_xxhj,add_amtn_IRP,add_amtn_CLS
-            ,add_cske,add_cyse,add_skje,add_cyuse,add_usr,add_sxrq,add_shr,add_zsrq;
+    String add_zt, add_rp_dd, add_rp_NO, add_bil_NO, add_bil_type, add_dep, add_usr_NO, add_zdwd, add_cus_NO,
+            add_rem, add_amtn_BC, add_amtn_BB, add_amtn_Net, add_amtn_qt, add_amtn_hj, add_amtn_xxhj, add_amtn_IRP, add_amtn_CLS, add_cske, add_cyse, add_skje, add_cyuse, add_usr, add_sxrq, add_shr, add_zsrq;
     //付款类型
-    int click_obj,index_lx;//标识符
+    int click_obj, index_lx;//标识符
     List<LxInfos.IdNameList> lxInfosIdNameList;
-    String fklx_id,fklx_id_xj;
+    String fklx_id, fklx_id_xj;
     //应收明细
     List<SkdYingsMx.MfArpList> mfArpList_yings;
-    String sub_yis_xh,sub_yis_khbh,sub_yis_khmc,sub_yis_ysph,sub_yis_ysdh,sub_yis_djrq,
-            sub_yis_ysje,sub_yis_ycje,sub_yis_bccx,sub_yis_wcjy,sub_yis_yshl,sub_yis_kzbz;
-    List<ReceiptSkdForm.Mf_CHK> mf_chk_fh;
+    String tj_y_yu,sub_yis_xh, sub_yis_khbh, sub_yis_khmc, sub_yis_ysph, sub_yis_ysdh, sub_yis_djrq,
+            sub_yis_ysje, sub_yis_ycje, sub_yis_bccx, sub_yis_wcjy, sub_yis_yshl, sub_yis_kzbz, sub_yis_xh_cx,
+            sub_yus_xh, sub_yus_dh, sub_yus_bccx,sub_yus_xh_wdj, sub_yus_dh_wdj, sub_yus_bccx_wdj,sub_yus_xh_dj, sub_yus_dh_dj, sub_yus_bccx_dj;
+    List<ReceptYingshou.Mf_CHK> mf_chk_fh;
     //其他金额
     private ArrayList<HashMap<String, Object>> dList;
     private SimpleAdapter sAdapter;
-    /** 记录选中item的下标 */
+    /**
+     * 记录选中item的下标
+     */
     private List<Integer> checkedIndexList;
-    /** 保存每个item中的checkbox */
+    /**
+     * 保存每个item中的checkbox
+     */
     private List<CheckBox> checkBoxList;
     private HashMap<String, Object> items;
     private HashMap<String, Object> item;
     private Integer index;
-    private int checkFalg,flag;
+    private int checkFalg, flag;
     private Boolean mCheckable = Boolean.valueOf(false);
     String jf_id_hd;
     ListView lv_qtzk;
-    String idcopy,namecopy,jecopy,sub_id,sub_name,sub_xh,sub_je;
-    private ArrayList<String> listJes, listIDs, listNAMEs,listXhs;
-
+    String idcopy, namecopy, jecopy, sub_id, sub_name, sub_xh, sub_je,sum_pj_hm,sum_pj_je,sum_pj_yh,sum_pj_rq,sum_pj_ydr,sum_pj_dqr,sum_pj_bdr,sum_pj_zpzl;
+    private ArrayList<String> listJes, listIDs, listNAMEs, listXhs;
+    Boolean ischeck_yus=false;
+    Boolean ischeck_qt=false;
+    Boolean ischeck_pj=false;
+    //转换
+    MyHScrollView headSrcrollView;
+    private Date date;
+    private String url_id_toname = URLS.id_Custbh;//通过id获取名称（客户编号）
+     String url_id_toname_bm = URLS.ERP_dep_url;//通过id获取名称(部门)
+     String url_id_toname_yw = URLS.employee_url;//通过id获取名称(业务)
+     String url_id_toname_zd = URLS.ERP_cust_url;//通过id获取名称(终端网点)
+    //回调数据
+    String skd_fh_bm,skd_fh_yw,skd_fh_zdwd,skd_fh_khbh;
+    int je_qt,je_xj,je_yh,je_pj;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,7 +162,7 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
         db_bm = sp.getString("USER_DEPBM", "");
         db_kh = sp.getString("USER_CUSTKH", "");
         user_yh = sp.getString("MR_YH", "");
-        Log.e("LiNing","----"+user_yh);
+        Log.e("LiNing", "----" + user_yh);
         getNowTime();
         intView();
     }
@@ -295,24 +313,27 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
         skd_pjje = (EditText) findViewById(R.id.et_skd_pj);
         skd_ib_pjje = (ImageButton) findViewById(R.id.ib_skd_pj);
         skd_ib_pjje.setOnClickListener(this);
+
         //其他账款
-        skd_qtzk = (EditText) findViewById(R.id.et_skd_qtje);
+        skd_qtzk = (TextView) findViewById(R.id.et_skd_qtje);
         skd_ib_qtzk = (ImageButton) findViewById(R.id.ib_skd_qtje);
         skd_ib_qtzk.setOnClickListener(this);
         //现金账户
         skd_xjzh = (EditText) findViewById(R.id.tv_skd_xj);
         skd_ib_xjzh = (ImageButton) findViewById(R.id.ib_skd_xjzh);
         skd_ib_xjzh.setOnClickListener(this);
+
         //银行账户
         skd_yhzh = (EditText) findViewById(R.id.tv_skd_yh);
         skd_ib_yhzh = (ImageButton) findViewById(R.id.ib_skd_yh);
         skd_ib_yhzh.setOnClickListener(this);
+
         //数字金额大小写切换
         skd_xxje = (TextView) findViewById(R.id.et_skd_jexx);
         skd_xxje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                skd_xxje.setText(""+i_heje);
+                skd_xxje.setText("" + i_heje);
             }
         });
         skd_hjje = (TextView) findViewById(R.id.et_skd_skhj);
@@ -373,6 +394,135 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
             case R.id.btn_skd_all_add:
                 //新增
                 click_obj = 1;
+                skd_pjje.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        if(skd_qtzk.getText().toString().equals("")){
+                            je_qt=0;
+                        }else{
+                            je_qt = Integer.valueOf(skd_qtzk.getText().toString());
+                        }
+                        if(skd_xjzh.getText().toString().equals("")){
+                            je_xj=0;
+                        }else{
+                            je_xj = Integer.valueOf(skd_xjzh.getText().toString());
+                        }
+                        if(skd_yhzh.getText().toString().equals("")){
+                            je_yh=0;
+                        }else{
+                            je_yh = Integer.valueOf(skd_yhzh.getText().toString());
+                        }
+                        if(skd_pjje.getText().toString().equals("")){
+                            je_pj=0;
+                        }else{
+                            je_pj = Integer.valueOf(skd_pjje.getText().toString());
+                        }
+                        int i_hj = je_pj + je_qt + je_xj + je_yh;
+                        skd_xxje.setText(""+i_hj);
+                        skd_skje.setText(""+i_hj);
+                        if(skd_cyusee.getText().toString().equals("")){
+                            skd_cyusee.setText("0");
+                        }
+                        int i_cyings = Integer.valueOf(skd_cyusee.getText().toString()) + i_hj;
+                        skd_cyingse.setText(""+i_cyings);
+                    }
+                });
+                skd_yhzh.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        if(skd_qtzk.getText().toString().equals("")){
+                            je_qt=0;
+                        }else{
+                            je_qt = Integer.valueOf(skd_qtzk.getText().toString());
+                        }
+                        if(skd_xjzh.getText().toString().equals("")){
+                            je_xj=0;
+                        }else{
+                            je_xj = Integer.valueOf(skd_xjzh.getText().toString());
+                        }
+                        if(skd_yhzh.getText().toString().equals("")){
+                            je_yh=0;
+                        }else{
+                            je_yh = Integer.valueOf(skd_yhzh.getText().toString());
+                        }
+                        if(skd_pjje.getText().toString().equals("")){
+                            je_pj=0;
+                        }else{
+                            je_pj = Integer.valueOf(skd_pjje.getText().toString());
+                        }
+                        int i_hj = je_pj + je_qt + je_xj + je_yh;
+                        skd_xxje.setText(""+i_hj);
+                        skd_skje.setText(""+i_hj);
+                        if(skd_cyusee.getText().toString().equals("")){
+                            skd_cyusee.setText("0");
+                        }
+                        int i_cyings = Integer.valueOf(skd_cyusee.getText().toString()) + i_hj;
+                        skd_cyingse.setText(""+i_cyings);
+                    }
+                });
+                skd_xjzh.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        if(skd_qtzk.getText().toString().equals("")){
+                            je_qt=0;
+                        }else{
+                            je_qt = Integer.valueOf(skd_qtzk.getText().toString());
+                        }
+                        if(skd_xjzh.getText().toString().equals("")){
+                            je_xj=0;
+                        }else{
+                            je_xj = Integer.valueOf(skd_xjzh.getText().toString());
+                        }
+                        if(skd_yhzh.getText().toString().equals("")){
+                            je_yh=0;
+                        }else{
+                            je_yh = Integer.valueOf(skd_yhzh.getText().toString());
+                        }
+                        if(skd_pjje.getText().toString().equals("")){
+                            je_pj=0;
+                        }else{
+                            je_pj = Integer.valueOf(skd_pjje.getText().toString());
+                        }
+                        int i_hj = je_pj + je_qt + je_xj + je_yh;
+                        skd_xxje.setText(""+i_hj);
+                        skd_skje.setText(""+i_hj);
+                        if(skd_cyusee.getText().toString().equals("")){
+                            skd_cyusee.setText("0");
+                        }
+                        int i_cyings = Integer.valueOf(skd_cyusee.getText().toString()) + i_hj;
+                        skd_cyingse.setText(""+i_cyings);
+                    }
+                });
                 clear_infos_add();
                 add_comit();
                 break;
@@ -385,9 +535,9 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                 break;
             case R.id.btn_skd_all_del:
                 //测试
-                add_comit();
-                //通过子表数据判断是否提交
-                comit_add_infosAll();
+//                add_comit();
+//                //通过子表数据判断是否提交
+//                comit_add_infosAll();
                 //删除
                 break;
             case R.id.btn_skd_all_out:
@@ -396,7 +546,7 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                 break;
             case R.id.btn_skd_all_save:
                 //保存
-                if( click_obj == 1){
+                if (click_obj == 1) {
                     add_comit();
                     //通过子表数据判断是否提交
                     comit_add_infosAll();
@@ -414,6 +564,7 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
 //                }else{
 //                    Toast.makeText(context, "无数据", Toast.LENGTH_LONG).show();
 //                }
+                ischeck_pj=true;
                 Intent intent_pjje = new Intent(context, BillAmtActivity.class);
                 final String str_items = new Gson().toJson(mf_chk_fh);
                 intent_pjje.putExtra("fh_sjs", str_items);
@@ -421,6 +572,7 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                 break;
 
             case R.id.ib_skd_qtje:
+                ischeck_qt=true;
                 //其他账款
                 dList = new ArrayList();
                 checkedIndexList = new ArrayList<Integer>();
@@ -429,18 +581,18 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                         .inflate(R.layout.skd_qtzk, null);
                 TextView head_qtzk = (TextView) view_qtzk.findViewById(R.id.all_head);
                 head_qtzk.setText("其他账款");
-                 kb_qtzk = (TextView) view_qtzk.findViewById(R.id.tv_skd_qt_kb);
-                 je_qtzk = (EditText) view_qtzk.findViewById(R.id.et_skd_qt_bwbje);
-                 tjlb_qtzk = (Button) view_qtzk.findViewById(R.id.btn_km_obj);
-                 tjlb_qtzk_xg = (Button) view_qtzk.findViewById(R.id.btn_km_obj_xg);
-                 tjlb_qtzk_sc = (Button) view_qtzk.findViewById(R.id.btn_km_obj_sc);
-                 tjlb_qtzk_commit = (Button) view_qtzk.findViewById(R.id.btn_km_obj_tj);
+                kb_qtzk = (TextView) view_qtzk.findViewById(R.id.tv_skd_qt_kb);
+                je_qtzk = (EditText) view_qtzk.findViewById(R.id.et_skd_qt_bwbje);
+                tjlb_qtzk = (Button) view_qtzk.findViewById(R.id.btn_km_obj);
+                tjlb_qtzk_xg = (Button) view_qtzk.findViewById(R.id.btn_km_obj_xg);
+                tjlb_qtzk_sc = (Button) view_qtzk.findViewById(R.id.btn_km_obj_sc);
+                tjlb_qtzk_commit = (Button) view_qtzk.findViewById(R.id.btn_km_obj_tj);
 
                 lv_qtzk = (ListView) view_qtzk.findViewById(R.id.lv_skd_qtzk_head);
-                ImageButton ib_qt= (ImageButton) view_qtzk.findViewById(R.id.ib_skd_qt_kb);
+                ImageButton ib_qt = (ImageButton) view_qtzk.findViewById(R.id.ib_skd_qt_kb);
                 this.sAdapter = new SimpleAdapter(this.context, this.dList,
-                        R.layout.skd_qtzk_head_item, new String[] { "科目代号", "科目名称",
-                        "本位币金额" }, new int[] {
+                        R.layout.skd_qtzk_head_item, new String[]{"科目代号", "科目名称",
+                        "本位币金额"}, new int[]{
                         R.id.new_querry_item_kbid, R.id.new_querry_item_kbmc,
                         R.id.new_querry_item_kbje}) {
                     @Override
@@ -478,9 +630,9 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                                         Boolean localBoolean = (Boolean) ReceiptFormActivity.this.items
                                                 .get("checkbox");
                                         Log.e("LiNing", "isChecked====" + localBoolean);
-                                         idcopy= items.get("科目代号").toString();
-                                         namecopy = items.get("科目名称").toString();
-                                         jecopy = items.get("本位币金额").toString();
+                                        idcopy = items.get("科目代号").toString();
+                                        namecopy = items.get("科目名称").toString();
+                                        jecopy = items.get("本位币金额").toString();
                                     }
                                     Log.e("LiNing", "index-----111" + index);
                                 } else {
@@ -538,7 +690,7 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                                     checkBoxList.get(i).setChecked(false);
                                 }
                             }
-                        }else {
+                        } else {
 
                             //添加数据到列表
                             item = new HashMap<String, Object>();
@@ -602,32 +754,32 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                         listIDs = new ArrayList<String>();
                         listNAMEs = new ArrayList<String>();
                         listJes = new ArrayList<String>();
-                        int sum=0;
+                        int sum = 0;
                         Toast.makeText(ReceiptFormActivity.this, "等等", Toast.LENGTH_LONG).show();
                         if (dList != null && dList.size() > 0) {
 
-                           //遍历list
-                            for (int i=0;i<dList.size();i++){
+                            //遍历list
+                            for (int i = 0; i < dList.size(); i++) {
                                 int index = i + 1;
-                                listXhs.add(""+index);
+                                listXhs.add("" + index);
                                 listIDs.add(dList.get(i).get("科目代号").toString());
                                 listNAMEs.add(dList.get(i).get("科目名称").toString());
                                 listJes.add(dList.get(i).get("本位币金额").toString());
                                 int je = Integer.valueOf(dList.get(i).get("本位币金额").toString());
-                                sum+=je;
+                                sum += je;
                                 Log.e("LiNing", ",,,,,,," + sum);
-                                Log.e("LiNing", ",,,,,,," + listNAMEs+",,,,,,," + listIDs);
+                                Log.e("LiNing", ",,,,,,," + listNAMEs + ",,,,,,," + listIDs);
                                 String xhs_str = "";
                                 for (String name : listXhs) {
                                     xhs_str += name + ",";
                                 }
-                                 sub_xh = xhs_str.substring(0,
-                                         xhs_str.length() - 1);
+                                sub_xh = xhs_str.substring(0,
+                                        xhs_str.length() - 1);
                                 String ids_str = "";
                                 for (String name : listIDs) {
                                     ids_str += name + ",";
                                 }
-                                 sub_id = ids_str.substring(0,
+                                sub_id = ids_str.substring(0,
                                         ids_str.length() - 1);
                                 String names_str = "";
                                 for (String name : listNAMEs) {
@@ -643,11 +795,21 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                                         jes_str.length() - 1);
 
                             }
-                            if(sub_id!=null&&!sub_id.equals("")){
-                                skd_qtzk.setText(""+sum);
+                            if (sub_id != null && !sub_id.equals("")) {
+                                skd_qtzk.setText("" + sum);
                                 alg_qtzk.dismiss();
-                                Log.e("LiNing", ",,,tj,,,," + sub_id+",,,,,,," + sub_name+sub_xh+sub_je);
+                                Log.e("LiNing", ",,,tj,,,," + sub_id + ",,,,,,," + sub_name + sub_xh + sub_je);
+                                //触发合计
+                                i_heje = Integer.valueOf(skd_xjzh.getText().toString())
+                                        + Integer.valueOf(skd_yhzh.getText().toString())
+                                        + Integer.valueOf(skd_pjje.getText().toString())
+                                        + Integer.valueOf(skd_qtzk.getText().toString()) ;
+                                skd_xxje.setText(""+i_heje);
+                                skd_skje.setText(""+i_heje);
+                                int i = i_heje + Integer.valueOf(skd_cyusee.getText().toString());
+                                skd_cyingse.setText(""+i);
                             }
+
                         } else {
                             Toast.makeText(context, "请选择查询赋权", Toast.LENGTH_SHORT).show();
 
@@ -655,7 +817,7 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                     }
                 });
 
-                alg_qtzk=new AlertDialog.Builder(context).create();
+                alg_qtzk = new AlertDialog.Builder(context).create();
                 alg_qtzk.setCancelable(false);
                 alg_qtzk.setView(view_qtzk);
                 alg_qtzk.show();
@@ -738,25 +900,27 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                 }
                 break;
             case R.id.btn_yingsmx:
+                //此处调用新页面选择数据
 //                get_yys_mx();
-                if(!skd_zdwd.getText().toString().equals("")&&!str_id_zdwd.equals("")&&str_id_zdwd!=null
-                        &&skd_kh.getText().toString().equals("")){
-                    //获取明细
-                    kh_bh_tj=str_id_zdwd;
-                    get_yys_mx();
-
-                }else  if(!skd_kh.getText().toString().equals("")&&!kh_bh.equals("")&&kh_bh!=null){
-                    //获取明细
-                    kh_bh_tj=kh_bh;
-                    get_yys_mx();
+                if (!skd_zdwd.getText().toString().equals("") && !str_id_zdwd.equals("") && str_id_zdwd != null
+                        ) {
+                    Intent intent_yus = new Intent(context, YingShouActivity.class);
+                    intent_yus.putExtra("DB_ID", skd_tv_zt.getText().toString());
+                    intent_yus.putExtra("BH_KH", str_id_zdwd);
+                    startActivityForResult(intent_yus, 8);//返回预收数据
                 }
                 break;
             case R.id.btn_yusmx:
-                if(!skd_kh.getText().toString().equals("")&&!kh_bh.equals("")&&kh_bh!=null){
+                if (!skd_zdwd.getText().toString().equals("")) {
+                    if(skd_kh.getText().toString().equals("")){
+                        kh_bh="";
+                    }
+                    ischeck_yus = true;
                     Intent intent_yus = new Intent(context, YuShouActivity.class);
                     intent_yus.putExtra("DB_ID", skd_tv_zt.getText().toString());
                     intent_yus.putExtra("ZD_KH", kh_bh);
-                    startActivityForResult(intent_yus, 4);//返回预收数据
+                    intent_yus.putExtra("BH_KH", str_id_zdwd);
+                    startActivityForResult(intent_yus, 7);//返回预收数据
                 }
 
                 break;
@@ -775,6 +939,7 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                 break;
         }
     }
+
     private void delMore() {
         // 先将checkedIndexList中的元素从大到小排列,否则可能会出现错位删除或下标溢出的错误
         checkedIndexList = sortCheckedIndexList(checkedIndexList);
@@ -807,24 +972,27 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
         }
         return list;
     }
+
     int lastItem;
     private View below;
     private TextView tv;
     private ProgressBar pb;
+
     private void get_aleartDialog() {
         View view = getLayoutInflater()
                 .inflate(R.layout.skd_query, null);
-        lv_query_skd= (ListView) view.findViewById(R.id.lv_skd_header_query);
-        query_ok_cd= (Button) view.findViewById(R.id.btn_skd_dialogOk);
-        query_fh_cd= (ImageButton) view.findViewById(R.id.imageButton1);
+        lv_query_skd = (ListView) view.findViewById(R.id.lv_skd_header_query);
+        query_ok_cd = (Button) view.findViewById(R.id.btn_skd_dialogOk);
+        query_fh_cd = (ImageButton) view.findViewById(R.id.imageButton1);
         start_quick = (Button) view.findViewById(R.id.btn_start_time);
         stop_quick = (Button) view.findViewById(R.id.btn_stop_time);
         skd_get = (Button) view.findViewById(R.id.search_skd);
         start_quick.setText(date_dd);
         stop_quick.setText(date_dd);
-        below = getLayoutInflater().inflate(R.layout.bottom_jz, null);
-        tv = (TextView) below.findViewById(R.id.textView);
-        pb = (ProgressBar) below.findViewById(R.id.progressBar1);
+        //加载更多
+//        below = getLayoutInflater().inflate(R.layout.bottom_jz, null);
+//        tv = (TextView) below.findViewById(R.id.textView);
+//        pb = (ProgressBar) below.findViewById(R.id.progressBar1);
 
         start_quick.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -903,9 +1071,9 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                lastItem = firstVisibleItem + visibleItemCount - 1 ;
-                if(lastItem==totalItemCount){
-                    Toast.makeText(context,"已经是最后一条数据",Toast.LENGTH_LONG).show();
+                lastItem = firstVisibleItem + visibleItemCount - 1;
+                if (lastItem == totalItemCount) {
+                    Toast.makeText(context, "已经是最后一条数据", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -931,15 +1099,12 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
         lv_query_skd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ReceiptSkdForm.Mf_monList item_skdqty = (ReceiptSkdForm.Mf_monList) parent.getAdapter().getItem(position);
+                ReceptYingshou.Mf_monList item_skdqty = (ReceptYingshou.Mf_monList) parent.getAdapter().getItem(position);
                 String skd_fh_rq = item_skdqty.getRp_DD().toString();
                 String skd_fh_dh = item_skdqty.getRp_NO().toString();
                 String skd_fh_lydh = item_skdqty.getBil_NO().toString();//来源单号
-                String skd_fh_bm = item_skdqty.getDep().toString();
-                String skd_fh_yw = item_skdqty.getUsr_NO().toString();
                 String skd_fh_zy = item_skdqty.getRem().toString();
                 String xx_hj = item_skdqty.getAmtn().toString();//本位币金额（小写）
-
 
                 //日期转换
                 Date date = new Date(skd_fh_rq);
@@ -947,24 +1112,202 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                 String a1 = dateformat1.format(date);
                 skd_time.setText(a1);
                 skd_tv_dh.setText(skd_fh_dh);
-                skd_bm.setText(skd_fh_bm);
-                skd_ywy.setText(skd_fh_yw);
                 skd_zy.setText(skd_fh_zy);
                 skd_xxje.setText(xx_hj);
-                if(skd_xxje.getText().toString().equals("")){
+                if (skd_xxje.getText().toString().equals("")) {
 
                     BigDecimal numberOfMoney = new BigDecimal(Double.parseDouble(xx_hj));
                     String s = NumberToCN.number2CNMontrayUnit(numberOfMoney);
                     skd_hjje.setText(s);
                 }
                 skd_lydh.setText(skd_fh_lydh);
-                if(item_skdqty.getTf_MON().getAmtn_BC()!=null){
+                if (item_skdqty.getTf_MON().getAmtn_BC() == null) {
+                    skd_xjzh.setText("");
+                }else {
                     String skd_fh_xj = item_skdqty.getTf_MON().getAmtn_BC().toString();//现金收入
                     skd_xjzh.setText(skd_fh_xj);
+
                 }
-                if(item_skdqty.getTf_MON().getAmtn_BB()!=null){
+                if (item_skdqty.getTf_MON().getAmtn_BB() == null) {
+                    skd_yhzh.setText("");
+                }else {
                     String skd_fh_yh = item_skdqty.getTf_MON().getAmtn_BB().toString();//银行收入
                     skd_yhzh.setText(skd_fh_yh);
+                }
+                //经营部门
+                if (item_skdqty.getDep()== null) {
+                    skd_bm.setText("");
+                }else {
+                     skd_fh_bm = item_skdqty.getDep().toString();
+                    OkHttpClient client = new OkHttpClient();
+                FormBody body = new FormBody.Builder().add("accountNo", skd_tv_zt.getText().toString())
+                        .add("id",  skd_fh_bm).build();
+                Request request = new Request.Builder()
+                        .addHeader("cookie", session).url(url_id_toname_bm).post(body)
+                        .build();
+                Call call = client.newCall(request);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String str = response.body().string();
+                        Log.e("LiNing", "查询数据===" + str);
+                        final DepInfo dInfo = new Gson().fromJson(str,
+                                DepInfo.class);
+                        if (dInfo != null) {
+                            ReceiptFormActivity.this
+                                    .runOnUiThread(new Runnable() {
+
+                                        @Override
+                                        public void run() {
+                                            List<DepInfo.IdNameList> nameList = dInfo.getIdNameList();
+                                            String name = nameList.get(0).getName();
+                                            skd_bm.setText(name);
+                                        }
+
+                                    });
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+
+                    }
+
+
+                });
+
+                }
+                //责任业务
+                if (item_skdqty.getUsr_NO()== null) {
+                    skd_ywy.setText("");
+                }else {
+                     skd_fh_yw = item_skdqty.getUsr_NO().toString();
+                    OkHttpClient client = new OkHttpClient();
+                    FormBody body = new FormBody.Builder().add("accountNo", skd_tv_zt.getText().toString())
+                            .add("id",  skd_fh_yw).build();
+                    Request request = new Request.Builder()
+                            .addHeader("cookie", session).url(url_id_toname_yw).post(body)
+                            .build();
+                    Call call = client.newCall(request);
+                    call.enqueue(new Callback() {
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            String str = response.body().string();
+                            Log.e("LiNing", "查询数据===" + str);
+                            final DepInfo dInfo = new Gson().fromJson(str,
+                                    DepInfo.class);
+                            if (dInfo != null) {
+                                ReceiptFormActivity.this
+                                        .runOnUiThread(new Runnable() {
+
+                                            @Override
+                                            public void run() {
+                                                List<DepInfo.IdNameList> nameList = dInfo.getIdNameList();
+                                                String name = nameList.get(0).getName();
+                                                skd_ywy.setText(name);
+                                            }
+
+                                        });
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+
+                        }
+
+
+                    });
+
+                }
+                //终端网点
+                if (item_skdqty.getTf_MON().getCus_NO()== null) {
+                    skd_zdwd.setText("");
+                }else {
+                     skd_fh_zdwd = item_skdqty.getTf_MON().getCus_NO().toString();
+                    OkHttpClient client = new OkHttpClient();
+                    FormBody body = new FormBody.Builder().add("accountNo", skd_tv_zt.getText().toString())
+                            .add("id",  skd_fh_zdwd)
+                            .add("custType", "" + 1)
+                            .build();
+                    Request request = new Request.Builder()
+                            .addHeader("cookie", session).url(url_id_toname_zd).post(body)
+                            .build();
+                    Call call = client.newCall(request);
+                    call.enqueue(new Callback() {
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            String str = response.body().string();
+                            Log.e("LiNing", "查询数据===" + str);
+                            final DepInfo dInfo = new Gson().fromJson(str,
+                                    DepInfo.class);
+                            if (dInfo != null) {
+                                ReceiptFormActivity.this
+                                        .runOnUiThread(new Runnable() {
+
+                                            @Override
+                                            public void run() {
+                                                List<DepInfo.IdNameList> nameList = dInfo.getIdNameList();
+                                                String name = nameList.get(0).getName();
+                                                skd_zdwd.setText(name);
+                                            }
+
+                                        });
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+
+                        }
+
+
+                    });
+
+                }
+                //客户编号
+                if (item_skdqty.getTf_MON_Z().getCus_NO_OS() == null) {
+                    skd_kh.setText("");
+                }else {
+                     skd_fh_khbh = item_skdqty.getTf_MON_Z().getCus_NO_OS().toString();
+                    OkHttpClient client = new OkHttpClient();
+                    FormBody body = new FormBody.Builder().add("accountNo", skd_tv_zt.getText().toString())
+                            .add("id",  skd_fh_khbh)
+                            .build();
+                    Request request = new Request.Builder()
+                            .addHeader("cookie", session).url(url_id_toname).post(body)
+                            .build();
+                    Call call = client.newCall(request);
+                    call.enqueue(new Callback() {
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            String str = response.body().string();
+                            Log.e("LiNing", "查询数据===" + str);
+                            final DepInfo dInfo = new Gson().fromJson(str,
+                                    DepInfo.class);
+                            if (dInfo != null) {
+                                ReceiptFormActivity.this
+                                        .runOnUiThread(new Runnable() {
+
+                                            @Override
+                                            public void run() {
+                                                List<DepInfo.IdNameList> nameList = dInfo.getIdNameList();
+                                                String name = nameList.get(0).getName();
+                                                skd_kh.setText(name);
+                                            }
+
+                                        });
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+
+                        }
+
+
+                    });
+
                 }
 
                 mf_chk_fh = item_skdqty.getTf_MON().getMf_CHK();
@@ -1005,11 +1348,12 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
     private void get_yys_mx() {
         OkHttpClient client = new OkHttpClient();
         FormBody body = new FormBody.Builder()
-                .add("db_Id",skd_tv_zt.getText().toString())
+                .add("db_Id", skd_tv_zt.getText().toString())
 //                .add("cus_NO",kh_bh_tj)
-                .add("cus_NO","KH347")
+                .add("cus_NO", str_id_zdwd)
+                .add("cus_NO_OS", kh_bh)
                 .build();
-        Log.e("LiNing", "提交数据" + skd_tv_zt.getText().toString()+"----"+kh_bh);
+        Log.e("LiNing", "提交数据" + skd_tv_zt.getText().toString() + "----" + kh_bh);
         client.newCall(new Request.Builder().addHeader("cookie", session).post(body)
                 .url(url_add_mx).build()).enqueue(new Callback() {
             @Override
@@ -1020,7 +1364,7 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                         "yyyy-MM-dd HH:mm:ss").create();
                 SkdYingsMx skdysAllInfos = gson.fromJson(str_mx, SkdYingsMx.class);
                 Log.e("LiNing", "id_type结果====" + skdysAllInfos);
-                if(skdysAllInfos!=null){
+                if (skdysAllInfos != null) {
 
                     mfArpList_yings = skdysAllInfos.getArpResult().getMfArpList();
                     ReceiptFormActivity.this.runOnUiThread(new Runnable() {
@@ -1031,9 +1375,13 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                             yingsAdapter.notifyDataSetChanged();
                         }
                     });
+                    if(mfArpList_yings!=null&&mfArpList_yings.size()>0){
+                        getYus_no();//获取未点击预收的数据
+                    }
 
                 }
             }
+
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -1043,49 +1391,185 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
         });
     }
 
-
-    private void comit_add_infosAll() {
+    private void getYus_no() {
+        if(skd_kh.getText().toString().equals("")){
+            kh_bh="";
+        }
         OkHttpClient client = new OkHttpClient();
         FormBody body = new FormBody.Builder()
-                .add("rp_ID","1")//收付款识别码（1，收款）---Y
+                .add("db_Id", skd_tv_zt.getText().toString())
+                .add("cus_NO", str_id_zdwd)
+                .add("cus_NO_OS", kh_bh)
+                .add("showRow", "50")
+                .add("clientRows", "0")
+                .add("irp_Id", "T")
+                .add("cls_Id", "F")
+                .build();
+        client.newCall(new Request.Builder().addHeader("cookie", session).post(body)
+                .url(url_add_mx_yus).build()).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                String str = response.body().string();
+                Log.e("LiNing", "所有收款单==预收=new" + str);
+                if (str != null && !str.equals("") && !str.equals("null")) {
+
+                    // 解析包含date的数据必须添加此代码(InputStream型)
+                    Gson gson = new GsonBuilder().setDateFormat(
+                            "yyyy-MM-dd HH:mm:ss").create();
+                    final ReceptYingshou skd_all = gson.fromJson(str,
+                            ReceptYingshou.class);
+                    int sumShowRow = skd_all.getSumShowRow();
+                    s_zh = String.valueOf(sumShowRow);
+                    clientRows = s_zh;
+                    if (skd_all != null) {
+                        ReceiptFormActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                mf_monList = skd_all.getMf_monList();
+                                int sum_yus_bc = 0;
+                                if (mf_monList != null && mf_monList.size() > 0) {
+                                    ArrayList<String> YIS_XH = new ArrayList<String>();
+                                    ArrayList<String> YIS_BCCX = new ArrayList<String>();
+                                    ArrayList<String> YIS_YSDH = new ArrayList<String>();
+                                    for (int i=0;i<mf_monList.size();i++){
+                                        String xh_tj = "" + i;
+                                        String ysdh_tj = mf_monList.get(i).getRp_NO().toString();//应收单号
+                                        if (mf_monList.get(i).getTf_MON().getYis_bccx()==null) {
+                                            bccx_wdj="0";
+                                            sum_yus_bc+=Integer.valueOf(bccx_wdj);
+                                        }else{
+                                            bccx_wdj=mf_monList.get(i).getTf_MON().getYis_bccx().toString();
+//                                            if(bccx_wdj.equals("")){
+//                                                bccx_wdj="0";
+//                                            }
+                                            sum_yus_bc+=Integer.valueOf(bccx_wdj);
+
+                                        }
+                                        YIS_XH.add(xh_tj);//
+                                        YIS_YSDH.add(ysdh_tj);//
+                                        YIS_BCCX.add(bccx_wdj);//
+                                    }
+                                    Log.e("LiNing", "所有收款单==预收=new" + YIS_XH+YIS_YSDH+YIS_BCCX);
+                                    Log.e("LiNing", "所有收款单==预收=new" + sum_yus_bc);
+                                    //预收本次冲销+预存提取
+
+                                    skd_yushoujine.setText(""+sum_yus_bc);
+                                    skd_yuchongtiqu.setText(""+sum_yus_bc);
+                                    skd_cyusee.setText(""+sum_yus_bc);
+                                    if(!skd_xxje.equals("")){
+                                        int integer = Integer.valueOf(skd_xxje.getText().toString())+sum_yus_bc;
+                                        skd_cyingse.setText(""+integer);
+                                    }
+                                    //开始拼接
+                                    String yis_xhs_str = "";
+                                    for (String str : YIS_XH) {
+                                        yis_xhs_str += str + ",";
+                                    }
+                                    sub_yus_xh_wdj = yis_xhs_str.substring(0, yis_xhs_str.length() - 1);
+                                    Log.e("LiNing", "------新数据" + sub_yus_xh_wdj);
+                                    String yis_ysdhs_str = "";
+                                    for (String str : YIS_YSDH) {
+                                        yis_ysdhs_str += str + ",";
+                                    }
+
+                                    sub_yus_dh_wdj = yis_ysdhs_str.substring(0, yis_ysdhs_str.length() - 1);
+                                    Log.e("LiNing", "------新数据" + sub_yus_dh_wdj);
+                                    String yis_bccxs_str = "";
+                                    for (String str : YIS_BCCX) {
+                                        yis_bccxs_str += str + ",";
+                                    }
+                                    sub_yus_bccx_wdj = yis_bccxs_str.substring(0, yis_bccxs_str.length() - 1);
+                                    Log.e("LiNing", "------新数据" + sub_yus_bccx_wdj);
+                                }
+                            }
+                        });
+                    }
+
+                }
+            }
+        });
+    }
+
+
+    private void comit_add_infosAll() {
+        if(ischeck_yus==true){
+            sub_yus_xh=sub_yus_xh_dj;
+            sub_yus_dh=sub_yus_dh_dj;
+            sub_yus_bccx=sub_yus_bccx_dj;
+        }else{
+            sub_yus_xh=sub_yus_xh_wdj;
+            sub_yus_dh=sub_yus_dh_wdj;
+            sub_yus_bccx=sub_yus_bccx_wdj;
+        }
+        if(ischeck_qt==false){
+
+            sub_xh="";
+            sub_id="";
+            sub_je="";
+        }
+        if(ischeck_pj==false){
+            sum_pj_hm="";
+            sum_pj_je="";
+            sum_pj_yh="";
+            sum_pj_rq="";
+            sum_pj_ydr="";
+            sum_pj_dqr="";
+            sum_pj_bdr="";
+            sum_pj_zpzl="";
+        }
+        if(lv_skd_qry_yings.getCount()>0){
+            tj_y_yu="F";
+        }else{
+            tj_y_yu="T";
+        }
+        OkHttpClient client = new OkHttpClient();
+        FormBody body = new FormBody.Builder()
+                .add("rp_ID", "1")//收付款识别码（1，收款）---Y
 //                .add("irp_ID","此处判断冲销明细（）")//是预收付款否
-                .add("irp_ID","F")//是预收付款否模拟---Y
-                .add("cls_ID","F")//冲销注记---Y
-               //主表
-                .add("db_Id",add_zt)//账套---Y
-                .add("rp_NO",add_rp_NO)//收付款单号---Y
-                .add("bil_NO","SO2018052300097")//来源单号---Y
-                .add("rp_DD",add_rp_dd)//收付款日期---Y
-                .add("dep",str_id_bm)//部门代号---Y,str_id_ywy,
-                .add("usr_NO",str_id_ywy)//操作员（业务员）---Y
+                .add("irp_ID", tj_y_yu)//是预收付款否模拟---Y
+                .add("cls_ID", "F")//冲销注记---Y
+                //主表
+                .add("db_Id", add_zt)//账套---Y
+                .add("rp_NO", add_rp_NO)//收付款单号---Y
+                .add("bil_NO", "SO2018052300097")//来源单号---Y
+                .add("rp_DD", add_rp_dd)//收付款日期---Y
+                .add("dep", str_id_bm)//部门代号---Y,str_id_ywy,
+                .add("usr_NO", str_id_ywy)//操作员（业务员）---Y
 //                .add("cus_NO",add_cus_NO)//客户，厂商（终端网点）---Y
-                .add("cus_NO",str_id_zdwd)//客户，厂商（终端网点）---Y
-                .add("bil_TYPE",str_id_djlb)//单据类别---Y
-                .add("rem",add_rem)//摘要---Y
-                .add("amtn_BC",add_amtn_BC)//现金收付款---Y
-                .add("amtn_BB",add_amtn_BB)//银行存付款---Y
+                .add("cus_NO", str_id_zdwd)//客户，厂商（终端网点）---Y
+                .add("bil_TYPE", str_id_djlb)//单据类别---Y
+                .add("rem", add_rem)//摘要---Y
+                .add("amtn_BC", add_amtn_BC)//现金收付款---Y
+                .add("amtn_BB", add_amtn_BB)//银行存付款---Y
 //                .add("atmn_Net",add_amtn_Net)//票据金额
 //                .add("atmn_qt",add_amtn_qt)//其他金额
-                .add("atmn",add_amtn_xxhj)//小写合计
+                .add("atmn", add_amtn_xxhj)//小写合计
 //                .add("amtn","500")//小写合计---Y
                 //下拉合计
 //                .add("atmn_yshj",add_amtn_hj)//预收金额：预收合计
 //                .add("atmn_tqje",add_amtn_hj)//预冲提取：提取金额
                 //明细数据（TC_MON）应收
-//                .add("arpExc_RTO",sub_yis_yshl)//应收汇率
-//                .add("arp_OPN_ID",sub_yis_kzbz)//开帐标志
-//                .add("pre_ITM",sub_yis_xh)//初始序号（无操作）
-//                .add("tcmonitm2","有几个冲销数据")//序号（操作后）
-//                .add("arp_NO",sub_yis_ysdh)//立冲账单号
-//                .add("arpAmtn_CLS",sub_yis_bccx)//本次冲销
-//                .add("bil_DD",sub_yis_djrq)//单据日期
-                .add("arpExc_RTO","1,2")//应收汇率---Y
-                .add("arp_OPN_ID","1,2")//开帐标志---Y
-                .add("pre_ITM","1,2")//初始序号（无操作）---Y
-                .add("tcmonitm2","1,2")//序号（操作后）---Y
-                .add("arp_NO","AR7C310155,AR86210003")//立冲账单号---Y
-                .add("arpAmtn_CLS","-100,750")//本次冲销---Y
-                .add("bil_DD","2017-12-31,2018-6-21")//单据日期---Y
+                .add("arpExc_RTO", sub_yis_yshl)//应收汇率
+                .add("arp_OPN_ID", sub_yis_kzbz)//开帐标志
+                .add("pre_ITM", sub_yis_xh)//初始序号（无操作）
+                .add("tcmonitm2", sub_yis_xh_cx)//序号（操作后）
+                .add("arp_NO", sub_yis_ysdh)//立冲账单号
+                .add("arpAmtn_CLS", sub_yis_bccx)//本次冲销
+                .add("bil_DD", sub_yis_djrq)//单据日期
+//                .add("arpExc_RTO", "1,2")//应收汇率---Y
+//                .add("arp_OPN_ID", "1,2")//开帐标志---Y
+//                .add("pre_ITM", "1,2")//初始序号（无操作）---Y
+//                .add("tcmonitm2", "1,2")//序号（操作后）---Y
+//                .add("arp_NO", "AR7C310155,AR86210003")//立冲账单号---Y
+//                .add("arpAmtn_CLS", "-100,750")//本次冲销---Y
+//                .add("bil_DD", "2017-12-31,2018-6-21")//单据日期---Y
 
 
 //                .add("cus_name",sub_yis_khmc)//无参数
@@ -1104,70 +1588,71 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
 //                .add("atmn_cyse","500")//冲应收取
 //                .add("atmn_skje","500")//收款金额
 //                .add("atmn_cyuse","500")//冲预收额(add_amtn_IRP,add_amtn_CLS)
-                .add("eff_DD",add_sxrq)//生效日期---Y
-                .add("cls_DATE",add_zsrq)//终审日期---Y
+                .add("eff_DD", add_sxrq)//生效日期---Y
+                .add("cls_DATE", add_zsrq)//终审日期---Y
 //                .add("usr",add_usr)//录入员---Y
-                .add("usr",user_yh)//录入员---Y
-                .add("chk_MAN",user_yh)//审核人---Y
+                .add("usr", user_yh)//录入员---Y
+                .add("chk_MAN", user_yh)//审核人---Y
                 //票据金额
-//                .add("chk_NO","1")//票据号码
-//                .add("amtn_Net","100")//票据金额
-//                .add("bank_NO","1")//票据银行
-//                .add("rcv_DD","单据日期")//收、付票日
-//                .add("cah_DD","后加")//预兑日
-//                .add("end_DD","2018-3-28")//到期日
-//                .add("trs_DD","当前日期")//变动日
-//                .add("chk_KND","支票")//票据种类
-                .add("chk_NO","ln2,ln222")//票据号码---Y(先判断是否包含此票据)
-                .add("amtn_Net","10,20")//票据金额---Y
-                .add("bank_NO","1,2")//票据银行---Y
-                .add("rcv_DD","2018-4-25,2018-4-25")//收、付票日---Y
-                .add("cah_DD","2018-4-29,2018-4-29")//预兑日---Y
-                .add("end_DD","2018-4-29,2018-4-29")//到期日---Y
-                .add("trs_DD","2018-3-28,2018-3-28")//变动日---Y
-                .add("chk_KND","1,2")//票据种类---Y
+//                .add("chk_NO",sum_pj_hm)//票据号码
+//                .add("amtn_Net",sum_pj_je)//票据金额
+//                .add("bank_NO",sum_pj_yh)//票据银行
+//                .add("rcv_DD",sum_pj_rq)//收、付票日
+//                .add("cah_DD",sum_pj_ydr)//预兑日
+//                .add("end_DD",sum_pj_dqr)//到期日
+//                .add("trs_DD",sum_pj_bdr)//变动日
+//                .add("chk_KND",sum_pj_zpzl)//票据种类
+                .add("chk_NO", "ln5")//票据号码---Y(先判断是否包含此票据)
+                .add("amtn_Net", "10")//票据金额---Y
+                .add("bank_NO", "1")//票据银行---Y
+                .add("rcv_DD", "2018-4-25")//收、付票日---Y
+                .add("cah_DD", "2018-4-29")//预兑日---Y
+                .add("end_DD", "2018-4-29")//到期日---Y
+                .add("trs_DD", "2018-3-28,")//变动日---Y
+                .add("chk_KND", "1")//票据种类---Y
                 //其他
-                .add("mon3itm2",sub_xh)//项次1---Y
-                .add("acc_NO",sub_id)//会计科目---Y
-                .add("mon3amtn",sub_je)//本位币金额---Y
+                .add("mon3itm2", sub_xh)//项次1---Y
+                .add("acc_NO", sub_id)//会计科目---Y
+                .add("mon3amtn", sub_je)//本位币金额---Y
                 //默认值
 //                .add("bil_Id",comit_bil_ID)//来源单识别码---Y
-                .add("bil_ID","SO")//来源单识别码---Y
-//                .add("amtn_ARP","本次冲销合计")//应收付账款
-                .add("amtn_ARP","650")//应收付账款模拟---Y
-                .add("itm","1")//项次---Y
-                .add("record_DD",add_rp_dd)//创建日期---Y
+                .add("bil_ID", "SO")//来源单识别码---Y
+                .add("amtn_ARP",skd_cyingse.getText().toString())//应收付账款
+//                .add("amtn_ARP", "650")//应收付账款模拟---Y
+                .add("itm", "1")//项次---Y
+                .add("record_DD", add_rp_dd)//创建日期---Y
 //                .add("sor_ID",comit_sor_ID)//来源单标识---Y
-                .add("sor_ID","1")//来源单标识---Y
-                .add("exc_RTO","1")//汇率---Y
-                .add("bb_NO",id_ls_bddh)//银行账户变动代号---Y
-                .add("bc_NO",id_ls_bddh)//现金变动代号---Y
-                .add("bacc_NO",fklx_id)//银行账户代号---Y
-                .add("cacc_NO",fklx_id_xj)//现金账户代号---Y
-//                .add("amtn_IRP","冲应收额")//预收付款（预收本冲合计）
-//                .add("amtn_CLS","应收取")//冲销金额（预收本冲合计）
-                .add("amtn_IRP","500")//预收付款（预收本冲合计）模拟---Y
-                .add("amtn_CLS","650")//冲销金额（预收本冲合计）模拟---Y
-                .add("cus_NO_OS",kh_bh)//客户编号---Y
+                .add("sor_ID", "1")//来源单标识---Y
+                .add("exc_RTO", "1")//汇率---Y
+                .add("bb_NO", id_ls_bddh)//银行账户变动代号---Y
+                .add("bc_NO", id_ls_bddh)//现金变动代号---Y
+                .add("bacc_NO", fklx_id)//银行账户代号---Y
+                .add("cacc_NO", fklx_id_xj)//现金账户代号---Y
+                .add("amtn_IRP",skd_cyusee.getText().toString())//预收付款（预收本冲合计）
+                .add("amtn_CLS",skd_cyingse.getText().toString())//冲销金额（预收本冲合计）
+//                .add("amtn_IRP", "500")//预收付款（预收本冲合计）模拟---Y
+//                .add("amtn_CLS", "650")//冲销金额（预收本冲合计+atmn）模拟---Y
+                .add("cus_NO_OS", kh_bh)//客户编号---Y
                 //预收明细
-//                .add("irp_NO","预收明细的单号")//预收付款单号
-//                .add("irpitm","itm")//预收付款单号的itm
-//                .add("irpAmtn_CLS","itm")//预收付款单号的冲销金额
-                .add("irp_NO","RT78050152")//预收付款单号（模拟---Y
-                .add("irpitm","1")//预收付款单号的itm）模拟---Y
-                .add("irpAmtn_CLS","500")//预收付款单号的冲销金额（模拟---Y
+                .add("irp_NO",sub_yus_dh)//预收付款单号
+                .add("irpitm",sub_yus_xh)//预收付款单号的itm
+                .add("irpAmtn_CLS",sub_yus_bccx)//预收付款单号的冲销金额
+//                .add("irp_NO", "RT78050152")//预收付款单号（模拟---Y
+//                .add("irpitm", "1")//预收付款单号的itm）模拟---Y
+//                .add("irpAmtn_CLS", "500")//预收付款单号的冲销金额（模拟---Y
 
                 .build();
 //        oa.ydshce.com:8080/InfManagePlatform/PaymentsqueryMf_ARP.action?db_Id=DB_BJ18&&cus_NO=""&&cus_NO_OS=""
-        Log.e("LiNing", "提交数据=新增==" + add_rp_NO+add_zt);
+        Log.e("LiNing", "提交数据=新增==" + add_rp_NO + add_zt);
         client.newCall(new Request.Builder().addHeader("cookie", session).post(body)
                 .url(url_add_skd).build()).enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String str_add_infos = response.body().string();
-                Log.e("LiNing", "提交新增结果==" +str_add_infos);
+                Log.e("LiNing", "提交新增结果==" + str_add_infos);
 
             }
+
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -1194,7 +1679,7 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
         skd_pjje.setText("");
         skd_qtzk.setText("");
         skd_hjje.setText("");
-        skd_xxje.setText("");
+        skd_xxje.setText("0");
         skd_yushoujine.setText("");
         skd_yuchongtiqu.setText("");
         skd_cske.setText("");
@@ -1206,145 +1691,148 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
         skd_time_sx.setText("");
         skd_time_zs.setText("");
     }
-    int xj_je_int,yh_je_int,pj_je_int,qt_je_int,i_heje;
+
+    int xj_je_int, yh_je_int, pj_je_int, qt_je_int, i_heje;
+
     private void add_comit() {
 
-         add_zt = skd_tv_zt.getText().toString();
-        if(add_zt.equals("")){
+        add_zt = skd_tv_zt.getText().toString();
+        if (add_zt.equals("")) {
             Toast.makeText(context, "请选择账套", Toast.LENGTH_LONG).show();
-        }else {
-             add_rp_dd = skd_time.getText().toString();
-            if(add_rp_dd.equals("")){
+        } else {
+            add_rp_dd = skd_time.getText().toString();
+            if (add_rp_dd.equals("")) {
                 Toast.makeText(context, "请选择日期", Toast.LENGTH_LONG).show();
-            }else{
-                 add_rp_NO = skd_tv_dh.getText().toString();
-                if(add_rp_NO.equals("")){
+            } else {
+                add_rp_NO = skd_tv_dh.getText().toString();
+                if (add_rp_NO.equals("")) {
                     Toast.makeText(context, "请生成收付款单号", Toast.LENGTH_LONG).show();
-                }else{
-                     add_bil_NO = skd_lydh.getText().toString();
-                    if(add_bil_NO.equals("")){
-                        add_bil_NO="";
+                } else {
+                    add_bil_NO = skd_lydh.getText().toString();
+                    if (add_bil_NO.equals("")) {
+                        add_bil_NO = "";
                         Toast.makeText(context, "新增传空", Toast.LENGTH_LONG).show();
                     }
-                     add_bil_type = skd_djlb.getText().toString();
-                    if(add_bil_type.equals("")){
+                    add_bil_type = skd_djlb.getText().toString();
+                    if (add_bil_type.equals("")) {
                         Toast.makeText(context, "请选择单据类别", Toast.LENGTH_LONG).show();
                     }
-                     add_dep = skd_bm.getText().toString();
-                    if(add_dep.equals("")){
+                    add_dep = skd_bm.getText().toString();
+                    if (add_dep.equals("")) {
                         Toast.makeText(context, "请选择部门", Toast.LENGTH_LONG).show();
                     }
-                     add_usr_NO = skd_ywy.getText().toString();
-                    if(add_usr_NO.equals("")){
+                    add_usr_NO = skd_ywy.getText().toString();
+                    if (add_usr_NO.equals("")) {
                         Toast.makeText(context, "请选择业务员", Toast.LENGTH_LONG).show();
                     }
-                     add_zdwd = skd_zdwd.getText().toString();
-                    if(add_zdwd.equals("")){
+                    add_zdwd = skd_zdwd.getText().toString();
+                    if (add_zdwd.equals("")) {
                         Toast.makeText(context, "请选择终端网点", Toast.LENGTH_LONG).show();
                     }
-                     add_cus_NO = skd_kh.getText().toString();
-                    if(add_cus_NO.equals("")){
+                    add_cus_NO = skd_kh.getText().toString();
+                    if (add_cus_NO.equals("")) {
                         Toast.makeText(context, "请选择客户", Toast.LENGTH_LONG).show();
                     }
-                     add_rem = skd_zy.getText().toString();
-                    if(add_rem.equals("")){
+                    add_rem = skd_zy.getText().toString();
+                    if (add_rem.equals("")) {
                         Toast.makeText(context, "请选择摘要", Toast.LENGTH_LONG).show();
                     }
 
-                     add_amtn_BC = skd_xjzh.getText().toString();
-                    if(add_amtn_BC.equals("")){
-                        Toast.makeText(context, "请选择现金金额", Toast.LENGTH_LONG).show();
-                    }else{
+                    add_amtn_BC = skd_xjzh.getText().toString();
+                    if (add_amtn_BC.equals("")) {
+                        Toast.makeText(context, "请填写现金金额", Toast.LENGTH_LONG).show();
+                    } else {
 
-                         xj_je_int = Integer.valueOf(add_amtn_BC);
+                        xj_je_int = Integer.valueOf(add_amtn_BC);
                     }
                     add_amtn_BB = skd_yhzh.getText().toString();
-                    if(add_amtn_BB.equals("")){
-                        Toast.makeText(context, "请选择银行金额", Toast.LENGTH_LONG).show();
-                    }else{
+                    if (add_amtn_BB.equals("")) {
+                        Toast.makeText(context, "请填写银行金额", Toast.LENGTH_LONG).show();
+                    } else {
 
-                         yh_je_int = Integer.valueOf(add_amtn_BB);
+                        yh_je_int = Integer.valueOf(add_amtn_BB);
                     }
-                     add_amtn_Net = skd_pjje.getText().toString();
-                    if(add_amtn_Net.equals("")){
+                    add_amtn_Net = skd_pjje.getText().toString();
+                    if (add_amtn_Net.equals("")) {
                         Toast.makeText(context, "请选择票据金额", Toast.LENGTH_LONG).show();
-                    }else {
+                    } else {
 
-                         pj_je_int = Integer.valueOf(add_amtn_Net);
+                        pj_je_int = Integer.valueOf(add_amtn_Net);
                     }
                     //其他金额
-                     add_amtn_qt = skd_qtzk.getText().toString();
-                    if(add_amtn_qt.equals("")){
+                    add_amtn_qt = skd_qtzk.getText().toString();
+                    if (add_amtn_qt.equals("")) {
                         Toast.makeText(context, "请选择其他金额", Toast.LENGTH_LONG).show();
-                    }else {
+                    } else {
 
-                         qt_je_int = Integer.valueOf(add_amtn_qt);
+                        qt_je_int = Integer.valueOf(add_amtn_qt);
                     }
-                     i_heje = xj_je_int + yh_je_int + pj_je_int + qt_je_int;
+                    i_heje = xj_je_int + yh_je_int + pj_je_int + qt_je_int;
                     //合计金额
-                     add_amtn_hj = skd_hjje.getText().toString();
-                    if(add_amtn_hj.equals("")){
+                    add_amtn_hj = skd_hjje.getText().toString();
+                    if (add_amtn_hj.equals("")) {
                         Toast.makeText(context, "请选择合计金额", Toast.LENGTH_LONG).show();
                     }
                     //小写合计金额
-                     add_amtn_xxhj = skd_xxje.getText().toString();
-                    if(add_amtn_xxhj.equals("")){
+                    add_amtn_xxhj = skd_xxje.getText().toString();
+                    if (add_amtn_xxhj.equals("")) {
                         Toast.makeText(context, "请选择小写合计金额", Toast.LENGTH_LONG).show();
-                        add_amtn_xxhj=""+i_heje;
+                        add_amtn_xxhj = "" + i_heje;
+                    } else {
+                        add_amtn_xxhj = "" + i_heje;
+                        Log.e("LiNing", "合计金额====" + i_heje);
                     }
-                    else{
-                        add_amtn_xxhj=""+i_heje;
-                        Log.e("LiNing","合计金额===="+i_heje);
-                    }
-                    //预收金额
-                     add_amtn_IRP = skd_yushoujine.getText().toString();
-                    if(add_amtn_IRP.equals("")){
-                        Toast.makeText(context, "请选择预收金额", Toast.LENGTH_LONG).show();
-                    }
-                    //预冲提取
-                     add_amtn_CLS = skd_yuchongtiqu.getText().toString();
-                    if(add_amtn_CLS.equals("")){
-                        Toast.makeText(context, "请选择预冲提取", Toast.LENGTH_LONG).show();
-                    }
+//                    //预收金额
+//                    add_amtn_IRP = skd_yushoujine.getText().toString();
+//                    if (add_amtn_IRP.equals("")) {
+//                        Toast.makeText(context, "请选择预收金额", Toast.LENGTH_LONG).show();
+//                    }
+//                    //预冲提取
+//                    add_amtn_CLS = skd_yuchongtiqu.getText().toString();
+//                    if (add_amtn_CLS.equals("")) {
+//                        Toast.makeText(context, "请选择预冲提取", Toast.LENGTH_LONG).show();
+//                    }
 
                     //冲收款额
-                     add_cske = skd_cske.getText().toString();
-                    if(add_cske.equals("")){
+                    add_cske = skd_cske.getText().toString();
+                    if (add_cske.equals("")) {
                         Toast.makeText(context, "请选择冲收款额", Toast.LENGTH_LONG).show();
                     }
                     //冲应收额
-                     add_cyse = skd_cyingse.getText().toString();
-                    if(add_cyse.equals("")){
+                    add_cyse = skd_cyingse.getText().toString();
+                    if (add_cyse.equals("")) {
                         Toast.makeText(context, "请选择预冲应收额", Toast.LENGTH_LONG).show();
                     }
                     //收款金额
-                     add_skje = skd_skje.getText().toString();
-                    if(add_skje.equals("")){
+                    add_skje = skd_skje.getText().toString();
+                    if (add_skje.equals("")) {
                         Toast.makeText(context, "请选择预收款金额", Toast.LENGTH_LONG).show();
                     }
                     //冲预收额
-                     add_cyuse = skd_cyusee.getText().toString();
-                    if(add_cyuse.equals("")){
+                    add_cyuse = skd_cyusee.getText().toString();
+                    if (add_cyuse.equals("")) {
                         Toast.makeText(context, "请选择冲预收额", Toast.LENGTH_LONG).show();
                     }
                     //制单人
-                     add_usr = skd_zdr.getText().toString();
-                    if(add_usr.equals("")){
+                    add_usr = skd_zdr.getText().toString();
+                    if (add_usr.equals("")) {
                         Toast.makeText(context, "请选择制单人", Toast.LENGTH_LONG).show();
                     }
                     //生效日期
-                     add_sxrq = skd_time_sx.getText().toString();
-                    if(add_sxrq.equals("")){
+                    add_sxrq = skd_time_sx.getText().toString();
+                    if (add_sxrq.equals("")) {
+                        add_sxrq=date_dd;
                         Toast.makeText(context, "请选择生效日期", Toast.LENGTH_LONG).show();
                     }
                     //审核人skd_time_zs
-                     add_shr = skd_shr.getText().toString();
-                    if(add_shr.equals("")){
+                    add_shr = skd_shr.getText().toString();
+                    if (add_shr.equals("")) {
                         Toast.makeText(context, "请选择审核人", Toast.LENGTH_LONG).show();
                     }
                     //终审日期
-                     add_zsrq = skd_time_zs.getText().toString();
-                    if(add_zsrq.equals("")){
+                    add_zsrq = skd_time_zs.getText().toString();
+                    if (add_zsrq.equals("")) {
+                        add_zsrq=date_dd;
                         Toast.makeText(context, "终审日期", Toast.LENGTH_LONG).show();
                     }
 //                    表格数据
@@ -1356,68 +1844,102 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
         }
     }
 
+    String khmc_tj, ysph_tj, kzbz_tj, yshl_tj, bccx_tj, xh_tj_cx;
+
     private void getList_no() {
-        if(lv_skd_qry_yings.getCount()>0){
+        if (lv_skd_qry_yings.getCount() > 0) {
+
             ArrayList<String> YIS_XH = new ArrayList<String>();
+            ArrayList<String> YIS_XH_CX = new ArrayList<String>();
+            ArrayList<String> YIS_YSDH = new ArrayList<String>();
+            ArrayList<String> YIS_KZBZ = new ArrayList<String>();
+            ArrayList<String> YIS_DJRQ = new ArrayList<String>();
+            ArrayList<String> YIS_YSHL = new ArrayList<String>();
+            ArrayList<String> YIS_BCCX = new ArrayList<String>();
+            ArrayList<String> YIS_BCCX_NO = new ArrayList<String>();
+
             ArrayList<String> YIS_KHBH = new ArrayList<String>();
             ArrayList<String> YIS_KHMC = new ArrayList<String>();
             ArrayList<String> YIS_YSPH = new ArrayList<String>();
-            ArrayList<String> YIS_YSDH = new ArrayList<String>();
-            ArrayList<String> YIS_DJRQ = new ArrayList<String>();
             ArrayList<String> YIS_YSJE = new ArrayList<String>();
             ArrayList<String> YIS_YCJE = new ArrayList<String>();
-            ArrayList<String> YIS_BCCX = new ArrayList<String>();
             ArrayList<String> YIS_WCJY = new ArrayList<String>();
-            ArrayList<String> YIS_YSHL= new ArrayList<String>();
-            ArrayList<String> YIS_KZBZ = new ArrayList<String>();
             for (int i = 0; i < lv_skd_qry_yings.getCount(); i++) {
                 SkdYingsMx.MfArpList yis_infos = (SkdYingsMx.MfArpList) lv_skd_qry_yings.getAdapter().getItem(i);
-                Log.e("LiNing", "-mxInfo---xh--prdt2" + yis_infos.getYis_khmc()+"---"+yis_infos.getYis_wcjy());
+                Log.e("LiNing", "-mxInfo---xh--prdt2" + yis_infos.getYis_khmc() + "---" + yis_infos.getYis_wcjy());
                 String xh_tj = "" + i;
                 String khbh_tj = yis_infos.getCus_NO().toString();
-                if(yis_infos.getYis_khmc()!=null&&yis_infos.getYis_khmc().equals("")&&yis_infos.getYis_khmc().equals("null")){
 
-                    String khmc_tj = yis_infos.getYis_khmc().toString();
+                if (yis_infos.getYis_khmc() == null) {
+                    khmc_tj = "";
+                } else {
+                    khmc_tj = yis_infos.getYis_khmc().toString();
                 }
-                if(yis_infos.getYis_ysph()!=null&&yis_infos.getYis_ysph().equals("")&&yis_infos.getYis_ysph().equals("null")){
-
-                    String ysph_tj = yis_infos.getYis_ysph().toString();//应收票号
+                if (yis_infos.getYis_ysph() == null) {
+                    ysph_tj = "";
+                } else {
+                    ysph_tj = yis_infos.getYis_ysph().toString();//应收票号
                 }
                 String ysdh_tj = yis_infos.getArp_NO().toString();//应收单号
-                String djqr_tj = yis_infos.getBil_DD().toString();
+                SimpleDateFormat sf1 = new SimpleDateFormat("EEE MMM dd hh:mm:ss z yyyy", Locale.ENGLISH);
+                try {
+                    date = sf1.parse(yis_infos.getBil_DD().toString());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                SimpleDateFormat sf2 = new SimpleDateFormat("yyyy-MM-dd");
+                String format_data = sf2.format(date);
+                String djqr_tj = format_data;
+
+//                String djqr_tj = yis_infos.getBil_DD().toString();
                 String ysje_tj = yis_infos.getAmtn_NET().toString();
                 String ycje_tj = yis_infos.getAmtn_RCV().toString();
-                if(yis_infos.getYis_bccx()!=null&&yis_infos.getYis_bccx().equals("")&&yis_infos.getYis_bccx().equals("null")){
+                if (yis_infos.getYis_bccx() == null) {
+                    bccx_tj = "";
+                } else {
+                    bccx_tj = yis_infos.getYis_bccx().toString();
 
-                    String bccx_tj = yis_infos.getYis_bccx().toString();
-                }
-                if(yis_infos.getYis_wcjy()!=null&&yis_infos.getYis_wcjy().equals("")&&yis_infos.getYis_wcjy().equals("null")){
-
-                    String wcjy_tj = yis_infos.getYis_wcjy().toString();
-                }
-                if(yis_infos.getYis_yshl()!=null&&yis_infos.getYis_yshl().equals("")&&yis_infos.getYis_yshl().equals("null")){
-
-                    String yshl_tj = yis_infos.getYis_yshl().toString();
-                }
-                if(yis_infos.getYis_kzbz()!=null&&yis_infos.getYis_kzbz().equals("")&&yis_infos.getYis_kzbz().equals("null")){
-
-                    String kzbz_tj = yis_infos.getYis_kzbz().toString();
                 }
 
-                YIS_XH.add(xh_tj);
-                YIS_KHBH.add(khbh_tj);
-                YIS_KHMC.add("客户名称");
-                YIS_YSPH.add("001");
-                YIS_YSDH.add(ysdh_tj);
-                YIS_DJRQ.add(djqr_tj);
+                if (yis_infos.getExc_RTO() == null) {
+                    yshl_tj = "";
+                } else {
+                    yshl_tj = yis_infos.getExc_RTO().toString();
+
+                }
+                if (yis_infos.getOpn_ID() == null) {
+
+                    kzbz_tj = "";
+                } else {
+                    kzbz_tj = yis_infos.getOpn_ID().toString();
+                }
+
+                YIS_XH.add(xh_tj);//
+                YIS_YSDH.add(ysdh_tj);//
+                YIS_DJRQ.add(djqr_tj);//
+                YIS_YSHL.add(yshl_tj);//
+                YIS_KZBZ.add(kzbz_tj);//
+                YIS_BCCX.add(bccx_tj);//
                 YIS_YSJE.add(ysje_tj);
                 YIS_YCJE.add(ycje_tj);
-                YIS_BCCX.add("0.00");
-                YIS_WCJY.add("0.00");
-                YIS_YSHL.add("0.00");
-                YIS_KZBZ.add("0.00");
-
-
+                YIS_KHBH.add(khbh_tj);
+                YIS_KHMC.add(khmc_tj);
+                YIS_YSPH.add(ysph_tj);
+                if (YIS_BCCX.size() > 0) {
+                    for (int j = 0; j < YIS_BCCX.size(); j++) {
+                        if (!YIS_BCCX.get(j).equals("")) {
+                            YIS_BCCX_NO.add(YIS_BCCX.get(j).toString());
+                        }
+                    }
+                }
+                if (YIS_BCCX_NO.size() > 0) {
+                    for (int m = 0; m < YIS_BCCX_NO.size(); m++) {
+                        xh_tj_cx = "" + m;
+                    }
+                }
+                YIS_BCCX_NO.add(xh_tj_cx);
+                Log.e("LiNing", "----xh--数据" + YIS_XH + "---" + YIS_YSDH + "---" + YIS_DJRQ + "----" + YIS_YSHL + "---" + YIS_KZBZ
+                        + "---" + YIS_BCCX + "---" + YIS_BCCX_NO);
                 //开始拼接
                 String yis_xhs_str = "";
                 for (String str : YIS_XH) {
@@ -1491,57 +2013,72 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                 }
                 sub_yis_kzbz = yis_kzbzs_str.substring(0, yis_kzbzs_str.length() - 1);
                 Log.e("LiNing", "------新数据" + sub_yis_kzbz);
+                String yis_xh_cx_str = "";
+                for (String str : YIS_BCCX_NO) {
+                    yis_xh_cx_str += str + ",";
+                }
+                sub_yis_xh_cx = yis_xh_cx_str.substring(0, yis_xh_cx_str.length() - 1);
+                Log.e("LiNing", "------新数据" + sub_yis_xh_cx);
 
             }
+        }else {
+            sub_yis_yshl="";
+            sub_yis_kzbz="";
+            sub_yis_xh="";
+            sub_yis_xh_cx="";
+            sub_yis_ysdh="";
+            sub_yis_bccx="";
+            sub_yis_djrq="";
         }
     }
 
     private AlertDialog alertDialog;
     private SkdsQtyAdapter qtyAdapter;
     private YingsMxAdapter yingsAdapter;
+
     private void get_allSkds() {
         //    http://oa.ydshce.com:8080/InfManagePlatform/PaymentsqueryPayment.action?db_Id=DB_BJ18&&showRow=300&&clientRows=0&&rp_ID=1&&rp_NO=RT201805230051
 //    &&rp_DD=2018-05-23&&usr_NO=L022&&dep=2023&&rem=孙黎明&&bil_NO=SO201805230097&&irp_ID=T&&CLS_ID=T&&cus_NO=KH031&&bil_TYPE=06&&usr=Z002&&chk_MAN=Z002
 //    &&cus_NO_OS=123
-        Log.e("LiNing", "提交数据===" + comit_zt+comit_time+clientRows);
-        if(lv_query_skd.getCount()<=0){
-            clientRows="0";
+        Log.e("LiNing", "提交数据===" + comit_zt + comit_time + clientRows);
+        if (lv_query_skd.getCount() <= 0) {
+            clientRows = "0";
         }
         Log.e("LiNing", "提交数据===" + clientRows);
         OkHttpClient client = new OkHttpClient();
         FormBody body = new FormBody.Builder()
-                .add("db_Id",comit_zt)
-                .add("showRow","50")
-                .add("clientRows",clientRows)
+                .add("db_Id", comit_zt)
+                .add("showRow", "50")
+                .add("clientRows", clientRows)
 //                .add("clientRows","0")
-                .add("rp_ID","1")
-                .add("irp_ID","T")
-                .add("CLS_ID","T")
-                .add("rp_NO",comit_dh)
-                .add("bil_NO",comit_lydh)
-                .add("rp_DD",comit_time)
-                .add("usr_NO",comit_czy)
+                .add("rp_ID", "1")
+                .add("irp_ID", "T")
+                .add("CLS_ID", "T")
+                .add("rp_NO", comit_dh)
+                .add("bil_NO", comit_lydh)
+                .add("rp_DD", comit_time)
+                .add("usr_NO", comit_czy)
 //                .add("dep",comit_dep)//有默认值
-                .add("cus_NO",kh_bh)
-                .add("bil_TYPE",comit_djlb)
-                .add("usr",comit_zdr)
-                .add("chk_MAN",comit_shr)
-                .add("rem",comit_zy)
+                .add("cus_NO", kh_bh)
+                .add("bil_TYPE", comit_djlb)
+                .add("usr", comit_zdr)
+                .add("chk_MAN", comit_shr)
+                .add("rem", comit_zy)
                 .build();
-        Log.e("LiNing", "提交数据=1==" + comit_zt+comit_time+clientRows);
+        Log.e("LiNing", "提交数据=1==" + comit_zt + comit_time + clientRows);
         client.newCall(new Request.Builder().addHeader("cookie", session).post(body)
                 .url(url_query_skd).build()).enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String str = response.body().string();
                 Log.e("LiNing", "所有收款单===new" + str);
-                if(str!=null&&!str.equals("")&&!str.equals("null")) {
+                if (str != null && !str.equals("") && !str.equals("null")) {
 
                     // 解析包含date的数据必须添加此代码(InputStream型)
                     Gson gson = new GsonBuilder().setDateFormat(
                             "yyyy-MM-dd HH:mm:ss").create();
-                    final ReceiptSkdForm skd_all = gson.fromJson(str,
-                            ReceiptSkdForm.class);
+                    final ReceptYingshou skd_all = gson.fromJson(str,
+                            ReceptYingshou.class);
                     int sumShowRow = skd_all.getSumShowRow();
                     s_zh = String.valueOf(sumShowRow);
                     clientRows = s_zh;
@@ -1552,10 +2089,10 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
 
                                 mf_monList = skd_all.getMf_monList();
 
-                                if (mf_monList != null && mf_monList.size() > 0) {
+                                if (ReceiptFormActivity.this.mf_monList != null && ReceiptFormActivity.this.mf_monList.size() > 0) {
 
-                                    mf_monList_all.addAll(mf_monList);
-                                    qtyAdapter = new SkdsQtyAdapter(R.layout.skd_had, mf_monList_all, context);
+//                                    mf_monList_all.addAll(mf_monList);
+//                                    qtyAdapter = new SkdsQtyAdapter(R.layout.skd_had, mf_monList_all, context);
 //                                    qtyAdapter.bindData(mf_monList_all);
 //                                    lv_query_skd.addFooterView(below);
 //                                    if (clientRows.equals("50")) {
@@ -1563,8 +2100,8 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
 //                                    }
 //                                    qtyAdapter.notifyDataSetChanged();
 
-//                                    qtyAdapter = new SkdsQtyAdapter(R.layout.skd_had, mf_monList, context);
-                                    lv_query_skd.addFooterView(below);
+                                    qtyAdapter = new SkdsQtyAdapter(R.layout.skd_had, ReceiptFormActivity.this.mf_monList, context);
+//                                    lv_query_skd.addFooterView(below);
                                     lv_query_skd.setAdapter(qtyAdapter);
                                     qtyAdapter.notifyDataSetChanged();
 
@@ -1576,6 +2113,7 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                 }
 
             }
+
             @Override
             public void onFailure(Call call, IOException e) {
 
@@ -1584,33 +2122,36 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
 
         });
     }
-    MyHScrollView headSrcrollView;
-    private Date date;
-    private String url_prdNo = URLS.prdNo_url;//通过id获取名称
+
+
+
     public class YingsMxAdapter extends BaseAdapter {
 
         int id_row_layout;
         LayoutInflater mInflater;
         List<SkdYingsMx.MfArpList> skdysmx_infos;
-        double v_ysje,v_ycje;
+        double v_ysje, v_ycje;
         List<DepInfo.IdNameList> depInfo;
         String name;
         boolean ischeck = false;
 
 
         public YingsMxAdapter(int pskd_head_yings_item1, List<SkdYingsMx.MfArpList> mfArpList_yings, Context context) {
-            this.id_row_layout=pskd_head_yings_item1;
-            this.skdysmx_infos=mfArpList_yings;
+            this.id_row_layout = pskd_head_yings_item1;
+            this.skdysmx_infos = mfArpList_yings;
             this.mInflater = LayoutInflater.from(context);
         }
+
         @Override
         public boolean isEnabled(int position) {
             return ischeck;
         }
+
         public void check() {
             ischeck = false;
             notifyDataSetChanged();
         }
+
         @Override
         public int getCount() {
             return skdysmx_infos.size();
@@ -1629,51 +2170,56 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
             final ViewHolder holder_ysmx;
-            if(convertView==null){
+            if (convertView == null) {
                 synchronized (ReceiptFormActivity.this) {
 
 
-                convertView=mInflater.inflate(id_row_layout,null);
-                holder_ysmx=new ViewHolder();
+                    convertView = mInflater.inflate(id_row_layout, null);
+                    holder_ysmx = new ViewHolder();
                     MyHScrollView scrollView1 = (MyHScrollView) convertView
                             .findViewById(R.id.horizontalScrollView1);
                     holder_ysmx.scrollView = scrollView1;
-                holder_ysmx.yingsmx_xh= (TextView) convertView.findViewById(R.id.skdmx_yings_xh_item);
-                holder_ysmx.yingsmx_khbh= (TextView) convertView.findViewById(R.id.skdmx_yings_khbh_item);
-                holder_ysmx.yingsmx_khmc= (TextView) convertView.findViewById(R.id.skdmx_yings_khmc_item);
-                holder_ysmx.yingsmx_ysph= (TextView) convertView.findViewById(R.id.tv_skdmx_yingsph_item);
-                holder_ysmx.yingsmx_ysdh= (TextView) convertView.findViewById(R.id.tv_skdmx_yingsdh_item);
-                holder_ysmx.yingsmx_djrq= (TextView) convertView.findViewById(R.id.tv_skdmx_djrq_item);
-                holder_ysmx.yingsmx_ysje= (TextView) convertView.findViewById(R.id.tv_skdmx_yingsje_item);
-                holder_ysmx.yingsmx_ycje= (TextView) convertView.findViewById(R.id.tv_skdmx_yingsycje_item);
-                holder_ysmx.yingsmx_bccx= (EditText) convertView.findViewById(R.id.tv_skdmx_yingsbccx_item);
-                holder_ysmx.yingsmx_wcjy= (TextView) convertView.findViewById(R.id.tv_skdmx_yingswcjy_item);
-                holder_ysmx.yingsmx_bz= (TextView) convertView.findViewById(R.id.tv_skdmx_yingsbz_item);
+                    holder_ysmx.yingsmx_xh = (TextView) convertView.findViewById(R.id.skdmx_yings_xh_item);
+                    holder_ysmx.yingsmx_khbh = (TextView) convertView.findViewById(R.id.skdmx_yings_khbh_item);
+                    holder_ysmx.yingsmx_khmc = (TextView) convertView.findViewById(R.id.skdmx_yings_khmc_item);
+                    holder_ysmx.yingsmx_ysph = (TextView) convertView.findViewById(R.id.tv_skdmx_yingsph_item);
+                    holder_ysmx.yingsmx_ysdh = (TextView) convertView.findViewById(R.id.tv_skdmx_yingsdh_item);
+                    holder_ysmx.yingsmx_djrq = (TextView) convertView.findViewById(R.id.tv_skdmx_djrq_item);
+                    holder_ysmx.yingsmx_ysje = (TextView) convertView.findViewById(R.id.tv_skdmx_yingsje_item);
+                    holder_ysmx.yingsmx_ycje = (TextView) convertView.findViewById(R.id.tv_skdmx_yingsycje_item);
+                    holder_ysmx.yingsmx_bccx = (EditText) convertView.findViewById(R.id.tv_skdmx_yingsbccx_item);
+                    holder_ysmx.yingsmx_wcjy = (TextView) convertView.findViewById(R.id.tv_skdmx_yingswcjy_item);
+                    holder_ysmx.yingsmx_bz = (TextView) convertView.findViewById(R.id.tv_skdmx_yingsbz_item);
                     headSrcrollView = (MyHScrollView) mHead_yings
                             .findViewById(R.id.horizontalScrollView1);
                     headSrcrollView
                             .AddOnScrollChangedListener(new OnScrollChangedListenerImp(
                                     scrollView1));
                     convertView.setTag(holder_ysmx);
-            }
-            }else{
-                holder_ysmx= (ViewHolder) convertView.getTag();
+                }
+            } else {
+                holder_ysmx = (ViewHolder) convertView.getTag();
             }
             SkdYingsMx.MfArpList mfArpList = skdysmx_infos.get(position);
             //编辑EditextSet(******放于此处避免listview数据错乱)
             EditextSet_add(holder_ysmx, mfArpList);
             int id_add = position + 1;
-            holder_ysmx.yingsmx_xh.setText(""+id_add);
-            holder_ysmx.yingsmx_khbh.setText(mfArpList.getCus_NO());
-            holder_ysmx.yingsmx_bz.setText(mfArpList.getRem());
+            holder_ysmx.yingsmx_xh.setText("" + id_add);
+            holder_ysmx.yingsmx_khbh.setText(mfArpList.getRpt_NO());
+            if (mfArpList.getRem() == null) {
+                holder_ysmx.yingsmx_bz.setText("");
+            } else {
+
+                holder_ysmx.yingsmx_bz.setText(mfArpList.getRem());
+            }
             //客户名称（id转化）
             //此处请求接口获取名称
             OkHttpClient client = new OkHttpClient();
-            Log.e("LiNing","-----"+mfArpList.getCus_NO().toString());
-            FormBody body = new FormBody.Builder().add("accountNo", "DB_BJ18")
-                    .add("id", skdysmx_infos.get(position).getCus_NO()).build();
+            Log.e("LiNing", "-----" + mfArpList.getCus_NO().toString());
+            FormBody body = new FormBody.Builder().add("accountNo", skd_tv_zt.getText().toString())
+                    .add("id", skdysmx_infos.get(position).getRpt_NO()).build();
             Request request = new Request.Builder()
-                    .addHeader("cookie", session).url(url_prdNo).post(body)
+                    .addHeader("cookie", session).url(url_id_toname).post(body)
                     .build();
             Call call = client.newCall(request);
             call.enqueue(new Callback() {
@@ -1690,22 +2236,23 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                                     @Override
                                     public void run() {
                                         depInfo = dInfo.getIdNameList();
-                                        if(depInfo!=null&&depInfo.size()>0){
-                                            for(int i=0;i<depInfo.size();i++){
+                                        if (depInfo != null && depInfo.size() > 0) {
+                                            for (int i = 0; i < depInfo.size(); i++) {
                                                 name = depInfo.get(i).getName();
                                                 holder_ysmx.yingsmx_khmc.setText(name);
                                                 skdysmx_infos.get(i).setYis_khmc(name);
-                                                Log.e("LiNing","数据name"+skdysmx_infos.get(position).getYis_khmc());
+                                                Log.e("LiNing", "数据name" + skdysmx_infos.get(position).getYis_khmc());
                                             }
                                         }
                                         skdysmx_infos.get(position).setYis_khmc(name);
 //                                        holder.price_name.setText(infos.get(position).getNAME_ZDY());
-                                        Log.e("LiNing","数据name---"+skdysmx_infos.get(position).getYis_khmc());
+                                        Log.e("LiNing", "数据name---" + skdysmx_infos.get(position).getYis_khmc());
                                     }
 
                                 });
                     }
                 }
+
                 @Override
                 public void onFailure(Call call, IOException e) {
 
@@ -1713,7 +2260,7 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
 
 
             });
-            holder_ysmx.yingsmx_ysph.setText("应收票号");
+            holder_ysmx.yingsmx_ysph.setText(mfArpList.getBil_NO());
             holder_ysmx.yingsmx_ysdh.setText(mfArpList.getArp_NO());
             SimpleDateFormat sf1 = new SimpleDateFormat("EEE MMM dd hh:mm:ss z yyyy", Locale.ENGLISH);
             try {
@@ -1724,22 +2271,23 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
             SimpleDateFormat sf2 = new SimpleDateFormat("yyyy-MM-dd");
             String format_data = sf2.format(date);
             holder_ysmx.yingsmx_djrq.setText(format_data);
-            if(mfArpList.getAmtn_NET().toString()!=null){
+            if (mfArpList.getAmtn_NET().toString() == null) {
 
-                 v_ysje = new BigDecimal(mfArpList.getAmtn_NET()).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
+                holder_ysmx.yingsmx_ysje.setText("0");
+            } else {
+                v_ysje = new BigDecimal(mfArpList.getAmtn_NET()).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                 holder_ysmx.yingsmx_ysje.setText("" + v_ysje);
             }
-            if(mfArpList.getAmtn_RCV().toString()!=null){
+            if (mfArpList.getAmtn_RCV() == null) {
 
-                 v_ycje = new BigDecimal(mfArpList.getAmtn_RCV()).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
-                holder_ysmx.yingsmx_ycje.setText("" +v_ycje );
+                holder_ysmx.yingsmx_ycje.setText("0");
+            } else {
+                v_ycje = new BigDecimal(mfArpList.getAmtn_RCV()).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
+                holder_ysmx.yingsmx_ycje.setText("" + v_ycje);
             }
             double v_wcjy = v_ysje - v_ysje;
-            skdysmx_infos.get(position).setYis_wcjy(""+v_wcjy);
-//            holder_ysmx.yingsmx_wcjy.setText("" +v_wcjy );
+            skdysmx_infos.get(position).setYis_wcjy("" + v_wcjy);
             holder_ysmx.yingsmx_wcjy.setText(skdysmx_infos.get(position).getYis_wcjy());
-            skdysmx_infos.get(position).setYis_ysph("应收票号");
-            holder_ysmx.yingsmx_ysph.setText( skdysmx_infos.get(position).getYis_ysph());
             return convertView;
         }
 
@@ -1765,6 +2313,7 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                         mfArpList.setYis_bccx("");
                     } else {
                         mfArpList.setYis_bccx(s.toString());
+                        skd_cske.setText(s.toString());
                     }
                 }
             };
@@ -1787,6 +2336,7 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                 this.mScrollViewArg.smoothScrollTo(paramInt1, paramInt2);
             }
         }
+
         class ViewHolder {
             HorizontalScrollView scrollView;
             public TextView yingsmx_xh;
@@ -1802,24 +2352,28 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
             public TextView yingsmx_bz;
         }
     }
+
     public class SkdsQtyAdapter extends BaseAdapter {
         int id_row_layout;
         LayoutInflater mInflater;
-        List<ReceiptSkdForm.Mf_monList> skdqty_infos;
+        List<ReceptYingshou.Mf_monList> skdqty_infos;
         //item高亮显示
         private int selectItem = -1;
 
         public void setSelectItem(int selectItem) {
             this.selectItem = selectItem;
         }
-        public SkdsQtyAdapter(int skd_had, List<ReceiptSkdForm.Mf_monList> mf_monList, Context context) {
+
+        public SkdsQtyAdapter(int skd_had, List<ReceptYingshou.Mf_monList> mf_monList, Context context) {
             this.id_row_layout = skd_had;
             this.skdqty_infos = mf_monList;
             this.mInflater = LayoutInflater.from(context);
         }
-        public void bindData( List<ReceiptSkdForm.Mf_monList> mf_monList) {
+
+        public void bindData(List<ReceptYingshou.Mf_monList> mf_monList) {
             this.skdqty_infos = mf_monList;
         }
+
         @Override
         public int getCount() {
             return skdqty_infos.size();
@@ -1838,18 +2392,18 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder holder;
-            if(convertView==null){
-                convertView=mInflater.inflate(id_row_layout,null);
-                holder=new ViewHolder();
-                holder.skd_qty_dh= (TextView) convertView.findViewById(R.id.skd_sfkdh);
-                holder.skd_qty_rq= (TextView) convertView.findViewById(R.id.textView2_skd_rq);
-                holder.skd_qty_lrr= (TextView) convertView.findViewById(R.id.textView3_skd_lrr);
-                holder.skd_qty_shr= (TextView) convertView.findViewById(R.id.textView4_skd_shr);
+            if (convertView == null) {
+                convertView = mInflater.inflate(id_row_layout, null);
+                holder = new ViewHolder();
+                holder.skd_qty_dh = (TextView) convertView.findViewById(R.id.skd_sfkdh);
+                holder.skd_qty_rq = (TextView) convertView.findViewById(R.id.textView2_skd_rq);
+                holder.skd_qty_lrr = (TextView) convertView.findViewById(R.id.textView3_skd_lrr);
+                holder.skd_qty_shr = (TextView) convertView.findViewById(R.id.textView4_skd_shr);
                 convertView.setTag(holder);
-            }else{
-                holder= (ViewHolder) convertView.getTag();
+            } else {
+                holder = (ViewHolder) convertView.getTag();
             }
-            ReceiptSkdForm.Mf_monList mf_monList_all = skdqty_infos.get(position);
+            ReceptYingshou.Mf_monList mf_monList_all = skdqty_infos.get(position);
             holder.skd_qty_dh.setText(mf_monList_all.getRp_NO().toString());
             Log.e("LiNing", "时间====xin=====" + mf_monList_all.getRp_DD().toString());
 
@@ -1858,7 +2412,7 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
             String a1 = dateformat1.format(date);
             holder.skd_qty_rq.setText(a1);
 
-            if(mf_monList_all.getTf_MON()!=null){
+            if (mf_monList_all.getTf_MON() != null) {
                 holder.skd_qty_lrr.setText(mf_monList_all.getTf_MON().getUsr().toString());
                 holder.skd_qty_shr.setText(mf_monList_all.getTf_MON().getChk_MAN().toString());
             }
@@ -1872,6 +2426,7 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
             }
             return convertView;
         }
+
         class ViewHolder {
 
             public TextView skd_qty_dh;
@@ -1880,80 +2435,82 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
             public TextView skd_qty_shr;
         }
     }
-    private void get_info_comint() {
-        Log.e("LiNing","初始化值===="+clientRows);
-        if(lv_query_skd.getCount()<0){
 
-            clientRows="0";
+    private void get_info_comint() {
+        Log.e("LiNing", "初始化值====" + clientRows);
+        if (lv_query_skd.getCount() < 0) {
+
+            clientRows = "0";
         }
 
-         comit_zt = skd_tv_zt.getText().toString();
+        comit_zt = skd_tv_zt.getText().toString();
         if (comit_zt.equals("")) {
             Toast.makeText(context, "请选择账套", Toast.LENGTH_LONG).show();
         }
-         comit_time_zb = skd_time.getText().toString();
+        comit_time_zb = skd_time.getText().toString();
         if (comit_time_zb.equals("")) {
             comit_time_zb = "null";
         }
 
-        if (!start_quick.getText().toString().equals("")&&!stop_quick.getText().toString().equals("")) {
-            comit_time = start_quick.getText().toString()+";"+stop_quick.getText().toString();
-        }else{
+        if (!start_quick.getText().toString().equals("") && !stop_quick.getText().toString().equals("")) {
+            comit_time = start_quick.getText().toString() + ";" + stop_quick.getText().toString();
+        } else {
             comit_time = "null";
 
         }
-         comit_dh = skd_tv_dh.getText().toString();
-        if (comit_dh.equals("")||comit_dh==null) {
+        comit_dh = skd_tv_dh.getText().toString();
+        if (comit_dh.equals("") || comit_dh == null) {
             comit_dh = "null";
         }
-         comit_dep = skd_bm.getText().toString();
+        comit_dep = skd_bm.getText().toString();
         if (comit_dep.equals("")) {
             comit_dep = "null";
         }
-         comit_czy = skd_ywy.getText().toString();
+        comit_czy = skd_ywy.getText().toString();
         if (comit_czy.equals("")) {
             comit_czy = "null";
         }
-         comit_zdwd = skd_zdwd.getText().toString();
+        comit_zdwd = skd_zdwd.getText().toString();
         if (comit_zdwd.equals("")) {
             comit_zdwd = "null";
         }
-         comit_zdkh = skd_kh.getText().toString();
+        comit_zdkh = skd_kh.getText().toString();
         if (comit_zdkh.equals("")) {
             comit_zdkh = "null";
         }
-         comit_djlb = skd_djlb.getText().toString();
+        comit_djlb = skd_djlb.getText().toString();
         if (comit_djlb.equals("")) {
             comit_djlb = "null";
         }
-         comit_zdr = skd_zdr.getText().toString();
+        comit_zdr = skd_zdr.getText().toString();
         if (comit_zdr.equals("")) {
             comit_zdr = "null";
         }
-         comit_shr = skd_shr.getText().toString();
+        comit_shr = skd_shr.getText().toString();
         if (comit_shr.equals("")) {
             comit_shr = "null";
 
         }
-         comit_lydh = skd_lydh.getText().toString();
-        if (comit_lydh.equals("")||comit_lydh==null) {
+        comit_lydh = skd_lydh.getText().toString();
+        if (comit_lydh.equals("") || comit_lydh == null) {
             comit_lydh = "null";
-            comit_bil_ID="null";
-            comit_sor_ID="2";
-        }else{
+            comit_bil_ID = "null";
+            comit_sor_ID = "2";
+        } else {
             String substring_bil = comit_lydh.substring(0, 2);
-            comit_bil_ID=substring_bil;
-            comit_sor_ID="1";
+            comit_bil_ID = substring_bil;
+            comit_sor_ID = "1";
         }
-         comit_zy = skd_zy.getText().toString();
+        comit_zy = skd_zy.getText().toString();
         if (comit_zy.equals("")) {
             comit_zy = "null";
         }
         if (skd_kh.getText().toString().equals("")) {
             kh_bh = "null";
         }
-        Log.e("LiNing", "获取数据===" + comit_dh+comit_lydh);
+        Log.e("LiNing", "获取数据===" + comit_dh + comit_lydh);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -1969,7 +2526,7 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
             case 2:
                 if (resultCode == 1) {
                     String str_name = data.getStringExtra("data_dep");
-                     str_id_bm = data.getStringExtra("data_dep_id");
+                    str_id_bm = data.getStringExtra("data_dep_id");
                     skd_bm.setText(str_name);
                     Log.e("LiNing", "提交的id====" + str_id_bm + str_name);
                 }
@@ -1977,15 +2534,18 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
             case 3:
                 if (resultCode == 1) {
                     String str_name = data.getStringExtra("data_dep");
-                     str_id_zdwd = data.getStringExtra("data_dep_id");
+                    str_id_zdwd = data.getStringExtra("data_dep_id");
                     skd_zdwd.setText(str_name);
                     Log.e("LiNing", "提交的id====" + str_id_zdwd + str_name);
+                    if(str_id_zdwd!=null){
+                        getYus_no();//获取未点击预收的数据
+                    }
                 }
                 break;
             case 4:
                 if (resultCode == 1) {
                     String str_name = data.getStringExtra("data_dep");
-                     str_id_djlb = data.getStringExtra("data_dep_id");
+                    str_id_djlb = data.getStringExtra("data_dep_id");
                     skd_djlb.setText(str_name);
                     Log.e("LiNing", "提交的id====" + str_id_djlb + str_name);
                 }
@@ -1993,7 +2553,7 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
             case 5:
                 if (resultCode == 1) {
                     String str_name = data.getStringExtra("data_dep");
-                     str_id_ywy = data.getStringExtra("data_dep_id");
+                    str_id_ywy = data.getStringExtra("data_dep_id");
                     skd_ywy.setText(str_name);
                     Log.e("LiNing", "提交的id====" + str_id_ywy + str_name);
                 }
@@ -2003,16 +2563,34 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                     cust_callback = (CustAllObjectInfos.CustList) data.getSerializableExtra("CUST_QTY");
                     if (cust_callback.getCust_Name() != null) {
                         skd_kh.setText(cust_callback.getCust_Name());
-                         kh_bh = cust_callback.getCust_No().toString();
+                        kh_bh = cust_callback.getCust_No().toString();
+                        yings_mx.setVisibility(View.GONE);
+                        if (!skd_zdwd.getText().toString().equals("") && !skd_kh.getText().toString().equals("")) {
+                            get_yys_mx();
+                        }
                     } else {
                         skd_kh.setText("");
                     }
 
                 }
                 break;
+            case 7:
+                if (resultCode == 1) {
+                    sub_yus_xh_dj = data.getStringExtra("YUS_XH");
+                    sub_yus_dh_dj = data.getStringExtra("YUS_DH");
+                    sub_yus_bccx_dj = data.getStringExtra("YUS_BCCX");
+                    String sub_yus_bccx_hj = data.getStringExtra("YUS_BCCX_HJ");
+                    //预收本次冲销+预存提取
+                    skd_cyusee.setText(sub_yus_bccx_hj);
+                    skd_yuchongtiqu.setText(sub_yus_bccx_hj);
+                    skd_yushoujine.setText(sub_yus_bccx_hj);
+                    Log.e("LiNing", "提交的id====" +sub_yus_bccx_hj+ sub_yus_xh_dj + sub_yus_dh_dj + sub_yus_bccx_dj);
+                    Log.e("LiNing", "提交的id==应收==" + sub_yis_bccx+ sub_yis_xh+ sub_yis_yshl+ sub_yis_kzbz+ sub_yis_xh_cx);
+                }
+                break;
             case 9:
                 if (resultCode == 1) {
-                     jf_id_hd = data.getStringExtra("jf_ID");
+                    jf_id_hd = data.getStringExtra("jf_ID");
                     String vip_name_hd = data.getStringExtra("jf_NAME");
                     kb_qtzk.setText(vip_name_hd);
 //                    jflx_comit_jl = jf_id_hd;
@@ -2023,34 +2601,21 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                 if (resultCode == 1) {
                     String str_name = data.getStringExtra("data_dep");
                     String str_id = data.getStringExtra("data_dep_id");
-                    if(index_lx==2){
-                        fklx_id_xj=str_id;
+                    if (index_lx == 2) {
+                        fklx_id_xj = str_id;
                         Log.e("LiNing", "提交的id====" + fklx_id + str_name);
                     }
-                    if(index_lx==1){
-                        fklx_id=str_id;
+                    if (index_lx == 1) {
+                        fklx_id = str_id;
                         Log.e("LiNing", "提交的id====" + fklx_id + str_name);
                     }
                 }
                 break;
-                default:
-                    break;
+            default:
+                break;
         }
     }
 
-    //    class ListViewAndHeadViewTouchLinstener implements View.OnTouchListener {
-//        ListViewAndHeadViewTouchLinstener() {
-//        }
-//
-//        @Override
-//        public boolean onTouch(View v, MotionEvent event) {
-//            ((HorizontalScrollView) ReceiptFormActivity.this.mHead_yus
-//                    .findViewById(R.id.horizontalScrollView1))
-//                    .onTouchEvent(event);
-//            return false;
-//        }
-//
-//    }
     class ListViewAndHeadViewTouchLinstener_yings implements View.OnTouchListener {
         ListViewAndHeadViewTouchLinstener_yings() {
         }
@@ -2113,6 +2678,7 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
             });
         }
     }
+
     private void getTicket_BT() {
         String DB_LS = skd_tv_zt.getText().toString();
         date_dd_dh = skd_time.getText().toString();
@@ -2144,7 +2710,7 @@ public class ReceiptFormActivity extends Activity implements View.OnClickListene
                         if (bean_id != null) {
                             ReceiptFormActivity.this.runOnUiThread(new Runnable() {
                                 public void run() {
-                                     id_ls_bddh = bean_id.getBil_no();
+                                    id_ls_bddh = bean_id.getBil_no();
                                 }
                             });
 
