@@ -287,7 +287,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
         cust_ed_xszd = (TextView) findViewById(R.id.et_cust_all_xszd);
         cust_ed_xsgw = (TextView) findViewById(R.id.et_cust_all_xsgw);
         cust_ed_yxpp = (TextView) findViewById(R.id.et_cust_all_yxpp);
-        cust_ed_bzxx = (EditText) findViewById(R.id.et_cust_all_bzxx);
+//        cust_ed_bzxx = (EditText) findViewById(R.id.et_cust_all_bzxx);
         cust_tv_psxx = (TextView) findViewById(R.id.et_cust_all_psxx);
         cust_tv_hxjg = (EditText) findViewById(R.id.et_cust_all_hxjg);
 //        cust_tv_clyy= (EditText) findViewById(R.id.et_cust_all_psxx);
@@ -457,6 +457,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
                     clearChecbox();
                     Intent intent_cust = new Intent(context, QueryCustersActivity.class);
                     intent_cust.putExtra("ZT_VIP", cust_tv_zt.getText().toString());
+                    intent_cust.putExtra("ZT_zdwd", "CUST");
                     startActivityForResult(intent_cust, 3);
                 }else{
                     Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
@@ -1239,10 +1240,10 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
         if (cust_zxjd_z.equals("")) {
             cust_zxjd_z = "NULL";
         }
-        cust_bzxx_z = cust_ed_bzxx.getText().toString();
-        if (cust_bzxx_z.equals("")) {
-            cust_bzxx_z = "NULL";
-        }
+//        cust_bzxx_z = cust_ed_bzxx.getText().toString();
+//        if (cust_bzxx_z.equals("")) {
+//            cust_bzxx_z = "NULL";
+//        }
     }
 
     private void showPopupMenu(View view) {
@@ -1799,7 +1800,7 @@ public class CustersAllActivity extends FragmentActivity implements View.OnClick
         cust_ed_xszd.setText("");
         cust_ed_xsgw.setText("");
         cust_ed_yxpp.setText("");
-        cust_ed_bzxx.setText("");
+//        cust_ed_bzxx.setText("");
     }
 
     private ListView lv_xxgz;

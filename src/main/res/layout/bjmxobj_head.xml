@@ -182,7 +182,7 @@
                     android:maxEms="18"
                     android:padding="2.0dip"
                     android:singleLine="true"
-                    android:text="价格代号"
+                    android:text="政策代号"
                     android:textColor="#ff000000"
                     android:textSize="16sp" />
 
@@ -272,6 +272,20 @@
 
                 <View style="@style/list_item_cell_seperator_layout" />
                 <TextView
+                    android:id="@+id/tv_bjmxsddh"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="受订单号"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
                     android:id="@+id/tv_bjmxsdsl"
                     android:layout_width="120dip"
                     android:layout_height="wrap_content"
@@ -294,7 +308,21 @@
                     android:maxEms="18"
                     android:padding="2.0dip"
                     android:singleLine="true"
-                    android:text="生产数量"
+                    android:text="生产单号"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxllsl"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="领料数量"
                     android:textColor="#ff000000"
                     android:textSize="16sp" />
 
@@ -393,6 +421,34 @@
                     android:padding="2.0dip"
                     android:singleLine="true"
                     android:text="包装大小"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxzy"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="摘要"
+                    android:textColor="#ff000000"
+                    android:textSize="16sp" />
+
+                <View style="@style/list_item_cell_seperator_layout" />
+                <TextView
+                    android:id="@+id/tv_bjmxtszc"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxEms="18"
+                    android:padding="2.0dip"
+                    android:singleLine="true"
+                    android:text="特殊政策"
                     android:textColor="#ff000000"
                     android:textSize="16sp" />
 

@@ -2363,10 +2363,12 @@ public class NewModActivity extends Activity implements OnClickListener {
         Log.e("LiNing", "image数据是===" + image);
 
         if (image == null) {
+//            file_sighn = new File("");
             Toast.makeText(context, "请添加照片", Toast.LENGTH_LONG).show();
             // file_sighn = new File("IMG_20180124_011924.jpg");
         } else {
             file_sighn = new File(image);
+            Log.e("LiNing", "image数据是===8888888888888888888888" + image);
         }
         Log.e("LiNing", "file_sighn数据是===" + file_sighn);
         // imageER = sp.getString("imageER", "");
@@ -2708,6 +2710,7 @@ public class NewModActivity extends Activity implements OnClickListener {
                     if (code == 200) {// 返回的响应码200,是成功
                         // 得到网络返回的输入流
                         InputStream is = conn.getInputStream();
+                        Log.e("LiNing", "is------" + is);
                         resultStr = NetUtil.readString(is);
                         Log.e("LiNing", "ddddddddddd" + resultStr);
                         // startActivity(new Intent(context,

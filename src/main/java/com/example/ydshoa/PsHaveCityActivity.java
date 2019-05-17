@@ -140,7 +140,7 @@ public class PsHaveCityActivity extends Activity implements View.OnClickListener
 
                         Log.e("LiNing","+=========="+"" + sb.toString());
                         ss.setText(province.getName());
-                        qx.setText(city.getName());
+                        qx.setText(city.getName()+district.getName());
 
                     }
 

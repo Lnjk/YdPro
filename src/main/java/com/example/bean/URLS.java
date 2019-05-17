@@ -118,6 +118,7 @@ public class URLS {
 //
 
     //--------定价单号------(临时单号)http://localhost:8080/InfManagePlatform/BilngetBiln_no.action?bn_Type=dj&db_Id=DB_BJ15&bn_Date=2016-06-16
+    //--------定价单号------(临时单号)http://localhost:8080/InfManagePlatform/BilngetBiln_no.action?bn_Type=VP&db_Id=DB_BJ15&bn_Date=2019-05-13
     public static final String price_num_ls = base_url
             + "/InfManagePlatform/BilngetBiln_no.action";
     ///** 用户新增保存票据生成票据单号。 */http://localhost:8080/InfManagePlatform/BilncreateBiln_No.action?bn_Type=dj&db_Id=DB_BJ15&bn_Date=2016-06-16
@@ -260,29 +261,36 @@ public class URLS {
     //http://oa.ydshce.com:8080/InfManagePlatform/QueryErpInfqueryBilnType.action?accountNo=DB_BJ15&&bil_Id=SA
     public static final String djlb_url = base_url
             + "/InfManagePlatform/QueryErpInfqueryBilnType.action";
+    //意向品牌
+    public static final String yxpp_url = base_url
+            + "/InfManagePlatform/QueryErpInfqueryERPMark.action";
     //    收款单
 //    http://oa.ydshce.com:8080/InfManagePlatform/PaymentsqueryPayment.action?db_Id=DB_BJ18&&showRow=300&&clientRows=0&&rp_ID=1&&rp_NO=RT201805230051
 //            &&rp_DD=2018-05-23&&usr_NO=L022&&dep=2023&&rem=孙黎明&&bil_NO=SO201805230097&&irp_ID=T&&CLS_ID=T&&cus_NO=KH031&&bil_TYPE=06&&usr=Z002&&chk_MAN=Z002
 //   &&cus_NO_OS=123(查询,新增，删除，更新)
-    //此接口获取预收明细
+    //此接口获取收款单列表（）
+    //查询预收明细（skd_url_query）
+    //预收http://oa.ydshce.com:8080/InfManagePlatform/PaymentsqueryPayment.action?db_Id=DB_BJ18&&showRow=300&&clientRows=0&&&&cus_NO=KH347&&irp_Id=T&&cls_Id=F
     public static final String skd_url_query = base_url
             + "/InfManagePlatform/PaymentsqueryPayment.action";
     public static final String skd_url_add = base_url
             + "/InfManagePlatform/PaymentsaddPayment.action";
     public static final String skd_url_del= base_url
             + "/InfManagePlatform/PaymentsdelPayment.action";
-
+    public static final String skd_url_reset = base_url
+            + "/InfManagePlatform/PaymentsupdatePayment.action";
     //    http://oa.ydshce.com:8080/InfManagePlatform/QueryErpInfqueryBacc.action?accountNo=DB_BJ18&&id=null&&name=null
 //现金账户，银行账户(区分时根据客户类型)custType=1(银行)2，现金
     public static final String prd_obj_zh = base_url
             + "/InfManagePlatform/QueryErpInfqueryBacc.action";
-    public static final String skd_url_reset = base_url
-            + "/InfManagePlatform/PaymentsupdatePayment.action";
+
     //明细表(通过irp_ID判断预收还是应收)
     // 应收   oa.ydshce.com:8080/InfManagePlatform/PaymentsqueryMf_ARP.action?db_Id=DB_BJ18&&cus_NO=KH347
     public static final String skd_url_mx = base_url
             + "/InfManagePlatform/PaymentsqueryMf_ARP.action";
-    //预收http://oa.ydshce.com:8080/InfManagePlatform/PaymentsqueryPayment.action?db_Id=DB_BJ18&&showRow=300&&clientRows=0&&&&cus_NO=KH347&&irp_Id=T&&cls_Id=F
+    //票据号码是否存在(db_Id, this.chk_NO)
+    public static final String design_jfspquery_ph = base_url
+            + "/InfManagePlatform/PaymentsisExistCHK_NO.action";
     //设计师积分
     //登记单
     public static final String design_jfdj_add = base_url
@@ -317,4 +325,5 @@ public class URLS {
             + "/InfManagePlatform/Deco_Vip_Of_PointsqueryDeco_Vip_Task.action";
     public static final String design_jfspquery_mx = base_url
             + "/InfManagePlatform/Deco_Vip_Of_PointsqueryPoints_Prdt.action";
+
 }

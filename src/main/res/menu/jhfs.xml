@@ -3,22 +3,22 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/check1"
+            android:id="@+id/check1_jhfs"
             android:title="1,送货"/>
         <item
-            android:id="@+id/check2"
+            android:id="@+id/check2_jhfs"
             android:title="2,货运"/>
         <item
-            android:id="@+id/check3"
+            android:id="@+id/check3_jhfs"
             android:title="3,邮寄"/>
         <item
-            android:id="@+id/check4"
+            android:id="@+id/check4_jhfs"
             android:title="4,快递"/>
         <item
-            android:id="@+id/check5"
+            android:id="@+id/check5_jhfs"
             android:title="5,自取"/>
         <item
-            android:id="@+id/check6"
+            android:id="@+id/check6_jhfs"
             android:title="6,其他"/>
     </group>
 

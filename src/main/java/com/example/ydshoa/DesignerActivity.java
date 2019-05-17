@@ -231,6 +231,7 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
 //        zdyh.setText(user_yh);
         Log.e("LiNing", "制单用户id---" + user_Id);
         shyh = (EditText) findViewById(R.id.et_design_userchk);
+
         ztbtn = (ImageButton) findViewById(R.id.ib_design_account);
         vipbtn = (ImageButton) findViewById(R.id.ib_design_vip);
         yw = (ImageButton) findViewById(R.id.ib_design_yw);
@@ -326,6 +327,7 @@ public class DesignerActivity extends Activity implements View.OnClickListener {
                         sAdapter.notifyDataSetChanged();
                     }
                     do_design = 1;
+                    shyh.setText(user_Id);
                     shyh.setEnabled(false);
                     shyh.setFocusable(true);
                     sfqy.setText("未审核");

@@ -65,14 +65,14 @@
             android:id="@+id/et_pjje_dxzh_one"
             style="@style/skd_pjje_ed"
             android:background="@drawable/edit_bg"
-            android:hint="点击"
+            android:hint="2019-8-5"
              />
 
         <TextView
             android:id="@+id/tv_pjje_time_one"
             style="@style/skd_pjje_ed"
             android:background="@drawable/edit_bg"
-            android:hint="点击" />
+            android:hint="2019-8-5"/>
 
     </TableRow>
     <View style="@style/price_view" />
@@ -106,14 +106,14 @@
             android:id="@+id/et_pjje_dxzh_two"
             style="@style/skd_pjje_ed"
             android:background="@drawable/edit_bg"
-            android:hint="点击"
+            android:hint="2019-8-5"
              />
 
         <TextView
             android:id="@+id/tv_pjje_time_two"
             style="@style/skd_pjje_ed"
             android:background="@drawable/edit_bg"
-            android:hint="点击" />
+            android:hint="2019-8-5" />
 
     </TableRow>
     <View style="@style/price_view" />
@@ -147,14 +147,14 @@
             android:id="@+id/et_pjje_dxzh_three"
             style="@style/skd_pjje_ed"
             android:background="@drawable/edit_bg"
-            android:hint="点击"
+            android:hint="2019-8-5"
              />
 
         <TextView
             android:id="@+id/tv_pjje_time_three"
             style="@style/skd_pjje_ed"
             android:background="@drawable/edit_bg"
-            android:hint="点击" />
+            android:hint="2019-8-5" />
 
     </TableRow>
     <View style="@style/price_view" />
@@ -188,14 +188,14 @@
             android:id="@+id/et_pjje_dxzh_four"
             style="@style/skd_pjje_ed"
             android:background="@drawable/edit_bg"
-            android:hint="点击"
+            android:hint="2019-8-5"
              />
 
         <TextView
             android:id="@+id/tv_pjje_time_four"
             style="@style/skd_pjje_ed"
             android:background="@drawable/edit_bg"
-            android:hint="点击" />
+            android:hint="2019-8-5" />
 
     </TableRow>
     <View style="@style/price_view" />
@@ -229,14 +229,14 @@
             android:id="@+id/et_pjje_dxzh_five"
             style="@style/skd_pjje_ed"
             android:background="@drawable/edit_bg"
-            android:hint="点击"
+            android:hint="2019-8-5"
              />
 
         <TextView
             android:id="@+id/tv_pjje_time_five"
             style="@style/skd_pjje_ed"
             android:background="@drawable/edit_bg"
-            android:hint="点击" />
+            android:hint="2019-8-5" />
 
     </TableRow>
     <View style="@style/price_view" />

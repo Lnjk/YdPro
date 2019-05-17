@@ -809,8 +809,9 @@
 
                 </LinearLayout>
 
-                <LinearLayout style="@style/price_ll2">
-                    <TextView
+                <LinearLayout style="@style/price_ll2"
+                   >
+                   <!-- <TextView
                         style="@style/price_name"
                         android:textColor="@color/color_red"
                         android:text="*" />
@@ -820,7 +821,7 @@
 
                     <EditText
                         android:id="@+id/et_cust_all_bzxx"
-                        style="@style/design_editext" />
+                        style="@style/design_editext" />-->
 
                 </LinearLayout>
             </LinearLayout>

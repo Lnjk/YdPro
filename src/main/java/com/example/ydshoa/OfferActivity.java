@@ -7,9 +7,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -25,6 +31,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
@@ -37,23 +44,30 @@ import com.example.LeftOrRight.MyHScrollView;
 import com.example.bean.BackApplication;
 import com.example.bean.CustAllObjectInfos;
 import com.example.bean.DepInfo;
+import com.example.bean.DesignAllInfos;
 import com.example.bean.JsonRootBean;
 import com.example.bean.NetUtil;
 import com.example.bean.PriceLoadInfo;
 import com.example.bean.PriceNumID;
-import com.example.bean.Quotation;
+import com.example.bean.QuotationTwo;
 import com.example.bean.URLS;
+import com.example.bean.WebService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.ParseException;
@@ -73,38 +87,48 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static com.example.bean.Quotation.*;
 
 public class OfferActivity extends Activity implements View.OnClickListener {
+//    http://oa.ydshce.com:8523/InfManagePlatform/ImgOfSellManagerment/Quotation/QT1905090008_kh1811040005_DB_BJ15.png(图片拼接地址)
     private Context context;
     private SharedPreferences sp;
-    private String session;
-    String date_dd, date_dd_dh, db_zt, erp_yh, qty_cust_zt, qty_cust_dabh, jhfs_id;
+    private String session,pathSignature;
+    private static final int PHOTO_REQUEST_GALLERY = 8;// 从相册中选择
+    private static final int PHOTO_REQUEST_CUT = 9;// 结果
+    String date_dd, date_dd_dh, db_zt, erp_yh, qty_cust_zt, qty_cust_dabh, jhfs_id,ywlx_id,vip_no_cust;
     LinearLayout touch;
     String url_dh_bjxx = URLS.price_num_ls;
     private TextView head, khxm, khdh, lplx, zxgs, jhfs, xsdd, shr, shdh, ss, qx, xxdz, bj_time, bjd_tv_bjdh, bjd_tv_zt, khly, tjmj, djlb, xszd, xsbm, xsgw,
-            fwgj, ztsj, styw, qdyw, yshk, dyzt, tv_shenher, tv_zdr;
-    private EditText xxbz, htdh, gwdh, gjdh, sjdh;
+            fwgj, ztsj, styw, qdyw,  dyzt, tv_shenher, tv_zdr,ywlx;
+    private EditText xxbz, htdh, gwdh, gjdh, sjdh,yshk;
     private Button offer_query, offer_add, offer_set, offer_del, offer_prite, offer_save, offer_qd, offer_out, offer_tszc, offer_bjmx;
-    private ImageButton add_mx_ph_ib, ib_zt_xl, ib_djlb_xl, ib_ztsj_xl, ib_xszd_xl, ib_xsbm_xl, ib_xsgw_xl, ib_fwgj_xl, ib_styw_xl, ib_qdyw_xl, ib_yshk_xl, ib_kh_xl,
+    private ImageButton add_mx_zcsp_ib,add_mx_ph_ib, ib_zt_xl, ib_djlb_xl,ib_ywlx_xl, ib_ztsj_xl, ib_xszd_xl, ib_xsbm_xl, ib_xsgw_xl, ib_fwgj_xl, ib_styw_xl, ib_qdyw_xl, ib_yshk_xl, ib_kh_xl,
             ib_jhfs_xl, ib_shr_xl, ib_tjmj_xl;
     BjdQtyAdapter bjdQtyAdapter;
     private ListView lv_offer_qry;
     RelativeLayout mHead;
     AlertDialog addBjmx_all;
     //报价单明细
-    List<Quotation.QuotationT> quotationT;
-    QuotationT quotationT_item;
-    private TextView add_mx_scsl, add_mx_spgg, add_mx_bzdw, add_mx_bzhs, add_mx_bzsl, add_mx_bzzl, add_mx_spzl, add_mx_bzdx,
-            add_mx_je, add_mx_jgdh, add_mx_zcdj, add_mx_tybj, add_mx_zdsj,
+    List<QuotationTwo.QuotationT> quotationT;
+    QuotationTwo.QuotationT quotationT_item;
+    private TextView  add_mx_bzdw, add_mx_bzhs, add_mx_bzsl, add_mx_bzzl, add_mx_spzl,
+            add_mx_je, add_mx_jgdh, add_mx_zcdj, add_mx_tybj, add_mx_zdsj,add_mx_tszc,
             add_mx_bzcb, add_mx_ygml, add_mx_mll, add_mx_kw, add_mx_dw, add_mx_xh, add_mx_ph, add_mx_sh, sh_time, qd_time;
-    private EditText add_mx_sl, add_mx_dj, add_mx_zk, add_mx_sdsl, add_mx_zy;
-    private String add_mx_xh_save, add_mx_ph_save, add_mx_sh_save, add_mx_kw_save, add_mx_dw_save, add_mx_sl_save, add_mx_dj_save, add_mx_zk_save, add_mx_je_save, add_mx_jgdh_save, add_mx_zcdj_save, add_mx_tybj_save, add_mx_zdsj_save, add_mx_bzcb_save, add_mx_ygml_save, add_mx_mll_save, add_mx_sdsl_save, add_mx_scsl_save, add_mx_spgg_save, add_mx_bzdw_save, add_mx_bzhs_save, add_mx_bzsl_save, add_mx_bzzl_save, add_mx_spzl_save, add_mx_bzdx_save, add_mx_zy_save, add_mx_wjfj_save;
+    private EditText add_mx_spgg,add_mx_bzdx,add_mx_sl, add_mx_dj, add_mx_zk, add_mx_sdsl, add_mx_zy,add_mx_scsl,add_mx_sddh,add_mx_llsl;
+    private String add_mx_xh_save, add_mx_ph_save, add_mx_sh_save, add_mx_kw_save, add_mx_dw_save, add_mx_sl_save, add_mx_dj_save, add_mx_zk_save, add_mx_je_save, add_mx_jgdh_save, add_mx_zcdj_save, add_mx_tybj_save, add_mx_zdsj_save, add_mx_bzcb_save, add_mx_ygml_save, add_mx_mll_save, add_mx_sdsl_save, add_mx_scsl_save,
+            add_mx_sddh_save,add_mx_llsl_save ,add_mx_tszc_save,
+    add_mx_spgg_save, add_mx_bzdw_save, add_mx_bzhs_save, add_mx_bzsl_save, add_mx_bzzl_save, add_mx_spzl_save, add_mx_bzdx_save, add_mx_zy_save, add_mx_wjfj_save;
     private String djlb_id_sub, zd_id_sub, bm_id_sub, gw_id_sub, fwgj_id_sub, ztsj_id_sub, styw_id_sub, qdyw_id_sub, pm_nmae_sub;
     String url_bj_add = URLS.cust_bjxx_add;
     String url_bj_del = URLS.cust_bjxx_del;
     String url_bj_updata = URLS.cust_bjxx_update;
     private String url_employee = URLS.employee_url;//name转id
+    private String url_idTodep = URLS.ERP_dep_url;//部门
+    private String url_idTocust = URLS.ERP_cust_url;//终端+1
+    private String url_idTodjlb = URLS.djlb_url;//单据类别
+    String url_dh_toname = URLS.design_toname;//设计师
+    String url_dabh_toname = URLS.id_Custbh;//客户编号
+
     String url_do;
     String url_load_price = URLS.price_load;//货品加载
     CustAllObjectInfos.CustList cust_callback;
@@ -112,19 +136,27 @@ public class OfferActivity extends Activity implements View.OnClickListener {
     private List<CheckBox> checkBoxList;
     private List<Integer> checkedIndexList;
     private int checkFalg, flag_sc, save_check, checked;
-    String xh_hd, pm_hd, ph_hd, sh_hd, kw_hd, dw_hd, sl_hd, dj_hd, zk_hd, je_hd, jgdh_hd, zcdj_hd, tybj_hd, zdsj_hd, bzcb_hd, ygml_hd, mll_hd, sdsl_hd, scsl_hd, spgg_hd, bzdw_hd, bzhs_hd, bzsl_hd, bzzl_hd, spzl_hd, bzdx_hd;
+    String xh_hd, pm_hd, ph_hd, sh_hd, kw_hd, dw_hd, sl_hd, dj_hd, zk_hd, je_hd, jgdh_hd, zcdj_hd, tybj_hd, zdsj_hd, bzcb_hd, ygml_hd, mll_hd, sdsl_hd, scsl_hd,llsl_hd,sddh_hd ,spgg_hd, bzdw_hd, bzhs_hd, bzsl_hd, bzzl_hd, spzl_hd,
+            bzdx_hd,zy_hd,tszc_hd;
     //主表信息(提交)
     String post_zt, post_bj_time, post_bjd_tv_bjdh, post_khly, post_tjmj, post_djlb, post_htdh, post_xszd, post_xsbm, post_xsgw, post_gwdh, post_fwgj, post_gjdh,
-            post_ztsj, post_sjdh, post_styw, post_qdyw, post_yshk, post_dyzt, post_khxm, post_khdh, post_lplx, post_zxgs, post_jhfs, post_xsdd, post_shr,
+            post_ztsj, post_sjdh,post_ywlx, post_styw, post_qdyw, post_yshk, post_dyzt, post_khxm, post_khdh, post_lplx, post_zxgs, post_jhfs, post_xsdd, post_shr,
             post_shdh, post_ss, post_qx, post_xxdz, post_xxbz, post_sh_time, post_qd_time, post_zdr, post_shenher;
     //明细表信息（提交）
     ArrayList<String> list_xh, list_pm, list_ph, list_sh, list_kw, list_dw, list_sl, list_dj, list_zk, list_je, list_jgdh, list_zcdj, list_tybj,
-            list_zdsj, list_bzcb, list_ygml, list_mll, list_sdsl, list_scsl, list_spgg, list_bzdw, list_bzhs, list_bzsl, list_bzzl, list_spzl, list_bzdx;
-    String sub_xh, sub_pm, sub_ph, sub_sh, sub_kw, sub_dw, sub_sl, sub_dj, sub_zk, sub_je, sub_jgdh, sub_zcdj, sub_tybj, sub_zdsj, sub_bzcb, sub_ygml, sub_mll, sub_sdsl, sub_scsl, sub_spgg, sub_bzdw, sub_bzhs, sub_bzsl, sub_bzzl, sub_spzl, sub_bzdx;
-    boolean ischeck_djlb, ischeck_xsqd, ischeck_xsbm, ischeck_xsgw, ischeck_fwgj, ischeck_ztsj, ischeck_styw, ischeck_qdyw = false;
+            list_zdsj, list_bzcb, list_ygml, list_mll, list_sdsl, list_scsl,list_sddh,list_llsl, list_spgg, list_bzdw, list_bzhs, list_bzsl, list_bzzl, list_spzl, list_bzdx,list_tszc,list_zy;
+    String sub_xh, sub_pm, sub_ph, sub_sh, sub_kw, sub_dw, sub_sl, sub_dj, sub_zk, sub_je, sub_jgdh, sub_zcdj, sub_tybj, sub_zdsj, sub_bzcb, sub_ygml, sub_mll, sub_sdsl, sub_scsl, sub_spgg, sub_bzdw, sub_bzhs, sub_bzsl, sub_bzzl, sub_spzl, sub_bzdx
+            ,sub_zy,sub_tszc,sub_sddh,sub_llsl;
+    boolean ischeck_khxm,ischeck_khly,ischeck_ywlx,ischeck_jhfs,ischeck_djlb, ischeck_xsqd, ischeck_xsbm, ischeck_xsgw, ischeck_fwgj, ischeck_ztsj, ischeck_styw, ischeck_qdyw ,ischeck_xj = false;
     String xszd_id_cx, xsbm_id_cx, xsgw_id_cx;
     //是否点击传入id
-    String xszd_z, xsbm_z, xsgw_z, fwgj_z, ztsj_z, styw_z, qdyw_z, idtoname_fwgj, idtoname_ztsj, idtoname_styw, idtoname_qdyw;
+    String id_djlb_zh,xszd_z, xsbm_z, xsgw_z, fwgj_z, ztsj_z, styw_z, qdyw_z, idtoname_fwgj, idtoname_ztsj, idtoname_styw, idtoname_qdyw,djlb_z,
+    ywlx_hd_zh,jhfs_hd_zh,ywlx_z,jhfs_z,kh_bh_hd,khxm_z;
+    private File file_sighn;
+    private ImageView  signatureImg;
+    private ImageButton signatureAdd;
+    private Bitmap bitmap_xc;
+    private String img_path;
 
     Handler handler = new Handler(new Handler.Callback() {
 
@@ -221,6 +253,20 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                 getTicket();//获取临时档案编号
             }
         });
+        signatureAdd = (ImageButton) findViewById(R.id.ib_signatureadd);
+        signatureImg = ((ImageView) findViewById(R.id.iv_fj));
+        signatureAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ischeck_xj=true;
+                // 激活系统图库，选择一张图片
+                Intent intentPhoto = new Intent(Intent.ACTION_PICK);
+                intentPhoto.setType("image/*");
+                // 开启一个带有返回值的Activity，请求码为PHOTO_REQUEST_GALLERY
+                startActivityForResult(intentPhoto, PHOTO_REQUEST_GALLERY);
+            }
+        });
+        ywlx = (TextView) findViewById(R.id.tv_offer_all_ywlx);
         khly = (TextView) findViewById(R.id.et_offer_all_khly);
         tjmj = (EditText) findViewById(R.id.et_offer_all_tjmj);
         djlb = (TextView) findViewById(R.id.et_offer_all_djlb);
@@ -228,14 +274,11 @@ public class OfferActivity extends Activity implements View.OnClickListener {
         xszd = (TextView) findViewById(R.id.et_offer_all_xszd);
         xsbm = (TextView) findViewById(R.id.et_offer_all_xsbm);
         xsgw = (TextView) findViewById(R.id.et_offer_all_xsgw);
-        gwdh = (EditText) findViewById(R.id.et_offer_all_gwdh);
         fwgj = (TextView) findViewById(R.id.et_offer_all_fwgj);
-        gjdh = (EditText) findViewById(R.id.et_offer_all_gjdh);
         ztsj = (TextView) findViewById(R.id.et_offer_all_ztsj);
-        sjdh = (EditText) findViewById(R.id.et_offer_all_sjdh);
         styw = (TextView) findViewById(R.id.et_offer_all_styw);
         qdyw = (TextView) findViewById(R.id.tv_offer_all_qdyw);
-        yshk = (TextView) findViewById(R.id.et_offer_all_yshk);
+        yshk = (EditText) findViewById(R.id.et_offer_all_yshk);
         dyzt = (TextView) findViewById(R.id.et_offer_all_dyzt);
         khxm = (TextView) findViewById(R.id.et_offer_all_khxm);
         khdh = (TextView) findViewById(R.id.et_offer_all_khdh);
@@ -269,6 +312,8 @@ public class OfferActivity extends Activity implements View.OnClickListener {
         //单据类别
         ib_djlb_xl = (ImageButton) findViewById(R.id.ib_offer_all_djlb);
         ib_djlb_xl.setOnClickListener(this);
+        ib_ywlx_xl = (ImageButton) findViewById(R.id.ib_offer_all_ywlx);
+        ib_ywlx_xl.setOnClickListener(this);
         //终端（调接口）
         ib_xszd_xl = (ImageButton) findViewById(R.id.ib_offer_all_xszd);
         ib_xszd_xl.setOnClickListener(this);
@@ -287,7 +332,7 @@ public class OfferActivity extends Activity implements View.OnClickListener {
         //审图业务（调接口业务）
         ib_styw_xl = (ImageButton) findViewById(R.id.ib_offer_all_styw);
         ib_styw_xl.setOnClickListener(this);
-        //确单业务（调接口业务）
+        //vip会员（调接口vip接口）
         ib_qdyw_xl = (ImageButton) findViewById(R.id.ib_offer_all_qdyw);
         ib_qdyw_xl.setOnClickListener(this);
         //预收货款（调收款单）
@@ -350,6 +395,8 @@ public class OfferActivity extends Activity implements View.OnClickListener {
         list_mll = new ArrayList<String>();
         list_sdsl = new ArrayList<String>();
         list_scsl = new ArrayList<String>();
+        list_sddh = new ArrayList<String>();
+        list_llsl = new ArrayList<String>();
 
         list_spgg = new ArrayList<String>();
         list_bzdw = new ArrayList<String>();
@@ -358,6 +405,8 @@ public class OfferActivity extends Activity implements View.OnClickListener {
         list_bzzl = new ArrayList<String>();
         list_spzl = new ArrayList<String>();
         list_bzdx = new ArrayList<String>();
+        list_zy = new ArrayList<String>();
+        list_tszc = new ArrayList<String>();
     }
 
     private void getTicket() {
@@ -429,7 +478,7 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                             ErpDepInfoActivity.class);
                     intent_djlb.putExtra("flag", "22");
                     intent_djlb.putExtra("DB_ID", bjd_tv_zt.getText().toString());
-                    startActivityForResult(intent_djlb, 9);
+                    startActivityForResult(intent_djlb, 5);
                     ischeck_djlb = true;//用于判断是否点击
                 }
                 break;
@@ -517,17 +566,16 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                     ischeck_styw = true;//用于判断是否点击
                 }
                 break;
-            //确单业务-16
+            //确单业务-16---修改为设计师
             case R.id.ib_offer_all_qdyw:
                 if (bjd_tv_zt.getText().toString().equals("")) {
                     Toast.makeText(context, "请选择账套", Toast.LENGTH_LONG).show();
                 } else {
 
-                    Intent intent_qdyw = new Intent(context,
-                            CondicionInfoActivity.class);
-                    intent_qdyw.putExtra("flag", "17");
-                    intent_qdyw.putExtra("queryID", bjd_tv_zt.getText().toString());
-                    startActivityForResult(intent_qdyw, 16);
+                    Intent intent_vip = new Intent(context, QueryDesigActivity.class);
+                    intent_vip.putExtra("ZT_VIP", bjd_tv_zt.getText().toString());
+                    intent_vip.putExtra("CUST_DO", "2");
+                    startActivityForResult(intent_vip, 16);
                     ischeck_qdyw = true;//用于判断是否点击
                 }
                 break;
@@ -538,9 +586,11 @@ public class OfferActivity extends Activity implements View.OnClickListener {
 //                } else {
 //                    Toast.makeText(context, "请等待...", Toast.LENGTH_LONG).show();
 //                }
+                ischeck_khxm = true;//用于判断是否点击
                 //调取查询客户的界面
                 Intent intent_cust = new Intent(context, QueryCustersActivity.class);
                 intent_cust.putExtra("ZT_VIP", bjd_tv_zt.getText().toString());
+                intent_cust.putExtra("ZT_zdwd", "CUST");
                 startActivityForResult(intent_cust, 3);
 
                 break;
@@ -570,6 +620,11 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                     startActivityForResult(intent_mxph, 18);
                 }
                 break;
+            //特殊政策
+            case R.id.ib_mx_add_zcsp:
+                checked = 4;
+                showPopupMenu(add_mx_zcsp_ib);
+                break;
             //预收货款
             case R.id.ib_offer_all_yshk:
                 Toast.makeText(context,"调取预收货款的接口",Toast.LENGTH_LONG).show();
@@ -580,8 +635,15 @@ public class OfferActivity extends Activity implements View.OnClickListener {
 //                break;
             //交货方式
             case R.id.ib_offer_all_jhfs:
+                ischeck_jhfs = true;//用于判断是否点击
                 checked = 2;
                 showPopupMenu(ib_jhfs_xl);
+                break;
+            //业务类型
+            case R.id.ib_offer_all_ywlx:
+                ischeck_ywlx = true;//用于判断是否点击
+                checked = 3;
+                showPopupMenu(ib_ywlx_xl);
                 break;
             //推荐媒介
             case R.id.ib_offer_all_tjmj:
@@ -593,6 +655,7 @@ public class OfferActivity extends Activity implements View.OnClickListener {
 //                } else {
 //                    ib_tjmj_xl.setFocusable(false);
 //                }
+                ischeck_khly= true;//用于判断是否点击
                 checked = 1;
                 showPopupMenu(ib_tjmj_xl);
                 break;
@@ -665,7 +728,7 @@ public class OfferActivity extends Activity implements View.OnClickListener {
             case R.id.btn_offer_all_bjmx:
                 if (checkedIndexList != null
                         && checkedIndexList.size() > 1) {
-                    Toast.makeText(context, "请选择单挑数据", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "请选择单条数据", Toast.LENGTH_LONG).show();
                 } else {
 
                     View bjd_addmx = getLayoutInflater()
@@ -689,19 +752,25 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                     add_mx_bzcb = (TextView) bjd_addmx.findViewById(R.id.tv_mx_add_bzcb);
                     add_mx_ygml = (TextView) bjd_addmx.findViewById(R.id.tv_mx_add_ygml);
                     add_mx_mll = (TextView) bjd_addmx.findViewById(R.id.tv_mx_add_mll);
+                    add_mx_sddh = (EditText) bjd_addmx.findViewById(R.id.tv_mx_add_sddh);
                     add_mx_sdsl = (EditText) bjd_addmx.findViewById(R.id.tv_mx_add_sdsl);
-                    add_mx_scsl = (TextView) bjd_addmx.findViewById(R.id.tv_mx_add_scsl);
-                    add_mx_spgg = (TextView) bjd_addmx.findViewById(R.id.tv_mx_add_spgg);
+                    add_mx_scsl = (EditText) bjd_addmx.findViewById(R.id.tv_mx_add_scsl);
+                    add_mx_llsl = (EditText) bjd_addmx.findViewById(R.id.tv_mx_add_llsl);
+                    add_mx_spgg = (EditText) bjd_addmx.findViewById(R.id.tv_mx_add_spgg);
                     add_mx_bzdw = (TextView) bjd_addmx.findViewById(R.id.tv_mx_add_bzdw);
                     add_mx_bzhs = (TextView) bjd_addmx.findViewById(R.id.tv_mx_add_bzhs);
                     add_mx_bzsl = (TextView) bjd_addmx.findViewById(R.id.tv_mx_add_bzsl);
                     add_mx_bzzl = (TextView) bjd_addmx.findViewById(R.id.tv_mx_add_bzzl);
                     add_mx_spzl = (TextView) bjd_addmx.findViewById(R.id.tv_mx_add_spzl);
-                    add_mx_bzdx = (TextView) bjd_addmx.findViewById(R.id.tv_mx_add_bzdx);
+                    add_mx_bzdx = (EditText) bjd_addmx.findViewById(R.id.tv_mx_add_bzdx);
                     add_mx_zy = (EditText) bjd_addmx.findViewById(R.id.tv_mx_add_zy);
+                    add_mx_tszc = (TextView) bjd_addmx.findViewById(R.id.tv_mx_add_zcsp);
+                    add_mx_tszc.setText("否");
 
                     add_mx_ph_ib = (ImageButton) bjd_addmx.findViewById(R.id.ib_mx_add_ph);
                     add_mx_ph_ib.setOnClickListener(this);
+                    add_mx_zcsp_ib = (ImageButton) bjd_addmx.findViewById(R.id.ib_mx_add_zcsp);
+                    add_mx_zcsp_ib.setOnClickListener(this);
 
                     if (0 < checkedIndexList.size()
                             && checkedIndexList.size() <= 1) {
@@ -723,6 +792,8 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                         add_mx_mll.setText(mll_hd);
                         add_mx_sdsl.setText(sdsl_hd);
                         add_mx_scsl.setText(scsl_hd);
+                        add_mx_sddh.setText(sddh_hd);
+                        add_mx_llsl.setText(llsl_hd);
                         add_mx_spgg.setText(spgg_hd);
                         add_mx_bzdw.setText(bzdw_hd);
                         add_mx_bzhs.setText(bzhs_hd);
@@ -730,6 +801,8 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                         add_mx_bzzl.setText(bzzl_hd);
                         add_mx_spzl.setText(spzl_hd);
                         add_mx_bzdx.setText(bzdx_hd);
+                        add_mx_zy.setText(zy_hd);
+                        add_mx_tszc.setText(tszc_hd);
                     } else {
                         if (save_check == 1) {
                             //判断明细listview的数量
@@ -772,9 +845,9 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                             } else {
                                 quotationT.remove(quotationT_item);
                                 checkedIndexList.clear();
-                                addBjmx_all.dismiss();
                                 bjdQtyAdapter.notifyDataSetChanged();
                                 lv_offer_qry.invalidate();
+                                addBjmx_all.dismiss();
                             }
                         }
                     });
@@ -796,16 +869,22 @@ public class OfferActivity extends Activity implements View.OnClickListener {
         } else if (checked == 1) {
             popupMenu.getMenuInflater().inflate(R.menu.cust_khly_info, popupMenu.getMenu());
 
+        }else if (checked == 3) {
+            popupMenu.getMenuInflater().inflate(R.menu.ywlx_pop, popupMenu.getMenu());
+
+        }else if (checked == 4) {
+            popupMenu.getMenuInflater().inflate(R.menu.sfhz, popupMenu.getMenu());
+
         }
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
-                if (menuItem.getItemId() == R.id.check1
-                        || menuItem.getItemId() == R.id.check2
-                        || menuItem.getItemId() == R.id.check3
-                        || menuItem.getItemId() == R.id.check4
-                        || menuItem.getItemId() == R.id.check5
-                        || menuItem.getItemId() == R.id.check6
+                if (menuItem.getItemId() == R.id.check1_jhfs
+                        || menuItem.getItemId() == R.id.check2_jhfs
+                        || menuItem.getItemId() == R.id.check3_jhfs
+                        || menuItem.getItemId() == R.id.check4_jhfs
+                        || menuItem.getItemId() == R.id.check5_jhfs
+                        || menuItem.getItemId() == R.id.check6_jhfs
                         ) {
                     menuItem.setChecked(!menuItem.isChecked());
                     jhfs_id = menuItem.getTitle().toString().substring(0, 1);
@@ -823,6 +902,18 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                         ) {
                     menuItem.setChecked(!menuItem.isChecked());
                     khly.setText(menuItem.getTitle());
+                } else if (menuItem.getItemId() == R.id.check1_ywlx
+                        || menuItem.getItemId() == R.id.check2_ywlx
+                        ) {
+                    menuItem.setChecked(!menuItem.isChecked());
+                    ywlx_id = menuItem.getTitle().toString().substring(0, 2);
+                    Log.e("LiNing", "------新增的数据ywlx_id" + ywlx_id);
+                    ywlx.setText(menuItem.getTitle());
+                }else if (menuItem.getItemId() == R.id.check1
+                        || menuItem.getItemId() == R.id.check2
+                        ) {
+                    menuItem.setChecked(!menuItem.isChecked());
+                    add_mx_tszc.setText(menuItem.getTitle());
                 }
                 return true;
             }
@@ -837,6 +928,8 @@ public class OfferActivity extends Activity implements View.OnClickListener {
         post_zt = bjd_tv_zt.getText().toString();
         post_bj_time = bj_time.getText().toString();
         post_bjd_tv_bjdh = bjd_tv_bjdh.getText().toString();
+        post_ywlx= ywlx.getText().toString();
+        post_qdyw = qdyw.getText().toString();//设计师
         post_khly = khly.getText().toString();
         post_tjmj = tjmj.getText().toString();
         post_djlb = djlb.getText().toString();
@@ -844,13 +937,10 @@ public class OfferActivity extends Activity implements View.OnClickListener {
         post_xszd = xszd.getText().toString();
         post_xsbm = xsbm.getText().toString();
         post_xsgw = xsgw.getText().toString();
-        post_gwdh = gwdh.getText().toString();
         post_fwgj = fwgj.getText().toString();
-        post_gjdh = gjdh.getText().toString();
         post_ztsj = ztsj.getText().toString();
-        post_sjdh = sjdh.getText().toString();
         post_styw = styw.getText().toString();
-        post_qdyw = qdyw.getText().toString();
+
         post_yshk = yshk.getText().toString();
         post_dyzt = dyzt.getText().toString();
         post_khxm = khxm.getText().toString();
@@ -858,7 +948,7 @@ public class OfferActivity extends Activity implements View.OnClickListener {
         post_lplx = lplx.getText().toString();
         post_zxgs = zxgs.getText().toString();
         post_jhfs = jhfs.getText().toString();
-        post_xsdd = xsdd.getText().toString();
+        post_xsdd = xsdd.getText().toString();//配送列号
         post_shr = shr.getText().toString();
         post_shdh = shdh.getText().toString();
         post_ss = ss.getText().toString();
@@ -870,26 +960,35 @@ public class OfferActivity extends Activity implements View.OnClickListener {
         post_zdr = tv_zdr.getText().toString();
         post_shenher = tv_shenher.getText().toString();
 
-
-
         // 明细表数据
         if (save_check == 1) {
             if (mxList != null && mxList.size() > 0) {
                 for (int i = 0; i < mxList.size(); i++) {
-                    String post_xh_hd = mxList.get(i).get("序号").toString();
-                    list_xh.add(post_xh_hd);
+
+                        String post_xh_hd = mxList.get(i).get("序号").toString();
+                        list_xh.add(post_xh_hd);
                     String post_pm_hd = mxList.get(i).get("品名").toString();
                     list_pm.add(post_pm_hd);
                     String post_ph_hd = mxList.get(i).get("品号").toString();
                     list_ph.add(post_ph_hd);
                     String post_sh_hd = mxList.get(i).get("色号").toString();
-//                    list_sh.add(post_sh_hd);
-                    list_sh.add("SH");
+                    if(!post_sh_hd.equals("")||post_sh_hd.equals("null")){
+
+                        list_sh.add(post_sh_hd);
+                    }else{
+
+                        list_sh.add("SH");
+                    }
                     String post_kw_hd = mxList.get(i).get("库位").toString();
                     list_kw.add(post_kw_hd);
                     String post_dw_hd = mxList.get(i).get("单位").toString();
-//                    list_dw.add(post_dw_hd);
-                    list_dw.add("1");
+                    if(!post_sh_hd.equals("")||post_sh_hd.equals("null")){
+
+                    list_dw.add(post_dw_hd);
+                    }else{
+
+                        list_dw.add("1");
+                    }
                     String post_sl_hd = mxList.get(i).get("数量").toString();
                     list_sl.add(post_sl_hd);
                     String post_dj_hd = mxList.get(i).get("单价").toString();
@@ -898,12 +997,22 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                     list_zk.add(post_zk_hd);
                     String post_je_hd = mxList.get(i).get("金额").toString();
                     list_je.add(post_je_hd);
-                    String post_jgdh_hd = mxList.get(i).get("价格代号").toString();
-//                    list_jgdh.add(post_jgdh_hd);
-                    list_jgdh.add("JGDH");
+                    String post_jgdh_hd = mxList.get(i).get("政策代号").toString();
+                    if(!post_jgdh_hd.equals("")||post_jgdh_hd.equals("null")){
+                        list_jgdh.add(post_jgdh_hd);
+                    }else{
+                        list_jgdh.add("01");
+
+
+                    }
                     String post_zcdj_hd = mxList.get(i).get("政策单价").toString();
-//                    list_zcdj.add(post_zcdj_hd);
-                    list_zcdj.add("100");
+                    if(!post_zcdj_hd.equals("")||post_zcdj_hd.equals("null")){
+                        list_zcdj.add(post_zcdj_hd);
+                    }else{
+
+                        list_zcdj.add("100");
+                    }
+
                     String post_tybj_hd = mxList.get(i).get("统一标价").toString();
                     list_tybj.add(post_tybj_hd);
                     String post_zdsj_hd = mxList.get(i).get("最低售价").toString();
@@ -913,16 +1022,52 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                     String post_ygml_hd = mxList.get(i).get("预估毛利").toString();
                     list_ygml.add(post_ygml_hd);
                     String post_mll_hd = mxList.get(i).get("毛利率").toString();
-//                    list_mll.add(post_mll_hd);
-                    list_mll.add("99");
+                    if(!post_mll_hd.equals("")||post_mll_hd.equals("null")){
+
+                        list_mll.add(post_mll_hd);
+                    }else {
+
+                        list_mll.add("0");
+                    }
                     String post_sdsl_hd = mxList.get(i).get("受订数量").toString();
-//                    list_sdsl.add(post_sdsl_hd);
-                    list_sdsl.add("100");
-                    String post_scsl_hd = mxList.get(i).get("生产数量").toString();
-//                    list_scsl.add(post_scsl_hd);
-                    list_scsl.add("100");
+                    if(!post_sdsl_hd.equals("")||post_sdsl_hd.equals("null")){
+
+                        list_sdsl.add(post_sdsl_hd);
+                    }else {
+
+                        list_sdsl.add("0");
+                    }
+                    String post_sddh_hd = mxList.get(i).get("受订单号").toString();
+                    if(!post_sddh_hd.equals("")||post_sddh_hd.equals("null")){
+
+                        list_sddh.add(post_sddh_hd);
+                    }else {
+
+                        list_sddh.add("00");
+                    }
+                    String post_scsl_hd = mxList.get(i).get("生产单号").toString();
+                    if(!post_scsl_hd.equals("")||post_scsl_hd.equals("null")){
+
+                        list_scsl.add(post_scsl_hd);
+                    }else {
+
+                        list_scsl.add("01");
+                    }
+                    String post_llsl_hd = mxList.get(i).get("领料数量").toString();
+                    if(!post_scsl_hd.equals("")||post_scsl_hd.equals("null")){
+
+                        list_llsl.add(post_llsl_hd);
+                    }else{
+
+                        list_llsl.add("0");
+                    }
                     String post_spgg_hd = mxList.get(i).get("商品规格").toString();
-                    list_spgg.add(post_spgg_hd);
+                    if(!post_spgg_hd.equals("")||post_spgg_hd.equals("null")){
+
+                        list_spgg.add(post_spgg_hd);
+                    }else{
+                        list_spgg.add("1*1*1");
+                    }
                     String post_bzdd_hd = mxList.get(i).get("包装单位").toString();
                     list_bzdw.add(post_bzdd_hd);
                     String post_bzhs_hd = mxList.get(i).get("包装换算").toString();
@@ -932,70 +1077,272 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                     String post_bzzl_hd = mxList.get(i).get("包装重量").toString();
                     list_bzzl.add(post_bzzl_hd);
                     String post_spzl_hd = mxList.get(i).get("商品重量").toString();
-//                    list_spzl.add(post_spzl_hd);
-                    list_spzl.add("100");
+                    if(!post_scsl_hd.equals("")||post_scsl_hd.equals("null")){
+
+                    list_spzl.add(post_spzl_hd);
+                    }else {
+
+                        list_spzl.add("0");
+                    }
                     String post_bzdx_hd = mxList.get(i).get("包装大小").toString();
-//                    list_bzdx.add(post_bzdx_hd);
-                    list_bzdx.add("1");
+                    if(!post_scsl_hd.equals("")||post_scsl_hd.equals("null")){
+
+                    list_bzdx.add(post_bzdx_hd);
+                    }else {
+
+                        list_bzdx.add("1");
+                    }
+                    String post_zy_hd = mxList.get(i).get("摘要").toString();
+                    if(!post_scsl_hd.equals("")||post_scsl_hd.equals("null")){
+
+                    list_zy.add(post_zy_hd);
+                    }else {
+                        list_zy.add("备注信息");
+                    }
+
+                    String post_zc_hd = mxList.get(i).get("特殊政策").toString();
+                    if(!post_zc_hd.equals("")||post_zc_hd.equals("null")){
+                        if(post_zc_hd.equals("是")){
+                            list_tszc.add("T");
+                        }else {
+
+                            list_tszc.add("F");
+                        }
+                    }else {
+
+                        list_tszc.add("F");
+                    }
                 }
             }
 
         } else if (save_check == 2) {
             if (quotationT != null && quotationT.size() > 0) {
                 for (int i = 0; i < quotationT.size(); i++) {
-                    String post_xh_hd = quotationT.get(i).getITM().toString();
-                    list_xh.add(post_xh_hd);
-                    String post_pm_hd = quotationT.get(i).getPRD_NAME().toString();
-                    list_pm.add(post_pm_hd);
-                    String post_ph_hd = quotationT.get(i).getPRD_NO().toString();
-                    list_ph.add(post_ph_hd);
-                    String post_sh_hd = quotationT.get(i).getRPD_MARK().toString();
-                    list_sh.add(post_sh_hd);
-                    String post_kw_hd = quotationT.get(i).getWH().toString();
-                    list_kw.add(post_kw_hd);
-                    String post_dw_hd = quotationT.get(i).getUNIT().toString();
-//                    list_dw.add(post_dw_hd);
-                    list_dw.add("1");
-                    String post_sl_hd = quotationT.get(i).getQTY().toString();
-                    list_sl.add(post_sl_hd);
-                    String post_dj_hd = quotationT.get(i).getUP().toString();
-                    list_dj.add(post_dj_hd);
-                    String post_zk_hd = quotationT.get(i).getDIS_CNT().toString();
-                    list_zk.add(post_zk_hd);
-                    String post_je_hd = quotationT.get(i).getAMTN().toString();
-                    list_je.add(post_je_hd);
-                    String post_jgdh_hd = quotationT.get(i).getPRICE_ID().toString();
-                    list_jgdh.add(post_jgdh_hd);
-                    String post_zcdj_hd = quotationT.get(i).getPrdUp().toString();
-                    list_zcdj.add(post_zcdj_hd);
-                    String post_tybj_hd = quotationT.get(i).getUPR().toString();
-                    list_tybj.add(post_tybj_hd);
-                    String post_zdsj_hd = quotationT.get(i).getUP_MIN().toString();
-                    list_zdsj.add(post_zdsj_hd);
-                    String post_bzcb_hd = quotationT.get(i).getCST_STD().toString();
-                    list_bzcb.add(post_bzcb_hd);
-                    String post_ygml_hd = quotationT.get(i).getEST_SUB().toString();
-                    list_ygml.add(post_ygml_hd);
-                    String post_mll_hd = quotationT.get(i).getSUB_GPR().toString();
-                    list_mll.add(post_mll_hd);
-                    String post_sdsl_hd = quotationT.get(i).getOS_QTY().toString();
-                    list_sdsl.add(post_sdsl_hd);
-                    String post_scsl_hd = quotationT.get(i).getSC_QTY().toString();
-                    list_scsl.add(post_scsl_hd);
-                    String post_spgg_hd = quotationT.get(i).getSPC().toString();
-                    list_spgg.add(post_spgg_hd);
-                    String post_bzdd_hd = quotationT.get(i).getPAK_UNIT().toString();
-                    list_bzdw.add(post_bzdd_hd);
-                    String post_bzhs_hd = quotationT.get(i).getPAK_EXC().toString();
-                    list_bzhs.add(post_bzhs_hd);
-                    String post_bzsl_hd = quotationT.get(i).getPAK_QTY().toString();
-                    list_bzsl.add(post_bzsl_hd);
-                    String post_bzzl_hd = quotationT.get(i).getPAK_NW().toString();
-                    list_bzzl.add(post_bzzl_hd);
-                    String post_spzl_hd = quotationT.get(i).getCOM_NW().toString();
-                    list_spzl.add(post_spzl_hd);
-                    String post_bzdx_hd = quotationT.get(i).getPAKG().toString();
-                    list_bzdx.add(post_bzdx_hd);
+                    if(quotationT.get(i).getITM()!=null){
+
+                        String post_xh_hd = quotationT.get(i).getITM().toString();
+                        list_xh.add(post_xh_hd);
+                    }else {
+                        list_xh.add("");
+                    }
+                    if(quotationT.get(i).getPRD_NAME()!=null){
+
+                        String post_pm_hd = quotationT.get(i).getPRD_NAME().toString();
+                        list_pm.add(post_pm_hd);
+                    }else {
+                        list_pm.add("");
+                    }
+                    if(quotationT.get(i).getPRD_NO()!=null){
+                        String post_ph_hd = quotationT.get(i).getPRD_NO().toString();
+                        list_ph.add(post_ph_hd);
+                    }else{
+                        list_ph.add("");
+                    }
+
+                    if(quotationT.get(i).getPRD_MARK()!=null){
+                        String post_sh_hd = quotationT.get(i).getPRD_MARK().toString();
+                        list_sh.add(post_sh_hd);
+                    }else{
+                        list_sh.add("");
+                    }
+
+                    if(quotationT.get(i).getWH()!=null){
+                        String post_kw_hd = quotationT.get(i).getWH().toString();
+                        list_kw.add(post_kw_hd);
+                    }else{
+                        list_kw.add("0");
+                    }
+
+                    if(quotationT.get(i).getUNIT()!=null){
+                        String post_dw_hd = quotationT.get(i).getUNIT().toString();
+                    list_dw.add(post_dw_hd);
+                    }else{
+                        list_dw.add("1");
+
+                    }
+
+                    if(quotationT.get(i).getQTY()!=null){
+                        String post_sl_hd = quotationT.get(i).getQTY().toString();
+                        list_sl.add(post_sl_hd);
+                    }else{
+                        list_sl.add("0");
+                    }
+
+                    if(quotationT.get(i).getUP()!=null){
+//                        String post_dj_hd = quotationT.get(i).getUP().toString();
+                        String post_dj_hd = ""+new BigDecimal(quotationT.get(i).getUP().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                        list_dj.add(post_dj_hd);
+                    }else{
+                        list_dj.add("0");
+                    }
+
+                    if(quotationT.get(i).getDIS_CNT()!=null){
+//                        String post_zk_hd = quotationT.get(i).getDIS_CNT().toString();
+                        String post_zk_hd = ""+new BigDecimal(quotationT.get(i).getDIS_CNT().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                        list_zk.add(post_zk_hd);
+                    }else{
+                        list_zk.add("1");
+                    }
+
+                    if(quotationT.get(i).getAMTN()!=null){
+//                        String post_je_hd = quotationT.get(i).getAMTN().toString();
+                        String post_je_hd = ""+new BigDecimal(quotationT.get(i).getAMTN().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                        list_je.add(post_je_hd);
+                    }else{
+                        list_je.add("0");
+                    }
+
+                    if(quotationT.get(i).getPRICE_ID()!=null){
+                        String post_jgdh_hd = quotationT.get(i).getPRICE_ID().toString();
+                        list_jgdh.add(post_jgdh_hd);
+                    }else{
+                        list_jgdh.add("0");
+                    }
+
+                    if(quotationT.get(i).getPrdUp()!=null){
+//                        String post_zcdj_hd = quotationT.get(i).getPrdUp().toString();
+                        String post_zcdj_hd = ""+new BigDecimal(quotationT.get(i).getPrdUp().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                        list_zcdj.add(post_zcdj_hd);
+                    }else{
+                        list_zcdj.add("0");
+                    }
+
+                    if(quotationT.get(i).getUPR()!=null){
+//                        String post_tybj_hd = quotationT.get(i).getUPR().toString();
+                        String post_tybj_hd = ""+new BigDecimal(quotationT.get(i).getUPR().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                        list_tybj.add(post_tybj_hd);
+                    }else{
+                        list_tybj.add("0");
+                    }
+
+                    if(quotationT.get(i).getUP_MIN()!=null){
+//                        String post_zdsj_hd = quotationT.get(i).getUP_MIN().toString();
+                        String post_zdsj_hd = ""+new BigDecimal(quotationT.get(i).getUP_MIN().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                        list_zdsj.add(post_zdsj_hd);
+                    }else{
+                        list_zdsj.add("0");
+                    }
+
+                    if(quotationT.get(i).getCST_STD()!=null){
+//                        String post_bzcb_hd = quotationT.get(i).getCST_STD().toString();
+                        String post_bzcb_hd = ""+new BigDecimal(quotationT.get(i).getCST_STD().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                        list_bzcb.add(post_bzcb_hd);
+                    }else{
+                        list_bzcb.add("0");
+                    }
+
+                    if(quotationT.get(i).getEST_SUB()!=null){
+//                        String post_ygml_hd = quotationT.get(i).getEST_SUB().toString();
+                        String post_ygml_hd = ""+new BigDecimal(quotationT.get(i).getEST_SUB().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                        list_ygml.add(post_ygml_hd);
+                    }else{
+                        list_ygml.add("0");
+                    }
+
+                    if(quotationT.get(i).getSUB_GPR()!=null){
+//                        String post_mll_hd = quotationT.get(i).getSUB_GPR().toString();
+                        String post_mll_hd = ""+new BigDecimal(quotationT.get(i).getSUB_GPR().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                        list_mll.add(post_mll_hd);
+                    }else{
+                        list_mll.add("0");
+                    }
+
+                    if(quotationT.get(i).getOS_NO()!=null){
+                        String post_sddh_hd = quotationT.get(i).getOS_NO().toString();
+                        list_sddh.add(post_sddh_hd);
+                    }else{
+                        list_sddh.add("");
+                    }
+
+                    if(quotationT.get(i).getOS_QTY()!=null){
+                        String post_sdsl_hd = quotationT.get(i).getOS_QTY().toString();
+                        list_sdsl.add(post_sdsl_hd);
+                    }else{
+                        list_sdsl.add("0");
+                    }
+
+                    if(quotationT.get(i).getSPC_NO()!=null){
+                        String post_scsl_hd = quotationT.get(i).getSPC_NO().toString();
+                        list_scsl.add(post_scsl_hd);
+                    }else{
+                        list_scsl.add("0");
+                    }
+
+                    if(quotationT.get(i).getSPC_QTY()!=null){
+                        String post_llsl_hd = quotationT.get(i).getSPC_QTY().toString();
+                        list_llsl.add(post_llsl_hd);
+                    }else{
+                        list_llsl.add("0");
+                    }
+
+                    if(quotationT.get(i).getSPC()!=null){
+                        String post_spgg_hd = quotationT.get(i).getSPC().toString();
+                        list_spgg.add(post_spgg_hd);
+                    }else{
+                        list_spgg.add("0*0*0");
+                    }
+
+                    if(quotationT.get(i).getPAK_UNIT()!=null){
+                        String post_bzdd_hd = quotationT.get(i).getPAK_UNIT().toString();
+                        list_bzdw.add(post_bzdd_hd);
+                    }else{
+                        list_bzdw.add("箱");
+                    }
+
+                    if(quotationT.get(i).getPAK_EXC()!=null){
+//                        String post_bzhs_hd = quotationT.get(i).getPAK_EXC().toString();
+                        String post_bzhs_hd = ""+new BigDecimal(quotationT.get(i).getPAK_EXC().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                        list_bzhs.add(post_bzhs_hd);
+                    }else{
+                        list_bzhs.add("1");
+                    }
+
+                    if(quotationT.get(i).getPAK_QTY()!=null){
+                        String post_bzsl_hd = quotationT.get(i).getPAK_QTY().toString();
+                        list_bzsl.add(post_bzsl_hd);
+                    }else{
+                        list_bzsl.add("0");
+                    }
+
+                    if(quotationT.get(i).getPAK_NW()!=null){
+//                        String post_bzzl_hd = quotationT.get(i).getPAK_NW().toString();
+                        String post_bzzl_hd = ""+new BigDecimal(quotationT.get(i).getPAK_NW().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                        list_bzzl.add(post_bzzl_hd);
+                    }else{
+                        list_bzzl.add("0");
+                    }
+
+                    if(quotationT.get(i).getPAK_GW()!=null){
+//                        String post_spzl_hd = quotationT.get(i).getPAK_GW().toString();
+                        String post_spzl_hd = ""+new BigDecimal(quotationT.get(i).getPAK_GW().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                        list_spzl.add(post_spzl_hd);
+                    }else{
+                        list_spzl.add("0");
+                    }
+
+                    if(quotationT.get(i).getPAK_MEAST()!=null){
+//                        String post_bzdx_hd = quotationT.get(i).getPAK_MEAST().toString();
+                        String post_bzdx_hd = ""+new BigDecimal(quotationT.get(i).getPAK_MEAST().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                        list_bzdx.add(post_bzdx_hd);
+                    }else{
+                        list_bzdx.add("0");
+                    }
+
+                    if(quotationT.get(i).getREMT()!=null){
+                        String post_zy_hd = quotationT.get(i).getREMT().toString();
+                        list_zy.add(post_zy_hd);
+                    }else{
+                        list_zy.add("");
+                    }
+
+                    if(quotationT.get(i).getISLP()!=null){
+                        String post_tszc_hd = quotationT.get(i).getISLP().toString();
+                        list_tszc.add(post_tszc_hd);
+                    }else{
+                        list_tszc.add("F");
+                    }
+
+
                 }
             }
 
@@ -1014,11 +1361,8 @@ public class OfferActivity extends Activity implements View.OnClickListener {
         xszd.setText("");
         xsbm.setText("");
         xsgw.setText("");
-        gwdh.setText("");
         fwgj.setText("");
-        gjdh.setText("");
         ztsj.setText("");
-        sjdh.setText("");
         styw.setText("");
         qdyw.setText("");
         yshk.setText("");
@@ -1062,12 +1406,15 @@ public class OfferActivity extends Activity implements View.OnClickListener {
         list_mll.clear();
         list_spgg.clear();
         list_scsl.clear();
+        list_llsl.clear();
         list_bzdw.clear();
         list_bzhs.clear();
         list_bzhs.clear();
         list_bzsl.clear();
         list_spzl.clear();
         list_bzdx.clear();
+//        list_zy.clear();
+//        list_tszc.clear();
     }
 
     private void resetBjd() {
@@ -1235,6 +1582,12 @@ public class OfferActivity extends Activity implements View.OnClickListener {
         sub_mll = mlls_str.substring(0,
                 mlls_str.length() - 1);
 
+        String sddhs_str = "";
+        for (String name : list_sddh) {
+            sddhs_str += name + ",";
+        }
+        sub_sddh = sddhs_str.substring(0,
+                sddhs_str.length() - 1);
         String sdsls_str = "";
         for (String name : list_sdsl) {
             sdsls_str += name + ",";
@@ -1248,6 +1601,12 @@ public class OfferActivity extends Activity implements View.OnClickListener {
         }
         sub_scsl = scsls_str.substring(0,
                 scsls_str.length() - 1);
+        String llsls_str = "";
+        for (String name : list_llsl) {
+            llsls_str += name + ",";
+        }
+        sub_llsl = llsls_str.substring(0,
+                llsls_str.length() - 1);
 //
         String spggs_str = "";
         for (String name : list_spgg) {
@@ -1297,16 +1656,43 @@ public class OfferActivity extends Activity implements View.OnClickListener {
         }
         sub_bzdx = bzdxs_str.substring(0,
                 bzdxs_str.length() - 1);
+        String bzzys_str = "";
+        for (String name : list_zy) {
+            bzzys_str += name + ",";
+        }
+        sub_zy = bzzys_str.substring(0,
+                bzzys_str.length() - 1);
+        String tszcs_str = "";
+        for (String name : list_tszc) {
+            tszcs_str += name + ",";
+        }
+        sub_tszc = tszcs_str.substring(0,
+                tszcs_str.length() - 1);
         //此处判断新增和修改的标识
         if (save_check == 1) {
             //新增
             url_do = url_bj_add;
-        } else if (save_check == 1) {
+        } else if (save_check == 2) {
             //修改
             url_do = url_bj_updata;
         }
         //判断不能为空数据
         //判断是否点击（点击传id,没点击获取id或转换）
+        if (ischeck_djlb== false) {
+            djlb_z = id_djlb_zh;
+        } else {
+            djlb_z = djlb_id_sub;
+        }
+        if (ischeck_ywlx== false) {
+            ywlx_z = ywlx_hd_zh;
+        } else {
+            ywlx_z = ywlx_id;
+        }
+        if (ischeck_jhfs== false) {
+            jhfs_z = jhfs_hd_zh;
+        } else {
+            jhfs_z = jhfs_id;
+        }
         if (ischeck_xsqd == false) {
             xszd_z = xszd_id_cx;
         } else {
@@ -1340,8 +1726,46 @@ public class OfferActivity extends Activity implements View.OnClickListener {
         if (ischeck_qdyw == false) {
             qdyw_z = idtoname_qdyw;
         } else {
-            qdyw_z = qdyw_id_sub;
+            qdyw_z = vip_no_cust;
         }
+        if (ischeck_khxm == false) {
+            khxm_z = kh_bh_hd;
+        } else {
+            khxm_z = qty_cust_dabh;
+        }
+        //t图片
+        if (save_check == 1) {
+            //新增
+            //图片还需解析
+            if(pathSignature==null){
+                pathSignature="";
+                file_sighn = new File(pathSignature);
+                Log.e("LiNing", "pathSignature－－－－－－－－" + pathSignature);
+            }else{
+
+                file_sighn = new File(pathSignature);
+            }
+            Log.e("LiNing", "file_sighn" + file_sighn);
+        } else if (save_check == 2) {
+            //修改
+            Log.e("LiNing", "img_path" + img_path);
+            if(ischeck_xj==false){
+                file_sighn = new File(img_path);
+            }else {
+                //图片还需解析
+                if(pathSignature==null){
+                    pathSignature="";
+                    file_sighn = new File(pathSignature);
+                    Log.e("LiNing", "pathSignature－－－－－－－－" + pathSignature);
+                }else{
+
+                    file_sighn = new File(pathSignature);
+                }
+                Log.e("LiNing", "file_sighn" + file_sighn);
+            }
+
+        }
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -1352,98 +1776,81 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                     Map<String, File> fileparams = new HashMap<String, File>();
 
                     textParams.put("DB_ID", post_zt);
-                    textParams.put("QT_DD", post_bj_time);
-                    textParams.put("QT_NO", post_bjd_tv_bjdh);
-                    textParams.put("Cust_Src", post_khly);
-                    textParams.put("Remd", post_tjmj);
-//                    textParams.put("Remd", post_khly);
-                    textParams.put("BIL_TYPE", post_djlb);
-//                    textParams.put("BIL_TYPE", djlb_id_sub);
-                    textParams.put("CUS_OS_NO", post_htdh);
-//                    textParams.put("CUS_NO", zd_id_sub);
-                    textParams.put("CUS_NO", xszd_z);
-                    textParams.put("CUS_NAME", post_xszd);
-//                    textParams.put("DEP_NO", bm_id_sub);
-                    textParams.put("DEP_NO", xsbm_z);
-                    textParams.put("DEP_NAME", post_xsbm);
-//                    textParams.put("SAL_NO", gw_id_sub);
-                    textParams.put("SAL_NO", xsgw_z);
-                    textParams.put("SAL_NAME", post_xsgw);
-                    textParams.put("SAL_Tel", post_gwdh);
-//                    textParams.put("SECE", fwgj_id_sub);
-                    textParams.put("SECE", fwgj_z);
-                    textParams.put("SECE_TEL", post_gjdh);
-//                    textParams.put("STYL", ztsj_id_sub);
-                    textParams.put("STYL", ztsj_z);
-                    textParams.put("STYL_TEL", post_sjdh);
-//                    textParams.put("PLAW", styw_id_sub);
-                    textParams.put("PLAW", styw_z);
-//                    textParams.put("AFFI", qdyw_id_sub);
-                    textParams.put("AFFI", qdyw_z);
-//                    textParams.put("DEP_RED", post_yshk);
-                    textParams.put("DEP_RED", "100");
-                    textParams.put("PRT_SW", post_dyzt);
-                    textParams.put("Cust_Name", post_khxm);
-                    textParams.put("Cust_Con", post_khdh);
-                    textParams.put("Hous_Type", post_lplx);
-                    textParams.put("Deco_Com", post_zxgs);
-//                    textParams.put("SEND_MTH", post_jhfs);
-                    textParams.put("SEND_MTH", jhfs_id);
-                    textParams.put("Con_Per", post_shr);
-                    textParams.put("Con_Tel", post_shdh);
-                    textParams.put("Con_Crt", post_ss);
-                    textParams.put("Con_Spa", post_qx);
-                    textParams.put("Con_Add", post_xxdz);
-                    textParams.put("REM", post_xxbz);
-                    textParams.put("chk_dd", post_sh_time);
-                    textParams.put("AFFI_DD", post_qd_time);
-                    textParams.put("usr", post_zdr);
-                    textParams.put("usr_chk", post_shenher);
+                    textParams.put("BZ_TYPE", ywlx_z);//业务类型
+                    textParams.put("QT_DD", post_bj_time);//时间
+                    textParams.put("QT_NO", post_bjd_tv_bjdh);//报价单号
+                    textParams.put("Cust_Src", post_khly);//客户来源
+                    textParams.put("Remd", post_tjmj);//推荐媒介
+                    textParams.put("BIL_TYPE", djlb_z);//单据类别vip
+                    textParams.put("Cus_No", xszd_z);//终端编号
+                    textParams.put("DEP_NO", xsbm_z);//部门编号
+
+
+                    textParams.put("SAL_NO", xsgw_z);//顾问编号
+                    textParams.put("SER_NO", fwgj_z);//服务管家
+                    textParams.put("STYL_NO", ztsj_z);//制图设计
+                    textParams.put("AFFI_NO", styw_z);//生产业务
+                    textParams.put("Vip_NO", qdyw_z);//设计师
+                    textParams.put("DEP_RED", post_yshk);//预收货款
+                    textParams.put("PRT_SW", post_dyzt);//打印状态
+                    textParams.put("KH_NO", khxm_z);//客户编号
+                    textParams.put("Cust_Tel", post_khdh);//客户电话
+                    textParams.put("Hous_Type", post_lplx);//楼盘类型
+                    textParams.put("Deco_Com", post_zxgs);//装修公司
+                    textParams.put("SEND_MTH", jhfs_z);//交货方式1，送货
+                    textParams.put("CUS_OS_NO", post_htdh);//合同单号
+                    textParams.put("CUS_CON_ITM", post_xsdd);//配送列号
+                    textParams.put("Con_Per", post_shr);//收货人
+                    textParams.put("Con_Tel", post_shdh);//收货电话
+                    textParams.put("Con_Crt", post_ss);//省市
+                    textParams.put("Con_Spa", post_qx);//区县
+                    textParams.put("Con_Add", post_xxdz);//详细地址
+                    textParams.put("REM", post_xxbz);//备注
+                    textParams.put("CHK_DD", post_sh_time);//审核日期
+                    textParams.put("AFFI_DD", post_qd_time);//确单日期
+                    textParams.put("USR", post_zdr);//制单人
+                    textParams.put("USR_CHK", post_shenher);//审核人
                     //明细
-                    textParams.put("ITM", sub_xh);
-                    textParams.put("PRD_NAME", sub_pm);
-                    textParams.put("PRD_NO", sub_ph);
-                    textParams.put("RPD_MARK", sub_sh);
-//                    textParams.put("RPD_MARK", "A1178C");
-                    textParams.put("WH", sub_kw);
-                    textParams.put("UNIT", sub_dw);
-                    textParams.put("QTY", sub_sl);
-                    textParams.put("UP", sub_dj);
-                    textParams.put("DIS_CNT", sub_zk);
-                    textParams.put("AMTN", sub_je);
-                    textParams.put("PRICE_ID", sub_jgdh);
-//                    textParams.put("PRICE_ID", "A1178C");
-                    textParams.put("prdUp", sub_zcdj);
-//                    textParams.put("prdUp", "100");
-                    textParams.put("UPR", sub_tybj);
-                    textParams.put("UP_MIN", sub_zdsj);
-                    textParams.put("CST_STD", sub_bzcb);
-                    textParams.put("EST_SUB", sub_ygml);
-                    textParams.put("SUB_GPR", sub_mll);
-//                    textParams.put("EST_SUB", "99");
-//                    textParams.put("SUB_GPR", "10");
-                    textParams.put("OS_QTY", sub_sdsl);
-                    textParams.put("SC_QTY", sub_scsl);
-//                    textParams.put("OS_QTY", "100");
-//                    textParams.put("SC_QTY", "100");
-                    textParams.put("SPC", sub_spgg);
-                    textParams.put("PAK_UNIT", sub_bzdw);
-                    textParams.put("PAK_EXC", sub_bzhs);
-                    textParams.put("PAK_QTY", sub_bzsl);
-                    textParams.put("PAK_NW", sub_bzzl);
-                    textParams.put("COM_NW", sub_spzl);
-//                    textParams.put("COM_NW", "100");
-                    textParams.put("PAKG", sub_bzdx);
-//                    textParams.put("PAKG", "1");
+                    textParams.put("ITM", sub_xh);//行号
+                    textParams.put("PRD_NAME", sub_pm);//品名
+                    textParams.put("PRD_NO", sub_ph);//品号
+                    textParams.put("PRD_MARK", sub_sh);//色号
+                    textParams.put("WH", sub_kw);//库位
+                    textParams.put("UNIT", sub_dw);//单位不能传汉子“套
+                    textParams.put("QTY", sub_sl);//数量
+                    textParams.put("UP", sub_dj);//单价
+                    textParams.put("DIS_CNT", sub_zk);//折扣
+                    textParams.put("AMTN", sub_je);//金额
+                    textParams.put("PRICE_ID", sub_jgdh);//政策代号
+                    textParams.put("prdUp", sub_zcdj);//政策单价
+
+                    textParams.put("UPR", sub_tybj);//统一标价
+                    textParams.put("UP_MIN", sub_zdsj);//最低售价
+                    textParams.put("CST_STD", sub_bzcb);//标准成本
+                    textParams.put("EST_SUB", sub_ygml);//预估毛利
+                    textParams.put("SUB_GPR", sub_mll);//毛利率
+                    textParams.put("OS_NO", sub_sddh);//受订单号
+                    textParams.put("OS_QTY", sub_sdsl);//受订数量
+                    textParams.put("SPC_NO", sub_scsl);//生产单号
+                    textParams.put("SPC_QTY", sub_llsl);//领料数量
+                    textParams.put("SPC", sub_spgg);//商品规格
+                    textParams.put("PAK_UNIT", sub_bzdw);//包装单位
+                    textParams.put("PAK_EXC", sub_bzhs);//包装换算
+                    textParams.put("PAK_QTY", sub_bzsl);//包装数量
+                    textParams.put("PAK_NW", sub_bzzl);//包装净重
+                    textParams.put("PAK_GW", sub_spzl);//包装毛重
+                    textParams.put("PAK_MEAST", sub_bzdx);//包装大小
+                    textParams.put("REMT", sub_zy);//摘要
+                    textParams.put("ISLP", sub_tszc);//是否是特殊政策
 
 
                     Log.e("LiNing", "user数据*******" + textParams);
-//                    if (!file_sighn.equals("") && file_sighn != null
-//                            && file_sighn.exists()) {
-//
-//                        fileparams.put("Signature", file_sighn);
-//                    }
-//                    Log.e("LiNing", "签章文件***********" + fileparams);
+                    if (!file_sighn.equals("") && file_sighn != null
+                            && file_sighn.exists()) {
+
+                        fileparams.put("FILES", file_sighn);
+                    }
+                    Log.e("LiNing", "签章文件***********" + fileparams);
                     // 利用HttpURLConnection对象从网络中获取网页数据
                     HttpURLConnection conn = (HttpURLConnection) url
                             .openConnection();
@@ -1466,11 +1873,11 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                     DataOutputStream ds = new DataOutputStream(os);
                     NetUtil.writeStringParams(textParams, ds);
                     //图片上传判断（此处很重要）
-//                    if (!file_sighn.equals("") && file_sighn != null
-//                            && file_sighn.exists()) {
-//
-//                        NetUtil.writeFileParams(fileparams, ds);
-//                    }
+                    if (!file_sighn.equals("") && file_sighn != null
+                            && file_sighn.exists()) {
+
+                        NetUtil.writeFileParams(fileparams, ds);
+                    }
                     NetUtil.paramsEnd(ds);
                     // 对文件流操作完,要记得及时关闭
                     os.close();
@@ -1548,6 +1955,7 @@ public class OfferActivity extends Activity implements View.OnClickListener {
     private ArrayList<String> ph_id_list, ph_id_list_xg;
 
     private void getload_infos() {
+        Log.e("LiNing","---------"+add_mx_xh.getText().toString());
         add_mx_xh_save = add_mx_xh.getText().toString();
         add_mx_ph_save = add_mx_ph.getText().toString();
         add_mx_sh_save = add_mx_sh.getText().toString();
@@ -1564,8 +1972,10 @@ public class OfferActivity extends Activity implements View.OnClickListener {
         add_mx_bzcb_save = add_mx_bzcb.getText().toString();
         add_mx_ygml_save = add_mx_ygml.getText().toString();
         add_mx_mll_save = add_mx_mll.getText().toString();
+        add_mx_sddh_save = add_mx_sddh.getText().toString();
         add_mx_sdsl_save = add_mx_sdsl.getText().toString();
         add_mx_scsl_save = add_mx_scsl.getText().toString();
+        add_mx_llsl_save = add_mx_llsl.getText().toString();
         add_mx_spgg_save = add_mx_spgg.getText().toString();
         add_mx_bzdw_save = add_mx_bzdw.getText().toString();
         add_mx_bzhs_save = add_mx_bzhs.getText().toString();
@@ -1574,13 +1984,16 @@ public class OfferActivity extends Activity implements View.OnClickListener {
         add_mx_spzl_save = add_mx_spzl.getText().toString();
         add_mx_bzdx_save = add_mx_bzdx.getText().toString();
         add_mx_zy_save = add_mx_zy.getText().toString();
+        add_mx_tszc_save = add_mx_tszc.getText().toString();
         //修改的操作
         if (save_check == 2) {
-            QuotationT qt_xg = new QuotationT();
+//            QuotationT qt_xg = new QuotationT();
+            Log.e("LiNing","---------"+add_mx_xh.getText().toString());
+            QuotationTwo.QuotationT qt_xg = new QuotationTwo.QuotationT();
             qt_xg.setITM(add_mx_xh_save);
             qt_xg.setPRD_NAME(pm_nmae_sub);
             qt_xg.setPRD_NO(add_mx_ph_save);
-            qt_xg.setRPD_MARK(add_mx_sh_save);
+            qt_xg.setPRD_MARK(add_mx_sh_save);
             qt_xg.setWH(add_mx_kw_save);
             qt_xg.setUNIT(add_mx_dw_save);
             qt_xg.setQTY(add_mx_sl_save);
@@ -1594,15 +2007,19 @@ public class OfferActivity extends Activity implements View.OnClickListener {
             qt_xg.setCST_STD(add_mx_bzcb_save);
             qt_xg.setEST_SUB(add_mx_ygml_save);
             qt_xg.setSUB_GPR(add_mx_mll_save);
+            qt_xg.setOS_NO(add_mx_sddh_save);
             qt_xg.setOS_QTY(add_mx_sdsl_save);
-            qt_xg.setSC_QTY(add_mx_scsl_save);
+            qt_xg.setSPC_NO(add_mx_scsl_save);
+            qt_xg.setSPC_QTY(add_mx_llsl_save);
             qt_xg.setSPC(add_mx_spgg_save);
             qt_xg.setPAK_UNIT(add_mx_bzdw_save);
             qt_xg.setPAK_EXC(add_mx_bzhs_save);
             qt_xg.setPAK_QTY(add_mx_bzsl_save);
             qt_xg.setPAK_NW(add_mx_bzzl_save);
-            qt_xg.setCOM_NW(add_mx_spzl_save);
-            qt_xg.setPAKG(add_mx_bzdx_save);
+            qt_xg.setPAK_GW(add_mx_spzl_save);
+            qt_xg.setPAK_MEAST(add_mx_bzdx_save);
+            qt_xg.setREMT(add_mx_zy_save);
+            qt_xg.setISLP(add_mx_tszc_save);
 
             //判断是否包含此数据
             for (int j = 0; j < quotationT.size(); j++) {
@@ -1652,7 +2069,7 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                 item.put("单价", add_mx_dj_save);
                 item.put("折扣", add_mx_zk_save);
                 item.put("金额", add_mx_je_save);
-                item.put("价格代号", add_mx_jgdh_save);
+                item.put("政策代号", add_mx_jgdh_save);
                 item.put("政策单价", add_mx_zcdj_save);
 
                 item.put("统一标价", add_mx_tybj_save);
@@ -1660,16 +2077,20 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                 item.put("标准成本", add_mx_bzcb_save);
                 item.put("预估毛利", add_mx_ygml_save);
                 item.put("毛利率", add_mx_mll_save);
+                item.put("受订单号", add_mx_sddh_save);
                 item.put("受订数量", add_mx_sdsl_save);
-                item.put("生产数量", add_mx_scsl_save);
+                item.put("生产单号", add_mx_scsl_save);
+                item.put("领料数量", add_mx_llsl_save);
 
-                item.put("商品规格", add_mx_tybj_save);
+                item.put("商品规格", add_mx_spgg_save);
                 item.put("包装单位", add_mx_bzdw_save);
                 item.put("包装换算", add_mx_bzhs_save);
                 item.put("包装数量", add_mx_bzsl_save);
                 item.put("包装重量", add_mx_bzzl_save);
                 item.put("商品重量", add_mx_spzl_save);
                 item.put("包装大小", add_mx_bzdx_save);
+                item.put("摘要", add_mx_zy_save);
+                item.put("特殊政策", add_mx_tszc_save);
                 mxList.add(item);
 
                 Log.e("LiNing", "mxList-------" + mxList);
@@ -1677,9 +2098,9 @@ public class OfferActivity extends Activity implements View.OnClickListener {
             }
             sAdapter = new SimpleAdapter(context, mxList,
                     R.layout.bjmxobj_head, new String[]{"序号", "品名",
-                    "品号", "色号", "库位", "单位", "数量", "单价", "折扣", "金额", "价格代号", "政策单价"
-                    , "统一标价", "最低售价", "标准成本", "预估毛利", "毛利率", "受订数量", "生产数量"
-                    , "商品规格", "包装单位", "包装换算", "包装数量", "包装重量", "商品重量", "包装大小"}, new int[]{
+                    "品号", "色号", "库位", "单位", "数量", "单价", "折扣", "金额", "政策代号", "政策单价"
+                    , "统一标价", "最低售价", "标准成本", "预估毛利", "毛利率", "受订单号","受订数量", "生产单号", "领料数量"
+                    , "商品规格", "包装单位", "包装换算", "包装数量", "包装重量", "商品重量", "包装大小", "摘要", "特殊政策"}, new int[]{
                     R.id.textView1_id_bjmxxh, R.id.textView2_bjmxpm,
                     R.id.textView3_bjmxph, R.id.textView4_bjmxsh,
                     R.id.textView5_bjmxkw, R.id.textView6_bjmxdw,
@@ -1688,12 +2109,12 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                     R.id.tv_bjmxjgdh, R.id.tv_bjmxzcdj,
                     R.id.tv_bjmxtybj, R.id.tv_bjmxzdsj,
                     R.id.tv_bjmxbzcb, R.id.tv_bjmxygml,
-                    R.id.tv_bjmxmll, R.id.tv_bjmxsdsl,
-                    R.id.tv_bjmxscsl,
+                    R.id.tv_bjmxmll, R.id.tv_bjmxsddh,
+                    R.id.tv_bjmxsdsl,R.id.tv_bjmxscsl,R.id.tv_bjmxllsl,
                     R.id.tv_bjmxspgg, R.id.tv_bjmxbzdw,
                     R.id.tv_bjmxbzhs, R.id.tv_bjmxbzsl,
                     R.id.tv_bjmxbzzl, R.id.tv_bjmxspzl,
-                    R.id.tv_bjmxbzdx}) {
+                    R.id.tv_bjmxbzdx,R.id.tv_bjmxzy,R.id.tv_bjmxtszc}) {
                 @Override
                 public View getView(final int position, View convertView, ViewGroup parent) {
                     ViewHolders holders = null;
@@ -1739,15 +2160,17 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                                         dj_hd = mxList.get(flag_sc).get("单价").toString();
                                         zk_hd = mxList.get(flag_sc).get("折扣").toString();
                                         je_hd = mxList.get(flag_sc).get("金额").toString();
-                                        jgdh_hd = mxList.get(flag_sc).get("价格代号").toString();
+                                        jgdh_hd = mxList.get(flag_sc).get("政策代号").toString();
                                         zcdj_hd = mxList.get(flag_sc).get("政策单价").toString();
                                         tybj_hd = mxList.get(flag_sc).get("统一标价").toString();
                                         zdsj_hd = mxList.get(flag_sc).get("最低售价").toString();
                                         bzcb_hd = mxList.get(flag_sc).get("标准成本").toString();
                                         ygml_hd = mxList.get(flag_sc).get("预估毛利").toString();
                                         mll_hd = mxList.get(flag_sc).get("毛利率").toString();
+                                        sddh_hd = mxList.get(flag_sc).get("受订单号").toString();
                                         sdsl_hd = mxList.get(flag_sc).get("受订数量").toString();
-                                        scsl_hd = mxList.get(flag_sc).get("生产数量").toString();
+                                        scsl_hd = mxList.get(flag_sc).get("生产单号").toString();
+                                        llsl_hd = mxList.get(flag_sc).get("领料数量").toString();
 
                                         spgg_hd = mxList.get(flag_sc).get("商品规格").toString();
                                         bzdw_hd = mxList.get(flag_sc).get("包装单位").toString();
@@ -1756,6 +2179,8 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                                         bzzl_hd = mxList.get(flag_sc).get("包装重量").toString();
                                         spzl_hd = mxList.get(flag_sc).get("商品重量").toString();
                                         bzdx_hd = mxList.get(flag_sc).get("包装大小").toString();
+                                        zy_hd = mxList.get(flag_sc).get("摘要").toString();
+                                        tszc_hd = mxList.get(flag_sc).get("特殊政策").toString();
                                     }
 //                                else{
 //                                    Toast.makeText(context, "请选择单条数据", Toast.LENGTH_LONG).show();
@@ -1813,7 +2238,6 @@ public class OfferActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case 1:
                 if (resultCode == 1) {
@@ -1825,7 +2249,7 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                 break;
             case 2:
                 if (resultCode == 1) {
-                    Quotation.QuotationList quotationList = (Quotation.QuotationList) data.getSerializableExtra("BJD_INFOS_ALL");
+                    QuotationTwo.QuotationList quotationList = (QuotationTwo.QuotationList) data.getSerializableExtra("BJD_INFOS_ALL");
                     Log.e("LiNing", "提交的id====" + data.getSerializableExtra("BJD_INFOS_ALL"));
                     if (quotationList != null) {
                         if (quotationList.getQT_DD() != null) {
@@ -1842,11 +2266,11 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                         } else {
                             bj_time.setText("");
                         }
-                        if (quotationList.getChk_dd() != null) {
+                        if (quotationList.getCHK_DD() != null) {
 //                                SimpleDateFormat sf1 = new SimpleDateFormat("EEE MMM dd hh:mm:ss z yyyy", Locale.ENGLISH);
                             SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
                             try {
-                                Date parse = sf1.parse(quotationList.getChk_dd().toString());
+                                Date parse = sf1.parse(quotationList.getCHK_DD().toString());
                                 String format = new SimpleDateFormat("yyyy-MM-dd").format(parse);
                                 Log.e("LiNing", "时间====xin=====" + format);
                                 sh_time.setText(format);
@@ -1877,12 +2301,30 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                         } else {
                             bjd_tv_bjdh.setText("");
                         }
+                        if (quotationList.getBZ_TYPE()!= null) {
+                            ywlx_hd_zh = quotationList.getBZ_TYPE().toString();
+                            if(quotationList.getBZ_TYPE().toString().equals("01")){
+
+                                ywlx.setText("01,常规");
+                            }
+                            if(quotationList.getBZ_TYPE().toString().equals("02")){
+
+                                ywlx.setText("02,定制");
+                            }
+                        } else {
+                            ywlx.setText("");
+
+                        }
                         if (quotationList.getCust_Src() != null) {
                             khly.setText(quotationList.getCust_Src().toString());
-
-
                         } else {
                             khly.setText("");
+
+                        }
+                        if (quotationList.getCUS_CON_ITM() != null) {
+                            xsdd.setText(quotationList.getCUS_CON_ITM().toString());
+                        } else {
+                            xsdd.setText("");
 
                         }
                         if (quotationList.getRemd() != null) {
@@ -1896,8 +2338,42 @@ public class OfferActivity extends Activity implements View.OnClickListener {
 
                         }
                         if (quotationList.getBIL_TYPE() != null) {
-                            djlb.setText(quotationList.getBIL_TYPE().toString());
+                            id_djlb_zh = quotationList.getBIL_TYPE().toString();
+                            OkHttpClient client = new OkHttpClient();
+                            FormBody body = new FormBody.Builder().add("accountNo", bjd_tv_zt.getText().toString())
+                                    .add("id", quotationList.getBIL_TYPE().toString()).build();
+                            Request request = new Request.Builder()
+                                    .addHeader("cookie", session).url(url_idTodjlb).post(body)
+                                    .build();
+                            Call call = client.newCall(request);
+                            call.enqueue(new Callback() {
+                                @Override
+                                public void onResponse(Call call, Response response) throws IOException {
+                                    String str = response.body().string();
+                                    Log.e("LiNing", "查询数据===" + str);
+                                    final DepInfo dInfo = new Gson().fromJson(str,
+                                            DepInfo.class);
+                                    if (dInfo != null) {
+                                        OfferActivity.this.runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                List<DepInfo.IdNameList> idNameList = dInfo.getIdNameList();
+                                                if (idNameList != null && idNameList.size() > 0) {
+                                                    String s = idNameList.get(0).getName().toString();
+                                                     djlb.setText(s);
+                                                } else {
+                                                    djlb.setText("");
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
 
+                                @Override
+                                public void onFailure(Call call, IOException e) {
+
+                                }
+                            });
                         } else {
                             djlb.setText("");
 
@@ -1909,33 +2385,131 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                             htdh.setText("");
 
                         }
-                        if (quotationList.getCUS_NAME() != null) {
-                            xszd.setText(quotationList.getCUS_NAME().toString());//
-                            xszd_id_cx = quotationList.getCUS_NO().toString();
+                        if (quotationList.getCus_No() != null) {
+//                            xszd.setText(quotationList.getCUS_NAME().toString());//转换
+                            xszd_id_cx = quotationList.getCus_No().toString();
+                            OkHttpClient client = new OkHttpClient();
+                            FormBody body = new FormBody.Builder().add("accountNo", bjd_tv_zt.getText().toString())
+                                    .add("custType", "" + 1)
+                                    .add("id", xszd_id_cx).build();
+                            Request request = new Request.Builder()
+                                    .addHeader("cookie", session).url(url_idTocust).post(body)
+                                    .build();
+                            Call call = client.newCall(request);
+                            call.enqueue(new Callback() {
+                                @Override
+                                public void onResponse(Call call, Response response) throws IOException {
+                                    String str = response.body().string();
+                                    Log.e("LiNing", "查询数据===" + str);
+                                    final DepInfo dInfo = new Gson().fromJson(str,
+                                            DepInfo.class);
+                                    if (dInfo != null) {
+                                        OfferActivity.this.runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                List<DepInfo.IdNameList> idNameList = dInfo.getIdNameList();
+                                                if (idNameList != null && idNameList.size() > 0) {
+                                                    String xsgw_hd_name = idNameList.get(0).getName().toString();
+                                                    xszd.setText(xsgw_hd_name);
+                                                } else {
+                                                    xszd.setText(xszd_z);
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call call, IOException e) {
+
+                                }
+                            });
                         } else {
                             xszd.setText("");//
 
                         }
-                        if (quotationList.getDEP_NAME() != null) {
-                            xsbm.setText(quotationList.getDEP_NAME().toString());//
+                        if (quotationList.getDEP_NO() != null) {
+//                            xsbm.setText(quotationList.getDEP_NAME().toString());//
                             xsbm_id_cx = quotationList.getDEP_NO().toString();
+                            OkHttpClient client = new OkHttpClient();
+                            FormBody body = new FormBody.Builder().add("accountNo", bjd_tv_zt.getText().toString())
+                                    .add("id", xsbm_id_cx).build();
+                            Request request = new Request.Builder()
+                                    .addHeader("cookie", session).url(url_idTodep).post(body)
+                                    .build();
+                            Call call = client.newCall(request);
+                            call.enqueue(new Callback() {
+                                @Override
+                                public void onResponse(Call call, Response response) throws IOException {
+                                    String str = response.body().string();
+                                    Log.e("LiNing", "查询数据===" + str);
+                                    final DepInfo dInfo = new Gson().fromJson(str,
+                                            DepInfo.class);
+                                    if (dInfo != null) {
+                                        OfferActivity.this.runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                List<DepInfo.IdNameList> idNameList = dInfo.getIdNameList();
+                                                if (idNameList != null && idNameList.size() > 0) {
+                                                    String xsgw_hd_name = idNameList.get(0).getName().toString();
+                                                    xsbm.setText(xsgw_hd_name);
+                                                } else {
+                                                    xsbm.setText(xsbm_z);
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
 
+                                @Override
+                                public void onFailure(Call call, IOException e) {
+
+                                }
+                            });
                         } else {
                             xsbm.setText("");//
 
                         }
-                        if (quotationList.getSAL_NAME() != null) {
-                            xsgw.setText(quotationList.getSAL_NAME().toString());//
+                        if (quotationList.getSAL_NO() != null) {
+//                            xsgw.setText(quotationList.getSAL_NAME().toString());//
                             xsgw_id_cx = quotationList.getSAL_NO().toString();
+                            OkHttpClient client = new OkHttpClient();
+                            FormBody body = new FormBody.Builder().add("accountNo", bjd_tv_zt.getText().toString())
+                                    .add("id", xsgw_id_cx).build();
+                            Request request = new Request.Builder()
+                                    .addHeader("cookie", session).url(url_employee).post(body)
+                                    .build();
+                            Call call = client.newCall(request);
+                            call.enqueue(new Callback() {
+                                @Override
+                                public void onResponse(Call call, Response response) throws IOException {
+                                    String str = response.body().string();
+                                    Log.e("LiNing", "查询数据===" + str);
+                                    final DepInfo dInfo = new Gson().fromJson(str,
+                                            DepInfo.class);
+                                    if (dInfo != null) {
+                                        OfferActivity.this.runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                List<DepInfo.IdNameList> idNameList = dInfo.getIdNameList();
+                                                if (idNameList != null && idNameList.size() > 0) {
+                                                    String xsgw_hd_name = idNameList.get(0).getName().toString();
+                                                    xsgw.setText(xsgw_hd_name);
+                                                } else {
+                                                    xsgw.setText(xsgw_z);
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call call, IOException e) {
+
+                                }
+                            });
                         } else {
                             xsgw.setText("");//
-
-                        }
-                        if (quotationList.getSAL_Tel() != null) {
-                            gwdh.setText(quotationList.getSAL_Tel().toString());
-
-                        } else {
-                            gwdh.setText("");
 
                         }
 //                        if (quotationList.getSECE() != null) {
@@ -1944,8 +2518,8 @@ public class OfferActivity extends Activity implements View.OnClickListener {
 //                        } else {
 //                            fwgj.setText("");
 //                        }
-                        if (quotationList.getSECE() != null) {
-                            idtoname_fwgj = quotationList.getSECE().toString();
+                        if (quotationList.getSER_NO() != null) {
+                            idtoname_fwgj = quotationList.getSER_NO().toString();
                             Log.e("LiNing", "查询数据===" + idtoname_fwgj);
                             OkHttpClient client = new OkHttpClient();
                             FormBody body = new FormBody.Builder().add("accountNo", bjd_tv_zt.getText().toString())
@@ -1985,13 +2559,6 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                         } else {
                             fwgj.setText("");
                         }
-                        if (quotationList.getSECE_TEL() != null) {
-                            gjdh.setText(quotationList.getSECE_TEL().toString());
-
-                        } else {
-                            gjdh.setText("");
-
-                        }
 //                        if (quotationList.getSTYL() != null) {
 //                            ztsj.setText(quotationList.getSTYL().toString());
 //
@@ -1999,8 +2566,8 @@ public class OfferActivity extends Activity implements View.OnClickListener {
 //                            ztsj.setText("");
 //
 //                        }
-                        if (quotationList.getSTYL() != null) {
-                            idtoname_ztsj = quotationList.getSTYL().toString();
+                        if (quotationList.getSTYL_NO() != null) {
+                            idtoname_ztsj = quotationList.getSTYL_NO().toString();
                             Log.e("LiNing", "查询数据===" + idtoname_ztsj);
                             OkHttpClient client = new OkHttpClient();
                             FormBody body = new FormBody.Builder().add("accountNo", bjd_tv_zt.getText().toString())
@@ -2040,13 +2607,6 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                         } else {
                             ztsj.setText("");
                         }
-                        if (quotationList.getSTYL_TEL() != null) {
-                            sjdh.setText(quotationList.getSTYL_TEL().toString());
-
-                        } else {
-                            sjdh.setText("");
-
-                        }
 //                        if (quotationList.getPLAW() != null) {
 //                            styw.setText(quotationList.getPLAW().toString());
 //
@@ -2054,8 +2614,8 @@ public class OfferActivity extends Activity implements View.OnClickListener {
 //                            styw.setText("");
 //
 //                        }
-                        if (quotationList.getPLAW() != null) {
-                            idtoname_styw = quotationList.getPLAW().toString();
+                        if (quotationList.getAFFI_NO() != null) {
+                            idtoname_styw = quotationList.getAFFI_NO().toString();
                             Log.e("LiNing", "查询数据===" + idtoname_styw);
                             OkHttpClient client = new OkHttpClient();
                             FormBody body = new FormBody.Builder().add("accountNo", bjd_tv_zt.getText().toString())
@@ -2102,14 +2662,16 @@ public class OfferActivity extends Activity implements View.OnClickListener {
 //                            qdyw.setText("");
 //
 //                        }
-                        if (quotationList.getAFFI() != null) {
-                            idtoname_qdyw = quotationList.getAFFI().toString();
+
+                        //设计师
+                        if (quotationList.getVip_NO() != null) {
+                            idtoname_qdyw = quotationList.getVip_NO().toString();
                             Log.e("LiNing", "查询数据===" + idtoname_qdyw);
                             OkHttpClient client = new OkHttpClient();
                             FormBody body = new FormBody.Builder().add("accountNo", bjd_tv_zt.getText().toString())
                                     .add("id", idtoname_qdyw).build();
                             Request request = new Request.Builder()
-                                    .addHeader("cookie", session).url(url_employee).post(body)
+                                    .addHeader("cookie", session).url(url_dh_toname).post(body)
                                     .build();
                             Call call = client.newCall(request);
                             call.enqueue(new Callback() {
@@ -2157,15 +2719,50 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                             dyzt.setText("");
 
                         }
-                        if (quotationList.getCust_Name() != null) {
-                            khxm.setText(quotationList.getCust_Name().toString());
+                        //客户转
+                        if (quotationList.getKH_NO()!= null) {
+                             kh_bh_hd = quotationList.getKH_NO().toString();
+                            OkHttpClient client = new OkHttpClient();
+                            FormBody body = new FormBody.Builder().add("accountNo", bjd_tv_zt.getText().toString())
+                                    .add("id", kh_bh_hd).build();
+                            Request request = new Request.Builder()
+                                    .addHeader("cookie", session).url(url_dabh_toname).post(body)
+                                    .build();
+                            Call call = client.newCall(request);
+                            call.enqueue(new Callback() {
+                                @Override
+                                public void onResponse(Call call, Response response) throws IOException {
+                                    String str = response.body().string();
+                                    Log.e("LiNing", "查询数据===" + str);
+                                    final DepInfo dInfo = new Gson().fromJson(str,
+                                            DepInfo.class);
+                                    if (dInfo != null) {
+                                        OfferActivity.this.runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                List<DepInfo.IdNameList> idNameList = dInfo.getIdNameList();
+                                                if (idNameList != null && idNameList.size() > 0) {
+                                                    String xsgw_hd_name = idNameList.get(0).getName().toString();
+                                                    khxm.setText(xsgw_hd_name);
+                                                } else {
+                                                    khxm.setText("");
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
 
+                                @Override
+                                public void onFailure(Call call, IOException e) {
+
+                                }
+                            });
                         } else {
                             khxm.setText("");
 
                         }
-                        if (quotationList.getCust_Con() != null) {
-                            khdh.setText(quotationList.getCust_Con().toString());
+                        if (quotationList.getCust_Tel() != null) {
+                            khdh.setText(quotationList.getCust_Tel().toString());
 
                         } else {
                             khdh.setText("");
@@ -2186,7 +2783,7 @@ public class OfferActivity extends Activity implements View.OnClickListener {
 
                         }
                         if (quotationList.getSEND_MTH() != null) {
-//                            jhfs.setText(quotationList.getSEND_MTH().toString());
+                             jhfs_hd_zh = quotationList.getSEND_MTH().toString();
                             if (quotationList.getSEND_MTH().toString().equals("1")) {
                                 jhfs.setText("1,送货");
                             }
@@ -2259,15 +2856,15 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                             qx.setText("");
 
                         }
-                        if (quotationList.getUsr() != null) {
-                            tv_zdr.setText(quotationList.getUsr().toString());
+                        if (quotationList.getUSR()!= null) {
+                            tv_zdr.setText(quotationList.getUSR().toString());
 
                         } else {
                             tv_zdr.setText("");
 
                         }
-                        if (quotationList.getUsr_chk() != null) {
-                            tv_shenher.setText(quotationList.getUsr_chk().toString());
+                        if (quotationList.getUSR_CHK()!= null) {
+                            tv_shenher.setText(quotationList.getUSR_CHK().toString());
 
                         } else {
                             tv_shenher.setText("");
@@ -2292,10 +2889,32 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                     }
 
 
+                    //图片转换
+                    if(quotationList.getFILES()!=null){
+                         img_path = quotationList.getFILES().toString();
+                        final String path_zh="http://oa.ydshce.com:8523/InfManagePlatform/"+img_path;
+                        Log.e("LiNing", "提交的path_zh====" + path_zh);
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Log.e("LiNing", "提交的path_zh====" + path_zh);
+                                    byte[] data_hd= WebService.getImage(path_zh); //得到图片的输入流
+                                    //二进制数据生成实图
+                                    Bitmap bit=BitmapFactory.decodeByteArray(data_hd, 0, data_hd.length);
+                                    signatureImg.setImageBitmap(bit);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }).start();
+                    }
+
+
                 }
                 break;
 
-            case 9:
+            case 5:
                 if (resultCode == 1) {
                     String str_id = data.getStringExtra("data_dep");
                     djlb_id_sub = data.getStringExtra("data_dep_id");
@@ -2347,6 +2966,8 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                     qx.setText(str_qx);
                     String str_xxzd = data.getStringExtra("PSXX_DZ");
                     xxdz.setText(str_xxzd);
+                    String str_dzbh = data.getStringExtra("ITM_ID");
+                    xsdd.setText(str_dzbh);
 
                 }
                 break;
@@ -2400,10 +3021,21 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                 break;
             case 16:
                 if (resultCode == 1) {
-                    String str_id = data.getStringExtra("data_return");
-                    qdyw_id_sub = data.getStringExtra("data_return_ids");
-                    qdyw.setText(str_id);
-                    Log.e("LiNing", "提交的id====" + str_id + qdyw_id_sub);
+//                    String str_id = data.getStringExtra("data_return");
+//                    qdyw_id_sub = data.getStringExtra("data_return_ids");
+//                    qdyw.setText(str_id);
+//                    Log.e("LiNing", "提交的id====" + str_id + qdyw_id_sub);
+                    DesignAllInfos.VipList vipList_hd = (DesignAllInfos.VipList) data.getSerializableExtra("VIP_INFOS_ALL");
+                    Log.e("LiNing", "提交的id====" + data.getSerializableExtra("VIP_INFOS_ALL"));
+                    if (vipList_hd.getVip_Name() != null) {
+                        qdyw.setText(vipList_hd.getVip_Name());
+                    } else {
+                        qdyw.setText("null");
+                    }
+                    if (vipList_hd.getVip_NO() != null) {
+                        vip_no_cust = vipList_hd.getVip_NO().toString();
+                        Log.e("LiNing", "提交的vip_no_cust====" + vip_no_cust);
+                    }
                 }
                 break;
             case 18:
@@ -2417,6 +3049,64 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                     }
                 }
                 break;
+            case PHOTO_REQUEST_GALLERY:
+                // 从相册返回的数据
+                if (data != null) {
+                    // 得到图片的全路径
+                    Uri uri = data.getData();
+                    Log.e("LiNing", "-------" + uri);
+                    crop(uri);
+                    String[] pojo = { MediaStore.MediaColumns.DATA };
+                    Cursor cursor = getContentResolver().query(uri, pojo, null,
+                            null, null);
+                    if (cursor != null) {
+                        int columnIndex = cursor.getColumnIndexOrThrow(pojo[0]);
+                        cursor.moveToFirst();
+                        pathSignature = cursor.getString(columnIndex);
+
+                        BitmapFactory.Options newOpts = new BitmapFactory.Options();
+                        newOpts.inJustDecodeBounds = true;
+                        bitmap_xc = BitmapFactory
+                                .decodeFile(pathSignature, newOpts);
+                        newOpts.inJustDecodeBounds = false;
+
+                        int w = newOpts.outWidth;
+                        int h = newOpts.outHeight;
+                        // 现在主流手机比较多是800*480分辨率，所以高和宽我们设置为
+                        float hh = 800f;// 这里设置高度为800f
+                        float ww = 480f;// 这里设置宽度为480f
+                        // 缩放比。由于是固定比例缩放，只用高或者宽其中一个数据进行计算即可
+                        int be = 1;// be=1表示不缩放
+                        if (w > h && w > ww) {// 如果宽度大的话根据宽度固定大小缩放
+                            be = (int) (newOpts.outWidth / ww);
+                        } else if (w < h && h > hh) {// 如果高度高的话根据宽度固定大小缩放
+                            be = (int) (newOpts.outHeight / hh);
+                        }
+                        if (be <= 0)
+                            be = 1;
+                        newOpts.inSampleSize = be;// 设置缩放比例
+                        // 重新读入图片，注意此时已经把options.inJustDecodeBounds 设回false了
+                        bitmap_xc = BitmapFactory
+                                .decodeFile(pathSignature, newOpts);
+//                        sp.edit().putString("photoURL", pathSignature).commit();
+
+                    }
+                }
+                break;
+            case PHOTO_REQUEST_CUT:
+                // 从剪切图片返回的数据
+                if (data != null) {
+                    Bitmap bitmap = data.getParcelableExtra("data");
+                    // * 获得图片
+                    signatureImg.setImageBitmap(bitmap);
+                    // 保存到SharedPreferences
+                    saveBitmapToSharedPreferences(bitmap);
+
+                    saves(bitmap);
+                }
+                break;
+                default:
+                    break;
         }
     }
 
@@ -2462,13 +3152,13 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                             if (prdt.get(0).getSPC() != null) {
                                 add_mx_spgg.setText(prdt.get(0).getSPC().toString());
                             } else {
-                                add_mx_spgg.setText("有null");
+                                add_mx_spgg.setText("");
                             }
                             //包装单位
                             if (prdt.get(0).getPAK_UNIT() != null) {
                                 add_mx_bzdw.setText(prdt.get(0).getPAK_UNIT().toString());
                             } else {
-                                add_mx_bzdw.setText("无数据");
+                                add_mx_bzdw.setText("1");
                             }
                             //包装换算
                             if (String.valueOf(prdt.get(0).getPAK_EXC()) != null) {
@@ -2508,19 +3198,19 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                             if (String.valueOf(prdt.get(0).getPK2_QTY()) != null) {
                                 add_mx_bzsl.setText("" + prdt.get(0).getPK2_QTY());
                             } else {
-                                add_mx_bzsl.setText("无数据");
+                                add_mx_bzsl.setText("0");
                             }
                             //商品重量(无)
-                            if (prdt.get(0).getPAK_NW() != null) {
-                                add_mx_spzl.setText(prdt.get(0).getPAK_NW());
+                            if (prdt.get(0).getPAK_GW() != null) {
+                                add_mx_spzl.setText(prdt.get(0).getPAK_GW());
                             } else {
-                                add_mx_spzl.setText("无数据");
+                                add_mx_spzl.setText("0");
                             }
                             //包装大小(无)
-                            if (prdt.get(0).getPAK_NW() != null) {
-                                add_mx_spzl.setText(prdt.get(0).getPAK_NW());
+                            if (prdt.get(0).getPAK_MEAST() != null) {
+                                add_mx_bzdx.setText(prdt.get(0).getPAK_MEAST());
                             } else {
-                                add_mx_spzl.setText("无数据");
+                                add_mx_bzdx.setText("0");
                             }
                             //库位
                             if (prdt.get(0).getWH() != null) {
@@ -2539,13 +3229,13 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                             if (String.valueOf(prdt.get(0).getUPR()) != null) {
                                 add_mx_tybj.setText("" + prdt.get(0).getUPR());
                             } else {
-                                add_mx_tybj.setText("有null");
+                                add_mx_tybj.setText("0");
                             }
                             //最低售价
                             if (String.valueOf(prdt.get(0).getUP_MIN()) != null) {
                                 add_mx_zdsj.setText("" + prdt.get(0).getUP_MIN());
                             } else {
-                                add_mx_zdsj.setText("有null");
+                                add_mx_zdsj.setText("0");
                             }
                             //标准成本
                             if (prdt.get(0).getCST_STD() != null) {
@@ -2563,11 +3253,15 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                                     String zk_ys = add_mx_zk.getText().toString();
                                     Log.e("LiNing", "运算数值=====" + dj_ys + sl_ys + zk_ys);
                                     //金额
-                                    if (!dj_ys.equals("") && !sl_ys.equals("") && !zk_ys.equals("")) {
+                                    if (!dj_ys.equals("") && !sl_ys.equals("") ) {
+                                        if(zk_ys.equals("")){
+                                            zk_ys="1";
+                                        }
                                         double je = Double.valueOf(dj_ys) * Double.valueOf(sl_ys) * Double.valueOf(zk_ys);
-                                        add_mx_je.setText("" + je);
+                                        add_mx_je.setText("" + new BigDecimal(je).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+//                                        add_mx_je.setText("" + je);
                                     } else {
-                                        Toast.makeText(context, "请填写单价/数量/折扣", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(context, "请填写单价/数量", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
@@ -2584,7 +3278,8 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                                     if (!je_ys.equals("") && !sl_ys.equals("") && !cb_ys.equals("")) {
                                         double ygml_ys = Double.valueOf(je_ys) - Double.valueOf(sl_ys) * Double.valueOf(cb_ys);
 
-                                        add_mx_ygml.setText("" + ygml_ys);
+//                                        add_mx_ygml.setText("" + ygml_ys);
+                                        add_mx_ygml.setText("" +  new BigDecimal(ygml_ys).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
                                     } else {
                                         Toast.makeText(context, "请填写总金额/数量/标准成本", Toast.LENGTH_LONG).show();
                                     }
@@ -2602,8 +3297,9 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                                     if (!je_ys.equals("") && !ygml_ys.equals("")) {
                                         double mll_ys = Double.valueOf(ygml_ys) / Double.valueOf(je_ys);
 //                                        String mll_str = mll_ys * 100 + "%";
-                                        String mll_str = ""+mll_ys ;
-                                        add_mx_mll.setText("" + mll_str);
+//                                        String mll_str = ""+mll_ys ;
+                                        String mll_str = ""+new BigDecimal(mll_ys).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue() ;
+                                        add_mx_mll.setText( mll_str);
                                     } else {
                                         Toast.makeText(context, "请填写总金额/预估毛利", Toast.LENGTH_LONG).show();
                                     }
@@ -2639,9 +3335,9 @@ public class OfferActivity extends Activity implements View.OnClickListener {
     public class BjdQtyAdapter extends BaseAdapter {
         int id_row_layout;
         LayoutInflater mInflater;
-        private List<Quotation.QuotationT> infos_content;
+        private List<QuotationTwo.QuotationT> infos_content;
 
-        public BjdQtyAdapter(int bjmxobj_head, List<Quotation.QuotationT> quotationT, Context context) {
+        public BjdQtyAdapter(int bjmxobj_head, List<QuotationTwo.QuotationT> quotationT, Context context) {
             this.id_row_layout = bjmxobj_head;
             this.infos_content = quotationT;
             this.mInflater = LayoutInflater.from(context);
@@ -2695,7 +3391,9 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                     holder.mx_ygml = (TextView) convertView.findViewById(R.id.tv_bjmxygml);
                     holder.mx_mll = (TextView) convertView.findViewById(R.id.tv_bjmxmll);
                     holder.mx_sdsl = (TextView) convertView.findViewById(R.id.tv_bjmxsdsl);
+                    holder.mx_sddh = (TextView) convertView.findViewById(R.id.tv_bjmxsddh);
                     holder.mx_scsl = (TextView) convertView.findViewById(R.id.tv_bjmxscsl);
+                    holder.mx_llsl = (TextView) convertView.findViewById(R.id.tv_bjmxllsl);
 
                     holder.mx_spgg = (TextView) convertView.findViewById(R.id.tv_bjmxspgg);
                     holder.mx_bzdw = (TextView) convertView.findViewById(R.id.tv_bjmxbzdw);
@@ -2704,6 +3402,8 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                     holder.mx_bzzl = (TextView) convertView.findViewById(R.id.tv_bjmxbzzl);
                     holder.mx_spzl = (TextView) convertView.findViewById(R.id.tv_bjmxspzl);
                     holder.mx_bzdx = (TextView) convertView.findViewById(R.id.tv_bjmxbzdx);
+                    holder.mx_zy = (TextView) convertView.findViewById(R.id.tv_bjmxzy);
+                    holder.mx_tszc= (TextView) convertView.findViewById(R.id.tv_bjmxtszc);
                     MyHScrollView headSrcrollView = (MyHScrollView) mHead
                             .findViewById(R.id.horizontalScrollView1);
                     headSrcrollView
@@ -2714,7 +3414,7 @@ public class OfferActivity extends Activity implements View.OnClickListener {
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-            Quotation.QuotationT quotationT_mx = infos_content.get(position);
+            QuotationTwo.QuotationT quotationT_mx = infos_content.get(position);
             if (quotationT_mx.getITM() != null) {
                 holder.mx_xh.setText(quotationT_mx.getITM().toString());
 
@@ -2737,8 +3437,8 @@ public class OfferActivity extends Activity implements View.OnClickListener {
 
             }
 
-            if (quotationT_mx.getRPD_MARK() != null) {
-                holder.mx_sh.setText(quotationT_mx.getRPD_MARK().toString());
+            if (quotationT_mx.getPRD_MARK()!= null) {
+                holder.mx_sh.setText(quotationT_mx.getPRD_MARK().toString());
 
             } else {
                 holder.mx_sh.setText("");
@@ -2766,21 +3466,23 @@ public class OfferActivity extends Activity implements View.OnClickListener {
 
             }
             if (quotationT_mx.getUP() != null) {
-                holder.mx_dj.setText(quotationT_mx.getUP().toString());
+                holder.mx_dj.setText(""+new BigDecimal(quotationT_mx.getUP().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
 
             } else {
                 holder.mx_dj.setText("");
 
             }
             if (quotationT_mx.getDIS_CNT() != null) {
-                holder.mx_zk.setText(quotationT_mx.getDIS_CNT().toString());
+                holder.mx_zk.setText(""+new BigDecimal(quotationT_mx.getDIS_CNT().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+//                holder.mx_zk.setText(quotationT_mx.getDIS_CNT().toString());
 
             } else {
                 holder.mx_zk.setText("");
 
             }
             if (quotationT_mx.getAMTN() != null) {
-                holder.mx_je.setText(quotationT_mx.getAMTN().toString());
+                holder.mx_je.setText(""+new BigDecimal(quotationT_mx.getAMTN().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+//                holder.mx_je.setText(quotationT_mx.getAMTN().toString());
 
             } else {
                 holder.mx_je.setText("");
@@ -2794,45 +3496,58 @@ public class OfferActivity extends Activity implements View.OnClickListener {
 
             }
             if (quotationT_mx.getPrdUp() != null) {
-                holder.mx_zcdj.setText(quotationT_mx.getPrdUp().toString());
+                holder.mx_zcdj.setText(""+new BigDecimal(quotationT_mx.getPrdUp().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+//                holder.mx_zcdj.setText(quotationT_mx.getPrdUp().toString());
 
             } else {
                 holder.mx_zcdj.setText("");
 
             }
             if (quotationT_mx.getUPR() != null) {
-                holder.mx_tybj.setText(quotationT_mx.getUPR().toString());
+                holder.mx_tybj.setText(""+new BigDecimal(quotationT_mx.getUPR().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+//                holder.mx_tybj.setText(quotationT_mx.getUPR().toString());
 
             } else {
                 holder.mx_tybj.setText("");
 
             }
             if (quotationT_mx.getUP_MIN() != null) {
-                holder.mx_zdsj.setText(quotationT_mx.getUP_MIN().toString());
+                holder.mx_zdsj.setText(""+new BigDecimal(quotationT_mx.getUP_MIN().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+//                holder.mx_zdsj.setText(quotationT_mx.getUP_MIN().toString());
 
             } else {
                 holder.mx_zdsj.setText("");
 
             }
             if (quotationT_mx.getCST_STD() != null) {
-                holder.mx_bzcb.setText(quotationT_mx.getCST_STD().toString());
+                holder.mx_bzcb.setText(""+new BigDecimal(quotationT_mx.getCST_STD().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+//                holder.mx_bzcb.setText(quotationT_mx.getCST_STD().toString());
 
             } else {
                 holder.mx_bzcb.setText("");
 
             }
             if (quotationT_mx.getEST_SUB() != null) {
-                holder.mx_ygml.setText(quotationT_mx.getEST_SUB().toString());
+                holder.mx_ygml.setText(""+new BigDecimal(quotationT_mx.getEST_SUB().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+//                holder.mx_ygml.setText(quotationT_mx.getEST_SUB().toString());
 
             } else {
                 holder.mx_ygml.setText("");
 
             }
             if (quotationT_mx.getSUB_GPR() != null) {
-                holder.mx_mll.setText(quotationT_mx.getSUB_GPR().toString());
+                holder.mx_mll.setText(""+new BigDecimal(quotationT_mx.getSUB_GPR().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+//                holder.mx_mll.setText(quotationT_mx.getSUB_GPR().toString());
 
             } else {
                 holder.mx_mll.setText("");
+
+            }
+            if (quotationT_mx.getOS_NO() != null) {
+                holder.mx_sddh.setText(quotationT_mx.getOS_NO().toString());
+
+            } else {
+                holder.mx_sddh.setText("");
 
             }
             if (quotationT_mx.getOS_QTY() != null) {
@@ -2842,11 +3557,18 @@ public class OfferActivity extends Activity implements View.OnClickListener {
                 holder.mx_sdsl.setText("");
 
             }
-            if (quotationT_mx.getSC_QTY() != null) {
-                holder.mx_scsl.setText(quotationT_mx.getSC_QTY().toString());
+            if (quotationT_mx.getSPC_NO() != null) {
+                holder.mx_scsl.setText(quotationT_mx.getSPC_NO().toString());
 
             } else {
                 holder.mx_scsl.setText("");
+
+            }
+            if (quotationT_mx.getSPC_QTY() != null) {
+                holder.mx_llsl.setText(quotationT_mx.getSPC_QTY().toString());
+
+            } else {
+                holder.mx_llsl.setText("");
 
             }
 
@@ -2865,7 +3587,8 @@ public class OfferActivity extends Activity implements View.OnClickListener {
 
             }
             if (quotationT_mx.getPAK_EXC() != null) {
-                holder.mx_bzhs.setText(quotationT_mx.getPAK_EXC().toString());
+                holder.mx_bzhs.setText(""+new BigDecimal(quotationT_mx.getPAK_EXC().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+//                holder.mx_bzhs.setText(quotationT_mx.getPAK_EXC().toString());
 
             } else {
                 holder.mx_bzhs.setText("");
@@ -2879,24 +3602,45 @@ public class OfferActivity extends Activity implements View.OnClickListener {
 
             }
             if (quotationT_mx.getPAK_NW() != null) {
-                holder.mx_bzzl.setText(quotationT_mx.getPAK_NW().toString());
+                holder.mx_bzzl.setText(""+new BigDecimal(quotationT_mx.getPAK_NW().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+//                holder.mx_bzzl.setText(quotationT_mx.getPAK_NW().toString());
 
             } else {
                 holder.mx_bzzl.setText("");
 
             }
-            if (quotationT_mx.getCOM_NW() != null) {
-                holder.mx_spzl.setText(quotationT_mx.getCOM_NW().toString());
+            if (quotationT_mx.getPAK_GW() != null) {
+                if(quotationT_mx.getPAK_GW().toString().equals("0E-8")){
+                    holder.mx_spzl.setText("0");
+                }else{
+                    holder.mx_spzl.setText(""+new BigDecimal(quotationT_mx.getPAK_GW().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+//                    holder.mx_spzl.setText(quotationT_mx.getPAK_GW().toString());
+                }
 
             } else {
                 holder.mx_spzl.setText("");
 
             }
-            if (quotationT_mx.getPAKG() != null) {
-                holder.mx_bzdx.setText(quotationT_mx.getPAKG().toString());
+            if (quotationT_mx.getPAK_MEAST() != null) {
+                holder.mx_bzdx.setText(""+new BigDecimal(quotationT_mx.getPAK_MEAST().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+//                holder.mx_bzdx.setText(quotationT_mx.getPAK_MEAST().toString());
 
             } else {
                 holder.mx_bzdx.setText("");
+
+            }
+            if (quotationT_mx.getREMT() != null) {
+                holder.mx_zy.setText(quotationT_mx.getREMT().toString());
+
+            } else {
+                holder.mx_zy.setText("");
+
+            }
+            if (quotationT_mx.getISLP() != null) {
+                holder.mx_tszc.setText(quotationT_mx.getISLP().toString());
+
+            } else {
+                holder.mx_tszc.setText("");
 
             }
             holder.checkbox.setOnCheckedChangeListener(new CheckBoxListener(
@@ -2934,6 +3678,10 @@ public class OfferActivity extends Activity implements View.OnClickListener {
             public TextView mx_bzzl;
             public TextView mx_spzl;
             public TextView mx_bzdx;
+            public TextView mx_zy;
+            public TextView mx_tszc;
+            public TextView mx_sddh;
+            public TextView mx_llsl;
         }
     }
 
@@ -2956,48 +3704,67 @@ public class OfferActivity extends Activity implements View.OnClickListener {
 
                 Log.e("LiNing", "--------" + flag_sc);
                 Log.e("LiNing", "--------" + checkedIndexList);
-//                if (0 < checkedIndexList.size() && checkedIndexList.size() <= 1) {
-//                    for(int k=0;k<checkedIndexList.size();k++){
+                if (0 < checkedIndexList.size() && checkedIndexList.size() <= 1) {
+//                    for (int k = 0; k < checkedIndexList.size(); k++) {
 //                        Integer integer = checkedIndexList.get(k);
 //                        quotationT_item = OfferActivity.this.quotationT.get(integer);
 //                        //此处判断选择的那一条
 //                    }
+//                }
 //                    Log.e("LiNing", "--------" + quotationT_item);
 //                    Log.e("LiNing", "--------" + quotationT_item.getITM());
+                    quotationT_item= OfferActivity.this.quotationT.get(flag_sc);
                 xh_hd = OfferActivity.this.quotationT.get(flag_sc).getITM().toString();
                 pm_hd = OfferActivity.this.quotationT.get(flag_sc).getPRD_NAME().toString();
                 ph_hd = OfferActivity.this.quotationT.get(flag_sc).getPRD_NO().toString();
-                if (OfferActivity.this.quotationT.get(flag_sc).getRPD_MARK() != null) {
-                    sh_hd = OfferActivity.this.quotationT.get(flag_sc).getRPD_MARK().toString();
+                if (OfferActivity.this.quotationT.get(flag_sc).getPRD_MARK() != null) {
+                    sh_hd = OfferActivity.this.quotationT.get(flag_sc).getPRD_MARK().toString();
                 } else {
                     sh_hd = "sh";
                 }
                 kw_hd = OfferActivity.this.quotationT.get(flag_sc).getWH().toString();
                 dw_hd = OfferActivity.this.quotationT.get(flag_sc).getUNIT().toString();
                 sl_hd = OfferActivity.this.quotationT.get(flag_sc).getQTY().toString();
-                dj_hd = OfferActivity.this.quotationT.get(flag_sc).getUP().toString();
-                zk_hd = OfferActivity.this.quotationT.get(flag_sc).getDIS_CNT().toString();
-                je_hd = OfferActivity.this.quotationT.get(flag_sc).getAMTN().toString();
+//                dj_hd = OfferActivity.this.quotationT.get(flag_sc).getUP().toString();
+                dj_hd = ""+new BigDecimal(OfferActivity.this.quotationT.get(flag_sc).getUP().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+//                zk_hd = OfferActivity.this.quotationT.get(flag_sc).getDIS_CNT().toString();
+                zk_hd =""+new BigDecimal(OfferActivity.this.quotationT.get(flag_sc).getDIS_CNT().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+//                je_hd = OfferActivity.this.quotationT.get(flag_sc).getAMTN().toString();
+                je_hd =""+new BigDecimal(OfferActivity.this.quotationT.get(flag_sc).getAMTN().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
                 jgdh_hd = OfferActivity.this.quotationT.get(flag_sc).getPRICE_ID().toString();
-                zcdj_hd = OfferActivity.this.quotationT.get(flag_sc).getPrdUp().toString();
-                tybj_hd = OfferActivity.this.quotationT.get(flag_sc).getUPR().toString();
-                zdsj_hd = OfferActivity.this.quotationT.get(flag_sc).getUP_MIN().toString();
-                bzcb_hd = OfferActivity.this.quotationT.get(flag_sc).getCST_STD().toString();
-                ygml_hd = OfferActivity.this.quotationT.get(flag_sc).getEST_SUB().toString();
-                mll_hd = OfferActivity.this.quotationT.get(flag_sc).getSUB_GPR().toString();
+//                zcdj_hd = OfferActivity.this.quotationT.get(flag_sc).getPrdUp().toString();
+                zcdj_hd = ""+new BigDecimal(OfferActivity.this.quotationT.get(flag_sc).getPrdUp().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+//                tybj_hd = OfferActivity.this.quotationT.get(flag_sc).getUPR().toString();
+                tybj_hd = ""+new BigDecimal(OfferActivity.this.quotationT.get(flag_sc).getUPR().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+//                zdsj_hd = OfferActivity.this.quotationT.get(flag_sc).getUP_MIN().toString();
+                zdsj_hd = ""+new BigDecimal(OfferActivity.this.quotationT.get(flag_sc).getUP_MIN().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+//                bzcb_hd = OfferActivity.this.quotationT.get(flag_sc).getCST_STD().toString();
+                bzcb_hd = ""+new BigDecimal(OfferActivity.this.quotationT.get(flag_sc).getCST_STD().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+//                ygml_hd = OfferActivity.this.quotationT.get(flag_sc).getEST_SUB().toString();
+                ygml_hd = ""+new BigDecimal(OfferActivity.this.quotationT.get(flag_sc).getEST_SUB().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+//                mll_hd = OfferActivity.this.quotationT.get(flag_sc).getSUB_GPR().toString();
+                mll_hd = ""+new BigDecimal(OfferActivity.this.quotationT.get(flag_sc).getSUB_GPR().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                sddh_hd = OfferActivity.this.quotationT.get(flag_sc).getOS_NO().toString();
                 sdsl_hd = OfferActivity.this.quotationT.get(flag_sc).getOS_QTY().toString();
-                scsl_hd = OfferActivity.this.quotationT.get(flag_sc).getSC_QTY().toString();
+                scsl_hd = OfferActivity.this.quotationT.get(flag_sc).getSPC_NO().toString();
+                llsl_hd = OfferActivity.this.quotationT.get(flag_sc).getSPC_QTY().toString();
 
                 spgg_hd = OfferActivity.this.quotationT.get(flag_sc).getSPC().toString();
                 bzdw_hd = OfferActivity.this.quotationT.get(flag_sc).getPAK_UNIT().toString();
-                bzhs_hd = OfferActivity.this.quotationT.get(flag_sc).getPAK_EXC().toString();
+//                bzhs_hd = OfferActivity.this.quotationT.get(flag_sc).getPAK_EXC().toString();
+                bzhs_hd = ""+new BigDecimal(OfferActivity.this.quotationT.get(flag_sc).getPAK_EXC().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
                 bzsl_hd = OfferActivity.this.quotationT.get(flag_sc).getPAK_QTY().toString();
-                bzzl_hd = OfferActivity.this.quotationT.get(flag_sc).getPAK_NW().toString();
-                spzl_hd = OfferActivity.this.quotationT.get(flag_sc).getCOM_NW().toString();
-                bzdx_hd = OfferActivity.this.quotationT.get(flag_sc).getPAKG().toString();
-//                } else {
-//                    Toast.makeText(context, "修改时请选择单条数据", Toast.LENGTH_LONG).show();
-//                }
+//                bzzl_hd = OfferActivity.this.quotationT.get(flag_sc).getPAK_NW().toString();
+                bzzl_hd = ""+new BigDecimal(OfferActivity.this.quotationT.get(flag_sc).getPAK_NW().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+//                spzl_hd = OfferActivity.this.quotationT.get(flag_sc).getPAK_GW().toString();
+                spzl_hd =""+new BigDecimal(OfferActivity.this.quotationT.get(flag_sc).getPAK_GW().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+//                bzdx_hd = OfferActivity.this.quotationT.get(flag_sc).getPAK_MEAST().toString();
+                bzdx_hd =""+new BigDecimal(OfferActivity.this.quotationT.get(flag_sc).getPAK_MEAST().toString()).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                zy_hd = OfferActivity.this.quotationT.get(flag_sc).getREMT().toString();
+                tszc_hd = OfferActivity.this.quotationT.get(flag_sc).getISLP().toString();
+                } else {
+                    Toast.makeText(context, "修改时请选择单条数据", Toast.LENGTH_LONG).show();
+                }
 
             } else {
                 checkFalg = 0;
@@ -3022,7 +3789,62 @@ public class OfferActivity extends Activity implements View.OnClickListener {
             this.mScrollViewArg.smoothScrollTo(paramInt1, paramInt2);
         }
     }
+    private void saves(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 40, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream.toByteArray();
+        String imageString = new String(Base64.encodeToString(byteArray,
+                Base64.DEFAULT));
+        sp.edit().putString("testImg", imageString).commit();
+    }
+    private void saveBitmapToSharedPreferences(Bitmap bitmap) {
+        // 第一步:将Bitmap压缩至字节数组输出流ByteArrayOutputStream
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 40, byteArrayOutputStream);
+        // 第二步:利用Base64将字节数组输出流中的数据转换成字符串String
+        byte[] byteArray = byteArrayOutputStream.toByteArray();
+        String imageString = new String(Base64.encodeToString(byteArray,
+                Base64.DEFAULT));
+        InputStream signature = new ByteArrayInputStream(imageString.getBytes());
+        // 第三步:将String保持至SharedPreferences
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("STR_SImg", imageString);
+        editor.putString("image", "" + signature);
+        editor.commit();
 
+        // 上传参数
+        File file = new File(pathSignature);
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        BufferedOutputStream bos;
+        try {
+            bos = new BufferedOutputStream(new FileOutputStream(file));
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 30, bos);
+            bos.flush();
+            bos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void crop(Uri uri) {
+        // 裁剪图片意图
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setDataAndType(uri, "image/*");
+        intent.putExtra("crop", "true");
+        // 裁剪框的比例，1：1
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        // 裁剪后输出图片的尺寸大小
+        intent.putExtra("outputX", 250);
+        intent.putExtra("outputY", 250);
+
+        intent.putExtra("outputFormat", "JPEG");// 图片格式
+        intent.putExtra("noFaceDetection", true);// 取消人脸识别
+        intent.putExtra("return-data", true);
+        // 开启一个带有返回值的Activity，请求码为PHOTO_REQUEST_CUT
+        startActivityForResult(intent, PHOTO_REQUEST_CUT);
+    }
     public void allback(View v) {
         finish();
     }

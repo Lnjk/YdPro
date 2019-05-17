@@ -3,9 +3,11 @@ package com.example.ydshoa;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,20 +17,34 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.bean.JsonRootBean;
+import com.example.bean.URLS;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class BillAmtActivity extends Activity implements View.OnClickListener {
     //根数据
     private Context context;
     private SharedPreferences sp;
-    private String session,fh_sjs;
+    private String session,fh_sjs,fh_sfpr,fh_zt;
 
     //基本数据
     private String db_zt,date_dd,skdpb_id,skdkpyh_id;
@@ -38,6 +54,8 @@ public class BillAmtActivity extends Activity implements View.OnClickListener {
     private EditText pjhm_one,pjhm_two,pjhm_three,pjhm_four,pjhm_five,je_one,je_two,je_three
             ,je_four,je_five;
     private Button pjok_hd;
+    private ArrayList<String> PJ_hm,PJ_je,PJ_yh,PJ_spr,PJ_ydr,PJ_dqr,PJ_bdr,PJ_zl;
+    private String url_isph= URLS.design_jfspquery_ph;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,9 +66,13 @@ public class BillAmtActivity extends Activity implements View.OnClickListener {
         context=BillAmtActivity.this;
         db_zt = sp.getString("DB_MR", "");
          fh_sjs = getIntent().getStringExtra("fh_sjs");
+         fh_sfpr = getIntent().getStringExtra("cd_djrq");
+         fh_zt = getIntent().getStringExtra("cd_zt");
         getNowTime();
         intView();
-        infos_chage();
+//        infos_chage();
+
+
     }
 
 
@@ -67,20 +89,185 @@ public class BillAmtActivity extends Activity implements View.OnClickListener {
         head.setText("票据明细");
         //填写数据
         pjhm_one= (EditText) findViewById(R.id.et_pjje_pjhm_one);
+        pjhm_one.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                je_one.setEnabled(true);
+            }
+        });
         pjhm_two= (EditText) findViewById(R.id.et_pjje_pjhm_two);
+        pjhm_two.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                je_two.setEnabled(true);
+            }
+        });
         pjhm_three= (EditText) findViewById(R.id.et_pjje_pjhm_three);
+        pjhm_three.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                je_three.setEnabled(true);
+            }
+        });
         pjhm_four= (EditText) findViewById(R.id.et_pjje_pjhm_four);
+        pjhm_four.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                je_four.setEnabled(true);
+            }
+        });
         pjhm_five= (EditText) findViewById(R.id.et_pjje_pjhm_five);
+        pjhm_five.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                je_five.setEnabled(true);
+            }
+        });
         je_one= (EditText) findViewById(R.id.et_pjje_je_one);
+        je_one.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                isHaveIph(je_one,pjhm_one.getText().toString());
+            }
+        });
         je_two= (EditText) findViewById(R.id.et_pjje_je_two);
+        je_two.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                isHaveIph(je_two, pjhm_two.getText().toString());
+            }
+        });
         je_three= (EditText) findViewById(R.id.et_pjje_je_three);
+        je_three.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                isHaveIph(je_three, pjhm_three.getText().toString());
+            }
+        });
         je_four= (EditText) findViewById(R.id.et_pjje_je_four);
+        je_four.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                isHaveIph(je_four, pjhm_four.getText().toString());
+            }
+        });
         je_five= (EditText) findViewById(R.id.et_pjje_je_five);
+        je_five.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                isHaveIph(je_five, pjhm_five.getText().toString());
+            }
+        });
         dxzh_one= (TextView) findViewById(R.id.et_pjje_dxzh_one);
+        dxzh_one.setHint(date_dd);
         dxzh_two= (TextView) findViewById(R.id.et_pjje_dxzh_two);
+        dxzh_two.setHint(date_dd);
         dxzh_three= (TextView) findViewById(R.id.et_pjje_dxzh_three);
+        dxzh_three.setHint(date_dd);
         dxzh_four= (TextView) findViewById(R.id.et_pjje_dxzh_four);
+        dxzh_four.setHint(date_dd);
         dxzh_five= (TextView) findViewById(R.id.et_pjje_dxzh_five);
+        dxzh_five.setHint(date_dd);
 
 
         pb_one= (TextView) findViewById(R.id.tv_pjje_pb_one);
@@ -104,7 +291,7 @@ public class BillAmtActivity extends Activity implements View.OnClickListener {
         yh_five= (TextView) findViewById(R.id.et_pjje_kpyh_five);
         yh_five.setOnClickListener(this);
         time_one= (TextView) findViewById(R.id.tv_pjje_time_one);
-        time_one.setText(date_dd);
+        time_one.setHint(date_dd);
         time_one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,7 +315,7 @@ public class BillAmtActivity extends Activity implements View.OnClickListener {
             }
         });
         time_two= (TextView) findViewById(R.id.tv_pjje_time_two);
-        time_two.setText(date_dd);
+        time_two.setHint(date_dd);
         time_two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,7 +339,7 @@ public class BillAmtActivity extends Activity implements View.OnClickListener {
             }
         });
         time_three= (TextView) findViewById(R.id.tv_pjje_time_three);
-        time_three.setText(date_dd);
+        time_three.setHint(date_dd);
         time_three.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,7 +363,7 @@ public class BillAmtActivity extends Activity implements View.OnClickListener {
             }
         });
         time_four= (TextView) findViewById(R.id.tv_pjje_time_four);
-        time_four.setText(date_dd);
+        time_four.setHint(date_dd);
         time_four.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -200,7 +387,7 @@ public class BillAmtActivity extends Activity implements View.OnClickListener {
             }
         });
         time_five= (TextView) findViewById(R.id.tv_pjje_time_five);
-        time_five.setText(date_dd);
+        time_five.setHint(date_dd);
         time_five.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -334,7 +521,52 @@ public class BillAmtActivity extends Activity implements View.OnClickListener {
             }
         });
         pjok_hd= (Button) findViewById(R.id.pjok);
+        pjok_hd.setOnClickListener(this);
     }
+
+    private void isHaveIph(final EditText edt, String str) {
+        OkHttpClient client = new OkHttpClient();
+        FormBody body = new FormBody.Builder()
+                .add("db_Id", fh_zt)
+                .add("chk_NO", str)
+                .build();
+        Request request = new Request.Builder().addHeader("cookie", session)
+                .url(url_isph).post(body).build();
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String strph = response.body().string();
+                Log.e("LiNing", "票号结果===" + strph);
+                final JsonRootBean localJsonRootBean = (JsonRootBean) new Gson()
+                        .fromJson(strph, JsonRootBean.class);
+                if (localJsonRootBean != null) {
+                    BillAmtActivity.this.runOnUiThread(new Runnable() {
+                        boolean rlo = localJsonRootBean.getRLO();
+                        @Override
+                        public void run() {
+                            if(rlo==true){
+                                Toast.makeText(BillAmtActivity.this,
+                                        "该票号已存在,请重新填写", Toast.LENGTH_SHORT).show();
+                                edt.setEnabled(false);
+                                edt.setText("");
+                            }else{
+                                edt.setEnabled(true);
+                            }
+                        }
+                    });
+                }
+            }
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+
+        });
+    }
+
     private void infos_chage() {
         try {
             JSONArray arr = new JSONArray(fh_sjs);
@@ -425,13 +657,278 @@ public class BillAmtActivity extends Activity implements View.OnClickListener {
                 showPopupMenu(yh_five);
                 break;
             case R.id.pjok:
-
+                getComitInfos();
                 break;
 
                 default:
                     break;
         }
     }
+
+    private void getComitInfos() {
+        PJ_hm=new ArrayList<String>();
+        PJ_je=new ArrayList<String>();
+        PJ_yh=new ArrayList<String>();
+        PJ_spr=new ArrayList<String>();
+        PJ_ydr=new ArrayList<String>();
+        PJ_dqr=new ArrayList<String>();
+        PJ_bdr=new ArrayList<String>();
+        PJ_zl=new ArrayList<String>();
+        Double sum_pjje=0.0;
+        //票号
+        if(!pjhm_one.getText().toString().equals("")){
+            PJ_hm.add(pjhm_one.getText().toString());
+            PJ_spr.add(fh_sfpr);
+            PJ_bdr.add(date_dd);
+            //票别
+            if(!pb_one.getText().toString().equals("")){
+                PJ_zl.add(pb_one.getText().toString().substring(0,1));
+                Log.e("LiNing","======"+pb_one.getText().toString().substring(0,1));
+            }else{
+                PJ_zl.add("");
+            }
+            //金额
+            if(!je_one.getText().toString().equals("")){
+                PJ_je.add(je_one.getText().toString());
+            }else{
+                PJ_je.add("0.0");
+            }
+            //开票银行
+            if(!yh_one.getText().toString().equals("")){
+                PJ_yh.add(yh_one.getText().toString().substring(0,1));
+            }else {
+                PJ_yh.add("");
+            }
+            //预兑日
+            if(!dxzh_one.getText().toString().equals("")){
+                PJ_ydr.add(dxzh_one.getText().toString());
+            }else {
+                PJ_ydr.add(date_dd);
+            }
+            //到期日
+            if(!time_one.getText().toString().equals("")){
+                PJ_dqr.add(time_one.getText().toString());
+            }else {
+                PJ_dqr.add(date_dd);
+            }
+
+        }
+        if(!pjhm_two.getText().toString().equals("")){
+            PJ_hm.add(pjhm_two.getText().toString());
+            PJ_spr.add(fh_sfpr);
+            PJ_bdr.add(date_dd);
+            //票别
+            if(!pb_two.getText().toString().equals("")){
+                PJ_zl.add(pb_two.getText().toString().substring(0,1));
+            }else{
+                PJ_zl.add("");
+            }
+            //金额
+            if(!je_two.getText().toString().equals("")){
+                PJ_je.add(je_two.getText().toString());
+            }else{
+                PJ_je.add("0.0");
+            }
+            //开票银行
+            if(!yh_two.getText().toString().equals("")){
+                PJ_yh.add(yh_two.getText().toString().substring(0,1));
+            }else {
+                PJ_yh.add("");
+            }
+            //预兑日
+
+            if(!dxzh_two.getText().toString().equals("")){
+                PJ_ydr.add(dxzh_two.getText().toString());
+            }else {
+                PJ_ydr.add(date_dd);
+            }
+            //到期日
+
+            if(!time_two.getText().toString().equals("")){
+                PJ_dqr.add(time_two.getText().toString());
+            }else {
+                PJ_dqr.add(date_dd);
+            }
+
+        }
+        if(!pjhm_three.getText().toString().equals("")){
+            PJ_hm.add(pjhm_three.getText().toString());
+            PJ_spr.add(fh_sfpr);
+            PJ_bdr.add(date_dd);
+            //票别
+            if(!pb_three.getText().toString().equals("")){
+                PJ_zl.add(pb_three.getText().toString().substring(0,1));
+            }else{
+                PJ_zl.add("");
+            }
+            //金额
+            if(!je_three.getText().toString().equals("")){
+                PJ_je.add(je_three.getText().toString());
+            }else{
+                PJ_je.add("0.0");
+            }
+            //开票银行
+            if(!yh_three.getText().toString().equals("")){
+                PJ_yh.add(yh_three.getText().toString().substring(0,1));
+            }else {
+                PJ_yh.add("");
+            }
+            //预兑日
+
+            if(!dxzh_three.getText().toString().equals("")){
+                PJ_ydr.add(dxzh_three.getText().toString());
+            }else {
+                PJ_ydr.add(date_dd);
+            }
+            //到期日
+
+            if(!time_three.getText().toString().equals("")){
+                PJ_dqr.add(time_three.getText().toString());
+            }else {
+                PJ_dqr.add(date_dd);
+            }
+
+        }
+        if(!pjhm_four.getText().toString().equals("")){
+            PJ_hm.add(pjhm_four.getText().toString());
+            PJ_spr.add(fh_sfpr);
+            PJ_bdr.add(date_dd);
+            //票别
+            if(!pb_four.getText().toString().equals("")){
+                PJ_zl.add(pb_four.getText().toString().substring(0,1));
+            }else{
+                PJ_zl.add("");
+            }
+            //金额
+            if(!je_four.getText().toString().equals("")){
+                PJ_je.add(je_four.getText().toString());
+            }else{
+                PJ_je.add("0.0");
+            }
+            //开票银行
+            if(!yh_four.getText().toString().equals("")){
+                PJ_yh.add(yh_four.getText().toString().substring(0,1));
+            }else {
+                PJ_yh.add("");
+            }
+            //预兑日
+
+            if(!dxzh_four.getText().toString().equals("")){
+                PJ_ydr.add(dxzh_four.getText().toString());
+            }else {
+                PJ_ydr.add(date_dd);
+            }
+            //到期日
+
+            if(!time_four.getText().toString().equals("")){
+                PJ_dqr.add(time_four.getText().toString());
+            }else {
+                PJ_dqr.add(date_dd);
+            }
+
+        }
+        if(!pjhm_five.getText().toString().equals("")){
+            PJ_hm.add(pjhm_five.getText().toString());
+            PJ_spr.add(fh_sfpr);
+            PJ_bdr.add(date_dd);
+            //票别
+            if(!pb_five.getText().toString().equals("")){
+                PJ_zl.add(pb_five.getText().toString().substring(0,1));
+            }else{
+                PJ_zl.add("");
+            }
+            //金额
+            if(!je_five.getText().toString().equals("")){
+                PJ_je.add(je_five.getText().toString());
+            }else{
+                PJ_je.add("0.0");
+            }
+            //开票银行
+            if(!yh_five.getText().toString().equals("")){
+                PJ_yh.add(yh_five.getText().toString().substring(0,1));
+            }else {
+                PJ_yh.add("");
+            }
+            //预兑日
+
+            if(!dxzh_five.getText().toString().equals("")){
+                PJ_ydr.add(dxzh_five.getText().toString());
+            }else {
+                PJ_ydr.add(date_dd);
+            }
+            //到期日
+
+            if(!time_five.getText().toString().equals("")){
+                PJ_dqr.add(time_five.getText().toString());
+            }else {
+                PJ_dqr.add(date_dd);
+            }
+        }
+
+
+
+        String hm_str = "";
+        for (String zt : PJ_hm) {
+            hm_str += zt + ",";
+        }
+        String sub_pjhm = hm_str.substring(0, hm_str.length() - 1);
+        String je_str = "";
+        for (String zt : PJ_je) {
+            je_str += zt + ",";
+            sum_pjje+=Double.parseDouble(zt);
+        }
+        String sub_pjje = je_str.substring(0, je_str.length() - 1);
+        String yh_str = "";
+        for (String zt : PJ_yh) {
+            yh_str += zt + ",";
+        }
+        String sub_pjyh = yh_str.substring(0, yh_str.length() - 1);
+        String spr_str = "";
+        for (String zt : PJ_spr) {
+            spr_str += zt + ",";
+        }
+        String sub_pjspr = spr_str.substring(0, spr_str.length() - 1);
+        String ydr_str = "";
+        for (String zt : PJ_ydr) {
+            ydr_str += zt + ",";
+        }
+        String sub_pjydr = ydr_str.substring(0, ydr_str.length() - 1);
+        String dqr_str = "";
+        for (String zt : PJ_dqr) {
+            dqr_str += zt + ",";
+        }
+        String sub_pjdqr = dqr_str.substring(0, dqr_str.length() - 1);
+        String bdr_str = "";
+        for (String zt : PJ_bdr) {
+            bdr_str += zt + ",";
+        }
+        String sub_pjbdr = bdr_str.substring(0, bdr_str.length() - 1);
+        String zl_str = "";
+        for (String zt : PJ_zl) {
+            zl_str += zt + ",";
+        }
+        String sub_pjzl = zl_str.substring(0, zl_str.length() - 1);
+        Log.e("LiNing", "票据数据======" + sub_pjhm + "/y" + sub_pjje + "/r" + sub_pjyh
+                + "/r" + sub_pjspr
+                + "/r" + sub_pjydr
+                + "/r" + sub_pjdqr
+                + "/r" + sub_pjbdr
+                + "/r" + sub_pjzl
+                + "/r" + sum_pjje);
+        Intent localIntent = getIntent();
+        localIntent.putExtra("pj_hm", sub_pjhm);
+        localIntent.putExtra("pj_je", sub_pjje);
+        localIntent.putExtra("pj_yh", sub_pjyh);
+        localIntent.putExtra("pj_spr", sub_pjspr);
+        localIntent.putExtra("pj_ydr", sub_pjydr);
+        localIntent.putExtra("pj_dqr", sub_pjdqr);
+        localIntent.putExtra("pj_bdr", sub_pjbdr);
+        localIntent.putExtra("pj_zl", sub_pjzl);
+        localIntent.putExtra("pj_jehj", ""+sum_pjje);
+        setResult(1, localIntent);
+        finish();
+    }
+
     private void showPopupMenu(View view) {
         PopupMenu popupMenu = new PopupMenu(this, view);
         if(object_chk==1){

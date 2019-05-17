@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/check1_ywlx"
+            android:title="01,常规"/>
+        <item
+            android:id="@+id/check2_ywlx"
+            android:title="02,定制"/>
+    </group>
+</menu>

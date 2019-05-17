@@ -51,7 +51,7 @@ import okhttp3.Response;
 public class YuShouActivity extends Activity {
     private Context context;
     private SharedPreferences sp;
-    private String session, db_id, kh_id, s_zh, clientRows,name,zd_id,bccx,sub_yis_xh,sub_yis_ysdh,sub_yis_bccx;
+    private String session, db_id, kh_id, s_zh, clientRows,name,zd_id,bccx,wcjy,sub_yis_xh,sub_yis_ysdh,sub_yis_bccx;
     String url_add_mx = URLS.skd_url_query;
     List<ReceptYingshou.Mf_monList> mf_monList;
     List<ReceptYingshou.Mf_monList> mf_monList_all = new ArrayList<ReceptYingshou.Mf_monList>();
@@ -219,7 +219,7 @@ public class YuShouActivity extends Activity {
             }
             ReceptYingshou.Mf_monList mfArpList = skdqty_infos.get(position);
             //编辑EditextSet(******放于此处避免listview数据错乱)
-            EditextSet_add(holder_ysmx, mfArpList);
+            EditextSet_add(holder_ysmx, mfArpList,position);
             int id_add = position + 1;
             holder_ysmx.yingsmx_xh.setText("" + id_add);
             if(mfArpList.getTf_MON_Z().getCus_NO_OS()==null){
@@ -302,7 +302,7 @@ public class YuShouActivity extends Activity {
                 v_ycje = new BigDecimal(mfArpList.getAmtn_ARP()).setScale(4, BigDecimal.ROUND_HALF_UP).doubleValue();
                 holder_ysmx.yingsmx_ycje.setText("" + v_ycje);
             }
-            double v_wcjy = v_ysje - v_ysje;
+            double v_wcjy = v_ysje - v_ycje;
             skdqty_infos.get(position).getTf_MON().setYis_wcjy("" + v_wcjy);
 //            holder_ysmx.yingsmx_wcjy.setText("" +v_wcjy );
             holder_ysmx.yingsmx_wcjy.setText(skdqty_infos.get(position).getTf_MON().getYis_wcjy());
@@ -310,7 +310,7 @@ public class YuShouActivity extends Activity {
         }
 
 
-        private void EditextSet_add(ViewHolder holder_ysmx, final ReceptYingshou.Mf_monList mfArpList) {
+        private void EditextSet_add(final ViewHolder holder_ysmx, final ReceptYingshou.Mf_monList mfArpList, final int position) {
             if (holder_ysmx.yingsmx_bccx.getTag() instanceof TextWatcher) {
                 holder_ysmx.yingsmx_bccx.removeTextChangedListener((TextWatcher) holder_ysmx.yingsmx_bccx.getTag());
             }
@@ -331,7 +331,22 @@ public class YuShouActivity extends Activity {
                     if (TextUtils.isEmpty(s)) {
                         mfArpList.getTf_MON().setYis_bccx("");
                     } else {
-                        mfArpList.getTf_MON().setYis_bccx(s.toString());
+//                        mfArpList.getTf_MON().setYis_bccx(s.toString());
+//                        double v_wcjy_ycx = v_ysje - v_ycje-Double.parseDouble(s.toString());
+//                        skdqty_infos.get(position).getTf_MON().setYis_wcjy("" + v_wcjy_ycx);
+//                        holder_ysmx.yingsmx_wcjy.setText(""+v_wcjy_ycx);
+
+
+                        skdqty_infos.get(position).getTf_MON().setYis_bccx(s.toString());
+//                        double v_wcjy_ycx = v_ysje - v_ycje - Double.parseDouble(s.toString());
+                        Log.e("LiNing", "数据net" + skdqty_infos.get(position).getAmtn());
+                        Log.e("LiNing", "数据rcv" + skdqty_infos.get(position).getAmtn_ARP());
+                        double v_wcjy_ycx = Double.parseDouble(skdqty_infos.get(position).getAmtn().toString())
+                                - Double.parseDouble(skdqty_infos.get(position).getAmtn_ARP().toString()) - Double.parseDouble(s.toString());
+                        skdqty_infos.get(position).getTf_MON().setYis_wcjy("" + v_wcjy_ycx);
+                        holder_ysmx.yingsmx_wcjy.setText("" + v_wcjy_ycx);
+//                        Log.e("LiNing","本次冲销==="+skdysmx_infos.get(position).getYis_bccx().toString());
+//                        sum_yings_bccx_ad+=Double.parseDouble(skdysmx_infos.get(position).getYis_bccx().toString());
                     }
                 }
             };
@@ -387,23 +402,31 @@ public class YuShouActivity extends Activity {
 
         finish();
     }
-    int sum_bccx_yus=0;
+    Double sum_bccx_yus=0.0;
+    Double sum_wcjy_yus=0.0;
     public void yusclick(View v){
         if(lv_query_skd.getCount()>0){
             ArrayList<String> YIS_XH = new ArrayList<String>();
             ArrayList<String> YIS_BCCX = new ArrayList<String>();
             ArrayList<String> YIS_YSDH = new ArrayList<String>();
+            ArrayList<String> YIS_WCJY = new ArrayList<String>();
 
             for (int i = 0; i < lv_query_skd.getCount(); i++) {
-                ReceiptSkdForm.Mf_monList mfArpList = (ReceiptSkdForm.Mf_monList) lv_query_skd.getAdapter().getItem(i);
+                ReceptYingshou.Mf_monList mfArpList = (ReceptYingshou.Mf_monList) lv_query_skd.getAdapter().getItem(i);
                 String xh_tj = "" + i;
                 String ysdh_tj = mfArpList.getRp_NO().toString();//应收单号
 
                 if (mfArpList.getTf_MON().getYis_bccx()==null) {
-                    bccx="";
+                    bccx="0.0";
                 }else{
                     bccx=mfArpList.getTf_MON().getYis_bccx().toString();
-                    sum_bccx_yus=Integer.valueOf(bccx);
+                    sum_bccx_yus+=Double.parseDouble(bccx);
+                }
+                if (mfArpList.getTf_MON().getYis_wcjy()==null) {
+                    wcjy="0.0";
+                }else{
+                    wcjy=mfArpList.getTf_MON().getYis_wcjy().toString();
+                    sum_wcjy_yus+=Double.parseDouble(wcjy);
                 }
                 YIS_XH.add(xh_tj);//
                 YIS_YSDH.add(ysdh_tj);//
@@ -435,6 +458,7 @@ public class YuShouActivity extends Activity {
         localIntent.putExtra("YUS_DH",sub_yis_ysdh);
         localIntent.putExtra("YUS_BCCX",sub_yis_bccx);
         localIntent.putExtra("YUS_BCCX_HJ",""+sum_bccx_yus);
+        localIntent.putExtra("YUS_WCJY_HJ",""+sum_wcjy_yus);
         setResult(1, localIntent);
         finish();
     }

@@ -356,6 +356,7 @@ public class MoveAllInfoActivity extends Activity implements View.OnClickListene
                         .add("Cust_No", dabh_befor)
                         .add("iTM", del_id)
                         .build();
+                Log.e("LiNing", "删除结果====" + del_id);
                 client.newCall(
                         new Request.Builder().addHeader("cookie", session).url(ps_del)
                                 .post(body).build()).enqueue(new Callback() {

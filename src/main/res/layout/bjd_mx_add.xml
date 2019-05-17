@@ -29,7 +29,10 @@
 
 
                 <LinearLayout style="@style/price_ll2">
-
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
                     <TextView
                         style="@style/price_name"
                         android:text="序号:" />
@@ -54,7 +57,10 @@
 
 
                 <LinearLayout style="@style/price_ll2">
-
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
                     <TextView
                         style="@style/price_name"
                         android:text="品号:" />
@@ -94,7 +100,10 @@
 
 
                 <LinearLayout style="@style/price_ll2">
-
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
                     <TextView
                         style="@style/design_name"
                         android:text="库位:" />
@@ -165,10 +174,6 @@
 
                 <LinearLayout style="@style/price_ll2">
                     <TextView
-                        style="@style/price_name"
-                        android:text="*"
-                        android:textColor="@color/color_red" />
-                    <TextView
                         style="@style/design_name"
                         android:text="折扣:" />
 
@@ -180,7 +185,10 @@
                 </LinearLayout>
 
                 <LinearLayout style="@style/price_ll2">
-
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
                     <TextView
                         style="@style/price_name"
                         android:text="金额:" />
@@ -205,7 +213,7 @@
 
                     <TextView
                         style="@style/design_name"
-                        android:text="价格代号:" />
+                        android:text="政策代号:" />
 
                     <TextView
                         android:id="@+id/tv_mx_add_jgdh"
@@ -314,14 +322,14 @@
 
                 <LinearLayout style="@style/price_ll2">
 
+
                     <TextView
                         style="@style/price_name"
-                        android:text="受订数量:" />
+                        android:text="领料数量:" />
 
                     <EditText
-                        android:id="@+id/tv_mx_add_sdsl"
+                        android:id="@+id/tv_mx_add_llsl"
                         style="@style/design_editext" />
-
 
                 </LinearLayout>
             </LinearLayout>
@@ -337,9 +345,40 @@
 
                     <TextView
                         style="@style/design_name"
-                        android:text="生产数量:" />
+                        android:text="受订单号:" />
+
+                    <EditText
+                        android:id="@+id/tv_mx_add_sddh"
+                        style="@style/design_editext" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/price_ll2">
+                    <TextView
+                        style="@style/price_name"
+                        android:text="受订数量:" />
+
+                    <EditText
+                        android:id="@+id/tv_mx_add_sdsl"
+                        style="@style/design_editext" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/price_view" />
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
+
+
+                <LinearLayout style="@style/price_ll2">
 
                     <TextView
+                        style="@style/design_name"
+                        android:text="生产单号:" />
+
+                    <EditText
                         android:id="@+id/tv_mx_add_scsl"
                         style="@style/design_editext" />
 
@@ -351,9 +390,10 @@
                         style="@style/price_name"
                         android:text="商品规格:" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/tv_mx_add_spgg"
-                        style="@style/design_editext" />
+                        style="@style/design_editext"
+                        android:hint="3*4*5"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -417,7 +457,7 @@
 
                     <TextView
                         style="@style/price_name"
-                        android:text="包装重量:" />
+                        android:text="包装净重:" />
 
                     <TextView
                         android:id="@+id/tv_mx_add_bzzl"
@@ -437,7 +477,7 @@
 
                     <TextView
                         style="@style/design_name"
-                        android:text="商品重量:" />
+                        android:text="包装毛重:" />
 
                     <TextView
                         android:id="@+id/tv_mx_add_spzl"
@@ -452,7 +492,7 @@
                         style="@style/price_name"
                         android:text="包装大小:" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/tv_mx_add_bzdx"
                         style="@style/design_editext" />
 
@@ -480,7 +520,17 @@
                 </LinearLayout>
 
                 <LinearLayout style="@style/price_ll2">
+                    <TextView
+                        style="@style/price_name"
+                        android:text="政策商品:" />
 
+                    <TextView
+                        android:id="@+id/tv_mx_add_zcsp"
+                        style="@style/design_editext" />
+
+                    <ImageButton
+                        android:id="@+id/ib_mx_add_zcsp"
+                        style="@style/price_button_down" />
 
                 </LinearLayout>
             </LinearLayout>

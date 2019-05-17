@@ -39,7 +39,7 @@ import okhttp3.Response;
 public class QueryCustersActivity extends Activity {
     private Context context;
     private SharedPreferences sp;
-    private String session, query_db;
+    private String session, query_db,query_zdwd;
     private TextView head;
     private ListView lv_cust_qry;
     String cust_get = URLS.cust_z_query;
@@ -56,6 +56,7 @@ public class QueryCustersActivity extends Activity {
         sp = getSharedPreferences("ydbg", 0);
         session = sp.getString("SESSION", "");
         query_db = getIntent().getStringExtra("ZT_VIP");
+        query_zdwd = getIntent().getStringExtra("ZT_zdwd");
         Log.e("LiNing", "所用账套====" + query_db);
         initView();
     }
@@ -103,15 +104,18 @@ public class QueryCustersActivity extends Activity {
                 Log.e("LiNing", "id_type结果====" + custesrAllInfos);
                 if (custesrAllInfos != null) {
                     custList = custesrAllInfos.getCustList();
-                    QueryCustersActivity.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            qtyAdapter = new CustersQtyAdapter(R.layout.custer_head, custList, context);
-                            lv_cust_qry.setAdapter(qtyAdapter);
-                            qtyAdapter.notifyDataSetChanged();
-                        }
+                    if(custList!=null&&custList.size()>0){
 
-                    });
+                        QueryCustersActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                qtyAdapter = new CustersQtyAdapter(R.layout.custer_head, custList, context);
+                                lv_cust_qry.setAdapter(qtyAdapter);
+                                qtyAdapter.notifyDataSetChanged();
+                            }
+
+                        });
+                    }
                 }
             }
 
@@ -156,7 +160,7 @@ public class QueryCustersActivity extends Activity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder holder;
+            ViewHolder holder= null;
             if (convertView == null) {
                 convertView = mInflater.inflate(id_row_layout, null);
                 holder = new ViewHolder();
@@ -169,10 +173,21 @@ public class QueryCustersActivity extends Activity {
                 holder = (ViewHolder) convertView.getTag();
             }
             CustAllObjectInfos.CustList custList_adp = custqty_infos.get(position);
-            holder.cust_dabh_qty.setText(custList_adp.getCust_No());
-            holder.cust_zt_qty.setText(custList_adp.getCust_Acc());
-            holder.cust_xm_qty.setText(custList_adp.getCust_Name());
-            holder.cust_dh_qty.setText(custList_adp.getCust_Tel());
+            if(query_zdwd.equals("CUST")){
+                Log.e("LiNing","query_zdwd_yy-----kh"+query_zdwd);
+                holder.cust_dabh_qty.setText(custList_adp.getCust_No());
+                holder.cust_zt_qty.setText(custList_adp.getCust_Acc());
+                holder.cust_xm_qty.setText(custList_adp.getCust_Name());
+                holder.cust_dh_qty.setText(custList_adp.getCust_Tel());
+            }else{
+                if(custList_adp.getCus_No_ERP().equals(query_zdwd)){
+                    Log.e("LiNing","query_zdwd_yy-----skd"+query_zdwd);
+                    holder.cust_dabh_qty.setText(custList_adp.getCust_No());
+                    holder.cust_zt_qty.setText(custList_adp.getCust_Acc());
+                    holder.cust_xm_qty.setText(custList_adp.getCust_Name());
+                    holder.cust_dh_qty.setText(custList_adp.getCust_Tel());
+                }
+            }
             //操作修改，删除等
             if (position == selectItem) {
                 convertView.setBackgroundColor(Color.RED);

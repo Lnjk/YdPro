@@ -26,7 +26,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.LeftOrRight.MyHScrollView;
+import com.example.bean.DepInfo;
 import com.example.bean.Quotation;
+import com.example.bean.QuotationTwo;
 import com.example.bean.URLS;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -62,6 +64,7 @@ public class QueryBjdActivity extends Activity implements View.OnClickListener {
     private ImageButton ib_zt_xl, ib_djlb_xl, ib_ztsj_xl, ib_xszd_xl, ib_xsbm_xl, ib_xsgw_xl, ib_fwgj_xl, ib_styw_xl, ib_qdyw_xl,
             ib_yshk_xl, ib_kh_xl, ib_jhfs_xl, ib_shr_xl;
     private String djlb_id_sub, zd_id_sub, bm_id_sub, gw_id_sub, fwgj_id_sub, ztsj_id_sub, styw_id_sub, qdyw_id_sub;
+    private String url_id_toname = URLS.id_Custbh;//通过id获取名称（客户编号）
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,7 +98,7 @@ public class QueryBjdActivity extends Activity implements View.OnClickListener {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 bjdzbQtyAdapter.setSelectItem(position);//刷新
                 bjdzbQtyAdapter.notifyDataSetInvalidated();
-                Quotation.QuotationList bjdList_callback = (Quotation.QuotationList) parent.getAdapter().getItem(position);
+                QuotationTwo.QuotationList bjdList_callback = (QuotationTwo.QuotationList) parent.getAdapter().getItem(position);
                 Intent localIntent = getIntent();
                 localIntent.putExtra("BJD_INFOS_ALL", bjdList_callback);
                 setResult(1, localIntent);
@@ -335,13 +338,14 @@ public class QueryBjdActivity extends Activity implements View.OnClickListener {
                 Log.e("LiNing", "id_type结果====" + info_all);
                 Gson gson = new GsonBuilder().setDateFormat(
                         "yyyy-MM-dd HH:mm:ss").create();
-                final Quotation bjdAllInfos = gson.fromJson(info_all, Quotation.class);
+//                final Quotation bjdAllInfos = gson.fromJson(info_all, Quotation.class);
+                final QuotationTwo bjdAllInfos = gson.fromJson(info_all, QuotationTwo.class);
                 Log.e("LiNing", "id_type结果====" + bjdAllInfos);
                 QueryBjdActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         if (bjdAllInfos != null) {
-                            List<Quotation.QuotationList> quotationList = bjdAllInfos.getQuotationList();
+                            List<QuotationTwo.QuotationList> quotationList = bjdAllInfos.getQuotationList();
                             if(quotationList!=null&&quotationList.size()>0){
                                 bjdzbQtyAdapter = new BjdZbQtyAdapter(R.layout.bjzbobj_head, quotationList, context);
                                 lv_offer_qry_zb.setAdapter(bjdzbQtyAdapter);
@@ -593,15 +597,17 @@ public class QueryBjdActivity extends Activity implements View.OnClickListener {
     public class BjdZbQtyAdapter extends BaseAdapter {
         int id_row_layout;
         LayoutInflater mInflater;
-        List<Quotation.QuotationList> data_adp;
+        List<QuotationTwo.QuotationList> data_adp;
         //item高亮显示
         private int selectItem = -1;
+        List<DepInfo.IdNameList> depInfo;
+        String name;
 
         public void setSelectItem(int selectItem) {
             this.selectItem = selectItem;
         }
 
-        public BjdZbQtyAdapter(int bjzbobj_head, List<Quotation.QuotationList> quotationList, Context context) {
+        public BjdZbQtyAdapter(int bjzbobj_head, List<QuotationTwo.QuotationList> quotationList, Context context) {
             this.id_row_layout = bjzbobj_head;
             this.data_adp = quotationList;
             this.mInflater = LayoutInflater.from(context);
@@ -624,7 +630,7 @@ public class QueryBjdActivity extends Activity implements View.OnClickListener {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder holder=null;
+            final ViewHolder holder;
             if (convertView == null) {
                 synchronized (QueryBjdActivity.this) {
 
@@ -650,7 +656,7 @@ public class QueryBjdActivity extends Activity implements View.OnClickListener {
             }else{
                 holder= (ViewHolder) convertView.getTag();
             }
-            Quotation.QuotationList quotationList_info = data_adp.get(position);
+            QuotationTwo.QuotationList quotationList_info = data_adp.get(position);
             if(quotationList_info!=null){
                 holder.bjzb_xh.setText(""+position);
                 if(quotationList_info.getQT_NO()!=null){
@@ -658,8 +664,11 @@ public class QueryBjdActivity extends Activity implements View.OnClickListener {
                 }else{
                     holder.bjzb_dh.setText("");
                 }
+
+
+
                 if(quotationList_info.getQT_DD()!=null){
-                    SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
+                    SimpleDateFormat sf1 = new SimpleDateFormat("EEE MMM dd hh:mm:ss z yyyy", Locale.ENGLISH);
                     try {
                         Date parse = sf1.parse(quotationList_info.getQT_DD().toString());
                         String format = new SimpleDateFormat("yyyy-MM-dd").format(parse);
@@ -676,16 +685,61 @@ public class QueryBjdActivity extends Activity implements View.OnClickListener {
                 }else{
                     holder.bjzb_khly.setText("");
                 }
-                if(quotationList_info.getCust_Name()!=null){
-                    holder.bjzb_khxm.setText(quotationList_info.getCust_Name().toString());
-                }else{
-                    holder.bjzb_khxm.setText("");
-                }
-                if(quotationList_info.getCust_Con()!=null){
-                    holder.bjzb_khdh.setText(quotationList_info.getCust_Con().toString());
+
+                if(quotationList_info.getKH_NO()!=null){
+                    holder.bjzb_khdh.setText(quotationList_info.getCust_Tel().toString());
                 }else{
                     holder.bjzb_khdh.setText("");
                 }
+
+                //客户名称（id转化）
+                //此处请求接口获取名称
+                OkHttpClient client = new OkHttpClient();
+                FormBody body = new FormBody.Builder().add("accountNo", query_db)
+                        .add("id", data_adp.get(position).getKH_NO()).build();
+                Request request = new Request.Builder()
+                        .addHeader("cookie", session).url(url_id_toname).post(body)
+                        .build();
+                Call call = client.newCall(request);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        String str = response.body().string();
+                        Log.e("LiNing", "查询数据===" + str);
+                        final DepInfo dInfo = new Gson().fromJson(str,
+                                DepInfo.class);
+                        if (dInfo != null) {
+                            QueryBjdActivity.this
+                                    .runOnUiThread(new Runnable() {
+
+                                        @Override
+                                        public void run() {
+                                            depInfo = dInfo.getIdNameList();
+                                            if (depInfo != null && depInfo.size() > 0) {
+                                                for (int i = 0; i < depInfo.size(); i++) {
+                                                    name = depInfo.get(i).getName();
+                                                    holder.bjzb_khxm.setText(name);
+//                                                    holder_ysmx.yingsmx_khmc.setText(name);
+//                                                    data_adp.get(i).setYis_khmc(name);
+//                                                    Log.e("LiNing", "数据name" + skdysmx_infos.get(position).getYis_khmc());
+                                                }
+                                            }
+//                                            data_adp.get(position).setYis_khmc(name);
+//                                        holder.price_name.setText(infos.get(position).getNAME_ZDY());
+//                                            Log.e("LiNing", "数据name---" + skdysmx_infos.get(position).getYis_khmc());
+                                        }
+
+                                    });
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+
+                    }
+
+
+                });
             }
             //操作选择等
             if (position == selectItem) {

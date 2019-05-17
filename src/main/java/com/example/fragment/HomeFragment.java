@@ -24,6 +24,7 @@ import com.example.ydshoa.ReceiptFormActivity;
 import com.example.ydshoa.SalesManageActivity;
 import com.example.ydshoa.SmrtActivity;
 import com.example.ydshoa.SpActivity;
+import com.example.ydshoa.TestBjdActivity;
 import com.example.ydshoa.TestSearchActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -122,11 +123,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     if (modIds_get.contains("sm")) {
 
                         startActivity(new Intent(this.context, ReceiptFormActivity.class));
+
                     } else {
                         Toast.makeText(this.context, "请等待...", Toast.LENGTH_SHORT).show();
                     }
                 }
-
+//                startActivity(new Intent(this.context, TestBjdActivity.class));
 //                物流管理
 
 //                Toast.makeText(this.context, "暂时放收款信息.", Toast.LENGTH_SHORT).show();

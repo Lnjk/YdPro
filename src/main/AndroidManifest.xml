@@ -229,7 +229,8 @@
         <activity android:name=".KmClassActivity" />
         <activity android:name=".KmDoAllActivity" />
         <activity android:name=".YuShouActivity" />
-        <activity android:name=".YingShouActivity"></activity>
+        <activity android:name=".YingShouActivity" />
+        <activity android:name=".TestBjdActivity"></activity>
     </application>
 
 </manifest>

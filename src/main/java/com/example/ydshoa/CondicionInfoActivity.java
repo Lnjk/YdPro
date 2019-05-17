@@ -80,6 +80,7 @@ public class CondicionInfoActivity extends Activity implements OnClickListener {
 	private String url_chkUser = URLS.ERP_user_url;
 	private String url_zt = URLS.ERP_db_url;
 	private String url_djlb = URLS.djlb_url;
+	private String url_yxpp= URLS.yxpp_url;
 	// id转name
 	// private String url_idToDB = URLS.ERP_db_url;
 	private String url_idTodep = URLS.ERP_dep_url;
@@ -267,16 +268,18 @@ public class CondicionInfoActivity extends Activity implements OnClickListener {
 			getClassinfo();
 		}
 		if (extraFlag.equals("21")) {
-			 depInfo=new ArrayList<IdNameList>();
-			IdNameList mnsj=new IdNameList("1","冠珠");
-			IdNameList mnsj1=new IdNameList("2","LD");
-			IdNameList mnsj2=new IdNameList("3","法恩莎");
-			IdNameList mnsj3=new IdNameList("4","好莱客");
-			depInfo.add(mnsj);
-			depInfo.add(mnsj1);
-			depInfo.add(mnsj2);
-			depInfo.add(mnsj3);
-			showCheckBoxListView();
+//			 depInfo=new ArrayList<IdNameList>();
+//			IdNameList mnsj=new IdNameList("1","冠珠");
+//			IdNameList mnsj1=new IdNameList("2","LD");
+//			IdNameList mnsj2=new IdNameList("3","法恩莎");
+//			IdNameList mnsj3=new IdNameList("4","好莱客");
+//			depInfo.add(mnsj);
+//			depInfo.add(mnsj1);
+//			depInfo.add(mnsj2);
+//			depInfo.add(mnsj3);
+//			showCheckBoxListView();
+			head.setText("意向品牌");
+			getClassinfo();
 		}
 		if (extraFlag.equals("22")) {
 			head.setText("单据类别");
@@ -299,6 +302,11 @@ public class CondicionInfoActivity extends Activity implements OnClickListener {
 
 			body_yw = new FormBody.Builder().add("accountNo", extraId)
 					.build();
+		}
+		if (extraFlag.equals("21")) {
+
+			localRequest = new Request.Builder().addHeader("cookie", session)
+					.post(body_yw).url(url_yxpp).build();
 		}
 		if (extraFlag.equals("15")) {
 
@@ -1021,7 +1029,8 @@ public class CondicionInfoActivity extends Activity implements OnClickListener {
 			}
 			if (extraFlag.equals("15") || extraFlag.equals("16")
 					|| extraFlag.equals("17") || extraFlag.equals("18")
-					|| extraFlag.equals("19") || extraFlag.equals("20")) {
+					|| extraFlag.equals("19") || extraFlag.equals("20")
+					|| extraFlag.equals("21")) {
 				getClassinfo();
 			}
 		} else if (!idString.equals("") && TextUtils.isEmpty(nameString)) {
@@ -1140,7 +1149,8 @@ public class CondicionInfoActivity extends Activity implements OnClickListener {
 
 				}
 			});
-		} else if (extraFlag.equals("20")) {
+		}
+		else if (extraFlag.equals("20")) {
 			OkHttpClient client = new OkHttpClient();
 			if (cussor == 1) {
 				body = new FormBody.Builder().add("accountNo", extraId)
@@ -1189,7 +1199,58 @@ public class CondicionInfoActivity extends Activity implements OnClickListener {
 
 				}
 			});
-		} else if (extraFlag.equals("16")) {
+		}
+		else if (extraFlag.equals("21")) {
+			OkHttpClient client = new OkHttpClient();
+			if (cussor == 1) {
+				body = new FormBody.Builder().add("accountNo", extraId)
+						.add("id", idString).build();
+			} else if (cussor == 2) {
+				body = new FormBody.Builder().add("accountNo", extraId)
+						.add("name", nameString).build();
+			} else if (cussor == 3) {
+				body = new FormBody.Builder().add("accountNo", extraId)
+						.add("name", nameString).add("id", idString).build();
+			} else if (cussor == 4) {
+				getClassinfo();
+			}
+
+			Request request = new Request.Builder()
+					.addHeader("cookie", session).url(url_yxpp).post(body)
+					.build();
+			Call call = client.newCall(request);
+			call.enqueue(new Callback() {
+
+				@Override
+				public void onResponse(Call call, Response response)
+						throws IOException {
+					String str = response.body().string();
+					Log.e("LiNing", "查询数据===" + str);
+					final DepInfo dInfo = new Gson().fromJson(str,
+							DepInfo.class);
+					if (dInfo != null) {
+						CondicionInfoActivity.this
+								.runOnUiThread(new Runnable() {
+
+									@Override
+									public void run() {
+										depInfo = dInfo.getIdNameList();
+										arrays = depInfo.toArray();
+										Log.e("LiNing", "888" + arrays);
+										showCheckBoxListView();
+									}
+
+								});
+					}
+				}
+
+				@Override
+				public void onFailure(Call arg0, IOException arg1) {
+
+				}
+			});
+		}
+		else if (extraFlag.equals("16")) {
 			OkHttpClient client = new OkHttpClient();
 			if (cussor == 1) {
 				body = new FormBody.Builder().add("accountNo", extraId)

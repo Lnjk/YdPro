@@ -176,7 +176,49 @@
             </LinearLayout>
 
             <View style="@style/price_view" />
+            <LinearLayout
+                style="@style/price_ll1"
+                android:orientation="horizontal">
 
+
+
+
+                <LinearLayout style="@style/price_ll2">
+
+                    <TextView
+                        style="@style/price_name"
+                        android:text="VIP会员:" />
+
+                    <TextView
+                        android:id="@+id/tv_offer_all_qdyw"
+                        style="@style/design_editext" />
+
+                    <ImageButton
+                        android:id="@+id/ib_offer_all_qdyw"
+                        style="@style/price_button_down" />
+
+                </LinearLayout>
+                <LinearLayout style="@style/price_ll2">
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
+                    <TextView
+                        style="@style/price_name"
+                        android:text="业务类型:" />
+
+                    <TextView
+                        android:id="@+id/tv_offer_all_ywlx"
+                        style="@style/design_editext" />
+
+                    <ImageButton
+                        android:id="@+id/ib_offer_all_ywlx"
+                        style="@style/price_button_down" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View style="@style/price_view" />
             <LinearLayout
                 style="@style/price_ll1"
                 android:orientation="horizontal">
@@ -184,10 +226,6 @@
 
                 <LinearLayout style="@style/price_ll2">
 
-                    <TextView
-                        style="@style/price_name"
-                        android:text="*"
-                        android:textColor="@color/color_red" />
 
                     <TextView
                         style="@style/design_name"
@@ -205,10 +243,6 @@
 
                 <LinearLayout style="@style/price_ll2">
 
-                    <TextView
-                        style="@style/price_name"
-                        android:text="*"
-                        android:textColor="@color/color_red" />
 
                     <TextView
                         style="@style/price_name"
@@ -250,10 +284,6 @@
 
                 <LinearLayout style="@style/price_ll2">
 
-                    <TextView
-                        style="@style/price_name"
-                        android:text="*"
-                        android:textColor="@color/color_red" />
 
                     <TextView
                         style="@style/price_name"
@@ -347,28 +377,6 @@
                 <LinearLayout style="@style/price_ll2">
 
                     <TextView
-                        style="@style/price_name"
-                        android:text="顾问电话:" />
-
-                    <EditText
-                        android:id="@+id/et_offer_all_gwdh"
-                        style="@style/design_editext"
-                        android:digits="1234567890"
-                        android:maxLength="11" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <View style="@style/price_view" />
-
-            <LinearLayout
-                style="@style/price_ll1"
-                android:orientation="horizontal">
-
-
-                <LinearLayout style="@style/price_ll2">
-
-                    <TextView
                         style="@style/design_name"
                         android:text="服务管家" />
 
@@ -381,23 +389,11 @@
                         style="@style/price_button_down" />
 
                 </LinearLayout>
-
-                <LinearLayout style="@style/price_ll2">
-
-                    <TextView
-                        style="@style/price_name"
-                        android:text="管家电话:" />
-
-                    <EditText
-                        android:id="@+id/et_offer_all_gjdh"
-                        style="@style/design_editext"
-                        android:digits="1234567890"
-                        android:maxLength="11" />
-
-                </LinearLayout>
             </LinearLayout>
 
             <View style="@style/price_view" />
+
+
 
             <LinearLayout
                 style="@style/price_ll1"
@@ -423,29 +419,7 @@
 
                     <TextView
                         style="@style/price_name"
-                        android:text="设计电话:" />
-
-                    <EditText
-                        android:id="@+id/et_offer_all_sjdh"
-                        style="@style/design_editext"
-                        android:digits="1234567890"
-                        android:maxLength="11" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <View style="@style/price_view" />
-
-            <LinearLayout
-                style="@style/price_ll1"
-                android:orientation="horizontal">
-
-
-                <LinearLayout style="@style/price_ll2">
-
-                    <TextView
-                        style="@style/price_name"
-                        android:text="审图业务:" />
+                        android:text="生产业务:" />
 
                     <TextView
                         android:id="@+id/et_offer_all_styw"
@@ -454,26 +428,13 @@
                     <ImageButton
                         android:id="@+id/ib_offer_all_styw"
                         style="@style/price_button_down" />
-                </LinearLayout>
-
-                <LinearLayout style="@style/price_ll2">
-
-                    <TextView
-                        style="@style/price_name"
-                        android:text="确单业务:" />
-
-                    <TextView
-                        android:id="@+id/tv_offer_all_qdyw"
-                        style="@style/design_editext" />
-
-                    <ImageButton
-                        android:id="@+id/ib_offer_all_qdyw"
-                        style="@style/price_button_down" />
 
                 </LinearLayout>
             </LinearLayout>
 
             <View style="@style/price_view" />
+
+
 
             <LinearLayout
                 style="@style/price_ll1"
@@ -486,7 +447,7 @@
                         style="@style/design_name"
                         android:text="预收货款:" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/et_offer_all_yshk"
                         style="@style/design_editext" />
 
@@ -496,7 +457,10 @@
                 </LinearLayout>
 
                 <LinearLayout style="@style/price_ll2">
-
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
                     <TextView
                         style="@style/price_name"
                         android:text="打印状态:" />
@@ -597,7 +561,10 @@
 
 
                 <LinearLayout style="@style/price_ll2">
-
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
                     <TextView
                         style="@style/design_name"
                         android:text="交货方式:" />
@@ -621,7 +588,7 @@
 
                     <TextView
                         style="@style/price_name"
-                        android:text="销售订单:" />
+                        android:text="配送列号:" />
 
                     <TextView
                         android:id="@+id/et_offer_all_xsdd"
@@ -761,7 +728,7 @@
 
                     <TextView
                         style="@style/price_name"
-                        android:text="信息备注:" />
+                        android:text="备注:" />
 
                     <EditText
                         android:id="@+id/et_offer_all_bzxx"
@@ -817,7 +784,10 @@
 
 
                 <LinearLayout style="@style/price_ll2">
-
+                    <TextView
+                        style="@style/price_name"
+                        android:text="*"
+                        android:textColor="@color/color_red" />
                     <TextView
                         style="@style/design_name"
                         android:text="制单人:" />
@@ -860,7 +830,14 @@
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
                         android:src="@drawable/ic_launcher" />
-
+                    <ImageButton
+                        android:id="@+id/ib_signatureadd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:background="@android:color/transparent"
+                        android:onClick="signatureAdd"
+                        android:src="@drawable/qz" />
                     <LinearLayout style="@style/price_ll2">
 
 

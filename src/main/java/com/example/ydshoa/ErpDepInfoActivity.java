@@ -1,6 +1,7 @@
 package com.example.ydshoa;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.Call;
@@ -8,6 +9,7 @@ import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import com.example.bean.DepInfo;
@@ -306,12 +308,23 @@ public class ErpDepInfoActivity extends Activity implements OnClickListener {
 			}
 		});
 	}
+
 	private void requestfllx() {
+		//把参数传进Map中
+		HashMap<String,String> paramsMap=new HashMap<>();
+		paramsMap.put("accountNo",dBID);
+		paramsMap.put("custType",lx_type);
+		FormBody.Builder builder = new FormBody.Builder();
+		for (String key : paramsMap.keySet()) {
+			//追加表单信息
+			builder.add(key, paramsMap.get(key));
+		}
 		OkHttpClient client = new OkHttpClient();
-		FormBody body = new FormBody.Builder()
-				.add("accountNo",dBID)
-				.add("custType",lx_type)
-				.build();
+//		FormBody body = new FormBody.Builder()
+//				.add("accountNo",dBID)
+//				.add("custType",lx_type)
+//				.build();
+		RequestBody body=builder.build();
 		Request request = new Request.Builder().addHeader("cookie", session)
 				.url(url_add_zhlx).post(body).build();
 		Call call = client.newCall(request);
